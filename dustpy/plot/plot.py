@@ -133,7 +133,7 @@ def panel(data, im=0, ir=0, it=0, filename="data", extension="hdf5"):
         pltcmap = axcmap.contourf(r/c.au,
                                   m,
                                   np.log10(sigmaD.T),
-                                  levels=np.linspace(sd_max-6, sd_max, 10),
+                                  levels=np.linspace(sd_max-6, sd_max, 7),
                                   cmap="magma",
                                   extend="both"
                                   )
