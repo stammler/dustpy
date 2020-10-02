@@ -5,7 +5,7 @@ from simframe import schemes
 from simframe.frame import Field
 from simframe.frame import Group
 from simframe.frame import IntVar
-from simframe.io.writers import hdf5writer
+from simframe.utils.color import colorize
 
 import dustpy.constants as c
 
@@ -15,11 +15,24 @@ import dustpy.std.grid as std_grid
 import dustpy.std.sim as std_sim
 import dustpy.std.star as std_star
 
+from dustpy.utils import hdf5writer
+from dustpy.utils.boundary import Boundary
+
 import numpy as np
 from types import SimpleNamespace
 
 
 class Simulation(Frame):
+    '''The main simulation class for running dust coagulation simulations.
+
+    ``dustpy.Simulation`` is a child of ``simframe.Frame.
+
+    For setting simple initial conditions use ``Simulation.ini``,
+    For making the simulation grids use ``Simulation.makegrids()``,
+    For initialization use ``Simulation.initialize()``,
+    For running simulations use ``Simulation.run()``.
+
+    Please have a look at the documentation of ``simframe`` for further details.'''
 
     __name__ = "DustPy"
 
@@ -36,15 +49,15 @@ class Simulation(Frame):
                                                       ),
                               "gas": SimpleNamespace(**{"alpha": 1.e-3,
                                                         "gamma": 1.4,
-                                                        "Mdisk": 0.01*c.M_sun,
+                                                        "Mdisk": 0.05*c.M_sun,
                                                         "mu": 2.3*c.m_p,
-                                                        "SigmaExp": -1,
-                                                        "SigmaRc": 30.*c.au
+                                                        "SigmaExp": -1.,
+                                                        "SigmaRc": 60.*c.au
                                                         }
                                                      ),
                               "grid": SimpleNamespace(**{"Nmbpd": 7,
-                                                         "mmin": 1.e-15,
-                                                         "mmax": 1.e15,
+                                                         "mmin": 1.e-12,
+                                                         "mmax": 1.e5,
                                                          "Nr": 100,
                                                          "rmin": 1.*c.au,
                                                          "rmax": 1000.*c.au
@@ -59,6 +72,8 @@ class Simulation(Frame):
                            )
 
     def __init__(self, **kwargs):
+        '''Main simulation class.'''
+
         super().__init__(**kwargs)
 
         # Initializing everything with None to get the basic frame
@@ -71,12 +86,18 @@ class Simulation(Frame):
         self.dust.backreaction.A = None
         self.dust.backreaction.B = None
         self.dust.backreaction.updater = ["A", "B"]
+        self.dust.boundary = Group(self, description="Boundary conditions")
+        self.dust.boundary.inner = None
+        self.dust.boundary.outer = None
         self.dust.coagulation = Group(
             self, description="Coagulation quantities")
-        self.dust.coagulation.matrices = Group(
-            self, description="Collision matrices")
-        self.dust.coagulation.matrices.coag = None
-        self.dust.coagulation.matrices.frag = None
+        self.dust.coagulation.stick = None
+        self.dust.coagulation.stick_ind = None
+        self.dust.coagulation.A = None
+        self.dust.coagulation.eps = None
+        self.dust.coagulation.lf_ind = None
+        self.dust.coagulation.rm_ind = None
+        self.dust.coagulation.phi = None
         self.dust.D = None
         self.dust.delta = Group(self, description="Mixing parameters")
         self.dust.delta.rad = None
@@ -91,8 +112,13 @@ class Simulation(Frame):
         self.dust.Fi.updater = ["adv", "diff", "tot"]
         self.dust.fill = None
         self.dust.H = None
+        self.dust.kernel = None
         self.dust.rho = None
         self.dust.rhos = None
+        self.dust.p = Group(self, description="Probabilities")
+        self.dust.p.frag = None
+        self.dust.p.stick = None
+        self.dust.p.updater = ["frag", "stick"]
         self.dust.S = Group(self, description="Sources")
         self.dust.S.coag = None
         self.dust.S.ext = None
@@ -116,12 +142,15 @@ class Simulation(Frame):
         self.dust.v.driftmax = None
         self.dust.v.rad = None
         self.dust.v.updater = ["frag", "driftmax", "rad", "rel"]
-        self.dust.updater = ["delta", "rhos", "fill",
-                             "a", "St", "H", "rho", "backreaction", "v", "D", "eps", "Fi", "S"]
+        self.dust.updater = ["delta", "rhos", "fill", "a", "St", "H",
+                             "rho", "backreaction", "v", "D", "eps", "Fi", "kernel", "p", "S"]
 
         # Gas quantities
         self.gas = Group(self, description="Gas quantities")
         self.gas.alpha = None
+        self.gas.boundary = Group(self, description="Boundary conditions")
+        self.gas.boundary.inner = None
+        self.gas.boundary.outer = None
         self.gas.cs = None
         self.gas.eta = None
         self.gas.Fi = None
@@ -130,6 +159,7 @@ class Simulation(Frame):
         self.gas.mfp = None
         self.gas.mu = None
         self.gas.n = None
+        self.gas.nu = None
         self.gas.P = None
         self.gas.rho = None
         self.gas.S = Group(self, description="Source terms")
@@ -144,7 +174,7 @@ class Simulation(Frame):
         self.gas.v.rad = None
         self.gas.v.visc = None
         self.gas.v.updater = ["visc", "rad"]
-        self.gas.updater = ["gamma", "mu", "T", "alpha", "cs", "Hp",
+        self.gas.updater = ["gamma", "mu", "T", "alpha", "cs", "Hp", "nu",
                             "rho", "n", "mfp", "P", "eta", "v", "Fi", "S"]
 
         # Grid quantities
@@ -170,6 +200,27 @@ class Simulation(Frame):
 
         self.t = None
 
+    def run(self):
+        """This functions runs the simulation."""
+        # Print welcome message
+        if self.verbosity > 0:
+            msg = ""
+            msg += "\nDustPy v{}".format(self.__version__)
+            msg += "\n"
+            msg += "\nDocumentation: {}".format("https://dustpy.rtfd.io")
+            msg += "\nPyPI:          {}".format(
+                "https://pypi.org/project/dustpy")
+            msg += "\nGitHub:        {}".format(
+                "https://github.com/stammler/dustpy")
+            msg += "\n"
+            msg += "\nPlease cite:   {}".format(
+                "Stammler & Birnstiel (in prep.)")
+            print(msg)
+        # Check for mass conserbation
+        self.checkmassconservation()
+        # Actually run the simulation
+        super().run()
+
     @property
     def ini(self):
         '''Parameter set for setting the initial conditions.'''
@@ -191,8 +242,10 @@ class Simulation(Frame):
     def _makemassgrid(self):
         '''Function sets the radial mass grid. If ``Simulation.grid.rint`` is not given it uses the parameters set in
         ``Simulation.ini``.'''
-        Nm = np.int(np.ceil(np.log10(self.ini.grid.mmax /
-                                     self.ini.grid.mmin)*self.ini.grid.Nmbpd))
+        logmmin = np.log10(self.ini.grid.mmin)
+        logmmax = np.log10(self.ini.grid.mmax)
+        decades = np.ceil(logmmax - logmmin)
+        Nm = np.int(decades * self.ini.grid.Nmbpd) + 1
         m = np.logspace(np.log10(self.ini.grid.mmin), np.log10(
             self.ini.grid.mmax), num=Nm, base=10.)
         self.grid.Nm = Field(
@@ -216,6 +269,132 @@ class Simulation(Frame):
             self, r, description="Radial grid cell centers [cm]", constant=True)
         self.grid.ri = Field(
             self, ri, description="Radial grid cell interfaces [cm]", constant=True)
+
+    def checkmassconservation(self):
+        """Function checks for mass conservation and prints the maximum relative mass error."""
+        if self.dust.coagulation.stick is None:
+            raise RuntimeError(
+                "'Simulation.dust.coagulation.stick' is not set.")
+        if self.dust.coagulation.stick_ind is None:
+            raise RuntimeError(
+                "'Simulation.dust.coagulation.stick_ind' is not set.")
+        if self.dust.coagulation.A is None:
+            raise RuntimeError(
+                "'Simulation.dust.coagulation.A' is not set.")
+        if self.dust.coagulation.eps is None:
+            raise RuntimeError(
+                "'Simulation.dust.coagulation.eps' is not set.")
+        if self.dust.coagulation.lf_ind is None:
+            raise RuntimeError(
+                "'Simulation.dust.coagulation.lf_ind' is not set.")
+        if self.dust.coagulation.rm_ind is None:
+            raise RuntimeError(
+                "'Simulation.dust.coagulation.rm_ind' is not set.")
+        if self.dust.coagulation.phi is None:
+            raise RuntimeError(
+                "'Simulation.dust.coagulation.phi' is not set.")
+        if self.grid.m is None:
+            raise RuntimeError("'sim.grid.m' is not set.")
+        if self.verbosity > 0:
+            # Maximum acceptable error
+            erracc = 1.e-13
+            # Checking for sticking error
+            msg = "\n"
+            msg += colorize("Checking for mass conservation...\n",
+                            color="yellow")
+            print(msg)
+            msg = colorize("    - Sticking:", color="yellow")
+            print(msg)
+            errmax = 0.
+            tup = None
+            for i in range(np.int(self.grid.Nm)):
+                for j in range(i):
+                    ind = self.dust.coagulation.stick_ind[:, j, i]
+                    stick = self.dust.coagulation.stick[:, j, i]
+                    mtot = self.grid.m[i] + self.grid.m[j]
+                    merr = np.abs(np.sum(self.grid.m[ind]*stick)) / mtot
+                    if merr > errmax:
+                        errmax = merr
+                        tup = (j, i)
+            color = "red"
+            if(errmax < erracc):
+                color = "green"
+            error = "{:9.2e}".format(errmax)
+            msg = "        max. rel. error: {:}\n".format(
+                colorize(error, color=color))
+            msg += "        for particle collision\n"
+            msg += "            m[{:d}] = {:9.2e} g    with\n".format(
+                tup[0], self.grid.m[tup[0]])
+            msg += "            m[{:d}] = {:9.2e} g".format(
+                tup[1], self.grid.m[tup[1]])
+            msg = colorize(msg)
+            print(msg)
+            # Checking for full fragmentation error
+            msg = colorize("    - Full fragmentation:", color="yellow")
+            print(msg)
+            errmax = 0.
+            tup = None
+            A = self.dust.coagulation.A
+            eps = self.dust.coagulation.eps
+            klf = self.dust.coagulation.lf_ind
+            krm = self.dust.coagulation.rm_ind
+            m = self.grid.m
+            phi = self.dust.coagulation.phi
+            for i in range(np.int(self.grid.Nm)):
+                for j in range(i):
+                    mtot = m[i] + m[j]
+                    merr = 0
+                    # Full fragmentation:
+                    if klf[j, i] == i:
+                        mfrag = A[j, i]*np.sum(phi[i, :])
+                        merr = np.abs(1. - mfrag / mtot)
+                        if merr > errmax:
+                            errmax = merr
+                            tup = (j, i)
+            color = "red"
+            if(errmax < erracc):
+                color = "green"
+            error = "{:9.2e}".format(errmax)
+            msg = "        max. rel. error: {:}\n".format(
+                colorize(error, color=color))
+            msg += "        for particle collision\n"
+            msg += "            m[{:d}] = {:9.2e} g    with\n".format(
+                tup[0], self.grid.m[tup[0]])
+            msg += "            m[{:d}] = {:9.2e} g".format(
+                tup[1], self.grid.m[tup[1]])
+            msg = colorize(msg)
+            print(msg)
+            # Checking for cratering error
+            msg = colorize("    - Cratering:", color="yellow")
+            print(msg)
+            errmax = 0.
+            tup = None
+            for i in range(np.int(self.grid.Nm)):
+                for j in range(i):
+                    mtot = m[i] + m[j]
+                    merr = 0
+                    # Cratering:
+                    if klf[j, i] != i:
+                        k = krm[j, i]
+                        mfrag = A[j, i]*np.sum(phi[klf[j, i], :])
+                        mrm = eps[j, i]*m[k] + (1.-eps[j, i])*m[k+1]
+                        merr = np.abs(1. - mfrag/mtot - mrm/mtot)
+                        if merr > errmax:
+                            errmax = merr
+                            tup = (j, i)
+            color = "red"
+            if(errmax < erracc):
+                color = "green"
+            error = "{:9.2e}".format(errmax)
+            msg = "        max. rel. error: {:}\n".format(
+                colorize(error, color=color))
+            msg += "        for particle collision\n"
+            msg += "            m[{:d}] = {:9.2e} g    with\n".format(
+                tup[0], self.grid.m[tup[0]])
+            msg += "            m[{:d}] = {:9.2e} g\n".format(
+                tup[1], self.grid.m[tup[1]])
+            msg = colorize(msg)
+            print(msg)
 
     def initialize(self):
         '''Function initializes the simulation frame.
@@ -310,6 +489,11 @@ class Simulation(Frame):
             self.gas.n = Field(self, np.zeros(shape1),
                                description="Miplane number density [1/cm³]")
             self.gas.n.updater = std_gas.n_midplane
+        # Viscosity
+        if self.gas.nu is None:
+            self.gas.nu = Field(self, np.zeros(shape1),
+                                description="Kinematic viscosity [cm²/s]")
+            self.gas.nu.updater = std_gas.nu
         # Midplane pressure
         if self.gas.P is None:
             self.gas.P = Field(self, np.zeros(shape1),
@@ -343,7 +527,8 @@ class Simulation(Frame):
             SigmaGas = np.maximum(SigmaGas, self.gas.SigmaFloor)
             self.gas.Sigma = Field(self, SigmaGas,
                                    description="Surface density [g/cm²]")
-            self.gas.Sigma.differentiator = std_gas.Sigma_deriv
+            self.gas.Sigma.jacobinator = std_gas.jacobian
+            self.gas._rhs = np.zeros(shape1)
         # Temperature
         if self.gas.T is None:
             self.gas.T = Field(self, np.zeros(shape1),
@@ -362,6 +547,15 @@ class Simulation(Frame):
             self.gas.v.rad.updater = std_gas.vrad
         # Initialize gas quantities
         self.gas.update()
+        # Boundary conditions
+        if self.gas.boundary.inner is None:
+            self.gas.boundary.inner = Boundary(
+                self.grid.r, self.grid.ri, self.gas.Sigma)
+            self.gas.boundary.inner.setcondition("const_grad")
+        if self.gas.boundary.outer is None:
+            self.gas.boundary.outer = Boundary(
+                self.grid.r[::-1], self.grid.ri[::-1], self.gas.Sigma[::-1])
+            self.gas.boundary.outer.setcondition("const_grad")
 
         # DUST QUANTITIES
 
@@ -377,6 +571,30 @@ class Simulation(Frame):
         if self.dust.backreaction.B is None:
             self.dust.backreaction.B = Field(
                 self, np.zeros(shape1), description="Push factor")
+        # Coagulation parameters
+        stick, stick_ind, A, eps, lf_ind, rm_ind, phi = std_dust.coagulation_parameters(
+            self)
+        if self.dust.coagulation.A is None:
+            self.dust.coagulation.A = Field(
+                self, A, description="Fragment normalization factors", constant=True)
+        if self.dust.coagulation.eps is None:
+            self.dust.coagulation.eps = Field(
+                self, eps, description="Remnant mass distribution", constant=True)
+        if self.dust.coagulation.lf_ind is None:
+            self.dust.coagulation.lf_ind = Field(
+                self, lf_ind, description="Index of largest fragment", constant=True)
+        if self.dust.coagulation.rm_ind is None:
+            self.dust.coagulation.rm_ind = Field(
+                self, rm_ind, description="Smaller index of remnant", constant=True)
+        if self.dust.coagulation.phi is None:
+            self.dust.coagulation.phi = Field(
+                self, phi, description="Fragment distribution", constant=True)
+        if self.dust.coagulation.stick is None:
+            self.dust.coagulation.stick = Field(
+                self, stick, description="Sticking matrix", constant=True)
+        if self.dust.coagulation.stick_ind is None:
+            self.dust.coagulation.stick_ind = Field(
+                self, stick_ind, description="Non-zero elements of sticking matrix", constant=True)
         # Diffusivity
         if self.dust.D is None:
             self.dust.D = Field(self, np.zeros(shape2),
@@ -420,6 +638,11 @@ class Simulation(Frame):
             self.dust.H = Field(self, np.zeros(shape2),
                                 description="Scale heights [cm]")
             self.dust.H.updater = std_dust.H
+        # Kernel
+        if self.dust.kernel is None:
+            self.dust.kernel = Field(self, np.zeros(
+                shape3), description="Collision kernel [cm²/s]")
+            self.dust.kernel.updater = std_dust.kernel
         # Midplane mass density
         if self.dust.rho is None:
             self.dust.rho = Field(self, np.zeros(
@@ -430,6 +653,15 @@ class Simulation(Frame):
             rhos = self.ini.dust.rhoMonomer * np.ones(shape2)
             self.dust.rhos = Field(
                 self, rhos, description="Solid state density [g/cm³]")
+        # Probabilities
+        if self.dust.p.frag is None:
+            self.dust.p.frag = Field(self, np.zeros(
+                shape3), description="Fragmentation probability")
+            self.dust.p.frag.updater = std_dust.p_frag
+        if self.dust.p.stick is None:
+            self.dust.p.stick = Field(self, np.zeros(
+                shape3), description="Sticking probability")
+            self.dust.p.stick.updater = std_dust.p_stick
         # Source terms
         if self.dust.S.coag is None:
             self.dust.S.coag = Field(self, np.zeros(
@@ -453,7 +685,7 @@ class Simulation(Frame):
             self.dust.St.updater = std_dust.St_Epstein_StokesI
         # Velocities
         if self.dust.v.frag is None:
-            vfrag = self.ini.dust.vfrag * np.ones(shape2)
+            vfrag = self.ini.dust.vfrag * np.ones(shape1)
             self.dust.v.frag = Field(
                 self, vfrag, description="Fragmentation velocity [cm/s]")
         if self.dust.v.rel.azi is None:
@@ -507,35 +739,42 @@ class Simulation(Frame):
             self.dust.Sigma.differentiator = std_dust.Sigma_deriv
         # Fully initialize dust quantities
         self.dust.update()
+        # Boundary conditions
+        if self.dust.boundary.inner is None:
+            self.dust.boundary.inner = Boundary(
+                self.grid.r, self.grid.ri, self.dust.Sigma)
+        if self.dust.boundary.outer is None:
+            self.dust.boundary.outer = Boundary(
+                self.grid.r[::-1], self.grid.ri[::-1], self.dust.Sigma[::-1])
 
         # INTEGRATION VARIABLE
 
         if self.t is None:
             self.t = IntVar(self, 0., description="Time [s")
             self.t.updater = std_sim.dt
-            self.t.snapshots = np.logspace(3., 4., num=2, base=10.) * c.year
+            self.t.snapshots = np.logspace(3., 5., num=21, base=10.) * c.year
             self.t.suggest(1.*c.year)
 
         # INTEGRATOR
 
         if self.integrator is None:
             instructions = [
-                Instruction(schemes.expl_2_heun_euler_adptv,
-                            self.gas.Sigma,
-                            controller={"dYdx": self.gas.S.tot,
-                                        "eps": 0.01
-                                        }
-                            ),
                 Instruction(schemes.expl_5_cash_karp_adptv,
                             self.dust.Sigma,
                             controller={"dYdx": self.dust.S.tot,
-                                        "eps": 0.01
+                                        "eps": 0.1,
+                                        "S": 0.9,
                                         }
-                            )
+                            ),
+                Instruction(std_gas.impl_1_euler_direct,
+                            self.gas.Sigma,
+                            controller={"rhs": self.gas._rhs
+                                        }
+                            ),
             ]
             self.integrator = Integrator(self.t)
             self.integrator.instructions = instructions
-            self.integrator.finalization = std_sim.finalize
+            self.integrator.finalizer = std_sim.finalize
 
         # WRITER
 

@@ -1,3 +1,5 @@
+'''Module containing standard functions for the central star.'''
+
 import dustpy.constants as c
 
 

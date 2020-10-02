@@ -1,3 +1,5 @@
+'''Module containing standard functions for the grids.'''
+
 import dustpy.constants as c
 
 import numpy as np

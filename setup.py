@@ -65,7 +65,7 @@ setup(
                  ],
 
     packages=find_packages(),
-    install_requires=["astropy", "numpy", "scipy", "simframe"],
+    install_requires=["numpy", "simframe"],
     include_package_data=True,
     zip_safe=False,
 )

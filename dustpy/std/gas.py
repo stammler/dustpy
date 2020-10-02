@@ -1,5 +1,8 @@
+'''Module containing standard functions for the gas.'''
+
 import numpy as np
-from scipy.interpolate import interp1d
+from scipy.sparse import diags
+from simframe.integration import Scheme
 
 import dustpy.constants as c
 from dustpy.std import gas_f
@@ -13,7 +16,8 @@ def boundary(sim):
     ----------
     sim : Frame
         Parent simulation frame"""
-    pass
+    sim.gas.boundary.inner.setboundary()
+    sim.gas.boundary.outer.setboundary()
 
 
 def enforce_floor_value(sim):
@@ -23,7 +27,7 @@ def enforce_floor_value(sim):
     ----------
     sim : Frame
         Parent simulation frame"""
-    sim.gas.Sigma = np.maximum(sim.gas.Sigma, sim.gas.SigmaFloor)
+    sim.gas.Sigma[:] = np.maximum(sim.gas.Sigma, sim.gas.SigmaFloor)
 
 
 def finalize(sim):
@@ -109,6 +113,112 @@ def Hp(sim):
     return sim.gas.cs/sim.grid.OmegaK
 
 
+def jacobian(sim, x, *args, **kwargs):
+
+    # Parameters
+    nu = sim.gas.nu * sim.dust.backreaction.A
+    v = sim.dust.backreaction.B * 2. * sim.gas.eta * sim.grid.r * sim.grid.OmegaK
+
+    # Helper variables for convenience
+    dt = sim.t.stepsize
+    r = sim.grid.r
+    ri = sim.grid.ri
+
+    # Construct Jacobian
+    A, B, C = gas_f.jac_abc(nu, r, ri, v)
+    jac = np.diag(A[1:], -1) + np.diag(B) + np.diag(C[:-1], 1)
+
+    # Boundaries
+
+    # Right hand side
+    sim.gas._rhs[:] = sim.gas.Sigma
+
+    # Inner boundary
+    if sim.gas.boundary.inner is not None:
+        # Given value
+        if sim.gas.boundary.inner.condition == "val":
+            jac[0, 0] = 0.
+            sim.gas._rhs[0] = sim.gas.boundary.inner.value
+        # Constant value
+        elif sim.gas.boundary.inner.condition == "const_val":
+            jac[0, 0] = 0.
+            jac[0, 1] = 1./dt
+            sim.gas._rhs[0] = 0.
+        # Given gradient
+        elif sim.gas.boundary.inner.condition == "grad":
+            K1 = - r[1]/r[0]
+            jac[0, 0] = 0.
+            jac[0, 1] = -K1/dt
+            sim.gas._rhs[0] = - ri[1]/r[0] * \
+                (r[1]-r[0])*sim.gas.boundary.inner.value
+        # Constant gradient
+        elif sim.gas.boundary.inner.condition == "const_grad":
+            Di = ri[1]/ri[2] * (r[1]-r[0]) / (r[2]-r[0])
+            K1 = - r[1]/r[0] * (1. + Di)
+            K2 = r[2]/r[0] * Di
+            jac[0, 0] = 0.
+            jac[0, 1] = -K1/dt
+            jac[0, 2] = -K2/dt
+            sim.gas._rhs[0] = 0.
+        # Given power law
+        elif sim.gas.boundary.inner.condition == "pow":
+            p = sim.gas.boundary.inner.value
+            jac[0, 0] = 0.
+            sim.gas._rhs[0] = sim.gas.Sigma[1] * (r[0]/r[1])**p
+        # Constant power law
+        elif sim.gas.boundary.inner.condition == "const_pow":
+            p = np.log(sim.gas.Sigma[2] /
+                       sim.gas.Sigma[1]) / np.log(r[2]/r[1])
+            K1 = - (r[-1]/r[-2])**p
+            jac[0, 0] = 0.
+            jac[0, 1] = -K1/dt
+            sim.gas._rhs[0] = 0.
+
+    # Outer boundary
+    # Right hand side
+    if sim.gas.boundary.outer is not None:
+        # Given value
+        if sim.gas.boundary.outer.condition == "val":
+            jac[-1, -1] = 0
+            sim.gas._rhs[-1] = sim.gas.boundary.outer.value
+        # Constant value
+        elif sim.gas.boundary.outer.condition == "const_val":
+            jac[-1, -1] = 0
+            jac[-1, -2] = 1./dt
+            sim.gas._rhs[-1] = 0.
+        # Given gradient
+        elif sim.gas.boundary.outer.condition == "grad":
+            KNrm2 = - r[-2]/r[-1]
+            jac[-1, -1] = 0.
+            jac[-1, -2] = -KNrm2/dt
+            sim.gas._rhs[-1] = ri[-2]/r[-1] * \
+                (r[-1]-r[-2])*sim.gas.boundary.outer.value
+        # Constant gradient
+        elif sim.gas.boundary.outer.condition == "const_grad":
+            Do = ri[-2]/ri[-3] * (r[-1]-r[-2]) / (r[-2]-r[-3])
+            KNrm2 = - r[-2]/r[-1] * (1. + Do)
+            KNrm3 = r[-3]/r[-1] * Do
+            jac[-1, -1] = 0.
+            jac[-1, -2] = -KNrm2/dt
+            jac[-1, -3] = -KNrm3/dt
+            sim.gas._rhs[-1] = 0.
+        # Given power law
+        elif sim.gas.boundary.outer.condition == "pow":
+            p = sim.gas.boundary.outer.value
+            jac[-1, -1] = 0.
+            sim.gas._rhs[-1] = sim.gas.Sigma[-2] * (r[-1]/r[-2])**p
+        # Constant power law
+        elif sim.gas.boundary.outer.condition == "const_pow":
+            p = np.log(sim.gas.Sigma[-2] /
+                       sim.gas.Sigma[-3]) / np.log(r[-2]/r[-1])
+            KNrm2 = - (r[-1]/r[-2])**p
+            jac[-1, -1] = 0.
+            jac[-1, -2] = -KNrm2/dt
+            sim.gas._rhs[-1] = 0.
+
+    return jac
+
+
 def lyndenbellpringle1974(r, rc, p, Mdisk):
     """Function calculates the surface density according the self similar solution of Lynden-Bell & Pringle (1974).
 
@@ -158,6 +268,21 @@ def n_midplane(sim):
     n : Field
         Midplane number density"""
     return sim.gas.rho / sim.gas.mu
+
+
+def nu(sim):
+    """Function calculates the kinematic viscocity of the gas.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+
+    Returns
+    -------
+    nu : Field
+        Kinematic viscosity"""
+    return sim.gas.alpha * sim.gas.cs * sim.gas.Hp
 
 
 def P_midplane(sim):
@@ -311,3 +436,50 @@ def vvisc(sim, Sigma=None):
         Sigma = sim.gas.Sigma
     nu = sim.gas.alpha * sim.gas.cs * sim.gas.Hp
     return gas_f.v_visc(Sigma, nu, sim.grid.r, sim.grid.ri)
+
+
+def _f_impl_1_euler_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
+    """Implicit 1st-order Euler integration scheme with direct matrix inversion
+
+    Parameters
+    ----------
+    x0 : Intvar
+        Integration variable at beginning of scheme
+    Y0 : Field
+        Variable to be integrated at the beginning of scheme
+    dx : IntVar
+        Stepsize of integration variable
+    jac : Field, optional, defaul : None
+        Current Jacobian. Will be calculated, if not set
+    args : additional positional arguments
+    kwargs : additional keyworda arguments
+
+    Returns
+    -------
+    dY : Field
+        Delta of variable to be integrated
+
+    Butcher tableau
+    ---------------
+     1 | 1
+    ---|---
+       | 1 
+    """
+    if jac is None:
+        jac = Y0.jacobian(x0 + dx, dt=dx)
+    if rhs is None:
+        rhs = np.array(Y0)
+
+    # Add external source terms to right-hand side
+    rhs[1:-1] += dx*Y0._owner.gas.S.ext[1:-1]
+
+    N = jac.shape[0]
+    eye = np.eye(N)
+    A = eye - dx * jac
+    Y1 = np.linalg.inv(A) @ rhs
+
+    return Y1 - Y0
+
+
+impl_1_euler_direct = Scheme(
+    _f_impl_1_euler_direct, description="Implicit 1st-order direct Euler method")

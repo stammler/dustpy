@@ -1,3 +1,5 @@
+'''Package containing standard functions that can be used in simulations.'''
+
 from dustpy.std import dust
 from dustpy.std import gas
 from dustpy.std import grid

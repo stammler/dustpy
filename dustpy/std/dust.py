@@ -1,8 +1,10 @@
+'''Module containing standard functions for the dust.'''
+
+
 import dustpy.constants as c
 from dustpy.std import dust_f
 
 import numpy as np
-from scipy.interpolate import interp1d
 
 
 def boundary(sim):
@@ -13,7 +15,8 @@ def boundary(sim):
     ----------
     sim : Frame
         Parent simulation frame"""
-    pass
+    sim.dust.boundary.inner.setboundary()
+    sim.dust.boundary.outer.setboundary()
 
 
 def enforce_floor_value(sim):
@@ -23,7 +26,9 @@ def enforce_floor_value(sim):
     ----------
     sim : Frame
         Parent simulation frame"""
-    sim.dust.Sigma = np.maximum(sim.dust.Sigma, sim.dust.SigmaFloor)
+    sim.dust.Sigma = np.where(
+        sim.dust.Sigma <= sim.dust.SigmaFloor, 0.1*sim.dust.SigmaFloor, sim.dust.Sigma)
+    #sim.dust.Sigma = np.array(np.maximum(sim.dust.Sigma, sim.dust.SigmaFloor))
 
 
 def finalize(sim):
@@ -108,24 +113,17 @@ def F_diff(sim, Sigma=None):
     '''Function calculates the diffusive flux at the cell interfaces'''
     if Sigma is None:
         Sigma = sim.dust.Sigma
-    return dust_f.fi_diff(sim.dust.D,
-                          sim.dust.eps,
-                          sim.dust.H,
-                          sim.gas.Hp,
-                          sim.grid.OmegaK,
-                          sim.dust.rho,
-                          sim.gas.rho,
-                          sim.grid.r,
-                          sim.grid.ri,
-                          Sigma,
-                          sim.gas.Sigma,
-                          sim.dust.St,
-                          sim.dust.delta.rad*sim.gas.cs**2)
 
+    Fi = dust_f.fi_diff(sim.dust.D,
+                        Sigma,
+                        sim.gas.Sigma,
+                        np.sqrt(sim.dust.delta.rad*sim.gas.cs**2),
+                        sim.grid.r,
+                        sim.grid.ri)
+    Fi[:1, :] = 0.
+    Fi[-1:, :] = 0.
 
-def f(St):
-    """This is a helper function for the calculation of the diffusive fluxes."""
-    return 2*St / (1 + 2*St**3)
+    return Fi
 
 
 def F_tot(sim, Sigma=None):
@@ -172,6 +170,25 @@ def H(sim):
     return dust_f.h_dubrulle1995(sim.gas.Hp, sim.dust.St, sim.dust.delta.vert)
 
 
+def kernel(sim):
+    """Function calculates the vertically integrated collision kernel.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+
+    Returns
+    -------
+    K : Field
+        Collision kernel"""
+    return dust_f.kernel(sim.dust.a,
+                         sim.dust.H,
+                         sim.dust.Sigma,
+                         sim.dust.SigmaFloor,
+                         sim.dust.v.rel.tot)
+
+
 def MRN_distribution(sim):
     """Function calculates the initial particle mass distribution. The parameters are taken from the
     ``Simulation.ini`` object.
@@ -198,8 +215,7 @@ def MRN_distribution(sim):
     exp = sim.ini.dust.distExp
     # Calculating pressure gradient
     P = sim.gas.P
-    fP = interp1d(sim.grid.r, P, kind="linear", fill_value="extrapolate")
-    Pi = fP(sim.grid.ri)
+    Pi = dust_f.interp1d(sim.grid.ri, sim.grid.r, P)
     gamma = (Pi[1:] - Pi[:-1]) / (sim.grid.ri[1:] - sim.grid.ri[:-1])
     gamma = np.abs(gamma)
     # Exponent of pressure gradient
@@ -221,6 +237,40 @@ def MRN_distribution(sim):
     # Normalize to mass
     ret = ret / s * sim.gas.Sigma[..., None] * sim.ini.dust.d2gRatio
     return ret
+
+
+def p_stick(sim):
+    """Function calculates the sticking probability.
+    The sticking probability is simply 1 minus the
+    fragmentation probability.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+
+    Returns
+    -------
+    ps : Field
+        Sticking probability"""
+    return 1. - sim.dust.p.frag
+
+
+def p_frag(sim):
+    """Function calculates the fragmentation probability.
+    It assumes a linear transition between sticking and
+    fragmentation.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+
+    Returns
+    -------
+    pf : Field
+        Fragmentation propability."""
+    return dust_f.pfrag(sim.dust.v.rel.tot, sim.dust.v.frag)
 
 
 def rho_midplane(sim):
@@ -252,8 +302,20 @@ def S_coag(sim, Sigma=None):
     -------
     Scoag : Field
         Coagulation source terms"""
-    Sigma = Sigma if Sigma is not None else sim.dust.Sigma
-    return sim.dust.S.coag
+    if Sigma is None:
+        Sigma = sim.dust.Sigma
+    return dust_f.s_coag(sim.dust.coagulation.stick,
+                         sim.dust.coagulation.stick_ind,
+                         sim.dust.coagulation.A,
+                         sim.dust.coagulation.eps,
+                         sim.dust.coagulation.lf_ind,
+                         sim.dust.coagulation.rm_ind,
+                         sim.dust.coagulation.phi,
+                         sim.dust.kernel * sim.dust.p.frag,
+                         sim.dust.kernel * sim.dust.p.stick,
+                         sim.grid.m,
+                         Sigma,
+                         sim.dust.SigmaFloor)
 
 
 def S_hyd(sim, Sigma=None):
@@ -275,8 +337,8 @@ def S_hyd(sim, Sigma=None):
         Fi = sim.dust.Fi.tot
     else:
         Fi = sim.dust.Fi.tot.updater.beat(sim, Sigma=Sigma)
-    if Fi is None:
-        Fi = sim.dust.Fi.tot
+        if Fi is None:
+            Fi = sim.dust.Fi.tot
     return dust_f.s_hyd(Fi, sim.grid.ri)
 
 
@@ -300,14 +362,12 @@ def S_tot(sim, Sigma=None):
         Shyd = sim.dust.S.hyd
     else:
         Scoag = sim.dust.S.coag.updater.beat(sim, Sigma=Sigma)
+        if Scoag is None:
+            Scoag = sim.dust.S.coag
         Shyd = sim.dust.S.hyd.updater.beat(sim, Sigma=Sigma)
-    S = np.zeros_like(sim.dust.S.tot)
-    if Scoag is not None:
-        S += Scoag
-    if Shyd is not None:
-        S += Shyd
-    S += sim.dust.S.ext
-    return S
+        if Shyd is None:
+            Shyd = sim.dust.S.hyd
+    return Scoag + Shyd
 
 
 def Sigma_deriv(sim, t, Sigma):
@@ -360,6 +420,38 @@ def St_Epstein_StokesI(sim):
         Stokes number"""
     rho = sim.dust.rhos * sim.dust.fill
     return dust_f.st_epstein_stokes1(sim.dust.a, sim.gas.mfp, rho, sim.gas.Sigma)
+
+
+def coagulation_parameters(sim):
+    """Function calculates the coagulation parameters needed for a simple
+    sticking-cratering-fragmentation collision model. The sticking matrix
+    is calculated with the method described in appendices A.1. and A.2. of
+    Brauer et al. (2008).
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+
+    Returns
+    -------
+    (cstick, cstick_ind, A, eps, klf, krm, phi) : Tuple
+        Coagulation parameters
+
+    Notes
+    -----
+    The sticking matrix has technically a shape of ``(Nm, Nm, Nm)``.
+    For example: ``cstick(k, j, i)`` describes the change of mass bin ``k``
+    resulting from a sticking collision between particles ``j`` and ``k``.
+    Since this matrix has at maximum four entries per particle collision,
+    only the non-zero elemts are stored in ``cstick`` of shape ``(4, Nm, Nm)``.
+    The positions of the non-zero elements along the first axis are stored
+    in ``cstick_ind``. For details see Brauer et al. (2008)."""
+    cstick, cstick_ind, A, eps, klf, krm, phi = dust_f.coagulation_parameters(sim.ini.dust.crateringMassRatio,
+                                                                              sim.ini.dust.excavatedMass,
+                                                                              sim.ini.dust.fragmentDistribution,
+                                                                              sim.grid.m)
+    return cstick, cstick_ind, A, eps, klf, krm, phi
 
 
 def vdriftmax(sim):
@@ -460,6 +552,10 @@ def vrel_tot(sim):
     ret += sim.dust.v.rel.rad**2
     ret += sim.dust.v.rel.turb**2
     ret += sim.dust.v.rel.vert**2
+
+    #ret = sim.dust.v.rel.brown**2
+    #ret += sim.dust.v.rel.turb**2
+
     return np.sqrt(ret)
 
 

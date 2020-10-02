@@ -13,4 +13,10 @@ module constants
     double precision :: sigma_sb = 5.6703744191844314d-05
     double precision :: year = 3.1557600d7
 
+    ! This is only used by the fragmentation algorithm
+    ! and should not be changed by the user. It is not
+    ! automatically passed to the Python module.
+    ! Particles fully fragment if j >= i-p.
+    integer :: p = 0 
+
 end module constants
