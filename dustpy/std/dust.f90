@@ -364,7 +364,7 @@ subroutine fi_adv(Sigma, v, r, ri, Fi, Nr, Nm)
 end subroutine fi_adv
 
 
-subroutine fi_diff(D, SigmaD, SigmaG, u, r, ri, Fi, Nr, Nm)
+subroutine fi_diff(D, SigmaD, SigmaG, St, u, r, ri, Fi, Nr, Nm)
   ! Subroutine calculates the diffusive dust fluxes at the grid cell interfaces.
   ! The flux at the boundaries is assumed to be constant.
   !
@@ -373,6 +373,7 @@ subroutine fi_diff(D, SigmaD, SigmaG, u, r, ri, Fi, Nr, Nm)
   ! D(Nr, Nm) : Dust diffusivity
   ! SigmaD(Nr, Nm) : Dust surface densities
   ! SigmaG(Nr) : Gas surface density
+  ! St(Nr, Nm) : Stokes number
   ! u(Nr) : Gas turbulent RMS velocity
   ! r(Nr) : Radial grid cell centers
   ! ri(Nr+1) : Radial grid cell interfaces
@@ -388,6 +389,7 @@ subroutine fi_diff(D, SigmaD, SigmaG, u, r, ri, Fi, Nr, Nm)
   double precision, intent(in)  :: D(Nr, Nm)
   double precision, intent(in)  :: SigmaD(Nr, Nm)
   double precision, intent(in)  :: SigmaG(Nr)
+  double precision, intent(in)  :: St(Nr, Nm)
   double precision, intent(in)  :: u(Nr)
   double precision, intent(in)  :: r(Nr)
   double precision, intent(in)  :: ri(Nr+1)
@@ -402,6 +404,7 @@ subroutine fi_diff(D, SigmaD, SigmaG, u, r, ri, Fi, Nr, Nm)
   double precision :: P
   double precision :: SigDi(Nr+1, Nm)
   double precision :: SigGi(Nr+1)
+  double precision :: Sti(Nr+1, Nm)
   double precision :: ui(Nr+1)
   double precision :: w
   integer :: ir
@@ -416,6 +419,7 @@ subroutine fi_diff(D, SigmaD, SigmaG, u, r, ri, Fi, Nr, Nm)
     call interp1d(ri(:), r(:), D(:, i), Di(:, i), Nr)
     call interp1d(ri(:), r(:), SigmaD(:, i), SigDi(:, i), Nr)
     eps(:, i) = SigmaD(:, i) / SigmaG(:)
+    call interp1d(ri(:), r(:), St(:, i), Sti(:, i), Nr)
   end do
 
   do ir=2, Nr
@@ -424,7 +428,7 @@ subroutine fi_diff(D, SigmaD, SigmaG, u, r, ri, Fi, Nr, Nm)
 
   do i=1, Nm
     do ir=2, Nr
-      w = ui(ir) * SigDi(ir, i)
+      w = ui(ir) * SigDi(ir, i) / (1.d0 + Sti(ir, i)**2)
       Fi(ir, i) = -Di(ir, i) * SigGi(ir) * gradepsi(ir, i)
       P = abs( Fi(ir, i) / w )
       lambda = ( 1.d0 + P ) / ( 1.d0 + P + P**2 )

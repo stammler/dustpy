@@ -117,6 +117,7 @@ def F_diff(sim, Sigma=None):
     Fi = dust_f.fi_diff(sim.dust.D,
                         Sigma,
                         sim.gas.Sigma,
+                        sim.dust.St,
                         np.sqrt(sim.dust.delta.rad*sim.gas.cs**2),
                         sim.grid.r,
                         sim.grid.ri)
