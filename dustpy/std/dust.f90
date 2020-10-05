@@ -557,7 +557,7 @@ end subroutine kernel
 
 
 subroutine pfrag(vrel, vfrag, pf, Nr, Nm)
-  ! Subroutine calculates the fragmentation propability.
+  ! Subroutine calculates the fragmentation probability.
   ! There is a linear transition region from sticking to
   ! fragmentation.
   ! 
