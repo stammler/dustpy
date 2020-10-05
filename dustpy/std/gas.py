@@ -110,7 +110,7 @@ def Hp(sim):
     -------
     Hp : Field
         Pressure scale height"""
-    return sim.gas.cs/sim.grid.OmegaK
+    return sim.gas.cs/(np.sqrt(sim.gas.gamma)*sim.grid.OmegaK)
 
 
 def jacobian(sim, x, *args, **kwargs):
