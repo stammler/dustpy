@@ -750,7 +750,7 @@ class Simulation(Frame):
         # INTEGRATION VARIABLE
 
         if self.t is None:
-            self.t = IntVar(self, 0., description="Time [s")
+            self.t = IntVar(self, 0., description="Time [s]")
             self.t.updater = std_sim.dt
             self.t.snapshots = np.logspace(3., 5., num=21, base=10.) * c.year
             self.t.suggest(1.*c.year)
