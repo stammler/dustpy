@@ -255,7 +255,7 @@ class Simulation(Frame):
 
     def _makeradialgrid(self):
         '''Function sets the mass grid using the parameters set in ``Simulation.ini``.'''
-        if self.grid.ri == None:
+        if self.grid.ri is None:
             ri = np.logspace(np.log10(self.ini.grid.rmin), np.log10(
                 self.ini.grid.rmax), num=self.ini.grid.Nr+1, base=10.)
             Nr = self.ini.grid.Nr
