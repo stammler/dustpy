@@ -633,7 +633,7 @@ subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, S
   double precision :: n(Nm)
   double precision :: Rf(Nm, Nm)
   double precision :: Rs
-  double precision :: Sf(Nm, Nm)
+  double precision :: Sf(Nr, Nm)
   integer :: ir
   integer :: i
   integer :: imax
