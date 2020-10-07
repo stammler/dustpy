@@ -198,8 +198,8 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   dum(:, :, :) = cpodmod(:, :, :)
   do i=1, Nm
     do j=1, i
-      cpodmod(:, j, i) = dum(:, j, i) + dum(:, i, j)
       cpodmod(:, i, j) = 0.d0
+      cpodmod(:, j, i) = dum(:, j, i) + dum(:, i, j)
     end do
   end do
 
