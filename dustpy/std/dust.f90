@@ -223,6 +223,7 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   ! The fragment distribution
   do i=1, Nm
     phiFrag(i, 1:i) = m(1:i)**(2.d0 + fragSlope)
+    phiFrag(i, 1:i) = phiFrag(i, 1:i) / SUM( phiFrag(i, 1:i) )
   end do
 
   do i=1, Nm
@@ -240,7 +241,7 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
       mrm = m(i) - fExcav*m(j)
 
       ! Normalization factor of fragment distribution (klf+1 for Fortran indexing)
-      AFrag(j, i) = (1.d0+fExcav)*m(j) / SUM(phiFrag(klf(j, i), :))
+      AFrag(j, i) = (1.d0+fExcav)*m(j)
       !             |________________|
       !                      |
       !                      Mass of fragments
@@ -274,7 +275,7 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
       klf(j, i) = i
 
       ! Normalization factor of fragment distribution
-      AFrag(j, i) = (m(i)+m(j)) / SUM(phiFrag(i, :))
+      AFrag(j, i) = (m(i)+m(j))
 
     end do
   end do

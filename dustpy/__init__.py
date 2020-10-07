@@ -24,4 +24,4 @@ __version__ = "0.1.0"
 
 Simulation.__version__ = __version__
 
-__all__ = ["constants", "plot", "hdf5writer", "readdump", "Simulation"]
+__all__ = ["constants", "hdf5writer", "plot", "readdump", "Simulation"]
