@@ -36,45 +36,46 @@ class Simulation(Frame):
 
     __name__ = "DustPy"
 
-    _ini = SimpleNamespace(**{"dust": SimpleNamespace(**{"aIniMax": 0.0001,
-                                                         "allowDriftingParticles": False,
-                                                         "crateringMassRatio": 10.,
-                                                         "d2gRatio": 1.e-2,
-                                                         "distExp": -3.5,
-                                                         "excavatedMass": 1.,
-                                                         "fragmentDistribution": -11/6,
-                                                         "rhoMonomer": 1.67,
-                                                         "vfrag": 100.
-                                                         }
-                                                      ),
-                              "gas": SimpleNamespace(**{"alpha": 1.e-3,
-                                                        "gamma": 1.4,
-                                                        "Mdisk": 0.05*c.M_sun,
-                                                        "mu": 2.3*c.m_p,
-                                                        "SigmaExp": -1.,
-                                                        "SigmaRc": 60.*c.au
-                                                        }
-                                                     ),
-                              "grid": SimpleNamespace(**{"Nmbpd": 7,
-                                                         "mmin": 1.e-12,
-                                                         "mmax": 1.e5,
-                                                         "Nr": 100,
-                                                         "rmin": 1.*c.au,
-                                                         "rmax": 1000.*c.au
-                                                         }
-                                                      ),
-                              "star": SimpleNamespace(**{"M": 1.*c.M_sun,
-                                                         "R": 2.*c.R_sun,
-                                                         "T": 5772.,
-                                                         }
-                                                      )
-                              }
-                           )
-
     def __init__(self, **kwargs):
         '''Main simulation class.'''
 
         super().__init__(**kwargs)
+
+        # Namespace with parameters to set the initial conditions
+        self._ini = SimpleNamespace(**{"dust": SimpleNamespace(**{"aIniMax": 0.0001,
+                                                                  "allowDriftingParticles": False,
+                                                                  "crateringMassRatio": 10.,
+                                                                  "d2gRatio": 1.e-2,
+                                                                  "distExp": -3.5,
+                                                                  "excavatedMass": 1.,
+                                                                  "fragmentDistribution": -11/6,
+                                                                  "rhoMonomer": 1.67,
+                                                                  "vfrag": 100.
+                                                                  }
+                                                               ),
+                                       "gas": SimpleNamespace(**{"alpha": 1.e-3,
+                                                                 "gamma": 1.4,
+                                                                 "Mdisk": 0.05*c.M_sun,
+                                                                 "mu": 2.3*c.m_p,
+                                                                 "SigmaExp": -1.,
+                                                                 "SigmaRc": 60.*c.au
+                                                                 }
+                                                              ),
+                                       "grid": SimpleNamespace(**{"Nmbpd": 7,
+                                                                  "mmin": 1.e-12,
+                                                                  "mmax": 1.e5,
+                                                                  "Nr": 100,
+                                                                  "rmin": 1.*c.au,
+                                                                  "rmax": 1000.*c.au
+                                                                  }
+                                                               ),
+                                       "star": SimpleNamespace(**{"M": 1.*c.M_sun,
+                                                                  "R": 2.*c.R_sun,
+                                                                  "T": 5772.,
+                                                                  }
+                                                               )
+                                       }
+                                    )
 
         # Initializing everything with None to get the basic frame
 
