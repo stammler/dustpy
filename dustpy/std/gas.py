@@ -169,7 +169,7 @@ def jacobian(sim, x, *args, **kwargs):
         elif sim.gas.boundary.inner.condition == "const_pow":
             p = np.log(sim.gas.Sigma[2] /
                        sim.gas.Sigma[1]) / np.log(r[2]/r[1])
-            K1 = - (r[-1]/r[-2])**p
+            K1 = - (r[0]/r[1])**p
             jac[0, 0] = 0.
             jac[0, 1] = -K1/dt
             sim.gas._rhs[0] = 0.

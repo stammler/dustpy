@@ -556,7 +556,8 @@ class Simulation(Frame):
         if self.gas.boundary.outer is None:
             self.gas.boundary.outer = Boundary(
                 self.grid.r[::-1], self.grid.ri[::-1], self.gas.Sigma[::-1])
-            self.gas.boundary.outer.setcondition("const_grad")
+            self.gas.boundary.outer.setcondition(
+                "val", self.gas.SigmaFloor[-1])
 
         # DUST QUANTITIES
 

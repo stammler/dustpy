@@ -126,13 +126,11 @@ class Boundary(object):
             return (1. + D)*r[1]/r[0]*S[1] - r[2]/r[0]*D*S[2]
         elif self._condition == "const_pow":
             p = np.log(S[2]/S[1]) / np.log(r[2]/r[1])
-            A = S[1]/r[1]**p
-            return A*r[0]**p
+            return S[1]*(r[0]/r[1])**p
         elif self._condition == "const_val":
             return self._S[1]
         elif self._condition == "pow":
-            A = S[1]/r[1]**self._value
-            return A*r[0]**self._value
+            return S[1]*(r[0]/r[1])**self._value
         elif self._condition == "grad":
             return r[1]/r[0]*S[1] - self._value*ri[1]/r[0]*(r[1]-r[0])
         elif self._condition == "val":
