@@ -237,7 +237,7 @@ def lyndenbellpringle1974(r, rc, p, Mdisk):
     -------
     Sigma : float or array of floats
         Surface density profile"""
-    return Mdisk / (2.*np.pi*rc**2*(2+p)) * (r/rc)**p * np.exp(-(r/rc)**(2+p))
+    return (2+p)*Mdisk / (2.*np.pi*rc**2) * (r/rc)**p * np.exp(-(r/rc)**(2+p))
 
 
 def mfp_midplane(sim):
