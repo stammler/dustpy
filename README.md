@@ -17,10 +17,13 @@ To install `DustPy` run in the main directory
 
 ## Documentation
 
-[Simframe Documentation](https://simframe.rtfd.io/) (not available, yet)
+`DustPy` is using the `simframe` framework.  
+For details we refer to the [Simframe Documentation](https://simframe.rtfd.io/).
 
-To build the documentation install the modules in `docs/requirements.txt`, change into `docs/` directory and run `make html`.  
+To build the `DustPy` documentation install the modules in `docs/requirements.txt`, change into `docs/` directory and run `make html`.  
 The documentation is then available in `docs/build/html/index.html`.
+
+The notebooks with instructions can be accessed on the [Github repository](https://github.com/stammler/dustpy) as well.
 
 * [Basics](https://github.com/stammler/dustpy/blob/master/examples/1_basics.ipynb)
 * [Simple Customization](https://github.com/stammler/dustpy/blob/master/examples/2_simple_customization.ipynb)
@@ -33,6 +36,6 @@ The documentation is then available in `docs/build/html/index.html`.
 
 ## Ackowledgements
 
-`simframe` has received funding from the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation programme under grant agreement No 714769.
+`DustPy` has received funding from the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation programme under grant agreement No 714769.
 
-`simframe` was developed at the [University Observatory](https://www.usm.uni-muenchen.de/index_en.php) of the [Ludwig Maximilian University of Munich](https://www.en.uni-muenchen.de/index.html).
+`DustPy` was developed at the [University Observatory](https://www.usm.uni-muenchen.de/index_en.php) of the [Ludwig Maximilian University of Munich](https://www.en.uni-muenchen.de/index.html).
