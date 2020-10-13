@@ -766,15 +766,18 @@ class Simulation(Frame):
                             controller={"dYdx": self.dust.S.tot,
                                         "eps": 0.1,
                                         "S": 0.9,
-                                        }
+                                        },
+                            description="Dust: explicit 5th-order adaptive Cash-Karp method"
                             ),
                 Instruction(std_gas.impl_1_euler_direct,
                             self.gas.Sigma,
                             controller={"rhs": self.gas._rhs
-                                        }
+                                        },
+                            description="Gas: implicit 1st-order Euler method"
                             ),
             ]
-            self.integrator = Integrator(self.t)
+            self.integrator = Integrator(
+                self.t, description="Gas: implicit (1st-order), Dust: explicit (5th-order)")
             self.integrator.instructions = instructions
             self.integrator.finalizer = std_sim.finalize
 
