@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+include examples/*.ipynb
+include docs/Makefile
+include docs/make.bat
+include docs/requirements.txt
+include docs/source/*.rst
+include docs/source/*.py
