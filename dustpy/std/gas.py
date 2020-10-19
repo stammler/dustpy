@@ -1,7 +1,6 @@
 '''Module containing standard functions for the gas.'''
 
 import numpy as np
-from scipy.sparse import diags
 from simframe.integration import Scheme
 
 import dustpy.constants as c

@@ -25,7 +25,7 @@ from types import SimpleNamespace
 class Simulation(Frame):
     '''The main simulation class for running dust coagulation simulations.
 
-    ``dustpy.Simulation`` is a child of ``simframe.Frame.
+    `dustpy.Simulation`` is a child of ``simframe.Frame``.
 
     For setting simple initial conditions use ``Simulation.ini``,
     For making the simulation grids use ``Simulation.makegrids()``,
