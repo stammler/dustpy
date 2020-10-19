@@ -331,10 +331,7 @@ def Sigma_deriv(sim, t, Sigma):
     -------
     Sigma_dot : Field
         Derivative of surface density"""
-    S = sim.gas.S.tot.updater.beat(sim, Sigma=Sigma)
-    if S is not None:
-        return S
-    return np.zeros(np.int(sim.grid.Nr))
+    return sim.gas.S.tot.updater.beat(sim, Sigma=Sigma)
 
 
 def S_hyd(sim, Sigma=None):

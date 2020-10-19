@@ -7,7 +7,6 @@ recommonmark
 nbconvert
 ipykernel
 jupyter
-pytest
 sphinx-automodapi
-pytest
 simframe
+matplotlib

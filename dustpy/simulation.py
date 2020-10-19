@@ -777,7 +777,7 @@ class Simulation(Frame):
                             ),
             ]
             self.integrator = Integrator(
-                self.t, description="Gas: implicit (1st-order), Dust: explicit (5th-order)")
+                self.t, description="Default integrator")
             self.integrator.instructions = instructions
             self.integrator.finalizer = std_sim.finalize
 
