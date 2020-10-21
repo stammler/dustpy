@@ -92,8 +92,6 @@ subroutine fi(Sigma, v, r, ri, F_i, Nr)
     F_i(1)    = Sigma(1)  * vim(1)
     F_i(Nr+1) = Sigma(Nr) * vip(Nr+1)
 
-    F_i(:) = F_i(:)
-
 end subroutine fi
 
 
@@ -154,7 +152,8 @@ subroutine jac_abc(nu, r, ri, v, A, B, C, Nr)
     ! Grid cell volumes and distances
     do ir=1, Nr
         Vinv(ir) = r(ir) / ( pi * ( ri(ir+1)**2 - ri(ir)**2 ) )
-        w(ir) = ri(ir+1) - ri(ir)
+        !w(ir) = ri(ir+1) - ri(ir)
+        w(ir) = r(ir+1) - r(ir)
     end do
 
     do ir=2, Nr-1

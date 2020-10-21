@@ -177,6 +177,7 @@ class Simulation(Frame):
         self.gas.v.updater = ["visc", "rad"]
         self.gas.updater = ["gamma", "mu", "T", "alpha", "cs", "Hp", "nu",
                             "rho", "n", "mfp", "P", "eta", "v", "Fi", "S"]
+        self.gas.updater.diastole = std_gas.diastole
 
         # Grid quantities
         self.grid = Group(self, description="Grid quantities")
@@ -412,6 +413,14 @@ class Simulation(Frame):
         shape3 = (np.int(self.grid.Nr), np.int(
             self.grid.Nm), np.int(self.grid.Nm))
 
+        # INTEGRATION VARIABLE
+
+        if self.t is None:
+            self.t = IntVar(self, 0., description="Time [s]")
+            self.t.updater = std_sim.dt
+            self.t.snapshots = np.logspace(3., 5., num=21, base=10.) * c.year
+            self.t.suggest(1.*c.year)
+
         # STELLAR QUANTITIES
 
         # Luminosity
@@ -546,6 +555,15 @@ class Simulation(Frame):
             self.gas.v.rad = Field(self, np.zeros(shape1),
                                    description="Radial velocity [cm/s]")
             self.gas.v.rad.updater = std_gas.vrad
+        # Hidden fields
+        # We store the old values of the surface density in a hidden field
+        # to calculate the fluxes through the boundaries.
+        self.gas._SigmaOld = Field(self, np.zeros(
+            shape1), description="Previous value of surface density [g/cm²]")
+        self.gas._SigmaOld[:] = self.gas.Sigma
+        # The right-hand side of the matrix equation is stored in a hidden field
+        self.gas._rhs = Field(self, np.zeros(
+            shape1), description="Right-hand side of matrix equation [g/cm²]")
         # Initialize gas quantities
         self.gas.update()
         # Boundary conditions
@@ -621,15 +639,15 @@ class Simulation(Frame):
         # Fluxes
         if self.dust.Fi.adv is None:
             self.dust.Fi.adv = Field(self, np.zeros(
-                shape2p1), description="Advective flux [g/cm²/s")
+                shape2p1), description="Advective flux [g/cm/s")
             self.dust.Fi.adv.updater = std_dust.F_adv
         if self.dust.Fi.diff is None:
             self.dust.Fi.diff = Field(self, np.zeros(
-                shape2p1), description="Diffusive flux [g/cm²/s")
+                shape2p1), description="Diffusive flux [g/cm/s")
             self.dust.Fi.diff.updater = std_dust.F_diff
         if self.dust.Fi.tot is None:
             self.dust.Fi.tot = Field(self, np.zeros(
-                shape2p1), description="Total flux [g/cm²/s")
+                shape2p1), description="Total flux [g/cm/s")
             self.dust.Fi.tot.updater = std_dust.F_tot
         # Filling factor
         if self.dust.fill is None:
@@ -749,14 +767,6 @@ class Simulation(Frame):
             self.dust.boundary.outer = Boundary(
                 self.grid.r[::-1], self.grid.ri[::-1], self.dust.Sigma[::-1])
 
-        # INTEGRATION VARIABLE
-
-        if self.t is None:
-            self.t = IntVar(self, 0., description="Time [s]")
-            self.t.updater = std_sim.dt
-            self.t.snapshots = np.logspace(3., 5., num=21, base=10.) * c.year
-            self.t.suggest(1.*c.year)
-
         # INTEGRATOR
 
         if self.integrator is None:
@@ -779,6 +789,7 @@ class Simulation(Frame):
             self.integrator = Integrator(
                 self.t, description="Default integrator")
             self.integrator.instructions = instructions
+            self.integrator.preparator = std_sim.prepare
             self.integrator.finalizer = std_sim.finalize
 
         # WRITER

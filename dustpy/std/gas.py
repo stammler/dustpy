@@ -29,6 +29,21 @@ def enforce_floor_value(sim):
     sim.gas.Sigma[:] = np.maximum(sim.gas.Sigma, sim.gas.SigmaFloor)
 
 
+def prepare(sim):
+    """Function prepares gas integration step.
+    It stores the current value of the surface density in a hidden field.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame"""
+    # Setting external sources at boundaries to zero
+    sim.gas.S.ext[0] = 0.
+    sim.gas.S.ext[-1] = 0.
+    # Storing current surface density
+    sim.gas._SigmaOld[:] = sim.gas.Sigma
+
+
 def finalize(sim):
     """Function finalizes gas integration step.
 
@@ -38,6 +53,37 @@ def finalize(sim):
         Parent simulation frame"""
     boundary(sim)
     enforce_floor_value(sim)
+
+
+def diastole(sim):
+    """Function that is executed after the gas update step. It calculates the implicit fluxes through the boundaries.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame"""
+    set_implicit_fluxes(sim)
+
+
+def set_implicit_fluxes(sim):
+    """Function calculates the fluxes at the interfaces after the implicit integration step.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame"""
+    # Total source terms
+    sim.gas.S.tot[0] = (sim.gas.Sigma[0]-sim.gas._SigmaOld[0])/sim.t.stepsize
+    sim.gas.S.tot[-1] = (sim.gas.Sigma[-1] -
+                         sim.gas._SigmaOld[-1])/sim.t.stepsize
+    # Hydrodynamic source terms
+    sim.gas.S.hyd[0] = sim.gas.S.tot[0]
+    sim.gas.S.hyd[-1] = sim.gas.S.tot[-1]
+    # Fluxes
+    sim.gas.Fi[0] = (0.5*sim.gas.S.hyd[0]*(sim.grid.ri[1]**2 -
+                                           sim.grid.ri[0]**2) + sim.grid.ri[1]*sim.gas.Fi[1])/sim.grid.ri[0]
+    sim.gas.Fi[-1] = (sim.gas.Fi[-2]*sim.grid.ri[-2] - 0.5*sim.gas.S.hyd[-1]
+                      * (sim.grid.ri[-1]**2-sim.grid.ri[-2]**2))/sim.grid.ri[-1]
 
 
 def cs_adiabatic(sim):
@@ -94,7 +140,8 @@ def Fi(sim, Sigma=None):
         vrad = sim.gas.v.rad.updater.beat(sim, Sigma=Sigma)
     if vrad is None:
         vrad = sim.gas.v.rad
-    return gas_f.fi(Sigma, vrad, sim.grid.r, sim.grid.ri)
+    Fi = gas_f.fi(Sigma, vrad, sim.grid.r, sim.grid.ri)
+    return Fi
 
 
 def Hp(sim):

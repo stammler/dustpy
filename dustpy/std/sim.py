@@ -12,6 +12,12 @@ def dt(sim):
     return sim.t.suggested
 
 
+def prepare(sim):
+    """This function is the preparation function that is called
+    before every integration step."""
+    std_gas.prepare(sim)
+
+
 def finalize(sim):
     """This function is the finalization function that is called
     after every integration step. It is managing the boundary
