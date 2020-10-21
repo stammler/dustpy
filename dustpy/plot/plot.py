@@ -148,14 +148,14 @@ def panel(data, im=0, ir=0, it=0, filename="data", extension="hdf5"):
                        m,
                        (St - St_dr[..., None]).T,
                        levels=[0.],
-                       colors="C9",
+                       colors="C2",
                        linewidths=1
                        )
         axcmap.contour(r/c.au,
                        m,
                        (St - St_fr[..., None]).T,
                        levels=[0.],
-                       colors="C6",
+                       colors="C0",
                        linewidths=1
                        )
     else:
@@ -177,19 +177,19 @@ def panel(data, im=0, ir=0, it=0, filename="data", extension="hdf5"):
                        m,
                        (St - St_dr[..., None])[it, ...].T,
                        levels=[0.],
-                       colors="C9",
+                       colors="C2",
                        linewidths=1
                        )
         axcmap.contour(r/c.au,
                        m,
                        (St - St_fr[..., None])[it, ...].T,
                        levels=[0.],
-                       colors="C6",
+                       colors="C0",
                        linewidths=1
                        )
 
-    axcmap.axhline(m[im], color="C2", lw=1)
-    axcmap.axvline(r[ir]/c.au, color="C2", lw=1)
+    axcmap.axhline(m[im], color="#AAAAAA", lw=1, ls="--")
+    axcmap.axvline(r[ir]/c.au, color="#AAAAAA", lw=1, ls="--")
     cbarcmap = plt.colorbar(pltcmap, ax=axcmap)
     cbarcmap.ax.set_ylabel("$\log\ \sigma$ [g/cm²]")
     axcmap.set_xlim(r[0]/c.au, r[-1]/c.au)
@@ -200,9 +200,9 @@ def panel(data, im=0, ir=0, it=0, filename="data", extension="hdf5"):
     axcmap.set_ylabel("Particle mass [g]")
 
     if isframe:
-        axsigm.loglog(m, sigmaD[ir, :][0], c="C2")
+        axsigm.loglog(m, sigmaD[ir, :][0], c="C3")
     else:
-        axsigm.loglog(m, sigmaD[it, ir, :], c="C2")
+        axsigm.loglog(m, sigmaD[it, ir, :], c="C3")
     axsigm.set_xlim(m[0], m[-1])
     axsigm.set_ylim(10.**(sd_max-6.), 10.**sd_max)
     axsigm.set_xlabel("Particle mass [g]")
@@ -228,9 +228,9 @@ def panel(data, im=0, ir=0, it=0, filename="data", extension="hdf5"):
         axMass.legend()
 
     if isframe:
-        axsigr.loglog(r/c.au, sigmaD[..., :, im], c="C2")
+        axsigr.loglog(r/c.au, sigmaD[..., :, im], c="C3")
     else:
-        axsigr.loglog(r/c.au, sigmaD[it, :, im], c="C2")
+        axsigr.loglog(r/c.au, sigmaD[it, :, im], c="C3")
     axsigr.set_xlim(r[0]/c.au, r[-1]/c.au)
     axsigr.set_ylim(10.**(sd_max-6.), 10.**sd_max)
     axsigr.set_xlabel("Distance from star [au]")
