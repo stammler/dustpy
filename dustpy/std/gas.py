@@ -41,7 +41,7 @@ def prepare(sim):
     sim.gas.S.ext[0] = 0.
     sim.gas.S.ext[-1] = 0.
     # Storing current surface density
-    sim.gas._SigmaOld[:] = sim.gas.Sigma
+    sim.gas._SigmaOld[:] = sim.gas.Sigma[:]
 
 
 def finalize(sim):
