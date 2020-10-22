@@ -209,9 +209,9 @@ class Simulation(Frame):
             msg = ""
             msg += "\nDustPy v{}".format(self.__version__)
             msg += "\n"
-            msg += "\nDocumentation: {}".format("https://dustpy.rtfd.io")
-            msg += "\nPyPI:          {}".format(
-                "https://pypi.org/project/dustpy")
+            #msg += "\nDocumentation: {}".format("https://dustpy.rtfd.io")
+            # msg += "\nPyPI:          {}".format(
+            #    "https://pypi.org/project/dustpy")
             msg += "\nGitHub:        {}".format(
                 "https://github.com/stammler/dustpy")
             msg += "\n"
