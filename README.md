@@ -16,6 +16,8 @@ To install `DustPy` run in the main directory
 
 `pip install .`
 
+`NumPy` needs to be installed to run the setup script. All other requirements will be installed on the fly.
+
 ## Documentation
 
 `DustPy` is using the `simframe` framework.  
