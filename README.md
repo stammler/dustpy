@@ -5,7 +5,7 @@ Package for Dust Coagulation and Evolution in Protoplanetary Disks.
 ## Terms of Usage
 
 The current version of `DustPy` is still private.  
-Usage is only permitted under the condition of close collaboration which includes co-authorship to publications that made use of `DustPy`.  
+Usage is only permitted under the condition of close collaboration and the option of co-authorship to publications that made use of `DustPy`.  
 By using any version of `DustPy` you agree to these terms of usage.
 
 ## Installation
