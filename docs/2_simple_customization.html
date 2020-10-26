@@ -1,0 +1,970 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Simple Customization &mdash; dustpy  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Advanced Customization" href="3_advanced_customization.html" />
+    <link rel="prev" title="Basic usage" href="1_basics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> dustpy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_basics.html">Basic usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Simple Customization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Stellar-parameters">Stellar parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Grid-parameters">Grid parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Gas-Parameters">Gas Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Dust-Parameters">Dust Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Changing-the-Initial-Conditions">Changing the Initial Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Changing-the-Snapshots">Changing the Snapshots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Changing-the-Output-Directory">Changing the Output Directory</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">Advanced Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">The Standard Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">Dust Coagulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">dustpy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Simple Customization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/2_simple_customization.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Simple-Customization">
+<h1>Simple Customization<a class="headerlink" href="#Simple-Customization" title="Permalink to this headline">¶</a></h1>
+<p>If you do not want to run the standard simulation you can easily modify the initial conditions.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">Simulation</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>The simulation object has an attribute to set the initial conditions <code class="docutils literal notranslate"><span class="pre">Simulation.ini</span></code>. The attribute is structured in initial conditions for dust, gas, the grid, and the central star. If you call <code class="docutils literal notranslate"><span class="pre">Simulatio.initialize()</span></code>, the simulation object will be filled according the parameters set here. We’ll go through all options one by one.</p>
+<p><strong>All quantities are in cgs units!</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+namespace(dust=namespace(aIniMax=0.0001,
+                         allowDriftingParticles=False,
+                         crateringMassRatio=10.0,
+                         d2gRatio=0.01,
+                         distExp=-3.5,
+                         excavatedMass=1.0,
+                         fragmentDistribution=-1.8333333333333333,
+                         rhoMonomer=1.67,
+                         vfrag=100.0),
+          gas=namespace(alpha=0.001,
+                        gamma=1.4,
+                        Mdisk=9.942049353490256e+31,
+                        mu=3.847030424486999e-24,
+                        SigmaExp=-1.0,
+                        SigmaRc=897587224200000.0),
+          grid=namespace(Nmbpd=7,
+                         mmin=1e-12,
+                         mmax=100000.0,
+                         Nr=100,
+                         rmin=14959787070000.0,
+                         rmax=1.495978707e+16),
+          star=namespace(M=1.988409870698051e+33, R=139140000000.0, T=5772.0))
+</pre></div></div>
+</div>
+<div class="section" id="Stellar-parameters">
+<h2>Stellar parameters<a class="headerlink" href="#Stellar-parameters" title="Permalink to this headline">¶</a></h2>
+<p>The stellar parameters mainly influence the dynamical time scales and the temperature profile.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">star</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+namespace(M=1.988409870698051e+33, R=139140000000.0, T=5772.0)
+</pre></div></div>
+</div>
+<ul class="simple">
+<li><p>M</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Stellar mass, default: <span class="math notranslate nohighlight">\(1\ M_\odot\)</span></div>
+<div class="line">Has influence on the dynamical timescales in the disk.</div>
+</div>
+<ul class="simple">
+<li><p>R</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Stellar radius, default: <span class="math notranslate nohighlight">\(2\ M_\odot\)</span></div>
+<div class="line">Has influence on the temperature profile in the disk. The default temperature profile is a passively irradiated disk with a constant irradtion angle of 0.05.</div>
+</div>
+<ul class="simple">
+<li><p>T</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Effective temperature, default: 5772 K</div>
+<div class="line">Has influence on the temperature profile in the disk. The default temperature profile is a passively irradiated disk with a constant irradtion angle of 0.05.</div>
+</div>
+</div>
+<div class="section" id="Grid-parameters">
+<h2>Grid parameters<a class="headerlink" href="#Grid-parameters" title="Permalink to this headline">¶</a></h2>
+<p>The grid parameters determine the shape of the grids. While you can set your own non-standard radial grid (see later), you should under no circumstances meddle with the mass grid, unless you know exactöy what you are doing. Please always use the <code class="docutils literal notranslate"><span class="pre">Simulation.ini.grid</span></code> namespace to customize your mass grid. The mass grid has to be strickly logarithmic. Otherwise, the coagulation algorithm will produce wrong results. Note: If you changed the mass grid for some reason during the simulation, you
+have to re-calculate the coagulation parameters in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation</span></code>.</p>
+<p><strong>Note:</strong> The performance of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is very sensitive to the mass grid. A finer mass grid slows down the simulation drastically.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+namespace(Nmbpd=7,
+          mmin=1e-12,
+          mmax=100000.0,
+          Nr=100,
+          rmin=14959787070000.0,
+          rmax=1.495978707e+16)
+</pre></div></div>
+</div>
+<ul class="simple">
+<li><p>Nmbpd</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Number of mass bins per mass decade, default: 7</div>
+<div class="line">Should be at least 7, see <a class="reference external" href="https://doi.org/10.1051/0004-6361/201423708">Drążkowska et al. (2014)</a></div>
+</div>
+<ul class="simple">
+<li><p>mmin</p></li>
+</ul>
+<p>Minimum particle mass, default: <span class="math notranslate nohighlight">\(10^{-12}\)</span> g</p>
+<ul class="simple">
+<li><p>mmax</p></li>
+</ul>
+<p>Maximum particle mass, default: <span class="math notranslate nohighlight">\(10^{5}\)</span> g</p>
+<ul class="simple">
+<li><p>Nr</p></li>
+</ul>
+<p>Number of radial grid cells, default: 100</p>
+<ul class="simple">
+<li><p>rmin</p></li>
+</ul>
+<p>Location of inner radial grid boundary, default 1 AU</p>
+<ul class="simple">
+<li><p>rmax</p></li>
+</ul>
+<p>Location of outer radial grid boundary, default 1000 AU</p>
+</div>
+<div class="section" id="Gas-Parameters">
+<h2>Gas Parameters<a class="headerlink" href="#Gas-Parameters" title="Permalink to this headline">¶</a></h2>
+<p>The gas parameters define the initial conditions of the gas disk. The standard surface density profile is the self-similar solution of <a class="reference external" href="https://doi.org/10.1093/mnras/168.3.603">Lynden-Bell &amp; Pringle (1974)</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">gas</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+namespace(alpha=0.001,
+          gamma=1.4,
+          Mdisk=9.942049353490256e+31,
+          mu=3.847030424486999e-24,
+          SigmaExp=-1.0,
+          SigmaRc=897587224200000.0)
+</pre></div></div>
+</div>
+<ul class="simple">
+<li><p>alpha</p></li>
+</ul>
+<div class="line-block">
+<div class="line">alpha viscosity parameter, default: <span class="math notranslate nohighlight">\(10^{-3}\)</span></div>
+<div class="line">see <a class="reference external" href="http://adsabs.harvard.edu/abs/1973A%26A....24..337S">Shakura &amp; Sunyaev (1973)</a> for details</div>
+</div>
+<ul class="simple">
+<li><p>gamma</p></li>
+</ul>
+<p>heat capacity ratio, default: 7/5</p>
+<ul class="simple">
+<li><p>Mdisk</p></li>
+</ul>
+<p>Inital gas disk mass, default: <span class="math notranslate nohighlight">\(0.05\ M_\odot\)</span></p>
+<ul class="simple">
+<li><p>mu</p></li>
+</ul>
+<p>Mean molecular weight of the gas, default: <span class="math notranslate nohighlight">\(2.3\ m_\mathrm{proton}\)</span></p>
+<ul class="simple">
+<li><p>SigmaExp</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Power law exponent of surface density profile, default: -1</div>
+<div class="line">see <a class="reference external" href="https://doi.org/10.1093/mnras/168.3.603">Lynden-Bell &amp; Pringle (1974)</a></div>
+</div>
+<ul class="simple">
+<li><p>SigmaRc</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Critical cut-off radius of surface density, default: 30 AU</div>
+<div class="line">see <a class="reference external" href="https://doi.org/10.1093/mnras/168.3.603">Lynden-Bell &amp; Pringle (1974)</a></div>
+</div>
+</div>
+<div class="section" id="Dust-Parameters">
+<h2>Dust Parameters<a class="headerlink" href="#Dust-Parameters" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+namespace(aIniMax=0.0001,
+          allowDriftingParticles=False,
+          crateringMassRatio=10.0,
+          d2gRatio=0.01,
+          distExp=-3.5,
+          excavatedMass=1.0,
+          fragmentDistribution=-1.8333333333333333,
+          rhoMonomer=1.67,
+          vfrag=100.0)
+</pre></div></div>
+</div>
+<ul class="simple">
+<li><p>aIniMax</p></li>
+</ul>
+<p>Maximum particle size that will be filled initially, default: 1 µm</p>
+<ul class="simple">
+<li><p>allowDriftingParticles</p></li>
+</ul>
+<div class="line-block">
+<div class="line">If <code class="docutils literal notranslate"><span class="pre">True</span></code> initially drifting particles will not be removed, default: <code class="docutils literal notranslate"><span class="pre">False</span></code></div>
+<div class="line">Dust particles in the disk drift inwards more rapidly with increasing Stokes number. In the outer disk the gas surface density is low and therefore even the small initial particles can have large Stokes numbers causing them to drift already from the beginning on. This causes a visible particle wave in the simulation. By setting this parameter to <code class="docutils literal notranslate"><span class="pre">False</span></code>, these drifting particles will be removed.</div>
+</div>
+<ul class="simple">
+<li><p>crateringMassRatio</p></li>
+</ul>
+<div class="line-block">
+<div class="line">If the mass ratio of colliding particles is below this ratio, both particles fully fragment, default: 10</div>
+<div class="line">In the standard model three things can happen when particles collide: they can stick together forming a larger particle, they can both fully fragment, or the smaller collision partner can fully fragment, chipping off some mass of the larger collision partner. The latter is called cratering. This parameter defines the threshold between full fragmentation and cratering.</div>
+</div>
+<ul class="simple">
+<li><p>d2gRatio</p></li>
+</ul>
+<p>Initial dust-to-gas ratio, default: <span class="math notranslate nohighlight">\(10^{-2}\)</span></p>
+<ul class="simple">
+<li><p>distExp</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Inital size distribution of particles, default: -7/2</div>
+<div class="line">The particles will initially have a size distribution of <span class="math notranslate nohighlight">\(n\left(a\right) \propto a^\mathrm{distExp}\)</span> up to a maximum particle size of <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.aIniMax</span></code>. The standard model uses the so-called MRN distribution of interstellar grains as initial condition. See <a class="reference external" href="https://doi.org/10.1086/155591">Mathis et al. (1977)</a>.</div>
+</div>
+<ul class="simple">
+<li><p>excavatedMass</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Excavated mass from larger particle in units of smaller particle mass, default: 1</div>
+<div class="line">In a cratering collision event the smaller particle will chip off mass from the larger particle. This parameter determines how much mass will be chipped off.</div>
+</div>
+<ul class="simple">
+<li><p>fragmentDistribution</p></li>
+</ul>
+<div class="line-block">
+<div class="line">mass distribution of fragments, default: -11/6</div>
+<div class="line">Whenever a particle collision produces fragments the fragments will have a mass distribution of <span class="math notranslate nohighlight">\(n \left(m\right) \mathrm{d}m \propto m^\mathrm{fragmentDistribution} \mathrm{d}m\)</span>. The value used by the standard model is taken from <a class="reference external" href="https://doi.org/10.1029/JB074i010p02531">Dohnanyi (1969)</a>.</div>
+</div>
+<ul class="simple">
+<li><p>rhoMonomer</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Monomer bulk mass density, default: 1.67 g/cm³</div>
+<div class="line">In the standard model all particles will have a filling factor of unity and share therefore this bulk mass density.</div>
+</div>
+<ul class="simple">
+<li><p>vFrag</p></li>
+</ul>
+<div class="line-block">
+<div class="line">Fragmentation velocity, default 1 m/s.</div>
+<div class="line">Particle collisions with a collision velocity that exceeds the fragmentation velocity will result in a fragmenting collision. Either full fragmentation or cratering depending on the mass ratio of the collision partners. Collisions below the fragmentation velocity lead to sticking.</div>
+</div>
+</div>
+<div class="section" id="Changing-the-Initial-Conditions">
+<h2>Changing the Initial Conditions<a class="headerlink" href="#Changing-the-Initial-Conditions" title="Permalink to this headline">¶</a></h2>
+<p>In this example we want to run a simulation with a larger disk mass. We can use the constants module of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">constants</span> <span class="k">as</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Mdisk</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">M_sun</span>
+</pre></div>
+</div>
+</div>
+<p>We can now initialize the simulation as described in the previous section.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Changing-the-Snapshots">
+<h2>Changing the Snapshots<a class="headerlink" href="#Changing-the-Snapshots" title="Permalink to this headline">¶</a></h2>
+<p>The standard model runs for 100,000 years and starts writin data files at 1,000 with 10 files per time decade. In this example we only want to run the simulation for 10,000 years with only 5 snapshots per decade. This can easily be set by modifying <code class="docutils literal notranslate"><span class="pre">Simulation.t.snapshots</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Changing-the-Output-Directory">
+<h2>Changing the Output Directory<a class="headerlink" href="#Changing-the-Output-Directory" title="Permalink to this headline">¶</a></h2>
+<p>By default <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> will protect already existing data files. If we ran the simulation now, an error would be raised, because we have already existing data files in the output directory from the previous chapter.</p>
+<p>We could either set <code class="docutils literal notranslate"><span class="pre">Simulation.writer.overwrite</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> to overwrite our existing data files or we could change the name of the output directory.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">datadir</span> <span class="o">=</span> <span class="s2">&quot;2_data&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>The simulation is now ready to go.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+DustPy v0.1.0
+
+Documentation: https://dustpy.rtfd.io
+PyPI:          https://pypi.org/project/dustpy
+GitHub:        https://github.com/stammler/dustpy
+
+Please cite:   Stammler &amp; Birnstiel (in prep.)
+
+<span class="ansi-yellow-intense-fg">Checking for mass conservation...
+</span>
+<span class="ansi-yellow-intense-fg">    - Sticking:</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
+        for particle collision
+            m[114] =  1.93e+04 g    with
+            m[116] =  3.73e+04 g
+<span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 3.33e-16</span>
+        for particle collision
+            m[4] =  3.73e-12 g    with
+            m[6] =  7.20e-12 g
+<span class="ansi-yellow-intense-fg">    - Cratering:</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
+        for particle collision
+            m[110] =  5.18e+03 g    with
+            m[118] =  7.20e+04 g
+
+Creating data directory &#39;2_data&#39;.
+Writing file <span class="ansi-blue-intense-fg">2_data/data0000.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">2_data/data0001.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">2_data/data0002.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">2_data/data0003.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">2_data/data0004.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">2_data/data0005.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">2_data/data0006.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
+Execution time: <span class="ansi-blue-intense-fg">0:18:58</span>
+</pre></div></div>
+</div>
+<p>The simulation has now run for 10,000 years</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">t</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+10000.0
+</pre></div></div>
+</div>
+<p>and we can have a look at the current state.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">plot</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plot</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/2_simple_customization_33_0.png" src="_images/2_simple_customization_33_0.png" />
+</div>
+</div>
+<p>When calling <code class="docutils literal notranslate"><span class="pre">Simulation.run()</span></code>, <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> will perform a small mass conservation check, by going through all possible collisions and calculating their relative mass error. The limitation here is machine precision. Everything smaller than <span class="math notranslate nohighlight">\(10^{-13}\)</span> is still acceptable. If you created your own collision model, that is not compatible with the default sticking-cratering-fragmentation model, you can either ignore the output, or you can overwrite the <code class="docutils literal notranslate"><span class="pre">Simulation.checkmassconservation()</span></code>
+function that is called by default when calling <code class="docutils literal notranslate"><span class="pre">Simulation.run()</span></code>.</p>
+<p>See a later chapter for details on coagulation.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="3_advanced_customization.html" class="btn btn-neutral float-right" title="Advanced Customization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="1_basics.html" class="btn btn-neutral float-left" title="Basic usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

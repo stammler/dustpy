@@ -1,0 +1,6 @@
+vrel_azimuthal_drift
+====================
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: vrel_azimuthal_drift

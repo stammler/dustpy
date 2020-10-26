@@ -1,0 +1,6 @@
+S_tot
+=====
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: S_tot

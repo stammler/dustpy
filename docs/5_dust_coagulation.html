@@ -1,0 +1,1023 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Dust Coagulation &mdash; dustpy  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Dust Evolution" href="6_dust_evolution.html" />
+    <link rel="prev" title="The Standard Model" href="4_standard_model.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> dustpy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_basics.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">Simple Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">Advanced Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">The Standard Model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dust Coagulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Sticking">Sticking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Fragmentation-&amp;-Cratering">Fragmentation &amp; Cratering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Probabilities">Probabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Bouncing">Bouncing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Collision-Rates">Collision Rates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Coagulation-Sources">Coagulation Sources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">dustpy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Dust Coagulation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/5_dust_coagulation.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Dust-Coagulation">
+<h1>Dust Coagulation<a class="headerlink" href="#Dust-Coagulation" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> calculates the collisional evolution of dust by solving the Smolukowski equation</p>
+<p><span class="math notranslate nohighlight">\(\begin{split} \frac{\partial}{\partial t} f\left( m \right) = &amp;\int\limits_0^\infty \int\limits_0^\infty K\left( m, m', m'' \right) f\left( m' \right) f\left( m'' \right) R\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\\ &amp;-f\left( m \right) \int\limits_0^\infty f\left( m' \right) R\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
+<p>Where <span class="math notranslate nohighlight">\(f\left( m \right)\)</span> is the dust mass distribution, <span class="math notranslate nohighlight">\(R\)</span> the collision rates, and <span class="math notranslate nohighlight">\(K\)</span> defines the collision outcomes.</p>
+<p>The first integral sums over all possible particle collisions and <span class="math notranslate nohighlight">\(K\left( m, m', m'' \right)\)</span> defines the amount that gets added to <span class="math notranslate nohighlight">\(f\left( m \right)\)</span> if particles <span class="math notranslate nohighlight">\(m'\)</span> and <span class="math notranslate nohighlight">\(m''\)</span> collide. The second integral removes that particles from the distribution that collided with other particles.</p>
+<p>This equation can be generalized to</p>
+<p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} f\left( m \right) = \int\limits_0^\infty \int\limits_0^{m'} M\left( m, m', m'' \right) f\left( m' \right) f\left( m'' \right) R\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\)</span></p>
+<p>where the matrix <span class="math notranslate nohighlight">\(M\)</span> has both the positive and the negative terms. Also note that the integral over <span class="math notranslate nohighlight">\(m''\)</span> only goes up to mass <span class="math notranslate nohighlight">\(m'\)</span>. Since the collisions are symmetric this saves some computation.</p>
+<p>For details on the numerical implementation, we refer to <a class="reference external" href="https://doi.org/10.1051/0004-6361:20077759">Brauer et al. (2008)</a> and <a class="reference external" href="https://doi.org/10.1051/0004-6361/200913731">Birnstiel et al. (2010)</a>.</p>
+<p>The standard model of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> knows three different collision outcomes: sticking, cratering, and full fragmentation.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">Simulation</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>The parameters that controll the collisional behavior are pre-calculated when calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialze()</span></code> and stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Group (Coagulation quantities)
+------------------------------
+    A            : Field (Fragment normalization factors), <span class="ansi-magenta-intense-fg">constant</span>
+    eps          : Field (Remnant mass distribution), <span class="ansi-magenta-intense-fg">constant</span>
+    lf_ind       : Field (Index of largest fragment), <span class="ansi-magenta-intense-fg">constant</span>
+    phi          : Field (Fragment distribution), <span class="ansi-magenta-intense-fg">constant</span>
+    rm_ind       : Field (Smaller index of remnant), <span class="ansi-magenta-intense-fg">constant</span>
+    stick        : Field (Sticking matrix), <span class="ansi-magenta-intense-fg">constant</span>
+    stick_ind    : Field (Non-zero elements of sticking matrix), <span class="ansi-magenta-intense-fg">constant</span>
+  -----
+</pre></div></div>
+</div>
+<p>These fields are strictly tied to the mass grid. Neither those fields nor the mass grid should be changed after calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
+<div class="section" id="Sticking">
+<h2>Sticking<a class="headerlink" href="#Sticking" title="Permalink to this headline">¶</a></h2>
+<p>Sticking means that two particles collide and form a new larger particles conserving the total mass. There are two complication when implementing this numerically:</p>
+<p>First, since we need to cover a high dynamic range from particles masses around <span class="math notranslate nohighlight">\(10^{-15}\,\mathrm{g}\)</span> to more than <span class="math notranslate nohighlight">\(10^{15}\,\mathrm{g}\)</span> while still having a reasonable number of mass bins, the mass grid has to be logarithmic. This has the disadvantage that the new particle mass resulting from a collision will not directly lie on the mass grid, but will fall in between two grid masses. The resulting mass has to be therefore distributed between the two adjacent grid cells. This means
+there will be density added to a mass bin that is larger than the actual mass of the resulting particle. This can have unwanted side effects if the mass grid is too coarse. Please see <a class="reference external" href="https://doi.org/10.1051/0004-6361/201423708">Drążkowska et al. (2014)</a> for details on the minimum mass resulution that should be used.</p>
+<p>Second, if the masses of the two colliding particles differ by more than <span class="math notranslate nohighlight">\(15\)</span> orders of magnitude (double-precision floating-point format) the resulting mass is (for a computer) identical to the mass of the larger particle.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m1</span> <span class="o">=</span> <span class="mf">1.e-16</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">m_tot</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">+</span> <span class="n">m2</span>
+
+<span class="n">m_tot</span> <span class="o">==</span> <span class="n">m2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<p>The mass error if this happens is small for a single collision, but it effectively halts the growth of larger particles by sweeping up many smaller particles. There are techniques to prevent this from happening by re-arranging sums. Please hat a look at apendices A and B of <a class="reference external" href="https://doi.org/10.1051/0004-6361:20077759">Brauer et al. (2008)</a> for a detailed description of this mechanism.</p>
+<p>The matrix <span class="math notranslate nohighlight">\(M\)</span> has for sticking at maximum four non-zero values for any pair of particle collision: two negative terms for the colliding particles that get removed from the distribution and two positive terms for the two mass bins that border the mass of the resulting particle. If two particles of identical mass collide <span class="math notranslate nohighlight">\(M\)</span> has only three non-zero values: one negative and two positives.</p>
+<p>Since <span class="math notranslate nohighlight">\(M\)</span> is in the case of sticking a sparse matrix that contains mostly zeroes, we only store the non-zero elements in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.stick</span></code> and <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.stick_ind</span></code>.</p>
+<p>The first field is the four non-zero elements of <span class="math notranslate nohighlight">\(M\)</span>, while the latter field stores the positions of those elements within <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<p>Let’s look at a collision of two particles <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">j</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<p>The non-zero elemets of <span class="math notranslate nohighlight">\(M\)</span> are</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[-1.         -1.          0.76265439  0.23734561]
+</pre></div></div>
+</div>
+<p>at the positions</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick_ind</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[3 5 6 7]
+</pre></div></div>
+</div>
+<p>As you can see, we remove one particle each from bins 3 and 5 and add about <span class="math notranslate nohighlight">\(75\,\%\)</span> of a particle to mass bin 6 and about <span class="math notranslate nohighlight">\(25\,\%\)</span> of a particle to mass bin 7.</p>
+<p>To check for mass conservation we have to multiply the non-zero elements in <span class="math notranslate nohighlight">\(M\)</span> with their respective masses.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m_tot</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+<span class="n">err</span> <span class="o">=</span> <span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick_ind</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">rel_err</span> <span class="o">=</span> <span class="n">err</span><span class="o">/</span><span class="n">m_tot</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mass error: </span><span class="si">{:7.1e}</span><span class="s2"> g</span><span class="se">\n</span><span class="s2">Rel. error: </span><span class="si">{:7.1e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">rel_err</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Mass error: 1.2e-27 g
+Rel. error: 1.5e-16
+</pre></div></div>
+</div>
+<p>The relative mass error is of the order of machine precision. This as good as it can get.</p>
+<p>Note: Since the collsions are symmetric (collision of <code class="docutils literal notranslate"><span class="pre">i</span></code> with <code class="docutils literal notranslate"><span class="pre">j</span></code> is identical to collision of <code class="docutils literal notranslate"><span class="pre">j</span></code> with <code class="docutils literal notranslate"><span class="pre">i</span></code>), we do not use collisions with <code class="docutils literal notranslate"><span class="pre">i</span></code>&gt;<code class="docutils literal notranslate"><span class="pre">j</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[0. 0. 0. 0.]
+</pre></div></div>
+</div>
+<p>If two identical particles collide there are only three non-zero elements.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[-2.          0.90784249  0.09215751  0.        ]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick_ind</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[ 3  5  6 -1]
+</pre></div></div>
+</div>
+<p>In this case we remove two particles from mass bin <span class="math notranslate nohighlight">\(3\)</span>, add <span class="math notranslate nohighlight">\(90\,\%\)</span> of a particle to mass bin <span class="math notranslate nohighlight">\(5\)</span> and <span class="math notranslate nohighlight">\(10\,\%\)</span> of a particle to mass bin 6. And index of <span class="math notranslate nohighlight">\(-1\)</span> means that it should be ignored.</p>
+<p>In any case the sum over <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.stick</span></code> for any possible collision should be <span class="math notranslate nohighlight">\(-1\)</span>. This means that for every collision the total number of particles is reduced by <span class="math notranslate nohighlight">\(1\)</span>. Two particles collide and form one new particle.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-1.000000000000001
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Fragmentation-&amp;-Cratering">
+<h2>Fragmentation &amp; Cratering<a class="headerlink" href="#Fragmentation-&-Cratering" title="Permalink to this headline">¶</a></h2>
+<p>If the collision velocity exceeds the fragmentation velocity particles fragment. Here we distinguish two cases: Either the particles are roughly equal sized, then both particles fully fragment. Or one particle is significantly larger than the other, then only the smaller particle fragments, but it is chipping off some mass of the larger particle. The latter case is called cratering.</p>
+<p>The threshold of these two cases can be set with <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.crateringMassRatio</span></code>. By default this is <span class="math notranslate nohighlight">\(10\)</span>, meaning both particles fully fragment if their mass ratio is smaller than <span class="math notranslate nohighlight">\(10\)</span>. Otherwise we have cratering. This value has to be set, before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
+<p>For fragmentation we follow the method described in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020</a>, that developed an <span class="math notranslate nohighlight">\(\mathcal{O} \left( N_m^2 \right)\)</span> algorithm for fragmentation. We modified it, however, to make it strictly mass conserving and added cratering.</p>
+<p>In either case, full fragmentation and cratering, we produce a distribution of fragments of kind</p>
+<p><span class="math notranslate nohighlight">\(n\left( m \right) \mathrm{d}m \propto m^\gamma \mathrm{d}m\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\gamma\)</span> has to be set in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.fragmentDistribution</span></code> before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>. By default it is <span class="math notranslate nohighlight">\(-\frac{11}{6}\)</span> taken from <a class="reference external" href="https://doi.org/10.1029/JB074i010p02531">Dohnanyi (1969)</a>. From this we can calculate a normalized distribution of fragments with a given maximum fragment size.</p>
+<p>This for example is a fragment distribution up to mass bin <span class="math notranslate nohighlight">\(15\)</span>. It is similar to the <span class="math notranslate nohighlight">\(\varphi\)</span> of <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020</a></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[0.04013542 0.04239721 0.04478647 0.04731037 0.0499765  0.05279288
+ 0.05576798 0.05891073 0.06223059 0.06573754 0.06944212 0.07335547
+ 0.07748936 0.0818562  0.08646913 0.09134202 0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.        ]
+</pre></div></div>
+</div>
+<p>that is normalized to <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.9999999999999999
+</pre></div></div>
+</div>
+<p>That means it can be simply multiplied by any desired total fragment mass.</p>
+<p>You may have noticed that the exponent of the fragment distribution is not identical to <span class="math notranslate nohighlight">\(\gamma\)</span> from above. Our <span class="math notranslate nohighlight">\(\varphi\)</span> here is already tranformed to code units, meaning the mass density integrated over the mass bin. Since the mass bin widths increase with increasing masses, this changes the slope.</p>
+<p>In a collision resulting in full fragmentation, the largest fragment size is equal to the larger collision partner. In a collision resulting in cratering the largest fragment has the size of the smaller collision partner. The index of the largest fragment is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.lf_ind</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">lf_ind</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+5
+</pre></div></div>
+</div>
+<p>In this example, this is equal to the index of the larger particle</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">lf_ind</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<p>suggesting that this is a collision that would result in full fragmentation (if the collision velocity is high enough).</p>
+<p>Again, note that this is symmetric and the transpose would return <span class="math notranslate nohighlight">\(-1\)</span> indicating that it is not used.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">lf_ind</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-1
+</pre></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.A</span></code> stores the total fragment mass resulting from a collision of particles <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code>. In a collision resulting in full fragmentation the total fragment mass is identical to the mass.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m_frag</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">m_frag</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<p>In a collision resulting in cratering the total mass of fragments is given by</p>
+<p><span class="math notranslate nohighlight">\(m_\mathrm{fragments} = \left( 1 + \chi \right)m_\mathrm{small}\)</span>,</p>
+<p>where <span class="math notranslate nohighlight">\(\chi\)</span> is the amount of mass that gets excavated from the larger collision partner in units of the smaller collision partner. This value can be set in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.excavatedMass</span></code> and is by default <span class="math notranslate nohighlight">\(1\)</span>. This value has to be set before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">j</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">m_frag</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">m_frag</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<p>In a cratering collision event the larger particle loses mass, which has to be taken into account. Since the new mass of the larger particle after a cratering collision will most likely not directly fall onto a mass bin, it has to be distributed between the two adjacent mass bins. <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.rm_ind</span></code> is the lower mass index into which the remnant mass is distributed, while <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.eps</span></code> is the fraction of mass that is distributed into that bin. That means
+that the fraction of <span class="math notranslate nohighlight">\(1\)</span> - <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.eps</span></code> is added into mass bin <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.rm_ind</span></code> + <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>In that way it is possible to check for mass conservation in cratering events.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Total mass of collision partners</span>
+<span class="n">m_tot</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+<span class="c1"># Index of larges fragment</span>
+<span class="n">k_lf</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">lf_ind</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+<span class="c1"># Smaller index of remnant mass</span>
+<span class="n">k_rm</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">rm_ind</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+<span class="c1"># Fraction of mass in k_rm</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">eps</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+<span class="c1"># Mass of fragments</span>
+<span class="n">m_frag</span> <span class="o">=</span> <span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="n">k_lf</span><span class="p">,</span> <span class="p">:])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="c1"># Mass of remnant particle</span>
+<span class="n">m_remnant</span> <span class="o">=</span> <span class="n">eps</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">k_rm</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="n">eps</span><span class="p">)</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">k_rm</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">err</span> <span class="o">=</span> <span class="n">m_frag</span> <span class="o">+</span> <span class="n">m_remnant</span> <span class="o">-</span> <span class="n">m_tot</span>
+<span class="n">rel_err</span> <span class="o">=</span> <span class="n">err</span><span class="o">/</span><span class="n">m_tot</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mass error: </span><span class="si">{:7.1e}</span><span class="s2"> g</span><span class="se">\n</span><span class="s2">Rel. error: </span><span class="si">{:7.1e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">rel_err</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Mass error: 1.7e-21 g
+Rel. error: 1.2e-16
+</pre></div></div>
+</div>
+<p>As you can see this is accurate up to machine precision.</p>
+<p>When starting a simulation with <code class="docutils literal notranslate"><span class="pre">Simulation.run()</span></code>, <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> will perform a check for mass conservation by calculating the relative error for every possible particle collision and every possible collision outcome.</p>
+</div>
+<div class="section" id="Probabilities">
+<h2>Probabilities<a class="headerlink" href="#Probabilities" title="Permalink to this headline">¶</a></h2>
+<p>To decide wether a collision event results in sticking or fragmentation, the fragmentation probability is calculated with a smooth transition between sticking and fragmentation around the fragmentation velocity. This probability is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.p.frag</span></code>.</p>
+<p>The sticking probability is simply given by</p>
+<p><span class="math notranslate nohighlight">\(p_\mathrm{stick} = 1 - p_\mathrm{frag}\)</span>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Group (Probabilities)
+---------------------
+    frag         : Field (Fragmentation probability)
+    stick        : Field (Sticking probability)
+  -----
+</pre></div></div>
+</div>
+<p>The sum of both is always <span class="math notranslate nohighlight">\(1\)</span> in the default setup.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">p_tot</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">stick</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">frag</span>
+<span class="p">(</span><span class="n">p_tot</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Bouncing">
+<h2>Bouncing<a class="headerlink" href="#Bouncing" title="Permalink to this headline">¶</a></h2>
+<p>Bouncing is by default not implemented. If you want to include bouncing collisions into your simulations you have to set functions for calculating <span class="math notranslate nohighlight">\(p_\mathrm{stick}\)</span> and <span class="math notranslate nohighlight">\(p_\mathrm{frag}\)</span>, such that the sum of both is smaller than <span class="math notranslate nohighlight">\(1\)</span>. If neither sticking, nor fragmentation occurs, the mass distribution does not change, i.e., we have bouncing.</p>
+</div>
+<div class="section" id="Collision-Rates">
+<h2>Collision Rates<a class="headerlink" href="#Collision-Rates" title="Permalink to this headline">¶</a></h2>
+<p>The collision rates <span class="math notranslate nohighlight">\(R\)</span> as defined above are given by</p>
+<p><span class="math notranslate nohighlight">\(\begin{split} R_\mathrm{stick} &amp;= k \cdot p_\mathrm{stick}\\ R_\mathrm{frag} &amp;= k \cdot p_\mathrm{frag} \end{split}\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> is given by</p>
+<p><span class="math notranslate nohighlight">\(k = \frac{\pi\left( a_i + a_j \right)^2}{\sqrt{2\pi\left( H_i^2 + H_j^2 \right)}} v_\mathrm{rel}\)</span>,</p>
+<p>which is the product of geometrical crosssection and relative velocity devided by a normalization factor that accounts for the two-dimensional structure of the disk. See (A.14) in appendix 2 of <a class="reference external" href="https://doi.org/10.1051/0004-6361/200913731">Birnstiel et al. (2010)</a> for details on this.</p>
+<p><span class="math notranslate nohighlight">\(k\)</span> is stored for every possible particle collision at any location in the disk in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.kernel</span></code>.</p>
+</div>
+<div class="section" id="Coagulation-Sources">
+<h2>Coagulation Sources<a class="headerlink" href="#Coagulation-Sources" title="Permalink to this headline">¶</a></h2>
+<p>The parameters stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation</span></code> only have to be calculated once in the beginning of the simulation. But to calculate the coagulation sources the current densities and relative velocities are needed. Since these change over time, they have to be calculated on the fly.</p>
+<p>This is done by summing over all possible collisions, evaluating the collision outcome and by multiplying with their respective collision rates. The result is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.coag</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">coag</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[[-1.00784759e-07 -1.02171801e-07 -5.62831519e-08 ...  0.00000000e+00
+   0.00000000e+00  0.00000000e+00]
+ [-7.89635987e-08 -8.00467067e-08 -4.40998187e-08 ...  0.00000000e+00
+   0.00000000e+00  0.00000000e+00]
+ [-6.18577264e-08 -6.27030458e-08 -3.45488116e-08 ...  0.00000000e+00
+   0.00000000e+00  0.00000000e+00]
+ ...
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00
+   0.00000000e+00  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00
+   0.00000000e+00  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00
+   0.00000000e+00  0.00000000e+00]]
+</pre></div></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="6_dust_evolution.html" class="btn btn-neutral float-right" title="Dust Evolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="4_standard_model.html" class="btn btn-neutral float-left" title="The Standard Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

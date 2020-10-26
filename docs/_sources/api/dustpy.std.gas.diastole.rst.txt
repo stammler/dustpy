@@ -1,0 +1,6 @@
+diastole
+========
+
+.. currentmodule:: dustpy.std.gas
+
+.. autofunction:: diastole

@@ -1,0 +1,6 @@
+p_frag
+======
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: p_frag

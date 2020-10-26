@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Simulation &mdash; dustpy  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="panel" href="dustpy.plot.panel.html" />
+    <link rel="prev" title="Module Reference" href="../api.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> dustpy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../1_basics.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_simple_customization.html">Simple Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_advanced_customization.html">Advanced Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_standard_model.html">The Standard Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_dust_coagulation.html">Dust Coagulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_dust_evolution.html">Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_gas_evolution.html">Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Module Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-dustpy">dustpy Package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../api.html#classes">Classes</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.constants">dustpy.constants Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.plot">dustpy.plot Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std">dustpy.std Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.dust">dustpy.std.dust Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.gas">dustpy.std.gas Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.grid">dustpy.std.grid Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.sim">dustpy.std.sim Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.star">dustpy.std.star Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.utils">dustpy.utils Package</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dustpy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api.html">Module Reference</a> &raquo;</li>
+        
+      <li>Simulation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/dustpy.Simulation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="simulation">
+<h1>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="dustpy.Simulation">
+<em class="property">class </em><code class="sig-prename descclassname">dustpy.</code><code class="sig-name descname">Simulation</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/simulation.html#Simulation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.Simulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">simframe.frame.frame.Frame</span></code></p>
+<p>The main simulation class for running dust coagulation simulations.</p>
+<p><cite>dustpy.Simulation`</cite> is a child of <code class="docutils literal notranslate"><span class="pre">simframe.Frame</span></code>.</p>
+<p>For setting simple initial conditions use <code class="docutils literal notranslate"><span class="pre">Simulation.ini</span></code>,
+For making the simulation grids use <code class="docutils literal notranslate"><span class="pre">Simulation.makegrids()</span></code>,
+For initialization use <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>,
+For running simulations use <code class="docutils literal notranslate"><span class="pre">Simulation.run()</span></code>.</p>
+<p>Please have a look at the documentation of <code class="docutils literal notranslate"><span class="pre">simframe</span></code> for further details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span></code></dt><dd><p>Description of the instance.</p>
+</dd>
+<dt><a class="reference internal" href="#dustpy.Simulation.ini" title="dustpy.Simulation.ini"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ini</span></code></a></dt><dd><p>Parameter set for setting the initial conditions.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">integrator</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">Integrator</span></code> that controls the simulation.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">progressbar</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">Progressbar</span></code> for displaying current status.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">toc</span></code></dt><dd><p>Complete table of contents starting from this object.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">updater</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">Heartbeat</span></code> object with update instructions.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">verbosity</span></code></dt><dd><p>Verbosity of the <code class="docutils literal notranslate"><span class="pre">Frame</span></code> objects.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">writer</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">Writer</span></code> object for writing output files.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">addfield</span></code>(name, value[, updater, …])</p></td>
+<td><p>Function to add a new <code class="docutils literal notranslate"><span class="pre">Field</span></code> to the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">addgroup</span></code>(name[, updater, description])</p></td>
+<td><p>Function to add a new <code class="docutils literal notranslate"><span class="pre">Group</span></code> to the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">addintegrationvariable</span></code>(name, value[, …])</p></td>
+<td><p>Function to add a new integration variable <code class="docutils literal notranslate"><span class="pre">IntVar</span></code> to the object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dustpy.Simulation.checkmassconservation" title="dustpy.Simulation.checkmassconservation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">checkmassconservation</span></code></a>()</p></td>
+<td><p>Function checks for mass conservation and prints the maximum relative mass error.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dustpy.Simulation.initialize" title="dustpy.Simulation.initialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialize</span></code></a>()</p></td>
+<td><p>Function initializes the simulation frame.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dustpy.Simulation.makegrids" title="dustpy.Simulation.makegrids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">makegrids</span></code></a>()</p></td>
+<td><p>Function creates radial and mass grid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dustpy.Simulation.run" title="dustpy.Simulation.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>()</p></td>
+<td><p>This functions runs the simulation.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>(*args, **kwargs)</p></td>
+<td><p>Function to update the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">writeoutput</span></code>([i, forceoverwrite, filename])</p></td>
+<td><p>Writes output to file, if <code class="docutils literal notranslate"><span class="pre">Writer</span></code> is specified.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dustpy.Simulation.ini" title="dustpy.Simulation.ini"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ini</span></code></a></p></td>
+<td><p>Parameter set for setting the initial conditions.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dustpy.Simulation.checkmassconservation" title="dustpy.Simulation.checkmassconservation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">checkmassconservation</span></code></a>()</p></td>
+<td><p>Function checks for mass conservation and prints the maximum relative mass error.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dustpy.Simulation.initialize" title="dustpy.Simulation.initialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialize</span></code></a>()</p></td>
+<td><p>Function initializes the simulation frame.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dustpy.Simulation.makegrids" title="dustpy.Simulation.makegrids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">makegrids</span></code></a>()</p></td>
+<td><p>Function creates radial and mass grid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dustpy.Simulation.run" title="dustpy.Simulation.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>()</p></td>
+<td><p>This functions runs the simulation.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="py attribute">
+<dt id="dustpy.Simulation.ini">
+<code class="sig-name descname">ini</code><a class="headerlink" href="#dustpy.Simulation.ini" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parameter set for setting the initial conditions.</p>
+</dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt id="dustpy.Simulation.checkmassconservation">
+<code class="sig-name descname">checkmassconservation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/simulation.html#Simulation.checkmassconservation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.Simulation.checkmassconservation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function checks for mass conservation and prints the maximum relative mass error.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dustpy.Simulation.initialize">
+<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/simulation.html#Simulation.initialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.Simulation.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function initializes the simulation frame.</p>
+<p>Function sets all fields that are None with a standard value.
+If the grids are not set, it will call <code class="docutils literal notranslate"><span class="pre">Simulation.makegrids()</span></code> first.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dustpy.Simulation.makegrids">
+<code class="sig-name descname">makegrids</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/simulation.html#Simulation.makegrids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.Simulation.makegrids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function creates radial and mass grid.</p>
+<p class="rubric">Notes</p>
+<p>The grids are set up with the parameters given in <code class="docutils literal notranslate"><span class="pre">Simulation.ini</span></code>.
+If you want to have a custom radial grid you have to set the array of grid cell interfaces <code class="docutils literal notranslate"><span class="pre">Simulation.grid.ri</span></code>,
+before calling <code class="docutils literal notranslate"><span class="pre">Simulation.makegrids()</span></code>.
+You cannot have a customized mass grid, because the coagulation alorithm strictly needs a logarithmic grid. Always
+set your mass grid parameters with <code class="docutils literal notranslate"><span class="pre">Simulation.ini</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dustpy.Simulation.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/simulation.html#Simulation.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.Simulation.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>This functions runs the simulation.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dustpy.plot.panel.html" class="btn btn-neutral float-right" title="panel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../api.html" class="btn btn-neutral float-left" title="Module Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

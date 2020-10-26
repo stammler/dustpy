@@ -1,0 +1,6 @@
+luminosity
+==========
+
+.. currentmodule:: dustpy.std.star
+
+.. autofunction:: luminosity

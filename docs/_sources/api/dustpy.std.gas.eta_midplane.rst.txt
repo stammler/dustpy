@@ -1,0 +1,6 @@
+eta_midplane
+============
+
+.. currentmodule:: dustpy.std.gas
+
+.. autofunction:: eta_midplane

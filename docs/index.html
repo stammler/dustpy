@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DustPy documentation! &mdash; dustpy  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Basic usage" href="1_basics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home" alt="Documentation Home"> dustpy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_basics.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">Simple Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">Advanced Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">The Standard Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">Dust Coagulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="8_test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">dustpy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> documentation!</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="dustpy-documentation">
+<h1><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> documentation!<a class="headerlink" href="#dustpy-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is a dust coagulation and evolution code for protoplanetary disks.</div>
+</div>
+<div class="line-block">
+<div class="line">To install <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> simply type</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">dustpy</span></code></div>
+</div>
+<div class="line-block">
+<div class="line"><cite>DustPy</cite> is based on the <cite>simframe</cite> framework for scientific simulation.</div>
+<div class="line">Please have a look at the <a class="reference external" href="https://simframe.rtfd.io">Simframe Documentation</a> for details of its usage.</div>
+</div>
+<div class="line-block">
+<div class="line">The following examples demonstrate the usage of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code>.</div>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_basics.html">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1_basics.html#The-Simulation-Frame">The Simulation Frame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_basics.html#Initializing">Initializing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_basics.html#Running-a-Simulation">Running a Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_basics.html#Plotting">Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_basics.html#Reading-data-files">Reading data files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_basics.html#Reading-Dump-Files">Reading Dump Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">Simple Customization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2_simple_customization.html#Stellar-parameters">Stellar parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_simple_customization.html#Grid-parameters">Grid parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_simple_customization.html#Gas-Parameters">Gas Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_simple_customization.html#Dust-Parameters">Dust Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_simple_customization.html#Changing-the-Initial-Conditions">Changing the Initial Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_simple_customization.html#Changing-the-Snapshots">Changing the Snapshots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_simple_customization.html#Changing-the-Output-Directory">Changing the Output Directory</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">Advanced Customization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3_advanced_customization.html#Customizing-the-Grids">Customizing the Grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_advanced_customization.html#Customizing-the-Physics-of-a-Field">Customizing the Physics of a Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_advanced_customization.html#Adding-Custom-Fields">Adding Custom Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_advanced_customization.html#Modifying-the-Update-Order">Modifying the Update Order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_advanced_customization.html#Systoles-and-Diastoles">Systoles and Diastoles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_advanced_customization.html#Customizing-the-Snapshots">Customizing the Snapshots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">The Standard Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="4_standard_model.html#Dust">Dust</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_standard_model.html#Gas">Gas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_standard_model.html#Grid">Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_standard_model.html#Star">Star</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_standard_model.html#Time">Time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_standard_model.html#Integrator">Integrator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_standard_model.html#Writer">Writer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">Dust Coagulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="5_dust_coagulation.html#Sticking">Sticking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_dust_coagulation.html#Fragmentation-&amp;-Cratering">Fragmentation &amp; Cratering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_dust_coagulation.html#Probabilities">Probabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_dust_coagulation.html#Bouncing">Bouncing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_dust_coagulation.html#Collision-Rates">Collision Rates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_dust_coagulation.html#Coagulation-Sources">Coagulation Sources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">Dust Evolution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="6_dust_evolution.html#Coagulation">Coagulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_dust_evolution.html#Hydrodynamics">Hydrodynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_dust_evolution.html#External-Sources">External Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6_dust_evolution.html#Turning-off-Dust-Evolution">Turning off Dust Evolution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="7_gas_evolution.html#Hydrodynamics">Hydrodynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7_gas_evolution.html#External-Sources">External Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7_gas_evolution.html#Turning-off-Gas-Evolution">Turning off Gas Evolution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="8_test_gas_evolution.html">Test: Gas Evolution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="8_test_gas_evolution.html#Analytical-Solution">Analytical Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8_test_gas_evolution.html#Setting-up-DustPy">Setting up DustPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="8_test_gas_evolution.html#Modifying-the-Power-Law-Index">Modifying the Power Law Index</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-dustpy">dustpy Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-dustpy.constants">dustpy.constants Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-dustpy.plot">dustpy.plot Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-dustpy.std">dustpy.std Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-dustpy.std.dust">dustpy.std.dust Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-dustpy.std.gas">dustpy.std.gas Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-dustpy.std.grid">dustpy.std.grid Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-dustpy.std.sim">dustpy.std.sim Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-dustpy.std.star">dustpy.std.star Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-dustpy.utils">dustpy.utils Package</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="1_basics.html" class="btn btn-neutral float-right" title="Basic usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

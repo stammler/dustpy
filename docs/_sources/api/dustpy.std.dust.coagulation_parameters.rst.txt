@@ -1,0 +1,6 @@
+coagulation_parameters
+======================
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: coagulation_parameters

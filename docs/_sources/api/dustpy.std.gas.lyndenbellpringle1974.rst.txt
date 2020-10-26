@@ -1,0 +1,6 @@
+lyndenbellpringle1974
+=====================
+
+.. currentmodule:: dustpy.std.gas
+
+.. autofunction:: lyndenbellpringle1974

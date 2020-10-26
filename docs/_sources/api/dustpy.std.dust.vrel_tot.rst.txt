@@ -1,0 +1,6 @@
+vrel_tot
+========
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: vrel_tot

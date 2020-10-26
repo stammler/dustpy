@@ -1,0 +1,6 @@
+finalize
+========
+
+.. currentmodule:: dustpy.std.gas
+
+.. autofunction:: finalize

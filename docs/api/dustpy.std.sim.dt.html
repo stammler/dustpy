@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dt &mdash; dustpy  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="finalize" href="dustpy.std.sim.finalize.html" />
+    <link rel="prev" title="OmegaK" href="dustpy.std.grid.OmegaK.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> dustpy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../1_basics.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_simple_customization.html">Simple Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_advanced_customization.html">Advanced Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_standard_model.html">The Standard Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_dust_coagulation.html">Dust Coagulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_dust_evolution.html">Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_gas_evolution.html">Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Module Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy">dustpy Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.constants">dustpy.constants Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.plot">dustpy.plot Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std">dustpy.std Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.dust">dustpy.std.dust Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.gas">dustpy.std.gas Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.grid">dustpy.std.grid Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-dustpy.std.sim">dustpy.std.sim Module</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../api.html#id4">Functions</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">dt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.sim.finalize.html">finalize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.sim.prepare.html">prepare</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.star">dustpy.std.star Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.utils">dustpy.utils Package</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dustpy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api.html">Module Reference</a> &raquo;</li>
+        
+      <li>dt</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/dustpy.std.sim.dt.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="dt">
+<h1>dt<a class="headerlink" href="#dt" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="dustpy.std.sim.dt">
+<code class="sig-prename descclassname">dustpy.std.sim.</code><code class="sig-name descname">dt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sim</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/std/sim.html#dt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.std.sim.dt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function calculates the timestep.
+By default DustPy uses adaptive integration schemes. The step
+size function is therefore simply returning the suggested
+step size.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dustpy.std.sim.finalize.html" class="btn btn-neutral float-right" title="finalize" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dustpy.std.grid.OmegaK.html" class="btn btn-neutral float-left" title="OmegaK" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

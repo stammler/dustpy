@@ -1,0 +1,6 @@
+panel
+=====
+
+.. currentmodule:: dustpy.plot
+
+.. autofunction:: panel

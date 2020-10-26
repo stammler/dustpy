@@ -1,0 +1,789 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Dust Coagulation\n",
+    "\n",
+    "`DustPy` calculates the collisional evolution of dust by solving the Smolukowski equation\n",
+    "\n",
+    "$\\begin{split}\n",
+    "\\frac{\\partial}{\\partial t} f\\left( m \\right) = &\\int\\limits_0^\\infty \\int\\limits_0^\\infty K\\left( m, m', m'' \\right) f\\left( m' \\right) f\\left( m'' \\right) R\\left( m', m'' \\right) \\mathrm{d}m'' \\mathrm{d}m'\\\\\n",
+    "&-f\\left( m \\right) \\int\\limits_0^\\infty f\\left( m' \\right) R\\left( m, m' \\right) \\mathrm{d}m'.\n",
+    "\\end{split}$\n",
+    "\n",
+    "Where $f\\left( m \\right)$ is the dust mass distribution, $R$ the collision rates, and $K$ defines the collision outcomes.\n",
+    "\n",
+    "The first integral sums over all possible particle collisions and $K\\left( m, m', m'' \\right)$ defines the amount that gets added to $f\\left( m \\right)$ if particles $m'$ and $m''$ collide. The second integral removes that particles from the distribution that collided with other particles.\n",
+    "\n",
+    "This equation can be generalized to\n",
+    "\n",
+    "$\\frac{\\partial}{\\partial t} f\\left( m \\right) = \\int\\limits_0^\\infty \\int\\limits_0^{m'} M\\left( m, m', m'' \\right) f\\left( m' \\right) f\\left( m'' \\right) R\\left( m', m'' \\right) \\mathrm{d}m'' \\mathrm{d}m'$\n",
+    "\n",
+    "where the matrix $M$ has both the positive and the negative terms. Also note that the integral over $m''$ only goes up to mass $m'$. Since the collisions are symmetric this saves some computation.\n",
+    "\n",
+    "For details on the numerical implementation, we refer to [Brauer et al. (2008)](https://doi.org/10.1051/0004-6361:20077759) and [Birnstiel et al. (2010)](https://doi.org/10.1051/0004-6361/200913731).\n",
+    "\n",
+    "The standard model of `DustPy` knows three different collision outcomes: sticking, cratering, and full fragmentation."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from dustpy import Simulation\n",
+    "sim = Simulation()\n",
+    "sim.initialize()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The parameters that controll the collisional behavior are pre-calculated when calling `Simulation.initialze()` and stored in `Simulation.dust.coagulation`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Coagulation quantities)\n",
+       "------------------------------\n",
+       "    A            : Field (Fragment normalization factors), \u001b[95mconstant\u001b[0m\n",
+       "    eps          : Field (Remnant mass distribution), \u001b[95mconstant\u001b[0m\n",
+       "    lf_ind       : Field (Index of largest fragment), \u001b[95mconstant\u001b[0m\n",
+       "    phi          : Field (Fragment distribution), \u001b[95mconstant\u001b[0m\n",
+       "    rm_ind       : Field (Smaller index of remnant), \u001b[95mconstant\u001b[0m\n",
+       "    stick        : Field (Sticking matrix), \u001b[95mconstant\u001b[0m\n",
+       "    stick_ind    : Field (Non-zero elements of sticking matrix), \u001b[95mconstant\u001b[0m\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.coagulation"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "These fields are strictly tied to the mass grid. Neither those fields nor the mass grid should be changed after calling `Simulation.initialize()`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Sticking\n",
+    "\n",
+    "Sticking means that two particles collide and form a new larger particles conserving the total mass. There are two complication when implementing this numerically:\n",
+    "\n",
+    "First, since we need to cover a high dynamic range from particles masses around $10^{-15}\\,\\mathrm{g}$ to more than $10^{15}\\,\\mathrm{g}$ while still having a reasonable number of mass bins, the mass grid has to be logarithmic. This has the disadvantage that the new particle mass resulting from a collision will not directly lie on the mass grid, but will fall in between two grid masses. The resulting mass has to be therefore distributed between the two adjacent grid cells. This means there will be density added to a mass bin that is larger than the actual mass of the resulting particle. This can have unwanted side effects if the mass grid is too coarse. Please see [Drążkowska et al. (2014)](https://doi.org/10.1051/0004-6361/201423708) for details on the minimum mass resulution that should be used.\n",
+    "\n",
+    "Second, if the masses of the two colliding particles differ by more than $15$ orders of magnitude (double-precision floating-point format) the resulting mass is (for a computer) identical to the mass of the larger particle. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "m1 = 1.e-16\n",
+    "m2 = 1.\n",
+    "m_tot = m1 + m2\n",
+    "\n",
+    "m_tot == m2"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The mass error if this happens is small for a single collision, but it effectively halts the growth of larger particles by sweeping up many smaller particles. There are techniques to prevent this from happening by re-arranging sums. Please hat a look at apendices A and B of [Brauer et al. (2008)](https://doi.org/10.1051/0004-6361:20077759) for a detailed description of this mechanism."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The matrix $M$ has for sticking at maximum four non-zero values for any pair of particle collision: two negative terms for the colliding particles that get removed from the distribution and two positive terms for the two mass bins that border the mass of the resulting particle. If two particles of identical mass collide $M$ has only three non-zero values: one negative and two positives.\n",
+    "\n",
+    "Since $M$ is in the case of sticking a sparse matrix that contains mostly zeroes, we only store the non-zero elements in `Simulation.dust.coagulation.stick` and `Simulation.dust.coagulation.stick_ind`.\n",
+    "\n",
+    "The first field is the four non-zero elements of $M$, while the latter field stores the positions of those elements within $M$.\n",
+    "\n",
+    "Let's look at a collision of two particles `i` and `j`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "i = 5\n",
+    "j = 3"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The non-zero elemets of $M$ are"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[-1.         -1.          0.76265439  0.23734561]"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.coagulation.stick[:, j, i]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "at the positions"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[3 5 6 7]"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.coagulation.stick_ind[:, j, i]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "As you can see, we remove one particle each from bins 3 and 5 and add about $75\\,\\%$ of a particle to mass bin 6 and about $25\\,\\%$ of a particle to mass bin 7.\n",
+    "\n",
+    "To check for mass conservation we have to multiply the non-zero elements in $M$ with their respective masses."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Mass error: 1.2e-27 g\n",
+      "Rel. error: 1.5e-16\n"
+     ]
+    }
+   ],
+   "source": [
+    "m_tot = sim.grid.m[i] + sim.grid.m[j]\n",
+    "err = (sim.dust.coagulation.stick[:, j, i] * sim.grid.m[sim.dust.coagulation.stick_ind[:, j, i]]).sum()\n",
+    "rel_err = err/m_tot\n",
+    "print(\"Mass error: {:7.1e} g\\nRel. error: {:7.1e}\".format(err, rel_err))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The relative mass error is of the order of machine precision. This as good as it can get.\n",
+    "\n",
+    "Note: Since the collsions are symmetric (collision of `i` with `j` is identical to collision of `j` with `i`), we do not use collisions with `i`>`j`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[0. 0. 0. 0.]"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.coagulation.stick[:, i, j]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "If two identical particles collide there are only three non-zero elements."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[-2.          0.90784249  0.09215751  0.        ]"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.coagulation.stick[:, j, j]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[ 3  5  6 -1]"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.coagulation.stick_ind[:, j, j]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In this case we remove two particles from mass bin $3$, add $90\\,\\%$ of a particle to mass bin $5$ and $10\\,\\%$ of a particle to mass bin 6. And index of $-1$ means that it should be ignored.\n",
+    "\n",
+    "In any case the sum over `Simulation.dust.coagulation.stick` for any possible collision should be $-1$. This means that for every collision the total number of particles is reduced by $1$. Two particles collide and form one new particle."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "-1.000000000000001"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.coagulation.stick[:, j, i].sum()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Fragmentation & Cratering\n",
+    "\n",
+    "If the collision velocity exceeds the fragmentation velocity particles fragment. Here we distinguish two cases: Either the particles are roughly equal sized, then both particles fully fragment. Or one particle is significantly larger than the other, then only the smaller particle fragments, but it is chipping off some mass of the larger particle. The latter case is called cratering.\n",
+    "\n",
+    "The threshold of these two cases can be set with `Simulation.ini.dust.crateringMassRatio`. By default this is $10$, meaning both particles fully fragment if their mass ratio is smaller than $10$. Otherwise we have cratering. This value has to be set, before calling `Simulation.initialize()`.\n",
+    "\n",
+    "For fragmentation we follow the method described in [Rafikov et al. (2020](https://doi.org/10.3847/1538-4365/ab7b71), that developed an $\\mathcal{O} \\left( N_m^2 \\right)$ algorithm for fragmentation. We modified it, however, to make it strictly mass conserving and added cratering.\n",
+    "\n",
+    "In either case, full fragmentation and cratering, we produce a distribution of fragments of kind\n",
+    "\n",
+    "$n\\left( m \\right) \\mathrm{d}m \\propto m^\\gamma \\mathrm{d}m$.\n",
+    "\n",
+    "$\\gamma$ has to be set in `Simulation.ini.dust.fragmentDistribution` before calling `Simulation.initialize()`. By default it is $-\\frac{11}{6}$ taken from [Dohnanyi (1969)](https://doi.org/10.1029/JB074i010p02531). From this we can calculate a normalized distribution of fragments with a given maximum fragment size.\n",
+    "\n",
+    "This for example is a fragment distribution up to mass bin $15$. It is similar to the $\\varphi$ of [Rafikov et al. (2020](https://doi.org/10.3847/1538-4365/ab7b71)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[0.04013542 0.04239721 0.04478647 0.04731037 0.0499765  0.05279288\n",
+       " 0.05576798 0.05891073 0.06223059 0.06573754 0.06944212 0.07335547\n",
+       " 0.07748936 0.0818562  0.08646913 0.09134202 0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.\n",
+       " 0.         0.         0.         0.         0.         0.        ]"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.coagulation.phi[15, :]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "that is normalized to $1$."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.9999999999999999"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.coagulation.phi[15, :].sum()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "That means it can be simply multiplied by any desired total fragment mass.\n",
+    "\n",
+    "You may have noticed that the exponent of the fragment distribution is not identical to $\\gamma$ from above. Our $\\varphi$ here is already tranformed to code units, meaning the mass density integrated over the mass bin. Since the mass bin widths increase with increasing masses, this changes the slope.\n",
+    "\n",
+    "In a collision resulting in full fragmentation, the largest fragment size is equal to the larger collision partner. In a collision resulting in cratering the largest fragment has the size of the smaller collision partner. The index of the largest fragment is stored in `Simulation.dust.coagulation.lf_ind`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "5"
+      ]
+     },
+     "execution_count": 14,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.coagulation.lf_ind[j, i]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In this example, this is equal to the index of the larger particle"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.coagulation.lf_ind[j, i] == i"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "suggesting that this is a collision that would result in full fragmentation (if the collision velocity is high enough).\n",
+    "\n",
+    "Again, note that this is symmetric and the transpose would return $-1$ indicating that it is not used."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "-1"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.coagulation.lf_ind[i, j]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "`Simulation.dust.coagulation.A` stores the total fragment mass resulting from a collision of particles `i` and `j`. In a collision resulting in full fragmentation the total fragment mass is identical to the mass."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 17,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "m_frag = sim.grid.m[i] + sim.grid.m[j]\n",
+    "sim.dust.coagulation.A[j, i] == m_frag"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In a collision resulting in cratering the total mass of fragments is given by\n",
+    "\n",
+    "$m_\\mathrm{fragments} = \\left( 1 + \\chi \\right)m_\\mathrm{small}$,\n",
+    "\n",
+    "where $\\chi$ is the amount of mass that gets excavated from the larger collision partner in units of the smaller collision partner. This value can be set in `Simulation.ini.dust.excavatedMass` and is by default $1$. This value has to be set before calling `Simulation.initialize()`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "i = 50\n",
+    "j = 3\n",
+    "m_frag = 2. * sim.grid.m[j]\n",
+    "sim.dust.coagulation.A[j, i] == m_frag"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In a cratering collision event the larger particle loses mass, which has to be taken into account. Since the new mass of the larger particle after a cratering collision will most likely not directly fall onto a mass bin, it has to be distributed between the two adjacent mass bins. `Simulation.dust.coagulation.rm_ind` is the lower mass index into which the remnant mass is distributed, while `Simulation.dust.coagulation.eps` is the fraction of mass that is distributed into that bin. That means that the fraction of $1$ - `Simulation.dust.coagulation.eps` is added into mass bin `Simulation.dust.coagulation.rm_ind` + $1$.\n",
+    "\n",
+    "In that way it is possible to check for mass conservation in cratering events."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Mass error: 1.7e-21 g\n",
+      "Rel. error: 1.2e-16\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Total mass of collision partners\n",
+    "m_tot = sim.grid.m[i] + sim.grid.m[j]\n",
+    "# Index of larges fragment\n",
+    "k_lf = sim.dust.coagulation.lf_ind[j, i]\n",
+    "# Smaller index of remnant mass\n",
+    "k_rm = sim.dust.coagulation.rm_ind[j, i]\n",
+    "# Fraction of mass in k_rm\n",
+    "eps = sim.dust.coagulation.eps[j, i]\n",
+    "# Mass of fragments\n",
+    "m_frag = (sim.dust.coagulation.A[j, i] * sim.dust.coagulation.phi[k_lf, :]).sum()\n",
+    "# Mass of remnant particle\n",
+    "m_remnant = eps*sim.grid.m[k_rm] + (1.-eps)*sim.grid.m[k_rm+1]\n",
+    "\n",
+    "err = m_frag + m_remnant - m_tot\n",
+    "rel_err = err/m_tot\n",
+    "print(\"Mass error: {:7.1e} g\\nRel. error: {:7.1e}\".format(err, rel_err))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "As you can see this is accurate up to machine precision.\n",
+    "\n",
+    "When starting a simulation with `Simulation.run()`, `DustPy` will perform a check for mass conservation by calculating the relative error for every possible particle collision and every possible collision outcome."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Probabilities\n",
+    "\n",
+    "To decide wether a collision event results in sticking or fragmentation, the fragmentation probability is calculated with a smooth transition between sticking and fragmentation around the fragmentation velocity. This probability is stored in `Simulation.dust.p.frag`.\n",
+    "\n",
+    "The sticking probability is simply given by\n",
+    "\n",
+    "$p_\\mathrm{stick} = 1 - p_\\mathrm{frag}$."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Probabilities)\n",
+       "---------------------\n",
+       "    frag         : Field (Fragmentation probability)\n",
+       "    stick        : Field (Sticking probability)\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.p"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The sum of both is always $1$ in the default setup."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 21,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "p_tot = sim.dust.p.stick + sim.dust.p.frag\n",
+    "(p_tot==1).all()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Bouncing\n",
+    "\n",
+    "Bouncing is by default not implemented. If you want to include bouncing collisions into your simulations you have to set functions for calculating $p_\\mathrm{stick}$ and $p_\\mathrm{frag}$, such that the sum of both is smaller than $1$. If neither sticking, nor fragmentation occurs, the mass distribution does not change, i.e., we have bouncing."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Collision Rates\n",
+    "\n",
+    "The collision rates $R$ as defined above are given by \n",
+    "\n",
+    "$\\begin{split}\n",
+    "R_\\mathrm{stick} &= k \\cdot p_\\mathrm{stick}\\\\\n",
+    "R_\\mathrm{frag} &= k \\cdot p_\\mathrm{frag}\n",
+    "\\end{split}$\n",
+    "\n",
+    "where $k$ is given by\n",
+    "\n",
+    "$k = \\frac{\\pi\\left( a_i + a_j \\right)^2}{\\sqrt{2\\pi\\left( H_i^2 + H_j^2 \\right)}} v_\\mathrm{rel}$,\n",
+    "\n",
+    "which is the product of geometrical crosssection and relative velocity devided by a normalization factor that accounts for the two-dimensional structure of the disk. See (A.14) in appendix 2 of [Birnstiel et al. (2010)](https://doi.org/10.1051/0004-6361/200913731) for details on this.\n",
+    "\n",
+    "$k$ is stored for every possible particle collision at any location in the disk in `Simulation.dust.kernel`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Coagulation Sources\n",
+    "\n",
+    "The parameters stored in `Simulation.dust.coagulation` only have to be calculated once in the beginning of the simulation. But to calculate the coagulation sources the current densities and relative velocities are needed. Since these change over time, they have to be calculated on the fly.\n",
+    "\n",
+    "This is done by summing over all possible collisions, evaluating the collision outcome and by multiplying with their respective collision rates. The result is stored in `Simulation.dust.S.coag`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[[-1.00784759e-07 -1.02171801e-07 -5.62831519e-08 ...  0.00000000e+00\n",
+       "   0.00000000e+00  0.00000000e+00]\n",
+       " [-7.89635987e-08 -8.00467067e-08 -4.40998187e-08 ...  0.00000000e+00\n",
+       "   0.00000000e+00  0.00000000e+00]\n",
+       " [-6.18577264e-08 -6.27030458e-08 -3.45488116e-08 ...  0.00000000e+00\n",
+       "   0.00000000e+00  0.00000000e+00]\n",
+       " ...\n",
+       " [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00\n",
+       "   0.00000000e+00  0.00000000e+00]\n",
+       " [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00\n",
+       "   0.00000000e+00  0.00000000e+00]\n",
+       " [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00\n",
+       "   0.00000000e+00  0.00000000e+00]]"
+      ]
+     },
+     "execution_count": 22,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.S.coag"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

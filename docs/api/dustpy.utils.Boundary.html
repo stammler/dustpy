@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Boundary &mdash; dustpy  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="luminosity" href="dustpy.std.star.luminosity.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> dustpy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../1_basics.html">Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_simple_customization.html">Simple Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_advanced_customization.html">Advanced Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_standard_model.html">The Standard Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_dust_coagulation.html">Dust Coagulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_dust_evolution.html">Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_gas_evolution.html">Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../8_test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Module Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy">dustpy Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.constants">dustpy.constants Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.plot">dustpy.plot Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std">dustpy.std Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.dust">dustpy.std.dust Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.gas">dustpy.std.gas Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.grid">dustpy.std.grid Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.sim">dustpy.std.sim Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.star">dustpy.std.star Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-dustpy.utils">dustpy.utils Package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../api.html#id6">Classes</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Boundary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dustpy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api.html">Module Reference</a> &raquo;</li>
+        
+      <li>Boundary</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/dustpy.utils.Boundary.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="boundary">
+<h1>Boundary<a class="headerlink" href="#boundary" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="dustpy.utils.Boundary">
+<em class="property">class </em><code class="sig-prename descclassname">dustpy.utils.</code><code class="sig-name descname">Boundary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">r</span></em>, <em class="sig-param"><span class="n">ri</span></em>, <em class="sig-param"><span class="n">S</span></em>, <em class="sig-param"><span class="n">condition</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/utils/boundary.html#Boundary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.utils.Boundary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for managing boundary conditions for gas and dust.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference internal" href="#dustpy.utils.Boundary.condition" title="dustpy.utils.Boundary.condition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">condition</span></code></a></dt><dd><p>The type of boundary condition to be applied.</p>
+</dd>
+<dt><a class="reference internal" href="#dustpy.utils.Boundary.value" title="dustpy.utils.Boundary.value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value</span></code></a></dt><dd><p>The value of the boundary to be applied if applicable.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dustpy.utils.Boundary.setboundary" title="dustpy.utils.Boundary.setboundary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setboundary</span></code></a>()</p></td>
+<td><p>Function sets the boundary value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dustpy.utils.Boundary.setcondition" title="dustpy.utils.Boundary.setcondition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setcondition</span></code></a>(condition[, value])</p></td>
+<td><p>Function to set boundary condition.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dustpy.utils.Boundary.condition" title="dustpy.utils.Boundary.condition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">condition</span></code></a></p></td>
+<td><p>The type of boundary condition to be applied.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dustpy.utils.Boundary.value" title="dustpy.utils.Boundary.value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value</span></code></a></p></td>
+<td><p>The value of the boundary to be applied if applicable.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dustpy.utils.Boundary.setboundary" title="dustpy.utils.Boundary.setboundary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setboundary</span></code></a>()</p></td>
+<td><p>Function sets the boundary value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#dustpy.utils.Boundary.setcondition" title="dustpy.utils.Boundary.setcondition"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setcondition</span></code></a>(condition[, value])</p></td>
+<td><p>Function to set boundary condition.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes Documentation</p>
+<dl class="py attribute">
+<dt id="dustpy.utils.Boundary.condition">
+<code class="sig-name descname">condition</code><a class="headerlink" href="#dustpy.utils.Boundary.condition" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of boundary condition to be applied.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="dustpy.utils.Boundary.value">
+<code class="sig-name descname">value</code><a class="headerlink" href="#dustpy.utils.Boundary.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>The value of the boundary to be applied if applicable.</p>
+</dd></dl>
+
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt id="dustpy.utils.Boundary.setboundary">
+<code class="sig-name descname">setboundary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/utils/boundary.html#Boundary.setboundary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.utils.Boundary.setboundary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function sets the boundary value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dustpy.utils.Boundary.setcondition">
+<code class="sig-name descname">setcondition</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">condition</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/utils/boundary.html#Boundary.setcondition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.utils.Boundary.setcondition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to set boundary condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>condition</strong> (<em>string</em>) – <dl class="simple">
+<dt>Type of boundary conditon:</dt><dd><ul>
+<li><p>”const_grad” : constant gradient</p></li>
+<li><p>”const_pow” : constant power law</p></li>
+<li><p>”const_val” : constant value</p></li>
+<li><p>”val” : custom value</p></li>
+<li><p>”grad” : custom gradient</p></li>
+<li><p>”pow” : custom power law with set exponent</p></li>
+<li><p>None : Don’t impose boundary condition (default)</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>value</strong> (<em>float</em><em> or </em><em>array</em><em>, </em><em>optional</em><em>, </em><em>default : None</em>) – Value if needed for boundary condition</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="dustpy.std.star.luminosity.html" class="btn btn-neutral float-left" title="luminosity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

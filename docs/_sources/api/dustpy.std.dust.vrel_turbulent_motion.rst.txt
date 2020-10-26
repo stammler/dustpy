@@ -1,0 +1,6 @@
+vrel_turbulent_motion
+=====================
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: vrel_turbulent_motion
