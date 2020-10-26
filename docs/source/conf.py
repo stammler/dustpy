@@ -55,6 +55,3 @@ exclude_patterns = [
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
-
-# Mocking the import of the DustPy constants module, because the Fortran extension cannot be compiled on RTD.
-autodoc_mock_imports = ["dustpy.constants"]
