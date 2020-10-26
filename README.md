@@ -2,40 +2,28 @@
 
 Package for Dust Coagulation and Evolution in Protoplanetary Disks.
 
-## Terms of Usage
-
-The current version of `DustPy` is still private.  
-Usage is only permitted under the condition of close collaboration and the option of co-authorship to publications that made use of `DustPy`.  
-By using any version of `DustPy` you agree to these terms of usage.
-
 ## Installation
 
-`pip install dustpy` (not working, yet)
-
-To install `DustPy` run in the main directory
-
-`pip install .`
-
-`NumPy` needs to be installed to run the setup script. All other requirements will be installed on the fly.
+`pip install dustpy`
 
 ## Documentation
 
+[https://stammler.github.io/dustpy/](https://stammler.github.io/dustpy/).
+
+
+* [1. Basics](https://stammler.github.io/dustpy/1_basics.ipynb)
+* [2. Simple Customization](https://stammler.github.io/dustpy/2_simple_customization.ipynb)
+* [3. Advanced Customization](https://stammler.github.io/dustpy/3_advanced_customization.ipynb)
+* [4. The Standard Model](https://stammler.github.io/dustpy/4_standard_model.ipynb)
+* [5. Dust Coagulation](https://stammler.github.io/dustpy/5_dust_coagulation.ipynb)
+* [6. Dust Evolution](https://stammler.github.io/dustpy/6_dust_evolution.ipynb)
+* [7. Gas Evolution](https://stammler.github.io/dustpy/7_gas_evolution.ipynb)
+* [8. Test: Gas Evolution](https://stammler.github.io/dustpy/8_test_gas_evolution.ipynb)
+
+[Module Reference](https://stammler.github.io/dustpy/api.html)
+
 `DustPy` is using the `simframe` framework.  
 For details we refer to the [Simframe Documentation](https://simframe.rtfd.io/).
-
-To build the `DustPy` documentation install the modules in `docs/requirements.txt`, change into `docs/` directory and run `make html`.  
-The documentation is then available in `docs/build/html/index.html`.
-
-The notebooks with instructions can be accessed on the [Github repository](https://github.com/stammler/dustpy) as well.
-
-* [Basics](https://github.com/stammler/dustpy/blob/master/examples/1_basics.ipynb)
-* [Simple Customization](https://github.com/stammler/dustpy/blob/master/examples/2_simple_customization.ipynb)
-* [Advanced Customization](https://github.com/stammler/dustpy/blob/master/examples/3_advanced_customization.ipynb)
-* [The Standard Model](https://github.com/stammler/dustpy/blob/master/examples/4_standard_model.ipynb)
-* [Dust Coagulation](https://github.com/stammler/dustpy/blob/master/examples/5_dust_coagulation.ipynb)
-* [Dust Evolution](https://github.com/stammler/dustpy/blob/master/examples/6_dust_evolution.ipynb)
-* [Gas Evolution](https://github.com/stammler/dustpy/blob/master/examples/7_gas_evolution.ipynb)
-* [Test: Gas Evolution](https://github.com/stammler/dustpy/blob/master/examples/8_test_gas_evolution.ipynb)
 
 ## Ackowledgements
 
