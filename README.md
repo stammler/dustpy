@@ -8,17 +8,17 @@ Package for Dust Coagulation and Evolution in Protoplanetary Disks.
 
 ## Documentation
 
-[https://stammler.github.io/dustpy/](https://stammler.github.io/dustpy/).
+[https://stammler.github.io/dustpy/](https://stammler.github.io/dustpy/)
 
 
-* [1. Basics](https://stammler.github.io/dustpy/1_basics.ipynb)
-* [2. Simple Customization](https://stammler.github.io/dustpy/2_simple_customization.ipynb)
-* [3. Advanced Customization](https://stammler.github.io/dustpy/3_advanced_customization.ipynb)
-* [4. The Standard Model](https://stammler.github.io/dustpy/4_standard_model.ipynb)
-* [5. Dust Coagulation](https://stammler.github.io/dustpy/5_dust_coagulation.ipynb)
-* [6. Dust Evolution](https://stammler.github.io/dustpy/6_dust_evolution.ipynb)
-* [7. Gas Evolution](https://stammler.github.io/dustpy/7_gas_evolution.ipynb)
-* [8. Test: Gas Evolution](https://stammler.github.io/dustpy/8_test_gas_evolution.ipynb)
+* [1. Basics](https://stammler.github.io/dustpy/1_basics.html)
+* [2. Simple Customization](https://stammler.github.io/dustpy/2_simple_customization.html)
+* [3. Advanced Customization](https://stammler.github.io/dustpy/3_advanced_customization.html)
+* [4. The Standard Model](https://stammler.github.io/dustpy/4_standard_model.html)
+* [5. Dust Coagulation](https://stammler.github.io/dustpy/5_dust_coagulation.html)
+* [6. Dust Evolution](https://stammler.github.io/dustpy/6_dust_evolution.html)
+* [7. Gas Evolution](https://stammler.github.io/dustpy/7_gas_evolution.html)
+* [8. Test: Gas Evolution](https://stammler.github.io/dustpy/8_test_gas_evolution.html)
 
 [Module Reference](https://stammler.github.io/dustpy/api.html)
 
