@@ -1,4 +1,4 @@
-``DustPy`` documentation!
+``DustPy`` documentation
 =========================================
 
 | ``DustPy`` is a dust coagulation and evolution code for protoplanetary disks.
