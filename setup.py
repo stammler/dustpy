@@ -1,7 +1,9 @@
+import setuptools
+
 from numpy.distutils.core import Extension
 from numpy.distutils.core import setup
 
-from setuptools import find_packages
+#from setuptools import setup
 import pathlib
 
 package_name = "dustpy"
@@ -16,6 +18,7 @@ ext_dust = Extension(name="dustpy.std.dust_f", sources=["dustpy/constants/consta
 ext_gas = Extension(name="dustpy.std.gas_f", sources=["dustpy/constants/constants.f90",
                                                       "dustpy/utils/interpolation.f90",
                                                       "dustpy/std/gas.f90"])
+extensions = [ext_const, ext_dust, ext_gas]
 
 
 def read_version():
@@ -48,7 +51,7 @@ setup(
     version=read_version(),
     license="GPLv3",
 
-    ext_modules=[ext_const, ext_dust, ext_gas],
+    ext_modules=extensions,
 
     classifiers=["Development Status :: 3 - Alpha",
                  "Environment :: Console",
@@ -64,7 +67,7 @@ setup(
                  "Topic :: Scientific/Engineering :: Physics",
                  ],
 
-    packages=find_packages(),
+    packages=setuptools.find_packages(),
     install_requires=["matplotlib", "numpy", "simframe"],
     include_package_data=True,
     zip_safe=False,
