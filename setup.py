@@ -38,7 +38,7 @@ setup(
 
     url="https://github.com/stammler/dustpy",
     project_urls={"Source Code": "https://github.com/stammler/dustpy/",
-                  "Documentation": "https://dustpy.readthedocs.io/"
+                  "Documentation": "https://stammler.github.io/dustpy/"
                   },
 
     author="Sebastian Stammler, Til Birnstiel",
