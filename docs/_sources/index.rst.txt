@@ -8,7 +8,7 @@
 | To install ``DustPy`` simply type
 | ``pip install dustpy``
 
-| `DustPy` is based on the `simframe` framework for scientific simulation.
+| `DustPy` is based on the ``simframe`` framework for scientific simulation.
 | Please have a look at the `Simframe Documentation <https://simframe.rtfd.io>`_ for details of its usage.
 
 | The following examples demonstrate the usage of ``DustPy``.
