@@ -53,20 +53,14 @@ def finalize(sim):
         Parent simulation frame"""
     boundary(sim)
     enforce_floor_value(sim)
+    sim.gas.v.update()
+    sim.gas.Fi.update()
+    sim.gas.S.update()
+    set_implicit_boundaries(sim)
 
 
-def diastole(sim):
-    """Function that is executed after the gas update step. It calculates the implicit fluxes through the boundaries.
-
-    Parameters
-    ----------
-    sim : Frame
-        Parent simulation frame"""
-    set_implicit_fluxes(sim)
-
-
-def set_implicit_fluxes(sim):
-    """Function calculates the fluxes at the interfaces after the implicit integration step.
+def set_implicit_boundaries(sim):
+    """Function calculates the fluxes at the boundaries after the implicit integration step.
 
     Parameters
     ----------
@@ -117,31 +111,20 @@ def eta_midplane(sim):
     return gas_f.eta_midplane(sim.gas.Hp, sim.gas.P, sim.grid.r, sim.grid.ri)
 
 
-def Fi(sim, Sigma=None):
+def Fi(sim):
     """Function calculates the mass flux through the cell interfaces.
-    The fluxes are calculated with donor cell assuming
-    vrad_i(0) = vrad_i(1) and vrad_i(Nr) = vrad_i(Nr-1).
+    The fluxes are calculated from the implicit integration outcome.
 
     Parameters
     ----------
     sim : Frame
         Parent simulation frame
-    Sigma : Field, optional, default : None
-        Surface density to be used if not None
 
     Returns
     -------
     Fi : Field
         Mass flux through grid cell interfaces"""
-    if Sigma is None:
-        vrad = sim.gas.v.rad
-        Sigma = sim.gas.Sigma
-    else:
-        vrad = sim.gas.v.rad.updater.beat(sim, Sigma=Sigma)
-    if vrad is None:
-        vrad = sim.gas.v.rad
-    Fi = gas_f.fi(Sigma, vrad, sim.grid.r, sim.grid.ri)
-    return Fi
+    return gas_f.fi(sim.gas.Sigma, sim.gas.v.rad, sim.grid.r, sim.grid.ri)
 
 
 def Hp(sim):
@@ -361,69 +344,34 @@ def rho_midplane(sim):
     return sim.gas.Sigma / (np.sqrt(2. * c.pi) * sim.gas.Hp)
 
 
-def Sigma_deriv(sim, t, Sigma):
-    """Function calculates the derivative of the gas surface density.
-
-    Parameters
-    ----------
-    sim : Frame
-        Parent simulation frame
-    t : IntVar
-        Current time
-    Sigma : Field
-        Surface density
-
-    Returns
-    -------
-    Sigma_dot : Field
-        Derivative of surface density"""
-    return sim.gas.S.tot.updater.beat(sim, Sigma=Sigma)
-
-
-def S_hyd(sim, Sigma=None):
+def S_hyd(sim):
     """Function calculates the hydrodynamic source terms.
 
     Parameters
     ----------
     sim : Frame
         Parent simulation frame
-    Sigma : Field, optional, default : None
-        Surface density to be used if not None
 
     Returns
     -------
     S_hyd : Field
         Hydrodynamic source terms"""
-    if Sigma is None:
-        Fi = sim.gas.Fi
-    else:
-        Fi = sim.gas.Fi.updater.beat(sim, Sigma=Sigma)
-    if Fi is None:
-        Fi = sim.gas.Fi
-    return gas_f.s_hyd(Fi, sim.grid.ri)
+    return gas_f.s_hyd(sim.gas.Fi, sim.grid.ri)
 
 
-def S_tot(sim, Sigma=None):
+def S_tot(sim):
     """Function calculates the total source terms.
 
     Parameters
     ----------
     sim : Frame
         Parent simulation frame
-    Sigma : Field, optional, default : None
-        Surface density to be used if not None
 
     Returns
     -------
     S_tot : Field
         Total surface density source terms"""
-    # If Sigma is None then the updater is called and not the derivative
-    if Sigma is None:
-        return sim.gas.S.ext + sim.gas.S.hyd
-    Shyd = sim.gas.S.hyd.updater.beat(sim, Sigma=Sigma)
-    if Shyd is None:
-        Shyd = sim.gas.S.hyd
-    return Shyd + sim.gas.S.ext
+    return sim.gas.S.hyd + sim.gas.S.ext
 
 
 def T_passive(sim):
@@ -442,43 +390,35 @@ def T_passive(sim):
     return (sim.star.L * 0.05 / (4. * c.pi * sim.grid.r**2 * c.sigma_sb))**0.25
 
 
-def vrad(sim, Sigma=None):
+def vrad(sim):
     """Function calculates the radial radial gas velocity.
 
     Parameters
     ----------
     sim : Frame
         Parent simulation frame
-    Sigma : Field, optional, default : None
-        Surface density to be used if not None
 
     Returns
     -------
     vrad : Field
         Radial gas velocity"""
-    if Sigma is None:
-        return sim.gas.v.visc
-    return sim.gas.v.visc.updater.beat(sim, Sigma=Sigma)
+    vback = 2. * sim.gas.eta * sim.grid.r * sim.grid.OmegaK
+    return sim.dust.backreaction.A * sim.gas.v.visc + sim.dust.backreaction.B * vback
 
 
-def vvisc(sim, Sigma=None):
+def vvisc(sim):
     """Function calculates the viscous radial gas velocity.
 
     Parameters
     ----------
     sim : Frame
         Parent simulation frame
-    Sigma : Field, optional, default : None
-        Surface density to be used if not None
 
     Returns
     -------
     vvisc : Field
         Viscous radial gas velocity"""
-    if Sigma is None:
-        Sigma = sim.gas.Sigma
-    nu = sim.gas.alpha * sim.gas.cs * sim.gas.Hp
-    return gas_f.v_visc(Sigma, nu, sim.grid.r, sim.grid.ri)
+    return gas_f.v_visc(sim.gas.Sigma, sim.gas.nu, sim.grid.r, sim.grid.ri)
 
 
 def _f_impl_1_euler_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):

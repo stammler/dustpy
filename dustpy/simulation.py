@@ -176,8 +176,7 @@ class Simulation(Frame):
         self.gas.v.visc = None
         self.gas.v.updater = ["visc", "rad"]
         self.gas.updater = ["gamma", "mu", "T", "alpha", "cs", "Hp", "nu",
-                            "rho", "n", "mfp", "P", "eta", "v", "Fi", "S"]
-        self.gas.updater.diastole = std_gas.diastole
+                            "rho", "n", "mfp", "P", "eta"]
 
         # Grid quantities
         self.grid = Group(self, description="Grid quantities")
@@ -539,7 +538,8 @@ class Simulation(Frame):
             self.gas.Sigma = Field(self, SigmaGas,
                                    description="Surface density [g/cm²]")
             self.gas.Sigma.jacobinator = std_gas.jacobian
-            self.gas._rhs = np.zeros(shape1)
+        # Hidden fields required for the calculation of omplicit quantities
+        self.gas._rhs = np.zeros(shape1)
         # Temperature
         if self.gas.T is None:
             self.gas.T = Field(self, np.zeros(shape1),
@@ -565,6 +565,17 @@ class Simulation(Frame):
         # The right-hand side of the matrix equation is stored in a hidden field
         self.gas._rhs = Field(self, np.zeros(
             shape1), description="Right-hand side of matrix equation [g/cm²]")
+
+        # The dust backreaction coefficients have to be initialized before the gas,
+        # since the gas velocities need them.
+        # Backreaction
+        if self.dust.backreaction.A is None:
+            self.dust.backreaction.A = Field(
+                self, np.ones(shape1), description="Pull factor")
+        if self.dust.backreaction.B is None:
+            self.dust.backreaction.B = Field(
+                self, np.zeros(shape1), description="Push factor")
+
         # Initialize gas quantities
         self.gas.update()
         # Boundary conditions
@@ -585,13 +596,6 @@ class Simulation(Frame):
             self.dust.a = Field(self, np.zeros(shape2),
                                 description="Particle size [cm")
             self.dust.a.updater = std_dust.a
-        # Backreaction
-        if self.dust.backreaction.A is None:
-            self.dust.backreaction.A = Field(
-                self, np.ones(shape1), description="Pull factor")
-        if self.dust.backreaction.B is None:
-            self.dust.backreaction.B = Field(
-                self, np.zeros(shape1), description="Push factor")
         # Coagulation parameters
         stick, stick_ind, A, eps, lf_ind, rm_ind, phi = std_dust.coagulation_parameters(
             self)
@@ -767,6 +771,9 @@ class Simulation(Frame):
         if self.dust.boundary.outer is None:
             self.dust.boundary.outer = Boundary(
                 self.grid.r[::-1], self.grid.ri[::-1], self.dust.Sigma[::-1])
+
+        # Updating the entire Simulation object
+        self.update()
 
         # INTEGRATOR
 

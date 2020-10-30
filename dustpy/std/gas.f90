@@ -152,14 +152,15 @@ subroutine jac_abc(nu, r, ri, v, A, B, C, Nr)
     ! Grid cell volumes and distances
     do ir=1, Nr
         Vinv(ir) = r(ir) / ( pi * ( ri(ir+1)**2 - ri(ir)**2 ) )
-        !w(ir) = ri(ir+1) - ri(ir)
         w(ir) = r(ir+1) - r(ir)
     end do
 
     do ir=2, Nr-1
+
         A(ir) =   ( vip(ir)               + Qi(ir)   * g(ir-1) / w(ir-1)                            ) * r(ir-1)
         B(ir) = - ( vip(ir+1) - vim(ir)   + Qi(ir+1) * g(ir)   / w(ir)   + Qi(ir) * g(ir) / w(ir-1) )
         C(ir) =   (             vim(ir+1) + Qi(ir+1) * g(ir+1) / w(ir)                              ) * r(ir+1)
+        
     end do
 
     ! Normailization
@@ -198,6 +199,7 @@ subroutine s_hyd(Fi, ri, Shyd, Nr)
 
 end subroutine s_hyd
 
+
 subroutine v_visc(Sigma, nu, r, ri, vvisc, Nr)
     ! Function calculates the radial viscous gas velocity.
     ! Mass flux is linearly interpolated on grid cell interfaces.
@@ -231,8 +233,6 @@ subroutine v_visc(Sigma, nu, r, ri, vvisc, Nr)
 
     integer :: ir
 
-    !arg = Sigma * nu !* sqrt(r)
-    !call interp1d(ri, r, arg, argi, Nr)
     call interp1d(ri, r, nu, nui, Nr)
     call interp1d(ri, r, Sigma, Sigmai, Nr)
     argi(:) = Sigmai(:) * nui(:) * sqrt(ri(:))
