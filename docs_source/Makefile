@@ -18,3 +18,11 @@ help:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	
+# Remove files in Github directory
+remove:
+	rm -r ../docs/*
+
+# Copy built codumentation to github directory
+copy:
+	cp -r build/html/* ../docs/.
