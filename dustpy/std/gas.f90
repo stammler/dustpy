@@ -25,9 +25,6 @@ subroutine eta_midplane(Hp, P, r, ri, eta, Nr)
 
     double precision :: grad(Nr)
     double precision :: Pi(Nr+1)
-    double precision :: logP(Nr)
-    double precision :: logPi(Nr+1)
-    double precision :: logri(Nr+1)
     integer :: ir
 
     call interp1d(ri, r, P, Pi, Nr)
@@ -57,8 +54,6 @@ subroutine fi(Sigma, v, r, ri, F_i, Nr)
     ! Returns
     ! -------
     ! F_i(Nr+1) : Flux through grid cell interfaces.
-
-    use constants, only: pi
 
     implicit none
 
@@ -128,7 +123,6 @@ subroutine jac_abc(nu, r, ri, v, A, B, C, Nr)
     integer :: ir
     double precision :: g(Nr)
     double precision :: Qi(Nr+1)
-    double precision :: Si(Nr+1)
     double precision :: vi(Nr+1)
     double precision :: vim(Nr+1)
     double precision :: vip(Nr+1)
@@ -225,7 +219,6 @@ subroutine v_visc(Sigma, nu, r, ri, vvisc, Nr)
     double precision, intent(out) :: vvisc(Nr)
     integer,          intent(in)  :: Nr
 
-    double precision :: arg(Nr)
     double precision :: argi(Nr+1)
     double precision :: nui(Nr+1)
     double precision :: Sigmai(Nr+1)
