@@ -185,7 +185,7 @@
     "\n",
     "The diagonals of the Jacobian contain information about the grid $r$, the viscosity $\\nu$, and the backreaction quantities, as seen in the accretion equation above. To turn off only the gas hydrodynamics, but not the external sources, one has to set the Jacobian to zero (except for the boundaries). This can be achieved by setting the viscosity to zero and unsetting its updater.\n",
     "\n",
-    "**Note:** This is only true, if there is no backreaction, i.e., $B=0$."
+    "**Note:** This is only true, if there is no backreaction, i.e., $A=1$ and $B=0$. Otherwise, the interaction with the dust would still influence the gas."
    ]
   },
   {

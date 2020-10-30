@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,19 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -38,10 +32,15 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Simple Customization" href="2_simple_customization.html" />
-    <link rel="prev" title="DustPy documentation!" href="index.html" /> 
+    <link rel="prev" title="DustPy documentation" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -55,7 +54,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> dustpy
+            <a href="index.html" class="icon icon-home"> dustpy
           
 
           
@@ -78,7 +77,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -107,13 +105,13 @@
 <li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">Dust Evolution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="8_test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A_publications.html">Appendix A: List of Publications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
 
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -152,7 +150,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>Basic usage</li>
     
@@ -705,11 +703,11 @@ Group (Gas quantities)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.1.0
+DustPy v0.4.1
 
-Documentation: https://dustpy.rtfd.io
-PyPI:          https://pypi.org/project/dustpy
-GitHub:        https://github.com/stammler/dustpy
+Documentation: https://stammler.github.io/dustpy/
+PyPI:          https://pypi.org/project/dustpy/
+GitHub:        https://github.com/stammler/dustpy/
 
 Please cite:   Stammler &amp; Birnstiel (in prep.)
 
@@ -776,7 +774,7 @@ Writing file <span class="ansi-blue-intense-fg">data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">2:41:07</span>
+Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
 </pre></div></div>
 </div>
 <p>By default <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has written output files into the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p>
@@ -856,30 +854,30 @@ Execution time: <span class="ansi-blue-intense-fg">2:41:07</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[1.03222554e+01 9.67029737e+00 9.04698279e+00 8.46012666e+00
- 7.90759111e+00 7.38970685e+00 6.90416566e+00 6.44881370e+00
- 6.02157337e+00 5.62082489e+00 5.24539555e+00 4.89352079e+00
- 4.56356008e+00 4.25453805e+00 3.96504669e+00 3.69369085e+00
- 3.43962370e+00 3.20172853e+00 2.97885534e+00 2.77029885e+00
- 2.57513907e+00 2.39245941e+00 2.22168492e+00 2.06202662e+00
- 1.91275496e+00 1.77338234e+00 1.64323941e+00 1.52174904e+00
- 1.40841949e+00 1.30274064e+00 1.20423337e+00 1.11239150e+00
- 1.02687436e+00 9.47190599e-01 8.72988956e-01 8.03971084e-01
- 7.39678395e-01 6.79928194e-01 6.24312164e-01 5.72624005e-01
- 5.24621337e-01 4.79996691e-01 4.38592336e-01 4.00161318e-01
- 3.64533635e-01 3.31534344e-01 3.00957994e-01 2.72700783e-01
- 2.46551148e-01 2.22429720e-01 2.00166948e-01 1.79685120e-01
- 1.60862504e-01 1.43601979e-01 1.27794603e-01 1.13357090e-01
- 1.00187973e-01 8.82171428e-02 7.73513908e-02 6.75201873e-02
- 5.86624946e-02 5.07094993e-02 4.36118929e-02 3.73291423e-02
- 3.18002014e-02 2.69532434e-02 2.27089139e-02 1.89959021e-02
- 1.57596513e-02 1.29579390e-02 1.05536496e-02 8.50929432e-03
- 6.78452573e-03 5.32944230e-03 4.07378368e-03 2.92099205e-03
- 1.80268769e-03 8.29255902e-04 2.67312527e-04 5.85465491e-05
- 8.63280005e-06 9.40928661e-07 7.78850805e-08 4.95895953e-09
- 2.43354571e-10 9.11475305e-12 2.54401353e-13 5.08033530e-15
- 6.84569968e-17 5.78222005e-19 2.82462936e-21 7.42139728e-24
- 1.10160140e-26 9.07319865e-28 7.84589920e-28 6.83347699e-28
+[1.03150151e+01 9.66508227e+00 9.04349134e+00 8.45657257e+00
+ 7.90518631e+00 7.38818698e+00 6.90274391e+00 6.44731417e+00
+ 6.02010380e+00 5.61946878e+00 5.24417074e+00 4.89241974e+00
+ 4.56257207e+00 4.25365587e+00 3.96426338e+00 3.69300157e+00
+ 3.43902564e+00 3.20121536e+00 2.97842168e+00 2.76993985e+00
+ 2.57484714e+00 2.39222725e+00 2.22150516e+00 2.06189143e+00
+ 1.91265668e+00 1.77331374e+00 1.64319389e+00 1.52172081e+00
+ 1.40840360e+00 1.30273316e+00 1.20423126e+00 1.11239253e+00
+ 1.02687701e+00 9.47193901e-01 8.72992318e-01 8.03974216e-01
+ 7.39681166e-01 6.79930580e-01 6.24314207e-01 5.72625745e-01
+ 5.24622840e-01 4.79997996e-01 4.38593485e-01 4.00162334e-01
+ 3.64534541e-01 3.31535152e-01 3.00958717e-01 2.72701429e-01
+ 2.46551723e-01 2.22430231e-01 2.00167399e-01 1.79685517e-01
+ 1.60862852e-01 1.43602280e-01 1.27794862e-01 1.13357309e-01
+ 1.00188156e-01 8.82172918e-02 7.73515079e-02 6.75202764e-02
+ 5.86625616e-02 5.07095519e-02 4.36119419e-02 3.73292017e-02
+ 3.18002773e-02 2.69533252e-02 2.27089832e-02 1.89959490e-02
+ 1.57596759e-02 1.29579467e-02 1.05536461e-02 8.50928457e-03
+ 6.78451366e-03 5.32943232e-03 4.07378051e-03 2.92099600e-03
+ 1.80268638e-03 8.29235919e-04 2.67294637e-04 5.85393071e-05
+ 8.63118035e-06 9.40691418e-07 7.78604204e-08 4.95707507e-09
+ 2.43247185e-10 9.11020228e-12 2.54260717e-13 5.07728309e-15
+ 6.84130031e-17 5.77829510e-19 2.82262202e-21 7.41590573e-24
+ 1.10083378e-26 9.07314660e-28 7.84589918e-28 6.83347699e-28
  5.95170965e-28 5.18372240e-28 4.51483347e-28 3.93225557e-28]
 </pre></div></div>
 </div>
@@ -888,7 +886,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:41:07</span>
 <p><span class="math notranslate nohighlight">\(m_{i+1} = A \cdot m_i\)</span>.</p>
 <p>The grid constant <span class="math notranslate nohighlight">\(A\)</span> can be easily calculated.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -899,7 +897,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:41:07</span>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -916,7 +914,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:41:07</span>
 <p>and</p>
 <p><span class="math notranslate nohighlight">\(B = \frac{\Delta m_i}{m_i} = 2\frac{A-1}{A+1}\)</span>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -925,7 +923,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:41:07</span>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -934,16 +932,16 @@ Execution time: <span class="ansi-blue-intense-fg">2:41:07</span>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[[1.70759269e-01 1.40798691e-01 1.58788466e-01 ... 1.52526930e-22
+[[1.70770769e-01 1.40799727e-01 1.58768613e-01 ... 1.52526930e-22
   2.11935481e-22 2.94483396e-22]
- [1.63759650e-01 1.34510633e-01 1.51203706e-01 ... 1.32845402e-22
+ [1.63777708e-01 1.34515713e-01 1.51195117e-01 ... 1.32845402e-22
   1.84588088e-22 2.56484316e-22]
- [1.57497702e-01 1.28771321e-01 1.44302494e-01 ... 1.15703508e-22
+ [1.57529144e-01 1.28789151e-01 1.44316579e-01 ... 1.15703508e-22
   1.60769503e-22 2.23388501e-22]
  ...
  [4.45718657e-45 6.19324066e-45 8.60547999e-45 ... 2.30858850e-28
@@ -960,7 +958,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:41:07</span>
 <h2>Reading data files<a class="headerlink" href="#Reading-data-files" title="Permalink to this headline">¶</a></h2>
 <p>If you want to read data files you can use the read/writer module provided by <code class="docutils literal notranslate"><span class="pre">simframe</span></code>, that is used to write the data.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -970,7 +968,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:41:07</span>
 </div>
 <p>Make sure that the correct data directory is assigned to the writer.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -979,7 +977,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:41:07</span>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -996,7 +994,7 @@ Writer (HDF5 file format using h5py)
 </div>
 <p>You can now read a single data file with</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1006,7 +1004,7 @@ Writer (HDF5 file format using h5py)
 </div>
 <p>This function returns a namespace and the data can simply be accessed in the same way as for the <code class="docutils literal notranslate"><span class="pre">Simulation</span></code> object.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1015,41 +1013,41 @@ Writer (HDF5 file format using h5py)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([1.08674816e+003, 1.01728997e+003, 9.52687918e+002, 8.92558271e+002,
-       8.35589520e+002, 7.81282084e+002, 7.29582367e+002, 6.80582876e+002,
-       6.34373944e+002, 5.90981825e+002, 5.50356788e+002, 5.12390062e+002,
-       4.76939758e+002, 4.43852257e+002, 4.12974949e+002, 3.84162013e+002,
-       3.57276302e+002, 3.32189551e+002, 3.08782006e+002, 2.86941911e+002,
-       2.66564988e+002, 2.47553938e+002, 2.29817980e+002, 2.13272414e+002,
-       1.97838219e+002, 1.83441672e+002, 1.70013998e+002, 1.57491040e+002,
-       1.45812950e+002, 1.34923905e+002, 1.24771838e+002, 1.15308188e+002,
-       1.06487665e+002, 9.82680344e+001, 9.06099141e+001, 8.34765811e+001,
-       7.68337957e+001, 7.06496351e+001, 6.48943376e+001, 5.95401574e+001,
-       5.45612280e+001, 4.99334350e+001, 4.56342962e+001, 4.16428495e+001,
-       3.79395471e+001, 3.45061566e+001, 3.13256677e+001, 2.83822041e+001,
-       2.56609409e+001, 2.31480258e+001, 2.08305056e+001, 1.86962561e+001,
-       1.67339156e+001, 1.49328230e+001, 1.32829582e+001, 1.17748862e+001,
-       1.03997051e+001, 9.14899649e+000, 8.01477989e+000, 6.98947009e+000,
+array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
+       8.35584062e+002, 7.81280167e+002, 7.29581811e+002, 6.80582744e+002,
+       6.34373920e+002, 5.90981823e+002, 5.50356788e+002, 5.12390063e+002,
+       4.76939759e+002, 4.43852258e+002, 4.12974950e+002, 3.84162014e+002,
+       3.57276302e+002, 3.32189551e+002, 3.08782006e+002, 2.86941912e+002,
+       2.66564988e+002, 2.47553939e+002, 2.29817980e+002, 2.13272415e+002,
+       1.97838219e+002, 1.83441672e+002, 1.70013999e+002, 1.57491040e+002,
+       1.45812950e+002, 1.34923906e+002, 1.24771839e+002, 1.15308188e+002,
+       1.06487665e+002, 9.82680345e+001, 9.06099142e+001, 8.34765812e+001,
+       7.68337958e+001, 7.06496352e+001, 6.48943377e+001, 5.95401574e+001,
+       5.45612280e+001, 4.99334350e+001, 4.56342963e+001, 4.16428495e+001,
+       3.79395471e+001, 3.45061566e+001, 3.13256677e+001, 2.83822042e+001,
+       2.56609409e+001, 2.31480258e+001, 2.08305057e+001, 1.86962561e+001,
+       1.67339156e+001, 1.49328231e+001, 1.32829582e+001, 1.17748862e+001,
+       1.03997051e+001, 9.14899650e+000, 8.01477989e+000, 6.98947009e+000,
        6.06583850e+000, 5.23697805e+000, 4.49627209e+000, 3.83736753e+000,
        3.25415235e+000, 2.74073773e+000, 2.29144494e+000, 1.90079703e+000,
-       1.56351535e+000, 1.27452069e+000, 1.02893868e+000, 8.22109040e-001,
-       6.49597966e-001, 5.07212720e-001, 3.91017442e-001, 2.97348988e-001,
-       2.22831525e-001, 1.64388628e-001, 1.19251675e-001, 8.49635281e-002,
-       5.93767372e-002, 4.06458542e-002, 2.72138405e-002, 1.77929783e-002,
-       1.13410968e-002, 7.03426416e-003, 4.23733320e-003, 2.47382773e-003,
-       1.39661561e-003, 7.60629449e-004, 3.98604266e-004, 2.00441338e-004,
-       9.64334528e-005, 4.42476483e-005, 1.92976149e-005, 7.97061629e-006,
-       3.10574888e-006, 1.13688245e-006, 3.88078480e-007, 1.00000000e-100])
+       1.56351535e+000, 1.27452069e+000, 1.02893868e+000, 8.22109039e-001,
+       6.49597965e-001, 5.07212719e-001, 3.91017442e-001, 2.97348987e-001,
+       2.22831525e-001, 1.64388628e-001, 1.19251675e-001, 8.49635279e-002,
+       5.93767370e-002, 4.06458540e-002, 2.72138404e-002, 1.77929782e-002,
+       1.13410967e-002, 7.03426412e-003, 4.23733318e-003, 2.47382771e-003,
+       1.39661560e-003, 7.60629444e-004, 3.98604263e-004, 2.00441336e-004,
+       9.64334519e-005, 4.42476478e-005, 1.92976146e-005, 7.97061619e-006,
+       3.10574884e-006, 1.13688243e-006, 3.88078476e-007, 1.00000000e-100])
 </pre></div></div>
 </div>
 <p>You can also read the full data directory with</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1059,7 +1057,7 @@ array([1.08674816e+003, 1.01728997e+003, 9.52687918e+002, 8.92558271e+002,
 </div>
 <p>The data has now an additional dimension for time.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1068,7 +1066,7 @@ array([1.08674816e+003, 1.01728997e+003, 9.52687918e+002, 8.92558271e+002,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1083,7 +1081,7 @@ array([1.08674816e+003, 1.01728997e+003, 9.52687918e+002, 8.92558271e+002,
 <p><code class="docutils literal notranslate"><span class="pre">simframe</span></code> is saving a by default the most recent dump file, from which a simulation can be restarted.</p>
 <p><strong>Attention:</strong> Malware can be injected with dump files, which are pickled objects. Only read dump files that you have created yourself or from sources that you trust! Dump files have to be read with the same version of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> as they were written. Otherwise, it is not guaranteed to work.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1092,7 +1090,7 @@ array([1.08674816e+003, 1.01728997e+003, 9.52687918e+002, 8.92558271e+002,
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1102,7 +1100,7 @@ array([1.08674816e+003, 1.01728997e+003, 9.52687918e+002, 8.92558271e+002,
 </div>
 <p>This is now a simulation frame that should be identical to our previous object.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1111,7 +1109,7 @@ array([1.08674816e+003, 1.01728997e+003, 9.52687918e+002, 8.92558271e+002,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1129,7 +1127,7 @@ array([1.08674816e+003, 1.01728997e+003, 9.52687918e+002, 8.92558271e+002,
 </div>
 <p>We can now, for example, add more snapshots and restart the simulation. Here we just want to extend the run by one year.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1141,7 +1139,7 @@ array([1.08674816e+003, 1.01728997e+003, 9.52687918e+002, 8.92558271e+002,
 </div>
 <p>The current time is</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1150,7 +1148,7 @@ array([1.08674816e+003, 1.01728997e+003, 9.52687918e+002, 8.92558271e+002,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1160,7 +1158,7 @@ array([1.08674816e+003, 1.01728997e+003, 9.52687918e+002, 8.92558271e+002,
 </div>
 <p>We can now restart the simulation for another year.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1174,11 +1172,11 @@ array([1.08674816e+003, 1.01728997e+003, 9.52687918e+002, 8.92558271e+002,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.1.0
+DustPy v0.4.1
 
-Documentation: https://dustpy.rtfd.io
-PyPI:          https://pypi.org/project/dustpy
-GitHub:        https://github.com/stammler/dustpy
+Documentation: https://stammler.github.io/dustpy/
+PyPI:          https://pypi.org/project/dustpy/
+GitHub:        https://github.com/stammler/dustpy/
 
 Please cite:   Stammler &amp; Birnstiel (in prep.)
 
@@ -1202,12 +1200,12 @@ Please cite:   Stammler &amp; Birnstiel (in prep.)
 
 Writing file <span class="ansi-blue-intense-fg">data/data0022.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:04</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 </pre></div></div>
 </div>
 <p>Another file was written and the current time is now</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1216,7 +1214,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:04</span>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1238,7 +1236,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:04</span>
         <a href="2_simple_customization.html" class="btn btn-neutral float-right" title="Simple Customization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="DustPy documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="DustPy documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1247,19 +1245,11 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:04</span>
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1270,6 +1260,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:04</span>
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

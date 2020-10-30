@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,19 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
@@ -38,6 +32,11 @@
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
@@ -53,7 +52,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> dustpy
+            <a href="../../../index.html" class="icon icon-home"> dustpy
           
 
           
@@ -76,7 +75,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -94,13 +92,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../6_dust_evolution.html">Dust Evolution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../7_gas_evolution.html">Gas Evolution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../8_test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../A_publications.html">Appendix A: List of Publications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api.html">Module Reference</a></li>
 </ul>
 
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -139,7 +137,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
@@ -213,21 +211,15 @@
 <span class="sd">    sim : Frame</span>
 <span class="sd">        Parent simulation frame&quot;&quot;&quot;</span>
     <span class="n">boundary</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
-    <span class="n">enforce_floor_value</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span></div>
+    <span class="n">enforce_floor_value</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="n">set_implicit_boundaries</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="diastole"><a class="viewcode-back" href="../../../api/dustpy.std.gas.diastole.html#dustpy.std.gas.diastole">[docs]</a><span class="k">def</span> <span class="nf">diastole</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function that is executed after the gas update step. It calculates the implicit fluxes through the boundaries.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    sim : Frame</span>
-<span class="sd">        Parent simulation frame&quot;&quot;&quot;</span>
-    <span class="n">set_implicit_fluxes</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="set_implicit_fluxes"><a class="viewcode-back" href="../../../api/dustpy.std.gas.set_implicit_fluxes.html#dustpy.std.gas.set_implicit_fluxes">[docs]</a><span class="k">def</span> <span class="nf">set_implicit_fluxes</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the fluxes at the interfaces after the implicit integration step.</span>
+<div class="viewcode-block" id="set_implicit_boundaries"><a class="viewcode-back" href="../../../api/dustpy.std.gas.set_implicit_boundaries.html#dustpy.std.gas.set_implicit_boundaries">[docs]</a><span class="k">def</span> <span class="nf">set_implicit_boundaries</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function calculates the fluxes at the boundaries after the implicit integration step.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -278,31 +270,20 @@
     <span class="k">return</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">eta_midplane</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Hp</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Fi"><a class="viewcode-back" href="../../../api/dustpy.std.gas.Fi.html#dustpy.std.gas.Fi">[docs]</a><span class="k">def</span> <span class="nf">Fi</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Fi"><a class="viewcode-back" href="../../../api/dustpy.std.gas.Fi.html#dustpy.std.gas.Fi">[docs]</a><span class="k">def</span> <span class="nf">Fi</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function calculates the mass flux through the cell interfaces.</span>
-<span class="sd">    The fluxes are calculated with donor cell assuming</span>
-<span class="sd">    vrad_i(0) = vrad_i(1) and vrad_i(Nr) = vrad_i(Nr-1).</span>
+<span class="sd">    The fluxes are calculated from the implicit integration outcome.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    sim : Frame</span>
 <span class="sd">        Parent simulation frame</span>
-<span class="sd">    Sigma : Field, optional, default : None</span>
-<span class="sd">        Surface density to be used if not None</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    Fi : Field</span>
 <span class="sd">        Mass flux through grid cell interfaces&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">Sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">vrad</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rad</span>
-        <span class="n">Sigma</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">vrad</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rad</span><span class="o">.</span><span class="n">updater</span><span class="o">.</span><span class="n">beat</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="n">Sigma</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">vrad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">vrad</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rad</span>
-    <span class="n">Fi</span> <span class="o">=</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">fi</span><span class="p">(</span><span class="n">Sigma</span><span class="p">,</span> <span class="n">vrad</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">Fi</span></div>
+    <span class="k">return</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">fi</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rad</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Hp"><a class="viewcode-back" href="../../../api/dustpy.std.gas.Hp.html#dustpy.std.gas.Hp">[docs]</a><span class="k">def</span> <span class="nf">Hp</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
@@ -522,69 +503,34 @@
     <span class="k">return</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Hp</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Sigma_deriv"><a class="viewcode-back" href="../../../api/dustpy.std.gas.Sigma_deriv.html#dustpy.std.gas.Sigma_deriv">[docs]</a><span class="k">def</span> <span class="nf">Sigma_deriv</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Sigma</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the derivative of the gas surface density.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    sim : Frame</span>
-<span class="sd">        Parent simulation frame</span>
-<span class="sd">    t : IntVar</span>
-<span class="sd">        Current time</span>
-<span class="sd">    Sigma : Field</span>
-<span class="sd">        Surface density</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    Sigma_dot : Field</span>
-<span class="sd">        Derivative of surface density&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span><span class="o">.</span><span class="n">updater</span><span class="o">.</span><span class="n">beat</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="n">Sigma</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="S_hyd"><a class="viewcode-back" href="../../../api/dustpy.std.gas.S_hyd.html#dustpy.std.gas.S_hyd">[docs]</a><span class="k">def</span> <span class="nf">S_hyd</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="S_hyd"><a class="viewcode-back" href="../../../api/dustpy.std.gas.S_hyd.html#dustpy.std.gas.S_hyd">[docs]</a><span class="k">def</span> <span class="nf">S_hyd</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function calculates the hydrodynamic source terms.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    sim : Frame</span>
 <span class="sd">        Parent simulation frame</span>
-<span class="sd">    Sigma : Field, optional, default : None</span>
-<span class="sd">        Surface density to be used if not None</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    S_hyd : Field</span>
 <span class="sd">        Hydrodynamic source terms&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">Sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">Fi</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Fi</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">Fi</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">updater</span><span class="o">.</span><span class="n">beat</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="n">Sigma</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">Fi</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">Fi</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Fi</span>
-    <span class="k">return</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">s_hyd</span><span class="p">(</span><span class="n">Fi</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">s_hyd</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Fi</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="S_tot"><a class="viewcode-back" href="../../../api/dustpy.std.gas.S_tot.html#dustpy.std.gas.S_tot">[docs]</a><span class="k">def</span> <span class="nf">S_tot</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="S_tot"><a class="viewcode-back" href="../../../api/dustpy.std.gas.S_tot.html#dustpy.std.gas.S_tot">[docs]</a><span class="k">def</span> <span class="nf">S_tot</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function calculates the total source terms.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    sim : Frame</span>
 <span class="sd">        Parent simulation frame</span>
-<span class="sd">    Sigma : Field, optional, default : None</span>
-<span class="sd">        Surface density to be used if not None</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    S_tot : Field</span>
 <span class="sd">        Total surface density source terms&quot;&quot;&quot;</span>
-    <span class="c1"># If Sigma is None then the updater is called and not the derivative</span>
-    <span class="k">if</span> <span class="n">Sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">ext</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">hyd</span>
-    <span class="n">Shyd</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">hyd</span><span class="o">.</span><span class="n">updater</span><span class="o">.</span><span class="n">beat</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="n">Sigma</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">Shyd</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">Shyd</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">hyd</span>
-    <span class="k">return</span> <span class="n">Shyd</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">ext</span></div>
+    <span class="k">return</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">hyd</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">ext</span></div>
 
 
 <div class="viewcode-block" id="T_passive"><a class="viewcode-back" href="../../../api/dustpy.std.gas.T_passive.html#dustpy.std.gas.T_passive">[docs]</a><span class="k">def</span> <span class="nf">T_passive</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
@@ -603,43 +549,35 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">L</span> <span class="o">*</span> <span class="mf">0.05</span> <span class="o">/</span> <span class="p">(</span><span class="mf">4.</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">sigma_sb</span><span class="p">))</span><span class="o">**</span><span class="mf">0.25</span></div>
 
 
-<div class="viewcode-block" id="vrad"><a class="viewcode-back" href="../../../api/dustpy.std.gas.vrad.html#dustpy.std.gas.vrad">[docs]</a><span class="k">def</span> <span class="nf">vrad</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="vrad"><a class="viewcode-back" href="../../../api/dustpy.std.gas.vrad.html#dustpy.std.gas.vrad">[docs]</a><span class="k">def</span> <span class="nf">vrad</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function calculates the radial radial gas velocity.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    sim : Frame</span>
 <span class="sd">        Parent simulation frame</span>
-<span class="sd">    Sigma : Field, optional, default : None</span>
-<span class="sd">        Surface density to be used if not None</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    vrad : Field</span>
 <span class="sd">        Radial gas velocity&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">Sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">visc</span>
-    <span class="k">return</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">visc</span><span class="o">.</span><span class="n">updater</span><span class="o">.</span><span class="n">beat</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="n">Sigma</span><span class="p">)</span></div>
+    <span class="n">vback</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">OmegaK</span>
+    <span class="k">return</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">backreaction</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">visc</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">backreaction</span><span class="o">.</span><span class="n">B</span> <span class="o">*</span> <span class="n">vback</span></div>
 
 
-<div class="viewcode-block" id="vvisc"><a class="viewcode-back" href="../../../api/dustpy.std.gas.vvisc.html#dustpy.std.gas.vvisc">[docs]</a><span class="k">def</span> <span class="nf">vvisc</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">Sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="vvisc"><a class="viewcode-back" href="../../../api/dustpy.std.gas.vvisc.html#dustpy.std.gas.vvisc">[docs]</a><span class="k">def</span> <span class="nf">vvisc</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function calculates the viscous radial gas velocity.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    sim : Frame</span>
 <span class="sd">        Parent simulation frame</span>
-<span class="sd">    Sigma : Field, optional, default : None</span>
-<span class="sd">        Surface density to be used if not None</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    vvisc : Field</span>
 <span class="sd">        Viscous radial gas velocity&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">Sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">Sigma</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
-    <span class="n">nu</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">cs</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Hp</span>
-    <span class="k">return</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">v_visc</span><span class="p">(</span><span class="n">Sigma</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">v_visc</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">nu</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">)</span></div>
 
 
 <span class="k">def</span> <span class="nf">_f_impl_1_euler_direct</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">Y0</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rhs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -699,19 +637,11 @@
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -722,6 +652,7 @@
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {
