@@ -1086,8 +1086,8 @@ The snowline is located at 3.05 AU.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="s2">&quot;mu&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="s2">&quot;cs&quot;</span><span class="p">,</span> <span class="s2">&quot;Hp&quot;</span><span class="p">,</span> <span class="s2">&quot;nu&quot;</span><span class="p">,</span> <span class="s2">&quot;rho&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;mfp&quot;</span><span class="p">,</span> <span class="s2">&quot;P&quot;</span><span class="p">,</span> <span class="s2">&quot;eta&quot;</span><span class="p">]</span> <span class="c1"># excluding [&quot;v&quot;, &quot;Fi&quot;, &quot;S&quot;]</span>
-<span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;hyd&quot;</span><span class="p">,</span> <span class="s2">&quot;ext&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="s2">&quot;mu&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="s2">&quot;cs&quot;</span><span class="p">,</span> <span class="s2">&quot;Hp&quot;</span><span class="p">,</span> <span class="s2">&quot;nu&quot;</span><span class="p">,</span> <span class="s2">&quot;rho&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;mfp&quot;</span><span class="p">,</span> <span class="s2">&quot;P&quot;</span><span class="p">,</span> <span class="s2">&quot;eta&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">]</span> <span class="c1"># excluding [&quot;v&quot;, &quot;Fi&quot;]</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ext&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;visc&quot;</span><span class="p">,</span> <span class="s2">&quot;rad&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1108,7 +1108,7 @@ The snowline is located at 3.05 AU.
 </pre></div>
 </div>
 </div>
-<p><strong>Note:</strong> The gas updater does not contain the updaters of <code class="docutils literal notranslate"><span class="pre">Simulation.gas.v</span></code>, <code class="docutils literal notranslate"><span class="pre">Simulation.gas.Fi</span></code>, and <code class="docutils literal notranslate"><span class="pre">Simulation.gas.S</span></code>. These are calculated in the finalization step of the integrator, since they are derived from the result of the implicit gas integration.</p>
+<p><strong>Note:</strong> The gas updater does not contain the updaters of <code class="docutils literal notranslate"><span class="pre">Simulation.gas.v</span></code> and <code class="docutils literal notranslate"><span class="pre">Simulation.gas.Fi</span></code> and the updater of the gas sources does not contain the updater of <code class="docutils literal notranslate"><span class="pre">Simulation.gas.S.hyd</span></code>. These are quantities that are calculated in the finalization step of the integrator, since they are derived from the result of the implicit gas integration.</p>
 <p>As you can see, the grid updater is only updating the Keplerian frequency, but not our snowline location. So we can simply adding it to the list.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
@@ -1195,7 +1195,7 @@ The snowline is located at 3.05 AU.
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.4.1
+DustPy v0.4.2
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -1266,7 +1266,7 @@ Writing file <span class="ansi-blue-intense-fg">3_data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">3_data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">3_data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">3_data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:19:54</span>
+Execution time: <span class="ansi-blue-intense-fg">0:22:24</span>
 </pre></div></div>
 </div>
 <p>We can now have a look at the result of our modifications.</p>
