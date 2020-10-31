@@ -167,7 +167,7 @@ class Simulation(Frame):
         self.gas.S.ext = None
         self.gas.S.hyd = None
         self.gas.S.tot = None
-        self.gas.S.updater = ["hyd", "ext", "tot"]
+        self.gas.S.updater = ["ext", "tot"]
         self.gas.Sigma = None
         self.gas.SigmaFloor = None
         self.gas.T = None
@@ -176,7 +176,7 @@ class Simulation(Frame):
         self.gas.v.visc = None
         self.gas.v.updater = ["visc", "rad"]
         self.gas.updater = ["gamma", "mu", "T", "alpha", "cs", "Hp", "nu",
-                            "rho", "n", "mfp", "P", "eta"]
+                            "rho", "n", "mfp", "P", "eta", "S"]
 
         # Grid quantities
         self.grid = Group(self, description="Grid quantities")

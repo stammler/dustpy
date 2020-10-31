@@ -55,7 +55,7 @@ def finalize(sim):
     enforce_floor_value(sim)
     sim.gas.v.update()
     sim.gas.Fi.update()
-    sim.gas.S.update()
+    sim.gas.S.hyd.update()
     set_implicit_boundaries(sim)
 
 
