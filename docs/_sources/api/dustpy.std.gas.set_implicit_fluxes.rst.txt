@@ -1,6 +1,0 @@
-set_implicit_fluxes
-===================
-
-.. currentmodule:: dustpy.std.gas
-
-.. autofunction:: set_implicit_fluxes

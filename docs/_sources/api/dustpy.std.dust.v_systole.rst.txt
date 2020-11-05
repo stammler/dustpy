@@ -1,6 +1,0 @@
-v_systole
-=========
-
-.. currentmodule:: dustpy.std.dust
-
-.. autofunction:: v_systole

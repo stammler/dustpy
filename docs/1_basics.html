@@ -703,7 +703,7 @@ Group (Gas quantities)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.4.1
+DustPy v0.4.4
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -774,7 +774,7 @@ Writing file <span class="ansi-blue-intense-fg">data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
+Execution time: <span class="ansi-blue-intense-fg">2:21:16</span>
 </pre></div></div>
 </div>
 <p>By default <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has written output files into the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p>
@@ -819,7 +819,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">ir</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">im</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">it</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span></span><span class="n">plot</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">it</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ir</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">im</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -828,6 +828,23 @@ Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
 </div>
 <div class="output_area docutils container">
 <img alt="_images/1_basics_23_0.png" src="_images/1_basics_23_0.png" />
+</div>
+</div>
+<p>It’s furthermore possible to use an interactive plotting script.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plot</span><span class="o">.</span><span class="n">ipanel</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/1_basics_25_0.png" src="_images/1_basics_25_0.png" />
 </div>
 </div>
 <p>The top middle and bottom left panels show the dust density distribution along the gray dashed lines in the top left panel.</p>
@@ -840,7 +857,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
 <p><span class="math notranslate nohighlight">\(\Sigma_\mathrm{d} \left( r \right) = \sum\limits_i \Sigma_{\mathrm{d},\,i} \left( r \right)\)</span>,</p>
 <p>meaning the numerical sum over the mass dimension is the dust surface density.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -849,7 +866,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -886,7 +903,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
 <p><span class="math notranslate nohighlight">\(m_{i+1} = A \cdot m_i\)</span>.</p>
 <p>The grid constant <span class="math notranslate nohighlight">\(A\)</span> can be easily calculated.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -897,7 +914,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -914,7 +931,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
 <p>and</p>
 <p><span class="math notranslate nohighlight">\(B = \frac{\Delta m_i}{m_i} = 2\frac{A-1}{A+1}\)</span>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -923,7 +940,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -932,7 +949,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -958,7 +975,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
 <h2>Reading data files<a class="headerlink" href="#Reading-data-files" title="Permalink to this headline">¶</a></h2>
 <p>If you want to read data files you can use the read/writer module provided by <code class="docutils literal notranslate"><span class="pre">simframe</span></code>, that is used to write the data.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -968,7 +985,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
 </div>
 <p>Make sure that the correct data directory is assigned to the writer.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -977,7 +994,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:22:03</span>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -994,7 +1011,7 @@ Writer (HDF5 file format using h5py)
 </div>
 <p>You can now read a single data file with</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1004,7 +1021,7 @@ Writer (HDF5 file format using h5py)
 </div>
 <p>This function returns a namespace and the data can simply be accessed in the same way as for the <code class="docutils literal notranslate"><span class="pre">Simulation</span></code> object.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1013,7 +1030,7 @@ Writer (HDF5 file format using h5py)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1047,7 +1064,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 <p>You can also read the full data directory with</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1057,7 +1074,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 <p>The data has now an additional dimension for time.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1066,7 +1083,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1081,7 +1098,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 <p><code class="docutils literal notranslate"><span class="pre">simframe</span></code> is saving a by default the most recent dump file, from which a simulation can be restarted.</p>
 <p><strong>Attention:</strong> Malware can be injected with dump files, which are pickled objects. Only read dump files that you have created yourself or from sources that you trust! Dump files have to be read with the same version of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> as they were written. Otherwise, it is not guaranteed to work.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1090,7 +1107,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1100,7 +1117,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 <p>This is now a simulation frame that should be identical to our previous object.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1109,7 +1126,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1127,7 +1144,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 <p>We can now, for example, add more snapshots and restart the simulation. Here we just want to extend the run by one year.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1139,7 +1156,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 <p>The current time is</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1148,7 +1165,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1158,7 +1175,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 <p>We can now restart the simulation for another year.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1172,7 +1189,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.4.1
+DustPy v0.4.4
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -1205,7 +1222,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 </div>
 <p>Another file was written and the current time is now</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1214,7 +1231,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
