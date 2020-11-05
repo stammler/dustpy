@@ -1,102 +1,522 @@
 import dustpy.constants as c
 from dustpy.simulation import Simulation
 
+from types import SimpleNamespace
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider
 from scipy.interpolate import interp1d
 from simframe.io.writers import hdf5writer as writer
 import os
 
 
-def panel(data, im=0, ir=0, it=0, filename="data", extension="hdf5"):
-    '''Simple plotting script for data files or simulation objects.
+def panel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limits=True, show_St1=True):
+    """Simple plotting script for data files or simulation objects.
 
     Parameters
     ----------
     data : ``dustpy.Simulation`` or string
         Either instance of ``dustpy.Simulation`` or path to data directory to be plotted
+    filename : string, optional, default : "data"
+    extension : string, optional, default : "hdf5"
+        Plotting script is looking for files with pattern ``<data>/<filename>*.<extension>``
     im : int, optional, default : 0
         Number of mass bin along which density distribution is plotted
     ir : int, optional, default : 0
         Number of radial grid index along density distribution is plotted
     it : int, optional, default : 0
         Index of snapshot to be plotted
-    filename : string, optional, default : "data"
-    extension : string, optional, default : "hdf5"
-        Plotting script is looking for files with pattern ``<data>/<filename>*.<extension>``'''
+    show_limits : boolean, optional, default : True
+        If True growth limits are plotted
+    show_St1 : boolean, optional, default : True
+        If True St=1 line is plotted"""
 
-    # Reading data
-    single = False
-    isframe = False
+    from dustpy.plot import __version__
 
-    # If input is simulation frame
-    if isinstance(data, Simulation):
-        Nm = data.grid.Nm
-        Nr = data.grid.Nr
-        m = data.grid.m
-        r = data.grid.r
-        ri = data.grid.ri
-        t = data.t
-
-        SigmaD = data.dust.Sigma
-        SigmaG = data.gas.Sigma
-        eps = data.dust.eps
-
-        cs = data.gas.cs
-        delta = data.dust.delta.turb
-        OmegaK = data.grid.OmegaK
-        St = data.dust.St
-        vK = OmegaK * r
-        vFrag = data.dust.v.frag
-
-        single = True
-        isframe = True
-    # If input is data dir
-    elif os.path.isdir(data):
-        writer.filename = filename
-        writer.extension = extension
-        writer.datadir = data
-        data = writer.read.all()
-
-        Nm = data.grid.Nm[0, ...]
-        Nr = data.grid.Nr[0, ...]
-        m = data.grid.m[0, ...]
-        r = data.grid.r[0, ...]
-        ri = data.grid.ri[0, ...]
-        t = data.t
-
-        SigmaD = data.dust.Sigma
-        SigmaG = data.gas.Sigma
-        eps = data.dust.eps
-
-        cs = data.gas.cs
-        delta = data.dust.delta.turb
-        OmegaK = data.grid.OmegaK
-        St = data.dust.St
-        vK = OmegaK * r
-        vFrag = data.dust.v.frag
-
-        Mgas = (np.pi * (ri[1:]**2 - ri[:-1]**2) * SigmaG[...]).sum(-1)
-        Mdust = (np.pi * (ri[1:]**2 - ri[:-1]**2)
-                 * SigmaD[...].sum(-1)).sum(-1)
-
-        if len(data.t) < 3:
-            single = True
+    data = _readdata(data, filename=filename, extension=extension)
 
     # Fix indices if necessary
-    im = np.maximum(0, im)
-    im = np.minimum(im, Nm-1)
-    ir = np.maximum(0, ir)
-    ir = np.minimum(ir, Nr-1)
     it = np.maximum(0, it)
-    it = np.minimum(it, len(t)-1)
+    it = np.minimum(it, data.Nt-1)
+    it = np.int(it)
+    im = np.maximum(0, im)
+    im = np.minimum(im, data.Nm[it, ...]-1)
+    im = np.int(im)
+    ir = np.maximum(0, ir)
+    ir = np.minimum(ir, data.Nr[it, ...]-1)
+    ir = np.int(ir)
 
-    # Transformation of distribution
-    a = np.mean(m[..., 1:] / m[..., :-1], axis=-1)
-    dm = 2. * (a - 1.) / (a + 1.)
-    sigmaD = SigmaD[..., :] / dm
+    # Get limits/levels
+    sd_max = np.ceil(np.log10(data.sigmaDust.max()))
+    sg_max = np.ceil(np.log10(data.SigmaGas.max()))
+    Mmax = np.ceil(np.log10(data.Mgas.max()/c.M_sun)) + 1
+    levels = np.linspace(sd_max-6, sd_max, 7)
 
-    # Calculating limits
+    width = 4.
+    fig = plt.figure(figsize=(3.*width, 2.*width/1.618), dpi=150)
+    ax00 = fig.add_subplot(231)
+    ax01 = fig.add_subplot(232)
+    ax02 = fig.add_subplot(233)
+    ax10 = fig.add_subplot(234)
+    ax11 = fig.add_subplot(235)
+    ax11r = ax11.twinx()
+
+    # Density distribution
+    plt00 = ax00.contourf(data.r[it, ...]/c.au,
+                          data.m[it, ...],
+                          np.log10(data.sigmaDust[it, ...].T),
+                          levels=levels,
+                          cmap="magma",
+                          extend="both"
+                          )
+    if show_St1:
+        ax00.contour(data.r[it, ...]/c.au,
+                     data.m[it, ...],
+                     data.St[it, ...].T,
+                     levels=[1.],
+                     colors="white",
+                     linewidths=2
+                     )
+    if show_limits:
+        ax00.contour(data.r[it, ...]/c.au,
+                     data.m[it, ...],
+                     (data.St - data.StDr[..., None])[it, ...].T,
+                     levels=[0.],
+                     colors="C2",
+                     linewidths=1
+                     )
+        ax00.contour(data.r[it, ...]/c.au,
+                     data.m[it, ...],
+                     (data.St - data.StFr[..., None])[it, ...].T,
+                     levels=[0.],
+                     colors="C0",
+                     linewidths=1
+                     )
+
+    ax00.axhline(data.m[it, im], color="#AAAAAA", lw=1, ls="--")
+    ax00.axvline(data.r[it, ir]/c.au, color="#AAAAAA", lw=1, ls="--")
+
+    cbar00 = plt.colorbar(plt00, ax=ax00)
+    cbar00.ax.set_ylabel("$\sigma_\mathrm{d}$ [g/cm²]")
+    cbar00ticklabels = []
+    for i in levels:
+        cbar00ticklabels.append("$10^{{{:d}}}$".format(np.int(i)))
+    cbar00.ax.set_yticklabels(cbar00ticklabels)
+    ax00.set_xscale("log")
+    ax00.set_yscale("log")
+    ax00.set_xlabel("Distance from star [AU]")
+    ax00.set_ylabel("Particle mass [g]")
+
+    ax01.loglog(data.m[it, ...], data.sigmaDust[it, ir, :], c="C3")
+    ax01.set_xlim(data.m[it, 0], data.m[it, -1])
+    ax01.set_ylim(10.**(sd_max-6.), 10.**sd_max)
+    ax01.set_xlabel("Particle mass [g]")
+    ax01.set_ylabel("$\sigma_\mathrm{d}$ [g/cm²]")
+
+    if data.Nt < 3:
+        ax02.set_xticks([0., 1.])
+        ax02.set_yticks([0., 1.])
+        ax02.text(0.5,
+                  0.5,
+                  "Not enough data points.",
+                  verticalalignment="center",
+                  horizontalalignment="center",
+                  size="large")
+    else:
+        ax02.loglog(data.t/c.year, data.Mgas/c.M_sun, c="C0", label="Gas")
+        ax02.loglog(data.t/c.year, data.Mdust /
+                    c.M_sun, c="C1", label="Dust")
+        ax02.axvline(data.t[it]/c.year, c="#AAAAAA", lw=1, ls="--")
+        ax02.set_xlim(data.t[1]/c.year, data.t[-1]/c.year)
+        ax02.set_ylim(10.**(Mmax-6.), 10.**Mmax)
+        ax02.legend()
+    ax02.set_xlabel("Time [yrs]")
+    ax02.set_ylabel("Mass [$M_\odot$]")
+
+    ax10.loglog(data.r[it, ...]/c.au, data.sigmaDust[it, :, im], c="C3")
+    ax10.set_xlim(data.r[it, 0]/c.au, data.r[it, -1]/c.au)
+    ax10.set_ylim(10.**(sd_max-6.), 10.**sd_max)
+    ax10.set_xlabel("Distance from star [au]")
+    ax10.set_ylabel("$\sigma_\mathrm{d}$ [g/cm²]")
+
+    ax11.loglog(data.r[it, ...]/c.au, data.SigmaGas[it, ...], label="Gas")
+    ax11.loglog(data.r[it, ...]/c.au,
+                data.SigmaDust[it, ...].sum(-1), label="Dust")
+    ax11.set_xlim(data.r[it, 0]/c.au, data.r[it, -1]/c.au)
+    ax11.set_ylim(10.**(sg_max-6), 10.**sg_max)
+    ax11.set_xlabel("Distance from star [AU]")
+    ax11.set_ylabel("$\Sigma$ [g/cm²]")
+    ax11.legend()
+    ax11r.loglog(data.r[it, ...]/c.au, data.eps[it, ...], color="C7", lw=1)
+    ax11r.set_ylim(1.e-5, 1.e1)
+    ax11r.set_ylabel("Dust-to-gas ratio")
+
+    fig.tight_layout()
+
+    fig.text(0.99, 0.01, "DustPy v"+__version__, horizontalalignment="right",
+             verticalalignment="bottom")
+
+    plt.show()
+
+
+def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limits=True, show_St1=True):
+    """Simple interactive plotting script for data files or simulation objects.
+
+    Parameters
+    ----------
+    data : ``dustpy.Simulation`` or string
+        Either instance of ``dustpy.Simulation`` or path to data directory to be plotted
+    filename : string, optional, default : "data"
+    extension : string, optional, default : "hdf5"
+        Plotting script is looking for files with pattern ``<data>/<filename>*.<extension>``
+    im : int, optional, default : 0
+        Number of mass bin along which density distribution is plotted
+    ir : int, optional, default : 0
+        Number of radial grid index along density distribution is plotted
+    it : int, optional, default : 0
+        Index of snapshot to be plotted
+    show_limits : boolean, optional, default : True
+        If True growth limits are plotted
+    show_St1 : boolean, optional, default : True
+        If True St=1 line is plotted"""
+
+    from dustpy.plot import __version__
+
+    data = _readdata(data, filename=filename, extension=extension)
+
+    # Fix indices if necessary
+    it = np.maximum(0, it)
+    it = np.minimum(it, data.Nt-1)
+    it = np.int(it)
+    im = np.maximum(0, im)
+    im = np.minimum(im, data.Nm[it, ...]-1)
+    im = np.int(im)
+    ir = np.maximum(0, ir)
+    ir = np.minimum(ir, data.Nr[it, ...]-1)
+    ir = np.int(ir)
+
+    # Get limits/levels
+    sd_max = np.ceil(np.log10(data.sigmaDust.max()))
+    sg_max = np.ceil(np.log10(data.SigmaGas.max()))
+    Mmax = np.ceil(np.log10(data.Mgas.max()/c.M_sun)) + 1
+    levels = np.linspace(sd_max-6, sd_max, 7)
+
+    width = 4.
+    fig = plt.figure(figsize=(3.*width, 2.*width/1.618), dpi=150)
+    ax00 = fig.add_subplot(231)
+    ax01 = fig.add_subplot(232)
+    ax02 = fig.add_subplot(233)
+    ax10 = fig.add_subplot(234)
+    ax11 = fig.add_subplot(235)
+    ax11r = ax11.twinx()
+
+    # Density distribution
+    plt00 = ax00.contourf(data.r[it, ...]/c.au,
+                          data.m[it, ...],
+                          np.log10(data.sigmaDust[it, ...].T),
+                          levels=levels,
+                          cmap="magma",
+                          extend="both"
+                          )
+    plt00Collections = plt00.collections[:]
+    if show_St1:
+        plt00St = ax00.contour(data.r[it, ...]/c.au,
+                               data.m[it, ...],
+                               data.St[it, ...].T,
+                               levels=[1.],
+                               colors="white",
+                               linewidths=2
+                               )
+        plt00StCollections = plt00St.collections[:]
+    if show_limits:
+        plt00Dr = ax00.contour(data.r[it, ...]/c.au,
+                               data.m[it, ...],
+                               (data.St - data.StDr[..., None])[it, ...].T,
+                               levels=[0.],
+                               colors="C2",
+                               linewidths=1
+                               )
+        plt00DrCollections = plt00Dr.collections[:]
+        plt00Fr = ax00.contour(data.r[it, ...]/c.au,
+                               data.m[it, ...],
+                               (data.St - data.StFr[..., None])[it, ...].T,
+                               levels=[0.],
+                               colors="C0",
+                               linewidths=1
+                               )
+        plt00FrCollections = plt00Fr.collections[:]
+    plt00hl = ax00.axhline(data.m[it, im], color="#AAAAAA", lw=1, ls="--")
+    plt00vl = ax00.axvline(data.r[it, ir]/c.au, color="#AAAAAA", lw=1, ls="--")
+
+    cbar00 = plt.colorbar(plt00, ax=ax00)
+    cbar00.ax.set_ylabel("$\sigma_\mathrm{d}$ [g/cm²]")
+    cbar00ticklabels = []
+    for i in levels:
+        cbar00ticklabels.append("$10^{{{:d}}}$".format(np.int(i)))
+    cbar00.ax.set_yticklabels(cbar00ticklabels)
+    ax00.set_xscale("log")
+    ax00.set_yscale("log")
+    ax00.set_xlabel("Distance from star [AU]")
+    ax00.set_ylabel("Particle mass [g]")
+
+    plt01 = ax01.loglog(data.m[it, ...], data.sigmaDust[it, ir, :], c="C3")
+    plt01vl = ax01.axvline(data.m[it, im], color="#AAAAAA", lw=1, ls="--")
+    ax01.set_xlim(data.m[it, 0], data.m[it, -1])
+    ylim1 = np.ceil(np.log10(np.max(data.sigmaDust[it, ir, :])))
+    ylim0 = ylim1 - 6.
+    ax01.set_ylim(10.**ylim0, 10.**ylim1)
+    ax01.set_xlabel("Particle mass [g]")
+    ax01.set_ylabel("$\sigma_\mathrm{d}$ [g/cm²]")
+
+    if data.Nt < 3:
+        ax02.set_xticks([0., 1.])
+        ax02.set_yticks([0., 1.])
+        ax02.text(0.5,
+                  0.5,
+                  "Not enough data points.",
+                  verticalalignment="center",
+                  horizontalalignment="center",
+                  size="large")
+    else:
+        ax02.loglog(data.t/c.year, data.Mgas/c.M_sun, c="C0", label="Gas")
+        ax02.loglog(data.t/c.year, data.Mdust /
+                    c.M_sun, c="C1", label="Dust")
+        plt02vl = ax02.axvline(data.t[it]/c.year, c="#AAAAAA", lw=1, ls="--")
+        ax02.set_xlim(data.t[1]/c.year, data.t[-1]/c.year)
+        ax02.set_ylim(10.**(Mmax-6.), 10.**Mmax)
+        ax02.legend()
+    ax02.set_xlabel("Time [yrs]")
+    ax02.set_ylabel("Mass [$M_\odot$]")
+
+    plt10 = ax10.loglog(data.r[it, ...]/c.au,
+                        data.sigmaDust[it, :, im], c="C3")
+    plt10vl = ax10.axvline(data.r[it, ir]/c.au, color="#AAAAAA", lw=1, ls="--")
+    ax10.set_xlim(data.r[it, 0]/c.au, data.r[it, -1]/c.au)
+    ylim1 = np.ceil(np.log10(np.max(data.sigmaDust[it, :, im])))
+    ylim0 = ylim1 - 6.
+    ax10.set_ylim(10.**ylim0, 10.**ylim1)
+    ax10.set_xlabel("Distance from star [au]")
+    ax10.set_ylabel("$\sigma_\mathrm{d}$ [g/cm²]")
+
+    plt11g = ax11.loglog(data.r[it, ...]/c.au,
+                         data.SigmaGas[it, ...], label="Gas")
+    plt11d = ax11.loglog(data.r[it, ...]/c.au,
+                         data.SigmaDust[it, ...].sum(-1), label="Dust")
+    plt11vl = ax11.axvline(data.r[it, ir]/c.au, color="#AAAAAA", lw=1, ls="--")
+    ax11.set_xlim(data.r[it, 0]/c.au, data.r[it, -1]/c.au)
+    ax11.set_ylim(10.**(sg_max-6), 10.**sg_max)
+    ax11.set_xlabel("Distance from star [AU]")
+    ax11.set_ylabel("$\Sigma$ [g/cm²]")
+    ax11.legend()
+    plt11d2g = ax11r.loglog(data.r[it, ...]/c.au,
+                            data.eps[it, ...], color="C7", lw=1)
+    ax11r.set_ylim(1.e-5, 1.e1)
+    ax11r.set_ylabel("Dust-to-gas ratio")
+
+    fig.tight_layout()
+
+    width = ax02.get_position().x1 - ax02.get_position().x0
+    fig._widgets = []
+
+    if data.Nt > 2:
+        axSliderTime = plt.axes([ax02.get_position().x0 + 0.15 * width,
+                                 0.375,
+                                 0.75 * width,
+                                 0.02], facecolor="lightgoldenrodyellow")
+        sliderTime = Slider(axSliderTime, "Time", 0, data.Nt -
+                            1, valinit=it, valfmt="%i")
+        axSliderTime.set_title("t = {:9.3e} yr".format(data.t[it]/c.year))
+        fig._widgets += [sliderTime]
+
+    axSliderMass = plt.axes([ax02.get_position().x0 + 0.15 * width,
+                             0.25,
+                             0.75 * width,
+                             0.02], facecolor="lightgoldenrodyellow")
+    sliderMass = Slider(axSliderMass, "Mass", 0,
+                        data.Nm[it]-1, valinit=im, valfmt="%i")
+    axSliderMass.set_title("m = {:9.3e} g".format(data.m[it, im]))
+    fig._widgets += [sliderMass]
+
+    axSliderDist = plt.axes([ax02.get_position().x0 + 0.15 * width,
+                             0.125,
+                             0.75 * width,
+                             0.02], facecolor="lightgoldenrodyellow")
+    sliderDist = Slider(axSliderDist, "Distance", 0,
+                        data.Nr[it]-1, valinit=ir, valfmt="%i")
+    axSliderDist.set_title("r = {:9.3e} AU".format(data.r[it, ir]/c.au))
+    fig._widgets += [sliderDist]
+
+    def update(val):
+
+        it = 0
+        if data.Nt > 2:
+            it = np.int(np.floor(sliderTime.val))
+            axSliderTime.set_title("t = {:9.3e} yr".format(data.t[it]/c.year))
+        im = np.int(np.floor(sliderMass.val))
+        axSliderMass.set_title("m = {:9.3e} g".format(data.m[it, im]))
+        ir = np.int(np.floor(sliderDist.val))
+        axSliderDist.set_title("r = {:9.3e} AU".format(data.r[it, ir]/c.au))
+
+        for row in plt00Collections:
+            ax00.collections.remove(row)
+            plt00Collections.remove(row)
+        plt00 = ax00.contourf(data.r[it, ...]/c.au,
+                              data.m[it, ...],
+                              np.log10(data.sigmaDust[it, ...].T),
+                              levels=np.linspace(sd_max-6, sd_max, 7),
+                              cmap="magma",
+                              extend="both"
+                              )
+        for row in plt00.collections:
+            plt00Collections.append(row)
+        if show_St1:
+            for row in plt00StCollections:
+                ax00.collections.remove(row)
+                plt00StCollections.remove(row)
+            plt00St = ax00.contour(data.r[it, ...]/c.au,
+                                   data.m[it, ...],
+                                   data.St[it, ...].T,
+                                   levels=[1.],
+                                   colors="white",
+                                   linewidths=2
+                                   )
+            for row in plt00St.collections:
+                plt00StCollections.append(row)
+        if show_limits:
+            for row in plt00DrCollections:
+                ax00.collections.remove(row)
+                plt00DrCollections.remove(row)
+            plt00Dr = ax00.contour(data.r[it, ...]/c.au,
+                                   data.m[it, ...],
+                                   (data.St - data.StDr[..., None])[it, ...].T,
+                                   levels=[0.],
+                                   colors="C2",
+                                   linewidths=1
+                                   )
+            for row in plt00Dr.collections:
+                plt00DrCollections.append(row)
+            for row in plt00FrCollections:
+                ax00.collections.remove(row)
+                plt00FrCollections.remove(row)
+            plt00Fr = ax00.contour(data.r[it, ...]/c.au,
+                                   data.m[it, ...],
+                                   (data.St - data.StFr[..., None])[it, ...].T,
+                                   levels=[0.],
+                                   colors="C0",
+                                   linewidths=1
+                                   )
+            for row in plt00Fr.collections:
+                plt00FrCollections.append(row)
+        plt00vl.set_xdata([data.r[it, ir]/c.au, data.r[it, ir]/c.au])
+        plt00hl.set_ydata([data.m[it, im], data.m[it, im]])
+
+        plt01[0].set_xdata(data.m[it, ...])
+        plt01[0].set_ydata(data.sigmaDust[it, ir, :])
+        ax01.set_xlim(data.m[it, 0], data.m[it, -1])
+        ylim1 = np.ceil(np.log10(np.max(data.sigmaDust[it, ir, :])))
+        ylim0 = ylim1 - 6.
+        ax01.set_ylim(10.**ylim0, 10.**ylim1)
+        plt01vl.set_xdata([data.m[it, im], data.m[it, im]])
+        plt01vl.set_ydata([0., 1.e100])
+
+        if data.Nt > 2:
+            plt02vl.set_xdata([data.t[it]/c.year, data.t[it]/c.year])
+        plt10vl.set_xdata([data.r[it, ir]/c.au, data.r[it, ir]/c.au])
+        plt11vl.set_xdata([data.r[it, ir]/c.au, data.r[it, ir]/c.au])
+
+        plt10[0].set_xdata(data.r[it, ...])
+        plt10[0].set_ydata(data.sigmaDust[it, :, im])
+        ax10.set_xlim(data.r[it, 0], data.r[it, -1])
+        ylim1 = np.ceil(np.log10(np.max(data.sigmaDust[it, :, im])))
+        ylim0 = ylim1 - 6.
+        ax10.set_ylim(10.**ylim0, 10.**ylim1)
+        plt10vl.set_xdata([data.r[it, ir], data.r[it, ir]])
+        plt10vl.set_ydata([0., 1.e100])
+
+        plt11g[0].set_xdata(data.r[it, ...]/c.au)
+        plt11g[0].set_ydata(data.SigmaGas[it, ...])
+        plt11d[0].set_xdata(data.r[it, ...]/c.au)
+        plt11d[0].set_ydata(data.SigmaDusts[it, ...])
+        plt11vl.set_xdata([data.r[it, ir]/c.au, data.r[it, ir]])
+        plt11vl.set_ydata([0., 1.e100])
+        plt11d2g[0].set_xdata(data.r[it, ...]/c.au)
+        plt11d2g[0].set_ydata(data.eps[it, ...])
+
+    if data.Nt > 2:
+        sliderTime.on_changed(update)
+    sliderMass.on_changed(update)
+    sliderDist.on_changed(update)
+
+    fig.text(0.99, 0.01, "DustPy v"+__version__, horizontalalignment="right",
+             verticalalignment="bottom")
+
+    plt.show()
+
+
+def _readdata(data, filename="data", extension="hdf5"):
+
+    ret = {}
+
+    if isinstance(data, Simulation):
+
+        m = data.grid.m[None, ...]
+        Nm = data.grid.Nm[None, ...]
+        r = data.grid.r[None, ...]
+        ri = data.grid.ri[None, ...]
+        Nr = data.grid.Nr[None, ...]
+        t = data.t[None, ...]
+        Nt = np.array([1])[None, ...]
+
+        SigmaDust = data.dust.Sigma[None, ...]
+        SigmaGas = data.gas.Sigma[None, ...]
+        eps = data.dust.eps[None, ...]
+
+        cs = data.gas.cs[None, ...]
+        delta = data.dust.delta.turb[None, ...]
+        OmegaK = data.grid.OmegaK[None, ...]
+        St = data.dust.St[None, ...]
+        vK = OmegaK[None, ...] * r
+        vFrag = data.dust.v.frag[None, ...]
+
+    elif os.path.isdir(data):
+
+        # Setting up writer
+        writer.datadir = data
+        writer.extension = extension
+        writer.filename = filename
+
+        m = writer.read.sequence("grid.m")
+        Nm = writer.read.sequence("grid.Nm")
+        r = writer.read.sequence("grid.r")
+        ri = writer.read.sequence("grid.ri")
+        Nr = writer.read.sequence("grid.Nr")
+        t = writer.read.sequence("t")
+        Nt = np.array([len(t)])
+
+        SigmaDust = writer.read.sequence("dust.Sigma")
+        SigmaGas = writer.read.sequence("gas.Sigma")
+        eps = writer.read.sequence("dust.eps")
+
+        cs = writer.read.sequence("gas.cs")
+        delta = writer.read.sequence("dust.delta.turb")
+        OmegaK = writer.read.sequence("grid.OmegaK")
+        St = writer.read.sequence("dust.St")
+        vK = OmegaK * r
+        vFrag = writer.read.sequence("dust.v.frag")
+
+    else:
+
+        raise RuntimeError("Unknown data type.")
+
+    # Masses
+    Mgas = (np.pi * (ri[..., 1:]**2 - ri[..., :-1]**2) * SigmaGas[...]).sum(-1)
+    Mdust = (np.pi * (ri[..., 1:]**2 - ri[..., :-1]**2)
+             * SigmaDust[...].sum(-1)).sum(-1)
+
+    # Transformation of the density distribution
+    a = np.array(np.mean(m[..., 1:] / m[..., :-1], axis=-1))
+    dm = np.array(2. * (a - 1.) / (a + 1.))
+    sigmaDust = SigmaDust[...] / dm[..., None, None]
 
     # Fragmentation limit
     b = vFrag**2 / (delta * cs**2)
@@ -104,156 +524,42 @@ def panel(data, im=0, ir=0, it=0, filename="data", extension="hdf5"):
         np.warnings.filterwarnings(
             'ignore',
             r'invalid value encountered in sqrt')
-        St_fr = 1 / (2 * b) * (3 - np.sqrt(9 - 4 * b**2))
+        StFr = 1 / (2 * b) * (3 - np.sqrt(9 - 4 * b**2))
 
     # Drift limit
-    p = SigmaG * OmegaK * cs
+    p = SigmaGas * OmegaK * cs
+    StDr = np.zeros_like(StFr)
+    for i in range(np.int(Nt)):
+        _f = interp1d(np.log10(r[i, ...]), np.log10(
+            p[i, ...]), fill_value='extrapolate')
+        pi = 10.**_f(np.log10(ri[i, ...]))
+        gamma = np.abs(r[i, ...] / p[i, ...] *
+                       np.diff(pi) / np.diff(ri[i, ...]))
+        StDr[i, ...] = eps[i, ...] / gamma * (vK[i, ...] / cs[i, ...])**2
 
-    _f = interp1d(np.log10(r), np.log10(p), fill_value='extrapolate')
-    pi = 10.**_f(np.log10(ri))
-    gamma = np.abs(r / p * np.diff(pi) / np.diff(ri))
-    St_dr = eps / gamma * (vK / cs)**2
+    ret["m"] = m
+    ret["Nm"] = Nm
+    ret["r"] = r
+    ret["ri"] = ri
+    ret["Nr"] = Nr
+    ret["t"] = t
+    ret["Nt"] = Nt
 
-    # Get limits
-    sd_max = np.ceil(np.log10(sigmaD.max()))
-    sg_max = np.ceil(np.log10(SigmaG.max()))
-    if not single:
-        Mmax = np.ceil(np.log10(Mgas.max()/c.M_sun)) + 1
+    ret["SigmaDust"] = SigmaDust
+    ret["sigmaDust"] = sigmaDust
+    ret["SigmaGas"] = SigmaGas
+    ret["eps"] = eps
 
-    width = 4.
-    fig = plt.figure(figsize=(3.*width, 2.*width/1.618), dpi=150)
-    axcmap = fig.add_subplot(231)
-    axsigm = fig.add_subplot(232)
-    axMass = fig.add_subplot(233)
-    axsigr = fig.add_subplot(234)
-    axSigma = fig.add_subplot(235)
-    axd2g = axSigma.twinx()
+    ret["Mdust"] = Mdust
+    ret["Mgas"] = Mgas
 
-    if isframe:
-        pltcmap = axcmap.contourf(r/c.au,
-                                  m,
-                                  np.log10(sigmaD.T),
-                                  levels=np.linspace(sd_max-6, sd_max, 7),
-                                  cmap="magma",
-                                  extend="both"
-                                  )
-        axcmap.contour(r/c.au,
-                       m,
-                       St.T,
-                       levels=[1.],
-                       colors="white",
-                       linewidths=2
-                       )
-        axcmap.contour(r/c.au,
-                       m,
-                       (St - St_dr[..., None]).T,
-                       levels=[0.],
-                       colors="C2",
-                       linewidths=1
-                       )
-        axcmap.contour(r/c.au,
-                       m,
-                       (St - St_fr[..., None]).T,
-                       levels=[0.],
-                       colors="C0",
-                       linewidths=1
-                       )
-    else:
-        pltcmap = axcmap.contourf(r/c.au,
-                                  m,
-                                  np.log10(sigmaD[it, ...].T),
-                                  levels=np.linspace(sd_max-6, sd_max, 7),
-                                  cmap="magma",
-                                  extend="both"
-                                  )
-        axcmap.contour(r/c.au,
-                       m,
-                       St[it, ...].T,
-                       levels=[1.],
-                       colors="white",
-                       linewidths=2
-                       )
-        axcmap.contour(r/c.au,
-                       m,
-                       (St - St_dr[..., None])[it, ...].T,
-                       levels=[0.],
-                       colors="C2",
-                       linewidths=1
-                       )
-        axcmap.contour(r/c.au,
-                       m,
-                       (St - St_fr[..., None])[it, ...].T,
-                       levels=[0.],
-                       colors="C0",
-                       linewidths=1
-                       )
+    ret["cs"] = cs
+    ret["delta"] = delta
+    ret["OmegaK"] = OmegaK
+    ret["St"] = St
+    ret["StDr"] = StDr
+    ret["StFr"] = StFr
+    ret["vK"] = vK
+    ret["vFrag"] = vFrag
 
-    axcmap.axhline(m[im], color="#AAAAAA", lw=1, ls="--")
-    axcmap.axvline(r[ir]/c.au, color="#AAAAAA", lw=1, ls="--")
-    cbarcmap = plt.colorbar(pltcmap, ax=axcmap)
-    cbarcmap.ax.set_ylabel("$\log\ \sigma$ [g/cm²]")
-    axcmap.set_xlim(r[0]/c.au, r[-1]/c.au)
-    axcmap.set_ylim(m[0], m[-1])
-    axcmap.set_xscale("log")
-    axcmap.set_yscale("log")
-    axcmap.set_xlabel("Distance from star [au]")
-    axcmap.set_ylabel("Particle mass [g]")
-
-    if isframe:
-        axsigm.loglog(m, sigmaD[ir, :][0], c="C3")
-    else:
-        axsigm.loglog(m, sigmaD[it, ir, :], c="C3")
-    axsigm.set_xlim(m[0], m[-1])
-    axsigm.set_ylim(10.**(sd_max-6.), 10.**sd_max)
-    axsigm.set_xlabel("Particle mass [g]")
-    axsigm.set_ylabel("$\sigma$ [g/cm²]")
-
-    axMass.set_xlabel("Time [yrs]")
-    axMass.set_ylabel("Mass [$M_\odot$]")
-    if single:
-        axMass.set_xticks([0., 1.])
-        axMass.set_yticks([0., 1.])
-        axMass.text(0.5,
-                    0.5,
-                    "Not enough data points.",
-                    verticalalignment="center",
-                    horizontalalignment="center",
-                    size="large")
-    else:
-        axMass.loglog(t/c.year, Mgas/c.M_sun, c="C0", label="Gas")
-        axMass.loglog(t/c.year, Mdust/c.M_sun, c="C1", label="Dust")
-        axMass.axvline(t[it]/c.year, c="gray", lw=1)
-        axMass.set_xlim(t[1]/c.year, t[-1]/c.year)
-        axMass.set_ylim(10.**(Mmax-6.), 10.**Mmax)
-        axMass.legend()
-
-    if isframe:
-        axsigr.loglog(r/c.au, sigmaD[..., :, im], c="C3")
-    else:
-        axsigr.loglog(r/c.au, sigmaD[it, :, im], c="C3")
-    axsigr.set_xlim(r[0]/c.au, r[-1]/c.au)
-    axsigr.set_ylim(10.**(sd_max-6.), 10.**sd_max)
-    axsigr.set_xlabel("Distance from star [au]")
-    axsigr.set_ylabel("$\sigma$ [g/cm²]")
-
-    if isframe:
-        axSigma.loglog(r/c.au, SigmaG, label="Gas")
-        axSigma.loglog(r/c.au, SigmaD.sum(-1), label="Dust")
-    else:
-        axSigma.loglog(r/c.au, SigmaG[it, ...], label="Gas")
-        axSigma.loglog(r/c.au, SigmaD[it, ...].sum(-1), label="Dust")
-    axSigma.set_xlim(r[0]/c.au, r[-1]/c.au)
-    axSigma.set_ylim(10.**(sg_max-6), 10.**sg_max)
-    axSigma.set_xlabel("Distance from star [au]")
-    axSigma.set_ylabel("$\Sigma$ [g/cm²]")
-    axSigma.legend()
-    if isframe:
-        axd2g.loglog(r/c.au, eps, color="C7", lw=1)
-    else:
-        axd2g.loglog(r/c.au, eps[it, ...], color="C7", lw=1)
-    axd2g.set_ylim(1.e-5, 1.e1)
-    axd2g.set_ylabel("Dust-to-gas ratio")
-
-    fig.tight_layout()
-
-    plt.show()
+    return SimpleNamespace(**ret)
