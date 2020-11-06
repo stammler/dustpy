@@ -52,7 +52,7 @@ def panel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limits
     Mmax = np.ceil(np.log10(data.Mgas.max()/c.M_sun)) + 1
     levels = np.linspace(sd_max-6, sd_max, 7)
 
-    width = 4.
+    width = 3.5
     fig = plt.figure(figsize=(3.*width, 2.*width/1.618), dpi=150)
     ax00 = fig.add_subplot(231)
     ax01 = fig.add_subplot(232)
@@ -201,7 +201,7 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
     Mmax = np.ceil(np.log10(data.Mgas.max()/c.M_sun)) + 1
     levels = np.linspace(sd_max-6, sd_max, 7)
 
-    width = 4.
+    width = 3.5
     fig = plt.figure(figsize=(3.*width, 2.*width/1.618), dpi=150)
     ax00 = fig.add_subplot(231)
     ax01 = fig.add_subplot(232)
@@ -436,7 +436,7 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
         plt11g[0].set_xdata(data.r[it, ...]/c.au)
         plt11g[0].set_ydata(data.SigmaGas[it, ...])
         plt11d[0].set_xdata(data.r[it, ...]/c.au)
-        plt11d[0].set_ydata(data.SigmaDusts[it, ...])
+        plt11d[0].set_ydata(data.SigmaDust[it, ...].sum(-1))
         plt11vl.set_xdata([data.r[it, ir]/c.au, data.r[it, ir]])
         plt11vl.set_ydata([0., 1.e100])
         plt11d2g[0].set_xdata(data.r[it, ...]/c.au)
