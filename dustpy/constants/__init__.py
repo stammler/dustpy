@@ -10,6 +10,8 @@ Constants
 | ``G`` : Gravitational constant
 | ``k_B`` : Boltzmann constant
 | ``m_p`` : Proton mass
+| ``M_earth`` : Mass of the Earth
+| ``M_jup`` : Mass of Jupiter
 | ``M_sun`` : Mass of the Sun
 | ``pi`` : Ratio of circle's circumference to diameter
 | ``R_sun`` : Radius of the sun
@@ -26,6 +28,8 @@ au = _np.float(_c.constants.au)
 G = _np.float(_c.constants.g)
 k_B = _np.float(_c.constants.k_b)
 m_p = _np.float(_c.constants.m_p)
+M_earth = _np.float(_c.constants.m_earth)
+M_jup = _np.float(_c.constants.m_jup)
 M_sun = _np.float(_c.constants.m_sun)
 pi = _np.float(_c.constants.pi)
 R_sun = _np.float(_c.constants.r_sun)
@@ -37,6 +41,8 @@ __all__ = ["au",
            "G",
            "k_B",
            "m_p",
+           "M_earth",
+           "M_jup",
            "M_sun",
            "pi",
            "R_sun",
