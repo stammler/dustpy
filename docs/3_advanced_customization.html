@@ -106,6 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">Dust Evolution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="8_test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_example_gaps.html">Example: Planetary Gaps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="A_publications.html">Appendix A: List of Publications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
@@ -566,6 +567,21 @@ Group (Grid quantities)
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">refinegrid</span><span class="p">(</span><span class="n">ri</span><span class="p">,</span> <span class="n">r0</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function to refine the radial grid</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ri : array</span>
+<span class="sd">        Radial grid</span>
+<span class="sd">    r0 : float</span>
+<span class="sd">        Radial location around which grid should be refined</span>
+<span class="sd">    num : int, option, default : 3</span>
+<span class="sd">        Number of refinement iterations</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ri : array</span>
+<span class="sd">        New refined radial grid&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">ri</span>
     <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">r0</span> <span class="o">&gt;</span> <span class="n">ri</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
