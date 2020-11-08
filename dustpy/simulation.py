@@ -24,7 +24,7 @@ from types import SimpleNamespace
 
 
 class Simulation(Frame):
-    '''The main simulation class for running dust coagulation simulations.
+    """The main simulation class for running dust coagulation simulations.
 
     `dustpy.Simulation`` is a child of ``simframe.Frame``.
 
@@ -33,15 +33,12 @@ class Simulation(Frame):
     For initialization use ``Simulation.initialize()``,
     For running simulations use ``Simulation.run()``.
 
-    Please have a look at the documentation of ``simframe`` for further details.'''
+    Please have a look at the documentation of ``simframe`` for further details."""
 
     __name__ = "DustPy"
 
     def __init__(self, **kwargs):
-        '''Main simulation class.'''
-
-        # Check for newer version
-        print_version_warning()
+        """Main simulation class."""
 
         super().__init__(**kwargs)
 
