@@ -184,7 +184,7 @@
 
 
 <div class="viewcode-block" id="Simulation"><a class="viewcode-back" href="../../api/dustpy.Simulation.html#dustpy.Simulation">[docs]</a><span class="k">class</span> <span class="nc">Simulation</span><span class="p">(</span><span class="n">Frame</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;The main simulation class for running dust coagulation simulations.</span>
+    <span class="sd">&quot;&quot;&quot;The main simulation class for running dust coagulation simulations.</span>
 
 <span class="sd">    `dustpy.Simulation`` is a child of ``simframe.Frame``.</span>
 
@@ -193,15 +193,12 @@
 <span class="sd">    For initialization use ``Simulation.initialize()``,</span>
 <span class="sd">    For running simulations use ``Simulation.run()``.</span>
 
-<span class="sd">    Please have a look at the documentation of ``simframe`` for further details.&#39;&#39;&#39;</span>
+<span class="sd">    Please have a look at the documentation of ``simframe`` for further details.&quot;&quot;&quot;</span>
 
     <span class="vm">__name__</span> <span class="o">=</span> <span class="s2">&quot;DustPy&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Main simulation class.&#39;&#39;&#39;</span>
-
-        <span class="c1"># Check for newer version</span>
-        <span class="n">print_version_warning</span><span class="p">()</span>
+        <span class="sd">&quot;&quot;&quot;Main simulation class.&quot;&quot;&quot;</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
