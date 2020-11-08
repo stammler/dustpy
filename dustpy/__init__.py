@@ -14,6 +14,7 @@ that contains pre-defined standard functions ``dustpy.std`` that can be used in 
 from dustpy import plot
 from dustpy.simulation import Simulation
 from dustpy import constants
+from dustpy import utils
 from dustpy.utils import hdf5writer
 
 from simframe.io.dump import readdump
@@ -24,5 +25,6 @@ __version__ = "0.4.4"
 
 Simulation.__version__ = __version__
 plot.__version__ = __version__
+utils.__version__ = __version__
 
 __all__ = ["constants", "hdf5writer", "plot", "readdump", "Simulation"]

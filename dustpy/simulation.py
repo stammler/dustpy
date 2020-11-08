@@ -17,6 +17,7 @@ import dustpy.std.star as std_star
 
 from dustpy.utils import hdf5writer
 from dustpy.utils.boundary import Boundary
+from dustpy.utils import print_version_warning
 
 import numpy as np
 from types import SimpleNamespace
@@ -38,6 +39,9 @@ class Simulation(Frame):
 
     def __init__(self, **kwargs):
         '''Main simulation class.'''
+
+        # Check for newer version
+        print_version_warning()
 
         super().__init__(**kwargs)
 
