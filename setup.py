@@ -68,7 +68,7 @@ setup(
                  ],
 
     packages=setuptools.find_packages(),
-    install_requires=["matplotlib", "numpy", "simframe"],
+    install_requires=["matplotlib", "numpy", "requests", "simframe"],
     include_package_data=True,
     zip_safe=False,
 )
