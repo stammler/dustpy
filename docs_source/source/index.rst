@@ -26,6 +26,7 @@
    7_gas_evolution
    8_test_gas_evolution
    9_example_gaps
+   10_example_ice_lines
    A_publications
    api
 
