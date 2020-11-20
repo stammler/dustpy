@@ -216,8 +216,7 @@ class Simulation(Frame):
             msg += "\nGitHub:        {}".format(
                 "https://github.com/stammler/dustpy/")
             msg += "\n"
-            msg += "\nPlease cite:   {}".format(
-                "Stammler & Birnstiel (in prep.)")
+            msg += "\nPlease read README.md for information about the Terms of Usage."
             print(msg)
         # Check for mass conserbation
         self.checkmassconservation()
