@@ -216,8 +216,7 @@ class Simulation(Frame):
             msg += "\nGitHub:        {}".format(
                 "https://github.com/stammler/dustpy/")
             msg += "\n"
-            msg += "\nPlease cite:   {}".format(
-                "Stammler & Birnstiel (in prep.)")
+            msg += colorize("\nPlease read README.md on the GitHub repository for\ninformation about the Terms of Usage.", "red")
             print(msg)
         # Check for mass conserbation
         self.checkmassconservation()
@@ -631,14 +630,16 @@ class Simulation(Frame):
                                 description="Diffusivity [cm²/s]")
             self.dust.D.updater = std_dust.D
         # Deltas
-        delta = self.ini.gas.alpha * np.ones(shape1)
         if self.dust.delta.rad is None:
+            delta = self.ini.gas.alpha * np.ones(shape1)
             self.dust.delta.rad = Field(
                 self, delta, description="Radial mixing parameter")
         if self.dust.delta.turb is None:
+            delta = self.ini.gas.alpha * np.ones(shape1)
             self.dust.delta.turb = Field(
                 self, delta, description="Turbulent mixing parameter")
         if self.dust.delta.vert is None:
+            delta = self.ini.gas.alpha * np.ones(shape1)
             self.dust.delta.vert = Field(
                 self, delta, description="Vertical mixing parameter")
         # Vertically integrated dust to gas ratio
