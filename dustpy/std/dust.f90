@@ -32,7 +32,7 @@ subroutine a(m, rho, sizes, Nr, Nm)
 end subroutine a
 
 
-subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstick_ind, AFrag, epsFrag, klf, krm, phiFrag, Nm)
+subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstick_ind, AFrag, epsFrag, klf, krm, phiFrag, Nr, Nm)
   ! Subroutine calculates the coagulation parameters needed to calculate the
   ! coagulation sources. The sticking matrix is calculated with the method
   ! described in appendices A.1. and A.2. of Brauer et al. (2008).
@@ -45,6 +45,7 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   ! fExcav : Excavated cratering mass in units of smaller particle
   ! fragSlope : Power of fragment distribution
   ! m(Nm) : Mass grid
+  ! Nr : Number of radial grid cells
   ! Nm : Number of mass bins
   !
   ! Returns
@@ -59,8 +60,6 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   ! krm(Nm, Nm) : Smaller index of remnant mass
   ! phiFrag(Nm, Nm) : The distribution of fragments
 
-  use constants, only: p
-
   implicit none
 
   double precision, intent(in)  :: cratRatio
@@ -74,6 +73,7 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   double precision, intent(out) :: cstick(4, Nm, Nm)
   integer,          intent(out) :: cstick_ind(4, Nm, Nm)
   double precision, intent(out) :: phiFrag(Nm, Nm)
+  integer,          intent(in)  :: Nr
   integer,          intent(in)  :: Nm
 
   double precision :: a
@@ -94,7 +94,8 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   integer :: i
   integer :: j
   integer :: k
-  integer :: inc  
+  integer :: inc
+  integer :: p
 
   ! Initialization
   AFrag(:, :) = 0.d0
@@ -315,7 +316,7 @@ subroutine d(v2, OmegaK, St, Diff, Nr, Nm)
   integer :: i
 
   do i=1, Nm
-    Diff(:, i) = v2(:) / OmegaK(:) / (1.d0 + St(:, i)**2)
+    Diff(:, i) = v2(:) / ( OmegaK(:) * (1.d0 + St(:, i)**2) )
   end do
 
 end subroutine d
@@ -480,6 +481,275 @@ subroutine h_dubrulle1995(Hp, St, delta, h, Nr, Nm)
 end subroutine h_dubrulle1995
 
 
+subroutine jacobian_coagulation_generator(A, cStick, eps, iLF, iRM, iStick, m, phi, Rf, Rs, Sigma, SigmaFloor, &
+  & dat, row, col, Nr, Nm)
+  ! Subroutine calculates the coagulation Jacobian at every radial grid cell except for the boundaries.
+  !
+  ! Parameters
+  ! ----------
+  ! A(Nm, Nm) : Normalization factor of fragment distribution
+  ! cStick(4, Nm, Nm) : Non-zero elements of sticking matrix
+  ! eps(Nm, Nm) : Remnant mass distribution
+  ! iLF(Nm, Nm) : Index of largest fragment
+  ! iRM(Nm, Nm) : Smaller index of remnant mass
+  ! iStick(4, Nm, Nm) : Non-zero indices of sticking matrix
+  ! m(Nm) : mass grid
+  ! phi(Nm, Nm) : Fragment distribution
+  ! Rf(Nr, Nm, Nm) : Fragmentation collision rates
+  ! Rs(Nr, Nm, Nm) : Sticking collision rates
+  ! Sigma(Nr, Nm) : Dust surface density
+  ! SigmaFloor(Nr, Nm) : Floor value of surface density
+  ! Nr : Number of radial grid cells
+  ! Nm : Number of mass bins
+  !
+  ! Returns
+  ! -------
+  ! jac(Nr, Nm, Nm) : Coagulation Jacobian
+  
+  implicit none
+
+  double precision, intent(in)  :: A(Nm, Nm)
+  double precision, intent(in)  :: cStick(4, Nm, Nm)
+  double precision, intent(in)  :: eps(Nm, Nm)
+  integer,          intent(in)  :: iLF(Nm, Nm)
+  integer,          intent(in)  :: iRM(Nm, Nm)
+  integer,          intent(in)  :: iStick(4, Nm, Nm)
+  double precision, intent(in)  :: m(Nm)
+  double precision, intent(in)  :: phi(Nm, Nm)
+  double precision, intent(in)  :: Rf(Nr, Nm, Nm)
+  double precision, intent(in)  :: Rs(Nr, Nm, Nm)
+  double precision, intent(in)  :: Sigma(Nr, Nm)
+  double precision, intent(in)  :: SigmaFloor(Nr, Nm)
+  double precision, intent(out) :: dat((Nr-2)*Nm*Nm)
+  integer,          intent(out) :: row((Nr-2)*Nm*Nm)
+  integer,          intent(out) :: col((Nr-2)*Nm*Nm)
+  integer,          intent(in)  :: Nr
+  integer,          intent(in)  :: Nm
+
+  double precision :: agrid
+  double precision :: jac(Nr, Nm, Nm)
+  double precision :: N(Nr, Nm)
+  double precision :: D(Nm, Nm)
+  double precision :: ratef
+  double precision :: rates
+
+  integer :: imax
+  integer :: ir
+  integer :: i
+  integer :: j
+  integer :: k
+  integer :: l
+  integer :: p
+  integer :: q
+  integer :: s
+  integer :: start
+
+  ! Determination of the mass bin range that contributes to
+  ! full fragmentation
+  p = Nm - minloc( m(:), 1, iRM(:, Nm) .EQ. -1 )
+
+  ! Grid constant
+  agrid = LOG10( m(1)/m(Nm) ) / (1.d0 - Nm)
+  ! Number of non-zero off-diagonal
+  q = INT( CEILING( LOG10(2.d0)/agrid ) )
+
+  ! Initialization
+  jac(:, :, :) = 0.d0
+  dat(:) = 0.d0
+  row(:) = 0
+  col(:) = 0
+
+  ! Conversion to number density
+  do ir=1, Nr
+    N(ir, :) = Sigma(ir, :) / m(:)
+  end do
+
+  ! Normalization factor for sticking
+  do i=1, Nm
+    do j=1, Nm
+      D(j, i) = m(j)/m(i)
+    end do
+  end do
+
+  do ir=2, Nr-1
+
+    ! Largest mass bin that is above floor value
+    imax = min( maxloc(m(:), 1, Sigma(ir, :) .GT. SigmaFloor(ir, :)), Nm )
+
+    do i=1, imax
+      do j=1, i
+
+        ! STICKING
+
+        ! Only if particles actually stick
+        if(Rs(ir, j, i) .GT. 0.d0) then
+
+          rates = N(ir, j) * Rs(ir, j, i)
+
+          do l=1, 4
+            k = iStick(l, j, i) + 1
+            if(k .EQ. 0) cycle
+            jac(ir, k, i) = jac(ir, k, i) + D(k, i) * cStick(l, j, i) * rates
+          end do
+
+        end if
+
+        ! FRAGMENTATION
+
+        ! Only if particles actually fragment
+        if(Rf(ir, j ,i) .GT. 0.d0) then
+
+          ! Fragmentation rate factor
+          ratef = N(ir, j) * Rf(ir, j, i)
+
+          ! Fragments distribution
+          jac(ir, :, i) = jac(ir, :, i) + A(j, i) * phi(ilf(j, i)+1, :) / m(i) * ratef
+
+          ! Negative terms and remnant masses
+          ! Cratering
+          if(j .LE. i-p-1) then
+
+            k = irm(j, i) + 1
+            ! Remnant mass falls between i-1 and i
+            ! This distinction is beneficial for mass conservation
+            if(k .EQ. i-1) then
+              jac(ir, i-1, i) = jac(ir, i-1, i) + D(i-1, i) * eps(j, i)          * ratef
+              jac(ir, i,   i) = jac(ir, i,   i) -             eps(j, i)          * ratef
+              jac(ir, j,   i) = jac(ir, j,   i) - D(j,   i)                      * ratef
+            else
+              jac(ir, k,   i) = jac(ir, k,   i) + D(k,   i) * eps(j, i)          * ratef
+              jac(ir, k+1, i) = jac(ir, k+1, i) + D(k+1, i) * (1.d0 - eps(j, i)) * ratef
+              jac(ir, i,   i) = jac(ir, i,   i) -                                  ratef
+              jac(ir, j,   i) = jac(ir, j,   i) - D(j,   i)                      * ratef
+            end if
+
+          ! Full fragmentation
+          else
+            jac(ir, i,   i) = jac(ir, i,   i) -             ratef
+            jac(ir, j,   i) = jac(ir, j,   i) - D(j,   i) * ratef
+          end if
+
+        end if
+
+      end do
+    end do
+  end do
+
+  ! Filling the data array
+  k = 1
+  do ir=2, Nr-1
+    start = (ir-1)*Nm - 1
+    do i=1, Nm
+      s = MAX(i-q, 1)
+      do j=s, Nm
+        dat(k) = jac(ir, i, j)
+        row(k) = start + i
+        col(k) = start + j
+        k = k + 1
+      end do
+    end do
+  end do
+
+end subroutine jacobian_coagulation_generator
+
+
+subroutine jacobian_hydrodynamic_generator(area, D, r, ri, SigmaGas, v, A, B, C, Nr, Nm)
+  ! Subroutine calculates the diagonals of the hydrodynamic dust Jacobian.
+  !
+  ! Parameters
+  ! ----------
+  ! area(Nr) : Radial grid annulus area
+  ! D(Nr, Nm) : Dust diffusivity
+  ! r(Nr) : Radial grid cell centers
+  ! ri(Nr+1) : Radial grid cell interfaces
+  ! SigmaGas(Nr) : Gas surface density
+  ! v(Nr) : Radial velocity
+  ! Nr : Number of radial grid cells
+  ! Nm : Number of mass bins
+  !
+  ! Returns
+  ! -------
+  ! A(Nr) : sub-diagonal, A(1) not used
+  ! B(Nr) : diagonal
+  ! C(Nr) : super-diagoanl, C(Nr) not used
+
+  use constants, only: twopi
+
+  implicit none
+
+  double precision, intent(in)  :: area(Nr)
+  double precision, intent(in)  :: D(Nr, Nm)
+  double precision, intent(in)  :: r(Nr)
+  double precision, intent(in)  :: ri(Nr+1)
+  double precision, intent(in)  :: v(Nr, Nm)
+  double precision, intent(in)  :: SigmaGas(Nr)
+  double precision, intent(out) :: A(Nr, Nm)
+  double precision, intent(out) :: B(Nr, Nm)
+  double precision, intent(out) :: C(Nr, Nm)
+  integer,          intent(in)  :: Nr
+  integer,          intent(in)  :: Nm
+
+  integer :: ir
+  integer :: i
+  double precision :: Di(Nr+1)
+  double precision :: Fa(Nr+1)
+  double precision :: h(Nr)
+  double precision :: hi(Nr+1)
+  double precision :: vi(Nr+1)
+  double precision :: vim(Nr+1)
+  double precision :: vip(Nr+1)
+  double precision :: Vinv(Nr)
+  double precision :: w(Nr)
+
+  ! Helper quantity
+  h(:) = SigmaGas(:) * r(:)
+  call interp1d(ri, r, h, hi, Nr)
+
+  ! Initialization
+  A(:, :)    = 0.d0
+  B(:, :)    = 0.d0
+  C(:, :)    = 0.d0
+
+  ! Grid cell volumes and distances
+  do ir=1, Nr
+      Vinv(ir) = twopi / area(ir)
+      w(ir) = r(ir+1) - r(ir)
+  end do
+
+  do i=1, Nm
+
+    ! Interface velocities
+    call interp1d(ri, r, v(:, i), vi, Nr)
+    vim(:)  = min(vi(:), 0.d0)
+    vip(:)  = max(0.d0, vi(:))
+    ! Interface diffusivity
+    call interp1d(ri, r, D(:, i), Di, Nr)
+
+    do ir=2, Nr-1
+
+      ! Advection terms
+      A(ir, i) = A(ir, i) + vip(ir)   * r(ir-1)
+      B(ir, i) = B(ir, i) - vip(ir+1) * r(ir)   + vim(ir)   * r(ir)
+      C(ir, i) = C(ir, i)                       - vim(ir+1) * r(ir+1)
+
+      ! Diffusion terms
+      A(ir, i) = A(ir, i) + Di(ir)   * hi(ir)   / ( w(ir-1) * h(ir-1) ) * r(ir-1)
+      B(ir, i) = B(ir, i) - Di(ir)   * hi(ir)   / ( w(ir-1) * h(ir)   ) * r(ir)
+      B(ir, i) = B(ir, i) - Di(ir+1) * hi(ir+1) / ( w(ir)   * h(ir)   ) * r(ir)
+      C(ir, i) = C(ir, i) + Di(ir+1) * hi(ir+1) / ( w(ir)   * h(ir+1) ) * r(ir+1)
+        
+    end do
+
+    ! Dividing by grid cell volume
+    A(:, i) = A(:, i) * Vinv(:)
+    B(:, i) = B(:, i) * Vinv(:)
+    C(:, i) = C(:, i) * Vinv(:)
+
+  end do
+
+end subroutine jacobian_hydrodynamic_generator
+
+
 double precision function kdelta(i, j)
   ! Function returns the Kronecker delta.
   !
@@ -543,10 +813,10 @@ subroutine kernel(a, H, Sigma, SigmaFloor, vrel, K, Nr, Nm)
   ! Initialization
   K(:, :, :) = 0.d0
 
-  do ir=1, Nr
+  do ir=2, Nr-1
     do i=1, Nm
       if(Sigma(ir, i) .lt. SigmaFloor(ir, i)) cycle
-      do j=1, Nm
+      do j=1, i
         if(Sigma(ir, j) .lt. SigmaFloor(ir, j)) cycle
         K(ir, j, i) = pi * (a(ir, j) + a(ir, i))**2 * vrel(ir, j, i) &
           & / sqrt( 2.d0 * pi * ( H(ir, j)**2 + H(ir, i)**2 ) )
@@ -591,8 +861,8 @@ subroutine pfrag(vrel, vfrag, pf, Nr, Nm)
   integer :: j
     
   do i=1, Nm
-    do j=1, Nm
-      do ir=1, Nr
+    do j=1, i
+      do ir=2, Nr-1
         dv = 0.2d0 * vfrag(ir)
         if( vrel(ir, j, i) .lt. vfrag(ir) - dv ) then
           pf(ir, j, i) = 0.d0
@@ -609,8 +879,28 @@ end subroutine pfrag
 
 
 subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, SigmaFloor, S, Nr, Nm)
-
-  use constants, only: p
+  ! Subroutine calculates the coagulation source terms.
+  ! 
+  ! Parameters
+  ! ----------
+  ! cstick(4, Nm, Nm) : Non-zero elements of sticking matrix
+  ! cstick_ind(4, Nm, Nm) : Indices of non-zero elements of sticking matrix
+  ! A(Nm, Nm) : Normalization factor of fragment distribution
+  ! eps(Nm, Nm) : Distribution of remnant mass
+  ! klf(Nm, Nm) : Index of largest fragment
+  ! krm(Nm, Nm) : Smaller index of remnant mass
+  ! phi(Nm, Nm) : Fragment distribution
+  ! Kf(Nr, Nm, Nm) : Fragmentation kernel
+  ! Ks(Nr, Nm, Nm) : Sticking kernel
+  ! m(Nm) : Mass grid
+  ! Sigma(Nr, Nm) : Dust surface density
+  ! SigmaFloor(Nr, Nm) Floor value of surface density
+  ! Nr : Number or radial grid cells
+  ! Nm : Number of mass bins
+  !
+  ! Returns
+  ! -------
+  ! S(Nr, Nm) : Coagulation source terms of dust surface density
 
   implicit none
 
@@ -634,20 +924,23 @@ subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, S
   double precision :: n(Nm)
   double precision :: Rf(Nm, Nm)
   double precision :: Rs
-  double precision :: Sf(Nr, Nm)
   integer :: ir
   integer :: i
   integer :: imax
   integer :: j
   integer :: k
   integer :: nz
+  integer :: p
+
+  ! Determination of the mass bin range that contributes to
+  ! full fragmentation
+  p = Nm - minloc( m(:), 1, krm(:, Nm) .EQ. -1 )
 
   ! Initialization
   As(:) = 0.d0
   S(:, :) = 0.d0
-  Sf(:, :) = 0.d0
 
-  do ir=1, Nr
+  do ir=2, Nr-1
     ! Conversion to number density
     n(:) = Sigma(ir, :) / m(:)
 
@@ -665,7 +958,6 @@ subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, S
         end do
       end do
     end do
-    S(ir, :) = S(ir, :) * m(:)
 
     ! FRAGMENTATION
 
@@ -684,7 +976,7 @@ subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, S
     ! Adding fragment distribution
     do i=1, nm
       do j=i, nm
-        Sf(ir, i) = Sf(ir, i) + As(j)*phi(j, i)/m(i)
+        S(ir, i) = S(ir, i) + As(j)*phi(j, i)/m(i)
       end do
     end do
 
@@ -695,29 +987,27 @@ subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, S
         k = krm(j, i) + 1
         ! It's better for mass conservation to distinguish both cases.
         if(k .eq. i-1) then
-          Sf(ir, k)   = Sf(ir, k)   + eps(j, i) * Rf(j, i)
-          Sf(ir, k+1) = Sf(ir, k+1) - eps(j, i) * Rf(j, i) ! <- Both terms in one == better mass conservation
-          Sf(ir, j)   = Sf(ir, j)   - Rf(j, i)
+          S(ir, k)   = S(ir, k)   + eps(j, i) * Rf(j, i)
+          S(ir, k+1) = S(ir, k+1) - eps(j, i) * Rf(j, i) ! <- Both terms in one == better mass conservation
+          S(ir, j)   = S(ir, j)   - Rf(j, i)
         else
-          Sf(ir, k)   = Sf(ir, k)   + eps(j, i)          * Rf(j, i)
-          Sf(ir, k+1) = Sf(ir, k+1) + (1.d0 - eps(j, i)) * Rf(j, i)
-          Sf(ir, k+1) = Sf(ir, k+1) - Rf(j, i)
-          Sf(ir, j)   = Sf(ir, j)   - Rf(j, i)
+          S(ir, k)   = S(ir, k)   + eps(j, i)          * Rf(j, i)
+          S(ir, k+1) = S(ir, k+1) + (1.d0 - eps(j, i)) * Rf(j, i)
+          S(ir, i)   = S(ir, i)   - Rf(j, i)
+          S(ir, j)   = S(ir, j)   - Rf(j, i)
         end if
       end do
       ! Full fragmentation (only negative terms)
       do j=i-p, i
         if(j .LT. 1) cycle
-        Sf(ir, i) = Sf(ir, i) - Rf(j, i)
-        Sf(ir, j) = Sf(ir, j) - Rf(j, i)
+        S(ir, i) = S(ir, i) - Rf(j, i)
+        S(ir, j) = S(ir, j) - Rf(j, i)
       end do
     end do
 
-    Sf(ir, :) = Sf(ir, :) * m(:)
+    S(ir, :) = S(ir, :) * m(:)
 
   end do
-
-  S(:, :) = S(:, :) + Sf(:, :)
 
 end subroutine s_coag
 

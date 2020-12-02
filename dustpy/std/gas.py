@@ -143,6 +143,28 @@ def Hp(sim):
 
 
 def jacobian(sim, x, *args, **kwargs):
+    """Functions calculates the Jacobian for the gas.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+    x : IntVar
+        Integration variable
+    args : additional positional arguments
+    kwargs : additional keyworda arguments
+
+    Returns
+    -------
+    jac : Field
+        Jacobi matrix for gas evolution
+
+    Notes
+    -----
+    The boundaries need information about the time step, which is only available at
+    the integration stage. The boundary values are therefore meaningless and should not
+    be used to calculate the source terms via matrix-vector multiplication.
+    See the documentation for details."""
 
     # Parameters
     nu = sim.gas.nu * sim.dust.backreaction.A
@@ -152,15 +174,16 @@ def jacobian(sim, x, *args, **kwargs):
     dt = sim.t.stepsize
     r = sim.grid.r
     ri = sim.grid.ri
+    area = sim.grid.A
 
     # Construct Jacobian
-    A, B, C = gas_f.jac_abc(nu, r, ri, v)
+    A, B, C = gas_f.jac_abc(area, nu, r, ri, v)
     jac = np.diag(A[1:], -1) + np.diag(B) + np.diag(C[:-1], 1)
-
-    # Boundaries
 
     # Right hand side
     sim.gas._rhs[:] = sim.gas.Sigma
+
+    # Boundaries
 
     # Inner boundary
     if sim.gas.boundary.inner is not None:
@@ -204,7 +227,6 @@ def jacobian(sim, x, *args, **kwargs):
             sim.gas._rhs[0] = 0.
 
     # Outer boundary
-    # Right hand side
     if sim.gas.boundary.outer is not None:
         # Given value
         if sim.gas.boundary.outer.condition == "val":
@@ -239,7 +261,7 @@ def jacobian(sim, x, *args, **kwargs):
         # Constant power law
         elif sim.gas.boundary.outer.condition == "const_pow":
             p = np.log(sim.gas.Sigma[-2] /
-                       sim.gas.Sigma[-3]) / np.log(r[-2]/r[-1])
+                       sim.gas.Sigma[-3]) / np.log(r[-2]/r[-3])
             KNrm2 = - (r[-1]/r[-2])**p
             jac[-1, -1] = 0.
             jac[-1, -2] = -KNrm2/dt
@@ -259,7 +281,7 @@ def lyndenbellpringle1974(r, rc, p, Mdisk):
         critical cutoff radius
     p : float
         power law exponent
-    Mdist : float
+    Mdisk : float
         disk mass
 
     Returns

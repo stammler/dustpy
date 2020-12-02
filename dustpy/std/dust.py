@@ -5,6 +5,14 @@ import dustpy.constants as c
 from dustpy.std import dust_f
 
 import numpy as np
+from scipy.sparse import csc_matrix
+from scipy.sparse import diags
+from scipy.sparse import identity
+from scipy.sparse.linalg import gmres
+from scipy.sparse.linalg import LinearOperator
+from scipy.sparse.linalg import splu
+from scipy.sparse.linalg import spilu
+from simframe.integration import Scheme
 
 
 def boundary(sim):
@@ -26,12 +34,25 @@ def enforce_floor_value(sim):
     ----------
     sim : Frame
         Parent simulation frame"""
-    sim.dust.Sigma = np.where(
-        sim.dust.Sigma <= sim.dust.SigmaFloor, 0.1*sim.dust.SigmaFloor, sim.dust.Sigma)
-    #sim.dust.Sigma = np.array(np.maximum(sim.dust.Sigma, sim.dust.SigmaFloor))
+    sim.dust.Sigma = np.array(np.maximum(sim.dust.Sigma, sim.dust.SigmaFloor))
 
 
-def finalize(sim):
+def prepare(sim):
+    """Function prepares implicit dust integration step.
+    It stores the current value of the surface density in a hidden field.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame"""
+    # Setting external sources at boundaries to zero
+    sim.dust.S.ext[0] = 0.
+    sim.dust.S.ext[-1] = 0.
+    # Storing current surface density
+    sim.dust._SigmaOld[...] = sim.dust.Sigma[...]
+
+
+def finalize_explicit(sim):
     """Function finalizes integration step.
 
     Parameters
@@ -40,6 +61,46 @@ def finalize(sim):
         Parent integration frame"""
     boundary(sim)
     enforce_floor_value(sim)
+
+
+def finalize_implicit(sim):
+    """Function finalizes implicit integration step.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent integration frame"""
+    boundary(sim)
+    enforce_floor_value(sim)
+    sim.dust.v.rad.update()
+    sim.dust.Fi.update()
+    sim.dust.S.hyd.update()
+    sim.dust.S.coag.update()
+    set_implicit_boundaries(sim)
+
+
+def set_implicit_boundaries(sim):
+    """Function calculates the fluxes at the boundaries after the implicit integration step.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame"""
+    # Total source terms
+    sim.dust.S.tot[0] = (sim.dust.Sigma[0] -
+                         sim.dust._SigmaOld[0])/sim.t.stepsize
+    sim.dust.S.tot[-1] = (sim.dust.Sigma[-1] -
+                          sim.dust._SigmaOld[-1])/sim.t.stepsize
+    # Hydrodynamic source terms
+    sim.dust.S.hyd[0] = sim.dust.S.tot[0]
+    sim.dust.S.hyd[-1] = sim.dust.S.tot[-1]
+    # Fluxes
+    sim.dust.Fi.adv[0] = (0.5*sim.dust.S.hyd[0]*(sim.grid.ri[1]**2 -
+                                                 sim.grid.ri[0]**2) + sim.grid.ri[1]*sim.dust.Fi.adv[1])/sim.grid.ri[0]
+    sim.dust.Fi.adv[-1] = (sim.dust.Fi.adv[-2]*sim.grid.ri[-2] - 0.5*sim.dust.S.hyd[-1]
+                           * (sim.grid.ri[-1]**2-sim.grid.ri[-2]**2))/sim.grid.ri[-1]
+    sim.dust.Fi.tot[0] = sim.dust.Fi.adv[0]
+    sim.dust.Fi.tot[-1] = sim.dust.Fi.adv[-1]
 
 
 def a(sim):
@@ -69,9 +130,18 @@ def D(sim):
     Returns
     -------
     D : Field
-        Dust diffusivity"""
+        Dust diffusivity
+
+    Notes
+    -----
+    The diffusivity at the first and last three radial
+    grid cells will be set to zero to avoid unwanted
+    behavior at the boundaries."""
     v2 = sim.dust.delta.rad * sim.gas.cs**2
-    return dust_f.d(v2, sim.grid.OmegaK, sim.dust.St)
+    Diff = dust_f.d(v2, sim.grid.OmegaK, sim.dust.St)
+    Diff[:3, ...] = 0.
+    Diff[-3:, ...] = 0.
+    return Diff
 
 
 def eps(sim):
@@ -171,6 +241,198 @@ def H(sim):
     return dust_f.h_dubrulle1995(sim.gas.Hp, sim.dust.St, sim.dust.delta.vert)
 
 
+def jacobian(sim, x, *args, **kwargs):
+    """Function calculates the Jacobian for implicit dust integration.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+    x : IntVar
+        Integration variable
+    args : additional positional arguments
+    kwargs : additional keyworda arguments
+
+    Returns
+    -------
+    jac : Sparse matrix
+        Dust Jacobian
+
+    Notes
+    -----
+    Function returns the Jacobian for ``Simulation.dust.Sigma.ravel()``
+    instead of ``Simulation.dust.Sigma``. The Jacobian is stored as
+    sparse matrix."""
+
+    # Parameters for function call
+    A = sim.dust.coagulation.A
+    cstick = sim.dust.coagulation.stick
+    eps = sim.dust.coagulation.eps
+    ilf = sim.dust.coagulation.lf_ind
+    irm = sim.dust.coagulation.rm_ind
+    istick = sim.dust.coagulation.stick_ind
+    m = sim.grid.m
+    phi = sim.dust.coagulation.phi
+    Rf = sim.dust.kernel * sim.dust.p.frag
+    Rs = sim.dust.kernel * sim.dust.p.stick
+    SigD = sim.dust.Sigma
+    SigDfloor = sim.dust.SigmaFloor
+
+    # Helper variables for convenience
+    dt = sim.t.stepsize
+    r = sim.grid.r
+    ri = sim.grid.ri
+    area = sim.grid.A
+    Nr = np.int(sim.grid.Nr)
+    Nm = np.int(sim.grid.Nm)
+
+    # Building coagulation Jacobian
+
+    # Total problem size
+    Ntot = np.int((Nr*Nm))
+    # Getting data vector and coordinates in sparse matrix
+    dat, row, col = dust_f.jacobian_coagulation_generator(
+        A, cstick, eps, ilf, irm, istick, m, phi, Rf, Rs, SigD, SigDfloor)
+    gen = (dat, (row, col))
+    # Building sparse matrix of coagulation Jacobian
+    J_coag = csc_matrix(
+        gen,
+        shape=(Ntot, Ntot)
+    )
+
+    # Building the hydrodynamic Jacobian
+    A, B, C = dust_f.jacobian_hydrodynamic_generator(
+        area,
+        sim.dust.D,
+        r,
+        ri,
+        sim.gas.Sigma,
+        sim.dust.v.rad
+    )
+    J_hyd = diags(
+        (A.ravel()[Nm:], B.ravel(), C.ravel()[:-Nm]),
+        offsets=(-Nm, 0, Nm),
+        shape=(Ntot, Ntot),
+        format="csc"
+    )
+
+    # Right-hand side
+    sim.dust._rhs[Nm:-Nm] = sim.dust.Sigma.ravel()[Nm:-Nm]
+
+    # BOUNDARIES
+
+    # Inner boundary
+
+    # Initializing data and coordinate vectors for sparse matrix
+    dat = np.zeros(np.int(3.*Nm))
+    row0 = np.arange(np.int(Nm))
+    col0 = np.arange(np.int(Nm))
+    col1 = np.arange(np.int(Nm)) + Nm
+    col2 = np.arange(np.int(Nm)) + 2.*Nm
+    row = np.concatenate((row0, row0, row0))
+    col = np.concatenate((col0, col1, col2))
+
+    # Filling data vector depending on boundary condition
+    if sim.dust.boundary.inner is not None:
+        # Given value
+        if sim.dust.boundary.inner.condition == "val":
+            sim.dust._rhs[:Nm] = sim.dust.boundary.inner.value
+        # Constant value
+        elif sim.dust.boundary.inner.condition == "const_val":
+            dat[Nm:2*Nm] = 1./dt
+            sim.dust._rhs[:Nm] = 0.
+        # Given gradient
+        elif sim.dust.boundary.inner.condition == "grad":
+            K1 = - r[1]/r[0]
+            dat[Nm:2*Nm] = -K1/dt
+            sim.dust._rhs[:Nm] = - ri[1]/r[0] * \
+                (r[1]-r[0])*sim.dust.boundary.inner.value
+        # Constant gradient
+        elif sim.dust.boundary.inner.condition == "const_grad":
+            Di = ri[1]/ri[2] * (r[1]-r[0]) / (r[2]-r[0])
+            K1 = - r[1]/r[0] * (1. + Di)
+            K2 = r[2]/r[0] * Di
+            dat[:Nm] = 0.
+            dat[Nm:2*Nm] = -K1/dt
+            dat[2*Nm:] = -K2/dt
+            sim.dust._rhs[:Nm] = 0.
+        # Given power law
+        elif sim.dust.boundary.inner.condition == "pow":
+            p = sim.dust.boundary.inner.value
+            sim.dust._rhs[:Nm] = sim.dust.Sigma[1] * (r[0]/r[1])**p
+        # Constant power law
+        elif sim.dust.boundary.inner.condition == "const_pow":
+            p = np.log(sim.dust.Sigma[2] /
+                       sim.dust.Sigma[1]) / np.log(r[2]/r[1])
+            K1 = - (r[0]/r[1])**p
+            dat[Nm:2*Nm] = -K1/dt
+            sim.dust._rhs[:Nm] = 0.
+
+    # Creating sparce matrix for inner boundary
+    gen = (dat, (row, col))
+    J_in = csc_matrix(
+        gen,
+        shape=(Ntot, Ntot)
+    )
+
+    # Outer boundary
+
+    # Initializing data and coordinate vectors for sparse matrix
+    dat = np.zeros(np.int(3.*Nm))
+    row0 = np.arange(np.int(Nm))
+    col0 = np.arange(np.int(Nm))
+    col1 = np.arange(np.int(Nm)) - Nm
+    col2 = np.arange(np.int(Nm)) - 2.*Nm
+    offset = (Nr-1)*Nm
+    row = np.concatenate((row0, row0, row0)) + offset
+    col = np.concatenate((col0, col1, col2)) + offset
+
+    # Filling data vector depending on boundary condition
+    if sim.dust.boundary.outer is not None:
+        # Given value
+        if sim.dust.boundary.outer.condition == "val":
+            sim.dust._rhs[-Nm:] = sim.dust.boundary.outer.value
+        # Constant value
+        elif sim.dust.boundary.outer.condition == "const_val":
+            dat[-2*Nm:-Nm] = 1./dt
+            sim.dust._rhs[-Nm:] = 0.
+        # Given gradient
+        elif sim.dust.boundary.outer.condition == "grad":
+            KNrm2 = -r[-2]/r[-1]
+            dat[-2*Nm:-Nm] = -KNrm2/dt
+            sim.dust._rhs[-Nm:] = ri[-2]/r[-1] * \
+                (r[-1]-r[-2])*sim.dust.boundary.outer.value
+        # Constant gradient
+        elif sim.dust.boundary.outer.condition == "const_grad":
+            Do = ri[-2]/ri[-3] * (r[-1]-r[-2]) / (r[-2]-r[-3])
+            KNrm2 = - r[-2]/r[-1] * (1. + Do)
+            KNrm3 = r[-3]/r[-1] * Do
+            dat[-2*Nm:-Nm] = -KNrm2/dt
+            dat[-3*Nm:-2*Nm] = -KNrm3/dt
+            sim.dust._rhs[-Nm:] = 0.
+        # Given power law
+        elif sim.dust.boundary.outer.condition == "pow":
+            p = sim.dust.boundary.outer.value
+            sim.dust._rhs[-Nm:] = sim.dust.Sigma[-2] * (r[-1]/r[-2])**p
+        # Constant power law
+        elif sim.dust.boundary.outer.condition == "const_pow":
+            p = np.log(sim.dust.Sigma[-2] /
+                       sim.dust.Sigma[-3]) / np.log(r[-2]/r[-3])
+            KNrm2 = - (r[-1]/r[-2])**p
+            dat[-2*Nm:-Nm] = -KNrm2/dt
+            sim.dust._rhs[-Nm:] = 0.
+
+    # Creating sparce matrix for outer boundary
+    gen = (dat, (row, col))
+    J_out = csc_matrix(
+        gen,
+        shape=(Ntot, Ntot)
+    )
+
+    # Adding and returning all matrix components
+    return J_in + J_coag + J_hyd + J_out
+
+
 def kernel(sim):
     """Function calculates the vertically integrated collision kernel.
 
@@ -254,7 +516,10 @@ def p_stick(sim):
     -------
     ps : Field
         Sticking probability"""
-    return 1. - sim.dust.p.frag
+    p = 1. - sim.dust.p.frag
+    p[0] = 0.
+    p[-1] = 0.
+    return p
 
 
 def p_frag(sim):
@@ -451,7 +716,8 @@ def coagulation_parameters(sim):
     cstick, cstick_ind, A, eps, klf, krm, phi = dust_f.coagulation_parameters(sim.ini.dust.crateringMassRatio,
                                                                               sim.ini.dust.excavatedMass,
                                                                               sim.ini.dust.fragmentDistribution,
-                                                                              sim.grid.m)
+                                                                              sim.grid.m,
+                                                                              np.int(sim.grid.Nr))
     return cstick, cstick_ind, A, eps, klf, krm, phi
 
 
@@ -554,8 +820,8 @@ def vrel_tot(sim):
     ret += sim.dust.v.rel.turb**2
     ret += sim.dust.v.rel.vert**2
 
-    #ret = sim.dust.v.rel.brown**2
-    #ret += sim.dust.v.rel.turb**2
+    # ret = sim.dust.v.rel.brown**2
+    # ret += sim.dust.v.rel.turb**2
 
     return np.sqrt(ret)
 
@@ -595,3 +861,60 @@ def vrel_vertical_settling(sim):
     vrel : Field
         Relative velocities"""
     return dust_f.vrel_vertical_settling(sim.dust.H, sim.grid.OmegaK, sim.dust.St)
+
+
+def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
+    """Implicit 1st-order integration scheme with direct matrix inversion
+
+    Parameters
+    ----------
+    x0 : Intvar
+        Integration variable at beginning of scheme
+    Y0 : Field
+        Variable to be integrated at the beginning of scheme
+    dx : IntVar
+        Stepsize of integration variable
+    jac : Field, optional, defaul : None
+        Current Jacobian. Will be calculated, if not set
+    args : additional positional arguments
+    kwargs : additional keyworda arguments
+
+    Returns
+    -------
+    dY : Field
+        Delta of variable to be integrated
+
+    Butcher tableau
+    ---------------
+     1 | 1
+    ---|---
+       | 1
+    """
+    if jac is None:
+        jac = Y0.jacobian(x0 + dx, dt=dx)
+    if rhs is None:
+        rhs = np.array(Y0.ravel())
+
+    Nr, Nm = Y0._owner.dust.Sigma.shape
+
+    # Add external source terms to right-hand side
+    rhs[Nm:-Nm] += dx*Y0._owner.dust.S.ext[1:-1, ...].ravel()
+
+    N = jac.shape[0]
+    eye = identity(N, format="csc")
+
+    A = eye - dx[0] * jac
+
+    A_LU = splu(A,
+                permc_spec="MMD_AT_PLUS_A",
+                diag_pivot_thresh=0.0,
+                options=dict(SymmetricMode=True))
+    Y1_ravel = A_LU.solve(rhs)
+
+    Y1 = Y1_ravel.reshape(Y0.shape)
+
+    return Y1 - Y0
+
+
+impl_1_direct = Scheme(
+    _f_impl_1_direct, description="Implicit 1st-order direct solver")

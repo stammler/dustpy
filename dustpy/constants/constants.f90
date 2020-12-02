@@ -10,15 +10,10 @@ module constants
     double precision :: M_jup = 1.8981245973360504d30
     double precision :: M_sun = 1.988409870698051d33
     double precision :: pi = ACOS(-1.d0)
+    double precision :: twopi = 2.d0 * ACOS(-1.d0)
     double precision :: R_sun = 6.9570000000d10
     double precision :: sigma_H2 = 2.d-15
     double precision :: sigma_sb = 5.6703744191844314d-05
     double precision :: year = 3.1557600d7
-
-    ! This is only used by the fragmentation algorithm
-    ! and should not be changed by the user. It is not
-    ! automatically passed to the Python module.
-    ! Particles fully fragment if j >= i-p.
-    integer :: p = 0 
 
 end module constants

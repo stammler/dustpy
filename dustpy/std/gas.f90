@@ -90,11 +90,12 @@ subroutine fi(Sigma, v, r, ri, F_i, Nr)
 end subroutine fi
 
 
-subroutine jac_abc(nu, r, ri, v, A, B, C, Nr)
+subroutine jac_abc(area, nu, r, ri, v, A, B, C, Nr)
     ! Subroutine calculates the diagonals of the gas Jacobian for advection.
     !
     ! Parameters
     ! ----------
+    ! area(Nr) : radial grid annulus area
     ! nu(Nr) : gas viscosity
     ! r(Nr) : Radial grid cell centers
     ! ri(Nr+1) : Radial grid cell interfaces
@@ -107,10 +108,11 @@ subroutine jac_abc(nu, r, ri, v, A, B, C, Nr)
     ! B(Nr) : diagonal
     ! C(Nr) : super-diagoanl, C(Nr) not used
 
-    use constants, only: pi
-
+    use constants, only: twopi
+    
     implicit none
 
+    double precision, intent(in)  :: area(Nr)
     double precision, intent(in)  :: nu(Nr)
     double precision, intent(in)  :: r(Nr)
     double precision, intent(in)  :: ri(Nr+1)
@@ -121,8 +123,8 @@ subroutine jac_abc(nu, r, ri, v, A, B, C, Nr)
     integer,          intent(in)  :: Nr
 
     integer :: ir
+    double precision :: Di(Nr+1)
     double precision :: g(Nr)
-    double precision :: Qi(Nr+1)
     double precision :: vi(Nr+1)
     double precision :: vim(Nr+1)
     double precision :: vip(Nr+1)
@@ -136,7 +138,7 @@ subroutine jac_abc(nu, r, ri, v, A, B, C, Nr)
 
     ! Helper quantities
     g(:) = nu(:) / sqrt(r(:))
-    Qi(:) = 3.d0 * sqrt(ri(:))
+    Di(:) = 3.d0 * sqrt(ri(:))
 
     ! Initialization
     A(:)    = 0.d0
@@ -145,22 +147,27 @@ subroutine jac_abc(nu, r, ri, v, A, B, C, Nr)
 
     ! Grid cell volumes and distances
     do ir=1, Nr
-        Vinv(ir) = r(ir) / ( pi * ( ri(ir+1)**2 - ri(ir)**2 ) )
+        Vinv(ir) = twopi / area(ir)
         w(ir) = r(ir+1) - r(ir)
     end do
 
     do ir=2, Nr-1
 
-        A(ir) =   ( vip(ir)               + Qi(ir)   * g(ir-1) / w(ir-1)                            ) * r(ir-1)
-        B(ir) = - ( vip(ir+1) - vim(ir)   + Qi(ir+1) * g(ir)   / w(ir)   + Qi(ir) * g(ir) / w(ir-1) )
-        C(ir) =   (             vim(ir+1) + Qi(ir+1) * g(ir+1) / w(ir)                              ) * r(ir+1)
+        A(ir) = A(ir) + vip(ir)   * r(ir-1)
+        B(ir) = B(ir) - vip(ir+1) * r(ir)   + vim(ir)   * r(ir)
+        C(ir) = C(ir)                       - vim(ir+1) * r(ir+1)
+
+        A(ir) = A(ir) + Di(ir)   * g(ir-1) / w(ir-1) * r(ir-1)
+        B(ir) = B(ir) - Di(ir)   * g(ir)   / w(ir-1) * r(ir)
+        B(ir) = B(ir) - Di(ir+1) * g(ir)   / w(ir)   * r(ir)
+        C(ir) = C(ir) + Di(ir+1) * g(ir+1) / w(ir)   * r(ir+1)
         
     end do
 
     ! Normailization
-    A(:) = A(:) * 2.d0*pi * Vinv(:) / r(:)
-    B(:) = B(:) * 2.d0*pi * Vinv(:)
-    C(:) = C(:) * 2.d0*pi * Vinv(:) / r(:)
+    A(:) = A(:) * Vinv(:)
+    B(:) = B(:) * Vinv(:)
+    C(:) = C(:) * Vinv(:)
 
 end subroutine jac_abc
 

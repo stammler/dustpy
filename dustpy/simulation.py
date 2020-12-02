@@ -17,7 +17,6 @@ import dustpy.std.star as std_star
 
 from dustpy.utils import hdf5writer
 from dustpy.utils.boundary import Boundary
-from dustpy.utils import print_version_warning
 
 import numpy as np
 from types import SimpleNamespace
@@ -126,7 +125,7 @@ class Simulation(Frame):
         self.dust.S.ext = None
         self.dust.S.hyd = None
         self.dust.S.tot = None
-        self.dust.S.updater = ["coag", "hyd", "ext", "tot"]
+        self.dust.S.updater = ["ext", "tot"]
         self.dust.Sigma = None
         self.dust.SigmaFloor = None
         self.dust.St = None
@@ -143,9 +142,9 @@ class Simulation(Frame):
             "azi", "brown", "rad", "turb", "vert", "tot"]
         self.dust.v.driftmax = None
         self.dust.v.rad = None
-        self.dust.v.updater = ["frag", "driftmax", "rad", "rel"]
+        self.dust.v.updater = ["frag", "driftmax", "rel"]
         self.dust.updater = ["delta", "rhos", "fill", "a", "St", "H",
-                             "rho", "backreaction", "v", "D", "eps", "Fi", "kernel", "p", "S"]
+                             "rho", "backreaction", "v", "D", "eps", "kernel", "p", "S"]
 
         # Gas quantities
         self.gas = Group(self, description="Gas quantities")
@@ -184,6 +183,7 @@ class Simulation(Frame):
         self.grid.Nr = None
         self.grid.r = None
         self.grid.ri = None
+        self.grid.A = None
         self.grid.Nm = None
         self.grid.m = None
         self.grid.OmegaK = None
@@ -266,12 +266,15 @@ class Simulation(Frame):
             ri = self.grid.ri
             Nr = ri.shape[0] - 1
         r = 0.5*(ri[:-1] + ri[1:])
+        A = np.pi*(ri[1:]**2 - ri[:-1]**2)
         self.grid.Nr = Field(
             self, Nr, description="# of radial grid cells", constant=True)
         self.grid.r = Field(
             self, r, description="Radial grid cell centers [cm]", constant=True)
         self.grid.ri = Field(
             self, ri, description="Radial grid cell interfaces [cm]", constant=True)
+        self.grid.A = Field(
+            self, A, description="Radial grid annulus area [cm²]", constant=True)
 
     def checkmassconservation(self):
         """Function checks for mass conservation and prints the maximum relative mass error."""
@@ -410,6 +413,7 @@ class Simulation(Frame):
         shape1 = (np.int(self.grid.Nr))
         shape1p1 = (np.int(self.grid.Nr)+1)
         shape2 = (np.int(self.grid.Nr), np.int(self.grid.Nm))
+        shape2ravel = (np.int(self.grid.Nr*self.grid.Nm))
         shape2p1 = (np.int(self.grid.Nr)+1, np.int(self.grid.Nm))
         shape3 = (np.int(self.grid.Nr), np.int(
             self.grid.Nm), np.int(self.grid.Nm))
@@ -763,30 +767,43 @@ class Simulation(Frame):
             self.dust.Sigma = Field(
                 self, Sigma, description="Surface density per mass bin [g/cm²]")
             self.dust.Sigma.differentiator = std_dust.Sigma_deriv
+            self.dust.Sigma.jacobinator = std_dust.jacobian
         # Fully initialize dust quantities
         self.dust.update()
+        # Hidden fields
+        # We store the old values of the surface density in a hidden field
+        # to calculate the fluxes through the boundaries in case of implicit integration.
+        self.dust._SigmaOld = Field(
+            self, self.dust.Sigma, description="Previous value of surface density [g/cm²]")
+        # The right-hand side of the matrix equation is stored in a hidden field
+        self.dust._rhs = Field(self, np.zeros(
+            shape2ravel), description="Right-hand side of matrix equation [g/cm²]")
         # Boundary conditions
         if self.dust.boundary.inner is None:
             self.dust.boundary.inner = Boundary(
-                self.grid.r, self.grid.ri, self.dust.Sigma)
+                self.grid.r,
+                self.grid.ri,
+                self.dust.Sigma,
+                condition="const_grad"
+            )
         if self.dust.boundary.outer is None:
             self.dust.boundary.outer = Boundary(
-                self.grid.r[::-1], self.grid.ri[::-1], self.dust.Sigma[::-1])
-
-        # Updating the entire Simulation object
-        self.update()
+                self.grid.r[::-1],
+                self.grid.ri[::-1],
+                self.dust.Sigma[::-1],
+                condition="val",
+                value=self.dust.SigmaFloor[-1]
+            )
 
         # INTEGRATOR
 
         if self.integrator is None:
             instructions = [
-                Instruction(schemes.expl_5_cash_karp_adptv,
+                Instruction(std_dust.impl_1_direct,
                             self.dust.Sigma,
-                            controller={"dYdx": self.dust.S.tot,
-                                        "eps": 0.1,
-                                        "S": 0.9,
+                            controller={"rhs": self.dust._rhs
                                         },
-                            description="Dust: explicit 5th-order adaptive Cash-Karp method"
+                            description="Dust: implicit 1st-order direct solver"
                             ),
                 Instruction(std_gas.impl_1_euler_direct,
                             self.gas.Sigma,
@@ -798,10 +815,134 @@ class Simulation(Frame):
             self.integrator = Integrator(
                 self.t, description="Default integrator")
             self.integrator.instructions = instructions
-            self.integrator.preparator = std_sim.prepare
-            self.integrator.finalizer = std_sim.finalize
+            self.integrator.preparator = std_sim.prepare_implicit_dust
+            self.integrator.finalizer = std_sim.finalize_implicit_dust
 
         # WRITER
 
         if self.writer is None:
             self.writer = hdf5writer
+
+        # Updating the entire Simulation object including integrator finalization
+        self.integrator._finalize()
+        self.update()
+
+    def setdustintegrator(self, scheme="explicit", method="cash-karp"):
+        """Function sets the dust integrator.
+
+        Parameters
+        ----------
+        scheme : string, optional, default : "explicit"
+            Possible values
+                {"explicit", "implicit"}
+        method : string, optional, default : "cash-karp"
+            Possible values for explicit integration
+                {"cash-karp"}
+            Possible values for implicit integration
+                {"direct", "gmres", "bicgstab}"""
+
+        if not isinstance(self.grid.Nm, Field) or not isinstance(self.grid.Nr, Field):
+            raise RuntimeError(
+                "The simulation frame has to be initialized before calling setdustimplicit().")
+
+        # Get index of dust instruction
+        for i, inst in enumerate(self.integrator.instructions):
+            if inst.Y is self.dust.Sigma:
+                break
+
+        if scheme == "implicit":
+
+            shape2ravel = (np.int(self.grid.Nr*self.grid.Nm))
+
+            # Hidden fields
+            # We store the old values of the surface density in a hidden field
+            # to calculate the fluxes through the boundaries in case of implicit integration.
+            self.dust._SigmaOld = Field(
+                self, self.dust.Sigma, description="Previous value of surface density [g/cm²]")
+            # The right-hand side of the matrix equation is stored in a hidden field
+            self.dust._rhs = Field(self, np.zeros(
+                shape2ravel), description="Right-hand side of matrix equation [g/cm²]")
+
+            # Setting the Jacobinator
+            self.dust.Sigma.jacobinator = std_dust.jacobian
+
+            # Time step routine
+            self.t.updater = std_sim.dt
+
+            # Updaters
+            self.dust.v.updater = ["frag", "driftmax", "rel"]
+            self.dust.updater = ["delta", "rhos", "fill", "a", "St", "H",
+                                 "rho", "backreaction", "v", "D", "eps", "kernel", "p", "S"]
+            self.dust.S.updater = ["ext", "tot"]
+
+            # Preparation/Finalization
+            self.integrator.preparator = std_sim.prepare_implicit_dust
+            self.integrator.finalizer = std_sim.finalize_implicit_dust
+
+            # Integrator
+            if method == "direct":
+
+                inst = Instruction(std_dust.impl_1_direct,
+                                   self.dust.Sigma,
+                                   controller={"rhs": self.dust._rhs
+                                               },
+                                   description="Dust: implicit 1st-order direct solver"
+                                   )
+                self.integrator.instructions[i] = inst
+
+            elif method == "gmres":
+                raise NotImplementedError(
+                    "GMRES method is not implemented, yet.")
+            elif method == "bicgstab":
+                raise NotImplementedError("BiCGSTAB is not implemented, yet.")
+            else:
+                raise RuntimeError("Invalid method for implicit integration.")
+        elif scheme == "explicit":
+
+            # Remove hidden fields if they exist
+            if hasattr(self.dust, "_SigmaOld"):
+                del self.dust._SigmaOld
+            if hasattr(self.dust, "_rhs"):
+                del self.dust._rhs
+
+            # Unset Jacobian
+            self.dust.Sigma.jacobinator = None
+
+            # Updaters
+            self.dust.v.updater = ["frag", "driftmax", "rad", "rel"]
+            self.dust.updater = ["delta", "rhos", "fill", "a", "St", "H",
+                                 "rho", "backreaction", "v", "D", "eps", "Fi", "kernel", "p", "S"]
+            self.dust.S.updater = ["coag", "hyd", "ext", "tot"]
+
+            # Preparation/Finalization
+            self.integrator.preparator = std_sim.prepare_explicit_dust
+            self.integrator.finalizer = std_sim.finalize_explicit_dust
+
+            if method == "cash-karp":
+
+                # Adaptive time step routine
+                self.t.updater = std_sim.dt_adaptive
+
+                # Instruction
+                inst = Instruction(schemes.expl_5_cash_karp_adptv,
+                                   self.dust.Sigma,
+                                   controller={"dYdx": self.dust.S.tot,
+                                               "eps": 0.1,
+                                               "S": 0.9,
+                                               },
+                                   description="Dust: explicit 5th-order adaptive Cash-Karp method"
+                                   )
+                self.integrator.instructions[i] = inst
+
+            else:
+                raise RuntimeError("Invalid method for explicit integration.")
+        else:
+            raise RuntimeError("Unknown integration scheme.")
+
+        self.integrator._finalize()
+        self.update()
+
+        if self.verbosity > 0:
+            msg = "Setting dust integrator\n    scheme: {}\n    method: {}".format(
+                colorize(scheme, "blue"), colorize(method, "blue"))
+            print(msg)
