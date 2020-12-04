@@ -30,4 +30,4 @@ utils.__version__ = __version__
 __all__ = ["constants", "hdf5writer", "plot", "readdump", "Simulation"]
 
 # Print warning if dustpy version is outdated
-# utils.print_version_warning()
+utils.print_version_warning()
