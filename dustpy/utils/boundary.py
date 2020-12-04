@@ -53,11 +53,12 @@ class Boundary(object):
         elif self._condition == "const_grad":
             text = "Constant gradient"
         elif self._condition == "val":
-            text = "Value ({:})".format(self._value)
+            text = "Value ({:})".format(repr(self._value))
         elif self._condition == "grad":
-            text = "Gradient ({:})".format(self._value)
+            text = "Gradient ({:})".format(repr(self._value))
         elif self._condition == "pow":
-            text = "Power law with set exponent ({:})".format(self._value)
+            text = "Power law with set exponent ({:})".format(
+                repr(self._value))
         ret = "{}".format(text)
         return ret
 
