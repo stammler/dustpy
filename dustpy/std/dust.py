@@ -134,13 +134,13 @@ def D(sim):
 
     Notes
     -----
-    The diffusivity at the first and last three radial
+    The diffusivity at the first and last two radial
     grid cells will be set to zero to avoid unwanted
     behavior at the boundaries."""
     v2 = sim.dust.delta.rad * sim.gas.cs**2
     Diff = dust_f.d(v2, sim.grid.OmegaK, sim.dust.St)
-    Diff[:3, ...] = 0.
-    Diff[-3:, ...] = 0.
+    Diff[:2, ...] = 0.
+    Diff[-2:, ...] = 0.
     return Diff
 
 
