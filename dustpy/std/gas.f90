@@ -226,16 +226,14 @@ subroutine v_visc(Sigma, nu, r, ri, vvisc, Nr)
     double precision, intent(out) :: vvisc(Nr)
     integer,          intent(in)  :: Nr
 
+    double precision :: arg(Nr)
     double precision :: argi(Nr+1)
-    double precision :: nui(Nr+1)
-    double precision :: Sigmai(Nr+1)
     double precision :: grad(Nr)
 
     integer :: ir
 
-    call interp1d(ri, r, nu, nui, Nr)
-    call interp1d(ri, r, Sigma, Sigmai, Nr)
-    argi(:) = Sigmai(:) * nui(:) * sqrt(ri(:))
+    arg(:) = Sigma(:) * nu(:) * sqrt(r(:))
+    call interp1d(ri, r, arg, argi, Nr)
     
     do ir=1, Nr
         grad(ir) = (argi(ir+1) - argi(ir)) / (ri(ir+1) - ri(ir))
