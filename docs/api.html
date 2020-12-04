@@ -137,11 +137,15 @@
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.coagulation_parameters.html">coagulation_parameters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.enforce_floor_value.html">enforce_floor_value</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.eps.html">eps</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.finalize.html">finalize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.finalize_explicit.html">finalize_explicit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.finalize_implicit.html">finalize_implicit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.jacobian.html">jacobian</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.kernel.html">kernel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.p_frag.html">p_frag</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.p_stick.html">p_stick</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.prepare.html">prepare</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.rho_midplane.html">rho_midplane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.set_implicit_boundaries.html">set_implicit_boundaries</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.vdriftmax.html">vdriftmax</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.vrad.html">vrad</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.vrel_azimuthal_drift.html">vrel_azimuthal_drift</a></li>
@@ -191,8 +195,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-dustpy.std.sim">dustpy.std.sim Module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id4">Functions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.sim.dt.html">dt</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.sim.finalize.html">finalize</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.sim.prepare.html">prepare</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.sim.dt_adaptive.html">dt_adaptive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.sim.finalize_explicit_dust.html">finalize_explicit_dust</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.sim.finalize_implicit_dust.html">finalize_implicit_dust</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.sim.prepare_explicit_dust.html">prepare_explicit_dust</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.sim.prepare_implicit_dust.html">prepare_implicit_dust</a></li>
 </ul>
 </li>
 </ul>
@@ -437,49 +444,76 @@ or data files.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.coagulation_parameters.html#dustpy.std.dust.coagulation_parameters" title="dustpy.std.dust.coagulation_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coagulation_parameters</span></code></a>(sim)</p></td>
 <td><p>Function calculates the coagulation parameters needed for a simple sticking-cratering-fragmentation collision model.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.enforce_floor_value.html#dustpy.std.dust.enforce_floor_value" title="dustpy.std.dust.enforce_floor_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enforce_floor_value</span></code></a>(sim)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">diags</span></code>(diagonals[, offsets, shape, format, dtype])</p></td>
+<td><p>Construct a sparse matrix from diagonals.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.enforce_floor_value.html#dustpy.std.dust.enforce_floor_value" title="dustpy.std.dust.enforce_floor_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">enforce_floor_value</span></code></a>(sim)</p></td>
 <td><p>Function enforces floor value onto dust surface density.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.eps.html#dustpy.std.dust.eps" title="dustpy.std.dust.eps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eps</span></code></a>(sim)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.eps.html#dustpy.std.dust.eps" title="dustpy.std.dust.eps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eps</span></code></a>(sim)</p></td>
 <td><p>Function returns the vertically integrated dust-to-gas ratio.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.finalize.html#dustpy.std.dust.finalize" title="dustpy.std.dust.finalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">finalize</span></code></a>(sim)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.finalize_explicit.html#dustpy.std.dust.finalize_explicit" title="dustpy.std.dust.finalize_explicit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">finalize_explicit</span></code></a>(sim)</p></td>
 <td><p>Function finalizes integration step.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.kernel.html#dustpy.std.dust.kernel" title="dustpy.std.dust.kernel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel</span></code></a>(sim)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.finalize_implicit.html#dustpy.std.dust.finalize_implicit" title="dustpy.std.dust.finalize_implicit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">finalize_implicit</span></code></a>(sim)</p></td>
+<td><p>Function finalizes implicit integration step.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">gmres</span></code>(A, b[, x0, tol, restart, maxiter, M, …])</p></td>
+<td><p>Use Generalized Minimal RESidual iteration to solve <code class="docutils literal notranslate"><span class="pre">Ax</span> <span class="pre">=</span> <span class="pre">b</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">identity</span></code>(n[, dtype, format])</p></td>
+<td><p>Identity matrix in sparse format</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.jacobian.html#dustpy.std.dust.jacobian" title="dustpy.std.dust.jacobian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jacobian</span></code></a>(sim, x, *args, **kwargs)</p></td>
+<td><p>Function calculates the Jacobian for implicit dust integration.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.kernel.html#dustpy.std.dust.kernel" title="dustpy.std.dust.kernel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kernel</span></code></a>(sim)</p></td>
 <td><p>Function calculates the vertically integrated collision kernel.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.p_frag.html#dustpy.std.dust.p_frag" title="dustpy.std.dust.p_frag"><code class="xref py py-obj docutils literal notranslate"><span class="pre">p_frag</span></code></a>(sim)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.p_frag.html#dustpy.std.dust.p_frag" title="dustpy.std.dust.p_frag"><code class="xref py py-obj docutils literal notranslate"><span class="pre">p_frag</span></code></a>(sim)</p></td>
 <td><p>Function calculates the fragmentation probability.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.p_stick.html#dustpy.std.dust.p_stick" title="dustpy.std.dust.p_stick"><code class="xref py py-obj docutils literal notranslate"><span class="pre">p_stick</span></code></a>(sim)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.p_stick.html#dustpy.std.dust.p_stick" title="dustpy.std.dust.p_stick"><code class="xref py py-obj docutils literal notranslate"><span class="pre">p_stick</span></code></a>(sim)</p></td>
 <td><p>Function calculates the sticking probability.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.prepare.html#dustpy.std.dust.prepare" title="dustpy.std.dust.prepare"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prepare</span></code></a>(sim)</p></td>
+<td><p>Function prepares implicit dust integration step.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.rho_midplane.html#dustpy.std.dust.rho_midplane" title="dustpy.std.dust.rho_midplane"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rho_midplane</span></code></a>(sim)</p></td>
 <td><p>Function calculates the midplane mass density.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.vdriftmax.html#dustpy.std.dust.vdriftmax" title="dustpy.std.dust.vdriftmax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vdriftmax</span></code></a>(sim)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.set_implicit_boundaries.html#dustpy.std.dust.set_implicit_boundaries" title="dustpy.std.dust.set_implicit_boundaries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_implicit_boundaries</span></code></a>(sim)</p></td>
+<td><p>Function calculates the fluxes at the boundaries after the implicit integration step.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">spilu</span></code>(A[, drop_tol, fill_factor, drop_rule, …])</p></td>
+<td><p>Compute an incomplete LU decomposition for a sparse, square matrix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">splu</span></code>(A[, permc_spec, diag_pivot_thresh, …])</p></td>
+<td><p>Compute the LU decomposition of a sparse, square matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.vdriftmax.html#dustpy.std.dust.vdriftmax" title="dustpy.std.dust.vdriftmax"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vdriftmax</span></code></a>(sim)</p></td>
 <td><p>Function calculates the maximum drift velocity of the dust including back reaction of the gas onto the dust, if the back reaction coefficients are set.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrad.html#dustpy.std.dust.vrad" title="dustpy.std.dust.vrad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrad</span></code></a>(sim)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrad.html#dustpy.std.dust.vrad" title="dustpy.std.dust.vrad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrad</span></code></a>(sim)</p></td>
 <td><p>Function calculated the radial velocity of the dust.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrel_azimuthal_drift.html#dustpy.std.dust.vrel_azimuthal_drift" title="dustpy.std.dust.vrel_azimuthal_drift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrel_azimuthal_drift</span></code></a>(sim)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrel_azimuthal_drift.html#dustpy.std.dust.vrel_azimuthal_drift" title="dustpy.std.dust.vrel_azimuthal_drift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrel_azimuthal_drift</span></code></a>(sim)</p></td>
 <td><p>Function calculates the relative particle velocities due to azimuthal drift.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrel_brownian_motion.html#dustpy.std.dust.vrel_brownian_motion" title="dustpy.std.dust.vrel_brownian_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrel_brownian_motion</span></code></a>(sim)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrel_brownian_motion.html#dustpy.std.dust.vrel_brownian_motion" title="dustpy.std.dust.vrel_brownian_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrel_brownian_motion</span></code></a>(sim)</p></td>
 <td><p>Function calculates the relative particle velocities due to Brownian motion.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrel_radial_drift.html#dustpy.std.dust.vrel_radial_drift" title="dustpy.std.dust.vrel_radial_drift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrel_radial_drift</span></code></a>(sim)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrel_radial_drift.html#dustpy.std.dust.vrel_radial_drift" title="dustpy.std.dust.vrel_radial_drift"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrel_radial_drift</span></code></a>(sim)</p></td>
 <td><p>Function calculates the relative particle velocities due to radial drift.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrel_tot.html#dustpy.std.dust.vrel_tot" title="dustpy.std.dust.vrel_tot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrel_tot</span></code></a>(sim)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrel_tot.html#dustpy.std.dust.vrel_tot" title="dustpy.std.dust.vrel_tot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrel_tot</span></code></a>(sim)</p></td>
 <td><p>Function calculates the total relative vparticle velocities by taking the root mean square of all individual sources.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrel_turbulent_motion.html#dustpy.std.dust.vrel_turbulent_motion" title="dustpy.std.dust.vrel_turbulent_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrel_turbulent_motion</span></code></a>(sim)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrel_turbulent_motion.html#dustpy.std.dust.vrel_turbulent_motion" title="dustpy.std.dust.vrel_turbulent_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrel_turbulent_motion</span></code></a>(sim)</p></td>
 <td><p>Function calculates the relative particle velocities due to turbulent motion.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrel_vertical_settling.html#dustpy.std.dust.vrel_vertical_settling" title="dustpy.std.dust.vrel_vertical_settling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrel_vertical_settling</span></code></a>(sim)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.vrel_vertical_settling.html#dustpy.std.dust.vrel_vertical_settling" title="dustpy.std.dust.vrel_vertical_settling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrel_vertical_settling</span></code></a>(sim)</p></td>
 <td><p>Function calculates the relative particle velocities due to vertical settling.</p></td>
 </tr>
 </tbody>
@@ -531,7 +565,7 @@ or data files.</p>
 <td><p>Function finalizes gas integration step.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.gas.jacobian.html#dustpy.std.gas.jacobian" title="dustpy.std.gas.jacobian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jacobian</span></code></a>(sim, x, *args, **kwargs)</p></td>
-<td><p></p></td>
+<td><p>Functions calculates the Jacobian for the gas.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.gas.lyndenbellpringle1974.html#dustpy.std.gas.lyndenbellpringle1974" title="dustpy.std.gas.lyndenbellpringle1974"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lyndenbellpringle1974</span></code></a>(r, rc, p, Mdisk)</p></td>
 <td><p>Function calculates the surface density according the self similar solution of Lynden-Bell &amp; Pringle (1974).</p></td>
@@ -594,12 +628,21 @@ or data files.</p>
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.sim.dt.html#dustpy.std.sim.dt" title="dustpy.std.sim.dt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dt</span></code></a>(sim)</p></td>
-<td><p>Function calculates the timestep.</p></td>
+<td><p>Function returns the timestep depending on the source terms.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.sim.finalize.html#dustpy.std.sim.finalize" title="dustpy.std.sim.finalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">finalize</span></code></a>(sim)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.sim.dt_adaptive.html#dustpy.std.sim.dt_adaptive" title="dustpy.std.sim.dt_adaptive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dt_adaptive</span></code></a>(sim)</p></td>
+<td><p>Function that returns the suggested adaptive timestep.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.sim.finalize_explicit_dust.html#dustpy.std.sim.finalize_explicit_dust" title="dustpy.std.sim.finalize_explicit_dust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">finalize_explicit_dust</span></code></a>(sim)</p></td>
 <td><p>This function is the finalization function that is called after every integration step.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.sim.prepare.html#dustpy.std.sim.prepare" title="dustpy.std.sim.prepare"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prepare</span></code></a>(sim)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.sim.finalize_implicit_dust.html#dustpy.std.sim.finalize_implicit_dust" title="dustpy.std.sim.finalize_implicit_dust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">finalize_implicit_dust</span></code></a>(sim)</p></td>
+<td><p>This function is the finalization function that is called after every integration step.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.sim.prepare_explicit_dust.html#dustpy.std.sim.prepare_explicit_dust" title="dustpy.std.sim.prepare_explicit_dust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prepare_explicit_dust</span></code></a>(sim)</p></td>
+<td><p>This function is the preparation function that is called before every integration step.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.sim.prepare_implicit_dust.html#dustpy.std.sim.prepare_implicit_dust" title="dustpy.std.sim.prepare_implicit_dust"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prepare_implicit_dust</span></code></a>(sim)</p></td>
 <td><p>This function is the preparation function that is called before every integration step.</p></td>
 </tr>
 </tbody>

@@ -166,6 +166,14 @@
 <span class="kn">from</span> <span class="nn">dustpy.std</span> <span class="kn">import</span> <span class="n">dust_f</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">csc_matrix</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">diags</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">identity</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">gmres</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">LinearOperator</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">splu</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">spilu</span>
+<span class="kn">from</span> <span class="nn">simframe.integration</span> <span class="kn">import</span> <span class="n">Scheme</span>
 
 
 <div class="viewcode-block" id="boundary"><a class="viewcode-back" href="../../../api/dustpy.std.dust.boundary.html#dustpy.std.dust.boundary">[docs]</a><span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
@@ -187,12 +195,25 @@
 <span class="sd">    ----------</span>
 <span class="sd">    sim : Frame</span>
 <span class="sd">        Parent simulation frame&quot;&quot;&quot;</span>
-    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
-        <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">&lt;=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">SigmaFloor</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">SigmaFloor</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">)</span></div>
-    <span class="c1">#sim.dust.Sigma = np.array(np.maximum(sim.dust.Sigma, sim.dust.SigmaFloor))</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">SigmaFloor</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="finalize"><a class="viewcode-back" href="../../../api/dustpy.std.dust.finalize.html#dustpy.std.dust.finalize">[docs]</a><span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<div class="viewcode-block" id="prepare"><a class="viewcode-back" href="../../../api/dustpy.std.dust.prepare.html#dustpy.std.dust.prepare">[docs]</a><span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function prepares implicit dust integration step.</span>
+<span class="sd">    It stores the current value of the surface density in a hidden field.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sim : Frame</span>
+<span class="sd">        Parent simulation frame&quot;&quot;&quot;</span>
+    <span class="c1"># Setting external sources at boundaries to zero</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">ext</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">ext</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="c1"># Storing current surface density</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_SigmaOld</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="o">...</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="finalize_explicit"><a class="viewcode-back" href="../../../api/dustpy.std.dust.finalize_explicit.html#dustpy.std.dust.finalize_explicit">[docs]</a><span class="k">def</span> <span class="nf">finalize_explicit</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function finalizes integration step.</span>
 
 <span class="sd">    Parameters</span>
@@ -201,6 +222,46 @@
 <span class="sd">        Parent integration frame&quot;&quot;&quot;</span>
     <span class="n">boundary</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
     <span class="n">enforce_floor_value</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="finalize_implicit"><a class="viewcode-back" href="../../../api/dustpy.std.dust.finalize_implicit.html#dustpy.std.dust.finalize_implicit">[docs]</a><span class="k">def</span> <span class="nf">finalize_implicit</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function finalizes implicit integration step.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sim : Frame</span>
+<span class="sd">        Parent integration frame&quot;&quot;&quot;</span>
+    <span class="n">boundary</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+    <span class="n">enforce_floor_value</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rad</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">hyd</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">coag</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="n">set_implicit_boundaries</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="set_implicit_boundaries"><a class="viewcode-back" href="../../../api/dustpy.std.dust.set_implicit_boundaries.html#dustpy.std.dust.set_implicit_boundaries">[docs]</a><span class="k">def</span> <span class="nf">set_implicit_boundaries</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function calculates the fluxes at the boundaries after the implicit integration step.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sim : Frame</span>
+<span class="sd">        Parent simulation frame&quot;&quot;&quot;</span>
+    <span class="c1"># Total source terms</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span>
+                         <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_SigmaOld</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">stepsize</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span>
+                          <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_SigmaOld</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">stepsize</span>
+    <span class="c1"># Hydrodynamic source terms</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">hyd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">hyd</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># Fluxes</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">adv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">hyd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span>
+                                                 <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">adv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">adv</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">adv</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">hyd</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                           <span class="o">*</span> <span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">tot</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">adv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">tot</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">adv</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="a"><a class="viewcode-back" href="../../../api/dustpy.std.dust.a.html#dustpy.std.dust.a">[docs]</a><span class="k">def</span> <span class="nf">a</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
@@ -230,9 +291,18 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    D : Field</span>
-<span class="sd">        Dust diffusivity&quot;&quot;&quot;</span>
+<span class="sd">        Dust diffusivity</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The diffusivity at the first and last two radial</span>
+<span class="sd">    grid cells will be set to zero to avoid unwanted</span>
+<span class="sd">    behavior at the boundaries.&quot;&quot;&quot;</span>
     <span class="n">v2</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">rad</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">cs</span><span class="o">**</span><span class="mi">2</span>
-    <span class="k">return</span> <span class="n">dust_f</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">OmegaK</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">St</span><span class="p">)</span></div>
+    <span class="n">Diff</span> <span class="o">=</span> <span class="n">dust_f</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">OmegaK</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">St</span><span class="p">)</span>
+    <span class="n">Diff</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="n">Diff</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="k">return</span> <span class="n">Diff</span></div>
 
 
 <div class="viewcode-block" id="eps"><a class="viewcode-back" href="../../../api/dustpy.std.dust.eps.html#dustpy.std.dust.eps">[docs]</a><span class="k">def</span> <span class="nf">eps</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
@@ -332,6 +402,198 @@
     <span class="k">return</span> <span class="n">dust_f</span><span class="o">.</span><span class="n">h_dubrulle1995</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Hp</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">St</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">vert</span><span class="p">)</span></div>
 
 
+<div class="viewcode-block" id="jacobian"><a class="viewcode-back" href="../../../api/dustpy.std.dust.jacobian.html#dustpy.std.dust.jacobian">[docs]</a><span class="k">def</span> <span class="nf">jacobian</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function calculates the Jacobian for implicit dust integration.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sim : Frame</span>
+<span class="sd">        Parent simulation frame</span>
+<span class="sd">    x : IntVar</span>
+<span class="sd">        Integration variable</span>
+<span class="sd">    args : additional positional arguments</span>
+<span class="sd">    kwargs : additional keyworda arguments</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    jac : Sparse matrix</span>
+<span class="sd">        Dust Jacobian</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Function returns the Jacobian for ``Simulation.dust.Sigma.ravel()``</span>
+<span class="sd">    instead of ``Simulation.dust.Sigma``. The Jacobian is stored as</span>
+<span class="sd">    sparse matrix.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Parameters for function call</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">A</span>
+    <span class="n">cstick</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span>
+    <span class="n">eps</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">eps</span>
+    <span class="n">ilf</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">lf_ind</span>
+    <span class="n">irm</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">rm_ind</span>
+    <span class="n">istick</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick_ind</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span>
+    <span class="n">phi</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">phi</span>
+    <span class="n">Rf</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">kernel</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">frag</span>
+    <span class="n">Rs</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">kernel</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">stick</span>
+    <span class="n">SigD</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span>
+    <span class="n">SigDfloor</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">SigmaFloor</span>
+
+    <span class="c1"># Helper variables for convenience</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">stepsize</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span>
+    <span class="n">ri</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">A</span>
+    <span class="n">Nr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">)</span>
+    <span class="n">Nm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">)</span>
+
+    <span class="c1"># Building coagulation Jacobian</span>
+
+    <span class="c1"># Total problem size</span>
+    <span class="n">Ntot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">((</span><span class="n">Nr</span><span class="o">*</span><span class="n">Nm</span><span class="p">))</span>
+    <span class="c1"># Getting data vector and coordinates in sparse matrix</span>
+    <span class="n">dat</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">dust_f</span><span class="o">.</span><span class="n">jacobian_coagulation_generator</span><span class="p">(</span>
+        <span class="n">A</span><span class="p">,</span> <span class="n">cstick</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">ilf</span><span class="p">,</span> <span class="n">irm</span><span class="p">,</span> <span class="n">istick</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">Rf</span><span class="p">,</span> <span class="n">Rs</span><span class="p">,</span> <span class="n">SigD</span><span class="p">,</span> <span class="n">SigDfloor</span><span class="p">)</span>
+    <span class="n">gen</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">))</span>
+    <span class="c1"># Building sparse matrix of coagulation Jacobian</span>
+    <span class="n">J_coag</span> <span class="o">=</span> <span class="n">csc_matrix</span><span class="p">(</span>
+        <span class="n">gen</span><span class="p">,</span>
+        <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">Ntot</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Building the hydrodynamic Jacobian</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="n">dust_f</span><span class="o">.</span><span class="n">jacobian_hydrodynamic_generator</span><span class="p">(</span>
+        <span class="n">area</span><span class="p">,</span>
+        <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">D</span><span class="p">,</span>
+        <span class="n">r</span><span class="p">,</span>
+        <span class="n">ri</span><span class="p">,</span>
+        <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span>
+        <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rad</span>
+    <span class="p">)</span>
+    <span class="n">J_hyd</span> <span class="o">=</span> <span class="n">diags</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="n">Nm</span><span class="p">:],</span> <span class="n">B</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">C</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[:</span><span class="o">-</span><span class="n">Nm</span><span class="p">]),</span>
+        <span class="n">offsets</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">Nm</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Nm</span><span class="p">),</span>
+        <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">Ntot</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">),</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;csc&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Right-hand side</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="n">Nm</span><span class="p">:</span><span class="o">-</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="n">Nm</span><span class="p">:</span><span class="o">-</span><span class="n">Nm</span><span class="p">]</span>
+
+    <span class="c1"># BOUNDARIES</span>
+
+    <span class="c1"># Inner boundary</span>
+
+    <span class="c1"># Initializing data and coordinate vectors for sparse matrix</span>
+    <span class="n">dat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="mf">3.</span><span class="o">*</span><span class="n">Nm</span><span class="p">))</span>
+    <span class="n">row0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">Nm</span><span class="p">))</span>
+    <span class="n">col0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">Nm</span><span class="p">))</span>
+    <span class="n">col1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">Nm</span><span class="p">))</span> <span class="o">+</span> <span class="n">Nm</span>
+    <span class="n">col2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">Nm</span><span class="p">))</span> <span class="o">+</span> <span class="mf">2.</span><span class="o">*</span><span class="n">Nm</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">row0</span><span class="p">,</span> <span class="n">row0</span><span class="p">,</span> <span class="n">row0</span><span class="p">))</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">col0</span><span class="p">,</span> <span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">))</span>
+
+    <span class="c1"># Filling data vector depending on boundary condition</span>
+    <span class="k">if</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Given value</span>
+        <span class="k">if</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[:</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">value</span>
+        <span class="c1"># Constant value</span>
+        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_val&quot;</span><span class="p">:</span>
+            <span class="n">dat</span><span class="p">[</span><span class="n">Nm</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">dt</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[:</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="c1"># Given gradient</span>
+        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;grad&quot;</span><span class="p">:</span>
+            <span class="n">K1</span> <span class="o">=</span> <span class="o">-</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">dat</span><span class="p">[</span><span class="n">Nm</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">K1</span><span class="o">/</span><span class="n">dt</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[:</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">ri</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> \
+                <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">value</span>
+        <span class="c1"># Constant gradient</span>
+        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_grad&quot;</span><span class="p">:</span>
+            <span class="n">Di</span> <span class="o">=</span> <span class="n">ri</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">ri</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">K1</span> <span class="o">=</span> <span class="o">-</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">Di</span><span class="p">)</span>
+            <span class="n">K2</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Di</span>
+            <span class="n">dat</span><span class="p">[:</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+            <span class="n">dat</span><span class="p">[</span><span class="n">Nm</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">K1</span><span class="o">/</span><span class="n">dt</span>
+            <span class="n">dat</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="p">:]</span> <span class="o">=</span> <span class="o">-</span><span class="n">K2</span><span class="o">/</span><span class="n">dt</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[:</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="c1"># Given power law</span>
+        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;pow&quot;</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[:</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="n">p</span>
+        <span class="c1"># Constant power law</span>
+        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_pow&quot;</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span>
+                       <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">K1</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="n">p</span>
+            <span class="n">dat</span><span class="p">[</span><span class="n">Nm</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">K1</span><span class="o">/</span><span class="n">dt</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[:</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+
+    <span class="c1"># Creating sparce matrix for inner boundary</span>
+    <span class="n">gen</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">))</span>
+    <span class="n">J_in</span> <span class="o">=</span> <span class="n">csc_matrix</span><span class="p">(</span>
+        <span class="n">gen</span><span class="p">,</span>
+        <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">Ntot</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Outer boundary</span>
+
+    <span class="c1"># Initializing data and coordinate vectors for sparse matrix</span>
+    <span class="n">dat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="mf">3.</span><span class="o">*</span><span class="n">Nm</span><span class="p">))</span>
+    <span class="n">row0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">Nm</span><span class="p">))</span>
+    <span class="n">col0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">Nm</span><span class="p">))</span>
+    <span class="n">col1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">Nm</span><span class="p">))</span> <span class="o">-</span> <span class="n">Nm</span>
+    <span class="n">col2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">Nm</span><span class="p">))</span> <span class="o">-</span> <span class="mf">2.</span><span class="o">*</span><span class="n">Nm</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="p">(</span><span class="n">Nr</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">Nm</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">row0</span><span class="p">,</span> <span class="n">row0</span><span class="p">,</span> <span class="n">row0</span><span class="p">))</span> <span class="o">+</span> <span class="n">offset</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">col0</span><span class="p">,</span> <span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">))</span> <span class="o">+</span> <span class="n">offset</span>
+
+    <span class="c1"># Filling data vector depending on boundary condition</span>
+    <span class="k">if</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Given value</span>
+        <span class="k">if</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="o">-</span><span class="n">Nm</span><span class="p">:]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">value</span>
+        <span class="c1"># Constant value</span>
+        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_val&quot;</span><span class="p">:</span>
+            <span class="n">dat</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="p">:</span><span class="o">-</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">dt</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="o">-</span><span class="n">Nm</span><span class="p">:]</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="c1"># Given gradient</span>
+        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;grad&quot;</span><span class="p">:</span>
+            <span class="n">KNrm2</span> <span class="o">=</span> <span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">dat</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="p">:</span><span class="o">-</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">KNrm2</span><span class="o">/</span><span class="n">dt</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="o">-</span><span class="n">Nm</span><span class="p">:]</span> <span class="o">=</span> <span class="n">ri</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> \
+                <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">value</span>
+        <span class="c1"># Constant gradient</span>
+        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_grad&quot;</span><span class="p">:</span>
+            <span class="n">Do</span> <span class="o">=</span> <span class="n">ri</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">ri</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">KNrm2</span> <span class="o">=</span> <span class="o">-</span> <span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">Do</span><span class="p">)</span>
+            <span class="n">KNrm3</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">Do</span>
+            <span class="n">dat</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="p">:</span><span class="o">-</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">KNrm2</span><span class="o">/</span><span class="n">dt</span>
+            <span class="n">dat</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="o">*</span><span class="n">Nm</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">KNrm3</span><span class="o">/</span><span class="n">dt</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="o">-</span><span class="n">Nm</span><span class="p">:]</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="c1"># Given power law</span>
+        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;pow&quot;</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="o">-</span><span class="n">Nm</span><span class="p">:]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">**</span><span class="n">p</span>
+        <span class="c1"># Constant power law</span>
+        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_pow&quot;</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span>
+                       <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+            <span class="n">KNrm2</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">**</span><span class="n">p</span>
+            <span class="n">dat</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">Nm</span><span class="p">:</span><span class="o">-</span><span class="n">Nm</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">KNrm2</span><span class="o">/</span><span class="n">dt</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="o">-</span><span class="n">Nm</span><span class="p">:]</span> <span class="o">=</span> <span class="mf">0.</span>
+
+    <span class="c1"># Creating sparce matrix for outer boundary</span>
+    <span class="n">gen</span> <span class="o">=</span> <span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">))</span>
+    <span class="n">J_out</span> <span class="o">=</span> <span class="n">csc_matrix</span><span class="p">(</span>
+        <span class="n">gen</span><span class="p">,</span>
+        <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">Ntot</span><span class="p">,</span> <span class="n">Ntot</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Adding and returning all matrix components</span>
+    <span class="k">return</span> <span class="n">J_in</span> <span class="o">+</span> <span class="n">J_coag</span> <span class="o">+</span> <span class="n">J_hyd</span> <span class="o">+</span> <span class="n">J_out</span></div>
+
+
 <div class="viewcode-block" id="kernel"><a class="viewcode-back" href="../../../api/dustpy.std.dust.kernel.html#dustpy.std.dust.kernel">[docs]</a><span class="k">def</span> <span class="nf">kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function calculates the vertically integrated collision kernel.</span>
 
@@ -415,7 +677,10 @@
 <span class="sd">    -------</span>
 <span class="sd">    ps : Field</span>
 <span class="sd">        Sticking probability&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="mf">1.</span> <span class="o">-</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">frag</span></div>
+    <span class="n">p</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">-</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">frag</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="n">p</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="k">return</span> <span class="n">p</span></div>
 
 
 <div class="viewcode-block" id="p_frag"><a class="viewcode-back" href="../../../api/dustpy.std.dust.p_frag.html#dustpy.std.dust.p_frag">[docs]</a><span class="k">def</span> <span class="nf">p_frag</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
@@ -612,7 +877,8 @@
     <span class="n">cstick</span><span class="p">,</span> <span class="n">cstick_ind</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">klf</span><span class="p">,</span> <span class="n">krm</span><span class="p">,</span> <span class="n">phi</span> <span class="o">=</span> <span class="n">dust_f</span><span class="o">.</span><span class="n">coagulation_parameters</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">crateringMassRatio</span><span class="p">,</span>
                                                                               <span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">excavatedMass</span><span class="p">,</span>
                                                                               <span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">fragmentDistribution</span><span class="p">,</span>
-                                                                              <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
+                                                                              <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">,</span>
+                                                                              <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">cstick</span><span class="p">,</span> <span class="n">cstick_ind</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">klf</span><span class="p">,</span> <span class="n">krm</span><span class="p">,</span> <span class="n">phi</span></div>
 
 
@@ -715,8 +981,8 @@
     <span class="n">ret</span> <span class="o">+=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rel</span><span class="o">.</span><span class="n">turb</span><span class="o">**</span><span class="mi">2</span>
     <span class="n">ret</span> <span class="o">+=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rel</span><span class="o">.</span><span class="n">vert</span><span class="o">**</span><span class="mi">2</span>
 
-    <span class="c1">#ret = sim.dust.v.rel.brown**2</span>
-    <span class="c1">#ret += sim.dust.v.rel.turb**2</span>
+    <span class="c1"># ret = sim.dust.v.rel.brown**2</span>
+    <span class="c1"># ret += sim.dust.v.rel.turb**2</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span></div>
 
@@ -756,6 +1022,63 @@
 <span class="sd">    vrel : Field</span>
 <span class="sd">        Relative velocities&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">dust_f</span><span class="o">.</span><span class="n">vrel_vertical_settling</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">OmegaK</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">St</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_f_impl_1_direct</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">Y0</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rhs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Implicit 1st-order integration scheme with direct matrix inversion</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x0 : Intvar</span>
+<span class="sd">        Integration variable at beginning of scheme</span>
+<span class="sd">    Y0 : Field</span>
+<span class="sd">        Variable to be integrated at the beginning of scheme</span>
+<span class="sd">    dx : IntVar</span>
+<span class="sd">        Stepsize of integration variable</span>
+<span class="sd">    jac : Field, optional, defaul : None</span>
+<span class="sd">        Current Jacobian. Will be calculated, if not set</span>
+<span class="sd">    args : additional positional arguments</span>
+<span class="sd">    kwargs : additional keyworda arguments</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dY : Field</span>
+<span class="sd">        Delta of variable to be integrated</span>
+
+<span class="sd">    Butcher tableau</span>
+<span class="sd">    ---------------</span>
+<span class="sd">     1 | 1</span>
+<span class="sd">    ---|---</span>
+<span class="sd">       | 1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">jac</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">jac</span> <span class="o">=</span> <span class="n">Y0</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">x0</span> <span class="o">+</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dx</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rhs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">rhs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Y0</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+
+    <span class="n">Nr</span><span class="p">,</span> <span class="n">Nm</span> <span class="o">=</span> <span class="n">Y0</span><span class="o">.</span><span class="n">_owner</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="c1"># Add external source terms to right-hand side</span>
+    <span class="n">rhs</span><span class="p">[</span><span class="n">Nm</span><span class="p">:</span><span class="o">-</span><span class="n">Nm</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dx</span><span class="o">*</span><span class="n">Y0</span><span class="o">.</span><span class="n">_owner</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">ext</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">eye</span> <span class="o">=</span> <span class="n">identity</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;csc&quot;</span><span class="p">)</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="n">eye</span> <span class="o">-</span> <span class="n">dx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">jac</span>
+
+    <span class="n">A_LU</span> <span class="o">=</span> <span class="n">splu</span><span class="p">(</span><span class="n">A</span><span class="p">,</span>
+                <span class="n">permc_spec</span><span class="o">=</span><span class="s2">&quot;MMD_AT_PLUS_A&quot;</span><span class="p">,</span>
+                <span class="n">diag_pivot_thresh</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                <span class="n">options</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">SymmetricMode</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="n">Y1_ravel</span> <span class="o">=</span> <span class="n">A_LU</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+
+    <span class="n">Y1</span> <span class="o">=</span> <span class="n">Y1_ravel</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Y0</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Y1</span> <span class="o">-</span> <span class="n">Y0</span>
+
+
+<span class="n">impl_1_direct</span> <span class="o">=</span> <span class="n">Scheme</span><span class="p">(</span>
+    <span class="n">_f_impl_1_direct</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Implicit 1st-order direct solver&quot;</span><span class="p">)</span>
 </pre></div>
 
            </div>

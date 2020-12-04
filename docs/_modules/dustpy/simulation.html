@@ -178,7 +178,6 @@
 
 <span class="kn">from</span> <span class="nn">dustpy.utils</span> <span class="kn">import</span> <span class="n">hdf5writer</span>
 <span class="kn">from</span> <span class="nn">dustpy.utils.boundary</span> <span class="kn">import</span> <span class="n">Boundary</span>
-<span class="kn">from</span> <span class="nn">dustpy.utils</span> <span class="kn">import</span> <span class="n">print_version_warning</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">SimpleNamespace</span>
@@ -287,7 +286,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">ext</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">hyd</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;coag&quot;</span><span class="p">,</span> <span class="s2">&quot;hyd&quot;</span><span class="p">,</span> <span class="s2">&quot;ext&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ext&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">SigmaFloor</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">St</span> <span class="o">=</span> <span class="kc">None</span>
@@ -304,9 +303,9 @@
             <span class="s2">&quot;azi&quot;</span><span class="p">,</span> <span class="s2">&quot;brown&quot;</span><span class="p">,</span> <span class="s2">&quot;rad&quot;</span><span class="p">,</span> <span class="s2">&quot;turb&quot;</span><span class="p">,</span> <span class="s2">&quot;vert&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">driftmax</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rad</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;frag&quot;</span><span class="p">,</span> <span class="s2">&quot;driftmax&quot;</span><span class="p">,</span> <span class="s2">&quot;rad&quot;</span><span class="p">,</span> <span class="s2">&quot;rel&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;frag&quot;</span><span class="p">,</span> <span class="s2">&quot;driftmax&quot;</span><span class="p">,</span> <span class="s2">&quot;rel&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;delta&quot;</span><span class="p">,</span> <span class="s2">&quot;rhos&quot;</span><span class="p">,</span> <span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;St&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span>
-                             <span class="s2">&quot;rho&quot;</span><span class="p">,</span> <span class="s2">&quot;backreaction&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;eps&quot;</span><span class="p">,</span> <span class="s2">&quot;Fi&quot;</span><span class="p">,</span> <span class="s2">&quot;kernel&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">]</span>
+                             <span class="s2">&quot;rho&quot;</span><span class="p">,</span> <span class="s2">&quot;backreaction&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;eps&quot;</span><span class="p">,</span> <span class="s2">&quot;kernel&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">]</span>
 
         <span class="c1"># Gas quantities</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gas</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Gas quantities&quot;</span><span class="p">)</span>
@@ -345,6 +344,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">OmegaK</span> <span class="o">=</span> <span class="kc">None</span>
@@ -377,8 +377,7 @@
             <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">GitHub:        </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="s2">&quot;https://github.com/stammler/dustpy/&quot;</span><span class="p">)</span>
             <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Please cite:   </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="s2">&quot;Stammler &amp; Birnstiel (in prep.)&quot;</span><span class="p">)</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="n">colorize</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Please read README.md on the GitHub repository for</span><span class="se">\n</span><span class="s2">information about the Terms of Usage.&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="c1"># Check for mass conserbation</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">checkmassconservation</span><span class="p">()</span>
@@ -427,12 +426,15 @@
             <span class="n">ri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span>
             <span class="n">Nr</span> <span class="o">=</span> <span class="n">ri</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
         <span class="n">r</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">ri</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">ri</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">ri</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">ri</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">Nr</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;# of radial grid cells&quot;</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Radial grid cell centers [cm]&quot;</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">ri</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Radial grid cell interfaces [cm]&quot;</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Radial grid annulus area [cm²]&quot;</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Simulation.checkmassconservation"><a class="viewcode-back" href="../../api/dustpy.Simulation.html#dustpy.Simulation.checkmassconservation">[docs]</a>    <span class="k">def</span> <span class="nf">checkmassconservation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function checks for mass conservation and prints the maximum relative mass error.&quot;&quot;&quot;</span>
@@ -571,6 +573,7 @@
         <span class="n">shape1</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">))</span>
         <span class="n">shape1p1</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">shape2</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">))</span>
+        <span class="n">shape2ravel</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">))</span>
         <span class="n">shape2p1</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">))</span>
         <span class="n">shape3</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">))</span>
@@ -788,14 +791,16 @@
                                 <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Diffusivity [cm²/s]&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">D</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="n">std_dust</span><span class="o">.</span><span class="n">D</span>
         <span class="c1"># Deltas</span>
-        <span class="n">delta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape1</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">rad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape1</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">rad</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="bp">self</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Radial mixing parameter&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">turb</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape1</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">turb</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="bp">self</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Turbulent mixing parameter&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">vert</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape1</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">vert</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="bp">self</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Vertical mixing parameter&quot;</span><span class="p">)</span>
         <span class="c1"># Vertically integrated dust to gas ratio</span>
@@ -924,30 +929,43 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
                 <span class="bp">self</span><span class="p">,</span> <span class="n">Sigma</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Surface density per mass bin [g/cm²]&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">differentiator</span> <span class="o">=</span> <span class="n">std_dust</span><span class="o">.</span><span class="n">Sigma_deriv</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">jacobinator</span> <span class="o">=</span> <span class="n">std_dust</span><span class="o">.</span><span class="n">jacobian</span>
         <span class="c1"># Fully initialize dust quantities</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="c1"># Hidden fields</span>
+        <span class="c1"># We store the old values of the surface density in a hidden field</span>
+        <span class="c1"># to calculate the fluxes through the boundaries in case of implicit integration.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_SigmaOld</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Previous value of surface density [g/cm²]&quot;</span><span class="p">)</span>
+        <span class="c1"># The right-hand side of the matrix equation is stored in a hidden field</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+            <span class="n">shape2ravel</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Right-hand side of matrix equation [g/cm²]&quot;</span><span class="p">)</span>
         <span class="c1"># Boundary conditions</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span> <span class="o">=</span> <span class="n">Boundary</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span>
+                <span class="n">condition</span><span class="o">=</span><span class="s2">&quot;const_grad&quot;</span>
+            <span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span> <span class="o">=</span> <span class="n">Boundary</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-
-        <span class="c1"># Updating the entire Simulation object</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">condition</span><span class="o">=</span><span class="s2">&quot;val&quot;</span><span class="p">,</span>
+                <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">SigmaFloor</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">)</span>
 
         <span class="c1"># INTEGRATOR</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">instructions</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="n">Instruction</span><span class="p">(</span><span class="n">schemes</span><span class="o">.</span><span class="n">expl_5_cash_karp_adptv</span><span class="p">,</span>
+                <span class="n">Instruction</span><span class="p">(</span><span class="n">std_dust</span><span class="o">.</span><span class="n">impl_1_direct</span><span class="p">,</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span>
-                            <span class="n">controller</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;dYdx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span><span class="p">,</span>
-                                        <span class="s2">&quot;eps&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-                                        <span class="s2">&quot;S&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
+                            <span class="n">controller</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;rhs&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span>
                                         <span class="p">},</span>
-                            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dust: explicit 5th-order adaptive Cash-Karp method&quot;</span>
+                            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dust: implicit 1st-order direct solver&quot;</span>
                             <span class="p">),</span>
                 <span class="n">Instruction</span><span class="p">(</span><span class="n">std_gas</span><span class="o">.</span><span class="n">impl_1_euler_direct</span><span class="p">,</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span>
@@ -959,13 +977,137 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span> <span class="o">=</span> <span class="n">Integrator</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Default integrator&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">instructions</span> <span class="o">=</span> <span class="n">instructions</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">preparator</span> <span class="o">=</span> <span class="n">std_sim</span><span class="o">.</span><span class="n">prepare</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">finalizer</span> <span class="o">=</span> <span class="n">std_sim</span><span class="o">.</span><span class="n">finalize</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">preparator</span> <span class="o">=</span> <span class="n">std_sim</span><span class="o">.</span><span class="n">prepare_implicit_dust</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">finalizer</span> <span class="o">=</span> <span class="n">std_sim</span><span class="o">.</span><span class="n">finalize_implicit_dust</span>
 
         <span class="c1"># WRITER</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="o">=</span> <span class="n">hdf5writer</span></div></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="o">=</span> <span class="n">hdf5writer</span>
+
+        <span class="c1"># Updating the entire Simulation object including integrator finalization</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">_finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Simulation.setdustintegrator"><a class="viewcode-back" href="../../api/dustpy.Simulation.html#dustpy.Simulation.setdustintegrator">[docs]</a>    <span class="k">def</span> <span class="nf">setdustintegrator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;explicit&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cash-karp&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Function sets the dust integrator.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        scheme : string, optional, default : &quot;explicit&quot;</span>
+<span class="sd">            Possible values</span>
+<span class="sd">                {&quot;explicit&quot;, &quot;implicit&quot;}</span>
+<span class="sd">        method : string, optional, default : &quot;cash-karp&quot;</span>
+<span class="sd">            Possible values for explicit integration</span>
+<span class="sd">                {&quot;cash-karp&quot;}</span>
+<span class="sd">            Possible values for implicit integration</span>
+<span class="sd">                {&quot;direct&quot;, &quot;gmres&quot;, &quot;bicgstab}&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">,</span> <span class="n">Field</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">,</span> <span class="n">Field</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">&quot;The simulation frame has to be initialized before calling setdustimplicit().&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Get index of dust instruction</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">inst</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">instructions</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">inst</span><span class="o">.</span><span class="n">Y</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">scheme</span> <span class="o">==</span> <span class="s2">&quot;implicit&quot;</span><span class="p">:</span>
+
+            <span class="n">shape2ravel</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">))</span>
+
+            <span class="c1"># Hidden fields</span>
+            <span class="c1"># We store the old values of the surface density in a hidden field</span>
+            <span class="c1"># to calculate the fluxes through the boundaries in case of implicit integration.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_SigmaOld</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+                <span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Previous value of surface density [g/cm²]&quot;</span><span class="p">)</span>
+            <span class="c1"># The right-hand side of the matrix equation is stored in a hidden field</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+                <span class="n">shape2ravel</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Right-hand side of matrix equation [g/cm²]&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Setting the Jacobinator</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">jacobinator</span> <span class="o">=</span> <span class="n">std_dust</span><span class="o">.</span><span class="n">jacobian</span>
+
+            <span class="c1"># Time step routine</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="n">std_sim</span><span class="o">.</span><span class="n">dt</span>
+
+            <span class="c1"># Updaters</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;frag&quot;</span><span class="p">,</span> <span class="s2">&quot;driftmax&quot;</span><span class="p">,</span> <span class="s2">&quot;rel&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;delta&quot;</span><span class="p">,</span> <span class="s2">&quot;rhos&quot;</span><span class="p">,</span> <span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;St&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span>
+                                 <span class="s2">&quot;rho&quot;</span><span class="p">,</span> <span class="s2">&quot;backreaction&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;eps&quot;</span><span class="p">,</span> <span class="s2">&quot;kernel&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ext&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span>
+
+            <span class="c1"># Preparation/Finalization</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">preparator</span> <span class="o">=</span> <span class="n">std_sim</span><span class="o">.</span><span class="n">prepare_implicit_dust</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">finalizer</span> <span class="o">=</span> <span class="n">std_sim</span><span class="o">.</span><span class="n">finalize_implicit_dust</span>
+
+            <span class="c1"># Integrator</span>
+            <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;direct&quot;</span><span class="p">:</span>
+
+                <span class="n">inst</span> <span class="o">=</span> <span class="n">Instruction</span><span class="p">(</span><span class="n">std_dust</span><span class="o">.</span><span class="n">impl_1_direct</span><span class="p">,</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span>
+                                   <span class="n">controller</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;rhs&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span>
+                                               <span class="p">},</span>
+                                   <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dust: implicit 1st-order direct solver&quot;</span>
+                                   <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">instructions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">inst</span>
+
+            <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;gmres&quot;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+                    <span class="s2">&quot;GMRES method is not implemented, yet.&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;bicgstab&quot;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;BiCGSTAB is not implemented, yet.&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Invalid method for implicit integration.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">scheme</span> <span class="o">==</span> <span class="s2">&quot;explicit&quot;</span><span class="p">:</span>
+
+            <span class="c1"># Remove hidden fields if they exist</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="p">,</span> <span class="s2">&quot;_SigmaOld&quot;</span><span class="p">):</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_SigmaOld</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="p">,</span> <span class="s2">&quot;_rhs&quot;</span><span class="p">):</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span>
+
+            <span class="c1"># Unset Jacobian</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">jacobinator</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="c1"># Updaters</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;frag&quot;</span><span class="p">,</span> <span class="s2">&quot;driftmax&quot;</span><span class="p">,</span> <span class="s2">&quot;rad&quot;</span><span class="p">,</span> <span class="s2">&quot;rel&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;delta&quot;</span><span class="p">,</span> <span class="s2">&quot;rhos&quot;</span><span class="p">,</span> <span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;St&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span>
+                                 <span class="s2">&quot;rho&quot;</span><span class="p">,</span> <span class="s2">&quot;backreaction&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;eps&quot;</span><span class="p">,</span> <span class="s2">&quot;Fi&quot;</span><span class="p">,</span> <span class="s2">&quot;kernel&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;coag&quot;</span><span class="p">,</span> <span class="s2">&quot;hyd&quot;</span><span class="p">,</span> <span class="s2">&quot;ext&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span>
+
+            <span class="c1"># Preparation/Finalization</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">preparator</span> <span class="o">=</span> <span class="n">std_sim</span><span class="o">.</span><span class="n">prepare_explicit_dust</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">finalizer</span> <span class="o">=</span> <span class="n">std_sim</span><span class="o">.</span><span class="n">finalize_explicit_dust</span>
+
+            <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;cash-karp&quot;</span><span class="p">:</span>
+
+                <span class="c1"># Adaptive time step routine</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="n">std_sim</span><span class="o">.</span><span class="n">dt_adaptive</span>
+
+                <span class="c1"># Instruction</span>
+                <span class="n">inst</span> <span class="o">=</span> <span class="n">Instruction</span><span class="p">(</span><span class="n">schemes</span><span class="o">.</span><span class="n">expl_5_cash_karp_adptv</span><span class="p">,</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span>
+                                   <span class="n">controller</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;dYdx&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span><span class="p">,</span>
+                                               <span class="s2">&quot;eps&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+                                               <span class="s2">&quot;S&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
+                                               <span class="p">},</span>
+                                   <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dust: explicit 5th-order adaptive Cash-Karp method&quot;</span>
+                                   <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">instructions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">inst</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Invalid method for explicit integration.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Unknown integration scheme.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">_finalize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Setting dust integrator</span><span class="se">\n</span><span class="s2">    scheme: </span><span class="si">{}</span><span class="se">\n</span><span class="s2">    method: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">colorize</span><span class="p">(</span><span class="n">scheme</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">),</span> <span class="n">colorize</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

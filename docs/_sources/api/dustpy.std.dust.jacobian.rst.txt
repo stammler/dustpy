@@ -1,6 +1,6 @@
-finalize
+jacobian
 ========
 
 .. currentmodule:: dustpy.std.dust
 
-.. autofunction:: finalize
+.. autofunction:: jacobian

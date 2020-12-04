@@ -107,6 +107,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#External-Sources">External Sources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Turning-off-Dust-Evolution">Turning off Dust Evolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Changing-the-Dust-Integrator">Changing the Dust Integrator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a></li>
@@ -447,38 +448,16 @@ div.rendered_html tbody tr:hover {
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">Simulation</span>
 <span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">mmax</span> <span class="o">=</span> <span class="mf">10.</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">mmin</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">allowDriftingParticles</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<p>The dust is by default integrated with an implicit 1st-order Euler method.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Group (Sources)
----------------
-    coag         : Field (Coagulation sources [g/cm²/s])
-    ext          : Field (External sources [g/cm²/s])
-    hyd          : Field (Hydrodynamic sources [g/cm²/s])
-    tot          : Field (Tot sources [g/cm²/s])
-  -----
-</pre></div></div>
-</div>
-<p>The total source terms <code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.tot</span></code> is used as source terms for the integration method.</p>
-<p>The dust is by default integrated with the 5th-order adaptive Cash-Karp method provided by <code class="docutils literal notranslate"><span class="pre">Simframe</span></code>. Since the gas is by default integrated with an implicit method it is unconditionally stable and uses the time step set by the dust evolution.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -487,15 +466,88 @@ Group (Sources)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[Instruction (Dust: implicit 1st-order direct solver),
+ Instruction (Gas: implicit 1st-order Euler method)]
+</pre></div></div>
+</div>
+<p>The implicit matrix equation that is solved for dust evolution is given by</p>
+<p><span class="math notranslate nohighlight">\(\frac{\vec{\Sigma}_\mathrm{d}^{n+1}-\vec{\Sigma}_\mathrm{d}^{n}}{\Delta t} = \mathbb{J} \cdot \vec{\Sigma}_\mathrm{d}^{n+1} + \vec{S}_\mathrm{ext},\)</span></p>
+<p>which can be written as</p>
+<p><span class="math notranslate nohighlight">\(\begin{split} \left( \mathbb{1} - \Delta t\, \mathbb{J} \right) \cdot \vec{\Sigma}_\mathrm{d}^{n+1} &amp;= \vec{\Sigma}_\mathrm{d}^{n} + \Delta t\, \vec{S}_\mathrm{ext}\\ &amp;\equiv \vec{R}^n, \end{split}\)</span></p>
+<p>with</p>
+<p><span class="math notranslate nohighlight">\(\vec{R}^n = \vec{\Sigma}_\mathrm{d}^{n} + \Delta t\, \vec{S}_\mathrm{ext}\)</span>.</p>
+<p>The Jacobian <span class="math notranslate nohighlight">\(\mathbb{J}\)</span> is a sparse matrix. <span class="math notranslate nohighlight">\(\vec{\Sigma}_\mathrm{d}\)</span> is a one-dimensional state vector that can be produces from the surface densities with the <code class="docutils literal notranslate"><span class="pre">ravel()</span></code> method.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[Instruction (Dust: explicit 5th-order adaptive Cash-Karp method),
- Instruction (Gas: implicit 1st-order Euler method)]
+(40,)
 </pre></div></div>
 </div>
+<p>The Jacobian looks as follows.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">jacobian</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span> <span class="o">!=</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Structure of Jacobian $\mathbb</span><span class="si">{J}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/6_dust_evolution_8_0.png" src="_images/6_dust_evolution_8_0.png" />
+</div>
+</div>
+<p>This is a the Jacobian for a simulation with 5 radial grid cells and 8 mass bins. This the Jacobian acts on the raveled dust surface densities <code class="docutils literal notranslate"><span class="pre">Simulation.dust.Sigma.ravel()</span></code> is has a shape of <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nr*Simulation.grid.Nm,</span> <span class="pre">Simulation.grid.Nr*Simulation.grid.Nm)</span></code></p>
+<p>Each box has a shape <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nm,</span> <span class="pre">Simulation.grid.Nm)</span></code>. The boxes on the diagonals contain the coagulation part of the Jacobian. Due to our choice of quantities shown in the chapter about coagulation, the coagulation Jacobian is a upper diagonal matrix with a limited number of lower diagonals. That number depends on the mass grid. The last two columns are empty in this case, because in this case no possible sticking collision involving the two largest mass bins exists that would
+results in a particle with mass smaller than the largest mass bin. Fragmentation is not happening this early in the simulation.</p>
+<p>We do not calculate coagulation in the first and last grid cells. Hence the empty boxes.</p>
+<p>The diagonals represent the transport part of dust evolution.</p>
+<p>The first and the last row set the boundary conditions. The inner boundary is set to constant gradient. Therefore, the second and third boxes of the first row have diagonals. The outer boundary is set to floor value. Therefore the entire row is empty.</p>
+<p>Since most of the elements of the Jacobian are empty – especially in larger simulations – the Jacobians is stored as sparse matrix only saving the non-zero elements.</p>
+<p>The implicit integration schemes that come with <code class="docutils literal notranslate"><span class="pre">simframe</span></code> only integrate equations of kind</p>
+<p><span class="math notranslate nohighlight">\(\left( \mathbb{1} - \Delta t\, \mathbb{J} \right) \cdot \vec{Y}^{n+1} = \vec{Y}^n\)</span>.</p>
+<div class="line-block">
+<div class="line">We’ve therefore creates a custom integration schemes for our needs.</div>
+<div class="line">Whenever <code class="docutils literal notranslate"><span class="pre">Simulation.dust.Sigma.jacobian()</span></code> is called, the right-hand side of our equation is calculated and stored in a hidden field <code class="docutils literal notranslate"><span class="pre">Simulation.dusts._rhs</span></code>, that can be accessed by our integration scheme.</div>
+</div>
+<p>The first and the last rows of the Jacobian, which contain the boundary conditions do not contain the time step <span class="math notranslate nohighlight">\(\Delta t\)</span>, since this is not necessarily known when calculating the Jacobian. The integration scheme will add the term containing the time step.</p>
+<p>The custom integration scheme can be found in <code class="docutils literal notranslate"><span class="pre">dustpy.std.dust.impl_1_direct</span></code>.</p>
 <div class="section" id="Coagulation">
 <h2>Coagulation<a class="headerlink" href="#Coagulation" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
@@ -506,7 +558,7 @@ Group (Sources)
 <h3>Turning off Fragmentation<a class="headerlink" href="#Turning-off-Fragmentation" title="Permalink to this headline">¶</a></h3>
 <p>If you want to turn off fragmentation (but not sticking), set the sticking probabilities to <span class="math notranslate nohighlight">\(1\)</span>, the fragmentation probabilities to <span class="math notranslate nohighlight">\(0\)</span>, and unset the updater of the probabilities.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -520,20 +572,21 @@ Group (Sources)
 </div>
 <div class="section" id="Turning-off-Coagulation">
 <h3>Turning off Coagulation<a class="headerlink" href="#Turning-off-Coagulation" title="Permalink to this headline">¶</a></h3>
-<p>If you want to turn off coagulation in total, set the coagulation sources to <span class="math notranslate nohighlight">\(0\)</span> and unset the updater.</p>
+<p>If you want to turn off coagulation in total, you have to set both probabilities to zero.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">coag</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">coag</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="kc">None</span>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">stick</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">frag</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
 <p>You can furthermore unset the updaters of the other fields, that are only used for coagulation to save computational resources.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -552,7 +605,7 @@ Group (Sources)
 <p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{d} + \frac{1}{r} \frac{\partial}{\partial r} \left( r\Sigma_\mathrm{d}v_\mathrm{rad} \right) - \frac{1}{r} \frac{\partial}{\partial r} \left[ D \Sigma_\mathrm{g} \frac{\partial}{\partial r} \left( \frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{g}} \right) \right] = 0\)</span></p>
 <p>The dust hydrodynamics consists of an advective and an diffusive term. The algorithm calculates the advective and diffusive fluxes separately at the grid cell interfaces. Furthermore, the sum of both is calculated.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -561,7 +614,7 @@ Group (Sources)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -582,20 +635,9 @@ Group (Fluxes)
 </div>
 <div class="section" id="Turning-off-Advection">
 <h3>Turning off Advection<a class="headerlink" href="#Turning-off-Advection" title="Permalink to this headline">¶</a></h3>
-<p>To turn off advection, you can set the advective fluxes to <span class="math notranslate nohighlight">\(0\)</span> and unset the updater.</p>
+<p>To turn off advection, you can set the radial dust velocities to <span class="math notranslate nohighlight">\(0\)</span> and unset the updater.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">adv</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">adv</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="kc">None</span>
-</pre></div>
-</div>
-</div>
-<p>However, this will still calculate the radial velocities, which will have an effect on the collision velocities caused by radial drift. If you do not want radial drift to contribute to the relative velocities, you also have to unset it.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -617,48 +659,30 @@ Group (Fluxes)
 </div>
 <div class="section" id="Turning-off-Diffusion">
 <h3>Turning off Diffusion<a class="headerlink" href="#Turning-off-Diffusion" title="Permalink to this headline">¶</a></h3>
-<p>To turn off dust diffusion you can set the diffusive fluxes to <span class="math notranslate nohighlight">\(0\)</span> and unset the updater.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">diff</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">diff</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="kc">None</span>
-</pre></div>
-</div>
-</div>
-<p>You can furthermore unset the updater of the diffusivity, since it’s not needed.</p>
+<p>To turn off dust diffusion you can set the diffusivities to <span class="math notranslate nohighlight">\(0\)</span> and unset the updater.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">D</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="kc">None</span>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">D</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">D</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="Turning-off-Hydrodynamics">
 <h3>Turning off Hydrodynamics<a class="headerlink" href="#Turning-off-Hydrodynamics" title="Permalink to this headline">¶</a></h3>
-<p>If you want to turn off dust hydrodynamics in total, you can simply set hydrodynamic source terms of the dust to <span class="math notranslate nohighlight">\(0\)</span> and unset the updater.</p>
+<p>If you want to turn off dust hydrodynamics in total, you have to set the radial dust velocity and the dust diffusivities to <span class="math notranslate nohighlight">\(0\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">hyd</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">hyd</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="kc">None</span>
-</pre></div>
-</div>
-</div>
-<p>You can also unset the updater of the fluxes.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="kc">None</span>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rad</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rad</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">D</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">D</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
@@ -672,21 +696,9 @@ Group (Fluxes)
 </div>
 <div class="section" id="Turning-off-Dust-Evolution">
 <h2>Turning off Dust Evolution<a class="headerlink" href="#Turning-off-Dust-Evolution" title="Permalink to this headline">¶</a></h2>
-<p>If you want to deactivate dust evolution as a whole you can set the total source terms to <span class="math notranslate nohighlight">\(0\)</span> and unset the updater. This will leave <code class="docutils literal notranslate"><span class="pre">Simulation.dust.Sigma</span></code> unchanged throughout your simulation.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="kc">None</span>
-</pre></div>
-</div>
-</div>
-<p>You can also deactivate other fields, that are not needed in that case, as described above.</p>
-<p>Another possibility of turning off dust evolution is by removing the integration instruction from the instruction set.</p>
+<p>If you want to deactivate dust evolution as a whole you can remove the integration instruction from the instruction set.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -695,17 +707,17 @@ Group (Fluxes)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[Instruction (Dust: explicit 5th-order adaptive Cash-Karp method),
+[Instruction (Dust: implicit 1st-order direct solver),
  Instruction (Gas: implicit 1st-order Euler method)]
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -714,7 +726,7 @@ Group (Fluxes)
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -723,7 +735,7 @@ Group (Fluxes)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -731,10 +743,83 @@ Group (Fluxes)
 [Instruction (Gas: implicit 1st-order Euler method)]
 </pre></div></div>
 </div>
+<p>You can also deactivate other fields, that are not needed in that case, as described above.</p>
 <p>Keep in mind that the updaters of all fields within <code class="docutils literal notranslate"><span class="pre">Simulation.dust</span></code> will still be called and the fields will be updated unless their updaters are unset. This will on one hand cost computational ressources, and on the other hand could influence the physics in an unwanted way.</p>
 <p>For example the dust backreaction coefficients will still be calculated and can have an effect on the gas, even though the dust is in principle not moving.</p>
 <p>Always keep in mind what you want to achieve by turning off dust evolution and unset the updaters of certain fields, if required.</p>
-<p><strong>Note:</strong> If you remove the dust integration instruction, you have to provide a function that calculates the timestep, since by default <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> uses the timestep the adaptive dust integration scheme suggests. See the chapter about gas evolution tests for details.</p>
+</div>
+<div class="section" id="Changing-the-Dust-Integrator">
+<h2>Changing the Dust Integrator<a class="headerlink" href="#Changing-the-Dust-Integrator" title="Permalink to this headline">¶</a></h2>
+<p>By default the dust surface densities are integrated implicitly. This involves a matrix inversion. In some cases if the matrix is weakly conditioned this can cause a violation of mass conservation. In that case you might want to use an explicit integrator instead. You can do this by calling</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">setdustintegrator</span><span class="p">(</span><span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;explicit&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cash-karp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Setting dust integrator
+    scheme: <span class="ansi-blue-intense-fg">explicit</span>
+    method: <span class="ansi-blue-intense-fg">cash-karp</span>
+</pre></div></div>
+</div>
+<p>to set the dust integrator to an explicit 5th-order scheme. The function also changes the update order automatically, since for explicit integration all quantities need to be updated before integration. The update order for explicit integration is</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;delta&quot;</span><span class="p">,</span> <span class="s2">&quot;rhos&quot;</span><span class="p">,</span> <span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;St&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;rho&quot;</span><span class="p">,</span> <span class="s2">&quot;backreaction&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;eps&quot;</span><span class="p">,</span> <span class="s2">&quot;Fi&quot;</span><span class="p">,</span> <span class="s2">&quot;kernel&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">]</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">backreaction</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rad&quot;</span><span class="p">,</span> <span class="s2">&quot;turb&quot;</span><span class="p">,</span> <span class="s2">&quot;vert&quot;</span><span class="p">]</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adv&quot;</span><span class="p">,</span> <span class="s2">&quot;diff&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;frag&quot;</span><span class="p">,</span> <span class="s2">&quot;stick&quot;</span><span class="p">]</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;coag&quot;</span><span class="p">,</span> <span class="s2">&quot;hyd&quot;</span><span class="p">,</span> <span class="s2">&quot;ext&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;frag&quot;</span><span class="p">,</span> <span class="s2">&quot;driftmax&quot;</span><span class="p">,</span> <span class="s2">&quot;rad&quot;</span><span class="p">,</span> <span class="s2">&quot;rel&quot;</span><span class="p">]</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rel</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;azi&quot;</span><span class="p">,</span> <span class="s2">&quot;brown&quot;</span><span class="p">,</span> <span class="s2">&quot;rad&quot;</span><span class="p">,</span> <span class="s2">&quot;turb&quot;</span><span class="p">,</span> <span class="s2">&quot;vert&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>There are other options for setting the dust integrator. See</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">help</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">setdustintegrator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Help on method setdustintegrator in module dustpy.simulation:
+
+setdustintegrator(scheme=&#39;explicit&#39;, method=&#39;cash-karp&#39;) method of dustpy.simulation.Simulation instance
+    Function sets the dust integrator.
+
+    Parameters
+    ----------
+    scheme : string, optional, default : &#34;explicit&#34;
+        Possible values
+            {&#34;explicit&#34;, &#34;implicit&#34;}
+    method : string, optional, default : &#34;cash-karp&#34;
+        Possible values for explicit integration
+            {&#34;cash-karp&#34;}
+        Possible values for implicit integration
+            {&#34;direct&#34;, &#34;gmres&#34;, &#34;bicgstab}
+
+</pre></div></div>
+</div>
 </div>
 </div>
 

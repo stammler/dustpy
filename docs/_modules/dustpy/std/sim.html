@@ -164,27 +164,78 @@
 <span class="kn">import</span> <span class="nn">dustpy.std.dust</span> <span class="k">as</span> <span class="nn">std_dust</span>
 <span class="kn">import</span> <span class="nn">dustpy.std.gas</span> <span class="k">as</span> <span class="nn">std_gas</span>
 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<div class="viewcode-block" id="dt"><a class="viewcode-back" href="../../../api/dustpy.std.sim.dt.html#dustpy.std.sim.dt">[docs]</a><span class="k">def</span> <span class="nf">dt</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the timestep.</span>
+
+<div class="viewcode-block" id="dt_adaptive"><a class="viewcode-back" href="../../../api/dustpy.std.sim.dt_adaptive.html#dustpy.std.sim.dt_adaptive">[docs]</a><span class="k">def</span> <span class="nf">dt_adaptive</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function that returns the suggested adaptive timestep.</span>
 <span class="sd">    By default DustPy uses adaptive integration schemes. The step</span>
 <span class="sd">    size function is therefore simply returning the suggested</span>
 <span class="sd">    step size.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">suggested</span></div>
 
 
-<div class="viewcode-block" id="prepare"><a class="viewcode-back" href="../../../api/dustpy.std.sim.prepare.html#dustpy.std.sim.prepare">[docs]</a><span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<div class="viewcode-block" id="dt"><a class="viewcode-back" href="../../../api/dustpy.std.sim.dt.html#dustpy.std.sim.dt">[docs]</a><span class="k">def</span> <span class="nf">dt</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function returns the timestep depending on the source terms.&quot;&quot;&quot;</span>
+    <span class="n">cfl</span> <span class="o">=</span> <span class="mf">0.9</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="mf">1.e100</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.</span><span class="p">):</span>
+        <span class="n">mask_gas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">&gt;</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">SigmaFloor</span><span class="p">,</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span> <span class="o">&lt;</span> <span class="mf">0.</span><span class="p">)</span>
+        <span class="n">mask_gas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">mask_gas</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">rate_gas</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="n">mask_gas</span><span class="p">]</span> <span class="o">/</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span><span class="p">[</span><span class="n">mask_gas</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dt_gas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">rate_gas</span><span class="p">))</span>
+            <span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">dt_gas</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.</span><span class="p">):</span>
+        <span class="n">mask_dust</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_and</span><span class="p">(</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">&gt;</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">SigmaFloor</span><span class="p">,</span>
+            <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span> <span class="o">&lt;</span> <span class="mf">0.</span><span class="p">)</span>
+        <span class="n">mask_dust</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">mask_dust</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">rate_dust</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="n">mask_dust</span><span class="p">]</span> <span class="o">/</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">tot</span><span class="p">[</span><span class="n">mask_dust</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dt_dust</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">rate_dust</span><span class="p">))</span>
+            <span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">dt_dust</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="k">return</span> <span class="n">cfl</span> <span class="o">*</span> <span class="n">dt</span></div>
+
+
+<div class="viewcode-block" id="prepare_explicit_dust"><a class="viewcode-back" href="../../../api/dustpy.std.sim.prepare_explicit_dust.html#dustpy.std.sim.prepare_explicit_dust">[docs]</a><span class="k">def</span> <span class="nf">prepare_explicit_dust</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This function is the preparation function that is called</span>
 <span class="sd">    before every integration step.&quot;&quot;&quot;</span>
     <span class="n">std_gas</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="finalize"><a class="viewcode-back" href="../../../api/dustpy.std.sim.finalize.html#dustpy.std.sim.finalize">[docs]</a><span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<div class="viewcode-block" id="prepare_implicit_dust"><a class="viewcode-back" href="../../../api/dustpy.std.sim.prepare_implicit_dust.html#dustpy.std.sim.prepare_implicit_dust">[docs]</a><span class="k">def</span> <span class="nf">prepare_implicit_dust</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function is the preparation function that is called</span>
+<span class="sd">    before every integration step.&quot;&quot;&quot;</span>
+    <span class="n">std_gas</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+    <span class="n">std_dust</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="finalize_explicit_dust"><a class="viewcode-back" href="../../../api/dustpy.std.sim.finalize_explicit_dust.html#dustpy.std.sim.finalize_explicit_dust">[docs]</a><span class="k">def</span> <span class="nf">finalize_explicit_dust</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This function is the finalization function that is called</span>
 <span class="sd">    after every integration step. It is managing the boundary</span>
 <span class="sd">    conditions and is enforcing floor values.&quot;&quot;&quot;</span>
     <span class="n">std_gas</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
-    <span class="n">std_dust</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span></div>
+    <span class="n">std_dust</span><span class="o">.</span><span class="n">finalize_explicit</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="finalize_implicit_dust"><a class="viewcode-back" href="../../../api/dustpy.std.sim.finalize_implicit_dust.html#dustpy.std.sim.finalize_implicit_dust">[docs]</a><span class="k">def</span> <span class="nf">finalize_implicit_dust</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function is the finalization function that is called</span>
+<span class="sd">    after every integration step. It is managing the boundary</span>
+<span class="sd">    conditions and is enforcing floor values.&quot;&quot;&quot;</span>
+    <span class="n">std_gas</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+    <span class="n">std_dust</span><span class="o">.</span><span class="n">finalize_implicit</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

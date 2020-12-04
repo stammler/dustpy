@@ -304,6 +304,28 @@
 
 
 <div class="viewcode-block" id="jacobian"><a class="viewcode-back" href="../../../api/dustpy.std.gas.jacobian.html#dustpy.std.gas.jacobian">[docs]</a><span class="k">def</span> <span class="nf">jacobian</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Functions calculates the Jacobian for the gas.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sim : Frame</span>
+<span class="sd">        Parent simulation frame</span>
+<span class="sd">    x : IntVar</span>
+<span class="sd">        Integration variable</span>
+<span class="sd">    args : additional positional arguments</span>
+<span class="sd">    kwargs : additional keyworda arguments</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    jac : Field</span>
+<span class="sd">        Jacobi matrix for gas evolution</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The boundaries need information about the time step, which is only available at</span>
+<span class="sd">    the integration stage. The boundary values are therefore meaningless and should not</span>
+<span class="sd">    be used to calculate the source terms via matrix-vector multiplication.</span>
+<span class="sd">    See the documentation for details.&quot;&quot;&quot;</span>
 
     <span class="c1"># Parameters</span>
     <span class="n">nu</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">nu</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">backreaction</span><span class="o">.</span><span class="n">A</span>
@@ -313,15 +335,16 @@
     <span class="n">dt</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">stepsize</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span>
     <span class="n">ri</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">A</span>
 
     <span class="c1"># Construct Jacobian</span>
-    <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">jac_abc</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">ri</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">jac_abc</span><span class="p">(</span><span class="n">area</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">ri</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
     <span class="n">jac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">C</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-
-    <span class="c1"># Boundaries</span>
 
     <span class="c1"># Right hand side</span>
     <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
+
+    <span class="c1"># Boundaries</span>
 
     <span class="c1"># Inner boundary</span>
     <span class="k">if</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -365,7 +388,6 @@
             <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
 
     <span class="c1"># Outer boundary</span>
-    <span class="c1"># Right hand side</span>
     <span class="k">if</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Given value</span>
         <span class="k">if</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span>
@@ -400,7 +422,7 @@
         <span class="c1"># Constant power law</span>
         <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_pow&quot;</span><span class="p">:</span>
             <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span>
-                       <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                       <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
             <span class="n">KNrm2</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">**</span><span class="n">p</span>
             <span class="n">jac</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
             <span class="n">jac</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">KNrm2</span><span class="o">/</span><span class="n">dt</span>
@@ -420,7 +442,7 @@
 <span class="sd">        critical cutoff radius</span>
 <span class="sd">    p : float</span>
 <span class="sd">        power law exponent</span>
-<span class="sd">    Mdist : float</span>
+<span class="sd">    Mdisk : float</span>
 <span class="sd">        disk mass</span>
 
 <span class="sd">    Returns</span>

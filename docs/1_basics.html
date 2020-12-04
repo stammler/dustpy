@@ -598,8 +598,37 @@ Group (Gas quantities)
             - <span class="ansi-blue-intense-fg">A</span>: Field (Pull factor)
             - <span class="ansi-blue-intense-fg">B</span>: Field (Push factor)
         - <span class="ansi-blue-intense-fg">boundary</span>: <span class="ansi-blue-intense-fg">Group (Boundary conditions)</span>
-            - <span class="ansi-blue-intense-fg">inner</span>: No boundary condition set
-            - <span class="ansi-blue-intense-fg">outer</span>: No boundary condition set
+            - <span class="ansi-blue-intense-fg">inner</span>: Constant gradient
+            - <span class="ansi-blue-intense-fg">outer</span>: Value ([1.10226757e-44 1.53159583e-44 2.12814550e-44 2.95704858e-44
+ 4.10880568e-44 5.70916698e-44 7.93286180e-44 1.10226757e-43
+ 1.53159583e-43 2.12814550e-43 2.95704858e-43 4.10880568e-43
+ 5.70916698e-43 7.93286180e-43 1.10226757e-42 1.53159583e-42
+ 2.12814550e-42 2.95704858e-42 4.10880568e-42 5.70916698e-42
+ 7.93286180e-42 1.10226757e-41 1.53159583e-41 2.12814550e-41
+ 2.95704858e-41 4.10880568e-41 5.70916698e-41 7.93286180e-41
+ 1.10226757e-40 1.53159583e-40 2.12814550e-40 2.95704858e-40
+ 4.10880568e-40 5.70916698e-40 7.93286180e-40 1.10226757e-39
+ 1.53159583e-39 2.12814550e-39 2.95704858e-39 4.10880568e-39
+ 5.70916698e-39 7.93286180e-39 1.10226757e-38 1.53159583e-38
+ 2.12814550e-38 2.95704858e-38 4.10880568e-38 5.70916698e-38
+ 7.93286180e-38 1.10226757e-37 1.53159583e-37 2.12814550e-37
+ 2.95704858e-37 4.10880568e-37 5.70916698e-37 7.93286180e-37
+ 1.10226757e-36 1.53159583e-36 2.12814550e-36 2.95704858e-36
+ 4.10880568e-36 5.70916698e-36 7.93286180e-36 1.10226757e-35
+ 1.53159583e-35 2.12814550e-35 2.95704858e-35 4.10880568e-35
+ 5.70916698e-35 7.93286180e-35 1.10226757e-34 1.53159583e-34
+ 2.12814550e-34 2.95704858e-34 4.10880568e-34 5.70916698e-34
+ 7.93286180e-34 1.10226757e-33 1.53159583e-33 2.12814550e-33
+ 2.95704858e-33 4.10880568e-33 5.70916698e-33 7.93286180e-33
+ 1.10226757e-32 1.53159583e-32 2.12814550e-32 2.95704858e-32
+ 4.10880568e-32 5.70916698e-32 7.93286180e-32 1.10226757e-31
+ 1.53159583e-31 2.12814550e-31 2.95704858e-31 4.10880568e-31
+ 5.70916698e-31 7.93286180e-31 1.10226757e-30 1.53159583e-30
+ 2.12814550e-30 2.95704858e-30 4.10880568e-30 5.70916698e-30
+ 7.93286180e-30 1.10226757e-29 1.53159583e-29 2.12814550e-29
+ 2.95704858e-29 4.10880568e-29 5.70916698e-29 7.93286180e-29
+ 1.10226757e-28 1.53159583e-28 2.12814550e-28 2.95704858e-28
+ 4.10880568e-28 5.70916698e-28 7.93286180e-28 1.10226757e-27])
         - <span class="ansi-blue-intense-fg">coagulation</span>: <span class="ansi-blue-intense-fg">Group (Coagulation quantities)</span>
             - <span class="ansi-blue-intense-fg">A</span>: Field (Fragment normalization factors), <span class="ansi-magenta-intense-fg">constant</span>
             - <span class="ansi-blue-intense-fg">eps</span>: Field (Remnant mass distribution), <span class="ansi-magenta-intense-fg">constant</span>
@@ -672,6 +701,7 @@ Group (Gas quantities)
             - <span class="ansi-blue-intense-fg">rad</span>: Field (Radial velocity [cm/s])
             - <span class="ansi-blue-intense-fg">visc</span>: Field (Viscous accretion velocity [cm/s])
     - <span class="ansi-blue-intense-fg">grid</span>: <span class="ansi-blue-intense-fg">Group (Grid quantities)</span>
+        - <span class="ansi-blue-intense-fg">A</span>: Field (Radial grid annulus area [cm²]), <span class="ansi-magenta-intense-fg">constant</span>
         - <span class="ansi-blue-intense-fg">m</span>: Field (Mass grid [g]), <span class="ansi-magenta-intense-fg">constant</span>
         - <span class="ansi-blue-intense-fg">Nm</span>: Field (# of mass bins), <span class="ansi-magenta-intense-fg">constant</span>
         - <span class="ansi-blue-intense-fg">Nr</span>: Field (# of radial grid cells), <span class="ansi-magenta-intense-fg">constant</span>
@@ -705,13 +735,14 @@ Group (Gas quantities)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.4.4
+DustPy v0.5.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-
-Please cite:   Stammler &amp; Birnstiel (in prep.)
+<span class="ansi-red-intense-fg">
+Please read README.md on the GitHub repository for
+information about the Terms of Usage.</span>
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -776,7 +807,7 @@ Writing file <span class="ansi-blue-intense-fg">data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">2:21:16</span>
+Execution time: <span class="ansi-blue-intense-fg">0:04:38</span>
 </pre></div></div>
 </div>
 <p>By default <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has written output files into the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p>
@@ -873,31 +904,31 @@ Execution time: <span class="ansi-blue-intense-fg">2:21:16</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[1.03150151e+01 9.66508227e+00 9.04349134e+00 8.45657257e+00
- 7.90518631e+00 7.38818698e+00 6.90274391e+00 6.44731417e+00
- 6.02010380e+00 5.61946878e+00 5.24417074e+00 4.89241974e+00
- 4.56257207e+00 4.25365587e+00 3.96426338e+00 3.69300157e+00
- 3.43902564e+00 3.20121536e+00 2.97842168e+00 2.76993985e+00
- 2.57484714e+00 2.39222725e+00 2.22150516e+00 2.06189143e+00
- 1.91265668e+00 1.77331374e+00 1.64319389e+00 1.52172081e+00
- 1.40840360e+00 1.30273316e+00 1.20423126e+00 1.11239253e+00
- 1.02687701e+00 9.47193901e-01 8.72992318e-01 8.03974216e-01
- 7.39681166e-01 6.79930580e-01 6.24314207e-01 5.72625745e-01
- 5.24622840e-01 4.79997996e-01 4.38593485e-01 4.00162334e-01
- 3.64534541e-01 3.31535152e-01 3.00958717e-01 2.72701429e-01
- 2.46551723e-01 2.22430231e-01 2.00167399e-01 1.79685517e-01
- 1.60862852e-01 1.43602280e-01 1.27794862e-01 1.13357309e-01
- 1.00188156e-01 8.82172918e-02 7.73515079e-02 6.75202764e-02
- 5.86625616e-02 5.07095519e-02 4.36119419e-02 3.73292017e-02
- 3.18002773e-02 2.69533252e-02 2.27089832e-02 1.89959490e-02
- 1.57596759e-02 1.29579467e-02 1.05536461e-02 8.50928457e-03
- 6.78451366e-03 5.32943232e-03 4.07378051e-03 2.92099600e-03
- 1.80268638e-03 8.29235919e-04 2.67294637e-04 5.85393071e-05
- 8.63118035e-06 9.40691418e-07 7.78604204e-08 4.95707507e-09
- 2.43247185e-10 9.11020228e-12 2.54260717e-13 5.07728309e-15
- 6.84130031e-17 5.77829510e-19 2.82262202e-21 7.41590573e-24
- 1.10083378e-26 9.07314660e-28 7.84589918e-28 6.83347699e-28
- 5.95170965e-28 5.18372240e-28 4.51483347e-28 3.93225557e-28]
+[1.11671580e+01 1.04052079e+01 9.69292816e+00 9.03448945e+00
+ 8.41966227e+00 7.84571621e+00 7.31024973e+00 6.81016083e+00
+ 6.34320801e+00 5.90750483e+00 5.50053781e+00 5.12050499e+00
+ 4.76601572e+00 4.43494194e+00 4.12586138e+00 3.83767845e+00
+ 3.56857674e+00 3.31742370e+00 3.08332524e+00 2.86474896e+00
+ 2.66082683e+00 2.47076237e+00 2.29331695e+00 2.12785479e+00
+ 1.97359780e+00 1.82960570e+00 1.69543047e+00 1.57030474e+00
+ 1.45355764e+00 1.34478285e+00 1.24336802e+00 1.14884610e+00
+ 1.06074458e+00 9.78653117e-01 9.02160008e-01 8.30916065e-01
+ 7.64551113e-01 7.02742509e-01 6.45302619e-01 5.91873063e-01
+ 5.42670182e-01 4.97242893e-01 4.54839778e-01 4.15231968e-01
+ 3.78387670e-01 3.44197695e-01 3.12510219e-01 2.83175653e-01
+ 2.56049668e-01 2.30998391e-01 2.07873573e-01 1.86587202e-01
+ 1.67018924e-01 1.49057559e-01 1.32603057e-01 1.17561518e-01
+ 1.03844323e-01 9.13676483e-02 8.00520166e-02 6.98218828e-02
+ 6.06052513e-02 5.23333293e-02 4.49402181e-02 3.83626459e-02
+ 3.25397436e-02 2.74128666e-02 2.29254629e-02 1.90229901e-02
+ 1.56528791e-02 1.27645446e-02 1.03094377e-02 8.24113715e-03
+ 6.51547149e-03 5.09065887e-03 3.92728909e-03 2.98333471e-03
+ 2.11154818e-03 1.40986821e-04 4.29262313e-06 7.31001274e-08
+ 8.00476224e-10 6.49973833e-12 4.07147373e-14 2.02044341e-16
+ 8.08981281e-19 2.64579614e-21 7.13956862e-24 3.63799403e-26
+ 1.80022501e-26 1.56546319e-26 1.36345791e-26 1.18752220e-26
+ 1.03428860e-26 9.00827708e-27 7.84588135e-27 6.83347698e-27
+ 5.95170965e-27 5.18372240e-27 4.51483347e-27 3.93225557e-27]
 </pre></div></div>
 </div>
 <p>To convert this into <span class="math notranslate nohighlight">\(\sigma\)</span> we have to divide the code density distribution by <span class="math notranslate nohighlight">\(B = \frac{\Delta m}{m}\)</span>, where <span class="math notranslate nohighlight">\(\Delta m\)</span> is the width of the mass bin centered on <span class="math notranslate nohighlight">\(m\)</span>.</p>
@@ -956,19 +987,19 @@ Execution time: <span class="ansi-blue-intense-fg">2:21:16</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[[1.70770769e-01 1.40799727e-01 1.58768613e-01 ... 1.52526930e-22
-  2.11935481e-22 2.94483396e-22]
- [1.63777708e-01 1.34515713e-01 1.51195117e-01 ... 1.32845402e-22
-  1.84588088e-22 2.56484316e-22]
- [1.57529144e-01 1.28789151e-01 1.44316579e-01 ... 1.15703508e-22
-  1.60769503e-22 2.23388501e-22]
+[[1.71825930e-01 1.42614205e-01 1.61385887e-01 ... 1.52526930e-21
+  2.11935481e-21 2.94483396e-21]
+ [1.64005780e-01 1.35609321e-01 1.53043099e-01 ... 1.32845402e-21
+  1.84588088e-21 2.56484316e-21]
+ [1.56968530e-01 1.29251782e-01 1.45430879e-01 ... 1.15703508e-21
+  1.60769503e-21 2.23388501e-21]
  ...
- [4.45718657e-45 6.19324066e-45 8.60547999e-45 ... 2.30858850e-28
-  3.20777332e-28 4.45718657e-28]
- [3.88204722e-45 5.39408712e-45 7.49505975e-45 ... 2.01069653e-28
-  2.79385376e-28 3.88204722e-28]
- [3.38112178e-45 4.69805348e-45 6.52792414e-45 ... 1.75124347e-28
-  2.43334490e-28 3.38112178e-28]]
+ [4.45718657e-44 6.19324066e-44 8.60547999e-44 ... 2.30858850e-27
+  3.20777332e-27 4.45718657e-27]
+ [3.88204722e-44 5.39408712e-44 7.49505975e-44 ... 2.01069653e-27
+  2.79385376e-27 3.88204722e-27]
+ [3.38112178e-44 4.69805348e-44 6.52792414e-44 ... 1.75124347e-27
+  2.43334490e-27 3.38112178e-27]]
 </pre></div></div>
 </div>
 </div>
@@ -1037,31 +1068,31 @@ Writer (HDF5 file format using h5py)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
-       8.35584062e+002, 7.81280167e+002, 7.29581811e+002, 6.80582744e+002,
-       6.34373920e+002, 5.90981823e+002, 5.50356788e+002, 5.12390063e+002,
-       4.76939759e+002, 4.43852258e+002, 4.12974950e+002, 3.84162014e+002,
-       3.57276302e+002, 3.32189551e+002, 3.08782006e+002, 2.86941912e+002,
-       2.66564988e+002, 2.47553939e+002, 2.29817980e+002, 2.13272415e+002,
-       1.97838219e+002, 1.83441672e+002, 1.70013999e+002, 1.57491040e+002,
-       1.45812950e+002, 1.34923906e+002, 1.24771839e+002, 1.15308188e+002,
-       1.06487665e+002, 9.82680345e+001, 9.06099142e+001, 8.34765812e+001,
-       7.68337958e+001, 7.06496352e+001, 6.48943377e+001, 5.95401574e+001,
-       5.45612280e+001, 4.99334350e+001, 4.56342963e+001, 4.16428495e+001,
-       3.79395471e+001, 3.45061566e+001, 3.13256677e+001, 2.83822042e+001,
-       2.56609409e+001, 2.31480258e+001, 2.08305057e+001, 1.86962561e+001,
-       1.67339156e+001, 1.49328231e+001, 1.32829582e+001, 1.17748862e+001,
-       1.03997051e+001, 9.14899650e+000, 8.01477989e+000, 6.98947009e+000,
-       6.06583850e+000, 5.23697805e+000, 4.49627209e+000, 3.83736753e+000,
-       3.25415235e+000, 2.74073773e+000, 2.29144494e+000, 1.90079703e+000,
-       1.56351535e+000, 1.27452069e+000, 1.02893868e+000, 8.22109039e-001,
-       6.49597965e-001, 5.07212719e-001, 3.91017442e-001, 2.97348987e-001,
-       2.22831525e-001, 1.64388628e-001, 1.19251675e-001, 8.49635279e-002,
-       5.93767370e-002, 4.06458540e-002, 2.72138404e-002, 1.77929782e-002,
-       1.13410967e-002, 7.03426412e-003, 4.23733318e-003, 2.47382771e-003,
-       1.39661560e-003, 7.60629444e-004, 3.98604263e-004, 2.00441336e-004,
-       9.64334519e-005, 4.42476478e-005, 1.92976146e-005, 7.97061619e-006,
-       3.10574884e-006, 1.13688243e-006, 3.88078476e-007, 1.00000000e-100])
+array([1.11604329e+003, 1.04085622e+003, 9.70637794e+002, 9.04838810e+002,
+       8.43278793e+002, 7.85756165e+002, 7.32046042e+002, 6.81913500e+002,
+       6.35126833e+002, 5.91464951e+002, 5.50719992e+002, 5.12697572e+002,
+       4.77216201e+002, 4.44106500e+002, 4.13210408e+002, 3.84380425e+002,
+       3.57478916e+002, 3.32377447e+002, 3.08956177e+002, 2.87103281e+002,
+       2.66714418e+002, 2.47692233e+002, 2.29945891e+002, 2.13390644e+002,
+       1.97947422e+002, 1.83542462e+002, 1.70106947e+002, 1.57576682e+002,
+       1.45891785e+002, 1.34996400e+002, 1.24838430e+002, 1.15369285e+002,
+       1.06543648e+002, 9.83192624e+001, 9.06567206e+001, 8.35192790e+001,
+       7.68726781e+001, 7.06849763e+001, 6.49263947e+001, 5.95691712e+001,
+       5.45874246e+001, 4.99570262e+001, 4.56554809e+001, 4.16618142e+001,
+       3.79564670e+001, 3.45211962e+001, 3.13389815e+001, 2.83939374e+001,
+       2.56712299e+001, 2.31569987e+001, 2.08382827e+001, 1.87029503e+001,
+       1.67396329e+001, 1.49376628e+001, 1.32870133e+001, 1.17782437e+001,
+       1.04024459e+001, 9.15119611e+000, 8.01650825e+000, 6.99079183e+000,
+       6.06681311e+000, 5.23765998e+000, 4.49671086e+000, 3.83760788e+000,
+       3.25423433e+000, 2.74069684e+000, 2.29131229e+000, 1.90059950e+000,
+       1.56327577e+000, 1.27425806e+000, 1.02866842e+000, 8.21843248e-001,
+       6.49345742e-001, 5.06980468e-001, 3.90809224e-001, 2.97166874e-001,
+       2.22675954e-001, 1.64258758e-001, 1.19145718e-001, 8.48790622e-002,
+       5.93109812e-002, 4.05959007e-002, 2.71768445e-002, 1.77662972e-002,
+       1.13223840e-002, 7.02152021e-003, 4.22891959e-003, 2.46845278e-003,
+       1.39329965e-003, 7.58658232e-004, 3.97477787e-004, 1.99824087e-004,
+       9.61100458e-005, 4.40861033e-005, 1.92209310e-005, 7.93614264e-006,
+       3.09112571e-006, 1.13105767e-006, 3.86630522e-007, 1.00000000e-100])
 </pre></div></div>
 </div>
 <p>You can also read the full data directory with</p>
@@ -1093,6 +1124,44 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 (22, 100)
 </pre></div></div>
 </div>
+<p>Data files can be quite large and reading the entire data set can take some time. Is is also possible to only read a single field from the data files instead of the entire data set.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">SigmaGas</span> <span class="o">=</span> <span class="n">hdf5writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;gas.Sigma&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">SigmaGas</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(22, 100)
+</pre></div></div>
+</div>
+<p>It is also possible to exclude certain fields from being written into the data files to save memory by setting their <code class="docutils literal notranslate"><span class="pre">save</span></code> attribute to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">save</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="Reading-Dump-Files">
 <h2>Reading Dump Files<a class="headerlink" href="#Reading-Dump-Files" title="Permalink to this headline">¶</a></h2>
@@ -1100,7 +1169,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 <p><code class="docutils literal notranslate"><span class="pre">simframe</span></code> is saving a by default the most recent dump file, from which a simulation can be restarted.</p>
 <p><strong>Attention:</strong> Malware can be injected with dump files, which are pickled objects. Only read dump files that you have created yourself or from sources that you trust! Dump files have to be read with the same version of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> as they were written. Otherwise, it is not guaranteed to work.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1109,7 +1178,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1119,7 +1188,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 <p>This is now a simulation frame that should be identical to our previous object.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1128,7 +1197,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1146,7 +1215,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 <p>We can now, for example, add more snapshots and restart the simulation. Here we just want to extend the run by one year.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1158,7 +1227,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 <p>The current time is</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1167,7 +1236,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1177,7 +1246,7 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 </div>
 <p>We can now restart the simulation for another year.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1191,13 +1260,14 @@ array([1.08669778e+003, 1.01725268e+003, 9.52663537e+002, 8.92545485e+002,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.4.4
+DustPy v0.5.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-
-Please cite:   Stammler &amp; Birnstiel (in prep.)
+<span class="ansi-red-intense-fg">
+Please read README.md on the GitHub repository for
+information about the Terms of Usage.</span>
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -1219,12 +1289,12 @@ Please cite:   Stammler &amp; Birnstiel (in prep.)
 
 Writing file <span class="ansi-blue-intense-fg">data/data0022.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:04</span>
 </pre></div></div>
 </div>
 <p>Another file was written and the current time is now</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1233,7 +1303,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="output_area docutils container">

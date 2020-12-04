@@ -269,10 +269,13 @@ For running simulations use <code class="docutils literal notranslate"><span cla
 <tr class="row-odd"><td><p><a class="reference internal" href="#dustpy.Simulation.run" title="dustpy.Simulation.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>()</p></td>
 <td><p>This functions runs the simulation.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#dustpy.Simulation.setdustintegrator" title="dustpy.Simulation.setdustintegrator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdustintegrator</span></code></a>([scheme, method])</p></td>
+<td><p>Function sets the dust integrator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>(*args, **kwargs)</p></td>
 <td><p>Function to update the object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">writeoutput</span></code>([i, forceoverwrite, filename])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">writeoutput</span></code>([i, forceoverwrite, filename])</p></td>
 <td><p>Writes output to file, if <code class="docutils literal notranslate"><span class="pre">Writer</span></code> is specified.</p></td>
 </tr>
 </tbody>
@@ -307,6 +310,9 @@ For running simulations use <code class="docutils literal notranslate"><span cla
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#dustpy.Simulation.run" title="dustpy.Simulation.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>()</p></td>
 <td><p>This functions runs the simulation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#dustpy.Simulation.setdustintegrator" title="dustpy.Simulation.setdustintegrator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdustintegrator</span></code></a>([scheme, method])</p></td>
+<td><p>Function sets the dust integrator.</p></td>
 </tr>
 </tbody>
 </table>
@@ -348,6 +354,30 @@ set your mass grid parameters with <code class="docutils literal notranslate"><s
 <dt id="dustpy.Simulation.run">
 <code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/simulation.html#Simulation.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.Simulation.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>This functions runs the simulation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="dustpy.Simulation.setdustintegrator">
+<code class="sig-name descname">setdustintegrator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scheme</span><span class="o">=</span><span class="default_value">'explicit'</span></em>, <em class="sig-param"><span class="n">method</span><span class="o">=</span><span class="default_value">'cash-karp'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/simulation.html#Simulation.setdustintegrator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.Simulation.setdustintegrator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function sets the dust integrator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scheme</strong> (<em>string</em><em>, </em><em>optional</em><em>, </em><em>default : &quot;explicit&quot;</em>) – <dl class="simple">
+<dt>Possible values</dt><dd><p>{“explicit”, “implicit”}</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>method</strong> (<em>string</em><em>, </em><em>optional</em><em>, </em><em>default : &quot;cash-karp&quot;</em>) – <dl class="simple">
+<dt>Possible values for explicit integration</dt><dd><p>{“cash-karp”}</p>
+</dd>
+<dt>Possible values for implicit integration</dt><dd><p>{“direct”, “gmres”, “bicgstab}</p>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

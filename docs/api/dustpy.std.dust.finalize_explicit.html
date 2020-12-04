@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>prepare &mdash; dustpy  documentation</title>
+  <title>finalize_explicit &mdash; dustpy  documentation</title>
   
 
   
@@ -39,8 +39,8 @@
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="luminosity" href="dustpy.std.star.luminosity.html" />
-    <link rel="prev" title="finalize" href="dustpy.std.sim.finalize.html" /> 
+    <link rel="next" title="finalize_implicit" href="dustpy.std.dust.finalize_implicit.html" />
+    <link rel="prev" title="eps" href="dustpy.std.dust.eps.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -102,18 +102,49 @@
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.constants">dustpy.constants Package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.plot">dustpy.plot Package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std">dustpy.std Package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.dust">dustpy.std.dust Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-dustpy.std.dust">dustpy.std.dust Module</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../api.html#id1">Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.D.html">D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.F_adv.html">F_adv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.F_diff.html">F_diff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.F_tot.html">F_tot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.H.html">H</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.MRN_distribution.html">MRN_distribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.S_coag.html">S_coag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.S_hyd.html">S_hyd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.S_tot.html">S_tot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.SigmaFloor.html">SigmaFloor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.Sigma_deriv.html">Sigma_deriv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.St_Epstein_StokesI.html">St_Epstein_StokesI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.a.html">a</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.boundary.html">boundary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.coagulation_parameters.html">coagulation_parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.enforce_floor_value.html">enforce_floor_value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.eps.html">eps</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">finalize_explicit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.finalize_implicit.html">finalize_implicit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.jacobian.html">jacobian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.kernel.html">kernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.p_frag.html">p_frag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.p_stick.html">p_stick</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.prepare.html">prepare</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.rho_midplane.html">rho_midplane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.set_implicit_boundaries.html">set_implicit_boundaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.vdriftmax.html">vdriftmax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.vrad.html">vrad</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.vrel_azimuthal_drift.html">vrel_azimuthal_drift</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.vrel_brownian_motion.html">vrel_brownian_motion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.vrel_radial_drift.html">vrel_radial_drift</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.vrel_tot.html">vrel_tot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.vrel_turbulent_motion.html">vrel_turbulent_motion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.std.dust.vrel_vertical_settling.html">vrel_vertical_settling</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.gas">dustpy.std.gas Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.grid">dustpy.std.grid Module</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-dustpy.std.sim">dustpy.std.sim Module</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="../api.html#id4">Functions</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="dustpy.std.sim.dt.html">dt</a></li>
-<li class="toctree-l4"><a class="reference internal" href="dustpy.std.sim.finalize.html">finalize</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">prepare</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.sim">dustpy.std.sim Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.star">dustpy.std.star Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.utils">dustpy.utils Package</a></li>
 </ul>
@@ -165,13 +196,13 @@
         
           <li><a href="../api.html">Module Reference</a> &raquo;</li>
         
-      <li>prepare</li>
+      <li>finalize_explicit</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/api/dustpy.std.sim.prepare.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/dustpy.std.dust.finalize_explicit.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -208,13 +239,17 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="prepare">
-<h1>prepare<a class="headerlink" href="#prepare" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="finalize-explicit">
+<h1>finalize_explicit<a class="headerlink" href="#finalize-explicit" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="dustpy.std.sim.prepare">
-<code class="sig-prename descclassname">dustpy.std.sim.</code><code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sim</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/std/sim.html#prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.std.sim.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function is the preparation function that is called
-before every integration step.</p>
+<dt id="dustpy.std.dust.finalize_explicit">
+<code class="sig-prename descclassname">dustpy.std.dust.</code><code class="sig-name descname">finalize_explicit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sim</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/std/dust.html#finalize_explicit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.std.dust.finalize_explicit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function finalizes integration step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sim</strong> (<em>Frame</em>) – Parent integration frame</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -227,10 +262,10 @@ before every integration step.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dustpy.std.star.luminosity.html" class="btn btn-neutral float-right" title="luminosity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dustpy.std.dust.finalize_implicit.html" class="btn btn-neutral float-right" title="finalize_implicit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dustpy.std.sim.finalize.html" class="btn btn-neutral float-left" title="finalize" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dustpy.std.dust.eps.html" class="btn btn-neutral float-left" title="eps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

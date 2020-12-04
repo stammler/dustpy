@@ -552,7 +552,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="section" id="Adding-planets">
 <h2>Adding planets<a class="headerlink" href="#Adding-planets" title="Permalink to this headline">¶</a></h2>
-<p>For this example we want to add the core of two planets: Jupiter and Saturn with masses fo 30 and 15 Earth masses. We therefore add new groups and subgroups to organize them.</p>
+<p>For this example we want to add two planets: Jupiter and Saturn. We therefore add new groups and subgroups to organize them.</p>
 <p>In addition to that we want to refine the grid close to the planet locations. For this we use the function similar to the one discussed in an earlier chapter.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -631,7 +631,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">sim</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">jupiter</span><span class="o">.</span><span class="n">addfield</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mf">5.2</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Semi-major axis [cm]&quot;</span><span class="p">)</span>
-<span class="n">sim</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">jupiter</span><span class="o">.</span><span class="n">addfield</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="mf">30.</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Mass [g]&quot;</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">jupiter</span><span class="o">.</span><span class="n">addfield</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="mf">1.</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">M_jup</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Mass [g]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -641,7 +641,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">sim</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">saturn</span><span class="o">.</span><span class="n">addfield</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mf">9.6</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Semi-major axis [cm]&quot;</span><span class="p">)</span>
-<span class="n">sim</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">saturn</span><span class="o">.</span><span class="n">addfield</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Mass [g]&quot;</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">saturn</span><span class="o">.</span><span class="n">addfield</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="mi">95</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Mass [g]&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -735,8 +735,8 @@ div.rendered_html tbody tr:hover {
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">alpha</span><span class="p">(</span><span class="n">sim</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">8.e-4</span><span class="p">,</span> <span class="mf">2.5e-3</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="mf">1.e-4</span><span class="p">,</span> <span class="mf">1.e-2</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C7&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">8.e-4</span><span class="p">,</span> <span class="mf">2.e-1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="mf">1.e-4</span><span class="p">,</span> <span class="mf">1.e0</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C7&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from star [AU]&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\alpha$ viscosity parameter&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -793,17 +793,17 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<p>We want to start with planet masses of <span class="math notranslate nohighlight">\(0.01\)</span> Earth masses and they should reach their final masses after <span class="math notranslate nohighlight">\(100\,000\)</span> years. We have to write functions for each planet that returns their mass as a function of time.</p>
+<p>We want to start with planet masses of <span class="math notranslate nohighlight">\(1\)</span> Earth mass and they should reach their final masses after <span class="math notranslate nohighlight">\(100\,000\)</span> years. We have to write functions for each planet that returns their mass as a function of time.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">def</span> <span class="nf">Mjup</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">Mplan</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.e5</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="mf">0.01</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">,</span> <span class="mf">30.</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Mplan</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.e5</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="mf">1.</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">,</span> <span class="mf">1.</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">M_jup</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">Msat</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">Mplan</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.e5</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="mf">0.01</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">,</span> <span class="mf">15.</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Mplan</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.e5</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="mf">1.</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">,</span> <span class="mf">95.</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -877,8 +877,8 @@ div.rendered_html tbody tr:hover {
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Masses
-Jupiter: 0.01 M_earth
-Saturn:  0.01 M_earth
+Jupiter: 1.00 M_earth
+Saturn:  1.00 M_earth
 </pre></div></div>
 </div>
 <p>We can now start the simulation.</p>
@@ -887,7 +887,7 @@ Saturn:  0.01 M_earth
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">datadir</span> <span class="o">=</span> <span class="s2">&quot;example_gaps&quot;</span>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">datadir</span> <span class="o">=</span> <span class="s2">&quot;9_data&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -906,13 +906,14 @@ Saturn:  0.01 M_earth
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.4.4
+DustPy v0.5.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-
-Please cite:   Stammler &amp; Birnstiel (in prep.)
+<span class="ansi-red-intense-fg">
+Please read README.md on the GitHub repository for
+information about the Terms of Usage.</span>
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -932,52 +933,52 @@ Please cite:   Stammler &amp; Birnstiel (in prep.)
             m[110] =  5.18e+03 g    with
             m[118] =  7.20e+04 g
 
-Creating data directory &#39;example_gaps&#39;.
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0000.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0001.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0002.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0003.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0004.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0005.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0006.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0007.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0008.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0009.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0010.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0011.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0012.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0013.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0014.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0015.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0016.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0017.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0018.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0019.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0020.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Writing file <span class="ansi-blue-intense-fg">example_gaps/data0021.hdf5</span>
-Writing dump file <span class="ansi-blue-intense-fg">example_gaps/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">3:02:00</span>
+Creating data directory &#39;9_data&#39;.
+Writing file <span class="ansi-blue-intense-fg">9_data/data0000.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0001.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0002.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0003.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0004.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0005.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0006.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0007.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0008.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0009.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0010.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0011.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0012.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0013.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0014.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0015.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0016.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0017.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0018.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0019.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0020.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Writing file <span class="ansi-blue-intense-fg">9_data/data0021.hdf5</span>
+Writing dump file <span class="ansi-blue-intense-fg">9_data/frame.dmp</span>
+Execution time: <span class="ansi-blue-intense-fg">0:20:31</span>
 </pre></div></div>
 </div>
 <p>This is the result of our simulation.</p>

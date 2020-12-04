@@ -478,7 +478,7 @@ Group (Coagulation quantities)
 <p>These fields are strictly tied to the mass grid. Neither those fields nor the mass grid should be changed after calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
 <div class="section" id="Sticking">
 <h2>Sticking<a class="headerlink" href="#Sticking" title="Permalink to this headline">¶</a></h2>
-<p>Sticking means that two particles collide and form a new larger particles conserving the total mass. There are two complication when implementing this numerically:</p>
+<p>Sticking means that two particles collide and form a new larger particles conserving the total mass. There are two complications when implementing this numerically:</p>
 <p>First, since we need to cover a high dynamic range from particles masses around <span class="math notranslate nohighlight">\(10^{-15}\,\mathrm{g}\)</span> to more than <span class="math notranslate nohighlight">\(10^{15}\,\mathrm{g}\)</span> while still having a reasonable number of mass bins, the mass grid has to be logarithmic. This has the disadvantage that the new particle mass resulting from a collision will not directly lie on the mass grid, but will fall in between two grid masses. The resulting mass has to be therefore distributed between the two adjacent grid cells. This means
 there will be density added to a mass bin that is larger than the actual mass of the resulting particle. This can have unwanted side effects if the mass grid is too coarse. Please see <a class="reference external" href="https://doi.org/10.1051/0004-6361/201423708">Drążkowska et al. (2014)</a> for details on the minimum mass resulution that should be used.</p>
 <p>Second, if the masses of the two colliding particles differ by more than <span class="math notranslate nohighlight">\(15\)</span> orders of magnitude (double-precision floating-point format) the resulting mass is (for a computer) identical to the mass of the larger particle.</p>
@@ -880,15 +880,7 @@ Rel. error: 1.2e-16
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-The history saving thread hit an unexpected error (OperationalError(&#39;disk I/O error&#39;)).History will not be written to the database.
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
+<div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
@@ -899,14 +891,6 @@ Group (Probabilities)
     frag         : Field (Fragmentation probability)
     stick        : Field (Sticking probability)
   -----
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
 </pre></div></div>
 </div>
 <p>The sum of both is always <span class="math notranslate nohighlight">\(1\)</span> in the default setup.</p>
@@ -926,7 +910,7 @@ Group (Probabilities)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-True
+False
 </pre></div></div>
 </div>
 </div>
@@ -962,11 +946,11 @@ True
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[[-1.00784759e-07 -1.02171801e-07 -5.62831519e-08 ...  0.00000000e+00
+[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00
    0.00000000e+00  0.00000000e+00]
- [-7.89635987e-08 -8.00467067e-08 -4.40998187e-08 ...  0.00000000e+00
+ [-7.89635533e-08 -8.00466697e-08 -4.40997870e-08 ...  0.00000000e+00
    0.00000000e+00  0.00000000e+00]
- [-6.18577264e-08 -6.27030458e-08 -3.45488116e-08 ...  0.00000000e+00
+ [-6.18576840e-08 -6.27030112e-08 -3.45487820e-08 ...  0.00000000e+00
    0.00000000e+00  0.00000000e+00]
  ...
  [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00

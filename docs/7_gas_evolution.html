@@ -521,10 +521,10 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[ 2.80570123e-05 -1.04346874e-11 -6.35260799e-12 -3.78602233e-12
+[ 1.09990042e-05 -1.45436122e-11 -6.35260799e-12 -3.78602233e-12
  -2.18024123e-12 -1.18702994e-12 -5.88313583e-13 -2.46962738e-13
  -7.38787316e-14 -5.59875935e-15  8.05316307e-15  4.18202183e-15
-  8.11579433e-16  5.66672710e-17  0.00000000e+00]
+  8.11579433e-16  5.66451936e-17  0.00000000e+00]
 </pre></div></div>
 </div>
 <p>However, the first and the last element will not have the correct value, since they contain the instructions for the boundaries without the time step.</p>
@@ -558,7 +558,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[2.80570123e-05 0.00000000e+00 0.00000000e+00 0.00000000e+00
+[1.09990042e-05 0.00000000e+00 0.00000000e+00 0.00000000e+00
  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00
  0.00000000e+00 0.00000000e+00 0.00000000e+00]
@@ -604,7 +604,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[Instruction (Dust: explicit 5th-order adaptive Cash-Karp method),
+[Instruction (Dust: implicit 1st-order direct solver),
  Instruction (Gas: implicit 1st-order Euler method)]
 </pre></div></div>
 </div>
@@ -632,7 +632,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[Instruction (Dust: explicit 5th-order adaptive Cash-Karp method)]
+[Instruction (Dust: implicit 1st-order direct solver)]
 </pre></div></div>
 </div>
 <p>If you simply remove the integration instruction, the gas velocities will still be calculated at every time step, since the viscosity is non-zero. This will therefore still influence dust quantities that require the gas velocity.</p>

@@ -1,6 +1,6 @@
 prepare
 =======
 
-.. currentmodule:: dustpy.std.sim
+.. currentmodule:: dustpy.std.dust
 
 .. autofunction:: prepare

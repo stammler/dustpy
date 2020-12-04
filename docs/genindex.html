@@ -230,6 +230,8 @@
 </li>
       <li><a href="api/dustpy.std.sim.dt.html#dustpy.std.sim.dt">dt() (in module dustpy.std.sim)</a>
 </li>
+      <li><a href="api/dustpy.std.sim.dt_adaptive.html#dustpy.std.sim.dt_adaptive">dt_adaptive() (in module dustpy.std.sim)</a>
+</li>
       <li>
     dustpy
 
@@ -258,6 +260,8 @@
         <li><a href="api.html#module-dustpy.std">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     dustpy.std.dust
 
@@ -265,8 +269,6 @@
         <li><a href="api.html#module-dustpy.std.dust">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     dustpy.std.gas
 
@@ -332,18 +334,20 @@
 </li>
       <li><a href="api/dustpy.std.dust.F_tot.html#dustpy.std.dust.F_tot">F_tot() (in module dustpy.std.dust)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/dustpy.std.gas.Fi.html#dustpy.std.gas.Fi">Fi() (in module dustpy.std.gas)</a>
 </li>
-      <li><a href="api/dustpy.std.dust.finalize.html#dustpy.std.dust.finalize">finalize() (in module dustpy.std.dust)</a>
-
-      <ul>
-        <li><a href="api/dustpy.std.gas.finalize.html#dustpy.std.gas.finalize">(in module dustpy.std.gas)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/dustpy.std.gas.finalize.html#dustpy.std.gas.finalize">finalize() (in module dustpy.std.gas)</a>
 </li>
-        <li><a href="api/dustpy.std.sim.finalize.html#dustpy.std.sim.finalize">(in module dustpy.std.sim)</a>
+      <li><a href="api/dustpy.std.dust.finalize_explicit.html#dustpy.std.dust.finalize_explicit">finalize_explicit() (in module dustpy.std.dust)</a>
 </li>
-      </ul></li>
+      <li><a href="api/dustpy.std.sim.finalize_explicit_dust.html#dustpy.std.sim.finalize_explicit_dust">finalize_explicit_dust() (in module dustpy.std.sim)</a>
+</li>
+      <li><a href="api/dustpy.std.dust.finalize_implicit.html#dustpy.std.dust.finalize_implicit">finalize_implicit() (in module dustpy.std.dust)</a>
+</li>
+      <li><a href="api/dustpy.std.sim.finalize_implicit_dust.html#dustpy.std.sim.finalize_implicit_dust">finalize_implicit_dust() (in module dustpy.std.sim)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -376,8 +380,12 @@
 <h2 id="J">J</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/dustpy.std.gas.jacobian.html#dustpy.std.gas.jacobian">jacobian() (in module dustpy.std.gas)</a>
+      <li><a href="api/dustpy.std.dust.jacobian.html#dustpy.std.dust.jacobian">jacobian() (in module dustpy.std.dust)</a>
+
+      <ul>
+        <li><a href="api/dustpy.std.gas.jacobian.html#dustpy.std.gas.jacobian">(in module dustpy.std.gas)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -469,16 +477,20 @@
 </li>
       <li><a href="api/dustpy.std.dust.p_stick.html#dustpy.std.dust.p_stick">p_stick() (in module dustpy.std.dust)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/dustpy.plot.panel.html#dustpy.plot.panel">panel() (in module dustpy.plot)</a>
 </li>
-      <li><a href="api/dustpy.std.gas.prepare.html#dustpy.std.gas.prepare">prepare() (in module dustpy.std.gas)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/dustpy.std.dust.prepare.html#dustpy.std.dust.prepare">prepare() (in module dustpy.std.dust)</a>
 
       <ul>
-        <li><a href="api/dustpy.std.sim.prepare.html#dustpy.std.sim.prepare">(in module dustpy.std.sim)</a>
+        <li><a href="api/dustpy.std.gas.prepare.html#dustpy.std.gas.prepare">(in module dustpy.std.gas)</a>
 </li>
       </ul></li>
+      <li><a href="api/dustpy.std.sim.prepare_explicit_dust.html#dustpy.std.sim.prepare_explicit_dust">prepare_explicit_dust() (in module dustpy.std.sim)</a>
+</li>
+      <li><a href="api/dustpy.std.sim.prepare_implicit_dust.html#dustpy.std.sim.prepare_implicit_dust">prepare_implicit_dust() (in module dustpy.std.sim)</a>
+</li>
       <li><a href="api/dustpy.utils.print_version_warning.html#dustpy.utils.print_version_warning">print_version_warning() (in module dustpy.utils)</a>
 </li>
   </ul></td>
@@ -517,13 +529,19 @@
         <li><a href="api/dustpy.std.gas.S_tot.html#dustpy.std.gas.S_tot">(in module dustpy.std.gas)</a>
 </li>
       </ul></li>
-      <li><a href="api/dustpy.std.gas.set_implicit_boundaries.html#dustpy.std.gas.set_implicit_boundaries">set_implicit_boundaries() (in module dustpy.std.gas)</a>
+      <li><a href="api/dustpy.std.dust.set_implicit_boundaries.html#dustpy.std.dust.set_implicit_boundaries">set_implicit_boundaries() (in module dustpy.std.dust)</a>
+
+      <ul>
+        <li><a href="api/dustpy.std.gas.set_implicit_boundaries.html#dustpy.std.gas.set_implicit_boundaries">(in module dustpy.std.gas)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/dustpy.utils.Boundary.html#dustpy.utils.Boundary.setboundary">setboundary() (dustpy.utils.Boundary method)</a>
 </li>
       <li><a href="api/dustpy.utils.Boundary.html#dustpy.utils.Boundary.setcondition">setcondition() (dustpy.utils.Boundary method)</a>
+</li>
+      <li><a href="api/dustpy.Simulation.html#dustpy.Simulation.setdustintegrator">setdustintegrator() (dustpy.Simulation method)</a>
 </li>
       <li><a href="api/dustpy.std.dust.Sigma_deriv.html#dustpy.std.dust.Sigma_deriv">Sigma_deriv() (in module dustpy.std.dust)</a>
 </li>

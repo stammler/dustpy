@@ -471,6 +471,7 @@ div.rendered_html tbody tr:hover {
 <div class="highlight"><pre>
 Group (Grid quantities)
 -----------------------
+    A            : NoneType
     m            : NoneType
     Nm           : NoneType
     Nr           : NoneType
@@ -506,6 +507,7 @@ Group (Grid quantities)
 <div class="highlight"><pre>
 Group (Grid quantities)
 -----------------------
+    A            : Field (Radial grid annulus area [cm²]), <span class="ansi-magenta-intense-fg">constant</span>
     m            : Field (Mass grid [g]), <span class="ansi-magenta-intense-fg">constant</span>
     Nm           : Field (# of mass bins), <span class="ansi-magenta-intense-fg">constant</span>
     Nr           : Field (# of radial grid cells), <span class="ansi-magenta-intense-fg">constant</span>
@@ -665,6 +667,7 @@ Group (Grid quantities)
 <div class="highlight"><pre>
 Group (Grid quantities)
 -----------------------
+    A            : NoneType
     m            : NoneType
     Nm           : NoneType
     Nr           : NoneType
@@ -702,6 +705,7 @@ Group (Grid quantities)
 <div class="highlight"><pre>
 Group (Grid quantities)
 -----------------------
+    A            : Field (Radial grid annulus area [cm²]), <span class="ansi-magenta-intense-fg">constant</span>
     m            : Field (Mass grid [g]), <span class="ansi-magenta-intense-fg">constant</span>
     Nm           : Field (# of mass bins), <span class="ansi-magenta-intense-fg">constant</span>
     Nr           : Field (# of radial grid cells), <span class="ansi-magenta-intense-fg">constant</span>
@@ -977,6 +981,7 @@ experiments suggest that particles covered in water ice do not have a beneficial
 <div class="highlight"><pre>
 Group (Grid quantities)
 -----------------------
+    A            : Field (Radial grid annulus area [cm²]), <span class="ansi-magenta-intense-fg">constant</span>
     m            : Field (Mass grid [g]), <span class="ansi-magenta-intense-fg">constant</span>
     Nm           : Field (# of mass bins), <span class="ansi-magenta-intense-fg">constant</span>
     Nr           : Field (# of radial grid cells), <span class="ansi-magenta-intense-fg">constant</span>
@@ -1114,18 +1119,19 @@ The snowline is located at 3.05 AU.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;delta&quot;</span><span class="p">,</span> <span class="s2">&quot;rhos&quot;</span><span class="p">,</span> <span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;St&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;rho&quot;</span><span class="p">,</span> <span class="s2">&quot;backreaction&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;eps&quot;</span><span class="p">,</span> <span class="s2">&quot;Fi&quot;</span><span class="p">,</span> <span class="s2">&quot;kernel&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">]</span>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;delta&quot;</span><span class="p">,</span> <span class="s2">&quot;rhos&quot;</span><span class="p">,</span> <span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;St&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;rho&quot;</span><span class="p">,</span> <span class="s2">&quot;backreaction&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;eps&quot;</span><span class="p">,</span> <span class="s2">&quot;kernel&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">]</span> <span class="c1"># excluding [&quot;Fi&quot;]</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">backreaction</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rad&quot;</span><span class="p">,</span> <span class="s2">&quot;turb&quot;</span><span class="p">,</span> <span class="s2">&quot;vert&quot;</span><span class="p">]</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;adv&quot;</span><span class="p">,</span> <span class="s2">&quot;diff&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;frag&quot;</span><span class="p">,</span> <span class="s2">&quot;stick&quot;</span><span class="p">]</span>
-<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;coag&quot;</span><span class="p">,</span> <span class="s2">&quot;hyd&quot;</span><span class="p">,</span> <span class="s2">&quot;ext&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span>
-<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;frag&quot;</span><span class="p">,</span> <span class="s2">&quot;driftmax&quot;</span><span class="p">,</span> <span class="s2">&quot;rad&quot;</span><span class="p">,</span> <span class="s2">&quot;rel&quot;</span><span class="p">]</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ext&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span> <span class="c1"># excluding [&quot;coag&quot;, &quot;hyd&quot;]</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;frag&quot;</span><span class="p">,</span> <span class="s2">&quot;driftmax&quot;</span><span class="p">,</span> <span class="s2">&quot;rel&quot;</span><span class="p">]</span> <span class="c1"># excluding [&quot;rad&quot;]</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rel</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;azi&quot;</span><span class="p">,</span> <span class="s2">&quot;brown&quot;</span><span class="p">,</span> <span class="s2">&quot;rad&quot;</span><span class="p">,</span> <span class="s2">&quot;turb&quot;</span><span class="p">,</span> <span class="s2">&quot;vert&quot;</span><span class="p">,</span> <span class="s2">&quot;tot&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <p><strong>Note:</strong> The gas updater does not contain the updaters of <code class="docutils literal notranslate"><span class="pre">Simulation.gas.v</span></code> and <code class="docutils literal notranslate"><span class="pre">Simulation.gas.Fi</span></code> and the updater of the gas sources does not contain the updater of <code class="docutils literal notranslate"><span class="pre">Simulation.gas.S.hyd</span></code>. These are quantities that are calculated in the finalization step of the integrator, since they are derived from the result of the implicit gas integration.</p>
+<p>The same is true for the commented fields in the dust updater, which are also calculated from the implicit integration in the finalization step of the integrator</p>
 <p>As you can see, the grid updater is only updating the Keplerian frequency, but not our snowline location. So we can simply adding it to the list.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
@@ -1212,13 +1218,14 @@ The snowline is located at 3.05 AU.
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.4.4
+DustPy v0.5.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-
-Please cite:   Stammler &amp; Birnstiel (in prep.)
+<span class="ansi-red-intense-fg">
+Please read README.md on the GitHub repository for
+information about the Terms of Usage.</span>
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -1283,7 +1290,7 @@ Writing file <span class="ansi-blue-intense-fg">3_data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">3_data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">3_data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">3_data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:22:35</span>
+Execution time: <span class="ansi-blue-intense-fg">0:07:50</span>
 </pre></div></div>
 </div>
 <p>We can now have a look at the result of our modifications.</p>
@@ -1319,7 +1326,9 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:35</span>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span></span><span class="n">t</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
+<span class="n">ri</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;grid.ri&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">au</span>
+<span class="n">rsnow</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;grid.rsnow&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">au</span>
 </pre></div>
 </div>
 </div>
@@ -1328,9 +1337,9 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:35</span>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">t</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rsnow</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="mf">1.e3</span><span class="p">,</span> <span class="mf">1e4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">t</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">rsnow</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">ri</span><span class="p">,</span> <span class="mf">1.e3</span><span class="p">,</span> <span class="mf">1e4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">1.e3</span><span class="p">,</span> <span class="mf">1.e4</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [yr]&quot;</span><span class="p">)</span>

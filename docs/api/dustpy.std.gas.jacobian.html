@@ -231,7 +231,29 @@
 <dl class="py function">
 <dt id="dustpy.std.gas.jacobian">
 <code class="sig-prename descclassname">dustpy.std.gas.</code><code class="sig-name descname">jacobian</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sim</span></em>, <em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/std/gas.html#jacobian"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dustpy.std.gas.jacobian" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Functions calculates the Jacobian for the gas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sim</strong> (<em>Frame</em>) – Parent simulation frame</p></li>
+<li><p><strong>x</strong> (<em>IntVar</em>) – Integration variable</p></li>
+<li><p><strong>args</strong> (<em>additional positional arguments</em>) – </p></li>
+<li><p><strong>kwargs</strong> (<em>additional keyworda arguments</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>jac</strong> – Jacobi matrix for gas evolution</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Field</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The boundaries need information about the time step, which is only available at
+the integration stage. The boundary values are therefore meaningless and should not
+be used to calculate the source terms via matrix-vector multiplication.
+See the documentation for details.</p>
+</dd></dl>
 
 </div>
 
