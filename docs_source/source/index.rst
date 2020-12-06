@@ -27,6 +27,7 @@
    8_test_gas_evolution
    9_example_gaps
    10_example_ice_lines
+   11_example_planetesimal_formation
    A_publications
    api
 

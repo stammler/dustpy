@@ -26,6 +26,7 @@ By using any version of `DustPy` you agree to these terms of usage.
 * [8. Test: Gas Evolution](https://stammler.github.io/dustpy/8_test_gas_evolution.html)
 * [9. Example: Planetary Gaps](https://stammler.github.io/dustpy/9_example_gaps.html)
 * [10. Example: Ice Lines](https://stammler.github.io/dustpy/10_example_ice_lines.html)
+* [11. Example: Planetesimal Formation](https://stammler.github.io/dustpy/11_example_planetesimal_formation.html)
 
 [Module Reference](https://stammler.github.io/dustpy/api.html)
 
