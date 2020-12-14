@@ -424,13 +424,13 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
         plt10vl.set_xdata([data.r[it, ir]/c.au, data.r[it, ir]/c.au])
         plt11vl.set_xdata([data.r[it, ir]/c.au, data.r[it, ir]/c.au])
 
-        plt10[0].set_xdata(data.r[it, ...])
+        plt10[0].set_xdata(data.r[it, ...]/c.au)
         plt10[0].set_ydata(data.sigmaDust[it, :, im])
-        ax10.set_xlim(data.r[it, 0], data.r[it, -1])
+        ax10.set_xlim(data.r[it, 0]/c.au, data.r[it, -1]/c.au)
         ylim1 = np.ceil(np.log10(np.max(data.sigmaDust[it, :, im])))
         ylim0 = ylim1 - 6.
         ax10.set_ylim(10.**ylim0, 10.**ylim1)
-        plt10vl.set_xdata([data.r[it, ir], data.r[it, ir]])
+        plt10vl.set_xdata([data.r[it, ir]/c.au, data.r[it, ir]/c.au])
         plt10vl.set_ydata([0., 1.e100])
 
         plt11g[0].set_xdata(data.r[it, ...]/c.au)
