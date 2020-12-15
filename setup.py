@@ -1,9 +1,17 @@
 import setuptools
+import sys
 
-from numpy.distutils.core import Extension
-from numpy.distutils.core import setup
+try:
+    from numpy.distutils.core import Extension
+    from numpy.distutils.core import setup
+except ImportError as exc:  # We do not have our build deps installed
+    msg = "Error: {} must be installed before running the build.".format(
+        exc.name)
+    msg = "Please install NumPy first. You can do this with `pip install numpy`"
+    print(msg)
+    sys.exit(1)
 
-#from setuptools import setup
+# from setuptools import setup
 import pathlib
 
 package_name = "dustpy"
