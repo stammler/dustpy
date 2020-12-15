@@ -45,7 +45,7 @@ setup(
                   },
 
     author="Sebastian Stammler, Til Birnstiel",
-    author_email="stammler@usm.lmu.de, til.birnstiel@lmu.de",
+    author_email="sebastian.stammler@gmail.com, til.birnstiel@lmu.de",
     maintainer="Sebastian Stammler",
 
     version=read_version(),
