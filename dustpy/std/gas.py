@@ -4,6 +4,7 @@ import numpy as np
 from simframe.integration import Scheme
 
 import dustpy.constants as c
+
 from dustpy.std import gas_f
 
 
@@ -67,9 +68,10 @@ def set_implicit_boundaries(sim):
     sim : Frame
         Parent simulation frame"""
     # Total source terms
-    sim.gas.S.tot[0] = (sim.gas.Sigma[0]-sim.gas._SigmaOld[0])/sim.t.stepsize
+    sim.gas.S.tot[0] = (sim.gas.Sigma[0]-sim.gas._SigmaOld[0]
+                        )/(sim.t.prevstepsize+1.e-100)
     sim.gas.S.tot[-1] = (sim.gas.Sigma[-1] -
-                         sim.gas._SigmaOld[-1])/sim.t.stepsize
+                         sim.gas._SigmaOld[-1])/(sim.t.prevstepsize+1.e-100)
     # Hydrodynamic source terms
     sim.gas.S.hyd[0] = sim.gas.S.tot[0]
     sim.gas.S.hyd[-1] = sim.gas.S.tot[-1]
@@ -78,6 +80,31 @@ def set_implicit_boundaries(sim):
                                            sim.grid.ri[0]**2) + sim.grid.ri[1]*sim.gas.Fi[1])/sim.grid.ri[0]
     sim.gas.Fi[-1] = (sim.gas.Fi[-2]*sim.grid.ri[-2] - 0.5*sim.gas.S.hyd[-1]
                       * (sim.grid.ri[-1]**2-sim.grid.ri[-2]**2))/sim.grid.ri[-1]
+
+
+def dt(sim):
+    """Function calculates the time step from the gas sources.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+
+    Returns
+    -------
+    dt : float
+        Gas time step"""
+    if np.any(sim.gas.S.tot[1:-1] < 0.):
+        mask = np.logical_and(
+            sim.gas.Sigma > sim.gas.SigmaFloor,
+            sim.gas.S.tot < 0.)
+        mask[0] = False
+        mask[-1:] = False
+        rate = sim.gas.Sigma[mask] / sim.gas.S.tot[mask]
+        try:
+            return np.min(np.abs(rate))
+        except:
+            return None
 
 
 def cs_adiabatic(sim):
@@ -443,7 +470,7 @@ def vvisc(sim):
     return gas_f.v_visc(sim.gas.Sigma, sim.gas.nu, sim.grid.r, sim.grid.ri)
 
 
-def _f_impl_1_euler_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
+def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
     """Implicit 1st-order Euler integration scheme with direct matrix inversion
 
     Parameters
@@ -486,5 +513,5 @@ def _f_impl_1_euler_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
     return Y1 - Y0
 
 
-impl_1_euler_direct = Scheme(
-    _f_impl_1_euler_direct, description="Implicit 1st-order direct Euler method")
+impl_1_direct = Scheme(
+    _f_impl_1_direct, description="Implicit 1st-order direct solver")

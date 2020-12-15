@@ -9,11 +9,7 @@ from simframe.utils.color import colorize
 
 import dustpy.constants as c
 
-import dustpy.std.dust as std_dust
-import dustpy.std.gas as std_gas
-import dustpy.std.grid as std_grid
-import dustpy.std.sim as std_sim
-import dustpy.std.star as std_star
+from dustpy import std
 
 from dustpy.utils import hdf5writer
 from dustpy.utils.boundary import Boundary
@@ -421,16 +417,16 @@ class Simulation(Frame):
 
         if self.t is None:
             self.t = IntVar(self, 0., description="Time [s]")
-            self.t.updater = std_sim.dt
+            self.t.cfl = 0.1
+            self.t.updater = std.sim.dt
             self.t.snapshots = np.logspace(3., 5., num=21, base=10.) * c.year
-            self.t.suggest(1.*c.year)
 
         # STELLAR QUANTITIES
 
         # Luminosity
         if self.star.L is None:
             self.star.L = Field(self, 0., description="Luminosity [erg/s]")
-            self.star.L.updater = std_star.luminosity
+            self.star.L.updater = std.star.luminosity
             # self.star.L.update()
         # Mass
         if self.star.M is None:
@@ -452,7 +448,7 @@ class Simulation(Frame):
         if self.grid.OmegaK is None:
             self.grid.OmegaK = Field(self, np.zeros(
                 shape1), description="Keplerian frequency [1/s]")
-            self.grid.OmegaK.updater = std_grid.OmegaK
+            self.grid.OmegaK.updater = std.grid.OmegaK
         # Initialize grid quantities
         self.grid.update()
 
@@ -467,17 +463,17 @@ class Simulation(Frame):
         if self.gas.cs is None:
             self.gas.cs = Field(self, np.zeros(shape1),
                                 description="Sound speed [cm/s]")
-            self.gas.cs.updater = std_gas.cs_adiabatic
+            self.gas.cs.updater = std.gas.cs_adiabatic
         # Pressure gradient parameter
         if self.gas.eta is None:
             self.gas.eta = Field(self, np.zeros(
                 shape1), description="Pressure gradient parameter")
-            self.gas.eta.updater = std_gas.eta_midplane
+            self.gas.eta.updater = std.gas.eta_midplane
         # Gas flux at the cell interfaces
         if self.gas.Fi is None:
             self.gas.Fi = Field(self, np.zeros(shape1p1),
                                 description="Gas flux interfaces [g/cm/s]")
-            self.gas.Fi.updater = std_gas.Fi
+            self.gas.Fi.updater = std.gas.Fi
         # Adiabatic index
         if self.gas.gamma is None:
             gamma = self.ini.gas.gamma * np.ones(shape1)
@@ -487,12 +483,12 @@ class Simulation(Frame):
         if self.gas.Hp is None:
             self.gas.Hp = Field(self, np.zeros(shape1),
                                 description="Pressure scale height [cm]")
-            self.gas.Hp.updater = std_gas.Hp
+            self.gas.Hp.updater = std.gas.Hp
         # Mean free path
         if self.gas.mfp is None:
             self.gas.mfp = Field(self, np.zeros(shape1),
                                  description="Midplane mean free path [cm]")
-            self.gas.mfp.updater = std_gas.mfp_midplane
+            self.gas.mfp.updater = std.gas.mfp_midplane
         # Mean molecular weight
         if self.gas.mu is None:
             mu = self.ini.gas.mu * np.ones(shape1)
@@ -502,64 +498,64 @@ class Simulation(Frame):
         if self.gas.n is None:
             self.gas.n = Field(self, np.zeros(shape1),
                                description="Miplane number density [1/cm³]")
-            self.gas.n.updater = std_gas.n_midplane
+            self.gas.n.updater = std.gas.n_midplane
         # Viscosity
         if self.gas.nu is None:
             self.gas.nu = Field(self, np.zeros(shape1),
                                 description="Kinematic viscosity [cm²/s]")
-            self.gas.nu.updater = std_gas.nu
+            self.gas.nu.updater = std.gas.nu
         # Midplane pressure
         if self.gas.P is None:
             self.gas.P = Field(self, np.zeros(shape1),
                                description="Midplane pressure [g/cm/s²]")
-            self.gas.P.updater = std_gas.P_midplane
+            self.gas.P.updater = std.gas.P_midplane
         # Midplane mass density
         if self.gas.rho is None:
             self.gas.rho = Field(self, np.zeros(shape1),
                                  description="Miplane mass density [g/cm³]")
-            self.gas.rho.updater = std_gas.rho_midplane
+            self.gas.rho.updater = std.gas.rho_midplane
         # Sources
         if self.gas.S.hyd is None:
             self.gas.S.hyd = Field(self, np.zeros(
                 shape1), description="Hydrodynamic sources [g/cm²/s]")
-            self.gas.S.hyd.updater = std_gas.S_hyd
+            self.gas.S.hyd.updater = std.gas.S_hyd
         if self.gas.S.ext is None:
             self.gas.S.ext = Field(self, np.zeros(
                 shape1), description="External sources [g/cm²/s]")
         if self.gas.S.tot is None:
             self.gas.S.tot = Field(self, np.zeros(
                 shape1), description="Total sources [g/cm²/s]")
-            self.gas.S.tot.updater = std_gas.S_tot
+            self.gas.S.tot.updater = std.gas.S_tot
         # Floor value
         if self.gas.SigmaFloor is None:
             self.gas.SigmaFloor = Field(
                 self, 1.e-100*np.ones(shape1), description="Floor value of surface density [g/cm²]")
         # Surface density
         if self.gas.Sigma is None:
-            SigmaGas = np.array(std_gas.lyndenbellpringle1974(
+            SigmaGas = np.array(std.gas.lyndenbellpringle1974(
                 self.grid.r, self.ini.gas.SigmaRc, self.ini.gas.SigmaExp, self.ini.gas.Mdisk))
             SigmaGas = np.maximum(SigmaGas, self.gas.SigmaFloor)
             self.gas.Sigma = Field(self, SigmaGas,
                                    description="Surface density [g/cm²]")
-            self.gas.Sigma.jacobinator = std_gas.jacobian
+            self.gas.Sigma.jacobinator = std.gas.jacobian
         # Hidden fields required for the calculation of omplicit quantities
         self.gas._rhs = np.zeros(shape1)
         # Temperature
         if self.gas.T is None:
             self.gas.T = Field(self, np.zeros(shape1),
                                description="Temperature [K]")
-            self.gas.T.updater = std_gas.T_passive
+            self.gas.T.updater = std.gas.T_passive
         # Velocities
         # Viscous accretion velocity
         if self.gas.v.visc is None:
             self.gas.v.visc = Field(self, np.zeros(shape1),
                                     description="Viscous accretion velocity [cm/s]")
-            self.gas.v.visc.updater = std_gas.vvisc
+            self.gas.v.visc.updater = std.gas.vvisc
         # Radial gas velocity
         if self.gas.v.rad is None:
             self.gas.v.rad = Field(self, np.zeros(shape1),
                                    description="Radial velocity [cm/s]")
-            self.gas.v.rad.updater = std_gas.vrad
+            self.gas.v.rad.updater = std.gas.vrad
         # Hidden fields
         # We store the old values of the surface density in a hidden field
         # to calculate the fluxes through the boundaries.
@@ -591,7 +587,7 @@ class Simulation(Frame):
             self.gas.boundary.outer = Boundary(
                 self.grid.r[::-1], self.grid.ri[::-1], self.gas.Sigma[::-1])
             self.gas.boundary.outer.setcondition(
-                "val", self.gas.SigmaFloor[-1])
+                "val", 0.1*self.gas.SigmaFloor[-1])
 
         # DUST QUANTITIES
 
@@ -599,9 +595,9 @@ class Simulation(Frame):
         if self.dust.a is None:
             self.dust.a = Field(self, np.zeros(shape2),
                                 description="Particle size [cm")
-            self.dust.a.updater = std_dust.a
+            self.dust.a.updater = std.dust.a
         # Coagulation parameters
-        stick, stick_ind, A, eps, lf_ind, rm_ind, phi = std_dust.coagulation_parameters(
+        stick, stick_ind, A, eps, lf_ind, rm_ind, phi = std.dust.coagulation_parameters(
             self)
         if self.dust.coagulation.A is None:
             self.dust.coagulation.A = Field(
@@ -628,7 +624,7 @@ class Simulation(Frame):
         if self.dust.D is None:
             self.dust.D = Field(self, np.zeros(shape2),
                                 description="Diffusivity [cm²/s]")
-            self.dust.D.updater = std_dust.D
+            self.dust.D.updater = std.dust.D
         # Deltas
         if self.dust.delta.rad is None:
             delta = self.ini.gas.alpha * np.ones(shape1)
@@ -646,20 +642,20 @@ class Simulation(Frame):
         if self.dust.eps is None:
             self.dust.eps = Field(self, np.zeros(
                 shape1), description="Dust-to-gas ratio")
-            self.dust.eps.updater = std_dust.eps
+            self.dust.eps.updater = std.dust.eps
         # Fluxes
         if self.dust.Fi.adv is None:
             self.dust.Fi.adv = Field(self, np.zeros(
                 shape2p1), description="Advective flux [g/cm/s")
-            self.dust.Fi.adv.updater = std_dust.F_adv
+            self.dust.Fi.adv.updater = std.dust.F_adv
         if self.dust.Fi.diff is None:
             self.dust.Fi.diff = Field(self, np.zeros(
                 shape2p1), description="Diffusive flux [g/cm/s")
-            self.dust.Fi.diff.updater = std_dust.F_diff
+            self.dust.Fi.diff.updater = std.dust.F_diff
         if self.dust.Fi.tot is None:
             self.dust.Fi.tot = Field(self, np.zeros(
                 shape2p1), description="Total flux [g/cm/s")
-            self.dust.Fi.tot.updater = std_dust.F_tot
+            self.dust.Fi.tot.updater = std.dust.F_tot
         # Filling factor
         if self.dust.fill is None:
             self.dust.fill = Field(self, np.ones(
@@ -668,17 +664,17 @@ class Simulation(Frame):
         if self.dust.H is None:
             self.dust.H = Field(self, np.zeros(shape2),
                                 description="Scale heights [cm]")
-            self.dust.H.updater = std_dust.H
+            self.dust.H.updater = std.dust.H
         # Kernel
         if self.dust.kernel is None:
             self.dust.kernel = Field(self, np.zeros(
                 shape3), description="Collision kernel [cm²/s]")
-            self.dust.kernel.updater = std_dust.kernel
+            self.dust.kernel.updater = std.dust.kernel
         # Midplane mass density
         if self.dust.rho is None:
             self.dust.rho = Field(self, np.zeros(
                 shape2), description="Midplane mass density per mass bin [g/cm³]")
-            self.dust.rho.updater = std_dust.rho_midplane
+            self.dust.rho.updater = std.dust.rho_midplane
         # Solid state density
         if self.dust.rhos is None:
             rhos = self.ini.dust.rhoMonomer * np.ones(shape2)
@@ -688,32 +684,32 @@ class Simulation(Frame):
         if self.dust.p.frag is None:
             self.dust.p.frag = Field(self, np.zeros(
                 shape3), description="Fragmentation probability")
-            self.dust.p.frag.updater = std_dust.p_frag
+            self.dust.p.frag.updater = std.dust.p_frag
         if self.dust.p.stick is None:
             self.dust.p.stick = Field(self, np.zeros(
                 shape3), description="Sticking probability")
-            self.dust.p.stick.updater = std_dust.p_stick
+            self.dust.p.stick.updater = std.dust.p_stick
         # Source terms
         if self.dust.S.coag is None:
             self.dust.S.coag = Field(self, np.zeros(
                 shape2), description="Coagulation sources [g/cm²/s]")
-            self.dust.S.coag.updater = std_dust.S_coag
+            self.dust.S.coag.updater = std.dust.S_coag
         if self.dust.S.ext is None:
             self.dust.S.ext = Field(self, np.zeros(
                 shape2), description="External sources [g/cm²/s]")
         if self.dust.S.hyd is None:
             self.dust.S.hyd = Field(self, np.zeros(
                 shape2), description="Hydrodynamic sources [g/cm²/s]")
-            self.dust.S.hyd.updater = std_dust.S_hyd
+            self.dust.S.hyd.updater = std.dust.S_hyd
         if self.dust.S.tot is None:
             self.dust.S.tot = Field(self, np.zeros(
                 shape2), description="Tot sources [g/cm²/s]")
-            self.dust.S.tot.updater = std_dust.S_tot
+            self.dust.S.tot.updater = std.dust.S_tot
         # Stokes number
         if self.dust.St is None:
             self.dust.St = Field(self, np.zeros(
                 shape2), description="Stokes number")
-            self.dust.St.updater = std_dust.St_Epstein_StokesI
+            self.dust.St.updater = std.dust.St_Epstein_StokesI
         # Velocities
         if self.dust.v.frag is None:
             vfrag = self.ini.dust.vfrag * np.ones(shape1)
@@ -722,35 +718,35 @@ class Simulation(Frame):
         if self.dust.v.rel.azi is None:
             self.dust.v.rel.azi = Field(self, np.zeros(
                 shape3), description="Relative azimuthal velocity [cm/s]")
-            self.dust.v.rel.azi.updater = std_dust.vrel_azimuthal_drift
+            self.dust.v.rel.azi.updater = std.dust.vrel_azimuthal_drift
         if self.dust.v.rel.brown is None:
             self.dust.v.rel.brown = Field(self, np.zeros(
                 shape3), description="Relative Brownian motion velocity [cm/s]")
-            self.dust.v.rel.brown.updater = std_dust.vrel_brownian_motion
+            self.dust.v.rel.brown.updater = std.dust.vrel_brownian_motion
         if self.dust.v.rel.rad is None:
             self.dust.v.rel.rad = Field(self, np.zeros(
                 shape3), description="Relative radial velocity [cm/s]")
-            self.dust.v.rel.rad.updater = std_dust.vrel_radial_drift
+            self.dust.v.rel.rad.updater = std.dust.vrel_radial_drift
         if self.dust.v.rel.turb is None:
             self.dust.v.rel.turb = Field(self, np.zeros(
                 shape3), description="Relative turbulent velocity [cm/s]")
-            self.dust.v.rel.turb.updater = std_dust.vrel_turbulent_motion
+            self.dust.v.rel.turb.updater = std.dust.vrel_turbulent_motion
         if self.dust.v.rel.vert is None:
             self.dust.v.rel.vert = Field(self, np.zeros(
                 shape3), description="Relative vertical settling velocity [cm/s]")
-            self.dust.v.rel.vert.updater = std_dust.vrel_vertical_settling
+            self.dust.v.rel.vert.updater = std.dust.vrel_vertical_settling
         if self.dust.v.rel.tot is None:
             self.dust.v.rel.tot = Field(self, np.zeros(
                 shape3), description="Total relative velocity [cm/s]")
-            self.dust.v.rel.tot.updater = std_dust.vrel_tot
+            self.dust.v.rel.tot.updater = std.dust.vrel_tot
         if self.dust.v.driftmax is None:
             self.dust.v.driftmax = Field(self, np.zeros(
                 shape1), description="Maximum drift velocity [cm/s]")
-            self.dust.v.driftmax.updater = std_dust.vdriftmax
+            self.dust.v.driftmax.updater = std.dust.vdriftmax
         if self.dust.v.rad is None:
             self.dust.v.rad = Field(self, np.zeros(
                 shape2), description="Radial velocity [cm/s]")
-            self.dust.v.rad.updater = std_dust.vrad
+            self.dust.v.rad.updater = std.dust.vrad
         # Initialize dust quantities partly to calculate Sigma
         try:
             self.dust.update()
@@ -758,17 +754,19 @@ class Simulation(Frame):
             pass
         # Floor value
         if self.dust.SigmaFloor is None:
-            SigmaFloor = std_dust.SigmaFloor(self)
+            SigmaFloor = 0.1*std.dust.SigmaFloor(self)
             self.dust.SigmaFloor = Field(
                 self, SigmaFloor, description="Floor value of surface density [g/cm²]")
         # Surface density, if not set
         if self.dust.Sigma is None:
-            Sigma = np.maximum(std_dust.MRN_distribution(
-                self), self.dust.SigmaFloor)
+            Sigma = std.dust.MRN_distribution(self)
+            Sigma = np.where(Sigma <= self.dust.SigmaFloor,
+                             0.1*self.dust.SigmaFloor,
+                             Sigma)
             self.dust.Sigma = Field(
                 self, Sigma, description="Surface density per mass bin [g/cm²]")
-            self.dust.Sigma.differentiator = std_dust.Sigma_deriv
-            self.dust.Sigma.jacobinator = std_dust.jacobian
+            self.dust.Sigma.differentiator = std.dust.Sigma_deriv
+            self.dust.Sigma.jacobinator = std.dust.jacobian
         # Fully initialize dust quantities
         self.dust.update()
         # Hidden fields
@@ -793,31 +791,31 @@ class Simulation(Frame):
                 self.grid.ri[::-1],
                 self.dust.Sigma[::-1],
                 condition="val",
-                value=self.dust.SigmaFloor[-1]
+                value=0.1*self.dust.SigmaFloor[-1]
             )
 
         # INTEGRATOR
 
         if self.integrator is None:
             instructions = [
-                Instruction(std_dust.impl_1_direct,
+                Instruction(std.dust.impl_1_direct,
                             self.dust.Sigma,
                             controller={"rhs": self.dust._rhs
                                         },
                             description="Dust: implicit 1st-order direct solver"
                             ),
-                Instruction(std_gas.impl_1_euler_direct,
+                Instruction(std.gas.impl_1_direct,
                             self.gas.Sigma,
                             controller={"rhs": self.gas._rhs
                                         },
-                            description="Gas: implicit 1st-order Euler method"
+                            description="Gas: implicit 1st-order direct solver"
                             ),
             ]
             self.integrator = Integrator(
                 self.t, description="Default integrator")
             self.integrator.instructions = instructions
-            self.integrator.preparator = std_sim.prepare_implicit_dust
-            self.integrator.finalizer = std_sim.finalize_implicit_dust
+            self.integrator.preparator = std.sim.prepare_implicit_dust
+            self.integrator.finalizer = std.sim.finalize_implicit_dust
 
         # WRITER
 
@@ -865,10 +863,10 @@ class Simulation(Frame):
                 shape2ravel), description="Right-hand side of matrix equation [g/cm²]")
 
             # Setting the Jacobinator
-            self.dust.Sigma.jacobinator = std_dust.jacobian
+            self.dust.Sigma.jacobinator = std.dust.jacobian
 
             # Time step routine
-            self.t.updater = std_sim.dt
+            self.t.updater = std.sim.dt
 
             # Updaters
             self.dust.v.updater = ["frag", "driftmax", "rel"]
@@ -877,13 +875,13 @@ class Simulation(Frame):
             self.dust.S.updater = ["ext", "tot"]
 
             # Preparation/Finalization
-            self.integrator.preparator = std_sim.prepare_implicit_dust
-            self.integrator.finalizer = std_sim.finalize_implicit_dust
+            self.integrator.preparator = std.sim.prepare_implicit_dust
+            self.integrator.finalizer = std.sim.finalize_implicit_dust
 
             # Integrator
             if method == "direct":
 
-                inst = Instruction(std_dust.impl_1_direct,
+                inst = Instruction(std.dust.impl_1_direct,
                                    self.dust.Sigma,
                                    controller={"rhs": self.dust._rhs
                                                },
@@ -916,13 +914,13 @@ class Simulation(Frame):
             self.dust.S.updater = ["coag", "hyd", "ext", "tot"]
 
             # Preparation/Finalization
-            self.integrator.preparator = std_sim.prepare_explicit_dust
-            self.integrator.finalizer = std_sim.finalize_explicit_dust
+            self.integrator.preparator = std.sim.prepare_explicit_dust
+            self.integrator.finalizer = std.sim.finalize_explicit_dust
 
             if method == "cash-karp":
 
                 # Adaptive time step routine
-                self.t.updater = std_sim.dt_adaptive
+                self.t.updater = std.sim.dt_adaptive
 
                 # Instruction
                 inst = Instruction(schemes.expl_5_cash_karp_adptv,

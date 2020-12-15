@@ -34,7 +34,10 @@ def enforce_floor_value(sim):
     ----------
     sim : Frame
         Parent simulation frame"""
-    sim.dust.Sigma = np.array(np.maximum(sim.dust.Sigma, sim.dust.SigmaFloor))
+    sim.dust.Sigma = np.where(
+        sim.dust.Sigma > sim.dust.SigmaFloor,
+        sim.dust.Sigma,
+        0.1*sim.dust.SigmaFloor)
 
 
 def prepare(sim):
@@ -88,9 +91,9 @@ def set_implicit_boundaries(sim):
         Parent simulation frame"""
     # Total source terms
     sim.dust.S.tot[0] = (sim.dust.Sigma[0] -
-                         sim.dust._SigmaOld[0])/sim.t.stepsize
+                         sim.dust._SigmaOld[0])/(sim.t.prevstepsize+1.e-100)
     sim.dust.S.tot[-1] = (sim.dust.Sigma[-1] -
-                          sim.dust._SigmaOld[-1])/sim.t.stepsize
+                          sim.dust._SigmaOld[-1])/(sim.t.prevstepsize+1.e-100)
     # Hydrodynamic source terms
     sim.dust.S.hyd[0] = sim.dust.S.tot[0]
     sim.dust.S.hyd[-1] = sim.dust.S.tot[-1]
@@ -101,6 +104,46 @@ def set_implicit_boundaries(sim):
                            * (sim.grid.ri[-1]**2-sim.grid.ri[-2]**2))/sim.grid.ri[-1]
     sim.dust.Fi.tot[0] = sim.dust.Fi.adv[0]
     sim.dust.Fi.tot[-1] = sim.dust.Fi.adv[-1]
+
+
+def dt_adaptive(sim):
+    """Function returns the adaptive time step.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+
+    Returns
+    -------
+    dt : float
+        Dust time step"""
+    return sim.t.suggested
+
+
+def dt(sim):
+    """Function calculates the time step from the dust sources.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+
+    Returns
+    -------
+    dt : float
+        Dust time step"""
+    if np.any(sim.dust.S.tot[1:-1, ...] < 0.):
+        mask = np.logical_and(
+            sim.dust.Sigma > sim.dust.SigmaFloor,
+            sim.dust.S.tot < 0.)
+        mask[0, :] = False
+        mask[-1:, :] = False
+        rate = sim.dust.Sigma[mask] / sim.dust.S.tot[mask]
+        try:
+            return np.min(np.abs(rate))
+        except:
+            return None
 
 
 def a(sim):
@@ -279,7 +322,7 @@ def jacobian(sim, x, *args, **kwargs):
     SigDfloor = sim.dust.SigmaFloor
 
     # Helper variables for convenience
-    dt = sim.t.stepsize
+    dt = x.stepsize
     r = sim.grid.r
     ri = sim.grid.ri
     area = sim.grid.A
@@ -891,7 +934,7 @@ def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
        | 1
     """
     if jac is None:
-        jac = Y0.jacobian(x0 + dx, dt=dx)
+        jac = Y0.jacobian(x0 + dx)
     if rhs is None:
         rhs = np.array(Y0.ravel())
 
