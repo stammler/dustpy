@@ -1,0 +1,6 @@
+dt
+==
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: dt
