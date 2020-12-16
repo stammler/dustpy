@@ -5,13 +5,8 @@ import dustpy.constants as c
 from dustpy.std import dust_f
 
 import numpy as np
-from scipy.sparse import csc_matrix
-from scipy.sparse import diags
-from scipy.sparse import identity
-from scipy.sparse.linalg import gmres
-from scipy.sparse.linalg import LinearOperator
-from scipy.sparse.linalg import splu
-from scipy.sparse.linalg import spilu
+import scipy.sparse as sp
+
 from simframe.integration import Scheme
 
 
@@ -338,7 +333,7 @@ def jacobian(sim, x, *args, **kwargs):
         A, cstick, eps, ilf, irm, istick, m, phi, Rf, Rs, SigD, SigDfloor)
     gen = (dat, (row, col))
     # Building sparse matrix of coagulation Jacobian
-    J_coag = csc_matrix(
+    J_coag = sp.csc_matrix(
         gen,
         shape=(Ntot, Ntot)
     )
@@ -352,7 +347,7 @@ def jacobian(sim, x, *args, **kwargs):
         sim.gas.Sigma,
         sim.dust.v.rad
     )
-    J_hyd = diags(
+    J_hyd = sp.diags(
         (A.ravel()[Nm:], B.ravel(), C.ravel()[:-Nm]),
         offsets=(-Nm, 0, Nm),
         shape=(Ntot, Ntot),
@@ -413,7 +408,7 @@ def jacobian(sim, x, *args, **kwargs):
 
     # Creating sparce matrix for inner boundary
     gen = (dat, (row, col))
-    J_in = csc_matrix(
+    J_in = sp.csc_matrix(
         gen,
         shape=(Ntot, Ntot)
     )
@@ -467,7 +462,7 @@ def jacobian(sim, x, *args, **kwargs):
 
     # Creating sparce matrix for outer boundary
     gen = (dat, (row, col))
-    J_out = csc_matrix(
+    J_out = sp.csc_matrix(
         gen,
         shape=(Ntot, Ntot)
     )
@@ -944,14 +939,14 @@ def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
     rhs[Nm:-Nm] += dx*Y0._owner.dust.S.ext[1:-1, ...].ravel()
 
     N = jac.shape[0]
-    eye = identity(N, format="csc")
+    eye = sp.identity(N, format="csc")
 
     A = eye - dx[0] * jac
 
-    A_LU = splu(A,
-                permc_spec="MMD_AT_PLUS_A",
-                diag_pivot_thresh=0.0,
-                options=dict(SymmetricMode=True))
+    A_LU = sp.linalg.splu(A,
+                          permc_spec="MMD_AT_PLUS_A",
+                          diag_pivot_thresh=0.0,
+                          options=dict(SymmetricMode=True))
     Y1_ravel = A_LU.solve(rhs)
 
     Y1 = Y1_ravel.reshape(Y0.shape)
