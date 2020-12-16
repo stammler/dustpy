@@ -1,10 +1,10 @@
 '''Module containing standard functions for the gas.'''
 
 import numpy as np
+import scipy.sparse as sp
 from simframe.integration import Scheme
 
 import dustpy.constants as c
-
 from dustpy.std import gas_f
 
 
@@ -202,32 +202,36 @@ def jacobian(sim, x, *args, **kwargs):
     r = sim.grid.r
     ri = sim.grid.ri
     area = sim.grid.A
+    Nr = int(sim.grid.Nr)
 
     # Construct Jacobian
     A, B, C = gas_f.jac_abc(area, nu, r, ri, v)
-    jac = np.diag(A[1:], -1) + np.diag(B) + np.diag(C[:-1], 1)
+    J = sp.diags(
+        (A[1:], B[:], C[:-1]),
+        offsets=(-1, 0, 1),
+        shape=(Nr, Nr),
+        format="csc")
 
     # Right hand side
     sim.gas._rhs[:] = sim.gas.Sigma
 
     # Boundaries
+    B00, B01, B02 = 0., 0., 0.
+    BNm1Nm3, BNm1Nm2, BNm1Nm1 = 0., 0., 0.
 
     # Inner boundary
     if sim.gas.boundary.inner is not None:
         # Given value
         if sim.gas.boundary.inner.condition == "val":
-            jac[0, 0] = 0.
             sim.gas._rhs[0] = sim.gas.boundary.inner.value
         # Constant value
         elif sim.gas.boundary.inner.condition == "const_val":
-            jac[0, 0] = 0.
-            jac[0, 1] = 1./dt
+            B01 = (1./dt)[0]
             sim.gas._rhs[0] = 0.
         # Given gradient
         elif sim.gas.boundary.inner.condition == "grad":
             K1 = - r[1]/r[0]
-            jac[0, 0] = 0.
-            jac[0, 1] = -K1/dt
+            B01 = -(K1/dt)[0]
             sim.gas._rhs[0] = - ri[1]/r[0] * \
                 (r[1]-r[0])*sim.gas.boundary.inner.value
         # Constant gradient
@@ -235,40 +239,39 @@ def jacobian(sim, x, *args, **kwargs):
             Di = ri[1]/ri[2] * (r[1]-r[0]) / (r[2]-r[0])
             K1 = - r[1]/r[0] * (1. + Di)
             K2 = r[2]/r[0] * Di
-            jac[0, 0] = 0.
-            jac[0, 1] = -K1/dt
-            jac[0, 2] = -K2/dt
+            B00, B01, B02 = 0., -(K1/dt)[0], -(K2/dt)[0]
             sim.gas._rhs[0] = 0.
         # Given power law
         elif sim.gas.boundary.inner.condition == "pow":
             p = sim.gas.boundary.inner.value
-            jac[0, 0] = 0.
             sim.gas._rhs[0] = sim.gas.Sigma[1] * (r[0]/r[1])**p
         # Constant power law
         elif sim.gas.boundary.inner.condition == "const_pow":
             p = np.log(sim.gas.Sigma[2] /
                        sim.gas.Sigma[1]) / np.log(r[2]/r[1])
             K1 = - (r[0]/r[1])**p
-            jac[0, 0] = 0.
-            jac[0, 1] = -K1/dt
+            B01 = -(K1/dt)[0]
             sim.gas._rhs[0] = 0.
+
+    row = [0, 0, 0]
+    col = [0, 1, 2]
+    dat = [B00, B01, B02]
+    gen = (dat, (row, col))
+    J_in = sp.csc_matrix(gen, shape=(Nr, Nr))
 
     # Outer boundary
     if sim.gas.boundary.outer is not None:
         # Given value
         if sim.gas.boundary.outer.condition == "val":
-            jac[-1, -1] = 0
             sim.gas._rhs[-1] = sim.gas.boundary.outer.value
         # Constant value
         elif sim.gas.boundary.outer.condition == "const_val":
-            jac[-1, -1] = 0
-            jac[-1, -2] = 1./dt
+            BNm1Nm2 = (1./dt)[0]
             sim.gas._rhs[-1] = 0.
         # Given gradient
         elif sim.gas.boundary.outer.condition == "grad":
             KNrm2 = - r[-2]/r[-1]
-            jac[-1, -1] = 0.
-            jac[-1, -2] = -KNrm2/dt
+            BNm1Nm2 = -(KNrm2/dt)[0]
             sim.gas._rhs[-1] = ri[-2]/r[-1] * \
                 (r[-1]-r[-2])*sim.gas.boundary.outer.value
         # Constant gradient
@@ -276,25 +279,28 @@ def jacobian(sim, x, *args, **kwargs):
             Do = ri[-2]/ri[-3] * (r[-1]-r[-2]) / (r[-2]-r[-3])
             KNrm2 = - r[-2]/r[-1] * (1. + Do)
             KNrm3 = r[-3]/r[-1] * Do
-            jac[-1, -1] = 0.
-            jac[-1, -2] = -KNrm2/dt
-            jac[-1, -3] = -KNrm3/dt
+            Bnm1Bnm2 = -(KNrm2/dt)[0]
+            Bnm1Bnm3 = -(KNrm3/dt)[0]
             sim.gas._rhs[-1] = 0.
         # Given power law
         elif sim.gas.boundary.outer.condition == "pow":
             p = sim.gas.boundary.outer.value
-            jac[-1, -1] = 0.
             sim.gas._rhs[-1] = sim.gas.Sigma[-2] * (r[-1]/r[-2])**p
         # Constant power law
         elif sim.gas.boundary.outer.condition == "const_pow":
             p = np.log(sim.gas.Sigma[-2] /
                        sim.gas.Sigma[-3]) / np.log(r[-2]/r[-3])
             KNrm2 = - (r[-1]/r[-2])**p
-            jac[-1, -1] = 0.
-            jac[-1, -2] = -KNrm2/dt
+            Bnm1Bnm2 = -(KNrm2/dt)[0]
             sim.gas._rhs[-1] = 0.
 
-    return jac
+    row = [Nr-1, Nr-1, Nr-1]
+    col = [Nr-3, Nr-2, Nr-1]
+    dat = [BNm1Nm3, BNm1Nm2, BNm1Nm1]
+    gen = (dat, (row, col))
+    J_out = sp.csc_matrix(gen, shape=(Nr, Nr))
+
+    return J_in + J + J_out
 
 
 def lyndenbellpringle1974(r, rc, p, Mdisk):
@@ -498,17 +504,21 @@ def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
        | 1 
     """
     if jac is None:
-        jac = Y0.jacobian(x0 + dx, dt=dx)
+        jac = Y0.jacobian(x0 + dx)
     if rhs is None:
         rhs = np.array(Y0)
 
     # Add external source terms to right-hand side
-    rhs[1:-1] += dx*Y0._owner.gas.S.ext[1:-1]
+    rhs[1:-1] += dx[0]*Y0._owner.gas.S.ext[1:-1]
 
     N = jac.shape[0]
-    eye = np.eye(N)
-    A = eye - dx * jac
-    Y1 = np.linalg.inv(A) @ rhs
+    eye = sp.identity(N, format="csc")
+    A = eye - dx[0]*jac
+    A_LU = sp.linalg.splu(A,
+                          permc_spec="MMD_AT_PLUS_A",
+                          diag_pivot_thresh=0.0,
+                          options=dict(SymmetricMode=True))
+    Y1 = A_LU.solve(rhs)
 
     return Y1 - Y0
 
