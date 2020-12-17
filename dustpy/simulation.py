@@ -538,8 +538,6 @@ class Simulation(Frame):
             self.gas.Sigma = Field(self, SigmaGas,
                                    description="Surface density [g/cm²]")
             self.gas.Sigma.jacobinator = std.gas.jacobian
-        # Hidden fields required for the calculation of omplicit quantities
-        self.gas._rhs = np.zeros(shape1)
         # Temperature
         if self.gas.T is None:
             self.gas.T = Field(self, np.zeros(shape1),

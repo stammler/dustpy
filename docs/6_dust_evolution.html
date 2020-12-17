@@ -603,7 +603,7 @@ results in a particle with mass smaller than the largest mass bin. Fragmentation
 <div class="section" id="Hydrodynamics">
 <h2>Hydrodynamics<a class="headerlink" href="#Hydrodynamics" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> solves the following equation for dust transport</p>
-<p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{d} + \frac{1}{r} \frac{\partial}{\partial r} \left( r\Sigma_\mathrm{d}v_\mathrm{rad} \right) - \frac{1}{r} \frac{\partial}{\partial r} \left[ D \Sigma_\mathrm{g} \frac{\partial}{\partial r} \left( \frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{g}} \right) \right] = 0\)</span></p>
+<p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{d} + \frac{1}{r} \frac{\partial}{\partial r} \left( r\Sigma_\mathrm{d}v_\mathrm{rad} \right) - \frac{1}{r} \frac{\partial}{\partial r} \left[ r D \Sigma_\mathrm{g} \frac{\partial}{\partial r} \left( \frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{g}} \right) \right] = 0\)</span></p>
 <p>The dust hydrodynamics consists of an advective and an diffusive term. The algorithm calculates the advective and diffusive fluxes separately at the grid cell interfaces. Furthermore, the sum of both is calculated.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
