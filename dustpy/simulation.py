@@ -930,6 +930,7 @@ class Simulation(Frame):
                                    description="Dust: explicit 5th-order adaptive Cash-Karp method"
                                    )
                 self.integrator.instructions[i] = inst
+                self.t.suggest(1.*c.year)
 
             else:
                 raise RuntimeError("Invalid method for explicit integration.")
