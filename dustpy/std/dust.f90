@@ -32,6 +32,199 @@ subroutine a(m, rho, sizes, Nr, Nm)
 end subroutine a
 
 
+subroutine check_mass_conservation_cratering(AFrag, epsFrag, klf, krm, m, phiFrag, Nm, errmax, imax, jmax)
+  ! Function calculates the maximum relative mass error in cratering collisions.
+  !
+  ! Parameters
+  ! ----------
+  ! AFrag(Nm, Nm) : Normalization factor of fragment distribution
+  ! epsFrag(Nm, Nm) : Fraction of remnant mass that get distributed into the
+  !                   lower mass bin
+  ! klf(Nm, Nm) : Index of largest fragment
+  ! krm(Nm, Nm) : Smaller index of remnant mass
+  ! m(Nm) : Mass grid
+  ! phiFrag(Nm, Nm) : The distribution of fragments
+  ! Nm : Number of mass bins
+  !
+  ! Returns
+  ! -------
+  ! errmax : maximum relative mass error
+  ! imax, jmax : indices of maximum mass error
+
+  implicit none
+
+  double precision, intent(in)  :: AFrag(Nm, Nm)
+  double precision, intent(in)  :: epsFrag(Nm, Nm)
+  integer,          intent(in)  :: klf(Nm, Nm)
+  integer,          intent(in)  :: krm(Nm, Nm)
+  double precision, intent(in)  :: m(Nm)
+  double precision, intent(in)  :: phiFrag(Nm, Nm)
+  integer,          intent(in)  :: Nm
+  double precision, intent(out) :: errmax
+  integer,          intent(out) :: imax
+  integer,          intent(out) :: jmax
+
+  integer :: i
+  integer :: j
+  integer :: k
+  double precision :: merr
+  double precision :: mfrag
+  double precision :: mrm
+  double precision :: mtot
+
+  ! Initialization
+  errmax = 0.d0
+
+  do i=1, Nm
+    do j=1, i
+
+      if(klf(j, i)+1 .EQ. i) cycle
+
+      mtot = m(i) + m(j)
+
+      mfrag = 0.d0
+      do k=1, Nm
+        mfrag = mfrag + AFrag(j, i) * phiFrag(klf(j, i)+1, k)
+      end do
+      mrm = epsFrag(j, i)*m(krm(j, i)+1) + (1.d0-epsFrag(j, i))*m(krm(j, i)+2)
+      
+      merr = ABS(1.d0 - mfrag/mtot - mrm/mtot)
+      if(merr .GT. errmax) then
+        errmax = merr
+        imax = i - 1  ! Conversion to Python indexing
+        jmax = j - 1
+      end if
+
+    end do
+  end do
+
+end subroutine check_mass_conservation_cratering
+
+
+subroutine check_mass_conservation_full_fragmentation(AFrag, klf, m, phiFrag, Nm, errmax, imax, jmax)
+  ! Function calculates the maximum relative mass error in full fragmenting collisions.
+  !
+  ! Parameters
+  ! ----------
+  ! AFrag(Nm, Nm) : Normalization factor of fragment distribution
+  ! klf(Nm, Nm) : Index of largest fragment
+  ! phiFrag(Nm, Nm) : The distribution of fragments
+  ! m(Nm) : Mass grid
+  ! Nm : Number of mass bins
+  !
+  ! Returns
+  ! -------
+  ! errmax : maximum relative mass error
+  ! imax, jmax : indices of maximum mass error
+
+  implicit none
+
+  double precision, intent(in)  :: AFrag(Nm, Nm)
+  integer,          intent(in)  :: klf(Nm, Nm)
+  double precision, intent(in)  :: m(Nm)
+  double precision, intent(in)  :: phiFrag(Nm, Nm)
+  integer,          intent(in)  :: Nm
+  double precision, intent(out) :: errmax
+  integer,          intent(out) :: imax
+  integer,          intent(out) :: jmax
+
+  integer :: i
+  integer :: j
+  integer :: k
+  double precision :: merr
+  double precision :: mfrag
+  double precision :: mtot
+
+  ! Initialization
+  errmax = 0.d0
+
+  do i=1, Nm
+    do j=1, i
+
+      if(klf(j, i)+1 .NE. i) cycle
+
+      mfrag = 0.d0
+      mtot = m(i) + m(j)
+
+      do k=1, Nm
+        mfrag = mfrag + AFrag(j, i) * phiFrag(i, k)
+      end do
+
+      merr = ABS(1.d0 - mfrag/mtot)
+      if(merr .GT. errmax) then
+        errmax = merr
+        imax = i - 1  ! Conversion to Python indexing
+        jmax = j - 1
+      end if
+
+    end do
+  end do
+
+end subroutine check_mass_conservation_full_fragmentation
+
+
+subroutine check_mass_conservation_sticking(cstick, cstick_ind, m, Nm, errmax, imax, jmax)
+  ! Function calculates the maximum relative mass error in sticking collisions.
+  !
+  ! Parameters
+  ! ----------
+  ! cstick(4, Nm, Nm) : Non-zero elements of sticking matrix
+  ! cstick_ind(4, Nm, Nm) : location of non-zero elements in third dimension
+  !                         in Python indexing starting from 0
+  ! m(Nm) : Mass grid
+  ! Nm : Number of mass bins
+  !
+  ! Returns
+  ! -------
+  ! errmax : maximum relative mass error
+  ! imax, jmax : indices of maximum mass error
+
+  implicit none
+
+  double precision, intent(in)  :: cstick(4, Nm, Nm)
+  integer,          intent(in)  :: cstick_ind(4, Nm, Nm)
+  double precision, intent(in)  :: m(Nm)
+  integer,          intent(in)  :: Nm
+  double precision, intent(out) :: errmax
+  integer,          intent(out) :: imax
+  integer,          intent(out) :: jmax
+
+  integer :: i
+  integer :: j
+  integer :: k
+  integer :: l
+  double precision :: merr
+  double precision :: msum
+  double precision :: mtot
+
+  ! Initializing
+  errmax = 0.d0
+
+  do i=1, Nm
+    do j=1, i
+
+      mtot = m(i) + m(j)
+      msum = 0.d0
+
+      do l=1, 4
+        k = cstick_ind(l, j, i) + 1 ! Conversion to Fortran indexing
+        if(k .EQ. 0) cycle
+        msum = msum + cstick(l, j, i)*m(k)
+      end do
+
+      merr = ABS(msum/mtot)
+      if(merr .GT. errmax) then
+        errmax = merr
+        imax = i - 1  ! Conversion to Python indexing
+        jmax = j - 1
+      end if
+
+    end do
+  end do
+
+end subroutine check_mass_conservation_sticking
+
+
 subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstick_ind, AFrag, epsFrag, klf, krm, phiFrag, Nr, Nm)
   ! Subroutine calculates the coagulation parameters needed to calculate the
   ! coagulation sources. The sticking matrix is calculated with the method

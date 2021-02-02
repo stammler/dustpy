@@ -273,6 +273,8 @@ class Simulation(Frame):
 
     def checkmassconservation(self):
         """Function checks for mass conservation and prints the maximum relative mass error."""
+
+        # Check if required fields are present
         if self.dust.coagulation.stick is None:
             raise RuntimeError(
                 "'Simulation.dust.coagulation.stick' is not set.")
@@ -296,9 +298,12 @@ class Simulation(Frame):
                 "'Simulation.dust.coagulation.phi' is not set.")
         if self.grid.m is None:
             raise RuntimeError("'sim.grid.m' is not set.")
+
         if self.verbosity > 0:
+
             # Maximum acceptable error
             erracc = 1.e-13
+
             # Checking for sticking error
             msg = "\n"
             msg += colorize("Checking for mass conservation...\n",
@@ -306,17 +311,9 @@ class Simulation(Frame):
             print(msg)
             msg = colorize("    - Sticking:", color="yellow")
             print(msg)
-            errmax = 0.
-            tup = None
-            for i in range(np.int(self.grid.Nm)):
-                for j in range(i):
-                    ind = self.dust.coagulation.stick_ind[:, j, i]
-                    stick = self.dust.coagulation.stick[:, j, i]
-                    mtot = self.grid.m[i] + self.grid.m[j]
-                    merr = np.abs(np.sum(self.grid.m[ind]*stick)) / mtot
-                    if merr > errmax:
-                        errmax = merr
-                        tup = (j, i)
+            errmax, i, j = std.dust_f.check_mass_conservation_sticking(
+                self.dust.coagulation.stick, self.dust.coagulation.stick_ind, self.grid.m)
+            tup = (j, i)
             color = "red"
             if(errmax < erracc):
                 color = "green"
@@ -330,28 +327,19 @@ class Simulation(Frame):
                 tup[1], self.grid.m[tup[1]])
             msg = colorize(msg)
             print(msg)
+
             # Checking for full fragmentation error
             msg = colorize("    - Full fragmentation:", color="yellow")
             print(msg)
-            errmax = 0.
-            tup = None
             A = self.dust.coagulation.A
             eps = self.dust.coagulation.eps
             klf = self.dust.coagulation.lf_ind
             krm = self.dust.coagulation.rm_ind
             m = self.grid.m
             phi = self.dust.coagulation.phi
-            for i in range(np.int(self.grid.Nm)):
-                for j in range(i):
-                    mtot = m[i] + m[j]
-                    merr = 0
-                    # Full fragmentation:
-                    if klf[j, i] == i:
-                        mfrag = A[j, i]*np.sum(phi[i, :])
-                        merr = np.abs(1. - mfrag / mtot)
-                        if merr > errmax:
-                            errmax = merr
-                            tup = (j, i)
+            errmax, i, j = std.dust_f.check_mass_conservation_full_fragmentation(
+                A, klf, m, phi)
+            tup = (j, i)
             color = "red"
             if(errmax < erracc):
                 color = "green"
@@ -365,24 +353,13 @@ class Simulation(Frame):
                 tup[1], self.grid.m[tup[1]])
             msg = colorize(msg)
             print(msg)
+
             # Checking for cratering error
             msg = colorize("    - Cratering:", color="yellow")
             print(msg)
-            errmax = 0.
-            tup = None
-            for i in range(np.int(self.grid.Nm)):
-                for j in range(i):
-                    mtot = m[i] + m[j]
-                    merr = 0
-                    # Cratering:
-                    if klf[j, i] != i:
-                        k = krm[j, i]
-                        mfrag = A[j, i]*np.sum(phi[klf[j, i], :])
-                        mrm = eps[j, i]*m[k] + (1.-eps[j, i])*m[k+1]
-                        merr = np.abs(1. - mfrag/mtot - mrm/mtot)
-                        if merr > errmax:
-                            errmax = merr
-                            tup = (j, i)
+            errmax, i, j = std.dust_f.check_mass_conservation_cratering(
+                A, eps, klf, krm, m, phi)
+            tup = (j, i)
             color = "red"
             if(errmax < erracc):
                 color = "green"
