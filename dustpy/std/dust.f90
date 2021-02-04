@@ -78,7 +78,7 @@ subroutine check_mass_conservation_cratering(AFrag, epsFrag, klf, krm, m, phiFra
   do i=1, Nm
     do j=1, i
 
-      if(klf(j, i)+1 .EQ. i) cycle
+      if(krm(j, i)+1 .EQ. 0) cycle
 
       mtot = m(i) + m(j)
 
