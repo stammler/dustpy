@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Dust Evolution &mdash; dustpy  documentation</title>
+  <title>6. Dust Evolution &mdash; dustpy  documentation</title>
   
 
   
@@ -24,7 +24,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -39,8 +38,8 @@
   <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Gas Evolution" href="7_gas_evolution.html" />
-    <link rel="prev" title="Dust Coagulation" href="5_dust_coagulation.html" /> 
+    <link rel="next" title="7. Gas Evolution" href="7_gas_evolution.html" />
+    <link rel="prev" title="5. Dust Coagulation" href="5_dust_coagulation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,12 +85,12 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="1_basics.html">Basic usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">Simple Customization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">Advanced Customization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">The Standard Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">Dust Coagulation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Dust Evolution</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">2. Simple Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">3. Advanced Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">4. The Standard Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">5. Dust Coagulation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Dust Evolution</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Coagulation">Coagulation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Turning-off-Fragmentation">Turning off Fragmentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Turning-off-Coagulation">Turning off Coagulation</a></li>
@@ -110,11 +109,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#Changing-the-Dust-Integrator">Changing the Dust Integrator</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="8_test_gas_evolution.html">Test: Gas Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="9_example_gaps.html">Example: Planetary Gaps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10_example_ice_lines.html">Example: Ice Lines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">7. Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_analytical_coagulation_kernels.html">Test: Analytical Coagulation Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_ice_lines.html">Example: Ice Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetary_gaps.html">Example: Planetary Gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="A_publications.html">Appendix A: List of Publications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
@@ -162,7 +162,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Dust Evolution</li>
+      <li>6. Dust Evolution</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -436,8 +436,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Dust-Evolution">
-<h1>Dust Evolution<a class="headerlink" href="#Dust-Evolution" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="6.-Dust-Evolution">
+<h1>6. Dust Evolution<a class="headerlink" href="#6.-Dust-Evolution" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
 <div class="line">Dust evolution in <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> consists of three parts: coagulation, hydrodynamics, and external sources.</div>
 <div class="line">Their source terms are stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.S</span></code>.</div>
@@ -482,7 +482,7 @@ div.rendered_html tbody tr:hover {
 <p><span class="math notranslate nohighlight">\(\begin{split} \left( \mathbb{1} - \Delta t\, \mathbb{J} \right) \cdot \vec{\Sigma}_\mathrm{d}^{n+1} &amp;= \vec{\Sigma}_\mathrm{d}^{n} + \Delta t\, \vec{S}_\mathrm{ext}\\ &amp;\equiv \vec{R}^n, \end{split}\)</span></p>
 <p>with</p>
 <p><span class="math notranslate nohighlight">\(\vec{R}^n = \vec{\Sigma}_\mathrm{d}^{n} + \Delta t\, \vec{S}_\mathrm{ext}\)</span>.</p>
-<p>The Jacobian <span class="math notranslate nohighlight">\(\mathbb{J}\)</span> is a sparse matrix. <span class="math notranslate nohighlight">\(\vec{\Sigma}_\mathrm{d}\)</span> is a one-dimensional state vector that can be produces from the surface densities with the <code class="docutils literal notranslate"><span class="pre">ravel()</span></code> method.</p>
+<p>The Jacobian <span class="math notranslate nohighlight">\(\mathbb{J}\)</span> is a sparse matrix. <span class="math notranslate nohighlight">\(\vec{\Sigma}_\mathrm{d}\)</span> is a one-dimensional state vector that can be produces from the surface densities with the <code class="docutils literal notranslate"><span class="pre">.ravel()</span></code> method.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -517,13 +517,15 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">jacobian</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span> <span class="o">!=</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Structure of Jacobian $\mathbb</span><span class="si">{J}</span><span class="s2">$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">jacobian</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span> <span class="o">!=</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Structure of Jacobian $\mathbb</span><span class="si">{J}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -534,20 +536,20 @@ div.rendered_html tbody tr:hover {
 <img alt="_images/6_dust_evolution_8_0.png" src="_images/6_dust_evolution_8_0.png" />
 </div>
 </div>
-<p>This is a the Jacobian for a simulation with 5 radial grid cells and 8 mass bins. This the Jacobian acts on the raveled dust surface densities <code class="docutils literal notranslate"><span class="pre">Simulation.dust.Sigma.ravel()</span></code> is has a shape of <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nr*Simulation.grid.Nm,</span> <span class="pre">Simulation.grid.Nr*Simulation.grid.Nm)</span></code></p>
-<p>Each box has a shape <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nm,</span> <span class="pre">Simulation.grid.Nm)</span></code>. The boxes on the diagonals contain the coagulation part of the Jacobian. Due to our choice of quantities shown in the chapter about coagulation, the coagulation Jacobian is a upper diagonal matrix with a limited number of lower diagonals. That number depends on the mass grid. The last two columns are empty in this case, because in this case no possible sticking collision involving the two largest mass bins exists that would
-results in a particle with mass smaller than the largest mass bin. Fragmentation is not happening this early in the simulation.</p>
+<p>This is a the Jacobian for a simulation with 5 radial grid cells and 8 mass bins. This Jacobian acts on the raveled dust surface densities <code class="docutils literal notranslate"><span class="pre">Simulation.dust.Sigma.ravel()</span></code> and has a shape of <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nr*Simulation.grid.Nm,</span> <span class="pre">Simulation.grid.Nr*Simulation.grid.Nm)</span></code></p>
+<p>Each box has a shape <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nm,</span> <span class="pre">Simulation.grid.Nm)</span></code>. The boxes on the diagonals contain the coagulation part of the Jacobian. Due to our choice of quantities shown in the chapter about coagulation, the coagulation Jacobian is an upper diagonal matrix with a limited number of lower diagonals. That number depends on the mass grid. The last two columns are empty in this case, because in this case no possible sticking collision involving the two largest mass bins exists that would
+results in a particle with mass smaller than the largest mass bin. Fragmentation is not happening this early in the simulation, because the relative collision velocities are not large enough.</p>
 <p>We do not calculate coagulation in the first and last grid cells. Hence the empty boxes.</p>
 <p>The diagonals represent the transport part of dust evolution.</p>
 <p>The first and the last row set the boundary conditions. The inner boundary is set to constant gradient. Therefore, the second and third boxes of the first row have diagonals. The outer boundary is set to floor value. Therefore the entire row is empty.</p>
 <p>Since most of the elements of the Jacobian are empty – especially in larger simulations – the Jacobians is stored as sparse matrix only saving the non-zero elements.</p>
-<p>The implicit integration schemes that come with <code class="docutils literal notranslate"><span class="pre">simframe</span></code> only integrate equations of kind</p>
+<p>The implicit integration schemes that come with <code class="docutils literal notranslate"><span class="pre">simframe</span></code> only integrates equations of kind</p>
 <p><span class="math notranslate nohighlight">\(\left( \mathbb{1} - \Delta t\, \mathbb{J} \right) \cdot \vec{Y}^{n+1} = \vec{Y}^n\)</span>.</p>
 <div class="line-block">
-<div class="line">We’ve therefore creates a custom integration schemes for our needs.</div>
+<div class="line">We have therefore created a custom integration schemes for our needs.</div>
 <div class="line">Whenever <code class="docutils literal notranslate"><span class="pre">Simulation.dust.Sigma.jacobian()</span></code> is called, the right-hand side of our equation is calculated and stored in a hidden field <code class="docutils literal notranslate"><span class="pre">Simulation.dusts._rhs</span></code>, that can be accessed by our integration scheme.</div>
 </div>
-<p>The first and the last rows of the Jacobian, which contain the boundary conditions do not contain the time step <span class="math notranslate nohighlight">\(\Delta t\)</span>, since this is not necessarily known when calculating the Jacobian. The integration scheme will add the term containing the time step.</p>
+<p>The first and the last rows of the Jacobian, which contain the boundary conditions do not contain the time step <span class="math notranslate nohighlight">\(\Delta t\)</span>, since this is not necessarily known when calculating the Jacobian. The integration scheme will add the terms containing the time step.</p>
 <p>The custom integration scheme can be found in <code class="docutils literal notranslate"><span class="pre">dustpy.std.dust.impl_1_direct</span></code>.</p>
 <div class="section" id="Coagulation">
 <h2>Coagulation<a class="headerlink" href="#Coagulation" title="Permalink to this headline">¶</a></h2>
@@ -649,7 +651,7 @@ Group (Fluxes)
 </div>
 <div class="line-block">
 <div class="line">You might also want to unset the relative velocities caused by azimuthal drift.</div>
-<div class="line">If you have set a backreaction mechanism you should think if you need to unset it for your model, too.</div>
+<div class="line">If you have set a backreaction mechanism you may need to unset it, too, for your model.</div>
 </div>
 </div>
 <div class="section" id="Diffusion">
@@ -832,10 +834,10 @@ setdustintegrator(scheme=&#39;explicit&#39;, method=&#39;cash-karp&#39;) method 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="7_gas_evolution.html" class="btn btn-neutral float-right" title="Gas Evolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="7_gas_evolution.html" class="btn btn-neutral float-right" title="7. Gas Evolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="5_dust_coagulation.html" class="btn btn-neutral float-left" title="Dust Coagulation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="5_dust_coagulation.html" class="btn btn-neutral float-left" title="5. Dust Coagulation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

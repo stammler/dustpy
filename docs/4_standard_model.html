@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>The Standard Model &mdash; dustpy  documentation</title>
+  <title>4. The Standard Model &mdash; dustpy  documentation</title>
   
 
   
@@ -24,7 +24,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -39,8 +38,8 @@
   <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Dust Coagulation" href="5_dust_coagulation.html" />
-    <link rel="prev" title="Advanced Customization" href="3_advanced_customization.html" /> 
+    <link rel="next" title="5. Dust Coagulation" href="5_dust_coagulation.html" />
+    <link rel="prev" title="3. Advanced Customization" href="3_advanced_customization.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,10 +85,10 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="1_basics.html">Basic usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">Simple Customization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">Advanced Customization</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">The Standard Model</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">2. Simple Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">3. Advanced Customization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. The Standard Model</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Dust">Dust</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Simulation.dust.backreaction"><code class="docutils literal notranslate"><span class="pre">Simulation.dust.backreaction</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Simulation.dust.boundary"><code class="docutils literal notranslate"><span class="pre">Simulation.dust.boundary</span></code></a></li>
@@ -171,6 +170,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#Grid">Grid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Simulation.grid.A"><code class="docutils literal notranslate"><span class="pre">Simulation.grid.A</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Simulation.grid.m"><code class="docutils literal notranslate"><span class="pre">Simulation.grid.m</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Simulation.grid.Nm"><code class="docutils literal notranslate"><span class="pre">Simulation.grid.Nm</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Simulation.grid.Nr"><code class="docutils literal notranslate"><span class="pre">Simulation.grid.Nr</span></code></a></li>
@@ -193,13 +193,14 @@
 <li class="toctree-l2"><a class="reference internal" href="#Writer">Writer</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">Dust Coagulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">Dust Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="8_test_gas_evolution.html">Test: Gas Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="9_example_gaps.html">Example: Planetary Gaps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10_example_ice_lines.html">Example: Ice Lines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">5. Dust Coagulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">6. Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">7. Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_analytical_coagulation_kernels.html">Test: Analytical Coagulation Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetary_gaps.html">Example: Planetary Gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_ice_lines.html">Example: Ice Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="A_publications.html">Appendix A: List of Publications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
@@ -247,7 +248,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>The Standard Model</li>
+      <li>4. The Standard Model</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -521,9 +522,9 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="The-Standard-Model">
-<h1>The Standard Model<a class="headerlink" href="#The-Standard-Model" title="Permalink to this headline">¶</a></h1>
-<p>In this chapter we’ll go through all fields in the standard model, explain their meaning and the default functions that calculates them.</p>
+<div class="section" id="4.-The-Standard-Model">
+<h1>4. The Standard Model<a class="headerlink" href="#4.-The-Standard-Model" title="Permalink to this headline">¶</a></h1>
+<p>In this chapter we’ll go through all fields in the standard model, explain their meaning and the default functions that calculate them.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -798,7 +799,7 @@ setcondition(condition, value=None) method of dustpy.utils.boundary.Boundary ins
 </div>
 <div class="section" id="Simulation.dust.coagulation">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation</span></code><a class="headerlink" href="#Simulation.dust.coagulation" title="Permalink to this headline">¶</a></h3>
-<p>The fields in this group define the behavior of dust growth and are discussed in a separate chapter.</p>
+<p>The fields in this group define the behavior of dust growth and are discussed in a separate chapter about dust coagulation.</p>
 </div>
 <div class="section" id="Simulation.dust.delta">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.delta</span></code><a class="headerlink" href="#Simulation.dust.delta" title="Permalink to this headline">¶</a></h3>
@@ -825,7 +826,7 @@ Group (Mixing parameters)
   -----
 </pre></div></div>
 </div>
-<p>The <span class="math notranslate nohighlight">\(\delta\)</span> parameters control the mixing of dust particles along vertical and radial directions and turbulent mixing. You can see them similar to the turbulent <span class="math notranslate nohighlight">\(\alpha\)</span> parameter. And by default they will have the same value as <span class="math notranslate nohighlight">\(\alpha\)</span> as given by <code class="docutils literal notranslate"><span class="pre">Simulation.ini.gas.alpha</span></code>.</p>
+<p>The <span class="math notranslate nohighlight">\(\delta\)</span> parameters control the mixing of dust particles along vertical and radial directions and turbulent mixing. You can look at them as similar to the turbulent <span class="math notranslate nohighlight">\(\alpha\)</span> parameter for the gas. And by default they will have the same value as <span class="math notranslate nohighlight">\(\alpha\)</span> as given by <code class="docutils literal notranslate"><span class="pre">Simulation.ini.gas.alpha</span></code>.</p>
 <div class="section" id="Simulation.dust.delta.rad">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.delta.rad</span></code><a class="headerlink" href="#Simulation.dust.delta.rad" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
@@ -854,7 +855,7 @@ Group (Mixing parameters)
  0.001 0.001 0.001 0.001]
 </pre></div></div>
 </div>
-<p><span class="math notranslate nohighlight">\(\delta_\mathrm{rad}\)</span> will be used to calculate the radial, turbulent RMS velocity of the dust.</p>
+<p><span class="math notranslate nohighlight">\(\delta_\mathrm{rad}\)</span> will be used to calculate the radial dust diffusion.</p>
 </div>
 <div class="section" id="Simulation.dust.delta.turb">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.delta.turb</span></code><a class="headerlink" href="#Simulation.dust.delta.turb" title="Permalink to this headline">¶</a></h4>
@@ -953,36 +954,6 @@ Group (Fluxes)
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.Fi.diff</span></code><a class="headerlink" href="#Simulation.dust.Fi.diff" title="Permalink to this headline">¶</a></h4>
 <p>This is the diffusive flux calculated by <span class="math notranslate nohighlight">\(F_\mathrm{diff} = -D\Sigma_\mathrm{g}\nabla\frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{gas}}\)</span> for every particle species separately. The diffusive fluxes at the grid boundaries are set to zero to avoid instabilities.</p>
 <p><strong>Attention:</strong> When using implicit dust integration, the diffusive interface fluxes are calculated in retrospect after the new dust surface density was found. Changing <code class="docutils literal notranslate"><span class="pre">Simulation.dust.Fi.diff</span></code> does not influence the simulation. It is only given for data analysis.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Fi</span><span class="o">.</span><span class="n">diff</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[[ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00
-   0.00000000e+00  0.00000000e+00]
- [-0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00
-   0.00000000e+00  0.00000000e+00]
- [-0.00000000e+00 -0.00000000e+00 -0.00000000e+00 ...  8.42570438e-24
-   1.14312063e-23  1.53229589e-23]
- ...
- [-3.21920964e-49 -3.59231024e-49 -4.00864247e-49 ... -1.20006815e-43
-  -1.33913684e-43 -1.49432136e-43]
- [-0.00000000e+00 -0.00000000e+00 -0.00000000e+00 ... -0.00000000e+00
-  -0.00000000e+00 -0.00000000e+00]
- [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00
-   0.00000000e+00  0.00000000e+00]]
-</pre></div></div>
-</div>
 </div>
 <div class="section" id="Simulation.dust.Fi.tot">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.Fi.tot</span></code><a class="headerlink" href="#Simulation.dust.Fi.tot" title="Permalink to this headline">¶</a></h4>
@@ -993,7 +964,7 @@ Group (Fluxes)
 <div class="section" id="Simulation.dust.p">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.p</span></code><a class="headerlink" href="#Simulation.dust.p" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1002,7 +973,7 @@ Group (Fluxes)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1020,7 +991,7 @@ Group (Probabilities)
 </div>
 <p>The fragmentation probability of particle <code class="docutils literal notranslate"><span class="pre">i=80</span></code>, with particle <code class="docutils literal notranslate"><span class="pre">j=3</span></code> at radial grid cell <code class="docutils literal notranslate"><span class="pre">ir=30</span></code> is given by</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1032,7 +1003,7 @@ Group (Probabilities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1055,7 +1026,7 @@ Group (Probabilities)
 <div class="section" id="Simulation.dust.S">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.S</span></code><a class="headerlink" href="#Simulation.dust.S" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1064,7 +1035,7 @@ Group (Probabilities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1081,14 +1052,14 @@ Group (Sources)
 <p>These are the source terms of the dust of shape <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nr,</span> <span class="pre">Simulation.grid.Nm)</span></code> used to integrate the time evolution of the dust.</p>
 <div class="section" id="Simulation.dust.S.coag">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.coag</span></code><a class="headerlink" href="#Simulation.dust.S.coag" title="Permalink to this headline">¶</a></h4>
-<p>The source terms from dust coagulation. This is described in detail in a separate chapter.</p>
+<p>The source terms from dust coagulation. This is described in detail in a separate chapter about dust coagulation.</p>
 <p><strong>Attention:</strong> When using implicit dust integration, the coagulation source terms are calculated in retrospect after the new dust surface density was found. Changing <code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.coag</span></code> does not influence the simulation. It is only given for data analysis.</p>
 </div>
 <div class="section" id="Simulation.dust.S.ext">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.ext</span></code><a class="headerlink" href="#Simulation.dust.S.ext" title="Permalink to this headline">¶</a></h4>
 <p>External source terms. These are by default set to zero, i.e. no external sources.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1097,7 +1068,7 @@ Group (Sources)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1121,13 +1092,12 @@ Group (Sources)
 <div class="section" id="Simulation.dust.S.tot">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.tot</span></code><a class="headerlink" href="#Simulation.dust.S.tot" title="Permalink to this headline">¶</a></h4>
 <p>These are the total source terms given by <span class="math notranslate nohighlight">\(S_\mathrm{tot} = S_\mathrm{coag} + S_\mathrm{ext} + S_\mathrm{hyd}\)</span>.</p>
-<p>These are the actual sources the dust integrator uses.</p>
 </div>
 </div>
 <div class="section" id="Simulation.dust.v">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.v</span></code><a class="headerlink" href="#Simulation.dust.v" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1136,7 +1106,7 @@ Group (Sources)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1155,7 +1125,7 @@ Group (Velocities)
 <div class="section" id="Simulation.dust.v.rel">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.rel</span></code><a class="headerlink" href="#Simulation.dust.v.rel" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1164,7 +1134,7 @@ Group (Velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1229,7 +1199,7 @@ Group (Relative velocities)
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.frag</span></code><a class="headerlink" href="#Simulation.dust.v.frag" title="Permalink to this headline">¶</a></h4>
 <p>Fragmentation velocities of shape <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nr,)</span></code>. By default this is set by the value of <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.vfrag</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1238,7 +1208,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1257,7 +1227,7 @@ Group (Relative velocities)
 <div class="section" id="Simulation.dust.v.rad">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.rad</span></code><a class="headerlink" href="#Simulation.dust.v.rad" title="Permalink to this headline">¶</a></h4>
 <p>Radial velocities of the dust particles.</p>
-<p><span class="math notranslate nohighlight">\(v_\mathrm{rad} = \left( v_\mathrm{g} + 2 v_{\mathrm{drift}\,\mathrm{max}} \right) \frac{\mathrm{St}}{\mathrm{St}^2+1}\)</span></p>
+<p><span class="math notranslate nohighlight">\(v_\mathrm{rad} = \left( v_\mathrm{g} + 2 v_{\mathrm{drift},\,\mathrm{max}} \right) \frac{\mathrm{St}}{\mathrm{St}^2+1}\)</span></p>
 </div>
 </div>
 <div class="section" id="Simulation.dust.a">
@@ -1279,7 +1249,7 @@ Group (Relative velocities)
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.fill</span></code><a class="headerlink" href="#Simulation.dust.fill" title="Permalink to this headline">¶</a></h3>
 <p>This describes the filling factor of the dust aggregates. By default this is 1.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1288,7 +1258,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1324,7 +1294,7 @@ Group (Relative velocities)
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.rhos</span></code><a class="headerlink" href="#Simulation.dust.rhos" title="Permalink to this headline">¶</a></h3>
 <p>Solid state density of the particle material. This is initially set to <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.rhoMonomer</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1333,7 +1303,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1349,7 +1319,7 @@ Group (Relative velocities)
 </div>
 <p>To calculate the mass density of a dust aggregate do</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1358,7 +1328,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1377,10 +1347,10 @@ Group (Relative velocities)
 <div class="section" id="Simulation.dust.Sigma">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.Sigma</span></code><a class="headerlink" href="#Simulation.dust.Sigma" title="Permalink to this headline">¶</a></h3>
 <p>This is the dust surface density of every particle species of shape <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nr,</span> <span class="pre">Simulation.grid.Nm)</span></code>. This is the quantity that is integrated to solve for dust evolution.</p>
-<p>The surface densities are integrated of the mass bin, so a numerical summation over the mass dimension returns the total dust surface density.</p>
+<p>The surface densities are integrated over the mass bin, so a numerical summation over the mass dimension returns the total dust surface density.</p>
 <p><span class="math notranslate nohighlight">\(\Sigma_\mathrm{d} = \sum\limits_i \Sigma_{\mathrm{d},\,i}\)</span></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1389,7 +1359,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1421,13 +1391,13 @@ Group (Relative velocities)
  5.95170965e-29 5.18372240e-29 4.51483347e-29 3.93225557e-29]
 </pre></div></div>
 </div>
-<p>If you want to plot the dust density distribution you might want to convert the field into a quantity that does not depend on the mass bin width. The plotting script integrated in <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> if plotting a grid independent density distribution. See the first chapter for details on this.</p>
+<p>If you want to plot the dust density distribution you might want to convert the field into a quantity that does not depend on the mass bin width. The plotting script integrated in <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is plotting a grid independent density distribution. See the first chapter for details on this.</p>
 </div>
 <div class="section" id="Simulation.dust.SigmaFloor">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.SigmaFloor</span></code><a class="headerlink" href="#Simulation.dust.SigmaFloor" title="Permalink to this headline">¶</a></h3>
-<p>This is the floor value for the dust surface densities. Mass bins that are below their respective floor value will not contribute to coagulation. By default the floor value is the density that corresponds to one physical particle of that mass distributed over and annulus at that radial grid location.</p>
+<p>This is the floor value for the dust surface densities. Mass bins that are below their respective floor value will not contribute to coagulation. By default the floor value is the density that corresponds to one physical particle of that mass distributed over an annulus at that radial grid location.</p>
 <p><span class="math notranslate nohighlight">\(\Sigma_{\mathrm{d},\,\mathrm{floor}} = \frac{m}{A_\mathrm{annulus}}\)</span></p>
-<p>Densities below the floor value therefore correspond to fewer that one physical particle.</p>
+<p>Densities below the floor value therefore correspond to fewer that one physical particle in that radial grid cell.</p>
 </div>
 <div class="section" id="Simulation.dust.St">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.St</span></code><a class="headerlink" href="#Simulation.dust.St" title="Permalink to this headline">¶</a></h3>
@@ -1438,7 +1408,7 @@ Group (Relative velocities)
 <h3>Update order<a class="headerlink" href="#Update-order" title="Permalink to this headline">¶</a></h3>
 <p>The update order of the dust quantities in the standard model is set to</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1447,7 +1417,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1469,7 +1439,7 @@ Group (Relative velocities)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1478,7 +1448,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1487,7 +1457,7 @@ Group (Relative velocities)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1496,7 +1466,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1505,7 +1475,7 @@ Group (Relative velocities)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1514,7 +1484,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1523,7 +1493,7 @@ Group (Relative velocities)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1532,7 +1502,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1541,7 +1511,7 @@ Group (Relative velocities)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1550,7 +1520,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1559,7 +1529,7 @@ Group (Relative velocities)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1568,7 +1538,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1577,7 +1547,7 @@ Group (Relative velocities)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1586,7 +1556,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1594,13 +1564,13 @@ Group (Relative velocities)
 [&#39;azi&#39;, &#39;brown&#39;, &#39;rad&#39;, &#39;turb&#39;, &#39;vert&#39;, &#39;tot&#39;]
 </pre></div></div>
 </div>
-<p><strong>Note</strong>: The quantities that are excluded are calculated in the finalization step of the implicit integrator from the new values of the surface densities.</p>
+<p><strong>Note</strong>: The quantities that are excluded are calculated in the finalization step of the implicit integrator from the new values of the dust surface densities.</p>
 </div>
 </div>
 <div class="section" id="Gas">
 <h2>Gas<a class="headerlink" href="#Gas" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1609,7 +1579,7 @@ Group (Relative velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1641,7 +1611,7 @@ Group (Gas quantities)
 <div class="section" id="Simulation.gas.boundary">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.boundary</span></code><a class="headerlink" href="#Simulation.gas.boundary" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1650,7 +1620,7 @@ Group (Gas quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1662,9 +1632,9 @@ Group (Boundary conditions)
   -----
 </pre></div></div>
 </div>
-<p>These are the boundary conditions of the gas. They are set to constant gradient by default.</p>
+<p>These are the boundary conditions of the gas. By default the inner boundary is set to constant gradient and the outer boundary to floor value.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1673,7 +1643,7 @@ Group (Boundary conditions)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1682,7 +1652,7 @@ Constant gradient
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1691,7 +1661,7 @@ Constant gradient
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1701,7 +1671,7 @@ Value
 </div>
 <p>The boundary conditions can be modified with <code class="docutils literal notranslate"><span class="pre">setcondition</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1740,7 +1710,7 @@ setcondition(condition, value=None) method of dustpy.utils.boundary.Boundary ins
 <div class="section" id="Simulation.gas.S">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.S</span></code><a class="headerlink" href="#Simulation.gas.S" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1749,7 +1719,7 @@ setcondition(condition, value=None) method of dustpy.utils.boundary.Boundary ins
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1763,12 +1733,11 @@ Group (Source terms)
 </pre></div></div>
 </div>
 <p>These are the source terms of the gas.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Simulation.gas.S</span></code> has by default a distole that calculates the implicit fluxes through the boundaries.</p>
 <div class="section" id="Simulation.gas.S.ext">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.gas.S.ext</span></code><a class="headerlink" href="#Simulation.gas.S.ext" title="Permalink to this headline">¶</a></h4>
 <p>These are the external source terms for gas evolution, e.g. infall. By default these are set to zero.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1777,7 +1746,7 @@ Group (Source terms)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1807,7 +1776,7 @@ Group (Source terms)
 <div class="section" id="Simulation.gas.v">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.v</span></code><a class="headerlink" href="#Simulation.gas.v" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1816,7 +1785,7 @@ Group (Source terms)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1852,7 +1821,7 @@ Group (Velocities)
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.alpha</span></code><a class="headerlink" href="#Simulation.gas.alpha" title="Permalink to this headline">¶</a></h3>
 <p>This is the turbulent viscosity parameter according <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1973A%26A....24..337S/abstract">Shakura &amp; Sunyaev (1973)</a>. It is initially set to the value in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.gas.alpha</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1861,7 +1830,7 @@ Group (Velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1902,7 +1871,7 @@ Group (Velocities)
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.gamma</span></code><a class="headerlink" href="#Simulation.gas.gamma" title="Permalink to this headline">¶</a></h3>
 <p>This is the ratio of specific heats. It is initially set to the value given by <code class="docutils literal notranslate"><span class="pre">Simulation.ini.gas.gamma</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1911,7 +1880,7 @@ Group (Velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1940,7 +1909,7 @@ Group (Velocities)
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.mu</span></code><a class="headerlink" href="#Simulation.gas.mu" title="Permalink to this headline">¶</a></h3>
 <p>Mean molecular weight of the gas. This is initially set by the value given in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.gas.mu</span></code> and is equal to <span class="math notranslate nohighlight">\(2.3\,m_\mathrm{P}\)</span>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1949,7 +1918,7 @@ Group (Velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2010,7 +1979,7 @@ Group (Velocities)
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.SigmaFloor</span></code><a class="headerlink" href="#Simulation.gas.SigmaFloor" title="Permalink to this headline">¶</a></h3>
 <p>This is the floor value of the gas surface density. By default it is <span class="math notranslate nohighlight">\(10^{-100}\)</span>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2019,7 +1988,7 @@ Group (Velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2049,7 +2018,7 @@ Group (Velocities)
 <h3>Update order<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>The update order of the gas quantities in the standard model is set to</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2058,7 +2027,7 @@ Group (Velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2079,7 +2048,7 @@ Group (Velocities)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2088,7 +2057,7 @@ Group (Velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2097,7 +2066,7 @@ Group (Velocities)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2106,7 +2075,7 @@ Group (Velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2120,7 +2089,7 @@ Group (Velocities)
 <div class="section" id="Grid">
 <h2>Grid<a class="headerlink" href="#Grid" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2129,7 +2098,7 @@ Group (Velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2147,11 +2116,16 @@ Group (Grid quantities)
 </pre></div></div>
 </div>
 <p>These are all quantities that define the radial and the mass grid. Once they are defined they are constant and should not be changed. Additionally, the Keplerian frequency is located here.</p>
+<div class="section" id="Simulation.grid.A">
+<h3><code class="docutils literal notranslate"><span class="pre">Simulation.grid.A</span></code><a class="headerlink" href="#Simulation.grid.A" title="Permalink to this headline">¶</a></h3>
+<p>Surface area of the annulus a grid cell spans.</p>
+<p><span class="math notranslate nohighlight">\(A_i = \pi \left( r_{i+\frac{1}{2}}^2 - r_{i-\frac{1}{2}}^2 \right)\)</span></p>
+</div>
 <div class="section" id="Simulation.grid.m">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.grid.m</span></code><a class="headerlink" href="#Simulation.grid.m" title="Permalink to this headline">¶</a></h3>
 <p>The mass grid. It has to be strictly logarithmic. Please only use <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.mmin</span></code>, <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.mmax</span></code>, and <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.Nmbpd</span></code> to set the mass grid and do not set it manually!</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2160,7 +2134,7 @@ Group (Grid quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2202,7 +2176,7 @@ Group (Grid quantities)
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.grid.Nm</span></code><a class="headerlink" href="#Simulation.grid.Nm" title="Permalink to this headline">¶</a></h3>
 <p>Number of mass bins.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2211,7 +2185,7 @@ Group (Grid quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2224,7 +2198,7 @@ Group (Grid quantities)
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.grid.Nr</span></code><a class="headerlink" href="#Simulation.grid.Nr" title="Permalink to this headline">¶</a></h3>
 <p>Number of radial grid cells.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2233,7 +2207,7 @@ Group (Grid quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2251,7 +2225,7 @@ Group (Grid quantities)
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.grid.r</span></code><a class="headerlink" href="#Simulation.grid.r" title="Permalink to this headline">¶</a></h3>
 <p>Radial grid cell centers. The radial grid cell centers are exactly in the middle between the grid cell interfaces.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2260,7 +2234,7 @@ Group (Grid quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2285,7 +2259,7 @@ Group (Grid quantities)
 <h3>Update order<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>The update order of the grid quantities in the standard model is set to</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2294,7 +2268,7 @@ Group (Grid quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2307,7 +2281,7 @@ Group (Grid quantities)
 <div class="section" id="Star">
 <h2>Star<a class="headerlink" href="#Star" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2316,7 +2290,7 @@ Group (Grid quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2339,7 +2313,7 @@ Group (Stellar quantities)
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.star.M</span></code><a class="headerlink" href="#Simulation.star.M" title="Permalink to this headline">¶</a></h3>
 <p>Stellar mass. Initially set to the value given in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.star.M</span></code>, which corresponds to one Solar mass.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2348,7 +2322,7 @@ Group (Stellar quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2361,7 +2335,7 @@ Group (Stellar quantities)
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.star.R</span></code><a class="headerlink" href="#Simulation.star.R" title="Permalink to this headline">¶</a></h3>
 <p>Stellar radius. Initially set to the value given in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.star.R</span></code>, which corresponds to 2 Solar radii.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2370,7 +2344,7 @@ Group (Stellar quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2383,7 +2357,7 @@ Group (Stellar quantities)
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.star.T</span></code><a class="headerlink" href="#Simulation.star.T" title="Permalink to this headline">¶</a></h3>
 <p>Stellar effective surface temperature. Initially set to the value given in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.star.T</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2392,7 +2366,7 @@ Group (Stellar quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2405,7 +2379,7 @@ Group (Stellar quantities)
 <h3>Update order<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>The update order of the stellar quantities in the standard model is set to</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2414,7 +2388,7 @@ Group (Stellar quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2428,7 +2402,7 @@ Group (Stellar quantities)
 <h2>Time<a class="headerlink" href="#Time" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Simulation.t</span></code> is the current time and the integration variable. It starts at zero initially.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2437,7 +2411,7 @@ Group (Stellar quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2447,7 +2421,7 @@ Group (Stellar quantities)
 </div>
 <p>Snapshots are written between <span class="math notranslate nohighlight">\(10^3\)</span> years and <span class="math notranslate nohighlight">\(10^5\)</span> years with 10 snapshots per time decade.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2456,7 +2430,7 @@ Group (Stellar quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2471,7 +2445,7 @@ array([3.15576000e+10, 3.97286646e+10, 5.00154254e+10, 6.29656900e+10,
 </div>
 <p>The timestep is calculated from the dust and the gas source terms and the current values of the surface densities of dust and gas, while using a safety factor of <code class="docutils literal notranslate"><span class="pre">0.1</span></code>, which can be accessed as an attribute of the integration variable.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2480,7 +2454,7 @@ array([3.15576000e+10, 3.97286646e+10, 5.00154254e+10, 6.29656900e+10,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2493,7 +2467,7 @@ array([3.15576000e+10, 3.97286646e+10, 5.00154254e+10, 6.29656900e+10,
 <h2>Integrator<a class="headerlink" href="#Integrator" title="Permalink to this headline">¶</a></h2>
 <p>The integrator that is used by default as two integration instructions. One for the gas and one for the dust.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2502,7 +2476,7 @@ array([3.15576000e+10, 3.97286646e+10, 5.00154254e+10, 6.29656900e+10,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2511,7 +2485,7 @@ Integrator (Default integrator)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2520,7 +2494,7 @@ Integrator (Default integrator)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2532,7 +2506,7 @@ Integrator (Default integrator)
 <p>The gas is integrated with an implicit first-order Euler integration scheme. The Jacobian is calculated from the parameters given in <code class="docutils literal notranslate"><span class="pre">Simulation.gas</span></code>. Parameters like gas velocities, fluxes and source terms are calculated once the new values of the gas surface density have been found.</p>
 <p>Except for the values at the boundaries, the advective source terms are given by</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2541,7 +2515,7 @@ Integrator (Default integrator)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2575,7 +2549,7 @@ array([ 5.85143464e-04, -3.15967530e-11, -1.80453135e-11, -1.68008509e-11,
 </div>
 <p>The total source terms, i.e., including external sources and excluding the boundaries are given by</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2584,7 +2558,7 @@ array([ 5.85143464e-04, -3.15967530e-11, -1.80453135e-11, -1.68008509e-11,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2619,7 +2593,7 @@ array([ 5.85143464e-04, -3.15967530e-11, -1.80453135e-11, -1.68008509e-11,
 <p>The dust is integrated with an implicit first-order Euler integration scheme. The Jacobian is calculated from the parameters given in <code class="docutils literal notranslate"><span class="pre">Simulation.dust</span></code>. Parameters like gas velocities, fluxes and source terms are calculated once the new values of the gas surface density have been found.</p>
 <p>Except for the values at the boundaries, the hydrodynamic and coagulation source terms are given by</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2628,7 +2602,7 @@ array([ 5.85143464e-04, -3.15967530e-11, -1.80453135e-11, -1.68008509e-11,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2651,7 +2625,7 @@ array([[ 8.46614043e-07,  8.94324218e-07,  9.44723058e-07, ...,
 <p>Note the <code class="docutils literal notranslate"><span class="pre">ravel()</span></code> and <code class="docutils literal notranslate"><span class="pre">reshape()</span></code> operations, since the Jacobian works on a one-dimensional state vector.</p>
 <p>The total source terms except at the boundaries are given by</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2660,7 +2634,7 @@ array([[ 8.46614043e-07,  8.94324218e-07,  9.44723058e-07, ...,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2686,7 +2660,7 @@ array([[ 8.46614043e-07,  8.94324218e-07,  9.44723058e-07, ...,
 <h2>Writer<a class="headerlink" href="#Writer" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> uses by default the <code class="docutils literal notranslate"><span class="pre">hdf5writer</span></code> of <code class="docutils literal notranslate"><span class="pre">simframe</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2695,7 +2669,7 @@ array([[ 8.46614043e-07,  8.94324218e-07,  9.44723058e-07, ...,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2722,10 +2696,10 @@ Writer (HDF5 file format using h5py)
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="5_dust_coagulation.html" class="btn btn-neutral float-right" title="Dust Coagulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="5_dust_coagulation.html" class="btn btn-neutral float-right" title="5. Dust Coagulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="3_advanced_customization.html" class="btn btn-neutral float-left" title="Advanced Customization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="3_advanced_customization.html" class="btn btn-neutral float-left" title="3. Advanced Customization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

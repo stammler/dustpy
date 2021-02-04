@@ -3,7 +3,7 @@
 
 | ``DustPy`` is a dust coagulation and evolution code for protoplanetary disks.
 
-| This documentation is for ``DustPy v0.5.1``.
+| This documentation is for ``DustPy v1.0.0``.
 
 | To install ``DustPy`` simply type
 | ``pip install dustpy``
@@ -24,10 +24,11 @@
    5_dust_coagulation
    6_dust_evolution
    7_gas_evolution
-   8_test_gas_evolution
-   9_example_gaps
-   10_example_ice_lines
-   11_example_planetesimal_formation
+   test_analytical_coagulation_kernels
+   test_gas_evolution
+   example_ice_lines
+   example_planetary_gaps
+   example_planetesimal_formation
    A_publications
    api
 

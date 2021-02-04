@@ -4,7 +4,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Dust Coagulation\n",
+    "# 5. Dust Coagulation\n",
     "\n",
     "`DustPy` calculates the collisional evolution of dust by solving the Smolukowski equation\n",
     "\n",
@@ -90,7 +90,7 @@
     "\n",
     "Sticking means that two particles collide and form a new larger particles conserving the total mass. There are two complications when implementing this numerically:\n",
     "\n",
-    "First, since we need to cover a high dynamic range from particles masses around $10^{-15}\\,\\mathrm{g}$ to more than $10^{15}\\,\\mathrm{g}$ while still having a reasonable number of mass bins, the mass grid has to be logarithmic. This has the disadvantage that the new particle mass resulting from a collision will not directly lie on the mass grid, but will fall in between two grid masses. The resulting mass has to be therefore distributed between the two adjacent grid cells. This means there will be density added to a mass bin that is larger than the actual mass of the resulting particle. This can have unwanted side effects if the mass grid is too coarse. Please see [Drążkowska et al. (2014)](https://doi.org/10.1051/0004-6361/201423708) for details on the minimum mass resulution that should be used.\n",
+    "First, since we need to cover a high dynamic range from particles masses around $10^{-15}\\,\\mathrm{g}$ to more than $10^{15}\\,\\mathrm{g}$ while still having a reasonable number of mass bins, the mass grid has to be logarithmic. This has the disadvantage that the new particle mass resulting from a collision will not directly lie on the mass grid, but will fall in between two grid masses. The resulting mass has to be therefore distributed between the two adjacent grid cells. This means there will be density added to a mass bin that is larger than the actual mass of the resulting particle. This can have unwanted side effects if the mass grid is too coarse. Please see [Drążkowska et al. (2014)](https://doi.org/10.1051/0004-6361/201423708) and the notebook with the analytical coagulation kernels for details on the minimum mass resulution that should be used.\n",
     "\n",
     "Second, if the masses of the two colliding particles differ by more than $15$ orders of magnitude (double-precision floating-point format) the resulting mass is (for a computer) identical to the mass of the larger particle. "
    ]
@@ -123,7 +123,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "The mass error if this happens is small for a single collision, but it effectively halts the growth of larger particles by sweeping up many smaller particles. There are techniques to prevent this from happening by re-arranging sums. Please hat a look at apendices A and B of [Brauer et al. (2008)](https://doi.org/10.1051/0004-6361:20077759) for a detailed description of this mechanism."
+    "The mass error if this happens is small for a single collision, but it effectively halts the growth of larger particles that primarily grow by sweeping up many smaller particles. There are techniques to prevent this from happening by re-arranging sums. Please have a look at apendices A and B of [Brauer et al. (2008)](https://doi.org/10.1051/0004-6361:20077759) for a detailed description of this mechanism."
    ]
   },
   {
@@ -209,7 +209,7 @@
    "source": [
     "As you can see, we remove one particle each from bins 3 and 5 and add about $75\\,\\%$ of a particle to mass bin 6 and about $25\\,\\%$ of a particle to mass bin 7.\n",
     "\n",
-    "To check for mass conservation we have to multiply the non-zero elements in $M$ with their respective masses."
+    "To check for mass conservation we have to multiply the non-zero elements in $M$ with their respective masses and sum up all elements."
    ]
   },
   {
@@ -348,7 +348,7 @@
     "\n",
     "The threshold of these two cases can be set with `Simulation.ini.dust.crateringMassRatio`. By default this is $10$, meaning both particles fully fragment if their mass ratio is smaller than $10$. Otherwise we have cratering. This value has to be set, before calling `Simulation.initialize()`.\n",
     "\n",
-    "For fragmentation we follow the method described in [Rafikov et al. (2020](https://doi.org/10.3847/1538-4365/ab7b71), that developed an $\\mathcal{O} \\left( N_m^2 \\right)$ algorithm for fragmentation. We modified it, however, to make it strictly mass conserving and added cratering.\n",
+    "For fragmentation we follow the method described in [Rafikov et al. (2020)](https://doi.org/10.3847/1538-4365/ab7b71), who developed an $\\mathcal{O} \\left( N_m^2 \\right)$ algorithm for fragmentation. We modified it, however, to make it strictly mass conserving and added cratering.\n",
     "\n",
     "In either case, full fragmentation and cratering, we produce a distribution of fragments of kind\n",
     "\n",
@@ -356,7 +356,7 @@
     "\n",
     "$\\gamma$ has to be set in `Simulation.ini.dust.fragmentDistribution` before calling `Simulation.initialize()`. By default it is $-\\frac{11}{6}$ taken from [Dohnanyi (1969)](https://doi.org/10.1029/JB074i010p02531). From this we can calculate a normalized distribution of fragments with a given maximum fragment size.\n",
     "\n",
-    "This for example is a fragment distribution up to mass bin $15$. It is similar to the $\\varphi$ of [Rafikov et al. (2020](https://doi.org/10.3847/1538-4365/ab7b71)"
+    "This, for example, is the fragment distribution up to mass bin $15$. It is similar to the $\\varphi$ in [Rafikov et al. (2020)](https://doi.org/10.3847/1538-4365/ab7b71)"
    ]
   },
   {
@@ -516,7 +516,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "`Simulation.dust.coagulation.A` stores the total fragment mass resulting from a collision of particles `i` and `j`. In a collision resulting in full fragmentation the total fragment mass is identical to the mass."
+    "`Simulation.dust.coagulation.A` stores the total fragment mass resulting from a collision of particles `i` and `j`. In a collision resulting in full fragmentation the total fragment mass is identical to the total mass of both collision partners."
    ]
   },
   {
@@ -622,7 +622,7 @@
    "source": [
     "As you can see this is accurate up to machine precision.\n",
     "\n",
-    "When starting a simulation with `Simulation.run()`, `DustPy` will perform a check for mass conservation by calculating the relative error for every possible particle collision and every possible collision outcome."
+    "When starting a simulation with `Simulation.run()`, `DustPy` will perform a quick check for mass conservation by calculating the relative error for every possible particle collision and every possible collision outcome. If you implemented a custom collision model, you also have to modify the mass conservation check for accurate results."
    ]
   },
   {
@@ -666,7 +666,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "The sum of both is always $1$ in the default setup."
+    "The sum of both is always $1$ in the default setup. The probabilities at the boundaries are always $0$."
    ]
   },
   {
@@ -677,7 +677,7 @@
     {
      "data": {
       "text/plain": [
-       "False"
+       "True"
       ]
      },
      "execution_count": 21,
@@ -687,7 +687,7 @@
    ],
    "source": [
     "p_tot = sim.dust.p.stick + sim.dust.p.frag\n",
-    "(p_tot==1).all()"
+    "(p_tot[1:-1, ...]==1).all()"
    ]
   },
   {

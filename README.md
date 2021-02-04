@@ -15,7 +15,6 @@ By using any version of `DustPy` you agree to these terms of usage.
 
 [https://stammler.github.io/dustpy/](https://stammler.github.io/dustpy/)
 
-
 * [1. Basics](https://stammler.github.io/dustpy/1_basics.html)
 * [2. Simple Customization](https://stammler.github.io/dustpy/2_simple_customization.html)
 * [3. Advanced Customization](https://stammler.github.io/dustpy/3_advanced_customization.html)
@@ -23,10 +22,13 @@ By using any version of `DustPy` you agree to these terms of usage.
 * [5. Dust Coagulation](https://stammler.github.io/dustpy/5_dust_coagulation.html)
 * [6. Dust Evolution](https://stammler.github.io/dustpy/6_dust_evolution.html)
 * [7. Gas Evolution](https://stammler.github.io/dustpy/7_gas_evolution.html)
-* [8. Test: Gas Evolution](https://stammler.github.io/dustpy/8_test_gas_evolution.html)
-* [9. Example: Planetary Gaps](https://stammler.github.io/dustpy/9_example_gaps.html)
-* [10. Example: Ice Lines](https://stammler.github.io/dustpy/10_example_ice_lines.html)
-* [11. Example: Planetesimal Formation](https://stammler.github.io/dustpy/11_example_planetesimal_formation.html)
+
+* [Test: Analytical Coagulation Kernels](https://stammler.github.io/dustpy/test_analytical_coagulation_kernels.html)
+* [Test: Gas Evolution](https://stammler.github.io/dustpy/test_gas_evolution.html)
+
+* [Example: Ice Lines](https://stammler.github.io/dustpy/example_ice_lines.html)
+* [Example: Planetary Gaps](https://stammler.github.io/dustpy/example_planetary_gaps.html)
+* [Example: Planetesimal Formation](https://stammler.github.io/dustpy/example_planetesimal_formation.html)
 
 [Module Reference](https://stammler.github.io/dustpy/api.html)
 

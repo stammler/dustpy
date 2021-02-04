@@ -22,6 +22,7 @@ help:
 # Remove files in Github directory
 remove:
 	rm -r ../docs/*
+	rm source/api/*
 
 # Copy built codumentation to github directory
 copy:

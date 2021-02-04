@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Advanced Customization &mdash; dustpy  documentation</title>
+  <title>3. Advanced Customization &mdash; dustpy  documentation</title>
   
 
   
@@ -24,7 +24,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -39,8 +38,8 @@
   <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="The Standard Model" href="4_standard_model.html" />
-    <link rel="prev" title="Simple Customization" href="2_simple_customization.html" /> 
+    <link rel="next" title="4. The Standard Model" href="4_standard_model.html" />
+    <link rel="prev" title="2. Simple Customization" href="2_simple_customization.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,9 +85,9 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="1_basics.html">Basic usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">Simple Customization</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Customization</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">2. Simple Customization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Advanced Customization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Customizing-the-Grids">Customizing the Grids</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#The-Radial-Grid">The Radial Grid</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#The-Mass-Grid">The Mass Grid</a></li>
@@ -101,14 +100,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#Customizing-the-Snapshots">Customizing the Snapshots</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">The Standard Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">Dust Coagulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">Dust Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="8_test_gas_evolution.html">Test: Gas Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="9_example_gaps.html">Example: Planetary Gaps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10_example_ice_lines.html">Example: Ice Lines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">4. The Standard Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">5. Dust Coagulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">6. Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">7. Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_analytical_coagulation_kernels.html">Test: Analytical Coagulation Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_ice_lines.html">Example: Ice Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetary_gaps.html">Example: Planetary Gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="A_publications.html">Appendix A: List of Publications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
@@ -156,7 +156,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Advanced Customization</li>
+      <li>3. Advanced Customization</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -430,8 +430,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Advanced-Customization">
-<h1>Advanced Customization<a class="headerlink" href="#Advanced-Customization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="3.-Advanced-Customization">
+<h1>3. Advanced Customization<a class="headerlink" href="#3.-Advanced-Customization" title="Permalink to this headline">¶</a></h1>
 <p>The core principle of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is that you can change anything easily. Not only the initial conditions as shown in the previous chapter, but also the physics behind the simulation.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -561,7 +561,7 @@ Group (Grid quantities)
 <div class="line">As explained in the previous chapter, the location of the grid boundaries and the number of grid cells can be controlled via <code class="docutils literal notranslate"><span class="pre">Simulation.ini.grid.rmin</span></code>, <code class="docutils literal notranslate"><span class="pre">Simulation.ini.grid.rmax</span></code>, and <code class="docutils literal notranslate"><span class="pre">Simulation.ini.grid.Nr</span></code>.</div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">Simulation.makegrids()</span></code> will use these parameters to create the radial grid.</div>
 </div>
-<p>But it is also possible to completely customize the grid. To do so you have to set the locations of the radial grid cell interfaces <code class="docutils literal notranslate"><span class="pre">Simulation.grid.ri</span></code> before calling either <code class="docutils literal notranslate"><span class="pre">Simulation.makegrids()</span></code> or <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
+<p>But it is also possible to completely customize the radial grid. To do so you have to set the locations of the radial grid cell interfaces <code class="docutils literal notranslate"><span class="pre">Simulation.grid.ri</span></code> before calling either <code class="docutils literal notranslate"><span class="pre">Simulation.makegrids()</span></code> or <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
 <p>In this example we simply want to refine the grid at a given location. We use this helper function, which takes an existing grid <code class="docutils literal notranslate"><span class="pre">ri</span></code> and doubles the number of grid cells in a region <code class="docutils literal notranslate"><span class="pre">num</span></code> grid cells on both sides around location <code class="docutils literal notranslate"><span class="pre">r0</span></code>. We also recursively call this function with reduced <code class="docutils literal notranslate"><span class="pre">num</span></code> to even further refine the grid and to have a smooth transition between the high and low resolution regions.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
@@ -737,18 +737,27 @@ Group (Grid quantities)
 </pre></div></div>
 </div>
 <p>To see that we actually refined the grid at the correct location, we can plot the location of the radial grid cells.</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;# of radial grid cell&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Location of radial grid cell [AU]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;# of radial grid cell&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Location of radial grid cell [AU]&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -756,12 +765,12 @@ Group (Grid quantities)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/3_advanced_customization_26_0.png" src="_images/3_advanced_customization_26_0.png" />
+<img alt="_images/3_advanced_customization_27_0.png" src="_images/3_advanced_customization_27_0.png" />
 </div>
 </div>
 <p>The position of the radial grid cells have to be exactly in the center between their grid cell interfaces and are automatically calculated by <code class="docutils literal notranslate"><span class="pre">Simulation.makegrids()</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -770,7 +779,7 @@ Group (Grid quantities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -791,16 +800,16 @@ Group (Grid quantities)
 <div class="section" id="The-Mass-Grid">
 <h3>The Mass Grid<a class="headerlink" href="#The-Mass-Grid" title="Permalink to this headline">¶</a></h3>
 <p>You should <strong>NEVER</strong> set the mass grid manually! The mass grid has to be strictly logarithmic. Only customize the mass grid by setting <code class="docutils literal notranslate"><span class="pre">Simulation.ini.grid.mmin</span></code>, <code class="docutils literal notranslate"><span class="pre">Simulation.ini.grid.mmax</span></code>, and <code class="docutils literal notranslate"><span class="pre">Simulation.ini.grid.Nmbpd</span></code>.</p>
-<p>If you have to create your own non-logarithmic mass grid for some reason, be aware that you have to re-write the coagulation algorithms as well, since they only conserve mass on a logarithmic grid.</p>
+<p>If you have to create your own non-logarithmic mass grid for some reason, be aware that you have to re-write the entire coagulation algorithm as well, since it only conserves mass on a logarithmic grid.</p>
 </div>
 </div>
 <div class="section" id="Customizing-the-Physics-of-a-Field">
 <h2>Customizing the Physics of a Field<a class="headerlink" href="#Customizing-the-Physics-of-a-Field" title="Permalink to this headline">¶</a></h2>
 <p>In this example we want to have a fragmentation velocity that depends on the temperature in the disk. Is the temperature below 150 K, we want to have a fragmentation velocity of 10 m/s, otherwise it shall be 1 m/s. The idea behind this approach is than particles coated in water ice are stickier that pure silicate particles and can widthstand higher collision velocities. See for example <a class="reference external" href="https://doi.org/10.3847/1538-4357/aa7edb">Pinilla et al. (2017)</a>. However, keep in mind that newer
-experiments suggest that particles covered in water ice do not have a beneficial collision behavior, see <a class="reference external" href="https://doi.org/10.3847/1538-4357/ab0428">Musiolik &amp; Wurm (2019)</a>.</p>
+experiments suggest that particles covered in water ice do not have a beneficial collisional behavior, see e.g. <a class="reference external" href="https://doi.org/10.3847/1538-4357/ab0428">Musiolik &amp; Wurm (2019)</a>.</p>
 <p>First, we initialize our simulation object.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -810,7 +819,7 @@ experiments suggest that particles covered in water ice do not have a beneficial
 </div>
 <p>The fragmentation velocity has the shape <code class="docutils literal notranslate"><span class="pre">(Nr,)</span></code>, meaning there is one value at every location in the grid.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -819,7 +828,7 @@ experiments suggest that particles covered in water ice do not have a beneficial
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -829,14 +838,16 @@ experiments suggest that particles covered in water ice do not have a beneficial
 </div>
 <p>But right now it’s constant.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">frag</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from star [AU]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Fragmentation velocity [cm/s]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">frag</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from star [AU]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Fragmentation velocity [cm/s]&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -844,12 +855,12 @@ experiments suggest that particles covered in water ice do not have a beneficial
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/3_advanced_customization_35_0.png" src="_images/3_advanced_customization_35_0.png" />
+<img alt="_images/3_advanced_customization_36_0.png" src="_images/3_advanced_customization_36_0.png" />
 </div>
 </div>
 <p>We have to write a function that takes the simulation object as input parameter and returns our desired fragmentation velocities. We can use the fact that the gas temperature has the same shape. Keep in mind that everything has to be in cgs units.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -858,7 +869,7 @@ experiments suggest that particles covered in water ice do not have a beneficial
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -867,7 +878,7 @@ experiments suggest that particles covered in water ice do not have a beneficial
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -878,7 +889,7 @@ experiments suggest that particles covered in water ice do not have a beneficial
 </div>
 <p>We can now assign this function to the updater of the dust fragmentation velocities. For details of this process, please have a look at the <a class="reference external" href="https://simframe.rtfd.io">Simframe documentation</a>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -890,7 +901,7 @@ experiments suggest that particles covered in water ice do not have a beneficial
 <p>When assigning a function (or <code class="docutils literal notranslate"><span class="pre">None</span></code>) to the updater of a group/field a new <code class="docutils literal notranslate"><span class="pre">Heartbeat</span></code> object will be created with empty systoles and diastoles only executing the update function. If the existing updater already has systoles/diastoles, those would be overwritten with an empty function.</p>
 <p>To prevent this you can directly assign the function only to the updater leaving the systoles/diastoles as they are.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -898,9 +909,9 @@ experiments suggest that particles covered in water ice do not have a beneficial
 </pre></div>
 </div>
 </div>
-<p>The systoles/diastoles can be set with the following command. Only for demonstration, since we assign <code class="docutils literal notranslate"><span class="pre">None</span></code>. Read more about this in the section about Systoles and Diastoles.</p>
+<p>The systoles/diastoles can be set with the following command. Only for demonstration here, since we assign <code class="docutils literal notranslate"><span class="pre">None</span></code>. Read more about this in the section about Systoles and Diastoles.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -911,7 +922,7 @@ experiments suggest that particles covered in water ice do not have a beneficial
 </div>
 <p>As of now, the simulation object still holds the old data for the fragmentation velocity. We have to tell it to update itself. We can either update the whole simulation frame with <code class="docutils literal notranslate"><span class="pre">Simulation.update()</span></code>, or we just update the fragmentation velocities.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -921,14 +932,16 @@ experiments suggest that particles covered in water ice do not have a beneficial
 </div>
 <p>The fragmentation velocities should now show our desired behavior.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">frag</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from star [AU]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Fragmentation velocity [cm/s]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">frag</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from star [AU]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Fragmentation velocity [cm/s]&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -936,12 +949,12 @@ experiments suggest that particles covered in water ice do not have a beneficial
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/3_advanced_customization_48_0.png" src="_images/3_advanced_customization_48_0.png" />
+<img alt="_images/3_advanced_customization_49_0.png" src="_images/3_advanced_customization_49_0.png" />
 </div>
 </div>
 <p><strong>Note:</strong> If you customized a quantity on which other quantities depend on, you also have to update these quantities. In our case this would be the sticking/fragmentation probabilites. So it is always better to update the whole simulation frame.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -956,7 +969,7 @@ experiments suggest that particles covered in water ice do not have a beneficial
 <p>In this example we want to add another field <code class="docutils literal notranslate"><span class="pre">rsnow</span></code> to <code class="docutils literal notranslate"><span class="pre">Simulation.grid</span></code>, that gives us the location of the so called snowline, i.e., the location in the disk where water ice starts to sublime.</p>
 <p>First, we add the field and initialize it with zero.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -966,7 +979,7 @@ experiments suggest that particles covered in water ice do not have a beneficial
 </div>
 <p>The grid group has now a new member.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -975,7 +988,7 @@ experiments suggest that particles covered in water ice do not have a beneficial
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -995,7 +1008,7 @@ Group (Grid quantities)
 </div>
 <p>As a next step we have to write a function that returns us the location of the snowline. Here we simply use the first grid cell where the temperature is smaller than <span class="math notranslate nohighlight">\(150\,\mathrm{K}\)</span> and return the value of the inner interface of that grid cell.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1007,7 +1020,7 @@ Group (Grid quantities)
 </div>
 <p>We assign this function to the updater of our snowline field.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1017,7 +1030,7 @@ Group (Grid quantities)
 </div>
 <p>And update the field.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1026,7 +1039,7 @@ Group (Grid quantities)
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1045,7 +1058,7 @@ The snowline is located at 3.05 AU.
 <p>Right now the temperature is constant throughout the simulation, because the stellar parameters do not change. To see an effect in our snowline location, we need to have a changing temperature profile.</p>
 <p>To achieve this, we let the stellar radius decrease from a value of <span class="math notranslate nohighlight">\(3\,M_\odot\)</span> to <span class="math notranslate nohighlight">\(2\,M_\odot\)</span> within the first <span class="math notranslate nohighlight">\(10,000\,\mathrm{yrs}\)</span>. This results in decreasing disk temperature. This is only for demonstration purposes and is not necessarily physical.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1061,7 +1074,7 @@ The snowline is located at 3.05 AU.
 </div>
 <p>And assign this to the updater of the stellar radius.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1076,7 +1089,7 @@ The snowline is located at 3.05 AU.
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> calls <code class="docutils literal notranslate"><span class="pre">Simulation.update()</span></code>, the updater of the simulation object, once per timestep after the integration step and just before writing the data files. The updater of a group/field is basically a list of groups/fields, whose updater is called in that order.</p>
 <p>For the main simulation object this is</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1085,7 +1098,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1096,7 +1109,7 @@ The snowline is located at 3.05 AU.
 <p>This means that if you call <code class="docutils literal notranslate"><span class="pre">Simulation.update()</span></code> you basically call <code class="docutils literal notranslate"><span class="pre">Simulation.star.update()</span></code>, <code class="docutils literal notranslate"><span class="pre">Simulation.grid.update()</span></code>, <code class="docutils literal notranslate"><span class="pre">Simulation.gas.update()</span></code>, and <code class="docutils literal notranslate"><span class="pre">Simulation.dust.update()</span></code> in that order.</p>
 <p>The updaters of the sub-groups and fields look as follows</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1105,7 +1118,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1114,7 +1127,7 @@ The snowline is located at 3.05 AU.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1123,7 +1136,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1132,7 +1145,7 @@ The snowline is located at 3.05 AU.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1141,7 +1154,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1162,7 +1175,7 @@ The snowline is located at 3.05 AU.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1171,7 +1184,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1180,7 +1193,7 @@ The snowline is located at 3.05 AU.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1189,7 +1202,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1198,7 +1211,7 @@ The snowline is located at 3.05 AU.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1207,7 +1220,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1229,7 +1242,7 @@ The snowline is located at 3.05 AU.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1238,7 +1251,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1247,7 +1260,7 @@ The snowline is located at 3.05 AU.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1256,7 +1269,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1265,7 +1278,7 @@ The snowline is located at 3.05 AU.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1274,7 +1287,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1283,7 +1296,7 @@ The snowline is located at 3.05 AU.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1292,7 +1305,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1301,7 +1314,7 @@ The snowline is located at 3.05 AU.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1310,7 +1323,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1319,7 +1332,7 @@ The snowline is located at 3.05 AU.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1328,7 +1341,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1337,7 +1350,7 @@ The snowline is located at 3.05 AU.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1346,7 +1359,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1355,10 +1368,10 @@ The snowline is located at 3.05 AU.
 </pre></div></div>
 </div>
 <p><strong>Note:</strong> The gas updater does not contain the updaters of <code class="docutils literal notranslate"><span class="pre">Simulation.gas.v</span></code> and <code class="docutils literal notranslate"><span class="pre">Simulation.gas.Fi</span></code> and the updater of the gas sources does not contain the updater of <code class="docutils literal notranslate"><span class="pre">Simulation.gas.S.hyd</span></code>. These are quantities that are calculated in the finalization step of the integrator, since they are derived from the result of the implicit gas integration.</p>
-<p>The same is true for the commented fields in the dust updater, which are also calculated from the implicit integration in the finalization step of the integrator</p>
+<p>The same is true for <code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.rad</span></code>, <code class="docutils literal notranslate"><span class="pre">Simulation.dust.Fi</span></code>, <code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.coag</span></code>, and <code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.hyd</span></code> in the dust updater, which are also calculated from the implicit integration in the finalization step of the integrator</p>
 <p>As you can see, the grid updater is only updating the Keplerian frequency, but not our snowline location. So we can simply adding it to the list.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1366,14 +1379,32 @@ The snowline is located at 3.05 AU.
 </pre></div>
 </div>
 </div>
-<p>If you assign lists to updaters the systoles and diastoles will always be overwritten with <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p>If you assign lists to updaters, their systoles and diastoles will always be overwritten with <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">updateorder</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;OmegaK&#39;, &#39;rsnow&#39;]
+</pre></div></div>
+</div>
 </div>
 <div class="section" id="Systoles-and-Diastoles">
 <h2>Systoles and Diastoles<a class="headerlink" href="#Systoles-and-Diastoles" title="Permalink to this headline">¶</a></h2>
 <p>However, the previous solution has a conceptional problem. As you can see from the update order previously the grid is updated before the gas. The snowline location, however, needs the gas temperature and, therefore, has to be updated after the gas. But we also cannot update the grid as a whole after the gas, because the gas updaters need the Keplerian frequency. We need another solution.</p>
 <p>But first, we revert the grid updater.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1384,7 +1415,7 @@ The snowline is located at 3.05 AU.
 <p>Every updater has a systole and a diastole. That is a function that is called before respectively after the actual updater. Since no other quantity depends on our snowline location, we can simply update it at the end and put it in the diastole of the main updater. Or we could assign it to the diastole of the gas temperature updater, since it only requires the updated gas temperature.</p>
 <p>We therefore write a diastole function, that is updating the snowline location separately.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1395,7 +1426,7 @@ The snowline is located at 3.05 AU.
 </div>
 <p>And assign this function to the diastole of the gas temperature updater.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1409,7 +1440,7 @@ The snowline is located at 3.05 AU.
 <h2>Customizing the Snapshots<a class="headerlink" href="#Customizing-the-Snapshots" title="Permalink to this headline">¶</a></h2>
 <p>As already explained in a previous chapter, the snapshots can be customized by simply setting <code class="docutils literal notranslate"><span class="pre">Simulation.t.snapshots</span></code>. In this example we only want to run the simulation for <span class="math notranslate nohighlight">\(10,000\,\mathrm{yrs}\)</span>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1419,7 +1450,7 @@ The snowline is located at 3.05 AU.
 </div>
 <p>We can now change the data directory to avoid an overwrite error and start the simulation with our modifications.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1428,7 +1459,7 @@ The snowline is located at 3.05 AU.
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1442,14 +1473,13 @@ The snowline is located at 3.05 AU.
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.1
+DustPy v1.0.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-<span class="ansi-red-intense-fg">
-Please read README.md on the GitHub repository for
-information about the Terms of Usage.</span>
+
+Please cite Stammler &amp; Birnstiel (2021)
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -1459,10 +1489,10 @@ information about the Terms of Usage.</span>
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 3.33e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 4.44e-16</span>
         for particle collision
-            m[4] =  3.73e-12 g    with
-            m[6] =  7.20e-12 g
+            m[47] =  5.18e-06 g    with
+            m[54] =  5.18e-05 g
 <span class="ansi-yellow-intense-fg">    - Cratering:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -1514,12 +1544,12 @@ Writing file <span class="ansi-blue-intense-fg">3_data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">3_data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">3_data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">3_data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:08:39</span>
+Execution time: <span class="ansi-blue-intense-fg">0:06:13</span>
 </pre></div></div>
 </div>
 <p>We can now have a look at the result of our modifications.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1528,7 +1558,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:08:39</span>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1540,13 +1570,13 @@ Execution time: <span class="ansi-blue-intense-fg">0:08:39</span>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/3_advanced_customization_101_0.png" src="_images/3_advanced_customization_101_0.png" />
+<img alt="_images/3_advanced_customization_103_0.png" src="_images/3_advanced_customization_103_0.png" />
 </div>
 </div>
 <p>The change in fragmentation velocity has an obvious effect on the particles sizes.</p>
 <p>To check the time evolution of the snowline, we have to read the data. The gray lines are the positions of the radial grid cell interfaces and snapshots, which explains the discrete behavior of the snowline location.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1557,18 +1587,20 @@ Execution time: <span class="ansi-blue-intense-fg">0:08:39</span>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">rsnow</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">ri</span><span class="p">,</span> <span class="mf">1.e3</span><span class="p">,</span> <span class="mf">1e4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">1.e3</span><span class="p">,</span> <span class="mf">1.e4</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [yr]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Snowline location [AU]&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">rsnow</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">ri</span><span class="p">,</span> <span class="mf">1.e3</span><span class="p">,</span> <span class="mf">1e4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">1.e3</span><span class="p">,</span> <span class="mf">1.e4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time [yr]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Snowline location [AU]&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1576,7 +1608,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:08:39</span>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/3_advanced_customization_104_0.png" src="_images/3_advanced_customization_104_0.png" />
+<img alt="_images/3_advanced_customization_106_0.png" src="_images/3_advanced_customization_106_0.png" />
 </div>
 </div>
 </div>
@@ -1590,10 +1622,10 @@ Execution time: <span class="ansi-blue-intense-fg">0:08:39</span>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="4_standard_model.html" class="btn btn-neutral float-right" title="The Standard Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="4_standard_model.html" class="btn btn-neutral float-right" title="4. The Standard Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="2_simple_customization.html" class="btn btn-neutral float-left" title="Simple Customization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="2_simple_customization.html" class="btn btn-neutral float-left" title="2. Simple Customization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

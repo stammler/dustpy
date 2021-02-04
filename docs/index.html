@@ -24,7 +24,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -39,7 +38,7 @@
   <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Basic usage" href="1_basics.html" /> 
+    <link rel="next" title="1. Basic usage" href="1_basics.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -85,17 +84,18 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="1_basics.html">Basic usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">Simple Customization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">Advanced Customization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">The Standard Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">Dust Coagulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">Dust Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="8_test_gas_evolution.html">Test: Gas Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="9_example_gaps.html">Example: Planetary Gaps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10_example_ice_lines.html">Example: Ice Lines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">2. Simple Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">3. Advanced Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">4. The Standard Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">5. Dust Coagulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">6. Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">7. Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_analytical_coagulation_kernels.html">Test: Analytical Coagulation Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_ice_lines.html">Example: Ice Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetary_gaps.html">Example: Planetary Gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="A_publications.html">Appendix A: List of Publications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
@@ -192,7 +192,7 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is a dust coagulation and evolution code for protoplanetary disks.</div>
 </div>
 <div class="line-block">
-<div class="line">This documentation is for <code class="docutils literal notranslate"><span class="pre">DustPy</span> <span class="pre">v0.5.1</span></code>.</div>
+<div class="line">This documentation is for <code class="docutils literal notranslate"><span class="pre">DustPy</span> <span class="pre">v1.0.0</span></code>.</div>
 </div>
 <div class="line-block">
 <div class="line">To install <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> simply type</div>
@@ -208,7 +208,7 @@
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="1_basics.html">Basic usage</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="1_basics.html#The-Simulation-Frame">The Simulation Frame</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1_basics.html#Initializing">Initializing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1_basics.html#Running-a-Simulation">Running a Simulation</a></li>
@@ -217,7 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="1_basics.html#Reading-Dump-Files">Reading Dump Files</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">Simple Customization</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">2. Simple Customization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="2_simple_customization.html#Stellar-parameters">Stellar parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2_simple_customization.html#Grid-parameters">Grid parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="2_simple_customization.html#Gas-Parameters">Gas Parameters</a></li>
@@ -227,7 +227,7 @@
 <li class="toctree-l2"><a class="reference internal" href="2_simple_customization.html#Changing-the-Output-Directory">Changing the Output Directory</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">Advanced Customization</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">3. Advanced Customization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="3_advanced_customization.html#Customizing-the-Grids">Customizing the Grids</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3_advanced_customization.html#Customizing-the-Physics-of-a-Field">Customizing the Physics of a Field</a></li>
 <li class="toctree-l2"><a class="reference internal" href="3_advanced_customization.html#Adding-Custom-Fields">Adding Custom Fields</a></li>
@@ -236,7 +236,7 @@
 <li class="toctree-l2"><a class="reference internal" href="3_advanced_customization.html#Customizing-the-Snapshots">Customizing the Snapshots</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">The Standard Model</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">4. The Standard Model</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="4_standard_model.html#Dust">Dust</a></li>
 <li class="toctree-l2"><a class="reference internal" href="4_standard_model.html#Gas">Gas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="4_standard_model.html#Grid">Grid</a></li>
@@ -246,7 +246,7 @@
 <li class="toctree-l2"><a class="reference internal" href="4_standard_model.html#Writer">Writer</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">Dust Coagulation</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">5. Dust Coagulation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="5_dust_coagulation.html#Sticking">Sticking</a></li>
 <li class="toctree-l2"><a class="reference internal" href="5_dust_coagulation.html#Fragmentation-&amp;-Cratering">Fragmentation &amp; Cratering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="5_dust_coagulation.html#Probabilities">Probabilities</a></li>
@@ -255,7 +255,7 @@
 <li class="toctree-l2"><a class="reference internal" href="5_dust_coagulation.html#Coagulation-Sources">Coagulation Sources</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">Dust Evolution</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">6. Dust Evolution</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="6_dust_evolution.html#Coagulation">Coagulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6_dust_evolution.html#Hydrodynamics">Hydrodynamics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="6_dust_evolution.html#External-Sources">External Sources</a></li>
@@ -263,31 +263,37 @@
 <li class="toctree-l2"><a class="reference internal" href="6_dust_evolution.html#Changing-the-Dust-Integrator">Changing the Dust Integrator</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">7. Gas Evolution</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="7_gas_evolution.html#Hydrodynamics">Hydrodynamics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="7_gas_evolution.html#External-Sources">External Sources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="7_gas_evolution.html#Turning-off-Gas-Evolution">Turning off Gas Evolution</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="8_test_gas_evolution.html">Test: Gas Evolution</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="8_test_gas_evolution.html#Analytical-Solution">Analytical Solution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8_test_gas_evolution.html#Setting-up-DustPy">Setting up DustPy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="8_test_gas_evolution.html#Modifying-the-Power-Law-Index">Modifying the Power Law Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_analytical_coagulation_kernels.html">Test: Analytical Coagulation Kernels</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_analytical_coagulation_kernels.html#The-Constant-Kernel">The Constant Kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_analytical_coagulation_kernels.html#The-Linear-Kernel">The Linear Kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_analytical_coagulation_kernels.html#The-Product-Kernel">The Product Kernel</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="9_example_gaps.html">Example: Planetary Gaps</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="9_example_gaps.html#Gap-Profiles">Gap Profiles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="9_example_gaps.html#Adding-planets">Adding planets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="9_example_gaps.html#Viscosity-pertubation">Viscosity pertubation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="9_example_gaps.html#Growing-planets">Growing planets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_gas_evolution.html">Test: Gas Evolution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_gas_evolution.html#Analytical-Solution">Analytical Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_gas_evolution.html#Setting-up-DustPy">Setting up DustPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_gas_evolution.html#Modifying-the-Power-Law-Index">Modifying the Power Law Index</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="10_example_ice_lines.html">Example: Ice Lines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_example_planetesimal_formation.html">Example: Planetesimal Formation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="11_example_planetesimal_formation.html#Refining-the-radial-grid">Refining the radial grid</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_example_planetesimal_formation.html#Adding-gap">Adding gap</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_example_planetesimal_formation.html#Adding-planetesimals">Adding planetesimals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="11_example_planetesimal_formation.html#Adding-planetesimal-formation">Adding planetesimal formation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_ice_lines.html">Example: Ice Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetary_gaps.html">Example: Planetary Gaps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="example_planetary_gaps.html#Gap-Profiles">Gap Profiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_planetary_gaps.html#Adding-planets">Adding planets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_planetary_gaps.html#Viscosity-pertubation">Viscosity pertubation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_planetary_gaps.html#Growing-planets">Growing planets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetesimal_formation.html">Example: Planetesimal Formation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="example_planetesimal_formation.html#Refining-the-radial-grid">Refining the radial grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_planetesimal_formation.html#Adding-gap">Adding gap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_planetesimal_formation.html#Adding-planetesimals">Adding planetesimals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_planetesimal_formation.html#Adding-planetesimal-formation">Adding planetesimal formation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="A_publications.html">Appendix A: List of Publications</a></li>
@@ -324,7 +330,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="1_basics.html" class="btn btn-neutral float-right" title="Basic usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="1_basics.html" class="btn btn-neutral float-right" title="1. Basic usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

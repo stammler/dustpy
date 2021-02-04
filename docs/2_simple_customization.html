@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Simple Customization &mdash; dustpy  documentation</title>
+  <title>2. Simple Customization &mdash; dustpy  documentation</title>
   
 
   
@@ -24,7 +24,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -39,8 +38,8 @@
   <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Advanced Customization" href="3_advanced_customization.html" />
-    <link rel="prev" title="Basic usage" href="1_basics.html" /> 
+    <link rel="next" title="3. Advanced Customization" href="3_advanced_customization.html" />
+    <link rel="prev" title="1. Basic usage" href="1_basics.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,8 +85,8 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="1_basics.html">Basic usage</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Simple Customization</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Simple Customization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Stellar-parameters">Stellar parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Grid-parameters">Grid parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Gas-Parameters">Gas Parameters</a></li>
@@ -97,15 +96,16 @@
 <li class="toctree-l2"><a class="reference internal" href="#Changing-the-Output-Directory">Changing the Output Directory</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">Advanced Customization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">The Standard Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">Dust Coagulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">Dust Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="8_test_gas_evolution.html">Test: Gas Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="9_example_gaps.html">Example: Planetary Gaps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10_example_ice_lines.html">Example: Ice Lines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">3. Advanced Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">4. The Standard Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">5. Dust Coagulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">6. Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">7. Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_analytical_coagulation_kernels.html">Test: Analytical Coagulation Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_ice_lines.html">Example: Ice Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetary_gaps.html">Example: Planetary Gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="A_publications.html">Appendix A: List of Publications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
@@ -153,7 +153,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Simple Customization</li>
+      <li>2. Simple Customization</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -427,8 +427,8 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Simple-Customization">
-<h1>Simple Customization<a class="headerlink" href="#Simple-Customization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="2.-Simple-Customization">
+<h1>2. Simple Customization<a class="headerlink" href="#2.-Simple-Customization" title="Permalink to this headline">¶</a></h1>
 <p>If you do not want to run the standard simulation you can easily modify the initial conditions.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -449,7 +449,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <p>The simulation object has an attribute to set the initial conditions <code class="docutils literal notranslate"><span class="pre">Simulation.ini</span></code>. The attribute is structured in initial conditions for dust, gas, the grid, and the central star. If you call <code class="docutils literal notranslate"><span class="pre">Simulatio.initialize()</span></code>, the simulation object will be filled according the parameters set here. We’ll go through all options one by one.</p>
-<p><strong>All quantities are in cgs units!</strong></p>
+<p><strong>–&gt; All quantities are in cgs units! &lt;–</strong></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -534,8 +534,10 @@ namespace(M=1.988409870698051e+33, R=139140000000.0, T=5772.0)
 </div>
 <div class="section" id="Grid-parameters">
 <h2>Grid parameters<a class="headerlink" href="#Grid-parameters" title="Permalink to this headline">¶</a></h2>
-<p>The grid parameters determine the shape of the grids. While you can set your own non-standard radial grid (see later), you should under no circumstances meddle with the mass grid, unless you know exactöy what you are doing. Please always use the <code class="docutils literal notranslate"><span class="pre">Simulation.ini.grid</span></code> namespace to customize your mass grid. The mass grid has to be strickly logarithmic. Otherwise, the coagulation algorithm will produce wrong results. Note: If you changed the mass grid for some reason during the simulation, you
-have to re-calculate the coagulation parameters in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation</span></code>.</p>
+<div class="line-block">
+<div class="line">The grid parameters determine the shape of the radial and mass grids. While you can set your own non-standard radial grid (see later), you should under no circumstances meddle with the mass grid, unless you know exactly what you are doing. Please always use the <code class="docutils literal notranslate"><span class="pre">Simulation.ini.grid</span></code> namespace to customize your mass grid. The mass grid has to be strickly logarithmic. Otherwise, the coagulation algorithm will produce wrong results.</div>
+<div class="line"><strong>Attentian:</strong> If you changed the mass grid for any reason during the simulation, you have to re-calculate the coagulation parameters in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation</span></code>.</div>
+</div>
 <p><strong>Note:</strong> The performance of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is very sensitive to the mass grid. A finer mass grid slows down the simulation drastically.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -566,6 +568,7 @@ namespace(Nmbpd=7,
 <div class="line-block">
 <div class="line">Number of mass bins per mass decade, default: 7</div>
 <div class="line">Should be at least 7, see <a class="reference external" href="https://doi.org/10.1051/0004-6361/201423708">Drążkowska et al. (2014)</a></div>
+<div class="line">This will have a large impact on the accuracy and the computational costs of the simulation.</div>
 </div>
 <ul class="simple">
 <li><p>mmin</p></li>
@@ -650,6 +653,7 @@ namespace(alpha=0.001,
 </div>
 <div class="section" id="Dust-Parameters">
 <h2>Dust Parameters<a class="headerlink" href="#Dust-Parameters" title="Permalink to this headline">¶</a></h2>
+<p>The dust parameters define the initial conditions of the dust disk and the basic collisional behavior of the dust particles.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -736,7 +740,7 @@ namespace(aIniMax=0.0001,
 </div>
 <div class="section" id="Changing-the-Initial-Conditions">
 <h2>Changing the Initial Conditions<a class="headerlink" href="#Changing-the-Initial-Conditions" title="Permalink to this headline">¶</a></h2>
-<p>In this example we want to run a simulation with a larger disk mass. We can use the constants module of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code>.</p>
+<p>In this example we want to run a simulation with a more massive disk mass. We can use the constants module of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -768,7 +772,7 @@ namespace(aIniMax=0.0001,
 </div>
 <div class="section" id="Changing-the-Snapshots">
 <h2>Changing the Snapshots<a class="headerlink" href="#Changing-the-Snapshots" title="Permalink to this headline">¶</a></h2>
-<p>The standard model runs for 100,000 years and starts writin data files at 1,000 with 10 files per time decade. In this example we only want to run the simulation for 10,000 years with only 5 snapshots per decade. This can easily be set by modifying <code class="docutils literal notranslate"><span class="pre">Simulation.t.snapshots</span></code>.</p>
+<p>The standard model runs for 100,000 years and starts writing data files at 1,000 years with 10 files per time decade. In this example we only want to run the simulation for 10,000 years with only 5 snapshots per decade. This can easily be set by modifying <code class="docutils literal notranslate"><span class="pre">Simulation.t.snapshots</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
@@ -817,14 +821,13 @@ namespace(aIniMax=0.0001,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.1
+DustPy v1.0.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-<span class="ansi-red-intense-fg">
-Please read README.md on the GitHub repository for
-information about the Terms of Usage.</span>
+
+Please cite Stammler &amp; Birnstiel (2021)
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -834,10 +837,10 @@ information about the Terms of Usage.</span>
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 3.33e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 4.44e-16</span>
         for particle collision
-            m[4] =  3.73e-12 g    with
-            m[6] =  7.20e-12 g
+            m[47] =  5.18e-06 g    with
+            m[54] =  5.18e-05 g
 <span class="ansi-yellow-intense-fg">    - Cratering:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -859,7 +862,7 @@ Writing file <span class="ansi-blue-intense-fg">2_data/data0005.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">2_data/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:04:39</span>
+Execution time: <span class="ansi-blue-intense-fg">0:05:07</span>
 </pre></div></div>
 </div>
 <p>The simulation has now run for 10,000 years</p>
@@ -921,10 +924,10 @@ function that is called by default when calling <code class="docutils literal no
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="3_advanced_customization.html" class="btn btn-neutral float-right" title="Advanced Customization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="3_advanced_customization.html" class="btn btn-neutral float-right" title="3. Advanced Customization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="1_basics.html" class="btn btn-neutral float-left" title="Basic usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="1_basics.html" class="btn btn-neutral float-left" title="1. Basic usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

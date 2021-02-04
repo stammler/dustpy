@@ -13,6 +13,26 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "*  **Drążkowska, Joanna; Stammler, Sebastian M.; Birnstiel, Til (2021)**  \n",
+    "Astronomy & Astrophysics, Forthcoming article  \n",
+    "_\"How dust fragmentation may be beneficial to planetary growth by pebble accretion\"_  \n",
+    "[doi: 10.1051/0004-6361/202039925](https://doi.org/10.1051/0004-6361/202039925)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "*  **Pinilla, Paola; Lenz, Christian T.; Stammler, Sebastian M. (2021)**  \n",
+    "Astronomy & Astrophysics, Volume 645, id.A70, 16 pp.  \n",
+    "_\"Growing and trapping pebbles with fragile collisions of particles in protoplanetary disks\"_  \n",
+    "[doi: 10.1051/0004-6361/202038920](https://doi.org/10.1051/0004-6361/202038920)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
     "*  **Lenz, Christian T.; Klahr, Hubert; Birnstiel, Tilman; Kretke, Katherine; Stammler, Sebastian (2020)**  \n",
     "Astronomy & Astrophysics, Volume 640, id.A61, 21 pp.  \n",
     "_\"Constraining the parameter space for the solar nebula. The effect of disk properties on planetesimal formation\"_  \n",

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Basic usage &mdash; dustpy  documentation</title>
+  <title>1. Basic usage &mdash; dustpy  documentation</title>
   
 
   
@@ -24,7 +24,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -39,7 +38,7 @@
   <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Simple Customization" href="2_simple_customization.html" />
+    <link rel="next" title="2. Simple Customization" href="2_simple_customization.html" />
     <link rel="prev" title="DustPy documentation" href="index.html" /> 
 </head>
 
@@ -86,7 +85,7 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Basic usage</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Basic usage</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#The-Simulation-Frame">The Simulation Frame</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Initializing">Initializing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Running-a-Simulation">Running a Simulation</a></li>
@@ -98,16 +97,17 @@
 <li class="toctree-l2"><a class="reference internal" href="#Reading-Dump-Files">Reading Dump Files</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">Simple Customization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">Advanced Customization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">The Standard Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">Dust Coagulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">Dust Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">Gas Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="8_test_gas_evolution.html">Test: Gas Evolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="9_example_gaps.html">Example: Planetary Gaps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10_example_ice_lines.html">Example: Ice Lines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11_example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">2. Simple Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">3. Advanced Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">4. The Standard Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">5. Dust Coagulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">6. Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">7. Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_analytical_coagulation_kernels.html">Test: Analytical Coagulation Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_ice_lines.html">Example: Ice Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetary_gaps.html">Example: Planetary Gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="A_publications.html">Appendix A: List of Publications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
@@ -155,7 +155,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Basic usage</li>
+      <li>1. Basic usage</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -429,10 +429,10 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Basic-usage">
-<h1>Basic usage<a class="headerlink" href="#Basic-usage" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is using on the <code class="docutils literal notranslate"><span class="pre">simframe</span></code> package for running scientific simulations. For a detailed description of the usage of <code class="docutils literal notranslate"><span class="pre">simframe</span></code> please have a look at the <a class="reference external" href="https://simframe.rtfd.io/">Simframe Documentation</a>.</p>
-<p>In this notebook demonstrates how to run the most simple <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> model, i.e., the model that is run by default, how to plot data, and how to resume simulations from dump files.</p>
+<div class="section" id="1.-Basic-usage">
+<h1>1. Basic usage<a class="headerlink" href="#1.-Basic-usage" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is using on the <code class="docutils literal notranslate"><span class="pre">simframe</span></code> framework for running scientific simulations. For a detailed description of the usage of <code class="docutils literal notranslate"><span class="pre">simframe</span></code> please have a look at the <a class="reference external" href="https://simframe.rtfd.io/">Simframe Documentation</a>.</p>
+<p>This notebook demonstrates how to run the most simple <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> model, i.e., the model that is run by default, how to plot data, and how to resume simulations from dump files.</p>
 <div class="section" id="The-Simulation-Frame">
 <h2>The Simulation Frame<a class="headerlink" href="#The-Simulation-Frame" title="Permalink to this headline">¶</a></h2>
 <p>To set up a model we have to import the <code class="docutils literal notranslate"><span class="pre">Simulation</span></code> class from the <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> package.</p>
@@ -455,7 +455,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">sim</span></code> is now an empty simulation object that controls our simulation.</p>
+<p>At this stage <code class="docutils literal notranslate"><span class="pre">sim</span></code> is an empty simulation object that controls our simulation.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -484,7 +484,7 @@ DustPy
     Writer       : <span class="ansi-yellow-intense-fg">not specified</span>
 </pre></div></div>
 </div>
-<p>All the fields are initialized with <code class="docutils literal notranslate"><span class="pre">None</span></code>. All attributes can be easiliy addressed via</p>
+<p>All the fields are initialized with <code class="docutils literal notranslate"><span class="pre">None</span></code>. All attributes can be easiliy addressed via e.g.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -537,7 +537,10 @@ Group (Gas quantities)
 </pre></div>
 </div>
 </div>
-<p>As you can see, the <code class="docutils literal notranslate"><span class="pre">sim</span></code> object has now values assigned to the fields. All quantities are in cgs units.</p>
+<div class="line-block">
+<div class="line">As you can see, the <code class="docutils literal notranslate"><span class="pre">sim</span></code> object has now values assigned to its fields.</div>
+<div class="line"><strong>All quantities are in cgs units.</strong></div>
+</div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -691,7 +694,7 @@ Group (Gas quantities)
 </div>
 <div class="section" id="Running-a-Simulation">
 <h2>Running a Simulation<a class="headerlink" href="#Running-a-Simulation" title="Permalink to this headline">¶</a></h2>
-<p>The simulation is now ready to go. This might take a few minutes. The default simulation is running for 100,000 years.</p>
+<p>The simulation is now ready to go. This will take a few minutes. The default simulation is running for 100,000 years.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -707,14 +710,13 @@ Group (Gas quantities)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.1
+DustPy v1.0.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-<span class="ansi-red-intense-fg">
-Please read README.md on the GitHub repository for
-information about the Terms of Usage.</span>
+
+Please cite Stammler &amp; Birnstiel (2021)
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -724,10 +726,10 @@ information about the Terms of Usage.</span>
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 3.33e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 4.44e-16</span>
         for particle collision
-            m[4] =  3.73e-12 g    with
-            m[6] =  7.20e-12 g
+            m[47] =  5.18e-06 g    with
+            m[54] =  5.18e-05 g
 <span class="ansi-yellow-intense-fg">    - Cratering:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -779,7 +781,7 @@ Writing file <span class="ansi-blue-intense-fg">data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:25:54</span>
+Execution time: <span class="ansi-blue-intense-fg">0:30:44</span>
 </pre></div></div>
 </div>
 <p>By default <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has written output files into the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p>
@@ -835,6 +837,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:25:54</span>
 <img alt="_images/1_basics_23_0.png" src="_images/1_basics_23_0.png" />
 </div>
 </div>
+<p>The top middle and bottom left panels show the dust density distribution along the gray dashed lines in the top left panel.</p>
 <p>It’s furthermore possible to use an interactive plotting script.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
@@ -849,10 +852,9 @@ Execution time: <span class="ansi-blue-intense-fg">0:25:54</span>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/1_basics_25_0.png" src="_images/1_basics_25_0.png" />
+<img alt="_images/1_basics_26_0.png" src="_images/1_basics_26_0.png" />
 </div>
 </div>
-<p>The top middle and bottom left panels show the dust density distribution along the gray dashed lines in the top left panel.</p>
 <div class="section" id="Code-Units">
 <h3>Code Units<a class="headerlink" href="#Code-Units" title="Permalink to this headline">¶</a></h3>
 <p>The dust density distribution plotted here is given by</p>
@@ -876,30 +878,30 @@ Execution time: <span class="ansi-blue-intense-fg">0:25:54</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[1.09467116e+01 1.01999127e+01 9.50180414e+00 8.85574147e+00
- 8.25193309e+00 7.68811165e+00 7.16111068e+00 6.66886490e+00
- 6.20952668e+00 5.78043584e+00 5.37983291e+00 5.00620617e+00
- 4.65734633e+00 4.33177619e+00 4.02824798e+00 3.74494515e+00
- 3.48065183e+00 3.23431318e+00 3.00445835e+00 2.79011526e+00
- 2.59034797e+00 2.40400028e+00 2.23032528e+00 2.06843796e+00
- 1.91746960e+00 1.77682330e+00 1.64573458e+00 1.52354221e+00
- 1.40971224e+00 1.30366897e+00 1.20490326e+00 1.11286820e+00
- 1.02721065e+00 9.47430890e-01 8.73155655e-01 8.04088985e-01
- 7.39755386e-01 6.79974636e-01 6.24338045e-01 5.72630768e-01
- 5.24619663e-01 4.79986454e-01 4.38580691e-01 4.00148755e-01
- 3.64525312e-01 3.31532873e-01 3.00968028e-01 2.72726922e-01
- 2.46597677e-01 2.22502736e-01 2.00270404e-01 1.79812878e-01
- 1.61002856e-01 1.43743896e-01 1.27930015e-01 1.13480732e-01
- 1.00296441e-01 8.83097336e-02 7.74274145e-02 6.75813725e-02
- 5.87121699e-02 5.07514056e-02 4.36518950e-02 3.73744694e-02
- 3.18521444e-02 2.70040286e-02 2.27480354e-02 1.90186800e-02
- 1.57674283e-02 1.29545972e-02 1.05430583e-02 8.49458255e-03
- 6.76826065e-03 5.31433734e-03 4.06259933e-03 2.91403465e-03
- 1.79320922e-03 8.10323703e-04 2.53491048e-04 5.35555727e-05
- 7.63359898e-06 8.05766160e-07 6.46162501e-08 3.98729596e-09
- 1.89679589e-10 6.88597892e-12 1.86172607e-13 3.59701757e-15
- 4.68098893e-17 3.80976200e-19 1.78887787e-21 4.50726625e-24
- 5.91422204e-27 9.37143393e-29 7.84597776e-29 6.83347699e-29
+[1.09421629e+01 1.01956404e+01 9.49778788e+00 8.85197303e+00
+ 8.24843562e+00 7.68481987e+00 7.15800652e+00 6.66594610e+00
+ 6.20677392e+00 5.77783426e+00 5.37738066e+00 5.00388830e+00
+ 4.65515130e+00 4.32970457e+00 4.02628716e+00 3.74308648e+00
+ 3.47889826e+00 3.23265327e+00 3.00288622e+00 2.78863497e+00
+ 2.58894869e+00 2.40267838e+00 2.22908374e+00 2.06726827e+00
+ 1.91636800e+00 1.77578776e+00 1.64476265e+00 1.52263353e+00
+ 1.40886120e+00 1.30287448e+00 1.20416203e+00 1.11217768e+00
+ 1.02657129e+00 9.46836483e-01 8.72605278e-01 8.03578771e-01
+ 7.39284630e-01 6.79542339e-01 6.23940097e-01 5.72267550e-01
+ 5.24286887e-01 4.79683252e-01 4.38303955e-01 3.99897620e-01
+ 3.64297429e-01 3.31327320e-01 3.00782672e-01 2.72560980e-01
+ 2.46449586e-01 2.22371377e-01 2.00154798e-01 1.79711704e-01
+ 1.60914922e-01 1.43668301e-01 1.27865489e-01 1.13426307e-01
+ 1.00251153e-01 8.82727190e-02 7.73981056e-02 6.75586283e-02
+ 5.86941876e-02 5.07360456e-02 4.36361805e-02 3.73551929e-02
+ 3.18291049e-02 2.69813868e-02 2.27303880e-02 1.90075687e-02
+ 1.57620241e-02 1.29532592e-02 1.05442980e-02 8.49725026e-03
+ 6.77141319e-03 5.31690456e-03 4.06337889e-03 2.91287476e-03
+ 1.79334788e-03 8.15535619e-04 2.58044012e-04 5.53317013e-05
+ 8.01691533e-06 8.60232419e-07 7.01172083e-08 4.39605267e-09
+ 2.12335949e-10 7.81973240e-12 2.14216787e-13 4.18774772e-15
+ 5.50584827e-17 4.52107034e-19 2.13967038e-21 5.43073126e-24
+ 7.15551581e-27 9.45261094e-29 7.84600057e-29 6.83347699e-29
  5.95170965e-29 5.18372240e-29 4.51483347e-29 3.93225557e-29]
 </pre></div></div>
 </div>
@@ -959,11 +961,11 @@ Execution time: <span class="ansi-blue-intense-fg">0:25:54</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[[1.74750727e-01 1.42894613e-01 1.62086549e-01 ... 1.52526930e-23
+[[1.68526116e-01 1.36252344e-01 1.53947413e-01 ... 1.52526930e-23
   2.11935481e-23 2.94483396e-23]
- [1.67458492e-01 1.37111787e-01 1.54857088e-01 ... 1.32845402e-23
+ [1.64284198e-01 1.33694635e-01 1.50665154e-01 ... 1.32845402e-23
   1.84588088e-23 2.56484316e-23]
- [1.60965637e-01 1.31983478e-01 1.48366855e-01 ... 1.15703508e-23
+ [1.60826508e-01 1.31775131e-01 1.48102112e-01 ... 1.15703508e-23
   1.60769503e-23 2.23388501e-23]
  ...
  [4.45718657e-46 6.19324066e-46 8.60547999e-46 ... 2.30858850e-29
@@ -1138,7 +1140,7 @@ array([1.11372257e+003, 1.03888346e+003, 9.69003565e+002, 9.03557194e+002,
 <div class="section" id="Reading-Dump-Files">
 <h2>Reading Dump Files<a class="headerlink" href="#Reading-Dump-Files" title="Permalink to this headline">¶</a></h2>
 <p>The data files are only containing the pure data, but no information about the operations <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has to perform, like customized functions. Therefore, it’s not possible to directly restart a simulation from data files.</p>
-<p><code class="docutils literal notranslate"><span class="pre">simframe</span></code> is saving a by default the most recent dump file, from which a simulation can be restarted.</p>
+<p><code class="docutils literal notranslate"><span class="pre">simframe</span></code> is saving by default the most recent dump file, from which a simulation can be restarted.</p>
 <p><strong>Attention:</strong> Malware can be injected with dump files, which are pickled objects. Only read dump files that you have created yourself or from sources that you trust! Dump files have to be read with the same version of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> as they were written. Otherwise, it is not guaranteed to work.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
@@ -1232,14 +1234,13 @@ array([1.11372257e+003, 1.03888346e+003, 9.69003565e+002, 9.03557194e+002,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.1
+DustPy v1.0.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-<span class="ansi-red-intense-fg">
-Please read README.md on the GitHub repository for
-information about the Terms of Usage.</span>
+
+Please cite Stammler &amp; Birnstiel (2021)
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -1249,10 +1250,10 @@ information about the Terms of Usage.</span>
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 3.33e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 4.44e-16</span>
         for particle collision
-            m[4] =  3.73e-12 g    with
-            m[6] =  7.20e-12 g
+            m[47] =  5.18e-06 g    with
+            m[54] =  5.18e-05 g
 <span class="ansi-yellow-intense-fg">    - Cratering:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -1261,7 +1262,7 @@ information about the Terms of Usage.</span>
 
 Writing file <span class="ansi-blue-intense-fg">data/data0022.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 </pre></div></div>
 </div>
 <p>Another file was written and the current time is now</p>
@@ -1294,7 +1295,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="2_simple_customization.html" class="btn btn-neutral float-right" title="Simple Customization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="2_simple_customization.html" class="btn btn-neutral float-right" title="2. Simple Customization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="DustPy documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
