@@ -169,7 +169,7 @@ def Hp(sim):
     return sim.gas.cs/(np.sqrt(sim.gas.gamma)*sim.grid.OmegaK)
 
 
-def jacobian(sim, x, *args, **kwargs):
+def jacobian(sim, x, dx=None, *args, **kwargs):
     """Functions calculates the Jacobian for the gas.
 
     Parameters
@@ -178,6 +178,8 @@ def jacobian(sim, x, *args, **kwargs):
         Parent simulation frame
     x : IntVar
         Integration variable
+    dx : float, optional, default : None
+        stepsize
     args : additional positional arguments
     kwargs : additional keyworda arguments
 
@@ -198,7 +200,10 @@ def jacobian(sim, x, *args, **kwargs):
     v = sim.dust.backreaction.B * 2. * sim.gas.eta * sim.grid.r * sim.grid.OmegaK
 
     # Helper variables for convenience
-    dt = sim.t.stepsize
+    if dx is None:
+        dt = x.stepsize
+    else:
+        dt = dx
     r = sim.grid.r
     ri = sim.grid.ri
     area = sim.grid.A
@@ -504,7 +509,7 @@ def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
        | 1 
     """
     if jac is None:
-        jac = Y0.jacobian(x0 + dx)
+        jac = Y0.jacobian(x0, dx)
     if rhs is None:
         rhs = np.array(Y0)
 

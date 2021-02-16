@@ -279,7 +279,7 @@ def H(sim):
     return dust_f.h_dubrulle1995(sim.gas.Hp, sim.dust.St, sim.dust.delta.vert)
 
 
-def jacobian(sim, x, *args, **kwargs):
+def jacobian(sim, x, dx=None, *args, **kwargs):
     """Function calculates the Jacobian for implicit dust integration.
 
     Parameters
@@ -288,6 +288,8 @@ def jacobian(sim, x, *args, **kwargs):
         Parent simulation frame
     x : IntVar
         Integration variable
+    dx : float, optional, default : None
+        stepsize
     args : additional positional arguments
     kwargs : additional keyworda arguments
 
@@ -317,7 +319,10 @@ def jacobian(sim, x, *args, **kwargs):
     SigDfloor = sim.dust.SigmaFloor
 
     # Helper variables for convenience
-    dt = x.stepsize
+    if dx is None:
+        dt = x.stepsize
+    else:
+        dt = dx
     r = sim.grid.r
     ri = sim.grid.ri
     area = sim.grid.A
@@ -929,11 +934,11 @@ def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
        | 1
     """
     if jac is None:
-        jac = Y0.jacobian(x0 + dx)
+        jac = Y0.jacobian(x0, dx)
     if rhs is None:
         rhs = np.array(Y0.ravel())
 
-    Nr, Nm = Y0._owner.dust.Sigma.shape
+    Nm = Y0._owner.dust.Sigma.shape[1]
 
     # Add external source terms to right-hand side
     rhs[Nm:-Nm] += dx*Y0._owner.dust.S.ext[1:-1, ...].ravel()
