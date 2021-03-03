@@ -70,13 +70,14 @@ setup(
                  "Operating System :: OS Independent",
                  "Programming Language :: Python",
                  "Programming Language :: Python :: 3 :: Only",
+                 "Programming Language :: Fortran",
                  "Topic :: Education",
                  "Topic :: Scientific/Engineering",
                  "Topic :: Scientific/Engineering :: Physics",
                  ],
 
     packages=setuptools.find_packages(),
-    install_requires=["matplotlib", "numpy", "requests", "simframe>=0.4.17"],
+    install_requires=["matplotlib", "numpy", "requests", "simframe>=0.4.19"],
     include_package_data=True,
     zip_safe=False,
 )
