@@ -21,7 +21,7 @@ from simframe.io.dump import readdump
 from simframe.io.writers import hdf5writer
 
 __name__ = "dustpy"
-__version__ = "0.5.2"
+__version__ = "0.5.3"
 
 Simulation.__version__ = __version__
 plot.__version__ = __version__
