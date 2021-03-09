@@ -25,8 +25,6 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -441,7 +439,7 @@
     <span class="k">return</span> <span class="n">dust_f</span><span class="o">.</span><span class="n">h_dubrulle1995</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Hp</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">St</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">vert</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="jacobian"><a class="viewcode-back" href="../../../api/dustpy.std.dust.jacobian.html#dustpy.std.dust.jacobian">[docs]</a><span class="k">def</span> <span class="nf">jacobian</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="jacobian"><a class="viewcode-back" href="../../../api/dustpy.std.dust.jacobian.html#dustpy.std.dust.jacobian">[docs]</a><span class="k">def</span> <span class="nf">jacobian</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function calculates the Jacobian for implicit dust integration.</span>
 
 <span class="sd">    Parameters</span>
@@ -450,6 +448,8 @@
 <span class="sd">        Parent simulation frame</span>
 <span class="sd">    x : IntVar</span>
 <span class="sd">        Integration variable</span>
+<span class="sd">    dx : float, optional, default : None</span>
+<span class="sd">        stepsize</span>
 <span class="sd">    args : additional positional arguments</span>
 <span class="sd">    kwargs : additional keyworda arguments</span>
 
@@ -479,7 +479,10 @@
     <span class="n">SigDfloor</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">SigmaFloor</span>
 
     <span class="c1"># Helper variables for convenience</span>
-    <span class="n">dt</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">stepsize</span>
+    <span class="k">if</span> <span class="n">dx</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">stepsize</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">dx</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span>
     <span class="n">ri</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span>
     <span class="n">area</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">A</span>
@@ -1091,11 +1094,11 @@
 <span class="sd">       | 1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">jac</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">jac</span> <span class="o">=</span> <span class="n">Y0</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">x0</span> <span class="o">+</span> <span class="n">dx</span><span class="p">)</span>
+        <span class="n">jac</span> <span class="o">=</span> <span class="n">Y0</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">rhs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">rhs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Y0</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
 
-    <span class="n">Nr</span><span class="p">,</span> <span class="n">Nm</span> <span class="o">=</span> <span class="n">Y0</span><span class="o">.</span><span class="n">_owner</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">Nm</span> <span class="o">=</span> <span class="n">Y0</span><span class="o">.</span><span class="n">_owner</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="c1"># Add external source terms to right-hand side</span>
     <span class="n">rhs</span><span class="p">[</span><span class="n">Nm</span><span class="p">:</span><span class="o">-</span><span class="n">Nm</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dx</span><span class="o">*</span><span class="n">Y0</span><span class="o">.</span><span class="n">_owner</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">ext</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
