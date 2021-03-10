@@ -8,7 +8,7 @@
     "\n",
     "`DustPy` solves gas evolution with an implicit scheme. It is solving by default the following equation for a viscously evolving disk\n",
     "\n",
-    "$\\frac{\\partial}{\\partial t} \\Sigma_\\mathrm{d} + \\frac{1}{r}\\frac{\\partial}{\\partial r} \\left( r\\Sigma_\\mathrm{g}v_\\mathrm{rad} \\right) = S_\\mathrm{ext}$.\n",
+    "$\\frac{\\partial}{\\partial t} \\Sigma_\\mathrm{g} + \\frac{1}{r}\\frac{\\partial}{\\partial r} \\left( r\\Sigma_\\mathrm{g}v_\\mathrm{rad} \\right) = S_\\mathrm{ext}$.\n",
     "\n",
     "Where the radial gas velocity is given by\n",
     "\n",

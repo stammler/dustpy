@@ -432,7 +432,7 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="7.-Gas-Evolution">
 <h1>7. Gas Evolution<a class="headerlink" href="#7.-Gas-Evolution" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> solves gas evolution with an implicit scheme. It is solving by default the following equation for a viscously evolving disk</p>
-<p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{d} + \frac{1}{r}\frac{\partial}{\partial r} \left( r\Sigma_\mathrm{g}v_\mathrm{rad} \right) = S_\mathrm{ext}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{g} + \frac{1}{r}\frac{\partial}{\partial r} \left( r\Sigma_\mathrm{g}v_\mathrm{rad} \right) = S_\mathrm{ext}\)</span>.</p>
 <p>Where the radial gas velocity is given by</p>
 <p><span class="math notranslate nohighlight">\(v_\mathrm{rad} = Av_\mathrm{visc} + 2B\eta v_\mathrm{K}\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are the dust backreaction coefficients <code class="docutils literal notranslate"><span class="pre">Simulation.dust.backreaction</span></code> and the viscous accretion velocity is given by</p>
