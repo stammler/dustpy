@@ -61,7 +61,7 @@ setup(
 
     ext_modules=extensions,
 
-    classifiers=["Development Status :: 4 - Beta",
+    classifiers=["Development Status :: 5 - Production/Stable",
                  "Environment :: Console",
                  "Intended Audience :: Developers",
                  "Intended Audience :: Science/Research",
