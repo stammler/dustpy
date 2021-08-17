@@ -1,0 +1,7 @@
+impl_1_direct
+=============
+
+.. currentmodule:: dustpy.std.gas
+
+.. autoclass:: impl_1_direct
+   :show-inheritance:

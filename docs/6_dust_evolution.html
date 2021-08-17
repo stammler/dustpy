@@ -1,29 +1,37 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>6. Dust Evolution &mdash; dustpy  documentation</title>
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -31,11 +39,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="7. Gas Evolution" href="7_gas_evolution.html" />
@@ -53,7 +56,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> dustpy
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> dustpy
           
 
           
@@ -76,6 +79,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -83,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">2. Simple Customization</a></li>
@@ -122,6 +126,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -160,7 +165,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>6. Dust Evolution</li>
     
@@ -436,7 +441,7 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="6.-Dust-Evolution">
+<section id="6.-Dust-Evolution">
 <h1>6. Dust Evolution<a class="headerlink" href="#6.-Dust-Evolution" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
 <div class="line">Dust evolution in <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> consists of three parts: coagulation, hydrodynamics, and external sources.</div>
@@ -526,6 +531,7 @@ div.rendered_html tbody tr:hover {
 <span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Structure of Jacobian $\mathbb</span><span class="si">{J}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -551,13 +557,13 @@ results in a particle with mass smaller than the largest mass bin. Fragmentation
 </div>
 <p>The first and the last rows of the Jacobian, which contain the boundary conditions do not contain the time step <span class="math notranslate nohighlight">\(\Delta t\)</span>, since this is not necessarily known when calculating the Jacobian. The integration scheme will add the terms containing the time step.</p>
 <p>The custom integration scheme can be found in <code class="docutils literal notranslate"><span class="pre">dustpy.std.dust.impl_1_direct</span></code>.</p>
-<div class="section" id="Coagulation">
+<section id="Coagulation">
 <h2>Coagulation<a class="headerlink" href="#Coagulation" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">Please see the previous chapter for details on coagulation.</div>
 <div class="line">The coagulation source terms are stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.coag</span></code>.</div>
 </div>
-<div class="section" id="Turning-off-Fragmentation">
+<section id="Turning-off-Fragmentation">
 <h3>Turning off Fragmentation<a class="headerlink" href="#Turning-off-Fragmentation" title="Permalink to this headline">¶</a></h3>
 <p>If you want to turn off fragmentation (but not sticking), set the sticking probabilities to <span class="math notranslate nohighlight">\(1\)</span>, the fragmentation probabilities to <span class="math notranslate nohighlight">\(0\)</span>, and unset the updater of the probabilities.</p>
 <div class="nbinput nblast docutils container">
@@ -572,8 +578,8 @@ results in a particle with mass smaller than the largest mass bin. Fragmentation
 </div>
 </div>
 <p><strong>Note:</strong> You could also set the fragmentation velocities to a very large value that will never be reached. However, this will still calculate the probabilies at every timestep, even though they are constant in this case and consume valuable computational resources.</p>
-</div>
-<div class="section" id="Turning-off-Coagulation">
+</section>
+<section id="Turning-off-Coagulation">
 <h3>Turning off Coagulation<a class="headerlink" href="#Turning-off-Coagulation" title="Permalink to this headline">¶</a></h3>
 <p>If you want to turn off coagulation in total, you have to set both probabilities to zero.</p>
 <div class="nbinput nblast docutils container">
@@ -600,9 +606,9 @@ results in a particle with mass smaller than the largest mass bin. Fragmentation
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="Hydrodynamics">
+</section>
+</section>
+<section id="Hydrodynamics">
 <h2>Hydrodynamics<a class="headerlink" href="#Hydrodynamics" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> solves the following equation for dust transport</p>
 <p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{d} + \frac{1}{r} \frac{\partial}{\partial r} \left( r\Sigma_\mathrm{d}v_\mathrm{rad} \right) - \frac{1}{r} \frac{\partial}{\partial r} \left[ r D \Sigma_\mathrm{g} \frac{\partial}{\partial r} \left( \frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{g}} \right) \right] = 0\)</span></p>
@@ -630,13 +636,13 @@ Group (Fluxes)
   -----
 </pre></div></div>
 </div>
-<div class="section" id="Advection">
+<section id="Advection">
 <h3>Advection<a class="headerlink" href="#Advection" title="Permalink to this headline">¶</a></h3>
 <p>The advective fluxes at the grid interfaces are calculated as</p>
 <p><span class="math notranslate nohighlight">\(F_\mathrm{adv} = v_\mathrm{rad} \cdot \Sigma_\mathrm{d}\)</span></p>
 <p>and interpolated onto the grid cell interfaces. The default boundary condition assumes constant velocity.</p>
-</div>
-<div class="section" id="Turning-off-Advection">
+</section>
+<section id="Turning-off-Advection">
 <h3>Turning off Advection<a class="headerlink" href="#Turning-off-Advection" title="Permalink to this headline">¶</a></h3>
 <p>To turn off advection, you can set the radial dust velocities to <span class="math notranslate nohighlight">\(0\)</span> and unset the updater.</p>
 <div class="nbinput nblast docutils container">
@@ -653,14 +659,14 @@ Group (Fluxes)
 <div class="line">You might also want to unset the relative velocities caused by azimuthal drift.</div>
 <div class="line">If you have set a backreaction mechanism you may need to unset it, too, for your model.</div>
 </div>
-</div>
-<div class="section" id="Diffusion">
+</section>
+<section id="Diffusion">
 <h3>Diffusion<a class="headerlink" href="#Diffusion" title="Permalink to this headline">¶</a></h3>
 <p>The diffusive fluxes are given by</p>
 <p><span class="math notranslate nohighlight">\(F_\mathrm{diff} = -D\Sigma_\mathrm{g}\nabla\frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{gas}}\)</span></p>
 <p>A flux limiter limits the maximum diffusive flux to the diffusive RMS velocity of that dust species. The diffusive flux through the boundaries is set to zero.</p>
-</div>
-<div class="section" id="Turning-off-Diffusion">
+</section>
+<section id="Turning-off-Diffusion">
 <h3>Turning off Diffusion<a class="headerlink" href="#Turning-off-Diffusion" title="Permalink to this headline">¶</a></h3>
 <p>To turn off dust diffusion you can set the diffusivities to <span class="math notranslate nohighlight">\(0\)</span> and unset the updater.</p>
 <div class="nbinput nblast docutils container">
@@ -673,8 +679,8 @@ Group (Fluxes)
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Turning-off-Hydrodynamics">
+</section>
+<section id="Turning-off-Hydrodynamics">
 <h3>Turning off Hydrodynamics<a class="headerlink" href="#Turning-off-Hydrodynamics" title="Permalink to this headline">¶</a></h3>
 <p>If you want to turn off dust hydrodynamics in total, you have to set the radial dust velocity and the dust diffusivities to <span class="math notranslate nohighlight">\(0\)</span>.</p>
 <div class="nbinput nblast docutils container">
@@ -690,14 +696,14 @@ Group (Fluxes)
 </div>
 </div>
 <p>Depending on the aim of your simulation, you can unset the updaters of other fields, if you don’t need them.</p>
-</div>
-</div>
-<div class="section" id="External-Sources">
+</section>
+</section>
+<section id="External-Sources">
 <h2>External Sources<a class="headerlink" href="#External-Sources" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has the possibility to add external source/loss terms that you can set. With those you can for example add dust in case of infall or remove dust in case of planetesimal formation or pebble accretion.</p>
 <p>By default the external sources are <span class="math notranslate nohighlight">\(0\)</span> without a set updater.</p>
-</div>
-<div class="section" id="Turning-off-Dust-Evolution">
+</section>
+<section id="Turning-off-Dust-Evolution">
 <h2>Turning off Dust Evolution<a class="headerlink" href="#Turning-off-Dust-Evolution" title="Permalink to this headline">¶</a></h2>
 <p>If you want to deactivate dust evolution as a whole you can remove the integration instruction from the instruction set.</p>
 <div class="nbinput docutils container">
@@ -750,8 +756,8 @@ Group (Fluxes)
 <p>Keep in mind that the updaters of all fields within <code class="docutils literal notranslate"><span class="pre">Simulation.dust</span></code> will still be called and the fields will be updated unless their updaters are unset. This will on one hand cost computational ressources, and on the other hand could influence the physics in an unwanted way.</p>
 <p>For example the dust backreaction coefficients will still be calculated and can have an effect on the gas, even though the dust is in principle not moving.</p>
 <p>Always keep in mind what you want to achieve by turning off dust evolution and unset the updaters of certain fields, if required.</p>
-</div>
-<div class="section" id="Changing-the-Dust-Integrator">
+</section>
+<section id="Changing-the-Dust-Integrator">
 <h2>Changing the Dust Integrator<a class="headerlink" href="#Changing-the-Dust-Integrator" title="Permalink to this headline">¶</a></h2>
 <p>By default the dust surface densities are integrated implicitly. This involves a matrix inversion. In some cases if the matrix is weakly conditioned this can cause a violation of mass conservation. In that case you might want to use an explicit integrator instead. You can do this by calling</p>
 <div class="nbinput docutils container">
@@ -823,8 +829,8 @@ setdustintegrator(scheme=&#39;explicit&#39;, method=&#39;cash-karp&#39;) method 
 
 </pre></div></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -846,11 +852,19 @@ setdustintegrator(scheme=&#39;explicit&#39;, method=&#39;cash-karp&#39;) method 
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -861,7 +875,6 @@ setdustintegrator(scheme=&#39;explicit&#39;, method=&#39;cash-karp&#39;) method 
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

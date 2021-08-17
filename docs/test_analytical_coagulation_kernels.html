@@ -1,29 +1,37 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Test: Analytical Coagulation Kernels &mdash; dustpy  documentation</title>
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -31,11 +39,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Test: Gas Evolution" href="test_gas_evolution.html" />
@@ -53,7 +56,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> dustpy
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> dustpy
           
 
           
@@ -76,6 +79,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -83,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">2. Simple Customization</a></li>
@@ -109,6 +113,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -147,7 +152,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Test: Analytical Coagulation Kernels</li>
     
@@ -423,7 +428,7 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Test:-Analytical-Coagulation-Kernels">
+<section id="Test:-Analytical-Coagulation-Kernels">
 <h1>Test: Analytical Coagulation Kernels<a class="headerlink" href="#Test:-Analytical-Coagulation-Kernels" title="Permalink to this headline">¶</a></h1>
 <p>The Smoluchwoski equation has analytical solutions for three special cases: the constant, the linear, and the product kernels. These can be used to verify the coagulation algorithm of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code>.</p>
 <p>In this notebook we are going to implement the constant and the linear kernel to demonstrate the diffusivity of the coagulation algorithm.</p>
@@ -435,7 +440,7 @@ div.rendered_html tbody tr:hover {
 <p>Using this, the Smoluchowski equation can be simplified to</p>
 <p><span class="math notranslate nohighlight">\(\begin{split} \frac{\partial}{\partial t} N\left( m \right) = &amp;\int\limits_0^\infty N\left( m-m' \right) N\left( m' \right) K\left( m-m', m' \right) \mathrm{d}m'\\ &amp;-N\left( m \right) \int\limits_0^\infty N\left( m' \right) K\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
 <p>This equation has analytical solutions for some choices of the kernel <span class="math notranslate nohighlight">\(K\)</span> and can be used to benchmark the coagulation algorithm against. The solutions and their derivations are discussed in detail in e.g. <a class="reference external" href="https://doi.org/10.1086/156949">Silk &amp; Takahashi (1979)</a> or <a class="reference external" href="https://doi.org/10.1016/0019-1035(90)90086-O">Wetherill (1990)</a>.</p>
-<div class="section" id="The-Constant-Kernel">
+<section id="The-Constant-Kernel">
 <h2>The Constant Kernel<a class="headerlink" href="#The-Constant-Kernel" title="Permalink to this headline">¶</a></h2>
 <p>The most simple kernel is the constant kernel given by</p>
 <p><span class="math notranslate nohighlight">\(K\left(m, m'\right) = a\)</span>.</p>
@@ -660,13 +665,14 @@ div.rendered_html tbody tr:hover {
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.0
+DustPy v0.5.4
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-
-Please cite Stammler &amp; Birnstiel (2021)
+<span class="ansi-red-intense-fg">
+Please read README.md on the GitHub repository for
+information about the Terms of Usage.</span>
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -701,7 +707,7 @@ Writing file <span class="ansi-blue-intense-fg">test_constant_kernel/data0005.hd
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_constant_kernel/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:07</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:06</span>
 </pre></div></div>
 </div>
 <p>We now read the necessary data and plot it.</p>
@@ -746,6 +752,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:07</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$N\left(m,t\right)\,m^2$&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Constant Kernel: $K\left( m, m&#39;\right) = 1$&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -837,13 +844,14 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:07</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.0
+DustPy v0.5.4
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-
-Please cite Stammler &amp; Birnstiel (2021)
+<span class="ansi-red-intense-fg">
+Please read README.md on the GitHub repository for
+information about the Terms of Usage.</span>
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -878,7 +886,7 @@ Writing file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/da
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:01:07</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:56</span>
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -913,6 +921,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:01:07</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$N\left(m,t\right)\,m^2$&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Constant Kernel: $K\left( m, m&#39;\right) = 1$&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -924,8 +933,8 @@ Execution time: <span class="ansi-blue-intense-fg">0:01:07</span>
 </div>
 </div>
 <p>In the high resolution case the simulation is way closer to the analytical solution compared to the semi-transparent solid lines of the low resolution simulation. This comes of course with the cost of a more expensive computation. If you need a higher resolution depends on your collision model. For a detail discussion on this problem we refer to <a class="reference external" href="https://doi.org/10.1051/0004-6361/201423708">Drążkowska et al. (2014)</a>.</p>
-</div>
-<div class="section" id="The-Linear-Kernel">
+</section>
+<section id="The-Linear-Kernel">
 <h2>The Linear Kernel<a class="headerlink" href="#The-Linear-Kernel" title="Permalink to this headline">¶</a></h2>
 <p>The second kernel that has an analytical solution it the linear kernel</p>
 <p><span class="math notranslate nohighlight">\(R\left(m, m'\right) = a\left(m + m'\right)\)</span></p>
@@ -1079,13 +1088,14 @@ Execution time: <span class="ansi-blue-intense-fg">0:01:07</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.0
+DustPy v0.5.4
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-
-Please cite Stammler &amp; Birnstiel (2021)
+<span class="ansi-red-intense-fg">
+Please read README.md on the GitHub repository for
+information about the Terms of Usage.</span>
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -1120,7 +1130,7 @@ Writing file <span class="ansi-blue-intense-fg">test_linear_kernel/data0005.hdf5
 Writing dump file <span class="ansi-blue-intense-fg">test_linear_kernel/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_linear_kernel/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_linear_kernel/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:04</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1154,6 +1164,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:04</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$N\left(m,t\right)\, m^2$&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Linear Kernel: $K\left( m, m&#39;\right) = m + m&#39;$&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1245,13 +1256,14 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:04</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.0
+DustPy v0.5.4
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-
-Please cite Stammler &amp; Birnstiel (2021)
+<span class="ansi-red-intense-fg">
+Please read README.md on the GitHub repository for
+information about the Terms of Usage.</span>
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -1286,7 +1298,7 @@ Writing file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/data
 Writing dump file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:21</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:25</span>
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1321,6 +1333,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:21</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$N\left(m,t\right)\,m^2$&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Linear Kernel: $K\left( m, m&#39;\right) = m + m&#39;$&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1332,14 +1345,14 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:21</span>
 </div>
 </div>
 <p>With a higher mass resolution the situation improved significantly.</p>
-</div>
-<div class="section" id="The-Product-Kernel">
+</section>
+<section id="The-Product-Kernel">
 <h2>The Product Kernel<a class="headerlink" href="#The-Product-Kernel" title="Permalink to this headline">¶</a></h2>
 <p>The third kernel that has an analytical solution it the product kernel</p>
 <p><span class="math notranslate nohighlight">\(K\left(m, m'\right) = a \cdot m\times m'\)</span>.</p>
 <p>This kernel describes runaway growth. In this scenario the mass quickly accumulates in a few massive bodies. Since <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is not designed to properly simulate individual bodies, this solution will not be discussed here.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -1361,11 +1374,19 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:21</span>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1376,7 +1397,6 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:21</span>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

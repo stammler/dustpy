@@ -1,29 +1,37 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Example: Planetesimal Formation &mdash; dustpy  documentation</title>
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -31,11 +39,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Appendix A: List of Publications" href="A_publications.html" />
@@ -53,7 +56,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> dustpy
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> dustpy
           
 
           
@@ -76,6 +79,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -83,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">2. Simple Customization</a></li>
@@ -110,6 +114,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -148,7 +153,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Example: Planetesimal Formation</li>
     
@@ -424,7 +429,7 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Example:-Planetesimal-Formation">
+<section id="Example:-Planetesimal-Formation">
 <h1>Example: Planetesimal Formation<a class="headerlink" href="#Example:-Planetesimal-Formation" title="Permalink to this headline">¶</a></h1>
 <p>This example demonstrates how to add planetesimal formation into <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> models. We follow <a class="reference external" href="https://doi.org/10.3847/2041-8213/ab4423">Stammler et al. (2019)</a> that showed that planetesimal formation could explain the optical depths observed in dust rings of protoplanetary disks.</p>
 <p>The method is described in detail in <a class="reference external" href="https://doi.org/10.1051/0004-6361/201834047">Schoonenberg et al. (2018)</a>. Planetesimal formation is triggered as soon as the midplane dust-to-gas ratio exceeds a critical threshold (typically of the order unity). If this threshold value is exceeded a fraction <span class="math notranslate nohighlight">\(\zeta\)</span> of the dust mass per settling time scale of each mass bin <span class="math notranslate nohighlight">\(i\)</span> is converted into planetesimals. <span class="math notranslate nohighlight">\(\zeta\)</span> is assumed to be <span class="math notranslate nohighlight">\(0.1\)</span>.</p>
@@ -491,7 +496,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="section" id="Refining-the-radial-grid">
+<section id="Refining-the-radial-grid">
 <h2>Refining the radial grid<a class="headerlink" href="#Refining-the-radial-grid" title="Permalink to this headline">¶</a></h2>
 <p>In this model we want to increase the radial resolution around the outer gap edge. We use the same method of refining the radial grid as described in earlier examples.</p>
 <div class="nbinput nblast docutils container">
@@ -527,7 +532,7 @@ div.rendered_html tbody tr:hover {
     <span class="n">N</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span>
     <span class="n">rim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
-        <span class="n">j</span> <span class="o">=</span> <span class="n">ind</span><span class="o">-</span><span class="n">num</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">ind</span><span class="o">-</span><span class="n">num</span><span class="o">+</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">rim</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ri</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
         <span class="n">rim</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">ri</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="n">ri</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">ri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">ril</span><span class="p">,</span> <span class="n">rim</span><span class="p">,</span> <span class="n">rir</span><span class="p">))</span>
@@ -565,8 +570,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Adding-gap">
+</section>
+<section id="Adding-gap">
 <h2>Adding gap<a class="headerlink" href="#Adding-gap" title="Permalink to this headline">¶</a></h2>
 <p>As describe earlier we want to add a gap by changing the <span class="math notranslate nohighlight">\(\alpha\)</span> profile. We simply set the new <span class="math notranslate nohighlight">\(\alpha\)</span> values. Since it is constant in the default model, we do not need to set an updater.</p>
 <div class="nbinput nblast docutils container">
@@ -579,8 +584,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Adding-planetesimals">
+</section>
+<section id="Adding-planetesimals">
 <h2>Adding planetesimals<a class="headerlink" href="#Adding-planetesimals" title="Permalink to this headline">¶</a></h2>
 <p>We add a new group for the planetesimals which contains the planetesimal surface density and the total planetesimal mass in our model. We initialize the field with zeros.</p>
 <div class="nbinput nblast docutils container">
@@ -626,12 +631,12 @@ Group (Planetesimal quantities)
 </div>
 <p>We firthermore have to write an updater that is calculating the total planetesimal mass from the planetesimal surface densities. We assign this function to the updater of the field.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">def</span> <span class="nf">M_plan</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">planetesimals</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[:])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">planetesimals</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[:])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -655,8 +660,8 @@ Group (Planetesimal quantities)
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Adding-planetesimal-formation">
+</section>
+<section id="Adding-planetesimal-formation">
 <h2>Adding planetesimal formation<a class="headerlink" href="#Adding-planetesimal-formation" title="Permalink to this headline">¶</a></h2>
 <p>To add planetesimal formation we calculate for each particle species at each radius if it contributes to planetesimal formation. These values are negative external source terms for dust evolution, since we remove dust mass and convert them into planetesimals. We therefore add them as updater to the external dust sources.</p>
 <div class="nbinput nblast docutils container">
@@ -792,13 +797,14 @@ Group (Planetesimal quantities)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.0
+DustPy v0.5.4
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-
-Please cite Stammler &amp; Birnstiel (2021)
+<span class="ansi-red-intense-fg">
+Please read README.md on the GitHub repository for
+information about the Terms of Usage.</span>
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -964,6 +970,7 @@ Execution time: <span class="ansi-blue-intense-fg">6:11:57</span>
 <span class="n">ax10</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mass [$M_\oplus$]&quot;</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -974,8 +981,8 @@ Execution time: <span class="ansi-blue-intense-fg">6:11:57</span>
 <img alt="_images/example_planetesimal_formation_47_0.png" src="_images/example_planetesimal_formation_47_0.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -997,11 +1004,19 @@ Execution time: <span class="ansi-blue-intense-fg">6:11:57</span>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1012,7 +1027,6 @@ Execution time: <span class="ansi-blue-intense-fg">6:11:57</span>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

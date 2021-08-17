@@ -1,29 +1,37 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>1. Basic usage &mdash; dustpy  documentation</title>
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -31,11 +39,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2. Simple Customization" href="2_simple_customization.html" />
@@ -53,7 +56,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> dustpy
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> dustpy
           
 
           
@@ -76,6 +79,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -83,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">1. Basic usage</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#The-Simulation-Frame">The Simulation Frame</a></li>
@@ -115,6 +119,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -153,7 +158,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>1. Basic usage</li>
     
@@ -429,11 +434,11 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="1.-Basic-usage">
+<section id="1.-Basic-usage">
 <h1>1. Basic usage<a class="headerlink" href="#1.-Basic-usage" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is using on the <code class="docutils literal notranslate"><span class="pre">simframe</span></code> framework for running scientific simulations. For a detailed description of the usage of <code class="docutils literal notranslate"><span class="pre">simframe</span></code> please have a look at the <a class="reference external" href="https://simframe.rtfd.io/">Simframe Documentation</a>.</p>
 <p>This notebook demonstrates how to run the most simple <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> model, i.e., the model that is run by default, how to plot data, and how to resume simulations from dump files.</p>
-<div class="section" id="The-Simulation-Frame">
+<section id="The-Simulation-Frame">
 <h2>The Simulation Frame<a class="headerlink" href="#The-Simulation-Frame" title="Permalink to this headline">¶</a></h2>
 <p>To set up a model we have to import the <code class="docutils literal notranslate"><span class="pre">Simulation</span></code> class from the <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> package.</p>
 <div class="nbinput nblast docutils container">
@@ -524,8 +529,8 @@ Group (Gas quantities)
   -----
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Initializing">
+</section>
+<section id="Initializing">
 <h2>Initializing<a class="headerlink" href="#Initializing" title="Permalink to this headline">¶</a></h2>
 <p>We can now initialize the <code class="docutils literal notranslate"><span class="pre">sim</span></code> object with <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>. <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> will then fill all the fields with default values.</p>
 <div class="nbinput nblast docutils container">
@@ -688,11 +693,11 @@ Group (Gas quantities)
         - <span class="ansi-blue-intense-fg">M</span>: Field (Mass [g])
         - <span class="ansi-blue-intense-fg">R</span>: Field (Radius [cm])
         - <span class="ansi-blue-intense-fg">T</span>: Field (Effective temperature [K])
-    - <span class="ansi-blue-intense-fg">t</span>: Field (Time [s]), <span class="ansi-magenta-intense-fg">Integration variable</span>
+    - <span class="ansi-blue-intense-fg">t</span>: IntVar (Time [s]), <span class="ansi-magenta-intense-fg">Integration variable</span>
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Running-a-Simulation">
+</section>
+<section id="Running-a-Simulation">
 <h2>Running a Simulation<a class="headerlink" href="#Running-a-Simulation" title="Permalink to this headline">¶</a></h2>
 <p>The simulation is now ready to go. This will take a few minutes. The default simulation is running for 100,000 years.</p>
 <div class="nbinput docutils container">
@@ -710,13 +715,14 @@ Group (Gas quantities)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.0
+DustPy v0.5.4
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-
-Please cite Stammler &amp; Birnstiel (2021)
+<span class="ansi-red-intense-fg">
+Please read README.md on the GitHub repository for
+information about the Terms of Usage.</span>
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -781,12 +787,12 @@ Writing file <span class="ansi-blue-intense-fg">data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:21:41</span>
+Execution time: <span class="ansi-blue-intense-fg">0:26:45</span>
 </pre></div></div>
 </div>
 <p>By default <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has written output files into the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p>
-</div>
-<div class="section" id="Plotting">
+</section>
+<section id="Plotting">
 <h2>Plotting<a class="headerlink" href="#Plotting" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is coming with a simple plotting script that can be used to check the status of a simulation.</p>
 <div class="nbinput nblast docutils container">
@@ -855,7 +861,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:21:41</span>
 <img alt="_images/1_basics_26_0.png" src="_images/1_basics_26_0.png" />
 </div>
 </div>
-<div class="section" id="Code-Units">
+<section id="Code-Units">
 <h3>Code Units<a class="headerlink" href="#Code-Units" title="Permalink to this headline">¶</a></h3>
 <p>The dust density distribution plotted here is given by</p>
 <p><span class="math notranslate nohighlight">\(\Sigma_\mathrm{d} \left( r \right) = \int\limits_0^\infty \sigma \left(r, m \right) \mathrm{d} \log m\)</span>.</p>
@@ -976,9 +982,9 @@ Execution time: <span class="ansi-blue-intense-fg">0:21:41</span>
   2.43334490e-29 3.38112178e-29]]
 </pre></div></div>
 </div>
-</div>
-</div>
-<div class="section" id="Reading-data-files">
+</section>
+</section>
+<section id="Reading-data-files">
 <h2>Reading data files<a class="headerlink" href="#Reading-data-files" title="Permalink to this headline">¶</a></h2>
 <p>If you want to read data files you can use the read/writer module provided by <code class="docutils literal notranslate"><span class="pre">simframe</span></code>, that is used to write the data.</p>
 <div class="nbinput nblast docutils container">
@@ -987,6 +993,8 @@ Execution time: <span class="ansi-blue-intense-fg">0:21:41</span>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">hdf5writer</span>
+
+<span class="n">wrtr</span> <span class="o">=</span> <span class="n">hdf5writer</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -996,7 +1004,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:21:41</span>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">hdf5writer</span>
+<span></span><span class="n">wrtr</span>
 </pre></div>
 </div>
 </div>
@@ -1022,7 +1030,7 @@ Writer (HDF5 file format using h5py)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data0003</span> <span class="o">=</span> <span class="n">hdf5writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span></span><span class="n">data0003</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1075,7 +1083,7 @@ array([1.11397494e+003, 1.03910539e+003, 9.69196112e+002, 9.03718052e+002,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data</span> <span class="o">=</span> <span class="n">hdf5writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span></span><span class="n">data</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1104,7 +1112,7 @@ array([1.11397494e+003, 1.03910539e+003, 9.69196112e+002, 9.03718052e+002,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">SigmaGas</span> <span class="o">=</span> <span class="n">hdf5writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;gas.Sigma&quot;</span><span class="p">)</span>
+<span></span><span class="n">SigmaGas</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;gas.Sigma&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1136,8 +1144,8 @@ array([1.11397494e+003, 1.03910539e+003, 9.69196112e+002, 9.03718052e+002,
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Reading-Dump-Files">
+</section>
+<section id="Reading-Dump-Files">
 <h2>Reading Dump Files<a class="headerlink" href="#Reading-Dump-Files" title="Permalink to this headline">¶</a></h2>
 <p>The data files are only containing the pure data, but no information about the operations <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has to perform, like customized functions. Therefore, it’s not possible to directly restart a simulation from data files.</p>
 <p><code class="docutils literal notranslate"><span class="pre">simframe</span></code> is saving by default the most recent dump file, from which a simulation can be restarted.</p>
@@ -1234,13 +1242,14 @@ array([1.11397494e+003, 1.03910539e+003, 9.69196112e+002, 9.03718052e+002,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.0
+DustPy v0.5.4
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-
-Please cite Stammler &amp; Birnstiel (2021)
+<span class="ansi-red-intense-fg">
+Please read README.md on the GitHub repository for
+information about the Terms of Usage.</span>
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -1262,7 +1271,7 @@ Please cite Stammler &amp; Birnstiel (2021)
 
 Writing file <span class="ansi-blue-intense-fg">data/data0022.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:02</span>
 </pre></div></div>
 </div>
 <p>Another file was written and the current time is now</p>
@@ -1284,8 +1293,8 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 100001.0
 </pre></div></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -1307,11 +1316,19 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1322,7 +1339,6 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

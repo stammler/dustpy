@@ -9,7 +9,7 @@
     "`DustPy` calculates the collisional evolution of dust by solving the Smolukowski equation\n",
     "\n",
     "$\\begin{split}\n",
-    "\\frac{\\partial}{\\partial t} f\\left( m \\right) = &\\int\\limits_0^\\infty \\int\\limits_0^\\infty K\\left( m, m', m'' \\right) f\\left( m' \\right) f\\left( m'' \\right) R\\left( m', m'' \\right) \\mathrm{d}m'' \\mathrm{d}m'\\\\\n",
+    "\\frac{\\partial}{\\partial t} f\\left( m \\right) = &\\int\\limits_0^\\infty \\int\\limits_0^{m'} K\\left( m, m', m'' \\right) f\\left( m' \\right) f\\left( m'' \\right) R\\left( m', m'' \\right) \\mathrm{d}m'' \\mathrm{d}m'\\\\\n",
     "&-f\\left( m \\right) \\int\\limits_0^\\infty f\\left( m' \\right) R\\left( m, m' \\right) \\mathrm{d}m'.\n",
     "\\end{split}$\n",
     "\n",
@@ -781,7 +781,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.8.8"
+   "version": "3.8.11"
   }
  },
  "nbformat": 4,

@@ -1,29 +1,37 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>7. Gas Evolution &mdash; dustpy  documentation</title>
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -31,11 +39,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Test: Analytical Coagulation Kernels" href="test_analytical_coagulation_kernels.html" />
@@ -53,7 +56,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> dustpy
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> dustpy
           
 
           
@@ -76,6 +79,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -83,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">2. Simple Customization</a></li>
@@ -115,6 +119,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -153,7 +158,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>7. Gas Evolution</li>
     
@@ -429,7 +434,7 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="7.-Gas-Evolution">
+<section id="7.-Gas-Evolution">
 <h1>7. Gas Evolution<a class="headerlink" href="#7.-Gas-Evolution" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> solves gas evolution with an implicit scheme. It is solving by default the following equation for a viscously evolving disk</p>
 <p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{g} + \frac{1}{r}\frac{\partial}{\partial r} \left( r\Sigma_\mathrm{g}v_\mathrm{rad} \right) = S_\mathrm{ext}\)</span>.</p>
@@ -451,7 +456,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="section" id="Hydrodynamics">
+<section id="Hydrodynamics">
 <h2>Hydrodynamics<a class="headerlink" href="#Hydrodynamics" title="Permalink to this headline">¶</a></h2>
 <p>The implicit matrix equation that is solved for gas evolution is given by</p>
 <p><span class="math notranslate nohighlight">\(\frac{\vec{\Sigma}_\mathrm{g}^{n+1}-\vec{\Sigma}_\mathrm{g}^{n}}{\Delta t} = \mathbb{J} \cdot \vec{\Sigma}_\mathrm{g}^{n+1} + \vec{S}_\mathrm{ext},\)</span></p>
@@ -484,6 +489,7 @@ div.rendered_html tbody tr:hover {
 <span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Structure of Jacobian $\mathbb</span><span class="si">{J}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -531,7 +537,7 @@ array([ 9.89910382e-05, -1.45436122e-11, -6.35260799e-12, -3.78602233e-12,
 </div>
 <p>However, the first and the last element will not have the correct value, since they contain the instructions for the boundaries without the time step.</p>
 <p>The interface fluxes and the gas velocity will be calculated after the integration step, when the new values of the gas surface density will be accessible. Changes to the fluxes or the gas velocities will therefore not influence the gas evolution. In other words, you cannot turn off the hydrodynamic gas evolution by setting the viscous velocity to zero.</p>
-<div class="section" id="Turning-off-Hydrodynamics">
+<section id="Turning-off-Hydrodynamics">
 <h3>Turning off Hydrodynamics<a class="headerlink" href="#Turning-off-Hydrodynamics" title="Permalink to this headline">¶</a></h3>
 <p>The diagonals of the Jacobian contain information about the grid <span class="math notranslate nohighlight">\(r\)</span>, the viscosity <span class="math notranslate nohighlight">\(\nu\)</span>, and the backreaction quantities, as seen in the accretion equation above. To turn off only the gas hydrodynamics, but not the external sources, one has to set the Jacobian to zero (except for the boundaries). This can be achieved by setting the viscosity to zero and unsetting its updater.</p>
 <p><strong>Note:</strong> This is only true, if there is no backreaction, i.e., <span class="math notranslate nohighlight">\(A=1\)</span> and <span class="math notranslate nohighlight">\(B=0\)</span>. Otherwise, the interaction with the dust would still influence the gas.</p>
@@ -567,13 +573,13 @@ array([9.89910382e-05, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
 </pre></div></div>
 </div>
 <p>Another option would be to set the <span class="math notranslate nohighlight">\(\alpha\)</span>-viscosity parameter <code class="docutils literal notranslate"><span class="pre">Simulation.gas.alpha</span></code> to zero and unset its updater. This would, however, influence other fields that depend on <span class="math notranslate nohighlight">\(\alpha\)</span> as well.</p>
-</div>
-</div>
-<div class="section" id="External-Sources">
+</section>
+</section>
+<section id="External-Sources">
 <h2>External Sources<a class="headerlink" href="#External-Sources" title="Permalink to this headline">¶</a></h2>
 <p>The external gas sources <code class="docutils literal notranslate"><span class="pre">Simulation.gas.S.ext</span></code> can be used as additional source or loss term, for gas infall or photoevaporation. By default they are set to zero.</p>
 <p>The first and the last element of the array will not have an effect on gas evolution, since they will be overwritten by the integration scheme to set the boundaries as described above.</p>
-<div class="section" id="Turning-off-External-Sources">
+<section id="Turning-off-External-Sources">
 <h3>Turning off External Sources<a class="headerlink" href="#Turning-off-External-Sources" title="Permalink to this headline">¶</a></h3>
 <p>To turn off external source terms set the field to zero and unset its updater.</p>
 <div class="nbinput nblast docutils container">
@@ -586,9 +592,9 @@ array([9.89910382e-05, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="Turning-off-Gas-Evolution">
+</section>
+</section>
+<section id="Turning-off-Gas-Evolution">
 <h2>Turning off Gas Evolution<a class="headerlink" href="#Turning-off-Gas-Evolution" title="Permalink to this headline">¶</a></h2>
 <p>To turn off the entire gas evolution you can either turn off hte individual parts as described above or you can remove the integration instruction of the gas from the instruction list.</p>
 <div class="nbinput docutils container">
@@ -638,8 +644,8 @@ array([9.89910382e-05, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
 </pre></div></div>
 </div>
 <p>If you simply remove the integration instruction, the gas velocities will still be calculated at every time step, since the viscosity is non-zero. This will therefore still influence dust quantities that require the gas velocity.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -661,11 +667,19 @@ array([9.89910382e-05, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -676,7 +690,6 @@ array([9.89910382e-05, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

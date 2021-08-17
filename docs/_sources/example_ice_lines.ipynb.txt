@@ -82,7 +82,8 @@
     "ax.set_xlim(sim.grid.r[0]/c.au, sim.grid.r[-1]/c.au)\n",
     "ax.set_xlabel(\"Distance from star [AU]\")\n",
     "ax.set_ylabel(\"Fragmentation velocity [m/s]\")\n",
-    "fig.tight_layout()"
+    "fig.tight_layout()\n",
+    "plt.show()"
    ]
   },
   {
@@ -173,7 +174,8 @@
     "ax.set_xlim(sim.grid.r[0]/c.au, sim.grid.r[-1]/c.au)\n",
     "ax.set_xlabel(\"Distance from star [AU]\")\n",
     "ax.set_ylabel(\"Fragmentation velocity [m/s]\")\n",
-    "fig.tight_layout()"
+    "fig.tight_layout()\n",
+    "plt.show()"
    ]
   },
   {
@@ -204,13 +206,14 @@
      "output_type": "stream",
      "text": [
       "\n",
-      "DustPy v1.0.0\n",
+      "DustPy v0.5.4\n",
       "\n",
       "Documentation: https://stammler.github.io/dustpy/\n",
       "PyPI:          https://pypi.org/project/dustpy/\n",
       "GitHub:        https://github.com/stammler/dustpy/\n",
-      "\n",
-      "Please cite Stammler & Birnstiel (2021)\n",
+      "\u001b[91m\n",
+      "Please read README.md on the GitHub repository for\n",
+      "information about the Terms of Usage.\u001b[0m\n",
       "\n",
       "\u001b[93mChecking for mass conservation...\n",
       "\u001b[0m\n",
@@ -338,7 +341,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.8.8"
+   "version": "3.8.11"
   }
  },
  "nbformat": 4,

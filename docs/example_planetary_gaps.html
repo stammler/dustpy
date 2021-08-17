@@ -1,29 +1,37 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Example: Planetary Gaps &mdash; dustpy  documentation</title>
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
@@ -31,11 +39,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Example: Planetesimal Formation" href="example_planetesimal_formation.html" />
@@ -53,7 +56,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> dustpy
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> dustpy
           
 
           
@@ -76,6 +79,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -83,7 +87,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">2. Simple Customization</a></li>
@@ -110,6 +114,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -148,7 +153,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Example: Planetary Gaps</li>
     
@@ -424,7 +429,7 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="Example:-Planetary-Gaps">
+<section id="Example:-Planetary-Gaps">
 <h1>Example: Planetary Gaps<a class="headerlink" href="#Example:-Planetary-Gaps" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
 <div class="line">In this example we demonstrate how to add gaps carved by planets into the gas.</div>
@@ -434,7 +439,7 @@ div.rendered_html tbody tr:hover {
 <p>In steady state the radial mass flux is constant</p>
 <p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \left( 3\pi\Sigma_\mathrm{g}\nu\right) = \text{const.}\)</span></p>
 <p>To create a custom gap profile in the gas, while still allowing for gas accretion, it is sufficient to simply force the inverse gap profile onto the viscosity <span class="math notranslate nohighlight">\(\nu\)</span>. Since <span class="math notranslate nohighlight">\(\nu = \alpha c_\mathrm{s} H_\mathrm{P}\)</span> gaps can be created by modifying <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
-<div class="section" id="Gap-Profiles">
+<section id="Gap-Profiles">
 <h2>Gap Profiles<a class="headerlink" href="#Gap-Profiles" title="Permalink to this headline">¶</a></h2>
 <p>Since we are not self-consistently creating gaps, we have to impose a known gap profile. In this demonstration we are using the numerical fits to hydrodynamical simulations found by <a class="reference external" href="https://doi.org/10.1093/pasj/psx114">Kanagawa et al. (2017)</a>:</p>
 <p><span class="math notranslate nohighlight">\(\Sigma\mathrm{g} \left( r \right) = \begin{cases}  \Sigma_\mathrm{min} &amp; \text{for} \quad \left| r - a_\mathrm{p} \right| &lt; \Delta r_1, \\  \Sigma_\mathrm{gap}\left( r \right) &amp; \text{for} \quad \Delta r_1 &lt; \left| r - a_\mathrm{p} \right| &lt; \Delta r_2, \\  \Sigma_0 &amp; \text{for} \quad \left| r - a_\mathrm{p} \right| &gt; \Delta r_2, \end{cases}\)</span></p>
@@ -546,6 +551,7 @@ div.rendered_html tbody tr:hover {
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from star [AU]&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\Sigma_\mathrm</span><span class="si">{g}</span><span class="s2"> \left( r \right)\ /\ \Sigma_0$&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -557,8 +563,8 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <p>The inverse of this pertubation needs to be imposed on the turbulent <span class="math notranslate nohighlight">\(\alpha\)</span> parameter to produce the desired gap profile in the gas.</p>
-</div>
-<div class="section" id="Adding-planets">
+</section>
+<section id="Adding-planets">
 <h2>Adding planets<a class="headerlink" href="#Adding-planets" title="Permalink to this headline">¶</a></h2>
 <p>For this example we want to add two planets: Jupiter and Saturn. We therefore add new groups and subgroups to organize them.</p>
 <p>In addition to that we want to refine the grid close to the planet locations. For this we use the function similar to the one discussed in an earlier chapter.</p>
@@ -576,7 +582,7 @@ div.rendered_html tbody tr:hover {
     <span class="n">N</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">2</span>
     <span class="n">rim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
-        <span class="n">j</span> <span class="o">=</span> <span class="n">ind</span><span class="o">-</span><span class="n">num</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">ind</span><span class="o">-</span><span class="n">num</span><span class="o">+</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">rim</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ri</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
         <span class="n">rim</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">ri</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="n">ri</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">ril</span><span class="p">,</span> <span class="n">rim</span><span class="p">,</span> <span class="n">rir</span><span class="p">))</span>
@@ -677,8 +683,8 @@ div.rendered_html tbody tr:hover {
         - <span class="ansi-blue-intense-fg">M</span>: Field (Mass [g])
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Viscosity-pertubation">
+</section>
+<section id="Viscosity-pertubation">
 <h2>Viscosity pertubation<a class="headerlink" href="#Viscosity-pertubation" title="Permalink to this headline">¶</a></h2>
 <p>We now have to write a funtion that returns the <span class="math notranslate nohighlight">\(\alpha\)</span> viscosity parameter profile that imposes the desired gap profile onto the gas surface density from those two planets.</p>
 <p>The unperturbed <span class="math notranslate nohighlight">\(\alpha\)</span> parameter shall be constant in this model.</p>
@@ -748,6 +754,7 @@ div.rendered_html tbody tr:hover {
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from star [AU]&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\alpha$ viscosity parameter&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -768,8 +775,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="Growing-planets">
+</section>
+<section id="Growing-planets">
 <h2>Growing planets<a class="headerlink" href="#Growing-planets" title="Permalink to this headline">¶</a></h2>
 <p>Right now we could already start the simulation. But in this demonstration we want to let the planets grow linearly to their final mass. we therefore write a function that returns the planetary mass as a function of time.</p>
 <div class="nbinput nblast docutils container">
@@ -914,13 +921,14 @@ Saturn:  1.00 M_earth
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.0
+DustPy v0.5.4
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-
-Please cite Stammler &amp; Birnstiel (2021)
+<span class="ansi-red-intense-fg">
+Please read README.md on the GitHub repository for
+information about the Terms of Usage.</span>
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -1042,6 +1050,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:49:50</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time [years]&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mass [$M_\oplus$]&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1052,8 +1061,8 @@ Execution time: <span class="ansi-blue-intense-fg">0:49:50</span>
 <img alt="_images/example_planetary_gaps_51_0.png" src="_images/example_planetary_gaps_51_0.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -1075,11 +1084,19 @@ Execution time: <span class="ansi-blue-intense-fg">0:49:50</span>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1090,7 +1107,6 @@ Execution time: <span class="ansi-blue-intense-fg">0:49:50</span>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

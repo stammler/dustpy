@@ -169,7 +169,8 @@
     "ax.set_xlim(1., 1000.)\n",
     "ax.set_xlabel(\"Distance from star [AU]\")\n",
     "ax.set_ylabel(r\"$\\Sigma_\\mathrm{g} \\left( r \\right)\\ /\\ \\Sigma_0$\")\n",
-    "fig.tight_layout()"
+    "fig.tight_layout()\n",
+    "plt.show()"
    ]
   },
   {
@@ -205,7 +206,7 @@
     "    N = (2*num+1)*2\n",
     "    rim = np.empty(N)\n",
     "    for i in range(0, N, 2):\n",
-    "        j = ind-num+np.int(i/2)\n",
+    "        j = ind-num+int(i/2)\n",
     "        rim[i] = ri[j]\n",
     "        rim[i+1] = 0.5*(ri[j]+ri[j+1])\n",
     "    return np.concatenate((ril, rim, rir))"
@@ -407,7 +408,8 @@
     "ax.vlines(sim.grid.r/c.au, 1.e-4, 1.e0, lw=0.5, color=\"C7\")\n",
     "ax.set_xlabel(\"Distance from star [AU]\")\n",
     "ax.set_ylabel(r\"$\\alpha$ viscosity parameter\")\n",
-    "fig.tight_layout()"
+    "fig.tight_layout()\n",
+    "plt.show()"
    ]
   },
   {
@@ -620,13 +622,14 @@
      "output_type": "stream",
      "text": [
       "\n",
-      "DustPy v1.0.0\n",
+      "DustPy v0.5.4\n",
       "\n",
       "Documentation: https://stammler.github.io/dustpy/\n",
       "PyPI:          https://pypi.org/project/dustpy/\n",
       "GitHub:        https://github.com/stammler/dustpy/\n",
-      "\n",
-      "Please cite Stammler & Birnstiel (2021)\n",
+      "\u001b[91m\n",
+      "Please read README.md on the GitHub repository for\n",
+      "information about the Terms of Usage.\u001b[0m\n",
       "\n",
       "\u001b[93mChecking for mass conservation...\n",
       "\u001b[0m\n",
@@ -785,7 +788,8 @@
     "ax.grid(b=True)\n",
     "ax.set_xlabel(\"Time [years]\")\n",
     "ax.set_ylabel(\"Mass [$M_\\oplus$]\")\n",
-    "fig.tight_layout()"
+    "fig.tight_layout()\n",
+    "plt.show()"
    ]
   }
  ],
@@ -805,7 +809,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.8.8"
+   "version": "3.8.11"
   }
  },
  "nbformat": 4,
