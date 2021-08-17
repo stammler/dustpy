@@ -863,9 +863,6 @@ def vrel_tot(sim):
     ret += sim.dust.v.rel.turb**2
     ret += sim.dust.v.rel.vert**2
 
-    # ret = sim.dust.v.rel.brown**2
-    # ret += sim.dust.v.rel.turb**2
-
     return np.sqrt(ret)
 
 
@@ -959,5 +956,8 @@ def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
     return Y1 - Y0
 
 
-impl_1_direct = Scheme(
-    _f_impl_1_direct, description="Implicit 1st-order direct solver")
+class impl_1_direct(Scheme):
+    """Modified class for implicit dust integration."""
+
+    def __init__(self):
+        super().__init__(_f_impl_1_direct, description="Implicit 1st-order direct solver")

@@ -212,7 +212,7 @@ class Simulation(Frame):
             msg += "\nGitHub:        {}".format(
                 "https://github.com/stammler/dustpy/")
             msg += "\n"
-            msg += "\nPlease cite Stammler & Birnstiel (2021)"
+            msg += colorize("\nPlease read README.md on the GitHub repository for\ninformation about the Terms of Usage.", "red")
             print(msg)
         # Check for mass conserbation
         self.checkmassconservation()
@@ -795,7 +795,7 @@ class Simulation(Frame):
         # WRITER
 
         if self.writer is None:
-            self.writer = hdf5writer
+            self.writer = hdf5writer()
 
         # Updating the entire Simulation object including integrator finalization
         self.integrator._finalize()

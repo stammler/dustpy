@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
 from scipy.interpolate import interp1d
-from simframe.io.writers import hdf5writer as writer
+from simframe.io.writers import hdf5writer
 import os
 
 
@@ -479,6 +479,8 @@ def _readdata(data, filename="data", extension="hdf5"):
         vFrag = data.dust.v.frag[None, ...]
 
     elif os.path.isdir(data):
+
+        writer = hdf5writer()
 
         # Setting up writer
         writer.datadir = data
