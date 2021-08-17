@@ -2,7 +2,6 @@ include README.md
 include LICENSE
 include examples/*.ipynb
 include docs_source/Makefile
-include docs_source/make.bat
 include docs_source/requirements.txt
 include docs_source/source/*.rst
 include docs_source/source/*.py
