@@ -1022,8 +1022,7 @@ end subroutine kernel
 
 subroutine pfrag(vrel, vfrag, pf, Nr, Nm)
   ! Subroutine calculates the fragmentation probability.
-  ! There is a linear transition region from sticking to
-  ! fragmentation.
+  ! It is assuming a Maxwell-Boltzmann velocity distribution.
   ! 
   ! Parameters
   ! ----------
@@ -1038,7 +1037,7 @@ subroutine pfrag(vrel, vfrag, pf, Nr, Nm)
   !
   ! Notes
   ! -----
-  ! The sticking probability is pc = 1 - pf
+  ! The sticking probability is ps = 1 - pf
 
   implicit none
 
@@ -1048,22 +1047,22 @@ subroutine pfrag(vrel, vfrag, pf, Nr, Nm)
   integer,          intent(in)  :: Nr
   integer,          intent(in)  :: Nm
   
-  double precision :: dv
+  double precision :: A
+  double precision :: dum
+  double precision :: twothirds
   integer :: ir
   integer :: i
   integer :: j
-    
+
+  A = sqrt(9.d0/4.d0)
+  twothirds = 2.d0/3.d0
+
   do i=1, Nm
     do j=1, i
       do ir=2, Nr-1
-        dv = 0.2d0 * vfrag(ir)
-        if( vrel(ir, j, i) .lt. vfrag(ir) - dv ) then
-          pf(ir, j, i) = 0.d0
-        else if( vrel(ir, j, i) .gt. vfrag(ir) ) then
-          pf(ir, j, i) = 1.d0
-        else
-          pf(ir, j, i) = ( vrel(ir, j, i) - vfrag(ir) + dv ) / dv
-        end if
+        dum = (vfrag(ir)/vrel(ir, j, i))**2
+        pf(ir, j, i) = A * (dum + twothirds) * exp(-1.5d0*dum)
+        pf(ir, i, j) = pf(ir, j, i)
       end do
     end do
   end do
