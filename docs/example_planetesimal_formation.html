@@ -437,7 +437,7 @@ div.rendered_html tbody tr:hover {
 <p>The negative sum of these rates over all dust species is then the mass that has to be added to the planetesimal surface density.</p>
 <p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{plan} = -\sum\limits_i R^i\)</span>.</p>
 <p>Since planetesimal formation requires high midplane dust-to-gas ratios which are typically not reached in smooth disks, we have to add a gap to our gas surface density profile. The outer edge of the gap can then trap particles increasing the midplane dust-to-gas ratio. Following <a class="reference external" href="https://doi.org/10.3847/2041-8213/aaf742">Dullemond et al. (2018)</a> we use the gap profile given by</p>
-<p><span class="math notranslate nohighlight">\(F = \exp \left[ -A\,\exp\left( -\frac{\left( r - r_0\right)^2}{2w^2} \right] \right)\)</span>,</p>
+<p><span class="math notranslate nohighlight">\(F = \exp \left[ -A\,\exp\left( -\frac{\left( r - r_0\right)^2}{2w^2} \right) \right]\)</span>,</p>
 <p>with a gap amplitude <span class="math notranslate nohighlight">\(A\)</span>, a gap location <span class="math notranslate nohighlight">\(r_0\)</span>, and a gap width <span class="math notranslate nohighlight">\(w\)</span>. This gap profile is achievend by increasing the viscosity by the same factor as described in an earlier example about planetary gaps</p>
 <p><span class="math notranslate nohighlight">\(\alpha = \frac{\alpha_0}{F}\)</span>.</p>
 <p>In addition to that we increase the fragmentation velocity to <span class="math notranslate nohighlight">\(10\,\mathrm{m/s}\)</span>, since larger particles settle easier to the midplane and contribute more to planetesimal formation. Similar effects can be achieved by reducing the viscous <span class="math notranslate nohighlight">\(\alpha\)</span> parameter. But then the overall evolution would be slower.</p>
@@ -482,7 +482,10 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<p>Before <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code> we set our desired parameters in the <code class="docutils literal notranslate"><span class="pre">Simulation.ini</span></code> object.</p>
+<div class="line-block">
+<div class="line">Before <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code> we set our desired parameters in the <code class="docutils literal notranslate"><span class="pre">Simulation.ini</span></code> object.</div>
+<div class="line">Note that we have to increase the maximum particle mass due to the high fragmentation velocity.</div>
+</div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -493,6 +496,7 @@ div.rendered_html tbody tr:hover {
 <span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">SigmaRc</span> <span class="o">=</span> <span class="n">Rc</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Mdisk</span> <span class="o">=</span> <span class="n">Mdisk</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">vfrag</span> <span class="o">=</span> <span class="n">vfrag</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">mmax</span> <span class="o">=</span> <span class="mf">1.e8</span>
 </pre></div>
 </div>
 </div>
@@ -631,7 +635,7 @@ Group (Planetesimal quantities)
 </div>
 <p>We firthermore have to write an updater that is calculating the total planetesimal mass from the planetesimal surface densities. We assign this function to the updater of the field.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -797,7 +801,7 @@ Group (Planetesimal quantities)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.4
+DustPy v0.5.5
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -814,10 +818,10 @@ information about the Terms of Usage.</span>
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 4.44e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
         for particle collision
-            m[47] =  5.18e-06 g    with
-            m[54] =  5.18e-05 g
+            m[130] =  3.73e+06 g    with
+            m[130] =  3.73e+06 g
 <span class="ansi-yellow-intense-fg">    - Cratering:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -889,7 +893,7 @@ Writing file <span class="ansi-blue-intense-fg">example_planetesimal_formation/d
 Writing dump file <span class="ansi-blue-intense-fg">example_planetesimal_formation/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">example_planetesimal_formation/data0031.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">example_planetesimal_formation/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">6:11:57</span>
+Execution time: <span class="ansi-blue-intense-fg">19:12:51</span>
 </pre></div></div>
 </div>
 <p>We can plot our results now.</p>
