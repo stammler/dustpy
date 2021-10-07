@@ -529,7 +529,7 @@ def _readdata(data, filename="data", extension="hdf5"):
         StFr = 1 / (2 * b) * (3 - np.sqrt(9 - 4 * b**2))
 
     # Drift limit
-    p = SigmaGas * OmegaK * cs
+    p = SigmaGas * OmegaK * cs / np.sqrt(2.*np.pi)
     StDr = np.zeros_like(StFr)
     for i in range(np.int(Nt)):
         _f = interp1d(np.log10(r[i, ...]), np.log10(
