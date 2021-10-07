@@ -1047,21 +1047,16 @@ subroutine pfrag(vrel, vfrag, pf, Nr, Nm)
   integer,          intent(in)  :: Nr
   integer,          intent(in)  :: Nm
   
-  double precision :: A
   double precision :: dum
-  double precision :: twothirds
   integer :: ir
   integer :: i
   integer :: j
-
-  A = sqrt(9.d0/4.d0)
-  twothirds = 2.d0/3.d0
 
   do i=1, Nm
     do j=1, i
       do ir=2, Nr-1
         dum = (vfrag(ir)/vrel(ir, j, i))**2
-        pf(ir, j, i) = A * (dum + twothirds) * exp(-1.5d0*dum)
+        pf(ir, j, i) = (1.5d0*dum + 1.d0) * exp(-1.5d0*dum)
         pf(ir, i, j) = pf(ir, j, i)
       end do
     end do
