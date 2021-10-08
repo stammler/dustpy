@@ -569,7 +569,7 @@ class Simulation(Frame):
         # Particle size
         if self.dust.a is None:
             self.dust.a = Field(self, np.zeros(shape2),
-                                description="Particle size [cm")
+                                description="Particle size [cm]")
             self.dust.a.updater = std.dust.a
         # Coagulation parameters
         stick, stick_ind, A, eps, lf_ind, rm_ind, phi = std.dust.coagulation_parameters(
@@ -621,15 +621,15 @@ class Simulation(Frame):
         # Fluxes
         if self.dust.Fi.adv is None:
             self.dust.Fi.adv = Field(self, np.zeros(
-                shape2p1), description="Advective flux [g/cm/s")
+                shape2p1), description="Advective flux [g/cm/s]")
             self.dust.Fi.adv.updater = std.dust.F_adv
         if self.dust.Fi.diff is None:
             self.dust.Fi.diff = Field(self, np.zeros(
-                shape2p1), description="Diffusive flux [g/cm/s")
+                shape2p1), description="Diffusive flux [g/cm/s]")
             self.dust.Fi.diff.updater = std.dust.F_diff
         if self.dust.Fi.tot is None:
             self.dust.Fi.tot = Field(self, np.zeros(
-                shape2p1), description="Total flux [g/cm/s")
+                shape2p1), description="Total flux [g/cm/s]")
             self.dust.Fi.tot.updater = std.dust.F_tot
         # Filling factor
         if self.dust.fill is None:
