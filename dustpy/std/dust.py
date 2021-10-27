@@ -665,6 +665,7 @@ def S_tot(sim, Sigma=None):
     -------
     Stot : Field
         Total source terms of surface density"""
+    Sext = sim.dust.S.ext
     if Sigma is None:
         Sigma = sim.dust.Sigma
         Scoag = sim.dust.S.coag
@@ -676,7 +677,7 @@ def S_tot(sim, Sigma=None):
         Shyd = sim.dust.S.hyd.updater.beat(sim, Sigma=Sigma)
         if Shyd is None:
             Shyd = sim.dust.S.hyd
-    return Scoag + Shyd
+    return Scoag + Shyd + Sext
 
 
 def Sigma_deriv(sim, t, Sigma):
