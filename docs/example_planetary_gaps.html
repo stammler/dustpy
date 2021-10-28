@@ -689,7 +689,7 @@ div.rendered_html tbody tr:hover {
 <p>We now have to write a funtion that returns the <span class="math notranslate nohighlight">\(\alpha\)</span> viscosity parameter profile that imposes the desired gap profile onto the gas surface density from those two planets.</p>
 <p>The unperturbed <span class="math notranslate nohighlight">\(\alpha\)</span> parameter shall be constant in this model.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -698,7 +698,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -740,8 +740,8 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <p>This function now produces the <span class="math notranslate nohighlight">\(\alpha\)</span> viscosity profile that creates planetary gaps in the gas surface density.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -758,9 +758,16 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/example_planetary_gaps_24_0.png" src="_images/example_planetary_gaps_24_0.png" />
+</div>
+</div>
 <p>We can now assign this profile to the <span class="math notranslate nohighlight">\(\alpha\)</span> viscosity parameter.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -773,7 +780,7 @@ div.rendered_html tbody tr:hover {
 <h2>Growing planets<a class="headerlink" href="#Growing-planets" title="Permalink to this headline">¶</a></h2>
 <p>Right now we could already start the simulation. But in this demonstration we want to let the planets grow linearly to their final mass. we therefore write a function that returns the planetary mass as a function of time.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -803,7 +810,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <p>We want to start with planet masses of <span class="math notranslate nohighlight">\(1\)</span> Earth mass and they should reach their final masses after <span class="math notranslate nohighlight">\(100\,000\)</span> years. We have to write functions for each planet that returns their mass as a function of time.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -817,7 +824,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <p>These functions have to be assigned to the updaters of their respective fields.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -914,7 +921,7 @@ Saturn:  1.00 M_earth
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.5
+DustPy v0.5.6
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -986,7 +993,7 @@ Writing file <span class="ansi-blue-intense-fg">example_planetary_gaps/data0020.
 Writing dump file <span class="ansi-blue-intense-fg">example_planetary_gaps/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">example_planetary_gaps/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">example_planetary_gaps/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:51:07</span>
+Execution time: <span class="ansi-blue-intense-fg">0:52:50</span>
 </pre></div></div>
 </div>
 <p>This is the result of our simulation.</p>

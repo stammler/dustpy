@@ -766,7 +766,7 @@ namespace(aIniMax=0.0001,
 </div>
 <p>We can now initialize the simulation as described in the previous section.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -779,7 +779,7 @@ namespace(aIniMax=0.0001,
 <h2>Changing the Snapshots<a class="headerlink" href="#Changing-the-Snapshots" title="Permalink to this headline">¶</a></h2>
 <p>The standard model runs for 100,000 years and starts writing data files at 1,000 years with 10 files per time decade. In this example we only want to run the simulation for 10,000 years with only 5 snapshots per decade. This can easily be set by modifying <code class="docutils literal notranslate"><span class="pre">Simulation.t.snapshots</span></code>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -788,7 +788,7 @@ namespace(aIniMax=0.0001,
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -802,7 +802,7 @@ namespace(aIniMax=0.0001,
 <p>By default <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> will protect already existing data files. If we ran the simulation now, an error would be raised, because we have already existing data files in the output directory from the previous chapter.</p>
 <p>We could either set <code class="docutils literal notranslate"><span class="pre">Simulation.writer.overwrite</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> to overwrite our existing data files or we could change the name of the output directory.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -826,7 +826,7 @@ namespace(aIniMax=0.0001,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.5
+DustPy v0.5.6
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -868,7 +868,7 @@ Writing file <span class="ansi-blue-intense-fg">2_data/data0005.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">2_data/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:03:28</span>
+Execution time: <span class="ansi-blue-intense-fg">0:03:30</span>
 </pre></div></div>
 </div>
 <p>The simulation has now run for 10,000 years</p>
