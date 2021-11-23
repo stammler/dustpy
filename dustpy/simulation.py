@@ -40,7 +40,7 @@ class Simulation(Frame):
         # Namespace with parameters to set the initial conditions
         self._ini = SimpleNamespace(**{"dust": SimpleNamespace(**{"aIniMax": 0.0001,
                                                                   "allowDriftingParticles": False,
-                                                                  "crateringMassRatio": 10.,
+                                                                  "erosionMassRatio": 10.,
                                                                   "d2gRatio": 1.e-2,
                                                                   "distExp": -3.5,
                                                                   "excavatedMass": 1.,
@@ -354,10 +354,10 @@ class Simulation(Frame):
             msg = colorize(msg)
             print(msg)
 
-            # Checking for cratering error
-            msg = colorize("    - Cratering:", color="yellow")
+            # Checking for erosion error
+            msg = colorize("    - Erosion:", color="yellow")
             print(msg)
-            errmax, i, j = std.dust_f.check_mass_conservation_cratering(
+            errmax, i, j = std.dust_f.check_mass_conservation_erosion(
                 A, eps, klf, krm, m, phi)
             tup = (j, i)
             color = "red"

@@ -734,7 +734,7 @@ def St_Epstein_StokesI(sim):
 
 def coagulation_parameters(sim):
     """Function calculates the coagulation parameters needed for a simple
-    sticking-cratering-fragmentation collision model. The sticking matrix
+    sticking-erosion-fragmentation collision model. The sticking matrix
     is calculated with the method described in appendices A.1. and A.2. of
     Brauer et al. (2008).
 
@@ -757,7 +757,7 @@ def coagulation_parameters(sim):
     only the non-zero elemts are stored in ``cstick`` of shape ``(4, Nm, Nm)``.
     The positions of the non-zero elements along the first axis are stored
     in ``cstick_ind``. For details see Brauer et al. (2008)."""
-    cstick, cstick_ind, A, eps, klf, krm, phi = dust_f.coagulation_parameters(sim.ini.dust.crateringMassRatio,
+    cstick, cstick_ind, A, eps, klf, krm, phi = dust_f.coagulation_parameters(sim.ini.dust.erosionMassRatio,
                                                                               sim.ini.dust.excavatedMass,
                                                                               sim.ini.dust.fragmentDistribution,
                                                                               sim.grid.m,

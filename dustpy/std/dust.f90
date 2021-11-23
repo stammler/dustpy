@@ -32,8 +32,8 @@ subroutine a(m, rho, sizes, Nr, Nm)
 end subroutine a
 
 
-subroutine check_mass_conservation_cratering(AFrag, epsFrag, klf, krm, m, phiFrag, Nm, errmax, imax, jmax)
-  ! Function calculates the maximum relative mass error in cratering collisions.
+subroutine check_mass_conservation_erosion(AFrag, epsFrag, klf, krm, m, phiFrag, Nm, errmax, imax, jmax)
+  ! Function calculates the maximum relative mass error in erosive collisions.
   !
   ! Parameters
   ! ----------
@@ -98,7 +98,7 @@ subroutine check_mass_conservation_cratering(AFrag, epsFrag, klf, krm, m, phiFra
     end do
   end do
 
-end subroutine check_mass_conservation_cratering
+end subroutine check_mass_conservation_erosion
 
 
 subroutine check_mass_conservation_full_fragmentation(AFrag, klf, m, phiFrag, Nm, errmax, imax, jmax)
@@ -235,7 +235,7 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   ! Parameters
   ! ----------
   ! cratRatio : Mass ratio below which particles fully fragment
-  ! fExcav : Excavated cratering mass in units of smaller particle
+  ! fExcav : Excavated erosive mass in units of smaller particle
   ! fragSlope : Power of fragment distribution
   ! m(Nm) : Mass grid
   ! Nr : Number of radial grid cells
@@ -421,7 +421,7 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   end do
 
   do i=1, Nm
-    ! Cratering
+    ! Erosion
     do j=1, i-p-1
       ! FRAGMENT DISTRTIBUTION
       ! The largest fragment has the mass of the smaller
@@ -799,7 +799,7 @@ subroutine jacobian_coagulation_generator(A, cStick, eps, iLF, iRM, iStick, m, p
           jac(ir, :, i) = jac(ir, :, i) + A(j, i) * phi(ilf(j, i)+1, :) / m(i) * ratef
 
           ! Negative terms and remnant masses
-          ! Cratering
+          ! Erosion
           if(j .LE. i-p-1) then
 
             k = irm(j, i) + 1
@@ -1167,9 +1167,9 @@ subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, S
       end do
     end do
 
-    ! Negative terms and cratering remannts
+    ! Negative terms and erosive remannts
     do i=1, imax
-      ! Cratering
+      ! Erosion
       do j=1, i-p-1
         k = krm(j, i) + 1
         ! It's better for mass conservation to distinguish both cases.
