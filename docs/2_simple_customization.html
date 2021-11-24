@@ -472,7 +472,7 @@ div.rendered_html tbody tr:hover {
 <div class="highlight"><pre>
 namespace(dust=namespace(aIniMax=0.0001,
                          allowDriftingParticles=False,
-                         crateringMassRatio=10.0,
+                         erosionMassRatio=10.0,
                          d2gRatio=0.01,
                          distExp=-3.5,
                          excavatedMass=1.0,
@@ -676,7 +676,7 @@ namespace(alpha=0.001,
 <div class="highlight"><pre>
 namespace(aIniMax=0.0001,
           allowDriftingParticles=False,
-          crateringMassRatio=10.0,
+          erosionMassRatio=10.0,
           d2gRatio=0.01,
           distExp=-3.5,
           excavatedMass=1.0,
@@ -697,11 +697,11 @@ namespace(aIniMax=0.0001,
 <div class="line">Dust particles in the disk drift inwards more rapidly with increasing Stokes number. In the outer disk the gas surface density is low and therefore even the small initial particles can have large Stokes numbers causing them to drift already from the beginning on. This causes a visible particle wave in the simulation. By setting this parameter to <code class="docutils literal notranslate"><span class="pre">False</span></code>, these drifting particles will be removed.</div>
 </div>
 <ul class="simple">
-<li><p>crateringMassRatio</p></li>
+<li><p>erosionMassRatio</p></li>
 </ul>
 <div class="line-block">
 <div class="line">If the mass ratio of colliding particles is below this ratio, both particles fully fragment, default: 10</div>
-<div class="line">In the standard model three things can happen when particles collide: they can stick together forming a larger particle, they can both fully fragment, or the smaller collision partner can fully fragment, chipping off some mass of the larger collision partner. The latter is called cratering. This parameter defines the threshold between full fragmentation and cratering.</div>
+<div class="line">In the standard model three things can happen when particles collide: they can stick together forming a larger particle, they can both fully fragment, or the smaller collision partner can fully fragment, chipping off some mass of the larger collision partner. The latter is called erosion. This parameter defines the threshold between full fragmentation and erosion.</div>
 </div>
 <ul class="simple">
 <li><p>d2gRatio</p></li>
@@ -719,7 +719,7 @@ namespace(aIniMax=0.0001,
 </ul>
 <div class="line-block">
 <div class="line">Excavated mass from larger particle in units of smaller particle mass, default: 1</div>
-<div class="line">In a cratering collision event the smaller particle will chip off mass from the larger particle. This parameter determines how much mass will be chipped off.</div>
+<div class="line">In a erosive collision event the smaller particle will chip off mass from the larger particle. This parameter determines how much mass will be chipped off.</div>
 </div>
 <ul class="simple">
 <li><p>fragmentDistribution</p></li>
@@ -740,7 +740,7 @@ namespace(aIniMax=0.0001,
 </ul>
 <div class="line-block">
 <div class="line">Fragmentation velocity, default 1 m/s.</div>
-<div class="line">Particle collisions with a collision velocity that exceeds the fragmentation velocity will result in a fragmenting collision. Either full fragmentation or cratering depending on the mass ratio of the collision partners. Collisions below the fragmentation velocity lead to sticking.</div>
+<div class="line">Particle collisions with a collision velocity that exceeds the fragmentation velocity will result in a fragmenting collision. Either full fragmentation or erosion depending on the mass ratio of the collision partners. Collisions below the fragmentation velocity lead to sticking.</div>
 </div>
 </section>
 <section id="Changing-the-Initial-Conditions">
@@ -826,7 +826,7 @@ namespace(aIniMax=0.0001,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.6
+DustPy v0.5.7
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -847,7 +847,7 @@ information about the Terms of Usage.</span>
         for particle collision
             m[47] =  5.18e-06 g    with
             m[54] =  5.18e-05 g
-<span class="ansi-yellow-intense-fg">    - Cratering:</span>
+<span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
             m[110] =  5.18e+03 g    with
@@ -916,7 +916,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:03:30</span>
 <img alt="_images/2_simple_customization_33_0.png" src="_images/2_simple_customization_33_0.png" />
 </div>
 </div>
-<p>When calling <code class="docutils literal notranslate"><span class="pre">Simulation.run()</span></code>, <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> will perform a small mass conservation check, by going through all possible collisions and calculating their relative mass error. The limitation here is machine precision. Everything smaller than <span class="math notranslate nohighlight">\(10^{-13}\)</span> is still acceptable. If you created your own collision model, that is not compatible with the default sticking-cratering-fragmentation model, you can either ignore the output, or you can overwrite the <code class="docutils literal notranslate"><span class="pre">Simulation.checkmassconservation()</span></code>
+<p>When calling <code class="docutils literal notranslate"><span class="pre">Simulation.run()</span></code>, <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> will perform a small mass conservation check, by going through all possible collisions and calculating their relative mass error. The limitation here is machine precision. Everything smaller than <span class="math notranslate nohighlight">\(10^{-13}\)</span> is still acceptable. If you created your own collision model, that is not compatible with the default sticking-erosion-fragmentation model, you can either ignore the output, or you can overwrite the <code class="docutils literal notranslate"><span class="pre">Simulation.checkmassconservation()</span></code>
 function that is called by default when calling <code class="docutils literal notranslate"><span class="pre">Simulation.run()</span></code>.</p>
 <p>See a later chapter for details on coagulation.</p>
 </section>

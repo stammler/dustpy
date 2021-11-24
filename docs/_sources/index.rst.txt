@@ -1,9 +1,9 @@
-``DustPy`` documentation
+``DustPy`` Documentation
 =========================================
 
 | ``DustPy`` is a dust coagulation and evolution code for protoplanetary disks.
 
-| This documentation is for ``DustPy v0.5.6``.
+| This documentation is for ``DustPy v0.5.7``.
 
 | To install ``DustPy`` simply type
 | ``pip install dustpy``

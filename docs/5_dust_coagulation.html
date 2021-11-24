@@ -95,7 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">4. The Standard Model</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">5. Dust Coagulation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Sticking">Sticking</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Fragmentation-&amp;-Cratering">Fragmentation &amp; Cratering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Fragmentation-&amp;-Erosion">Fragmentation &amp; Erosion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Probabilities">Probabilities</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Bouncing">Bouncing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Collision-Rates">Collision Rates</a></li>
@@ -441,7 +441,7 @@ div.rendered_html tbody tr:hover {
 <p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} f\left( m \right) = \int\limits_0^\infty \int\limits_0^{m'} M\left( m, m', m'' \right) f\left( m' \right) f\left( m'' \right) R\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\)</span></p>
 <p>where the matrix <span class="math notranslate nohighlight">\(M\)</span> has both the positive and the negative terms. Also note that the integral over <span class="math notranslate nohighlight">\(m''\)</span> only goes up to mass <span class="math notranslate nohighlight">\(m'\)</span>. Since the collisions are symmetric this saves some computation.</p>
 <p>For details on the numerical implementation, we refer to <a class="reference external" href="https://doi.org/10.1051/0004-6361:20077759">Brauer et al. (2008)</a> and <a class="reference external" href="https://doi.org/10.1051/0004-6361/200913731">Birnstiel et al. (2010)</a>.</p>
-<p>The standard model of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> knows three different collision outcomes: sticking, cratering, and full fragmentation.</p>
+<p>The standard model of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> knows three different collision outcomes: sticking, erosion, and full fragmentation.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -664,12 +664,12 @@ Rel. error: 1.5e-16
 </pre></div></div>
 </div>
 </section>
-<section id="Fragmentation-&amp;-Cratering">
-<h2>Fragmentation &amp; Cratering<a class="headerlink" href="#Fragmentation-&-Cratering" title="Permalink to this headline">¶</a></h2>
-<p>If the collision velocity exceeds the fragmentation velocity particles fragment. Here we distinguish two cases: Either the particles are roughly equal sized, then both particles fully fragment. Or one particle is significantly larger than the other, then only the smaller particle fragments, but it is chipping off some mass of the larger particle. The latter case is called cratering.</p>
-<p>The threshold of these two cases can be set with <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.crateringMassRatio</span></code>. By default this is <span class="math notranslate nohighlight">\(10\)</span>, meaning both particles fully fragment if their mass ratio is smaller than <span class="math notranslate nohighlight">\(10\)</span>. Otherwise we have cratering. This value has to be set, before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
-<p>For fragmentation we follow the method described in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020)</a>, who developed an <span class="math notranslate nohighlight">\(\mathcal{O} \left( N_m^2 \right)\)</span> algorithm for fragmentation. We modified it, however, to make it strictly mass conserving and added cratering.</p>
-<p>In either case, full fragmentation and cratering, we produce a distribution of fragments of kind</p>
+<section id="Fragmentation-&amp;-Erosion">
+<h2>Fragmentation &amp; Erosion<a class="headerlink" href="#Fragmentation-&-Erosion" title="Permalink to this headline">¶</a></h2>
+<p>If the collision velocity exceeds the fragmentation velocity particles fragment. Here we distinguish two cases: Either the particles are roughly equal sized, then both particles fully fragment. Or one particle is significantly larger than the other, then only the smaller particle fragments, but it is chipping off some mass of the larger particle. The latter case is called erosion.</p>
+<p>The threshold of these two cases can be set with <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.erosionMassRatio</span></code>. By default this is <span class="math notranslate nohighlight">\(10\)</span>, meaning both particles fully fragment if their mass ratio is smaller than <span class="math notranslate nohighlight">\(10\)</span>. Otherwise we have erosion. This value has to be set, before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
+<p>For fragmentation we follow the method described in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020)</a>, who developed an <span class="math notranslate nohighlight">\(\mathcal{O} \left( N_m^2 \right)\)</span> algorithm for fragmentation. We modified it, however, to make it strictly mass conserving.</p>
+<p>In either case, full fragmentation and erosion, we produce a distribution of fragments of kind</p>
 <p><span class="math notranslate nohighlight">\(n\left( m \right) \mathrm{d}m \propto m^\gamma \mathrm{d}m\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(\gamma\)</span> has to be set in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.fragmentDistribution</span></code> before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>. By default it is <span class="math notranslate nohighlight">\(-\frac{11}{6}\)</span> taken from <a class="reference external" href="https://doi.org/10.1029/JB074i010p02531">Dohnanyi (1969)</a>. From this we can calculate a normalized distribution of fragments with a given maximum fragment size.</p>
 <p>This, for example, is the fragment distribution up to mass bin <span class="math notranslate nohighlight">\(15\)</span>. It is similar to the <span class="math notranslate nohighlight">\(\varphi\)</span> in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020)</a></p>
@@ -731,7 +731,7 @@ Rel. error: 1.5e-16
 </div>
 <p>That means it can be simply multiplied by any desired total fragment mass.</p>
 <p>You may have noticed that the exponent of the fragment distribution is not identical to <span class="math notranslate nohighlight">\(\gamma\)</span> from above. Our <span class="math notranslate nohighlight">\(\varphi\)</span> here is already tranformed to code units, meaning the mass density integrated over the mass bin. Since the mass bin widths increase with increasing masses, this changes the slope.</p>
-<p>In a collision resulting in full fragmentation, the largest fragment size is equal to the larger collision partner. In a collision resulting in cratering the largest fragment has the size of the smaller collision partner. The index of the largest fragment is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.lf_ind</span></code>.</p>
+<p>In a collision resulting in full fragmentation, the largest fragment size is equal to the larger collision partner. In an erosive collision the largest fragment has the size of the smaller collision partner. The index of the largest fragment is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.lf_ind</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
@@ -809,7 +809,7 @@ True
 True
 </pre></div></div>
 </div>
-<p>In a collision resulting in cratering the total mass of fragments is given by</p>
+<p>In an erosive collision the total mass of fragments is given by</p>
 <p><span class="math notranslate nohighlight">\(m_\mathrm{fragments} = \left( 1 + \chi \right)m_\mathrm{small}\)</span>,</p>
 <p>where <span class="math notranslate nohighlight">\(\chi\)</span> is the amount of mass that gets excavated from the larger collision partner in units of the smaller collision partner. This value can be set in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.excavatedMass</span></code> and is by default <span class="math notranslate nohighlight">\(1\)</span>. This value has to be set before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
 <div class="nbinput docutils container">
@@ -833,9 +833,9 @@ True
 True
 </pre></div></div>
 </div>
-<p>In a cratering collision event the larger particle loses mass, which has to be taken into account. Since the new mass of the larger particle after a cratering collision will most likely not directly fall onto a mass bin, it has to be distributed between the two adjacent mass bins. <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.rm_ind</span></code> is the lower mass index into which the remnant mass is distributed, while <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.eps</span></code> is the fraction of mass that is distributed into that bin. That means
+<p>In an erosive collision event the larger particle loses mass, which has to be taken into account. Since the new mass of the larger particle after an erosive collision will most likely not directly fall onto a mass bin, it has to be distributed between the two adjacent mass bins. <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.rm_ind</span></code> is the lower mass index into which the remnant mass is distributed, while <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.eps</span></code> is the fraction of mass that is distributed into that bin. That means
 that the fraction of <span class="math notranslate nohighlight">\(1\)</span> - <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.eps</span></code> is added into mass bin <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.rm_ind</span></code> + <span class="math notranslate nohighlight">\(1\)</span>.</p>
-<p>In that way it is possible to check for mass conservation in cratering events.</p>
+<p>In that way it is possible to check for mass conservation in erosive events.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>

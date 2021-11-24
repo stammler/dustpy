@@ -206,7 +206,7 @@
         <span class="c1"># Namespace with parameters to set the initial conditions</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ini</span> <span class="o">=</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;dust&quot;</span><span class="p">:</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;aIniMax&quot;</span><span class="p">:</span> <span class="mf">0.0001</span><span class="p">,</span>
                                                                   <span class="s2">&quot;allowDriftingParticles&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-                                                                  <span class="s2">&quot;crateringMassRatio&quot;</span><span class="p">:</span> <span class="mf">10.</span><span class="p">,</span>
+                                                                  <span class="s2">&quot;erosionMassRatio&quot;</span><span class="p">:</span> <span class="mf">10.</span><span class="p">,</span>
                                                                   <span class="s2">&quot;d2gRatio&quot;</span><span class="p">:</span> <span class="mf">1.e-2</span><span class="p">,</span>
                                                                   <span class="s2">&quot;distExp&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">,</span>
                                                                   <span class="s2">&quot;excavatedMass&quot;</span><span class="p">:</span> <span class="mf">1.</span><span class="p">,</span>
@@ -520,10 +520,10 @@
             <span class="n">msg</span> <span class="o">=</span> <span class="n">colorize</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
-            <span class="c1"># Checking for cratering error</span>
-            <span class="n">msg</span> <span class="o">=</span> <span class="n">colorize</span><span class="p">(</span><span class="s2">&quot;    - Cratering:&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">)</span>
+            <span class="c1"># Checking for erosion error</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">colorize</span><span class="p">(</span><span class="s2">&quot;    - Erosion:&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-            <span class="n">errmax</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">std</span><span class="o">.</span><span class="n">dust_f</span><span class="o">.</span><span class="n">check_mass_conservation_cratering</span><span class="p">(</span>
+            <span class="n">errmax</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">std</span><span class="o">.</span><span class="n">dust_f</span><span class="o">.</span><span class="n">check_mass_conservation_erosion</span><span class="p">(</span>
                 <span class="n">A</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">klf</span><span class="p">,</span> <span class="n">krm</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span>
             <span class="n">tup</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
             <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span>

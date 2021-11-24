@@ -900,7 +900,7 @@
 
 <div class="viewcode-block" id="coagulation_parameters"><a class="viewcode-back" href="../../../api/dustpy.std.dust.coagulation_parameters.html#dustpy.std.dust.coagulation_parameters">[docs]</a><span class="k">def</span> <span class="nf">coagulation_parameters</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function calculates the coagulation parameters needed for a simple</span>
-<span class="sd">    sticking-cratering-fragmentation collision model. The sticking matrix</span>
+<span class="sd">    sticking-erosion-fragmentation collision model. The sticking matrix</span>
 <span class="sd">    is calculated with the method described in appendices A.1. and A.2. of</span>
 <span class="sd">    Brauer et al. (2008).</span>
 
@@ -923,7 +923,7 @@
 <span class="sd">    only the non-zero elemts are stored in ``cstick`` of shape ``(4, Nm, Nm)``.</span>
 <span class="sd">    The positions of the non-zero elements along the first axis are stored</span>
 <span class="sd">    in ``cstick_ind``. For details see Brauer et al. (2008).&quot;&quot;&quot;</span>
-    <span class="n">cstick</span><span class="p">,</span> <span class="n">cstick_ind</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">klf</span><span class="p">,</span> <span class="n">krm</span><span class="p">,</span> <span class="n">phi</span> <span class="o">=</span> <span class="n">dust_f</span><span class="o">.</span><span class="n">coagulation_parameters</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">crateringMassRatio</span><span class="p">,</span>
+    <span class="n">cstick</span><span class="p">,</span> <span class="n">cstick_ind</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">klf</span><span class="p">,</span> <span class="n">krm</span><span class="p">,</span> <span class="n">phi</span> <span class="o">=</span> <span class="n">dust_f</span><span class="o">.</span><span class="n">coagulation_parameters</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">erosionMassRatio</span><span class="p">,</span>
                                                                               <span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">excavatedMass</span><span class="p">,</span>
                                                                               <span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">fragmentDistribution</span><span class="p">,</span>
                                                                               <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">,</span>
