@@ -514,7 +514,7 @@ class Simulation(Frame):
             SigmaGas = np.maximum(SigmaGas, self.gas.SigmaFloor)
             self.gas.Sigma = Field(self, SigmaGas,
                                    description="Surface density [g/cm²]")
-            self.gas.Sigma.jacobinator = std.gas.jacobian
+        self.gas.Sigma.jacobinator = std.gas.jacobian
         # Temperature
         if self.gas.T is None:
             self.gas.T = Field(self, np.zeros(shape1),
@@ -740,8 +740,8 @@ class Simulation(Frame):
                              Sigma)
             self.dust.Sigma = Field(
                 self, Sigma, description="Surface density per mass bin [g/cm²]")
-            self.dust.Sigma.differentiator = std.dust.Sigma_deriv
-            self.dust.Sigma.jacobinator = std.dust.jacobian
+        self.dust.Sigma.differentiator = std.dust.Sigma_deriv
+        self.dust.Sigma.jacobinator = std.dust.jacobian
         # Fully initialize dust quantities
         self.dust.update()
         # Hidden fields
