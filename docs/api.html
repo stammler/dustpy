@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
@@ -12,33 +13,31 @@
   
 
   
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Simulation" href="api/dustpy.Simulation.html" />
@@ -56,7 +55,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> dustpy
+            <a href="index.html" class="icon icon-home"> dustpy
           
 
           
@@ -79,7 +78,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -87,7 +85,7 @@
               
             
             
-              <p><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">2. Simple Customization</a></li>
@@ -245,7 +243,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -284,7 +281,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
       <li>Module Reference</li>
     
@@ -394,10 +391,10 @@ or data files.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.plot.ipanel.html#dustpy.plot.ipanel" title="dustpy.plot.ipanel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ipanel</span></code></a>(data[, filename, extension, im, ir, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.plot.ipanel.html#dustpy.plot.ipanel" title="dustpy.plot.ipanel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ipanel</span></code></a>(data[, filename, extension, im, ir, ...])</p></td>
 <td><p>Simple interactive plotting script for data files or simulation objects.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.plot.panel.html#dustpy.plot.panel" title="dustpy.plot.panel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">panel</span></code></a>(data[, filename, extension, im, ir, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.plot.panel.html#dustpy.plot.panel" title="dustpy.plot.panel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">panel</span></code></a>(data[, filename, extension, im, ir, ...])</p></td>
 <td><p>Simple plotting script for data files or simulation objects.</p></td>
 </tr>
 </tbody>
@@ -432,7 +429,7 @@ or data files.</p>
 <td><p>Function calculates the total mass fluxes through grid cell interfaces.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.H.html#dustpy.std.dust.H" title="dustpy.std.dust.H"><code class="xref py py-obj docutils literal notranslate"><span class="pre">H</span></code></a>(sim)</p></td>
-<td><p>Function calculates the dust scale height according Dubrulle et al.</p></td>
+<td><p>Function calculates the dust scale height according Dubrulle et al. (1995).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.dust.MRN_distribution.html#dustpy.std.dust.MRN_distribution" title="dustpy.std.dust.MRN_distribution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MRN_distribution</span></code></a>(sim)</p></td>
 <td><p>Function calculates the initial particle mass distribution.</p></td>
@@ -772,19 +769,11 @@ or data files.</p>
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -795,6 +784,7 @@ or data files.</p>
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {
