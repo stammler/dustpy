@@ -435,7 +435,7 @@ class Simulation(Frame):
         if self.gas.alpha is None:
             alpha = self.ini.gas.alpha * np.ones(shape1)
             self.gas.alpha = Field(
-                self, alpha, description="Turbulent alpha parameters")
+                self, alpha, description="Turbulent alpha parameter")
         # Sound speed
         if self.gas.cs is None:
             self.gas.cs = Field(self, np.zeros(shape1),
