@@ -38,13 +38,13 @@ def panel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limits
     # Fix indices if necessary
     it = np.maximum(0, it)
     it = np.minimum(it, data.Nt-1)
-    it = np.int(it)
+    it = int(it)
     im = np.maximum(0, im)
     im = np.minimum(im, data.Nm[it, ...]-1)
-    im = np.int(im)
+    im = int(im)
     ir = np.maximum(0, ir)
     ir = np.minimum(ir, data.Nr[it, ...]-1)
-    ir = np.int(ir)
+    ir = int(ir)
 
     # Get limits/levels
     sd_max = np.ceil(np.log10(data.sigmaDust.max()))
@@ -100,7 +100,7 @@ def panel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limits
     cbar00.ax.set_ylabel("$\sigma_\mathrm{d}$ [g/cm²]")
     cbar00ticklabels = []
     for i in levels:
-        cbar00ticklabels.append("$10^{{{:d}}}$".format(np.int(i)))
+        cbar00ticklabels.append("$10^{{{:d}}}$".format(int(i)))
     cbar00.ax.set_yticklabels(cbar00ticklabels)
     ax00.set_xscale("log")
     ax00.set_yscale("log")
@@ -187,13 +187,13 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
     # Fix indices if necessary
     it = np.maximum(0, it)
     it = np.minimum(it, data.Nt-1)
-    it = np.int(it)
+    it = int(it)
     im = np.maximum(0, im)
     im = np.minimum(im, data.Nm[it, ...]-1)
-    im = np.int(im)
+    im = int(im)
     ir = np.maximum(0, ir)
     ir = np.minimum(ir, data.Nr[it, ...]-1)
-    ir = np.int(ir)
+    ir = int(ir)
 
     # Get limits/levels
     sd_max = np.ceil(np.log10(data.sigmaDust.max()))
@@ -252,7 +252,7 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
     cbar00.ax.set_ylabel("$\sigma_\mathrm{d}$ [g/cm²]")
     cbar00ticklabels = []
     for i in levels:
-        cbar00ticklabels.append("$10^{{{:d}}}$".format(np.int(i)))
+        cbar00ticklabels.append("$10^{{{:d}}}$".format(int(i)))
     cbar00.ax.set_yticklabels(cbar00ticklabels)
     ax00.set_xscale("log")
     ax00.set_yscale("log")
@@ -350,11 +350,11 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
 
         it = 0
         if data.Nt > 2:
-            it = np.int(np.floor(sliderTime.val))
+            it = int(np.floor(sliderTime.val))
             axSliderTime.set_title("t = {:9.3e} yr".format(data.t[it]/c.year))
-        im = np.int(np.floor(sliderMass.val))
+        im = int(np.floor(sliderMass.val))
         axSliderMass.set_title("m = {:9.3e} g".format(data.m[it, im]))
-        ir = np.int(np.floor(sliderDist.val))
+        ir = int(np.floor(sliderDist.val))
         axSliderDist.set_title("r = {:9.3e} AU".format(data.r[it, ir]/c.au))
 
         for row in plt00Collections:
@@ -531,7 +531,7 @@ def _readdata(data, filename="data", extension="hdf5"):
     # Drift limit
     p = SigmaGas * OmegaK * cs / np.sqrt(2.*np.pi)
     StDr = np.zeros_like(StFr)
-    for i in range(np.int(Nt)):
+    for i in range(int(Nt)):
         _f = interp1d(np.log10(r[i, ...]), np.log10(
             p[i, ...]), fill_value='extrapolate')
         pi = 10.**_f(np.log10(ri[i, ...]))

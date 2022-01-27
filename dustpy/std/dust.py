@@ -249,7 +249,7 @@ def F_tot(sim, Sigma=None):
     -------
     Ftot : Field
         Total mass flux through interfaces"""
-    Fi = np.zeros((np.int(sim.grid.Nr+1), np.int(sim.grid.Nm)))
+    Fi = np.zeros((int(sim.grid.Nr+1), int(sim.grid.Nm)))
     if Sigma is None:
         Sigma = sim.dust.Sigma
         Fdiff = sim.dust.Fi.diff
@@ -326,13 +326,13 @@ def jacobian(sim, x, dx=None, *args, **kwargs):
     r = sim.grid.r
     ri = sim.grid.ri
     area = sim.grid.A
-    Nr = np.int(sim.grid.Nr)
-    Nm = np.int(sim.grid.Nm)
+    Nr = int(sim.grid.Nr)
+    Nm = int(sim.grid.Nm)
 
     # Building coagulation Jacobian
 
     # Total problem size
-    Ntot = np.int((Nr*Nm))
+    Ntot = int((Nr*Nm))
     # Getting data vector and coordinates in sparse matrix
     dat, row, col = dust_f.jacobian_coagulation_generator(
         A, cstick, eps, ilf, irm, istick, m, phi, Rf, Rs, SigD, SigDfloor)
@@ -367,11 +367,11 @@ def jacobian(sim, x, dx=None, *args, **kwargs):
     # Inner boundary
 
     # Initializing data and coordinate vectors for sparse matrix
-    dat = np.zeros(np.int(3.*Nm))
-    row0 = np.arange(np.int(Nm))
-    col0 = np.arange(np.int(Nm))
-    col1 = np.arange(np.int(Nm)) + Nm
-    col2 = np.arange(np.int(Nm)) + 2.*Nm
+    dat = np.zeros(int(3.*Nm))
+    row0 = np.arange(int(Nm))
+    col0 = np.arange(int(Nm))
+    col1 = np.arange(int(Nm)) + Nm
+    col2 = np.arange(int(Nm)) + 2.*Nm
     row = np.concatenate((row0, row0, row0))
     col = np.concatenate((col0, col1, col2))
 
@@ -421,11 +421,11 @@ def jacobian(sim, x, dx=None, *args, **kwargs):
     # Outer boundary
 
     # Initializing data and coordinate vectors for sparse matrix
-    dat = np.zeros(np.int(3.*Nm))
-    row0 = np.arange(np.int(Nm))
-    col0 = np.arange(np.int(Nm))
-    col1 = np.arange(np.int(Nm)) - Nm
-    col2 = np.arange(np.int(Nm)) - 2.*Nm
+    dat = np.zeros(int(3.*Nm))
+    row0 = np.arange(int(Nm))
+    col0 = np.arange(int(Nm))
+    col1 = np.arange(int(Nm)) - Nm
+    col2 = np.arange(int(Nm)) - 2.*Nm
     offset = (Nr-1)*Nm
     row = np.concatenate((row0, row0, row0)) + offset
     col = np.concatenate((col0, col1, col2)) + offset
@@ -519,22 +519,22 @@ def MRN_distribution(sim):
     such that there are no drifting particles initially. This prevents a particle wave traveling
     though the simulation, that is already drifting initially."""
     exp = sim.ini.dust.distExp
-    # Calculating pressure gradient
-    P = sim.gas.P
-    Pi = dust_f.interp1d(sim.grid.ri, sim.grid.r, P)
-    gamma = (Pi[1:] - Pi[:-1]) / (sim.grid.ri[1:] - sim.grid.ri[:-1])
-    gamma = np.abs(gamma)
-    # Exponent of pressure gradient
-    gamma *= sim.grid.r / P
-    gamma = 1. / gamma
-    # Maximum drift limited particle size with safety margin
-    ad = 1.e-4 * 2./np.pi * sim.ini.dust.d2gRatio * sim.gas.Sigma \
-        / sim.dust.fill[:, 0] * sim.dust.rhos[:, 0] * (sim.grid.OmegaK * sim.grid.r)**2. \
-        / sim.gas.cs**2. / gamma
     # Set maximum particle size
     if(sim.ini.dust.allowDriftingParticles):
         aIni = sim.ini.dust.aIniMax
     else:
+        # Calculating pressure gradient
+        P = sim.gas.P
+        Pi = dust_f.interp1d(sim.grid.ri, sim.grid.r, P)
+        gamma = (Pi[1:] - Pi[:-1]) / (sim.grid.ri[1:] - sim.grid.ri[:-1])
+        gamma = np.abs(gamma)
+        # Exponent of pressure gradient
+        gamma *= sim.grid.r / P
+        gamma = 1. / gamma
+        # Maximum drift limited particle size with safety margin
+        ad = 1.e-4 * 2./np.pi * sim.ini.dust.d2gRatio * sim.gas.Sigma \
+            / sim.dust.fill[:, 0] * sim.dust.rhos[:, 0] * (sim.grid.OmegaK * sim.grid.r)**2. \
+            / sim.gas.cs**2. / gamma
         aIni = np.minimum(sim.ini.dust.aIniMax, ad)[:, None]
     # Fill distribution
     ret = np.where(sim.dust.a <= aIni, sim.dust.a**(exp+4), 0.)
@@ -761,7 +761,7 @@ def coagulation_parameters(sim):
                                                                               sim.ini.dust.excavatedMass,
                                                                               sim.ini.dust.fragmentDistribution,
                                                                               sim.grid.m,
-                                                                              np.int(sim.grid.Nr))
+                                                                              int(sim.grid.Nr))
     return cstick, cstick_ind, A, eps, klf, krm, phi
 
 

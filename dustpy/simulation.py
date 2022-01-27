@@ -243,7 +243,7 @@ class Simulation(Frame):
         logmmin = np.log10(self.ini.grid.mmin)
         logmmax = np.log10(self.ini.grid.mmax)
         decades = np.ceil(logmmax - logmmin)
-        Nm = np.int(decades * self.ini.grid.Nmbpd) + 1
+        Nm = int(decades * self.ini.grid.Nmbpd) + 1
         m = np.logspace(np.log10(self.ini.grid.mmin), np.log10(
             self.ini.grid.mmax), num=Nm, base=10.)
         self.grid.Nm = Field(
@@ -382,13 +382,13 @@ class Simulation(Frame):
         if not isinstance(self.grid.Nm, Field) or not isinstance(self.grid.Nr, Field):
             self.makegrids()
 
-        shape1 = (np.int(self.grid.Nr))
-        shape1p1 = (np.int(self.grid.Nr)+1)
-        shape2 = (np.int(self.grid.Nr), np.int(self.grid.Nm))
-        shape2ravel = (np.int(self.grid.Nr*self.grid.Nm))
-        shape2p1 = (np.int(self.grid.Nr)+1, np.int(self.grid.Nm))
-        shape3 = (np.int(self.grid.Nr), np.int(
-            self.grid.Nm), np.int(self.grid.Nm))
+        shape1 = (int(self.grid.Nr))
+        shape1p1 = (int(self.grid.Nr)+1)
+        shape2 = (int(self.grid.Nr), int(self.grid.Nm))
+        shape2ravel = (int(self.grid.Nr*self.grid.Nm))
+        shape2p1 = (int(self.grid.Nr)+1, int(self.grid.Nm))
+        shape3 = (int(self.grid.Nr), int(
+            self.grid.Nm), int(self.grid.Nm))
 
         # INTEGRATION VARIABLE
 
@@ -826,7 +826,7 @@ class Simulation(Frame):
 
         if scheme == "implicit":
 
-            shape2ravel = (np.int(self.grid.Nr*self.grid.Nm))
+            shape2ravel = (int(self.grid.Nr*self.grid.Nm))
 
             # Hidden fields
             # We store the old values of the surface density in a hidden field
