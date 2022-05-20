@@ -18,7 +18,6 @@ from dustpy import utils
 from dustpy.utils import hdf5writer
 
 from simframe.io.dump import readdump
-from simframe.io.writers import hdf5writer
 
 __name__ = "dustpy"
 __version__ = "0.5.9"
