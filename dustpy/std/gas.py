@@ -3,9 +3,8 @@
 import numpy as np
 import scipy.sparse as sp
 from simframe.integration import Scheme
-
-import dustpy.constants as c
 from dustpy.std import gas_f
+
 
 
 def boundary(sim):
@@ -27,7 +26,10 @@ def enforce_floor_value(sim):
     ----------
     sim : Frame
         Parent simulation frame"""
-    sim.gas.Sigma[:] = np.maximum(sim.gas.Sigma, sim.gas.SigmaFloor)
+    sim.gas.Sigma[:] = gas_f.enforce_floor(
+        sim.gas.Sigma,
+        sim.gas.SigmaFloor
+    )
 
 
 def prepare(sim):
@@ -38,9 +40,6 @@ def prepare(sim):
     ----------
     sim : Frame
         Parent simulation frame"""
-    # Setting external sources at boundaries to zero
-    sim.gas.S.ext[0] = 0.
-    sim.gas.S.ext[-1] = 0.
     # Storing current surface density
     sim.gas._SigmaOld[:] = sim.gas.Sigma[:]
 
@@ -67,19 +66,23 @@ def set_implicit_boundaries(sim):
     ----------
     sim : Frame
         Parent simulation frame"""
-    # Total source terms
-    sim.gas.S.tot[0] = (sim.gas.Sigma[0]-sim.gas._SigmaOld[0]
-                        )/(sim.t.prevstepsize+1.e-100)
-    sim.gas.S.tot[-1] = (sim.gas.Sigma[-1] -
-                         sim.gas._SigmaOld[-1])/(sim.t.prevstepsize+1.e-100)
-    # Hydrodynamic source terms
-    sim.gas.S.hyd[0] = sim.gas.S.tot[0]
-    sim.gas.S.hyd[-1] = sim.gas.S.tot[-1]
-    # Fluxes
-    sim.gas.Fi[0] = (0.5*sim.gas.S.hyd[0]*(sim.grid.ri[1]**2 -
-                                           sim.grid.ri[0]**2) + sim.grid.ri[1]*sim.gas.Fi[1])/sim.grid.ri[0]
-    sim.gas.Fi[-1] = (sim.gas.Fi[-2]*sim.grid.ri[-2] - 0.5*sim.gas.S.hyd[-1]
-                      * (sim.grid.ri[-1]**2-sim.grid.ri[-2]**2))/sim.grid.ri[-1]
+    ret = gas_f.implicit_boundaries(
+        sim.t.prevstepsize,
+        sim.gas.Fi,
+        sim.grid.ri,
+        sim.gas.Sigma,
+        sim.gas._SigmaOld
+    )
+
+    # Source terms
+    sim.gas.S.tot[0] = ret[0]
+    sim.gas.S.hyd[0] = ret[0]
+    sim.gas.S.tot[-1] = ret[1]
+    sim.gas.S.hyd[-1] = ret[1]
+
+    # Fluxes through boundaries
+    sim.gas.Fi[0] = ret[2]
+    sim.gas.Fi[-1] = ret[3]
 
 
 def dt(sim):
@@ -94,17 +97,11 @@ def dt(sim):
     -------
     dt : float
         Gas time step"""
-    if np.any(sim.gas.S.tot[1:-1] < 0.):
-        mask = np.logical_and(
-            sim.gas.Sigma > sim.gas.SigmaFloor,
-            sim.gas.S.tot < 0.)
-        mask[0] = False
-        mask[-1:] = False
-        rate = sim.gas.Sigma[mask] / sim.gas.S.tot[mask]
-        try:
-            return np.min(np.abs(rate))
-        except:
-            return None
+    return gas_f.timestep(
+        sim.gas.S.tot,
+        sim.gas.Sigma,
+        sim.gas.SigmaFloor
+    )
 
 
 def cs_adiabatic(sim):
@@ -120,7 +117,11 @@ def cs_adiabatic(sim):
     -------
     cs : Field
         Sound speed"""
-    return np.sqrt(sim.gas.gamma * c.k_B * sim.gas.T / sim.gas.mu)
+    return gas_f.cs_adiabatic(
+        sim.gas.gamma,
+        sim.gas.mu,
+        sim.gas.T
+    )
 
 
 def eta_midplane(sim):
@@ -166,7 +167,11 @@ def Hp(sim):
     -------
     Hp : Field
         Pressure scale height"""
-    return sim.gas.cs/(np.sqrt(sim.gas.gamma)*sim.grid.OmegaK)
+    return gas_f.hp(
+        sim.gas.cs,
+        sim.gas.gamma,
+        sim.grid.OmegaK
+    )
 
 
 def jacobian(sim, x, dx=None, *args, **kwargs):
@@ -211,11 +216,11 @@ def jacobian(sim, x, dx=None, *args, **kwargs):
 
     # Construct Jacobian
     A, B, C = gas_f.jac_abc(area, nu, r, ri, v)
-    J = sp.diags(
-        (A[1:], B[:], C[:-1]),
-        offsets=(-1, 0, 1),
-        shape=(Nr, Nr),
-        format="csc")
+    row_hyd = np.hstack(
+        (np.arange(Nr-1)+1, np.arange(Nr), np.arange(Nr-1)))
+    col_hyd = np.hstack(
+        (np.arange(Nr-1), np.arange(Nr), np.arange(Nr-1)+1))
+    dat_hyd = np.hstack((A.ravel()[1:], B.ravel(), C.ravel()[:-1]))
 
     # Right hand side
     sim.gas._rhs[:] = sim.gas.Sigma
@@ -258,11 +263,9 @@ def jacobian(sim, x, dx=None, *args, **kwargs):
             B01 = -(K1/dt)[0]
             sim.gas._rhs[0] = 0.
 
-    row = [0, 0, 0]
-    col = [0, 1, 2]
-    dat = [B00, B01, B02]
-    gen = (dat, (row, col))
-    J_in = sp.csc_matrix(gen, shape=(Nr, Nr))
+    row_in = [0, 0, 0]
+    col_in = [0, 1, 2]
+    dat_in = [B00, B01, B02]
 
     # Outer boundary
     if sim.gas.boundary.outer is not None:
@@ -284,8 +287,8 @@ def jacobian(sim, x, dx=None, *args, **kwargs):
             Do = ri[-2]/ri[-3] * (r[-1]-r[-2]) / (r[-2]-r[-3])
             KNrm2 = - r[-2]/r[-1] * (1. + Do)
             KNrm3 = r[-3]/r[-1] * Do
-            Bnm1Bnm2 = -(KNrm2/dt)[0]
-            Bnm1Bnm3 = -(KNrm3/dt)[0]
+            BNm1Nm2 = -(KNrm2/dt)[0]
+            BNm1Nm3 = -(KNrm3/dt)[0]
             sim.gas._rhs[-1] = 0.
         # Given power law
         elif sim.gas.boundary.outer.condition == "pow":
@@ -296,16 +299,25 @@ def jacobian(sim, x, dx=None, *args, **kwargs):
             p = np.log(sim.gas.Sigma[-2] /
                        sim.gas.Sigma[-3]) / np.log(r[-2]/r[-3])
             KNrm2 = - (r[-1]/r[-2])**p
-            Bnm1Bnm2 = -(KNrm2/dt)[0]
+            BNm1Nm2 = -(KNrm2/dt)[0]
             sim.gas._rhs[-1] = 0.
 
-    row = [Nr-1, Nr-1, Nr-1]
-    col = [Nr-3, Nr-2, Nr-1]
-    dat = [BNm1Nm3, BNm1Nm2, BNm1Nm1]
-    gen = (dat, (row, col))
-    J_out = sp.csc_matrix(gen, shape=(Nr, Nr))
+    row_out = [Nr-1, Nr-1, Nr-1]
+    col_out = [Nr-3, Nr-2, Nr-1]
+    dat_out = [BNm1Nm3, BNm1Nm2, BNm1Nm1]
 
-    return J_in + J + J_out
+    # Stitching together the generators
+    row = np.hstack((row_hyd, row_in, row_out))
+    col = np.hstack((col_hyd, col_in, col_out))
+    dat = np.hstack((dat_hyd, dat_in, dat_out))
+    gen = (dat, (row, col))
+    # Building sparse matrix of coagulation Jacobian
+    J = sp.csc_matrix(
+        gen,
+        shape=(Nr, Nr)
+    )
+
+    return J
 
 
 def lyndenbellpringle1974(r, rc, p, Mdisk):
@@ -341,7 +353,9 @@ def mfp_midplane(sim):
     -------
     mfp : Field
         Mean free path"""
-    return 1. / (np.sqrt(2.) * sim.gas.n * c.sigma_H2)
+    return gas_f.mfp_midplane(
+        sim.gas.n
+    )
 
 
 def n_midplane(sim):
@@ -356,7 +370,10 @@ def n_midplane(sim):
     -------
     n : Field
         Midplane number density"""
-    return sim.gas.rho / sim.gas.mu
+    return gas_f.n_midplane(
+        sim.gas.mu,
+        sim.gas.rho
+    )
 
 
 def nu(sim):
@@ -371,7 +388,11 @@ def nu(sim):
     -------
     nu : Field
         Kinematic viscosity"""
-    return sim.gas.alpha * sim.gas.cs * sim.gas.Hp
+    return gas_f.viscosity(
+        sim.gas.alpha,
+        sim.gas.cs,
+        sim.gas.Hp
+    )
 
 
 def P_midplane(sim):
@@ -386,7 +407,11 @@ def P_midplane(sim):
     -------
     P : Field
         Midplane pressure"""
-    return sim.gas.rho * sim.gas.cs**2 / sim.gas.gamma
+    return gas_f.p_midplane(
+        sim.gas.cs,
+        sim.gas.gamma,
+        sim.gas.rho
+    )
 
 
 def rho_midplane(sim):
@@ -401,7 +426,10 @@ def rho_midplane(sim):
     -------
     rho : Field
         Midplane mass density"""
-    return sim.gas.Sigma / (np.sqrt(2. * c.pi) * sim.gas.Hp)
+    return gas_f.rho_midplane(
+        sim.gas.Hp,
+        sim.gas.Sigma
+    )
 
 
 def S_hyd(sim):
@@ -431,7 +459,10 @@ def S_tot(sim):
     -------
     S_tot : Field
         Total surface density source terms"""
-    return sim.gas.S.hyd + sim.gas.S.ext
+    return gas_f.s_tot(
+        sim.gas.S.ext,
+        sim.gas.S.hyd
+    )
 
 
 def T_passive(sim):
@@ -447,7 +478,10 @@ def T_passive(sim):
     -------
     T : Field
         Gas temperature"""
-    return (sim.star.L * 0.05 / (4. * c.pi * sim.grid.r**2 * c.sigma_sb))**0.25
+    return gas_f.t_pass(
+        sim.star.L,
+        sim.grid.r
+    )
 
 
 def vrad(sim):
@@ -462,8 +496,14 @@ def vrad(sim):
     -------
     vrad : Field
         Radial gas velocity"""
-    vback = 2. * sim.gas.eta * sim.grid.r * sim.grid.OmegaK
-    return sim.dust.backreaction.A * sim.gas.v.visc + sim.dust.backreaction.B * vback
+    return gas_f.v_rad(
+        sim.dust.backreaction.A,
+        sim.dust.backreaction.B,
+        sim.gas.eta,
+        sim.grid.OmegaK,
+        sim.grid.r,
+        sim.gas.v.visc
+    )
 
 
 def vvisc(sim):
@@ -514,19 +554,26 @@ def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
         rhs = np.array(Y0)
 
     # Add external source terms to right-hand side
-    rhs[1:-1] += dx[0]*Y0._owner.gas.S.ext[1:-1]
+    rhs[:] = gas_f.modified_rhs(
+        dx[0],
+        rhs,
+        Y0._owner.gas.S.ext
+    )
 
-    N = jac.shape[0]
-    eye = sp.identity(N, format="csc")
-    A = eye - dx[0]*jac
-    A_LU = sp.linalg.splu(A,
+    jac.data[:] = gas_f.modified_jacobian(
+        dx[0],
+        jac.data,
+        jac.indices,
+        jac.indptr
+    )
+
+    A_LU = sp.linalg.splu(jac,
                           permc_spec="MMD_AT_PLUS_A",
                           diag_pivot_thresh=0.0,
                           options=dict(SymmetricMode=True))
     Y1 = A_LU.solve(rhs)
 
     return Y1 - Y0
-
 
 class impl_1_direct(Scheme):
     """Modified class for implicit gas integration."""
