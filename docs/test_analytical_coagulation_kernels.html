@@ -1,74 +1,38 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Test: Analytical Coagulation Kernels &mdash; dustpy  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Test: Gas Evolution" href="test_gas_evolution.html" />
     <link rel="prev" title="7. Gas Evolution" href="7_gas_evolution.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> dustpy
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -76,17 +40,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
@@ -110,88 +64,64 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">dustpy</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
       <li>Test: Analytical Coagulation Kernels</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="_sources/test_analytical_coagulation_kernels.ipynb.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -292,7 +222,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -358,6 +288,7 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -367,11 +298,12 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -380,10 +312,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -395,12 +331,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -428,7 +367,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Test:-Analytical-Coagulation-Kernels">
-<h1>Test: Analytical Coagulation Kernels<a class="headerlink" href="#Test:-Analytical-Coagulation-Kernels" title="Permalink to this headline">¶</a></h1>
+<h1>Test: Analytical Coagulation Kernels<a class="headerlink" href="#Test:-Analytical-Coagulation-Kernels" title="Permalink to this headline"></a></h1>
 <p>The Smoluchwoski equation has analytical solutions for three special cases: the constant, the linear, and the product kernels. These can be used to verify the coagulation algorithm of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code>.</p>
 <p>In this notebook we are going to implement the constant and the linear kernel to demonstrate the diffusivity of the coagulation algorithm.</p>
 <p>Dust growth is implemented by solving the Smolukowski equation for a particle mass distribution</p>
@@ -440,7 +379,7 @@ div.rendered_html tbody tr:hover {
 <p><span class="math notranslate nohighlight">\(\begin{split} \frac{\partial}{\partial t} N\left( m \right) = &amp;\int\limits_0^\infty N\left( m-m' \right) N\left( m' \right) K\left( m-m', m' \right) \mathrm{d}m'\\ &amp;-N\left( m \right) \int\limits_0^\infty N\left( m' \right) K\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
 <p>This equation has analytical solutions for some choices of the kernel <span class="math notranslate nohighlight">\(K\)</span> and can be used to benchmark the coagulation algorithm against. The solutions and their derivations are discussed in detail in e.g. <a class="reference external" href="https://doi.org/10.1086/156949">Silk &amp; Takahashi (1979)</a> or <a class="reference external" href="https://doi.org/10.1016/0019-1035(90)90086-O">Wetherill (1990)</a>.</p>
 <section id="The-Constant-Kernel">
-<h2>The Constant Kernel<a class="headerlink" href="#The-Constant-Kernel" title="Permalink to this headline">¶</a></h2>
+<h2>The Constant Kernel<a class="headerlink" href="#The-Constant-Kernel" title="Permalink to this headline"></a></h2>
 <p>The most simple kernel is the constant kernel given by</p>
 <p><span class="math notranslate nohighlight">\(K\left(m, m'\right) = a\)</span>.</p>
 <p>In this case the Smoluchowski equation has the solution</p>
@@ -453,8 +392,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -462,8 +400,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function converts the Dustpy units into number densities.</span>
 
 <span class="sd">    Parameters</span>
@@ -488,8 +425,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">solution_constant_kernel</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solution_constant_kernel</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Analytical solution of the constant collision kernel R(m, m&#39;) = a.</span>
 <span class="sd">    Initial condition is that only the zeroth mass bin is filled.</span>
 
@@ -520,8 +456,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">set_constant_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_constant_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function set the ``DustPy`` simulation object up for the constant collision kernel R(m, m&#39;) = a.</span>
 
 <span class="sd">    sim : Frame</span>
@@ -564,8 +499,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">Simulation</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">Simulation</span>
 </pre></div>
 </div>
 </div>
@@ -573,8 +507,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -583,8 +516,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span> <span class="o">=</span> <span class="mi">3</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span> <span class="o">=</span> <span class="mi">3</span>
 </pre></div>
 </div>
 </div>
@@ -593,8 +525,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">allowDriftingParticles</span> <span class="o">=</span> <span class="kc">False</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">allowDriftingParticles</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
 </div>
 </div>
@@ -602,8 +533,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -612,8 +542,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">1.</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">1.</span>
 <span class="n">S0</span> <span class="o">=</span> <span class="mf">1.</span>
 </pre></div>
 </div>
@@ -622,8 +551,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">set_constant_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set_constant_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -632,8 +560,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">snapshots</span>
 </pre></div>
 </div>
@@ -643,8 +570,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">datadir</span> <span class="o">=</span> <span class="s2">&quot;test_constant_kernel&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">datadir</span> <span class="o">=</span> <span class="s2">&quot;test_constant_kernel&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -653,8 +579,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -664,7 +589,7 @@ div.rendered_html tbody tr:hover {
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.8
+DustPy v1.0.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -706,7 +631,7 @@ Writing file <span class="ansi-blue-intense-fg">test_constant_kernel/data0005.hd
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_constant_kernel/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:04</span>
 </pre></div></div>
 </div>
 <p>We now read the necessary data and plot it.</p>
@@ -714,8 +639,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">SigmaConstant</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;dust.Sigma&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SigmaConstant</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;dust.Sigma&quot;</span><span class="p">)</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;grid.m&quot;</span><span class="p">)</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
 </pre></div>
@@ -725,8 +649,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -734,8 +657,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">convert</span><span class="p">(</span><span class="n">SigmaConstant</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">]),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;initial&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;analytical&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -768,8 +690,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -777,8 +698,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span> <span class="o">=</span> <span class="mi">3</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nmbpd</span> <span class="o">=</span> <span class="mi">28</span>
 </pre></div>
 </div>
@@ -787,8 +707,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">allowDriftingParticles</span> <span class="o">=</span> <span class="kc">False</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">allowDriftingParticles</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
 </div>
 </div>
@@ -796,8 +715,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -805,8 +723,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">set_constant_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set_constant_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -814,8 +731,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">snapshots</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">snapshots</span>
 </pre></div>
 </div>
 </div>
@@ -823,8 +739,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">datadir</span> <span class="o">=</span> <span class="s2">&quot;test_constant_kernel_high_res&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">datadir</span> <span class="o">=</span> <span class="s2">&quot;test_constant_kernel_high_res&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -832,8 +747,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -843,7 +757,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.8
+DustPy v1.0.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -885,15 +799,14 @@ Writing file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/da
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:50</span>
+Execution time: <span class="ansi-blue-intense-fg">0:01:00</span>
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">SigmaConstantHighRes</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;dust.Sigma&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SigmaConstantHighRes</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;dust.Sigma&quot;</span><span class="p">)</span>
 <span class="n">mHighRes</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;grid.m&quot;</span><span class="p">)</span>
 <span class="n">tHighRes</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
 </pre></div>
@@ -903,8 +816,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:50</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">mHighRes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">convert</span><span class="p">(</span><span class="n">SigmaConstantHighRes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">mHighRes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">]),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;initial&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;analytical&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -934,7 +846,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:50</span>
 <p>In the high resolution case the simulation is way closer to the analytical solution compared to the semi-transparent solid lines of the low resolution simulation. This comes of course with the cost of a more expensive computation. If you need a higher resolution depends on your collision model. For a detail discussion on this problem we refer to <a class="reference external" href="https://doi.org/10.1051/0004-6361/201423708">Drążkowska et al. (2014)</a>.</p>
 </section>
 <section id="The-Linear-Kernel">
-<h2>The Linear Kernel<a class="headerlink" href="#The-Linear-Kernel" title="Permalink to this headline">¶</a></h2>
+<h2>The Linear Kernel<a class="headerlink" href="#The-Linear-Kernel" title="Permalink to this headline"></a></h2>
 <p>The second kernel that has an analytical solution it the linear kernel</p>
 <p><span class="math notranslate nohighlight">\(R\left(m, m'\right) = a\left(m + m'\right)\)</span></p>
 <p>with the analytical solution</p>
@@ -945,8 +857,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:50</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">solution_linear_kernel</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solution_linear_kernel</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Analytical solution of the linear collision kernel R(m, m&#39;) = a(m + m&#39;).</span>
 <span class="sd">    Initial condition is that only the zeroth mass bin is filled.</span>
 
@@ -978,8 +889,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:50</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">set_linear_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_linear_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function set the ``DustPy`` simulation object up for the linear collision kernel R(m, m&#39;) = a(m + m&#39;).</span>
 
 <span class="sd">    sim : Frame</span>
@@ -1020,8 +930,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:50</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1029,8 +938,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:50</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span> <span class="o">=</span> <span class="mi">3</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">allowDriftingParticles</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
@@ -1039,8 +947,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:50</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1048,8 +955,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:50</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">set_linear_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set_linear_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1057,8 +963,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:50</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">snapshots</span>
 </pre></div>
 </div>
@@ -1067,8 +972,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:50</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">datadir</span> <span class="o">=</span> <span class="s2">&quot;test_linear_kernel&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">datadir</span> <span class="o">=</span> <span class="s2">&quot;test_linear_kernel&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1076,8 +980,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:50</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1087,7 +990,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:50</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.8
+DustPy v1.0.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -1136,8 +1039,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">SigmaLinear</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;dust.Sigma&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SigmaLinear</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;dust.Sigma&quot;</span><span class="p">)</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;grid.m&quot;</span><span class="p">)</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1147,8 +1049,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">convert</span><span class="p">(</span><span class="n">SigmaLinear</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">]),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;initial&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;analytical&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -1179,8 +1080,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1188,8 +1088,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span> <span class="o">=</span> <span class="mi">3</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nmbpd</span> <span class="o">=</span> <span class="mi">28</span>
 </pre></div>
 </div>
@@ -1198,8 +1097,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">allowDriftingParticles</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">allowDriftingParticles</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
 </div>
@@ -1207,8 +1105,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1216,8 +1113,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">set_linear_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set_linear_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1225,8 +1121,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">snapshots</span>
 </pre></div>
 </div>
@@ -1235,8 +1130,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">datadir</span> <span class="o">=</span> <span class="s2">&quot;test_linear_kernel_high_res&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">datadir</span> <span class="o">=</span> <span class="s2">&quot;test_linear_kernel_high_res&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1244,8 +1138,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1255,7 +1148,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.8
+DustPy v1.0.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -1297,15 +1190,14 @@ Writing file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/data
 Writing dump file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:10</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:12</span>
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">SigmaLinearHighRes</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;dust.Sigma&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SigmaLinearHighRes</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;dust.Sigma&quot;</span><span class="p">)</span>
 <span class="n">mHighRes</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;grid.m&quot;</span><span class="p">)</span>
 <span class="n">tHighRes</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1315,8 +1207,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:10</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">mHighRes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">convert</span><span class="p">(</span><span class="n">SigmaLinearHighRes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">mHighRes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">]),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;initial&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;analytical&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -1346,7 +1237,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:10</span>
 <p>With a higher mass resolution the situation improved significantly.</p>
 </section>
 <section id="The-Product-Kernel">
-<h2>The Product Kernel<a class="headerlink" href="#The-Product-Kernel" title="Permalink to this headline">¶</a></h2>
+<h2>The Product Kernel<a class="headerlink" href="#The-Product-Kernel" title="Permalink to this headline"></a></h2>
 <p>The third kernel that has an analytical solution it the product kernel</p>
 <p><span class="math notranslate nohighlight">\(K\left(m, m'\right) = a \cdot m\times m'\)</span>.</p>
 <p>This kernel describes runaway growth. In this scenario the mass quickly accumulates in a few massive bodies. Since <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is not designed to properly simulate individual bodies, this solution will not be discussed here.</p>
@@ -1355,51 +1246,33 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:10</span>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="test_gas_evolution.html" class="btn btn-neutral float-right" title="Test: Gas Evolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="7_gas_evolution.html" class="btn btn-neutral float-left" title="7. Gas Evolution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="7_gas_evolution.html" class="btn btn-neutral float-left" title="7. Gas Evolution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test_gas_evolution.html" class="btn btn-neutral float-right" title="Test: Gas Evolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
-
-    </p>
+    <p>&#169; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

@@ -1,74 +1,38 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>5. Dust Coagulation &mdash; dustpy  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="6. Dust Evolution" href="6_dust_evolution.html" />
     <link rel="prev" title="4. The Standard Model" href="4_standard_model.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> dustpy
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -76,17 +40,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
@@ -113,88 +67,64 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">dustpy</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
       <li>5. Dust Coagulation</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="_sources/5_dust_coagulation.ipynb.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -295,7 +225,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -361,6 +291,7 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -370,11 +301,12 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -383,10 +315,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -398,12 +334,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -431,7 +370,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="5.-Dust-Coagulation">
-<h1>5. Dust Coagulation<a class="headerlink" href="#5.-Dust-Coagulation" title="Permalink to this headline">¶</a></h1>
+<h1>5. Dust Coagulation<a class="headerlink" href="#5.-Dust-Coagulation" title="Permalink to this headline"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> calculates the collisional evolution of dust by solving the Smolukowski equation</p>
 <p><span class="math notranslate nohighlight">\(\begin{split} \frac{\partial}{\partial t} f\left( m \right) = &amp;\int\limits_0^\infty \int\limits_0^{m'} K\left( m, m', m'' \right) f\left( m' \right) f\left( m'' \right) R\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\\ &amp;-f\left( m \right) \int\limits_0^\infty f\left( m' \right) R\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
 <p>Where <span class="math notranslate nohighlight">\(f\left( m \right)\)</span> is the dust mass distribution, <span class="math notranslate nohighlight">\(R\)</span> the collision rates, and <span class="math notranslate nohighlight">\(K\)</span> defines the collision outcomes.</p>
@@ -445,8 +384,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">Simulation</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">Simulation</span>
 <span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
 </pre></div>
@@ -457,8 +395,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span>
 </pre></div>
 </div>
 </div>
@@ -482,7 +419,7 @@ Group (Coagulation quantities)
 </div>
 <p>These fields are strictly tied to the mass grid. Neither those fields nor the mass grid should be changed after calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
 <section id="Sticking">
-<h2>Sticking<a class="headerlink" href="#Sticking" title="Permalink to this headline">¶</a></h2>
+<h2>Sticking<a class="headerlink" href="#Sticking" title="Permalink to this headline"></a></h2>
 <p>Sticking means that two particles collide and form a new larger particles conserving the total mass. There are two complications when implementing this numerically:</p>
 <p>First, since we need to cover a high dynamic range from particles masses around <span class="math notranslate nohighlight">\(10^{-15}\,\mathrm{g}\)</span> to more than <span class="math notranslate nohighlight">\(10^{15}\,\mathrm{g}\)</span> while still having a reasonable number of mass bins, the mass grid has to be logarithmic. This has the disadvantage that the new particle mass resulting from a collision will not directly lie on the mass grid, but will fall in between two grid masses. The resulting mass has to be therefore distributed between the two adjacent grid cells. This means
 there will be density added to a mass bin that is larger than the actual mass of the resulting particle. This can have unwanted side effects if the mass grid is too coarse. Please see <a class="reference external" href="https://doi.org/10.1051/0004-6361/201423708">Drążkowska et al. (2014)</a> and the notebook with the analytical coagulation kernels for details on the minimum mass resulution that should be used.</p>
@@ -491,8 +428,7 @@ there will be density added to a mass bin that is larger than the actual mass of
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m1</span> <span class="o">=</span> <span class="mf">1.e-16</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="mf">1.e-16</span>
 <span class="n">m2</span> <span class="o">=</span> <span class="mf">1.</span>
 <span class="n">m_tot</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">+</span> <span class="n">m2</span>
 
@@ -518,8 +454,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">5</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">j</span> <span class="o">=</span> <span class="mi">3</span>
 </pre></div>
 </div>
@@ -529,8 +464,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -548,8 +482,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick_ind</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick_ind</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -568,8 +501,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m_tot</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_tot</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 <span class="n">err</span> <span class="o">=</span> <span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick_ind</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="n">rel_err</span> <span class="o">=</span> <span class="n">err</span><span class="o">/</span><span class="n">m_tot</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mass error: </span><span class="si">{:7.1e}</span><span class="s2"> g</span><span class="se">\n</span><span class="s2">Rel. error: </span><span class="si">{:7.1e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">rel_err</span><span class="p">))</span>
@@ -591,8 +523,7 @@ Rel. error: 1.5e-16
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -610,8 +541,7 @@ Rel. error: 1.5e-16
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -628,8 +558,7 @@ Rel. error: 1.5e-16
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick_ind</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick_ind</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -648,8 +577,7 @@ Rel. error: 1.5e-16
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span><span class="p">[:,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -664,7 +592,7 @@ Rel. error: 1.5e-16
 </div>
 </section>
 <section id="Fragmentation-&amp;-Erosion">
-<h2>Fragmentation &amp; Erosion<a class="headerlink" href="#Fragmentation-&-Erosion" title="Permalink to this headline">¶</a></h2>
+<h2>Fragmentation &amp; Erosion<a class="headerlink" href="#Fragmentation-&-Erosion" title="Permalink to this headline"></a></h2>
 <p>If the collision velocity exceeds the fragmentation velocity particles fragment. Here we distinguish two cases: Either the particles are roughly equal sized, then both particles fully fragment. Or one particle is significantly larger than the other, then only the smaller particle fragments, but it is chipping off some mass of the larger particle. The latter case is called erosion.</p>
 <p>The threshold of these two cases can be set with <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.erosionMassRatio</span></code>. By default this is <span class="math notranslate nohighlight">\(10\)</span>, meaning both particles fully fragment if their mass ratio is smaller than <span class="math notranslate nohighlight">\(10\)</span>. Otherwise we have erosion. This value has to be set, before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
 <p>For fragmentation we follow the method described in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020)</a>, who developed an <span class="math notranslate nohighlight">\(\mathcal{O} \left( N_m^2 \right)\)</span> algorithm for fragmentation. We modified it, however, to make it strictly mass conserving.</p>
@@ -676,8 +604,7 @@ Rel. error: 1.5e-16
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="p">:]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="p">:]</span>
 </pre></div>
 </div>
 </div>
@@ -714,8 +641,7 @@ Rel. error: 1.5e-16
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -735,8 +661,7 @@ Rel. error: 1.5e-16
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">lf_ind</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">lf_ind</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -754,8 +679,7 @@ Rel. error: 1.5e-16
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">lf_ind</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">lf_ind</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span>
 </pre></div>
 </div>
 </div>
@@ -774,8 +698,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">lf_ind</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">lf_ind</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -793,8 +716,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m_frag</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_frag</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">m_frag</span>
 </pre></div>
 </div>
@@ -815,8 +737,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">50</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="n">j</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">m_frag</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">m_frag</span>
@@ -839,8 +760,7 @@ that the fraction of <span class="math notranslate nohighlight">\(1\)</span> - <
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Total mass of collision partners</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Total mass of collision partners</span>
 <span class="n">m_tot</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 <span class="c1"># Index of larges fragment</span>
 <span class="n">k_lf</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">lf_ind</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
@@ -872,7 +792,7 @@ Rel. error: 1.2e-16
 <p>When starting a simulation with <code class="docutils literal notranslate"><span class="pre">Simulation.run()</span></code>, <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> will perform a quick check for mass conservation by calculating the relative error for every possible particle collision and every possible collision outcome. If you implemented a custom collision model, you also have to modify the mass conservation check for accurate results.</p>
 </section>
 <section id="Probabilities">
-<h2>Probabilities<a class="headerlink" href="#Probabilities" title="Permalink to this headline">¶</a></h2>
+<h2>Probabilities<a class="headerlink" href="#Probabilities" title="Permalink to this headline"></a></h2>
 <p>To decide wether a collision event results in sticking or fragmentation, the fragmentation probability is calculated with a smooth transition between sticking and fragmentation around the fragmentation velocity. This probability is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.p.frag</span></code>.</p>
 <p>The sticking probability is simply given by</p>
 <p><span class="math notranslate nohighlight">\(p_\mathrm{stick} = 1 - p_\mathrm{frag}\)</span>.</p>
@@ -880,8 +800,7 @@ Rel. error: 1.2e-16
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span>
 </pre></div>
 </div>
 </div>
@@ -903,8 +822,7 @@ Group (Probabilities)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">p_tot</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">stick</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">frag</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_tot</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">stick</span> <span class="o">+</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">frag</span>
 <span class="p">(</span><span class="n">p_tot</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -920,11 +838,11 @@ True
 </div>
 </section>
 <section id="Bouncing">
-<h2>Bouncing<a class="headerlink" href="#Bouncing" title="Permalink to this headline">¶</a></h2>
+<h2>Bouncing<a class="headerlink" href="#Bouncing" title="Permalink to this headline"></a></h2>
 <p>Bouncing is by default not implemented. If you want to include bouncing collisions into your simulations you have to set functions for calculating <span class="math notranslate nohighlight">\(p_\mathrm{stick}\)</span> and <span class="math notranslate nohighlight">\(p_\mathrm{frag}\)</span>, such that the sum of both is smaller than <span class="math notranslate nohighlight">\(1\)</span>. If neither sticking, nor fragmentation occurs, the mass distribution does not change, i.e., we have bouncing.</p>
 </section>
 <section id="Collision-Rates">
-<h2>Collision Rates<a class="headerlink" href="#Collision-Rates" title="Permalink to this headline">¶</a></h2>
+<h2>Collision Rates<a class="headerlink" href="#Collision-Rates" title="Permalink to this headline"></a></h2>
 <p>The collision rates <span class="math notranslate nohighlight">\(R\)</span> as defined above are given by</p>
 <p><span class="math notranslate nohighlight">\(\begin{split} R_\mathrm{stick} &amp;= k \cdot p_\mathrm{stick}\\ R_\mathrm{frag} &amp;= k \cdot p_\mathrm{frag} \end{split}\)</span></p>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is given by</p>
@@ -933,15 +851,14 @@ True
 <p><span class="math notranslate nohighlight">\(k\)</span> is stored for every possible particle collision at any location in the disk in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.kernel</span></code>.</p>
 </section>
 <section id="Coagulation-Sources">
-<h2>Coagulation Sources<a class="headerlink" href="#Coagulation-Sources" title="Permalink to this headline">¶</a></h2>
+<h2>Coagulation Sources<a class="headerlink" href="#Coagulation-Sources" title="Permalink to this headline"></a></h2>
 <p>The parameters stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation</span></code> only have to be calculated once in the beginning of the simulation. But to calculate the coagulation sources the current densities and relative velocities are needed. Since these change over time, they have to be calculated on the fly.</p>
 <p>This is done by summing over all possible collisions, evaluating the collision outcome and by multiplying with their respective collision rates. The result is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.coag</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">coag</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">coag</span>
 </pre></div>
 </div>
 </div>
@@ -971,51 +888,33 @@ True
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="6_dust_evolution.html" class="btn btn-neutral float-right" title="6. Dust Evolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="4_standard_model.html" class="btn btn-neutral float-left" title="4. The Standard Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4_standard_model.html" class="btn btn-neutral float-left" title="4. The Standard Model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="6_dust_evolution.html" class="btn btn-neutral float-right" title="6. Dust Evolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
-
-    </p>
+    <p>&#169; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

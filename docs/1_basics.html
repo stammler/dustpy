@@ -1,74 +1,38 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1. Basic usage &mdash; dustpy  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2. Simple Customization" href="2_simple_customization.html" />
     <link rel="prev" title="DustPy Documentation" href="index.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> dustpy
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -76,17 +40,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">1. Basic usage</a><ul>
@@ -116,88 +70,64 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">dustpy</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
       <li>1. Basic usage</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="_sources/1_basics.ipynb.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -298,7 +228,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -364,6 +294,7 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -373,11 +304,12 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -386,10 +318,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -401,12 +337,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -434,18 +373,17 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="1.-Basic-usage">
-<h1>1. Basic usage<a class="headerlink" href="#1.-Basic-usage" title="Permalink to this headline">¶</a></h1>
+<h1>1. Basic usage<a class="headerlink" href="#1.-Basic-usage" title="Permalink to this headline"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is using on the <code class="docutils literal notranslate"><span class="pre">simframe</span></code> framework for running scientific simulations. For a detailed description of the usage of <code class="docutils literal notranslate"><span class="pre">simframe</span></code> please have a look at the <a class="reference external" href="https://simframe.rtfd.io/">Simframe Documentation</a>.</p>
 <p>This notebook demonstrates how to run the most simple <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> model, i.e., the model that is run by default, how to plot data, and how to resume simulations from dump files.</p>
 <section id="The-Simulation-Frame">
-<h2>The Simulation Frame<a class="headerlink" href="#The-Simulation-Frame" title="Permalink to this headline">¶</a></h2>
+<h2>The Simulation Frame<a class="headerlink" href="#The-Simulation-Frame" title="Permalink to this headline"></a></h2>
 <p>To set up a model we have to import the <code class="docutils literal notranslate"><span class="pre">Simulation</span></code> class from the <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> package.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">Simulation</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">Simulation</span>
 </pre></div>
 </div>
 </div>
@@ -454,8 +392,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -464,8 +401,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span>
 </pre></div>
 </div>
 </div>
@@ -493,8 +429,7 @@ DustPy
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span>
 </pre></div>
 </div>
 </div>
@@ -530,14 +465,13 @@ Group (Gas quantities)
 </div>
 </section>
 <section id="Initializing">
-<h2>Initializing<a class="headerlink" href="#Initializing" title="Permalink to this headline">¶</a></h2>
+<h2>Initializing<a class="headerlink" href="#Initializing" title="Permalink to this headline"></a></h2>
 <p>We can now initialize the <code class="docutils literal notranslate"><span class="pre">sim</span></code> object with <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>. <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> will then fill all the fields with default values.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -549,8 +483,7 @@ Group (Gas quantities)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span>
 </pre></div>
 </div>
 </div>
@@ -566,7 +499,7 @@ Group (Gas quantities)
     S            : Group (Source terms)
     v            : Group (Velocities)
   -----
-    alpha        : Field (Turbulent alpha parameters)
+    alpha        : Field (Turbulent alpha parameter)
     cs           : Field (Sound speed [cm/s])
     eta          : Field (Pressure gradient parameter)
     Fi           : Field (Gas flux interfaces [g/cm/s])
@@ -589,8 +522,7 @@ Group (Gas quantities)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">toc</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">toc</span>
 </pre></div>
 </div>
 </div>
@@ -654,7 +586,7 @@ Group (Gas quantities)
                 - <span class="ansi-blue-intense-fg">turb</span>: Field (Relative turbulent velocity [cm/s])
                 - <span class="ansi-blue-intense-fg">vert</span>: Field (Relative vertical settling velocity [cm/s])
     - <span class="ansi-blue-intense-fg">gas</span>: <span class="ansi-blue-intense-fg">Group (Gas quantities)</span>
-        - <span class="ansi-blue-intense-fg">alpha</span>: Field (Turbulent alpha parameters)
+        - <span class="ansi-blue-intense-fg">alpha</span>: Field (Turbulent alpha parameter)
         - <span class="ansi-blue-intense-fg">boundary</span>: <span class="ansi-blue-intense-fg">Group (Boundary conditions)</span>
             - <span class="ansi-blue-intense-fg">inner</span>: Constant gradient
             - <span class="ansi-blue-intense-fg">outer</span>: Value
@@ -697,14 +629,13 @@ Group (Gas quantities)
 </div>
 </section>
 <section id="Running-a-Simulation">
-<h2>Running a Simulation<a class="headerlink" href="#Running-a-Simulation" title="Permalink to this headline">¶</a></h2>
+<h2>Running a Simulation<a class="headerlink" href="#Running-a-Simulation" title="Permalink to this headline"></a></h2>
 <p>The simulation is now ready to go. This will take a few minutes. The default simulation is running for 100,000 years.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -714,7 +645,7 @@ Group (Gas quantities)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.8
+DustPy v1.0.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -786,20 +717,19 @@ Writing file <span class="ansi-blue-intense-fg">data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:22:15</span>
+Execution time: <span class="ansi-blue-intense-fg">0:24:44</span>
 </pre></div></div>
 </div>
 <p>By default <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has written output files into the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p>
 </section>
 <section id="Plotting">
-<h2>Plotting<a class="headerlink" href="#Plotting" title="Permalink to this headline">¶</a></h2>
+<h2>Plotting<a class="headerlink" href="#Plotting" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is coming with a simple plotting script that can be used to check the status of a simulation.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">plot</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">plot</span>
 </pre></div>
 </div>
 </div>
@@ -809,8 +739,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:15</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -830,8 +759,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:15</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">it</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ir</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">im</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">it</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ir</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">im</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -848,8 +776,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:15</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plot</span><span class="o">.</span><span class="n">ipanel</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">ipanel</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -861,7 +788,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:15</span>
 </div>
 </div>
 <section id="Code-Units">
-<h3>Code Units<a class="headerlink" href="#Code-Units" title="Permalink to this headline">¶</a></h3>
+<h3>Code Units<a class="headerlink" href="#Code-Units" title="Permalink to this headline"></a></h3>
 <p>The dust density distribution plotted here is given by</p>
 <p><span class="math notranslate nohighlight">\(\Sigma_\mathrm{d} \left( r \right) = \int\limits_0^\infty \sigma \left(r, m \right) \mathrm{d} \log m\)</span>.</p>
 <p>In this way the distribution is independent of the mass grid.</p>
@@ -872,8 +799,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:15</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -883,30 +809,30 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:15</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[1.09283146e+01 1.01828689e+01 9.48603226e+00 8.84124796e+00
- 8.23866115e+00 7.67571177e+00 7.14974245e+00 6.65847697e+00
- 6.19982625e+00 5.77156500e+00 5.37174854e+00 4.99865200e+00
- 4.65044746e+00 4.32549377e+00 4.02237714e+00 3.73959596e+00
- 3.47577332e+00 3.22975823e+00 3.00032058e+00 2.78631812e+00
- 2.58681643e+00 2.40080436e+00 2.22734708e+00 2.06568732e+00
- 1.91498892e+00 1.77450049e+00 1.64360791e+00 1.52161329e+00
- 1.40792570e+00 1.30204517e+00 1.20338186e+00 1.11148699e+00
- 1.02596100e+00 9.46277403e-01 8.72118179e-01 8.03118063e-01
- 7.38887360e-01 6.79161580e-01 6.23610134e-01 5.71969687e-01
- 5.24020357e-01 4.79449546e-01 4.38088477e-01 3.99706700e-01
- 3.64122137e-01 3.31161418e-01 3.00631159e-01 2.72406868e-01
- 2.46308929e-01 2.22230353e-01 2.00021620e-01 1.79583410e-01
- 1.60789274e-01 1.43548729e-01 1.27752360e-01 1.13321210e-01
- 1.00156288e-01 8.81861813e-02 7.73231901e-02 6.74987237e-02
- 5.86513492e-02 5.07114574e-02 4.36288359e-02 3.73585980e-02
- 3.18331955e-02 2.69788145e-02 2.27219081e-02 1.89981221e-02
- 1.57554027e-02 1.29505496e-02 1.05448702e-02 8.49991105e-03
- 6.77491908e-03 5.31978500e-03 4.06408953e-03 2.91134923e-03
- 1.79361456e-03 8.21874181e-04 2.63780355e-04 5.76736521e-05
- 8.54784017e-06 9.39349472e-07 7.84836962e-08 5.04576763e-09
- 2.49878166e-10 9.42726883e-12 2.64153180e-13 5.26963581e-15
- 7.04993256e-17 5.87373608e-19 2.81395967e-21 7.21934049e-24
- 9.57598005e-27 9.61221323e-29 7.84604599e-29 6.83347700e-29
+[1.09283251e+01 1.01828791e+01 9.48604209e+00 8.84125739e+00
+ 8.23867056e+00 7.67572175e+00 7.14975349e+00 6.65848859e+00
+ 6.19983596e+00 5.77157157e+00 5.37175385e+00 4.99865770e+00
+ 4.65045291e+00 4.32549793e+00 4.02237960e+00 3.73959690e+00
+ 3.47577340e+00 3.22975789e+00 3.00032001e+00 2.78631745e+00
+ 2.58681571e+00 2.40080359e+00 2.22734626e+00 2.06568645e+00
+ 1.91498800e+00 1.77449952e+00 1.64360690e+00 1.52161226e+00
+ 1.40792466e+00 1.30204415e+00 1.20338092e+00 1.11148613e+00
+ 1.02595994e+00 9.46276407e-01 8.72117309e-01 8.03117313e-01
+ 7.38886732e-01 6.79161103e-01 6.23609854e-01 5.71969659e-01
+ 5.24020648e-01 4.79450218e-01 4.38089587e-01 3.99708279e-01
+ 3.64124176e-01 3.31163854e-01 3.00633873e-01 2.72409689e-01
+ 2.46311654e-01 2.22232778e-01 2.00023579e-01 1.79584810e-01
+ 1.60790114e-01 1.43549100e-01 1.27752412e-01 1.13321095e-01
+ 1.00156097e-01 8.81859049e-02 7.73227535e-02 6.74980729e-02
+ 5.86505281e-02 5.07106051e-02 4.36281124e-02 3.73581134e-02
+ 3.18329644e-02 2.69787714e-02 2.27219610e-02 1.89982012e-02
+ 1.57554731e-02 1.29506015e-02 1.05449053e-02 8.49993421e-03
+ 6.77493496e-03 5.31979676e-03 4.06409721e-03 2.91135019e-03
+ 1.79361374e-03 8.21886626e-04 2.63785626e-04 5.76729804e-05
+ 8.54700359e-06 9.39124924e-07 7.84498062e-08 5.04238982e-09
+ 2.49642874e-10 9.41564487e-12 2.63750869e-13 5.26021058e-15
+ 7.03575698e-17 5.86092099e-19 2.80747056e-21 7.20204157e-24
+ 9.55246943e-27 9.61065004e-29 7.84604554e-29 6.83347700e-29
  5.95170965e-29 5.18372240e-29 4.51483347e-29 3.93225557e-29]
 </pre></div></div>
 </div>
@@ -918,8 +844,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:15</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">/</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">A</span>
 </pre></div>
@@ -946,8 +871,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:15</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">B</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">A</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">A</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -955,8 +879,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:15</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">/</span> <span class="n">B</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">/</span> <span class="n">B</span>
 </pre></div>
 </div>
 </div>
@@ -966,11 +889,11 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:15</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[[1.30707000e-01 1.11914207e-01 1.23755631e-01 ... 1.52526930e-23
+[[1.30710743e-01 1.11917741e-01 1.23759508e-01 ... 1.52526930e-23
   2.11935481e-23 2.94483396e-23]
- [1.25013252e-01 1.06691381e-01 1.17669158e-01 ... 1.32845402e-23
+ [1.25016332e-01 1.06694179e-01 1.17672100e-01 ... 1.32845402e-23
   1.84588088e-23 2.56484316e-23]
- [1.19916268e-01 1.01977857e-01 1.12144391e-01 ... 1.15703508e-23
+ [1.19918699e-01 1.01979933e-01 1.12146412e-01 ... 1.15703508e-23
   1.60769503e-23 2.23388501e-23]
  ...
  [4.45718657e-46 6.19324066e-46 8.60547999e-46 ... 2.30858850e-29
@@ -984,14 +907,13 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:15</span>
 </section>
 </section>
 <section id="Reading-data-files">
-<h2>Reading data files<a class="headerlink" href="#Reading-data-files" title="Permalink to this headline">¶</a></h2>
+<h2>Reading data files<a class="headerlink" href="#Reading-data-files" title="Permalink to this headline"></a></h2>
 <p>If you want to read data files you can use the read/writer module provided by <code class="docutils literal notranslate"><span class="pre">simframe</span></code>, that is used to write the data.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">hdf5writer</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">hdf5writer</span>
 
 <span class="n">wrtr</span> <span class="o">=</span> <span class="n">hdf5writer</span><span class="p">()</span>
 </pre></div>
@@ -1002,8 +924,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:22:15</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">wrtr</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wrtr</span>
 </pre></div>
 </div>
 </div>
@@ -1028,8 +949,7 @@ Writer (HDF5 file format using h5py)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data0003</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data0003</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1038,8 +958,7 @@ Writer (HDF5 file format using h5py)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data0003</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data0003</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
 </pre></div>
 </div>
 </div>
@@ -1081,8 +1000,7 @@ array([1.11397571e+003, 1.03910595e+003, 9.69196471e+002, 9.03718193e+002,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1091,8 +1009,7 @@ array([1.11397571e+003, 1.03910595e+003, 9.69196471e+002, 9.03718193e+002,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">shape</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -1110,8 +1027,7 @@ array([1.11397571e+003, 1.03910595e+003, 9.69196471e+002, 9.03718193e+002,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">SigmaGas</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;gas.Sigma&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SigmaGas</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;gas.Sigma&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1119,8 +1035,7 @@ array([1.11397571e+003, 1.03910595e+003, 9.69196471e+002, 9.03718193e+002,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">SigmaGas</span><span class="o">.</span><span class="n">shape</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SigmaGas</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -1138,14 +1053,13 @@ array([1.11397571e+003, 1.03910595e+003, 9.69196471e+002, 9.03718193e+002,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">save</span> <span class="o">=</span> <span class="kc">False</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">save</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
 </div>
 </div>
 </section>
 <section id="Reading-Dump-Files">
-<h2>Reading Dump Files<a class="headerlink" href="#Reading-Dump-Files" title="Permalink to this headline">¶</a></h2>
+<h2>Reading Dump Files<a class="headerlink" href="#Reading-Dump-Files" title="Permalink to this headline"></a></h2>
 <p>The data files are only containing the pure data, but no information about the operations <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has to perform, like customized functions. Therefore, it’s not possible to directly restart a simulation from data files.</p>
 <p><code class="docutils literal notranslate"><span class="pre">simframe</span></code> is saving by default the most recent dump file, from which a simulation can be restarted.</p>
 <p><strong>Attention:</strong> Malware can be injected with dump files, which are pickled objects. Only read dump files that you have created yourself or from sources that you trust! Dump files have to be read with the same version of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> as they were written. Otherwise, it is not guaranteed to work.</p>
@@ -1153,8 +1067,7 @@ array([1.11397571e+003, 1.03910595e+003, 9.69196471e+002, 9.03718193e+002,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">readdump</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">readdump</span>
 </pre></div>
 </div>
 </div>
@@ -1162,8 +1075,7 @@ array([1.11397571e+003, 1.03910595e+003, 9.69196471e+002, 9.03718193e+002,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim_restart</span> <span class="o">=</span> <span class="n">readdump</span><span class="p">(</span><span class="s2">&quot;data/frame.dmp&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_restart</span> <span class="o">=</span> <span class="n">readdump</span><span class="p">(</span><span class="s2">&quot;data/frame.dmp&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1172,8 +1084,7 @@ array([1.11397571e+003, 1.03910595e+003, 9.69196471e+002, 9.03718193e+002,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">==</span> <span class="n">sim_restart</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">==</span> <span class="n">sim_restart</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
 </pre></div>
 </div>
 </div>
@@ -1199,8 +1110,7 @@ array([1.11397571e+003, 1.03910595e+003, 9.69196471e+002, 9.03718193e+002,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">constants</span> <span class="k">as</span> <span class="n">c</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">constants</span> <span class="k">as</span> <span class="n">c</span>
 
 <span class="n">sim_restart</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">sim_restart</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span><span class="p">,</span> <span class="p">[</span><span class="mf">100001.</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">]))</span>
 </pre></div>
@@ -1211,8 +1121,7 @@ array([1.11397571e+003, 1.03910595e+003, 9.69196471e+002, 9.03718193e+002,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim_restart</span><span class="o">.</span><span class="n">t</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_restart</span><span class="o">.</span><span class="n">t</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
 </pre></div>
 </div>
 </div>
@@ -1230,8 +1139,7 @@ array([1.11397571e+003, 1.03910595e+003, 9.69196471e+002, 9.03718193e+002,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim_restart</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_restart</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1241,7 +1149,7 @@ array([1.11397571e+003, 1.03910595e+003, 9.69196471e+002, 9.03718193e+002,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v0.5.8
+DustPy v1.0.0
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -1270,7 +1178,7 @@ information about the Terms of Usage.</span>
 
 Writing file <span class="ansi-blue-intense-fg">data/data0022.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:00</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 </pre></div></div>
 </div>
 <p>Another file was written and the current time is now</p>
@@ -1278,8 +1186,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:00</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim_restart</span><span class="o">.</span><span class="n">t</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_restart</span><span class="o">.</span><span class="n">t</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
 </pre></div>
 </div>
 </div>
@@ -1297,51 +1204,33 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:00</span>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="2_simple_customization.html" class="btn btn-neutral float-right" title="2. Simple Customization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="DustPy Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="DustPy Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2_simple_customization.html" class="btn btn-neutral float-right" title="2. Simple Customization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
-
-    </p>
+    <p>&#169; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

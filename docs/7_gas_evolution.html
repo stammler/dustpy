@@ -1,74 +1,38 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>7. Gas Evolution &mdash; dustpy  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Test: Analytical Coagulation Kernels" href="test_analytical_coagulation_kernels.html" />
     <link rel="prev" title="6. Dust Evolution" href="6_dust_evolution.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> dustpy
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -76,17 +40,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
@@ -116,88 +70,64 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">dustpy</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
       <li>7. Gas Evolution</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="_sources/7_gas_evolution.ipynb.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -298,7 +228,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -364,6 +294,7 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -373,11 +304,12 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -386,10 +318,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -401,12 +337,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -434,7 +373,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="7.-Gas-Evolution">
-<h1>7. Gas Evolution<a class="headerlink" href="#7.-Gas-Evolution" title="Permalink to this headline">¶</a></h1>
+<h1>7. Gas Evolution<a class="headerlink" href="#7.-Gas-Evolution" title="Permalink to this headline"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> solves gas evolution with an implicit scheme. It is solving by default the following equation for a viscously evolving disk</p>
 <p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{g} + \frac{1}{r}\frac{\partial}{\partial r} \left( r\Sigma_\mathrm{g}v_\mathrm{rad} \right) = S_\mathrm{ext}\)</span>.</p>
 <p>Where the radial gas velocity is given by</p>
@@ -447,8 +386,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">Simulation</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">Simulation</span>
 <span class="n">sim</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">()</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span> <span class="o">=</span> <span class="mi">15</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
@@ -456,7 +394,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Hydrodynamics">
-<h2>Hydrodynamics<a class="headerlink" href="#Hydrodynamics" title="Permalink to this headline">¶</a></h2>
+<h2>Hydrodynamics<a class="headerlink" href="#Hydrodynamics" title="Permalink to this headline"></a></h2>
 <p>The implicit matrix equation that is solved for gas evolution is given by</p>
 <p><span class="math notranslate nohighlight">\(\frac{\vec{\Sigma}_\mathrm{g}^{n+1}-\vec{\Sigma}_\mathrm{g}^{n}}{\Delta t} = \mathbb{J} \cdot \vec{\Sigma}_\mathrm{g}^{n+1} + \vec{S}_\mathrm{ext},\)</span></p>
 <p>which can be written as</p>
@@ -468,8 +406,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
@@ -478,8 +415,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">jacobian</span><span class="p">()</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span> <span class="o">!=</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -517,8 +453,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">jacobian</span><span class="p">()</span> <span class="o">@</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">jacobian</span><span class="p">()</span> <span class="o">@</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
 </pre></div>
 </div>
 </div>
@@ -537,15 +472,14 @@ array([ 9.89910382e-05, -1.45436122e-11, -6.35260799e-12, -3.78602233e-12,
 <p>However, the first and the last element will not have the correct value, since they contain the instructions for the boundaries without the time step.</p>
 <p>The interface fluxes and the gas velocity will be calculated after the integration step, when the new values of the gas surface density will be accessible. Changes to the fluxes or the gas velocities will therefore not influence the gas evolution. In other words, you cannot turn off the hydrodynamic gas evolution by setting the viscous velocity to zero.</p>
 <section id="Turning-off-Hydrodynamics">
-<h3>Turning off Hydrodynamics<a class="headerlink" href="#Turning-off-Hydrodynamics" title="Permalink to this headline">¶</a></h3>
+<h3>Turning off Hydrodynamics<a class="headerlink" href="#Turning-off-Hydrodynamics" title="Permalink to this headline"></a></h3>
 <p>The diagonals of the Jacobian contain information about the grid <span class="math notranslate nohighlight">\(r\)</span>, the viscosity <span class="math notranslate nohighlight">\(\nu\)</span>, and the backreaction quantities, as seen in the accretion equation above. To turn off only the gas hydrodynamics, but not the external sources, one has to set the Jacobian to zero (except for the boundaries). This can be achieved by setting the viscosity to zero and unsetting its updater.</p>
 <p><strong>Note:</strong> This is only true, if there is no backreaction, i.e., <span class="math notranslate nohighlight">\(A=1\)</span> and <span class="math notranslate nohighlight">\(B=0\)</span>. Otherwise, the interaction with the dust would still influence the gas.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">nu</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">0.</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">nu</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">0.</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">nu</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 </div>
@@ -554,8 +488,7 @@ array([ 9.89910382e-05, -1.45436122e-11, -6.35260799e-12, -3.78602233e-12,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">jacobian</span><span class="p">()</span> <span class="o">@</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="o">.</span><span class="n">jacobian</span><span class="p">()</span> <span class="o">@</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
 </pre></div>
 </div>
 </div>
@@ -575,18 +508,17 @@ array([9.89910382e-05, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
 </section>
 </section>
 <section id="External-Sources">
-<h2>External Sources<a class="headerlink" href="#External-Sources" title="Permalink to this headline">¶</a></h2>
+<h2>External Sources<a class="headerlink" href="#External-Sources" title="Permalink to this headline"></a></h2>
 <p>The external gas sources <code class="docutils literal notranslate"><span class="pre">Simulation.gas.S.ext</span></code> can be used as additional source or loss term, for gas infall or photoevaporation. By default they are set to zero.</p>
 <p>The first and the last element of the array will not have an effect on gas evolution, since they will be overwritten by the integration scheme to set the boundaries as described above.</p>
 <section id="Turning-off-External-Sources">
-<h3>Turning off External Sources<a class="headerlink" href="#Turning-off-External-Sources" title="Permalink to this headline">¶</a></h3>
+<h3>Turning off External Sources<a class="headerlink" href="#Turning-off-External-Sources" title="Permalink to this headline"></a></h3>
 <p>To turn off external source terms set the field to zero and unset its updater.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">ext</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">0.</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">ext</span><span class="p">[:]</span> <span class="o">=</span> <span class="mf">0.</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 </div>
@@ -594,14 +526,13 @@ array([9.89910382e-05, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
 </section>
 </section>
 <section id="Turning-off-Gas-Evolution">
-<h2>Turning off Gas Evolution<a class="headerlink" href="#Turning-off-Gas-Evolution" title="Permalink to this headline">¶</a></h2>
+<h2>Turning off Gas Evolution<a class="headerlink" href="#Turning-off-Gas-Evolution" title="Permalink to this headline"></a></h2>
 <p>To turn off the entire gas evolution you can either turn off hte individual parts as described above or you can remove the integration instruction of the gas from the instruction list.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">instructions</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">instructions</span>
 </pre></div>
 </div>
 </div>
@@ -619,8 +550,7 @@ array([9.89910382e-05, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">del</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">instructions</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">instructions</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -628,8 +558,7 @@ array([9.89910382e-05, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">instructions</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">instructions</span>
 </pre></div>
 </div>
 </div>
@@ -648,51 +577,33 @@ array([9.89910382e-05, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="test_analytical_coagulation_kernels.html" class="btn btn-neutral float-right" title="Test: Analytical Coagulation Kernels" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="6_dust_evolution.html" class="btn btn-neutral float-left" title="6. Dust Evolution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="6_dust_evolution.html" class="btn btn-neutral float-left" title="6. Dust Evolution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test_analytical_coagulation_kernels.html" class="btn btn-neutral float-right" title="Test: Analytical Coagulation Kernels" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel
-
-    </p>
+    <p>&#169; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
