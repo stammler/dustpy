@@ -836,9 +836,6 @@ DustPy v1.0.0
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
 GitHub:        https://github.com/stammler/dustpy/
-<span class="ansi-red-intense-fg">
-Please read README.md on the GitHub repository for
-information about the Terms of Usage.</span>
 
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
@@ -903,7 +900,7 @@ Writing file <span class="ansi-blue-intense-fg">example_planetary_gaps/data0020.
 Writing dump file <span class="ansi-blue-intense-fg">example_planetary_gaps/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">example_planetary_gaps/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">example_planetary_gaps/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:54:35</span>
+Execution time: <span class="ansi-blue-intense-fg">0:46:42</span>
 </pre></div></div>
 </div>
 <p>This is the result of our simulation.</p>
@@ -952,7 +949,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:54:35</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">Msat</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Saturn&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time [years]&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mass [$M_\oplus$]&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
@@ -960,20 +957,11 @@ Execution time: <span class="ansi-blue-intense-fg">0:54:35</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/tmp/ipykernel_36461/1278233953.py:7: MatplotlibDeprecationWarning: The &#39;b&#39; parameter of grid() has been renamed &#39;visible&#39; since Matplotlib 3.5; support for the old name will be dropped two minor releases later.
-  ax.grid(b=True)
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_planetary_gaps_51_1.png" src="_images/example_planetary_gaps_51_1.png" />
+<img alt="_images/example_planetary_gaps_51_0.png" src="_images/example_planetary_gaps_51_0.png" />
 </div>
 </div>
 </section>
