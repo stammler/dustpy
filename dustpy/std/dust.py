@@ -869,7 +869,7 @@ def vrel_tot(sim):
 
 def vrel_turbulent_motion(sim):
     """Function calculates the relative particle velocities due to turbulent motion.
-    It uses the prescription of Cuzzi & Ormel (2007).
+    It uses the prescription of Ormel & Cuzzi (2007).
 
     Parameters
     ----------
@@ -880,7 +880,7 @@ def vrel_turbulent_motion(sim):
     -------
     vrel : Field
         Relative velocities"""
-    return dust_f.vrel_cuzzi_ormel_2007(
+    return dust_f.vrel_ormel_cuzzi_2007(
         sim.dust.delta.turb,
         sim.gas.cs,
         sim.gas.mu,

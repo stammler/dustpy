@@ -1431,10 +1431,10 @@ subroutine vrel_brownian_motion(cs, m, T, vrel, Nr, Nm)
 end subroutine vrel_brownian_motion
 
 
-subroutine vrel_cuzzi_ormel_2007(alpha, cs, mump, OmegaK, SigmaGas, &
+subroutine vrel_ormel_cuzzi_2007(alpha, cs, mump, OmegaK, SigmaGas, &
   & St, vrel, Nr, Nm)
   ! Subroutine calculates the relative particle velocities due to turbulent motion
-  ! accourding the prescription of Cuzzi & Ormel (2007).
+  ! accourding the prescription of Ormel & Cuzzi (2007).
   !
   ! Parameters
   ! ----------
