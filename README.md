@@ -1,6 +1,17 @@
 # DustPy
 
-Package for Dust Coagulation and Evolution in Protoplanetary Disks.
+![GitHub](https://img.shields.io/github/license/stammler/simframe) 
+![PyPI - Downloads](https://img.shields.io/pypi/dm/dustpy) 
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://github.com/stammler/dustpy/blob/master/.github/CODE_OF_CONDUCT.md) 
+
+### Dust Coagulation and Evolution in Protoplanetary Disks
+
+`DustPy` is a Python package to simulate the evolution of dust in protoplanetary disks.
+
+`DustPy` simulates the radial evolution of gas and dust in a protoplanetary disk, involving viscous evolution the the gas disk, advection and diffusion of the dust disk, as well as dust growth by solving the Smoluchowski equation.
+
+Please read the [documentation](https://stammler.github.io/dustpy/) for a detailed description.
+
 
 ## Terms of Usage
 
@@ -9,7 +20,17 @@ By using any version of `DustPy` you agree to these terms of usage.
 
 ## Installation
 
+`DustPy` can be installed via PyPI:
+
 `pip install dustpy`
+
+## Requirements
+
+`DustPy` needs a Python3 distribution and a Fortran compiler installed on your system.
+
+## Contributing
+
+To contribute to `DustPy` please read [Contribution Guidlines](https://github.com/stammler/dustpy/blob/master/.github/CONTRIBUTING.md).
 
 ## Documentation
 
