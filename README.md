@@ -2,7 +2,7 @@
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/stammler/dustpy/pages%20build%20and%20deployment?label=docs)](https://stammler.github.io/dustpy/) 
 ![GitHub](https://img.shields.io/github/license/stammler/dustpy) 
-![PyPI - Downloads](https://img.shields.io/pypi/dm/dustpy) 
+![PyPI - Downloads](https://img.shields.io/pypi/dm/dustpy?label=PyPI%20downloads) 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://github.com/stammler/dustpy/blob/master/.github/CODE_OF_CONDUCT.md) 
 
 ### Dust Coagulation and Evolution in Protoplanetary Disks
