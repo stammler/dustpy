@@ -1,6 +1,6 @@
 # DustPy
 
-![GitHub](https://img.shields.io/github/license/stammler/simframe) 
+![GitHub](https://img.shields.io/github/license/stammler/dustpy) 
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/dustpy) 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://github.com/stammler/dustpy/blob/master/.github/CODE_OF_CONDUCT.md) 
 
