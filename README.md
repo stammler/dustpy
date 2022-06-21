@@ -20,7 +20,7 @@ By using any version of `DustPy` you agree to these terms of usage.
 
 ## Installation
 
-`DustPy` can be installed via PyPI:
+`DustPy` can be installed via the Python Package Index
 
 `pip install dustpy`
 
@@ -55,8 +55,10 @@ To contribute to `DustPy` please read [Contribution Guidlines](https://github.co
 
 [Module Reference](https://stammler.github.io/dustpy/api.html)
 
-`DustPy` is using the `simframe` framework.  
-For details we refer to the [Simframe Documentation](https://simframe.rtfd.io/).
+## Framework
+
+`DustPy` is using the [Simframe](http://github.com/stammler/simframe/) framework for scientific simulations.  
+Journal of Open Source Software: [![status](https://joss.theoj.org/papers/0ef61e034c57445e846b2ec383c920a6/status.svg)](https://joss.theoj.org/papers/0ef61e034c57445e846b2ec383c920a6)
 
 ## Ackowledgements
 
