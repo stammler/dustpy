@@ -51,6 +51,8 @@ To contribute to `DustPy` please read [Contribution Guidlines](https://github.co
 * [Example: Planetary Gaps](https://stammler.github.io/dustpy/example_planetary_gaps.html)
 * [Example: Planetesimal Formation](https://stammler.github.io/dustpy/example_planetesimal_formation.html)
 
+* [List of Publications](https://stammler.github.io/dustpy/A_publications.html)
+
 [Module Reference](https://stammler.github.io/dustpy/api.html)
 
 `DustPy` is using the `simframe` framework.  
