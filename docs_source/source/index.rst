@@ -11,7 +11,9 @@
 
 | ``pip install dustpy``
 
-| ``DustPy`` is based on the ``simframe`` framework for scientific simulation (`Stammler & Birnstiel, 2022 <https://joss.theoj.org/papers/10.21105/joss.03882>`_).
+| ``DustPy`` requires a Python3 distribution and a Fortran compiler.
+
+| ``DustPy`` is based on the ``Simframe`` framework for scientific simulation (`Stammler & Birnstiel, 2022 <https://joss.theoj.org/papers/10.21105/joss.03882>`_).
 | Please have a look at the `Simframe Documentation <https://simframe.rtfd.io>`_ for details of its usage.
 
 .. toctree::
