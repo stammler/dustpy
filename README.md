@@ -58,8 +58,7 @@ To contribute to `DustPy` please read [Contribution Guidlines](https://github.co
 
 ## Framework
 
-`DustPy` is using the [Simframe](http://github.com/stammler/simframe/) framework for scientific simulations (Stammler & Birnstiel, 2022).  
-Journal of Open Source Software: [![status](https://joss.theoj.org/papers/0ef61e034c57445e846b2ec383c920a6/status.svg)](https://joss.theoj.org/papers/0ef61e034c57445e846b2ec383c920a6)
+`DustPy` is using the [Simframe](http://github.com/stammler/simframe/) framework for scientific simulations ([Stammler & Birnstiel, 2022 ![status](https://joss.theoj.org/papers/0ef61e034c57445e846b2ec383c920a6/status.svg)](https://joss.theoj.org/papers/0ef61e034c57445e846b2ec383c920a6))
 
 ## Ackowledgements
 
