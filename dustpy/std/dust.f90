@@ -1582,7 +1582,7 @@ subroutine vrel_ormel_cuzzi_2007(alpha, cs, mump, OmegaK, SigmaGas, &
     end do
   end do
 
-end subroutine vrel_cuzzi_ormel_2007
+end subroutine vrel_ormel_cuzzi_2007
 
 
 subroutine vrel_radial_drift(vrad, vrel, Nr, Nm)
