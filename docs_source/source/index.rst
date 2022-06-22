@@ -1,17 +1,18 @@
 ``DustPy`` Documentation
 =========================================
 
-| ``DustPy`` is a dust coagulation and evolution code for protoplanetary disks.
+| `DustPy` is a Python package to simulate the evolution of dust in protoplanetary disks.
 
 | This documentation is for ``DustPy v1.0.0``.
 
-| To install ``DustPy`` simply type
+| `DustPy` simulates the radial evolution of gas and dust in a protoplanetary disk, involving viscous evolution the the gas disk, advection and diffusion of the dust disk, as well as dust growth by solving the Smoluchowski equation.
+
+| ``DustPy`` can be installed via the Python Package Index
+
 | ``pip install dustpy``
 
-| ``DustPy`` is based on the ``simframe`` framework for scientific simulation.
+| ``DustPy`` is based on the ``simframe`` framework for scientific simulation (`Stammler & Birnstiel, 2022 <https://joss.theoj.org/papers/10.21105/joss.03882>`_).
 | Please have a look at the `Simframe Documentation <https://simframe.rtfd.io>`_ for details of its usage.
-
-| The following examples demonstrate the usage of ``DustPy``.
 
 .. toctree::
    :maxdepth: 2
