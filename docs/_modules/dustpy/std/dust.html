@@ -950,7 +950,7 @@
 
 <div class="viewcode-block" id="vrel_turbulent_motion"><a class="viewcode-back" href="../../../api/dustpy.std.dust.vrel_turbulent_motion.html#dustpy.std.dust.vrel_turbulent_motion">[docs]</a><span class="k">def</span> <span class="nf">vrel_turbulent_motion</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function calculates the relative particle velocities due to turbulent motion.</span>
-<span class="sd">    It uses the prescription of Cuzzi &amp; Ormel (2007).</span>
+<span class="sd">    It uses the prescription of Ormel &amp; Cuzzi (2007).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -961,7 +961,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    vrel : Field</span>
 <span class="sd">        Relative velocities&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">dust_f</span><span class="o">.</span><span class="n">vrel_cuzzi_ormel_2007</span><span class="p">(</span>
+    <span class="k">return</span> <span class="n">dust_f</span><span class="o">.</span><span class="n">vrel_ormel_cuzzi_2007</span><span class="p">(</span>
         <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">turb</span><span class="p">,</span>
         <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">cs</span><span class="p">,</span>
         <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">mu</span><span class="p">,</span>
@@ -1052,7 +1052,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Sebastian Stammler &amp; Til Birnstiel.</p>
+    <p>&#169; Copyright 2020-2022, Sebastian Stammler &amp; Tilman Birnstiel.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
