@@ -18,8 +18,8 @@ sys.path.insert(0, os.path.abspath('../../'))
 # -- Project information -----------------------------------------------------
 
 project = 'dustpy'
-copyright = '2020, Sebastian Stammler & Til Birnstiel'
-author = 'Sebastian Stammler & Til Birnstiel'
+copyright = '2020-2022, Sebastian Stammler & Tilman Birnstiel'
+author = 'Sebastian Stammler & Tilman Birnstiel'
 
 
 # -- General configuration ---------------------------------------------------
