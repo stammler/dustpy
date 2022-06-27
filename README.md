@@ -43,15 +43,12 @@ To contribute to `DustPy` please read [Contribution Guidlines](https://github.co
 * [4. The Standard Model](https://stammler.github.io/dustpy/4_standard_model.html)
 * [5. Dust Coagulation](https://stammler.github.io/dustpy/5_dust_coagulation.html)
 * [6. Dust Evolution](https://stammler.github.io/dustpy/6_dust_evolution.html)
-* [7. Gas Evolution](https://stammler.github.io/dustpy/7_gas_evolution.html)
-
+* [7. Gas Evolution](https://stammler.github.io/dustpy/7_gas_evolution.html) <br /> &nbsp;
 * [Test: Analytical Coagulation Kernels](https://stammler.github.io/dustpy/test_analytical_coagulation_kernels.html)
-* [Test: Gas Evolution](https://stammler.github.io/dustpy/test_gas_evolution.html)
-
+* [Test: Gas Evolution](https://stammler.github.io/dustpy/test_gas_evolution.html) <br /> &nbsp;
 * [Example: Ice Lines](https://stammler.github.io/dustpy/example_ice_lines.html)
 * [Example: Planetary Gaps](https://stammler.github.io/dustpy/example_planetary_gaps.html)
-* [Example: Planetesimal Formation](https://stammler.github.io/dustpy/example_planetesimal_formation.html)
-
+* [Example: Planetesimal Formation](https://stammler.github.io/dustpy/example_planetesimal_formation.html) <br /> &nbsp;
 * [List of Publications](https://stammler.github.io/dustpy/A_publications.html)
 
 [Module Reference](https://stammler.github.io/dustpy/api.html)
