@@ -211,8 +211,6 @@ class Simulation(Frame):
                 "https://pypi.org/project/dustpy/")
             msg += "\nGitHub:        {}".format(
                 "https://github.com/stammler/dustpy/")
-            msg += "\n"
-            msg += colorize("\nPlease read README.md on the GitHub repository for\ninformation about the Terms of Usage.", "red")
             print(msg)
         # Check for mass conserbation
         self.checkmassconservation()
