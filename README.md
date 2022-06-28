@@ -12,11 +12,6 @@
 `DustPy` simulates the radial evolution of gas and dust in a protoplanetary disk, involving viscous evolution the the gas disk, advection and diffusion of the dust disk, as well as dust growth by solving the Smoluchowski equation.
 
 Please read the [documentation](https://stammler.github.io/dustpy/) for a detailed description.
-
-
-## Terms of Usage
-
-Usage is only permitted under the condition of close collaboration and the option of co-authorship to publications that made use of `DustPy`, until the code paper is published.  
 By using any version of `DustPy` you agree to these terms of usage.
 
 ## Installation
@@ -55,7 +50,7 @@ To contribute to `DustPy` please read [Contribution Guidlines](https://github.co
 
 ## Framework
 
-`DustPy` is using the [Simframe](http://github.com/stammler/simframe/) framework for scientific simulations ([Stammler & Birnstiel, 2022 ![status](https://joss.theoj.org/papers/0ef61e034c57445e846b2ec383c920a6/status.svg)](https://joss.theoj.org/papers/0ef61e034c57445e846b2ec383c920a6))
+`DustPy` is using the [Simframe](http://github.com/stammler/simframe/) framework for scientific simulations ([Stammler & Birnstiel, 2022)](https://joss.theoj.org/papers/0ef61e034c57445e846b2ec383c920a6))
 
 ## Ackowledgements
 
