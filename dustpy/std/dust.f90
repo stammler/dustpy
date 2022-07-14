@@ -999,9 +999,10 @@ subroutine kernel(a, H, Sigma, SigmaFloor, vrel, K, Nr, Nm)
   integer,          intent(in)  :: Nr
   integer,          intent(in)  :: Nm
 
-  integer :: ir
-  integer :: i
-  integer :: j
+  integer          :: ir
+  integer          :: i
+  integer          :: j
+  double precision :: kdelta
 
   ! Initialization
   K(:, :, :) = 0.d0
@@ -1011,7 +1012,7 @@ subroutine kernel(a, H, Sigma, SigmaFloor, vrel, K, Nr, Nm)
       if(Sigma(ir, i) .lt. SigmaFloor(ir, i)) cycle
       do j=1, i
         if(Sigma(ir, j) .lt. SigmaFloor(ir, j)) cycle
-        K(ir, j, i) = pi * (a(ir, j) + a(ir, i))**2 * vrel(ir, j, i) &
+        K(ir, j, i) = (1.d0 - 0.5d0*kdelta(j, i)) * pi * (a(ir, j) + a(ir, i))**2 * vrel(ir, j, i) &
           & / sqrt( 2.d0 * pi * ( H(ir, j)**2 + H(ir, i)**2 ) )
       end do
     end do
