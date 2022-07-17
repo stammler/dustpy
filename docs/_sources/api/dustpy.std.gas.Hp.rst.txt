@@ -1,0 +1,6 @@
+Hp
+==
+
+.. currentmodule:: dustpy.std.gas
+
+.. autofunction:: Hp

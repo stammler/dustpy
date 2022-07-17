@@ -1,0 +1,3530 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# 4. The Standard Model\n",
+    "\n",
+    "In this chapter we'll go through all fields in the standard model, explain their meaning and the default functions that calculate them."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:16.909788Z",
+     "iopub.status.busy": "2022-07-14T11:48:16.909213Z",
+     "iopub.status.idle": "2022-07-14T11:48:17.797192Z",
+     "shell.execute_reply": "2022-07-14T11:48:17.796571Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "from dustpy import Simulation"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:17.803061Z",
+     "iopub.status.busy": "2022-07-14T11:48:17.802781Z",
+     "iopub.status.idle": "2022-07-14T11:48:17.806736Z",
+     "shell.execute_reply": "2022-07-14T11:48:17.806016Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "sim = Simulation()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:17.812259Z",
+     "iopub.status.busy": "2022-07-14T11:48:17.811962Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.112573Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.111985Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "sim.initialize()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "By default the frame object of `DustPy` consists of four groups for **dust**, **gas**, **grid**, and **stellar** parameters, a field for the **time**, which is the integration variable, an **integrator** object, and a **writer** object."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.118481Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.118196Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.125298Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.124700Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "DustPy\n",
+       "------\n",
+       "    dust         : Group (Dust quantities)\n",
+       "    gas          : Group (Gas quantities)\n",
+       "    grid         : Group (Grid quantities)\n",
+       "    star         : Group (Stellar quantities)\n",
+       "  -----\n",
+       "    t            : IntVar (Time [s]), \u001b[95mIntegration variable\u001b[0m\n",
+       "  -----\n",
+       "    Integrator   : Integrator (Default integrator)\n",
+       "    Writer       : Writer (HDF5 file format using h5py)"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Dust"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.167410Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.166896Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.177135Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.175847Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Dust quantities)\n",
+       "-----------------------\n",
+       "    backreaction : Group (Backreaction coefficients)\n",
+       "    boundary     : Group (Boundary conditions)\n",
+       "    coagulation  : Group (Coagulation quantities)\n",
+       "    delta        : Group (Mixing parameters)\n",
+       "    Fi           : Group (Fluxes)\n",
+       "    p            : Group (Probabilities)\n",
+       "    S            : Group (Sources)\n",
+       "    v            : Group (Velocities)\n",
+       "  -----\n",
+       "    a            : Field (Particle size [cm])\n",
+       "    D            : Field (Diffusivity [cm²/s])\n",
+       "    eps          : Field (Dust-to-gas ratio)\n",
+       "    fill         : Field (Filling factor)\n",
+       "    H            : Field (Scale heights [cm])\n",
+       "    kernel       : Field (Collision kernel [cm²/s])\n",
+       "    rho          : Field (Midplane mass density per mass bin [g/cm³])\n",
+       "    rhos         : Field (Solid state density [g/cm³])\n",
+       "    Sigma        : Field (Surface density per mass bin [g/cm²])\n",
+       "    SigmaFloor   : Field (Floor value of surface density [g/cm²])\n",
+       "    St           : Field (Stokes number)\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.backreaction`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.181170Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.180704Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.189827Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.188539Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Backreaction coefficients)\n",
+       "---------------------------------\n",
+       "    A            : Field (Pull factor)\n",
+       "    B            : Field (Push factor)\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.backreaction"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The backreaction describes the hydrodynamic influence the dust has on the gas. Numerically it consists of two fields `A` and `B` of shape `(Simulation.grid.Nr,)` that describe the pull respectively the push the dust excerts on the gas.\n",
+    "\n",
+    "The details of this mechanism are described in [Gárate et al. (2019)](https://doi.org/10.3847/1538-4357/aaf4fc).\n",
+    "\n",
+    "Backreaction modifies the radial gas velocity as follows\n",
+    "\n",
+    "$v_\\mathrm{g} = Av_\\mathrm{visc} + 2B\\eta v_\\mathrm{K}$.\n",
+    "\n",
+    "In the standard model we have `A=1` and `B=0` everywhere, i.e., backreactions is not active."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.195008Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.194510Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.205745Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.204194Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.\n",
+       " 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.\n",
+       " 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.\n",
+       " 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.\n",
+       " 1. 1. 1. 1.]"
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.backreaction.A"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.211666Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.211171Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.222847Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.221242Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n",
+       " 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n",
+       " 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n",
+       " 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n",
+       " 0. 0. 0. 0.]"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.backreaction.B"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Depending on the type of backreaction that you want to model, you have to provide functions for `A` and `B`. Have a look at Appendix A of [Gárate et al. (2019)](https://doi.org/10.3847/1538-4357/aaf4fc) for examples."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.boundary`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.229793Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.229295Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.238403Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.237082Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Boundary conditions)\n",
+       "---------------------------\n",
+       "    inner        : Boundary\n",
+       "    outer        : Boundary\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.boundary"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "By default the inner dust boundary is set to constant gradient and the outer boundary to floor value."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.244725Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.244230Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.252173Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.251086Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Constant gradient"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.boundary.inner"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.258127Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.257616Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.265143Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.264157Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Value"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.boundary.outer"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The outer boundary therefore stores an array with the floor values of all particle masses.\n",
+    "\n",
+    "The boundary conditions can be changed via `setcondition()`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.271677Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.271188Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.278406Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.277357Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Help on method setcondition in module dustpy.utils.boundary:\n",
+      "\n",
+      "setcondition(condition, value=None) method of dustpy.utils.boundary.Boundary instance\n",
+      "    Function to set boundary condition.\n",
+      "    \n",
+      "    Parameters\n",
+      "    ----------\n",
+      "    condition : string\n",
+      "        Type of boundary conditon:\n",
+      "            - \"const_grad\" : constant gradient\n",
+      "            - \"const_pow\" : constant power law\n",
+      "            - \"const_val\" : constant value\n",
+      "            - \"val\" : custom value\n",
+      "            - \"grad\" : custom gradient\n",
+      "            - \"pow\" : custom power law with set exponent\n",
+      "            - None : Don't impose boundary condition (default)\n",
+      "    value : float or array, optional, default : None\n",
+      "        Value if needed for boundary condition\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "help(sim.dust.boundary.outer.setcondition)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.coagulation`\n",
+    "\n",
+    "The fields in this group define the behavior of dust growth and are discussed in a separate chapter about dust coagulation."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.delta`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.283702Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.283242Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.290841Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.289837Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Mixing parameters)\n",
+       "-------------------------\n",
+       "    rad          : Field (Radial mixing parameter)\n",
+       "    turb         : Field (Turbulent mixing parameter)\n",
+       "    vert         : Field (Vertical mixing parameter)\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.delta"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The $\\delta$ parameters control the mixing of dust particles along vertical and radial directions and turbulent mixing. You can look at them as similar to the turbulent $\\alpha$ parameter for the gas. And by default they will have the same value as $\\alpha$ as given by `Simulation.ini.gas.alpha`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.delta.rad`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.296468Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.296005Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.304966Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.304036Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001]"
+      ]
+     },
+     "execution_count": 14,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.delta.rad"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "$\\delta_\\mathrm{rad}$ will be used to calculate the radial dust diffusion."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.delta.turb`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.311739Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.311277Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.320616Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.319687Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001]"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.delta.turb"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "$\\delta_\\mathrm{turb}$ will be used to calculate the turbulent collision velocities of the dust particles."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.delta.vert`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.326643Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.326177Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.334917Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.334028Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001]"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.delta.vert"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "$\\delta_\\mathrm{vert}$ will be used to calculate the vertical dust scale heights."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.Fi`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.342310Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.341845Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.349092Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.348152Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Fluxes)\n",
+       "--------------\n",
+       "    adv          : Field (Advective flux [g/cm/s])\n",
+       "    diff         : Field (Diffusive flux [g/cm/s])\n",
+       "    tot          : Field (Total flux [g/cm/s])\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 17,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.Fi"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "This is a group of fluxes through the radial grid interfaces for every particle mass of shape `(Simulation.grid.Nr+1,, Simulation.grid.Nm)`.\n",
+    "\n",
+    "**Attention:** When using implicit dust integration, the interface fluxes are calculated in retrospect after the new dust surface density was found. Changing any `Simulation.dust.Fi` does not influence the simulation. It is only given for data analysis."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.Fi.adv`\n",
+    "\n",
+    "This is the advective flux calculated by $F_\\mathrm{adv} = v_\\mathrm{d}\\Sigma_\\mathrm{d}$.\n",
+    "\n",
+    "**Attention:** When using implicit dust integration, the advective interface fluxes are calculated in retrospect after the new dust surface density was found. Changing `Simulation.dust.Fi.adv` does not influence the simulation. It is only given for data analysis."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.Fi.diff`\n",
+    "\n",
+    "This is the diffusive flux calculated by $F_\\mathrm{diff} = -D\\Sigma_\\mathrm{g}\\nabla\\frac{\\Sigma_\\mathrm{d}}{\\Sigma_\\mathrm{gas}}$ for every particle species separately. The diffusive fluxes at the grid boundaries are set to zero to avoid instabilities.\n",
+    "\n",
+    "**Attention:** When using implicit dust integration, the diffusive interface fluxes are calculated in retrospect after the new dust surface density was found. Changing `Simulation.dust.Fi.diff` does not influence the simulation. It is only given for data analysis."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.Fi.tot`\n",
+    "\n",
+    "This is the total flux through the radial grid interfaces $F_\\mathrm{tot} = F_\\mathrm{adv} + F_\\mathrm{diff}$.\n",
+    "\n",
+    "**Attention:** When using implicit dust integration, the total interface fluxes are calculated in retrospect after the new dust surface density was found. Changing `Simulation.dust.Fi.tot` does not influence the simulation. It is only given for data analysis."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.p`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.355302Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.354835Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.362201Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.361239Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Probabilities)\n",
+       "---------------------\n",
+       "    frag         : Field (Fragmentation probability)\n",
+       "    stick        : Field (Sticking probability)\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.p"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "These are the fragmentation and sticking probability of certain particle collisions.  \n",
+    "Their shape is `(Simulation.grid.Nr, Simulation.grid.Nm, Simulation.grid.Nm)`.\n",
+    "\n",
+    "The fragmentation probability of particle `i=80`, with particle `j=3` at radial grid cell `ir=30` is given by"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.367917Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.367422Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.376110Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.375158Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.9963360191942424"
+      ]
+     },
+     "execution_count": 19,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ir = 30\n",
+    "i = 80\n",
+    "j = 3\n",
+    "sim.dust.p.frag[ir, j, i]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.p.frag`\n",
+    "\n",
+    "`DustPy` assumes that the relative collision velocities follow the Maxwell-Boltzmann distribution\n",
+    "\n",
+    "$f\\left(\\Delta v\\right) = \\sqrt{\\frac{54}{\\pi}}\\frac{\\Delta v^{2}}{v_\\mathrm{rms}^3} \\exp \\left[-\\frac{3}{2} \\frac{\\Delta v^2}{v_\\mathrm{rms}^2} \\right]$.\n",
+    "\n",
+    "The collision kernel for fragmentation is then given by\n",
+    "\n",
+    "$K_\\mathrm{f} = \\int\\limits_{v_\\mathrm{frag}}^\\infty \\sigma_\\mathrm{geo} \\Delta v f\\left(\\Delta v\\right) \\mathrm{d}\\Delta v$\n",
+    "\n",
+    "by counting all collisions above the fragmentation velocity.\n",
+    "\n",
+    "The fragmentation probability is the given by\n",
+    "\n",
+    "$p_\\mathrm{f} = \\frac{K_\\mathrm{f}}{\\sigma_\\mathrm{geo} \\Delta \\bar{v}}$\n",
+    "\n",
+    "with the mean velocity of the Maxwell-Boltzmann distribution\n",
+    "\n",
+    "$\\Delta \\bar{v} = \\sqrt{\\frac{8\\pi}{2}}v_\\mathrm{rms}$.\n",
+    "\n",
+    "The root-mean-square velocities $v_\\mathrm{rms}$ are stored in `Simulation.dust.v.rel`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.p.stick`\n",
+    "\n",
+    "This is the sticking probability given by $p_\\mathrm{s} = 1 - p_\\mathrm{f}$.\n",
+    "\n",
+    "Bouncing can be easily implemented if $0 \\leq p_\\mathrm{f} + p_\\mathrm{s} < 1$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.S`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.384993Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.384491Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.391819Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.390898Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Sources)\n",
+       "---------------\n",
+       "    coag         : Field (Coagulation sources [g/cm²/s])\n",
+       "    ext          : Field (External sources [g/cm²/s])\n",
+       "    hyd          : Field (Hydrodynamic sources [g/cm²/s])\n",
+       "    tot          : Field (Tot sources [g/cm²/s])\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.S"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "These are the source terms of the dust of shape `(Simulation.grid.Nr, Simulation.grid.Nm)` used to integrate the time evolution of the dust."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.S.coag`\n",
+    "\n",
+    "The source terms from dust coagulation. This is described in detail in a separate chapter about dust coagulation.\n",
+    "\n",
+    "**Attention:** When using implicit dust integration, the coagulation source terms are calculated in retrospect after the new dust surface density was found. Changing `Simulation.dust.S.coag` does not influence the simulation. It is only given for data analysis."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.S.ext`\n",
+    "\n",
+    "External source terms. These are by default set to zero, i.e. no external sources."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.397392Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.396927Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.404943Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.404066Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[[0. 0. 0. ... 0. 0. 0.]\n",
+       " [0. 0. 0. ... 0. 0. 0.]\n",
+       " [0. 0. 0. ... 0. 0. 0.]\n",
+       " ...\n",
+       " [0. 0. 0. ... 0. 0. 0.]\n",
+       " [0. 0. 0. ... 0. 0. 0.]\n",
+       " [0. 0. 0. ... 0. 0. 0.]]"
+      ]
+     },
+     "execution_count": 21,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.S.ext"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.S.hyd`\n",
+    "\n",
+    "These are the hydrodynamic source terms. At grid cell $i$ they are calculated by\n",
+    "\n",
+    "$S_{\\mathrm{hyd},\\,i} = 2\\frac{\\left( r_{i-\\frac{1}{2}}F_{i-\\frac{1}{2}}-r_{i+\\frac{1}{2}}F_{i+\\frac{1}{2}} \\right)}{r_{i+\\frac{1}{2}}^2 - r_{i-\\frac{1}{2}}^2}$.\n",
+    "\n",
+    "**Attention:** When using implicit dust integration, the hydrodynamic source terms are calculated in retrospect after the new dust surface density was found. Changing `Simulation.dust.S.hyd` does not influence the simulation. It is only given for data analysis."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.S.tot`\n",
+    "\n",
+    "These are the total source terms given by $S_\\mathrm{tot} = S_\\mathrm{coag} + S_\\mathrm{ext} + S_\\mathrm{hyd}$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.v`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.411173Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.410708Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.417897Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.416961Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Velocities)\n",
+       "------------------\n",
+       "    rel          : Group (Relative velocities)\n",
+       "  -----\n",
+       "    driftmax     : Field (Maximum drift velocity [cm/s])\n",
+       "    frag         : Field (Fragmentation velocity [cm/s])\n",
+       "    rad          : Field (Radial velocity [cm/s])\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 22,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.v"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "These are some dust related velocities the simulation needs for execution. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.v.rel`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.424369Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.423869Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.431596Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.430647Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Relative velocities)\n",
+       "---------------------------\n",
+       "    azi          : Field (Relative azimuthal velocity [cm/s])\n",
+       "    brown        : Field (Relative Brownian motion velocity [cm/s])\n",
+       "    rad          : Field (Relative radial velocity [cm/s])\n",
+       "    tot          : Field (Total relative velocity [cm/s])\n",
+       "    turb         : Field (Relative turbulent velocity [cm/s])\n",
+       "    vert         : Field (Relative vertical settling velocity [cm/s])\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 23,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.v.rel"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "These are the different sources of relative particle collision velocities used by the coagulation algorithm.  \n",
+    "They are used for two different reasons:\n",
+    "1. To calculated the collision rates\n",
+    "2. To determine the outcome of a collision"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "##### `Simulation.dust.v.rel.azi`\n",
+    "\n",
+    "Relative collision velocity caused by a differential azimuthal drift of particles with different Stokes numbers calculated by\n",
+    "\n",
+    "$v_{\\mathrm{rel},\\,\\mathrm{azi}} = \\left| v_{\\mathrm{drift},\\,\\mathrm{max}} \\cdot \\left( \\frac{1}{1+\\mathrm{St}_i^2} - \\frac{1}{1+\\mathrm{St}_j^2} \\right) \\right|$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "##### `Simulation.dust.v.brown`\n",
+    "\n",
+    "Relative collision velocity of particles caused by Brownian motion calculated with\n",
+    "\n",
+    "$v_{\\mathrm{rel},\\,\\mathrm{brown}} = \\sqrt{ \\frac{8k_\\mathrm{B}T\\left(m_i + m_j \\right)}{\\pi m_i m_j} }$.\n",
+    "\n",
+    "Since this expression is diverging for very small particle masses, the relative velocity is capped to a maximum value of the sound speed $c_\\mathrm{s}$. For very small particles this can still be larger than the fragmentation velocity and can cause unwanted fragmentation in the simple coagulation algorithm implemented in the default model."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "##### `Simulation.dust.v.rel.rad`\n",
+    "\n",
+    "Relative collision velocity caused by differential radial drift.\n",
+    "\n",
+    "$v_{\\mathrm{rel},\\,\\mathrm{rad}} = \\left| v_{\\mathrm{rad},\\,i} - v_{\\mathrm{rad},\\,j} \\right|$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "##### `Simulation.dust.v.rel.tot`\n",
+    "\n",
+    "Total relative velocities calculated by using the root mean square of all individual velocity sources.\n",
+    "\n",
+    "$v_{\\mathrm{rel},\\,\\mathrm{tot}} = \\sqrt{v_{\\mathrm{rel},\\,\\mathrm{azi}}^2 + v_{\\mathrm{rel},\\,\\mathrm{brown}}^2 + v_{\\mathrm{rel},\\,\\mathrm{rad}}^2 + v_{\\mathrm{rel},\\,\\mathrm{turb}}^2 + v_{\\mathrm{rel},\\,\\mathrm{vert}}^2}$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "##### `Simulation.dust.v.rel.turb`\n",
+    "\n",
+    "Relative velocities caused by turbulent motion of the particles. This follows the prescription of [Ormel & Cuzzi (2007)](https://doi.org/10.1051/0004-6361:20066899).  \n",
+    "It uses `Simulation.dust.delta.turb` instead of `Simulation.gas.alpha` to calculate the velocities."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "##### `Simulation.dust.v.rel.vert`\n",
+    "\n",
+    "Relative collision velocities caused by differential vertical settling of particles.\n",
+    "\n",
+    "$v_{\\mathrm{rel},\\,\\mathrm{vert}} = \\left| h_i \\min \\left( \\mathrm{St}_i,\\,\\frac{1}{2}\\right) - h_j \\min \\left( \\mathrm{St}_j,\\,\\frac{1}{2}\\right) \\right| \\cdot \\Omega_\\mathrm{K}$.\n",
+    "\n",
+    "This prescription is taken from [Birnstiel et al. (2010)](https://doi.org/10.1051/0004-6361/200913731) and follows [Dullemond & Dominik (2004)](https://doi.org/10.1051/0004-6361:20040284)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.v.driftmax`\n",
+    "\n",
+    "This is the maximum drift velocity a particle of $\\mathrm{St} = 1$ can have.\n",
+    "\n",
+    "$v_{\\mathrm{drift},\\,\\mathrm{max}} = \\frac{1}{2} B v_\\mathrm{visc} - A \\eta v_\\mathrm{K}$.\n",
+    "\n",
+    "See `Simulation.dust.backreaction` for details."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.v.frag`\n",
+    "\n",
+    "Fragmentation velocities of shape `(Simulation.grid.Nr,)`. By default this is set by the value of `Simulation.ini.dust.vfrag`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.438778Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.438276Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.448348Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.447343Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100.\n",
+       " 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100.\n",
+       " 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100.\n",
+       " 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100.\n",
+       " 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100.\n",
+       " 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100.\n",
+       " 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100. 100.\n",
+       " 100. 100.]"
+      ]
+     },
+     "execution_count": 24,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.v.frag"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.dust.v.rad`\n",
+    "\n",
+    "Radial velocities of the dust particles.\n",
+    "\n",
+    "$v_\\mathrm{rad} = \\left( v_\\mathrm{g} + 2 v_{\\mathrm{drift},\\,\\mathrm{max}}\\mathrm{St} \\right) \\frac{1}{\\mathrm{St}^2+1}$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.a`\n",
+    "\n",
+    "Particle radii calculated with\n",
+    "\n",
+    "$a = \\sqrt[3]{\\frac{3m}{4\\pi\\rho_\\mathrm{s}}}$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.D`\n",
+    "\n",
+    "Dust diffusivity for every particle species of shape `(Simulation.grid.Nr, Simulation.grid.Nm)` calculated with\n",
+    "\n",
+    "$D = \\frac{\\delta_\\mathrm{rad}\\,c_\\mathrm{s}^2}{\\Omega_\\mathrm{K}\\left( 1 + \\mathrm{St}^2 \\right)}$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.eps`\n",
+    "\n",
+    "This is the vertically integrated dust-to-gas ratio of shape `(Simulation.grid.Nr,)`. In the literature this is also often refered to as metallicity $z$. It is calculated via\n",
+    "\n",
+    "$\\epsilon = \\frac{\\sum\\limits_i \\Sigma_{\\mathrm{d},\\,i}}{\\Sigma_\\mathrm{g}}$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.fill`\n",
+    "\n",
+    "This describes the filling factor of the dust aggregates. By default this is 1."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.459217Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.458718Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.467564Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.466590Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[[1. 1. 1. ... 1. 1. 1.]\n",
+       " [1. 1. 1. ... 1. 1. 1.]\n",
+       " [1. 1. 1. ... 1. 1. 1.]\n",
+       " ...\n",
+       " [1. 1. 1. ... 1. 1. 1.]\n",
+       " [1. 1. 1. ... 1. 1. 1.]\n",
+       " [1. 1. 1. ... 1. 1. 1.]]"
+      ]
+     },
+     "execution_count": 25,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.fill"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.H`\n",
+    "\n",
+    "These are the dust scale heights of shape `(Simulation.grid.Nr, Simulation.grid.Nm)` calculated with the prescription of [Dubrulle et al. (1995)](https://doi.org/10.1006/icar.1995.1058)\n",
+    "\n",
+    "$H_i = H_\\mathrm{P} \\cdot \\sqrt{\\frac{\\delta_\\mathrm{vert}}{\\delta_\\mathrm{vert}+\\mathrm{St}_i}}$\n",
+    "\n",
+    "It is limited to a maximum of the pressure scale height $H_\\mathrm{P}$. It uses `Simulation.dust.delta.vert` as vertical mixing parameter instead of `Simulation.gas.alpha`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.kernel`\n",
+    "\n",
+    "These are the vertically integrated collision kernels of shape `(Simulation.grid.Nr, Simulation.grid.Nm, Simulation.grid.Nm)` calculated with\n",
+    "\n",
+    "$K_{ij} = \\frac{1}{1+\\delta_{ij}} \\frac{\\pi\\left( a_i + a_j \\right)^2}{\\sqrt{2\\pi\\left( H_i^2 + H_j^2 \\right)}} v_\\mathrm{rel}$\n",
+    "\n",
+    "Please have a look at [Birnstiel et al. (2010)](https://doi.org/10.1051/0004-6361/200913731) for details. The kernel is the geometrical cross section multiplied with the factor described in `(A.14)`. Multiplying the kernel with the densities returns the collision rates.\n",
+    "\n",
+    "The collisions rates of equal particle collisions are reduced by a factor of $\\frac{1}{2}$ by the Kronecker $\\delta_{ij}$. In a reservoir of $N$ equal particles, the first particle can collide with $N-1$ other particles, the second particle can collide with $N-2$ other particles without counting the collision with the first particle twice. The third particle can collide with $N-3$ other particles and so on. The total number of possible collisions is therefore given by\n",
+    "\n",
+    "$\\sum\\limits_{i=1}^{N-1} i = \\frac{1}{2}\\left(N\\right)\\left(N-1\\right)$,\n",
+    "\n",
+    "which is $\\frac{1}{2}N^2$ in the limit of large $N$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.rho`\n",
+    "\n",
+    "Midplane mass densities of the dust.\n",
+    "\n",
+    "$\\rho = \\frac{\\Sigma}{\\sqrt{2\\pi}H}$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.rhos`\n",
+    "\n",
+    "Solid state density of the particle material. This is initially set to `Simulation.ini.dust.rhoMonomer`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.473270Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.472769Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.481638Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.480682Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[[1.67 1.67 1.67 ... 1.67 1.67 1.67]\n",
+       " [1.67 1.67 1.67 ... 1.67 1.67 1.67]\n",
+       " [1.67 1.67 1.67 ... 1.67 1.67 1.67]\n",
+       " ...\n",
+       " [1.67 1.67 1.67 ... 1.67 1.67 1.67]\n",
+       " [1.67 1.67 1.67 ... 1.67 1.67 1.67]\n",
+       " [1.67 1.67 1.67 ... 1.67 1.67 1.67]]"
+      ]
+     },
+     "execution_count": 26,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.rhos"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "To calculate the mass density of a dust aggregate do"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.487200Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.486741Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.495855Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.494961Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[[1.67 1.67 1.67 ... 1.67 1.67 1.67]\n",
+       " [1.67 1.67 1.67 ... 1.67 1.67 1.67]\n",
+       " [1.67 1.67 1.67 ... 1.67 1.67 1.67]\n",
+       " ...\n",
+       " [1.67 1.67 1.67 ... 1.67 1.67 1.67]\n",
+       " [1.67 1.67 1.67 ... 1.67 1.67 1.67]\n",
+       " [1.67 1.67 1.67 ... 1.67 1.67 1.67]]"
+      ]
+     },
+     "execution_count": 27,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.fill * sim.dust.rhos"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "This is the density that is used to calculate the particle size."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.Sigma`\n",
+    "\n",
+    "This is the dust surface density of every particle species of shape `(Simulation.grid.Nr, Simulation.grid.Nm)`. This is the quantity that is integrated to solve for dust evolution.\n",
+    "\n",
+    "The surface densities are integrated over the mass bin, so a numerical summation over the mass dimension returns the total dust surface density.\n",
+    "\n",
+    "$\\Sigma_\\mathrm{d} = \\sum\\limits_i \\Sigma_{\\mathrm{d},\\,i}$"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.502302Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.501837Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.512154Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.511180Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[1.11815368e+01 1.04232155e+01 9.71465059e+00 9.05339692e+00\n",
+       " 8.43629793e+00 7.86040780e+00 7.32297742e+00 6.82144128e+00\n",
+       " 6.35340519e+00 5.91663488e+00 5.50904531e+00 5.12869076e+00\n",
+       " 4.77375546e+00 4.44254502e+00 4.13347826e+00 3.84507969e+00\n",
+       " 3.57597248e+00 3.32487186e+00 3.09057900e+00 2.87197527e+00\n",
+       " 2.66801690e+00 2.47773001e+00 2.30020595e+00 2.13459693e+00\n",
+       " 1.98011200e+00 1.83601326e+00 1.70161231e+00 1.57626698e+00\n",
+       " 1.45937826e+00 1.35038739e+00 1.24877321e+00 1.15404966e+00\n",
+       " 1.06576343e+00 9.83491798e-01 9.06840556e-01 8.35442144e-01\n",
+       " 7.68953850e-01 7.07056150e-01 6.49451154e-01 5.95861146e-01\n",
+       " 5.46027226e-01 4.99708026e-01 4.56678518e-01 4.16728886e-01\n",
+       " 3.79663471e-01 3.45299782e-01 3.13467557e-01 2.84007884e-01\n",
+       " 2.56772375e-01 2.31622377e-01 2.08428234e-01 1.87068586e-01\n",
+       " 1.67429708e-01 1.49404882e-01 1.32893806e-01 1.17802035e-01\n",
+       " 1.04040457e-01 9.15247991e-02 8.01751688e-02 6.99156307e-02\n",
+       " 6.06738170e-02 5.23805770e-02 4.49696665e-02 3.83774784e-02\n",
+       " 3.25428186e-02 2.74067268e-02 2.29123459e-02 1.90048396e-02\n",
+       " 1.56313572e-02 1.27410459e-02 1.02851052e-02 8.21687989e-03\n",
+       " 6.49198428e-03 5.06844837e-03 3.90687641e-03 2.97060545e-03\n",
+       " 2.22585132e-03 8.21564634e-28 7.15552883e-28 6.23220508e-28\n",
+       " 5.42802371e-28 4.72761102e-28 4.11757706e-28 3.58625970e-28\n",
+       " 3.12350162e-28 2.72045619e-28 2.36941829e-28 2.06367706e-28\n",
+       " 1.79738758e-28 1.56545914e-28 1.36345791e-28 1.18752220e-28\n",
+       " 1.03428860e-28 9.00827708e-29 7.84588135e-29 6.83347698e-29\n",
+       " 5.95170965e-29 5.18372240e-29 4.51483347e-29 3.93225557e-29]"
+      ]
+     },
+     "execution_count": 28,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.Sigma.sum(-1)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "If you want to plot the dust density distribution you might want to convert the field into a quantity that does not depend on the mass bin width. The plotting script integrated in `DustPy` is plotting a grid independent density distribution. See the first chapter for details on this."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.SigmaFloor`\n",
+    "\n",
+    "This is the floor value for the dust surface densities. Mass bins that are below their respective floor value will not contribute to coagulation. By default the floor value is the density that corresponds to one physical particle of that mass distributed over an annulus at that radial grid location.\n",
+    "\n",
+    "$\\Sigma_{\\mathrm{d},\\,\\mathrm{floor}} = \\frac{m}{A_\\mathrm{annulus}}$\n",
+    "\n",
+    "Densities below the floor value therefore correspond to fewer that one physical particle in that radial grid cell."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.dust.St`\n",
+    "\n",
+    "Stokes numbers of the particles. By default the Epstein and the Stokes I drag regime are considered.\n",
+    "\n",
+    "$\\mathrm{St} =\n",
+    "\\begin{cases}\n",
+    "\\frac{\\pi}{2} \\frac{a\\rho}{\\Sigma_\\mathrm{g}}, & \\text{if } a < \\frac{9}{4} \\lambda_\\mathrm{mfp}\\\\\n",
+    "\\frac{2\\pi}{9} \\frac{a^2 \\rho}{\\lambda_\\mathrm{mfp} \\Sigma_\\mathrm{g}}, & \\text{else}\n",
+    "\\end{cases}$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Update order\n",
+    "\n",
+    "The update order of the dust quantities in the standard model is set to"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.519282Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.518787Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.526906Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.525917Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['delta',\n",
+       " 'rhos',\n",
+       " 'fill',\n",
+       " 'a',\n",
+       " 'St',\n",
+       " 'H',\n",
+       " 'rho',\n",
+       " 'backreaction',\n",
+       " 'v',\n",
+       " 'D',\n",
+       " 'eps',\n",
+       " 'kernel',\n",
+       " 'p',\n",
+       " 'S']"
+      ]
+     },
+     "execution_count": 29,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.updateorder"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.533439Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.532943Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.540553Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.539592Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['A', 'B']"
+      ]
+     },
+     "execution_count": 30,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.backreaction.updateorder"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.546226Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.545714Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.553418Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.552443Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['rad', 'turb', 'vert']"
+      ]
+     },
+     "execution_count": 31,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.delta.updateorder"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.558693Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.558196Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.565779Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.564784Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['adv', 'diff', 'tot']"
+      ]
+     },
+     "execution_count": 32,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.Fi.updateorder"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.571660Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.571162Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.578824Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.577833Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['frag', 'stick']"
+      ]
+     },
+     "execution_count": 33,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.p.updateorder"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.586757Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.586259Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.593875Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.592885Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['ext', 'tot']"
+      ]
+     },
+     "execution_count": 34,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.S.updateorder"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.598849Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.598347Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.605980Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.604974Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['frag', 'driftmax', 'rel']"
+      ]
+     },
+     "execution_count": 35,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.v.updateorder"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.611979Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.611481Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.619299Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.618361Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['azi', 'brown', 'rad', 'turb', 'vert', 'tot']"
+      ]
+     },
+     "execution_count": 36,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.dust.v.rel.updateorder"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Note**: The quantities that are excluded are calculated in the finalization step of the implicit integrator from the new values of the dust surface densities."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Gas"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.626655Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.626152Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.633948Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.632944Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Gas quantities)\n",
+       "----------------------\n",
+       "    boundary     : Group (Boundary conditions)\n",
+       "    S            : Group (Source terms)\n",
+       "    v            : Group (Velocities)\n",
+       "  -----\n",
+       "    alpha        : Field (Turbulent alpha parameter)\n",
+       "    cs           : Field (Sound speed [cm/s])\n",
+       "    eta          : Field (Pressure gradient parameter)\n",
+       "    Fi           : Field (Gas flux interfaces [g/cm/s])\n",
+       "    gamma        : Field (Adiabatic index)\n",
+       "    Hp           : Field (Pressure scale height [cm])\n",
+       "    mfp          : Field (Midplane mean free path [cm])\n",
+       "    mu           : Field (Mean molecular weight [g])\n",
+       "    n            : Field (Miplane number density [1/cm³])\n",
+       "    nu           : Field (Kinematic viscosity [cm²/s])\n",
+       "    P            : Field (Midplane pressure [g/cm/s²])\n",
+       "    rho          : Field (Miplane mass density [g/cm³])\n",
+       "    Sigma        : Field (Surface density [g/cm²])\n",
+       "    SigmaFloor   : Field (Floor value of surface density [g/cm²])\n",
+       "    T            : Field (Temperature [K])\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 37,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.boundary`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.639098Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.638633Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.645828Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.644928Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Boundary conditions)\n",
+       "---------------------------\n",
+       "    inner        : Boundary\n",
+       "    outer        : Boundary\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 38,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.boundary"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "These are the boundary conditions of the gas. By default the inner boundary is set to constant gradient and the outer boundary to floor value."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.651453Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.650990Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.657777Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.656893Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Constant gradient"
+      ]
+     },
+     "execution_count": 39,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.boundary.inner"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.664389Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.663932Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.671116Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.670276Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Value"
+      ]
+     },
+     "execution_count": 40,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.boundary.outer"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The boundary conditions can be modified with `setcondition`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.677402Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.676935Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.682938Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.682001Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Help on method setcondition in module dustpy.utils.boundary:\n",
+      "\n",
+      "setcondition(condition, value=None) method of dustpy.utils.boundary.Boundary instance\n",
+      "    Function to set boundary condition.\n",
+      "    \n",
+      "    Parameters\n",
+      "    ----------\n",
+      "    condition : string\n",
+      "        Type of boundary conditon:\n",
+      "            - \"const_grad\" : constant gradient\n",
+      "            - \"const_pow\" : constant power law\n",
+      "            - \"const_val\" : constant value\n",
+      "            - \"val\" : custom value\n",
+      "            - \"grad\" : custom gradient\n",
+      "            - \"pow\" : custom power law with set exponent\n",
+      "            - None : Don't impose boundary condition (default)\n",
+      "    value : float or array, optional, default : None\n",
+      "        Value if needed for boundary condition\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "help(sim.gas.boundary.inner.setcondition)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "If the gas surface density follows a power law $\\propto R^{-1}$ the constant gradient boundary condition should work fine. Other values can lead to deviations at the inner boundary. See the chapter about gas evolution tests for details."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.S`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.688208Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.687739Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.696538Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.695379Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Source terms)\n",
+       "--------------------\n",
+       "    ext          : Field (External sources [g/cm²/s])\n",
+       "    hyd          : Field (Hydrodynamic sources [g/cm²/s])\n",
+       "    tot          : Field (Total sources [g/cm²/s])\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 42,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.S"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "These are the source terms of the gas."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.gas.S.ext`\n",
+    "\n",
+    "These are the external source terms for gas evolution, e.g. infall. By default these are set to zero."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.703312Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.702837Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.712567Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.711563Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n",
+       " 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n",
+       " 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n",
+       " 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n",
+       " 0. 0. 0. 0.]"
+      ]
+     },
+     "execution_count": 43,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.S.ext"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.gas.S.hyd`\n",
+    "\n",
+    "These are the hydrodynamic source terms of the gas evolution.  \n",
+    "**Attention:** Since the gas evolution is calculated implicitly, the hydrodynamic source terms are calculated in retrospect after the new gas surface density was found. Changing `Simulation.gas.S.hyd` does not influence the simulation. It is only given for data analysis."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.gas.S.tot`\n",
+    "\n",
+    "These are the total source terms of gas evolution.\n",
+    "\n",
+    "$S_\\mathrm{tot} = S_\\mathrm{ext} + S_\\mathrm{hyd}$\n",
+    "\n",
+    "**Attention:** Since the gas evolution is calculated implicitly, the total source terms are calculated in retrospect after the new gas surface density was found. Changing `Simulation.gas.S.tot` does not influence the simulation. It is only given for data analysis."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.v`"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.721284Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.720769Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.728657Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.727648Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Velocities)\n",
+       "------------------\n",
+       "    rad          : Field (Radial velocity [cm/s])\n",
+       "    visc         : Field (Viscous accretion velocity [cm/s])\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 44,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.v"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "These are velocities that are relevant for the gas evolution.  \n",
+    "**Attention:** Since the gas evolution is calculated implicitly, the velocities are calculated in retrospect after the new gas surface density was found. Changing anything in `Simulation.gas.v` does not influence the simulation. It is only given for data analysis."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.gas.v.rad`\n",
+    "\n",
+    "This is the radial gas velocity. It is given by\n",
+    "\n",
+    "$v_\\mathrm{g} = Av_\\mathrm{visc} + 2B\\eta v_\\mathrm{K}$.\n",
+    "\n",
+    "See `Simulation.dust.backreaction` for details. If backreaction is turned off, i.e., $A=1$ and $B=0$, the radial velocity is identical to the viscous velocity.  \n",
+    "**Attention:** Since the gas evolution is calculated implicitly, the velocities are calculated in retrospect after the new gas surface density was found. Changing anything in `Simulation.gas.v.rad` does not influence the simulation. It is only given for data analysis."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### `Simulation.gas.v.visc`\n",
+    "\n",
+    "This is the radial viscous gas velocity\n",
+    "\n",
+    "$v_\\mathrm{visc} = -\\frac{3}{\\Sigma_\\mathrm{g}\\sqrt{R}} \\frac{\\partial}{\\partial R} \\left( \\Sigma_\\mathrm{g} \\nu \\sqrt{R} \\right)$\n",
+    "\n",
+    "**Attention:** Since the gas evolution is calculated implicitly, the velocities are calculated in retrospect after the new gas surface density was found. Changing anything in `Simulation.gas.v.visc` does not influence the simulation. It is only given for data analysis."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.alpha`\n",
+    "\n",
+    "This is the turbulent viscosity parameter according [Shakura & Sunyaev (1973)](https://ui.adsabs.harvard.edu/abs/1973A%26A....24..337S/abstract). It is initially set to the value in `Simulation.ini.gas.alpha`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.735983Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.735461Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.744470Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.743696Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001\n",
+       " 0.001 0.001 0.001 0.001]"
+      ]
+     },
+     "execution_count": 45,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.alpha"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.cs`\n",
+    "\n",
+    "This is the adiabatic sound speed in the midplane of the disk\n",
+    "\n",
+    "$c_\\mathrm{s} = \\sqrt{\\frac{\\gamma k_\\mathrm{B} T}{\\mu}}$.\n",
+    "\n",
+    "For isothermal simulations set $\\gamma=1$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.eta`\n",
+    "\n",
+    "This is the midplane pressure gradient parameter $\\eta$ given by\n",
+    "\n",
+    "$\\eta = -\\frac{1}{2} \\left( \\frac{H_\\mathrm{P}}{r} \\right)^2 \\frac{\\partial \\log P}{\\partial \\log r}$\n",
+    "\n",
+    "It describes the degree of \"sub-Keplerity\" of the disk\n",
+    "\n",
+    "$v_\\phi^2 = \\left( 1-2\\eta \\right) v_\\mathrm{K}^2$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.Fi`\n",
+    "\n",
+    "These are the mass fluxes of gas through the grid cell interfaces.  \n",
+    "**Attention:** Since the gas evolution is calculated implicitly, the fluxes are calculated in retrospect after the new gas surface density was found. Changing anything in `Simulation.gas.Fi` does not influence the simulation. It is only given for data analysis."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.gamma`\n",
+    "\n",
+    "This is the ratio of specific heats. It is initially set to the value given by `Simulation.ini.gas.gamma`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.751900Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.751436Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.761264Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.760180Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4\n",
+       " 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4\n",
+       " 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4\n",
+       " 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4\n",
+       " 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4\n",
+       " 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4]"
+      ]
+     },
+     "execution_count": 46,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.gamma"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "For isothermal simulations set this to $1$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.Hp`\n",
+    "\n",
+    "Pressure scale height of the gas given by the ratio of the isothermal sound speed to the Keplerian frequency.\n",
+    "\n",
+    "$H_\\mathrm{P} = \\frac{c_{\\mathrm{s},\\,\\mathrm{iso}}}{\\Omega_\\mathrm{K}}$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.mfp`\n",
+    "\n",
+    "Mean free path of the gas in the midplane of the disk\n",
+    "\n",
+    "$\\lambda_\\mathrm{mfp} = \\frac{1}{\\sqrt{2}\\,n\\,\\sigma_\\mathrm{H_2}}$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.mu`\n",
+    "\n",
+    "Mean molecular weight of the gas. This is initially set by the value given in `Simulation.ini.gas.mu` and is equal to $2.3\\,m_\\mathrm{P}$."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.768418Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.767918Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.778785Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.777620Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24\n",
+       " 3.84703042e-24 3.84703042e-24 3.84703042e-24 3.84703042e-24]"
+      ]
+     },
+     "execution_count": 47,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.mu"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.n`\n",
+    "\n",
+    "Midplane number density of the gas given by\n",
+    "\n",
+    "$n = \\frac{\\rho}{\\mu}$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.nu`\n",
+    "\n",
+    "Kinematic viscosity of the gas given by\n",
+    "\n",
+    "$\\nu = \\alpha c_\\mathrm{s} H_\\mathrm{P}$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.P`\n",
+    "\n",
+    "Midplane gas pressure given by\n",
+    "\n",
+    "$P = \\frac{\\rho\\,c_\\mathrm{s}^2}{\\gamma}$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.rho`\n",
+    "\n",
+    "Midplane gas mass density given by\n",
+    "\n",
+    "$\\rho = \\frac{\\Sigma_\\mathrm{g}}{\\sqrt{2\\pi}H_\\mathrm{P}}$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.Sigma`\n",
+    "\n",
+    "Gas surface density. This is the quantity that is integrated with an implicit Euler first-order scheme."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.SigmaFloor`\n",
+    "\n",
+    "This is the floor value of the gas surface density. By default it is $10^{-100}$."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.788013Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.787545Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.798155Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.797016Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100\n",
+       " 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100\n",
+       " 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100\n",
+       " 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100\n",
+       " 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100\n",
+       " 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100\n",
+       " 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100\n",
+       " 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100\n",
+       " 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100\n",
+       " 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100\n",
+       " 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100 1.e-100\n",
+       " 1.e-100]"
+      ]
+     },
+     "execution_count": 48,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.SigmaFloor"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "If the gas surface density is at any point below it's floor value it will be automatically set to the floor value at the end of a time step."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.gas.T`\n",
+    "\n",
+    "This is the midplane gas temperature. It is calculated by assuming a passively irradiated disk with a constant irradiation angle of $0.05$.\n",
+    "\n",
+    "$T\\left( r \\right) = \\sqrt[4]{\\frac{0.05\\,L_*}{4\\,\\pi\\,r^2\\,\\sigma_\\mathrm{SB}}}$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Update order\n",
+    "\n",
+    "The update order of the gas quantities in the standard model is set to"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.805142Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.804641Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.813499Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.812310Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['gamma',\n",
+       " 'mu',\n",
+       " 'T',\n",
+       " 'alpha',\n",
+       " 'cs',\n",
+       " 'Hp',\n",
+       " 'nu',\n",
+       " 'rho',\n",
+       " 'n',\n",
+       " 'mfp',\n",
+       " 'P',\n",
+       " 'eta',\n",
+       " 'S']"
+      ]
+     },
+     "execution_count": 49,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.updateorder"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.819611Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.819151Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.833856Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.832652Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['ext', 'tot']"
+      ]
+     },
+     "execution_count": 50,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.S.updateorder"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 51,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.840130Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.839605Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.849906Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.848366Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['visc', 'rad']"
+      ]
+     },
+     "execution_count": 51,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.v.updateorder"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "**Note**: The quantities that are excluded are calculated in the finalization step of the implicit integrator from the new values of the surface densities."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Grid"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 52,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.856709Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.856215Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.866437Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.865106Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Grid quantities)\n",
+       "-----------------------\n",
+       "    A            : Field (Radial grid annulus area [cm²]), \u001b[95mconstant\u001b[0m\n",
+       "    m            : Field (Mass grid [g]), \u001b[95mconstant\u001b[0m\n",
+       "    Nm           : Field (# of mass bins), \u001b[95mconstant\u001b[0m\n",
+       "    Nr           : Field (# of radial grid cells), \u001b[95mconstant\u001b[0m\n",
+       "    OmegaK       : Field (Keplerian frequency [1/s])\n",
+       "    r            : Field (Radial grid cell centers [cm]), \u001b[95mconstant\u001b[0m\n",
+       "    ri           : Field (Radial grid cell interfaces [cm]), \u001b[95mconstant\u001b[0m\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 52,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.grid"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "These are all quantities that define the radial and the mass grid. Once they are defined they are constant and should not be changed. Additionally, the Keplerian frequency is located here."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.grid.A`\n",
+    "\n",
+    "Surface area of the annulus a grid cell spans.\n",
+    "\n",
+    "$A_i = \\pi \\left( r_{i+\\frac{1}{2}}^2 - r_{i-\\frac{1}{2}}^2 \\right)$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.grid.m`\n",
+    "\n",
+    "The mass grid. It has to be strictly logarithmic. Please only use `Simulation.ini.dust.mmin`, `Simulation.ini.dust.mmax`, and `Simulation.ini.dust.Nmbpd` to set the mass grid and do not set it manually!"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 53,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.873514Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.873022Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.886300Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.885049Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[1.00000000e-12 1.38949549e-12 1.93069773e-12 2.68269580e-12\n",
+       " 3.72759372e-12 5.17947468e-12 7.19685673e-12 1.00000000e-11\n",
+       " 1.38949549e-11 1.93069773e-11 2.68269580e-11 3.72759372e-11\n",
+       " 5.17947468e-11 7.19685673e-11 1.00000000e-10 1.38949549e-10\n",
+       " 1.93069773e-10 2.68269580e-10 3.72759372e-10 5.17947468e-10\n",
+       " 7.19685673e-10 1.00000000e-09 1.38949549e-09 1.93069773e-09\n",
+       " 2.68269580e-09 3.72759372e-09 5.17947468e-09 7.19685673e-09\n",
+       " 1.00000000e-08 1.38949549e-08 1.93069773e-08 2.68269580e-08\n",
+       " 3.72759372e-08 5.17947468e-08 7.19685673e-08 1.00000000e-07\n",
+       " 1.38949549e-07 1.93069773e-07 2.68269580e-07 3.72759372e-07\n",
+       " 5.17947468e-07 7.19685673e-07 1.00000000e-06 1.38949549e-06\n",
+       " 1.93069773e-06 2.68269580e-06 3.72759372e-06 5.17947468e-06\n",
+       " 7.19685673e-06 1.00000000e-05 1.38949549e-05 1.93069773e-05\n",
+       " 2.68269580e-05 3.72759372e-05 5.17947468e-05 7.19685673e-05\n",
+       " 1.00000000e-04 1.38949549e-04 1.93069773e-04 2.68269580e-04\n",
+       " 3.72759372e-04 5.17947468e-04 7.19685673e-04 1.00000000e-03\n",
+       " 1.38949549e-03 1.93069773e-03 2.68269580e-03 3.72759372e-03\n",
+       " 5.17947468e-03 7.19685673e-03 1.00000000e-02 1.38949549e-02\n",
+       " 1.93069773e-02 2.68269580e-02 3.72759372e-02 5.17947468e-02\n",
+       " 7.19685673e-02 1.00000000e-01 1.38949549e-01 1.93069773e-01\n",
+       " 2.68269580e-01 3.72759372e-01 5.17947468e-01 7.19685673e-01\n",
+       " 1.00000000e+00 1.38949549e+00 1.93069773e+00 2.68269580e+00\n",
+       " 3.72759372e+00 5.17947468e+00 7.19685673e+00 1.00000000e+01\n",
+       " 1.38949549e+01 1.93069773e+01 2.68269580e+01 3.72759372e+01\n",
+       " 5.17947468e+01 7.19685673e+01 1.00000000e+02 1.38949549e+02\n",
+       " 1.93069773e+02 2.68269580e+02 3.72759372e+02 5.17947468e+02\n",
+       " 7.19685673e+02 1.00000000e+03 1.38949549e+03 1.93069773e+03\n",
+       " 2.68269580e+03 3.72759372e+03 5.17947468e+03 7.19685673e+03\n",
+       " 1.00000000e+04 1.38949549e+04 1.93069773e+04 2.68269580e+04\n",
+       " 3.72759372e+04 5.17947468e+04 7.19685673e+04 1.00000000e+05]"
+      ]
+     },
+     "execution_count": 53,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.grid.m"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.grid.Nm`\n",
+    "\n",
+    "Number of mass bins."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 54,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.892824Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.892327Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.901774Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.900455Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "120"
+      ]
+     },
+     "execution_count": 54,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.grid.Nm"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.grid.Nr`\n",
+    "\n",
+    "Number of radial grid cells."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 55,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.908157Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.907655Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.917617Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.916366Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "100"
+      ]
+     },
+     "execution_count": 55,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.grid.Nr"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.grid.OmegaK`\n",
+    "\n",
+    "Keplerian frequency given by\n",
+    "\n",
+    "$\\Omega_\\mathrm{K} = \\sqrt{\\frac{G\\,M_*}{r^3}}$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.grid.r`\n",
+    "\n",
+    "Radial grid cell centers. The radial grid cell centers are exactly in the middle between the grid cell interfaces."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 56,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.924434Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.923936Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.935863Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.934509Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[ True  True  True  True  True  True  True  True  True  True  True  True\n",
+       "  True  True  True  True  True  True  True  True  True  True  True  True\n",
+       "  True  True  True  True  True  True  True  True  True  True  True  True\n",
+       "  True  True  True  True  True  True  True  True  True  True  True  True\n",
+       "  True  True  True  True  True  True  True  True  True  True  True  True\n",
+       "  True  True  True  True  True  True  True  True  True  True  True  True\n",
+       "  True  True  True  True  True  True  True  True  True  True  True  True\n",
+       "  True  True  True  True  True  True  True  True  True  True  True  True\n",
+       "  True  True  True  True]"
+      ]
+     },
+     "execution_count": 56,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.grid.r == 0.5 * (sim.grid.ri[:-1] + sim.grid.ri[1:])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.grid.ri`\n",
+    "\n",
+    "Locations of the grid cell interfaces. `Simulation.grid.ri[0]` and `Simulation.grid.ri[-1]` are the inner and outer grid boundaries."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Update order\n",
+    "\n",
+    "The update order of the grid quantities in the standard model is set to"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 57,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.948820Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.948312Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.957272Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.955853Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['OmegaK']"
+      ]
+     },
+     "execution_count": 57,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.grid.updateorder"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Star"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 58,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.962421Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.961961Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.970985Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.969728Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Group (Stellar quantities)\n",
+       "--------------------------\n",
+       "    L            : Field (Luminosity [erg/s])\n",
+       "    M            : Field (Mass [g])\n",
+       "    R            : Field (Radius [cm])\n",
+       "    T            : Field (Effective temperature [K])\n",
+       "  -----"
+      ]
+     },
+     "execution_count": 58,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.star"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.star.L`\n",
+    "\n",
+    "Stellar luminosity given by\n",
+    "\n",
+    "$L = 4\\pi\\,R_*^2\\,\\sigma_\\mathrm{SB}\\,T_*^4$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.star.M`\n",
+    "\n",
+    "Stellar mass. Initially set to the value given in `Simulation.ini.star.M`, which corresponds to one Solar mass."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 59,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.978430Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.977426Z",
+     "iopub.status.idle": "2022-07-14T11:48:18.986797Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.985449Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1.988409870698051e+33"
+      ]
+     },
+     "execution_count": 59,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.star.M"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.star.R`\n",
+    "\n",
+    "Stellar radius. Initially set to the value given in `Simulation.ini.star.R`, which corresponds to 2 Solar radii."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 60,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:18.993175Z",
+     "iopub.status.busy": "2022-07-14T11:48:18.992674Z",
+     "iopub.status.idle": "2022-07-14T11:48:19.001471Z",
+     "shell.execute_reply": "2022-07-14T11:48:18.999882Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "139140000000.0"
+      ]
+     },
+     "execution_count": 60,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.star.R"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### `Simulation.star.T`\n",
+    "\n",
+    "Stellar effective surface temperature. Initially set to the value given in `Simulation.ini.star.T`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 61,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:19.008177Z",
+     "iopub.status.busy": "2022-07-14T11:48:19.007680Z",
+     "iopub.status.idle": "2022-07-14T11:48:19.017065Z",
+     "shell.execute_reply": "2022-07-14T11:48:19.015440Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "5772.0"
+      ]
+     },
+     "execution_count": 61,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.star.T"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Update order\n",
+    "\n",
+    "The update order of the stellar quantities in the standard model is set to"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 62,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:19.023554Z",
+     "iopub.status.busy": "2022-07-14T11:48:19.023091Z",
+     "iopub.status.idle": "2022-07-14T11:48:19.031718Z",
+     "shell.execute_reply": "2022-07-14T11:48:19.030221Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['M', 'R', 'T', 'L']"
+      ]
+     },
+     "execution_count": 62,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.star.updateorder"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Time\n",
+    "\n",
+    "`Simulation.t` is the current time and the integration variable. It starts at zero initially."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 63,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:19.038265Z",
+     "iopub.status.busy": "2022-07-14T11:48:19.037757Z",
+     "iopub.status.idle": "2022-07-14T11:48:19.046486Z",
+     "shell.execute_reply": "2022-07-14T11:48:19.045356Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.0"
+      ]
+     },
+     "execution_count": 63,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.t"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Snapshots are written between $10^3$ years and $10^5$ years with 10 snapshots per time decade."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 64,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:19.052928Z",
+     "iopub.status.busy": "2022-07-14T11:48:19.052460Z",
+     "iopub.status.idle": "2022-07-14T11:48:19.062091Z",
+     "shell.execute_reply": "2022-07-14T11:48:19.060937Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([3.15576000e+10, 3.97286646e+10, 5.00154254e+10, 6.29656900e+10,\n",
+       "       7.92691073e+10, 9.97938935e+10, 1.25633068e+11, 1.58162662e+11,\n",
+       "       1.99114995e+11, 2.50670927e+11, 3.15576000e+11, 3.97286646e+11,\n",
+       "       5.00154254e+11, 6.29656900e+11, 7.92691073e+11, 9.97938935e+11,\n",
+       "       1.25633068e+12, 1.58162662e+12, 1.99114995e+12, 2.50670927e+12,\n",
+       "       3.15576000e+12])"
+      ]
+     },
+     "execution_count": 64,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.t.snapshots"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The timestep is calculated from the dust and the gas source terms and the current values of the surface densities of dust and gas, while using a safety factor of `0.1`, which can be accessed as an attribute of the integration variable."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 65,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:19.068664Z",
+     "iopub.status.busy": "2022-07-14T11:48:19.068162Z",
+     "iopub.status.idle": "2022-07-14T11:48:19.077216Z",
+     "shell.execute_reply": "2022-07-14T11:48:19.076093Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.1"
+      ]
+     },
+     "execution_count": 65,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.t.cfl"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Integrator\n",
+    "\n",
+    "The integrator that is used by default as two integration instructions. One for the gas and one for the dust."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 66,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:19.084106Z",
+     "iopub.status.busy": "2022-07-14T11:48:19.083606Z",
+     "iopub.status.idle": "2022-07-14T11:48:19.092703Z",
+     "shell.execute_reply": "2022-07-14T11:48:19.091521Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Integrator (Default integrator)"
+      ]
+     },
+     "execution_count": 66,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.integrator"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 67,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:19.098686Z",
+     "iopub.status.busy": "2022-07-14T11:48:19.098191Z",
+     "iopub.status.idle": "2022-07-14T11:48:19.107525Z",
+     "shell.execute_reply": "2022-07-14T11:48:19.106386Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[Instruction (Dust: implicit 1st-order direct solver),\n",
+       " Instruction (Gas: implicit 1st-order direct solver)]"
+      ]
+     },
+     "execution_count": 67,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.integrator.instructions"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The gas is integrated with an implicit first-order Euler integration scheme. The Jacobian is calculated from the parameters given in `Simulation.gas`. Parameters like gas velocities, fluxes and source terms are calculated once the new values of the gas surface density have been found.\n",
+    "\n",
+    "Except for the values at the boundaries, the advective source terms are given by"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 68,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:19.113934Z",
+     "iopub.status.busy": "2022-07-14T11:48:19.113424Z",
+     "iopub.status.idle": "2022-07-14T11:48:19.128291Z",
+     "shell.execute_reply": "2022-07-14T11:48:19.127225Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([ 4.62645635e-04, -3.15967530e-11, -1.80453135e-11, -1.68008509e-11,\n",
+       "       -1.56395333e-11, -1.45558169e-11, -1.35445284e-11, -1.26008399e-11,\n",
+       "       -1.17202464e-11, -1.08985441e-11, -1.01318100e-11, -9.41638378e-12,\n",
+       "       -8.74884973e-12, -8.12602081e-12, -7.54492330e-12, -7.00278259e-12,\n",
+       "       -6.49700996e-12, -6.02519016e-12, -5.58506990e-12, -5.17454708e-12,\n",
+       "       -4.79166070e-12, -4.43458153e-12, -4.10160329e-12, -3.79113452e-12,\n",
+       "       -3.50169095e-12, -3.23188835e-12, -2.98043588e-12, -2.74612994e-12,\n",
+       "       -2.52784828e-12, -2.32454465e-12, -2.13524373e-12, -1.95903636e-12,\n",
+       "       -1.79507516e-12, -1.64257036e-12, -1.50078596e-12, -1.36903605e-12,\n",
+       "       -1.24668147e-12, -1.13312657e-12, -1.02781620e-12, -9.30232957e-13,\n",
+       "       -8.39894458e-13, -7.56350873e-13, -6.79182551e-13, -6.07997779e-13,\n",
+       "       -5.42430665e-13, -4.82139127e-13, -4.26802977e-13, -3.76122108e-13,\n",
+       "       -3.29814763e-13, -2.87615883e-13, -2.49275545e-13, -2.14557473e-13,\n",
+       "       -1.83237630e-13, -1.55102892e-13, -1.29949808e-13, -1.07583453e-13,\n",
+       "       -8.78163775e-14, -7.04676704e-14, -5.53621362e-14, -4.23296062e-14,\n",
+       "       -3.12043925e-14, -2.18248951e-14, -1.40333743e-14, -7.67589565e-15,\n",
+       "       -2.60245162e-15,  1.33274078e-15,  4.27077277e-15,  6.34742190e-15,\n",
+       "        7.69239796e-15,  8.42848892e-15,  8.67064796e-15,  8.52507094e-15,\n",
+       "        8.08832069e-15,  7.44655832e-15,  6.67494233e-15,  5.83725208e-15,\n",
+       "        4.98578315e-15,  4.16154774e-15,  3.39479409e-15,  2.70583646e-15,\n",
+       "        2.10616296e-15,  1.59976499e-15,  1.18461279e-15,  8.54187739e-16,\n",
+       "        5.98977857e-16,  4.07847906e-16,  2.69210409e-16,  1.71946744e-16,\n",
+       "        1.06055166e-16,  6.30311837e-17,  3.60109638e-17,  1.97267674e-17,\n",
+       "        1.03327890e-17,  5.15971756e-18,  2.44844236e-18,  1.10031050e-18,\n",
+       "        4.66550552e-19,  1.85917852e-19,  4.59212470e-20,  0.00000000e+00])"
+      ]
+     },
+     "execution_count": 68,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.Sigma.jacobian() @ sim.gas.Sigma"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The total source terms, i.e., including external sources and excluding the boundaries are given by"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 69,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:19.134803Z",
+     "iopub.status.busy": "2022-07-14T11:48:19.134301Z",
+     "iopub.status.idle": "2022-07-14T11:48:19.148345Z",
+     "shell.execute_reply": "2022-07-14T11:48:19.147153Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[ 4.62645635e-04 -3.15967530e-11 -1.80453135e-11 -1.68008509e-11\n",
+       " -1.56395333e-11 -1.45558169e-11 -1.35445284e-11 -1.26008399e-11\n",
+       " -1.17202464e-11 -1.08985441e-11 -1.01318100e-11 -9.41638378e-12\n",
+       " -8.74884973e-12 -8.12602081e-12 -7.54492330e-12 -7.00278259e-12\n",
+       " -6.49700996e-12 -6.02519016e-12 -5.58506990e-12 -5.17454708e-12\n",
+       " -4.79166070e-12 -4.43458153e-12 -4.10160329e-12 -3.79113452e-12\n",
+       " -3.50169095e-12 -3.23188835e-12 -2.98043588e-12 -2.74612994e-12\n",
+       " -2.52784828e-12 -2.32454465e-12 -2.13524373e-12 -1.95903636e-12\n",
+       " -1.79507516e-12 -1.64257036e-12 -1.50078596e-12 -1.36903605e-12\n",
+       " -1.24668147e-12 -1.13312657e-12 -1.02781620e-12 -9.30232957e-13\n",
+       " -8.39894458e-13 -7.56350873e-13 -6.79182551e-13 -6.07997779e-13\n",
+       " -5.42430665e-13 -4.82139127e-13 -4.26802977e-13 -3.76122108e-13\n",
+       " -3.29814763e-13 -2.87615883e-13 -2.49275545e-13 -2.14557473e-13\n",
+       " -1.83237630e-13 -1.55102892e-13 -1.29949808e-13 -1.07583453e-13\n",
+       " -8.78163775e-14 -7.04676704e-14 -5.53621362e-14 -4.23296062e-14\n",
+       " -3.12043925e-14 -2.18248951e-14 -1.40333743e-14 -7.67589565e-15\n",
+       " -2.60245162e-15  1.33274078e-15  4.27077277e-15  6.34742190e-15\n",
+       "  7.69239796e-15  8.42848892e-15  8.67064796e-15  8.52507094e-15\n",
+       "  8.08832069e-15  7.44655832e-15  6.67494233e-15  5.83725208e-15\n",
+       "  4.98578315e-15  4.16154774e-15  3.39479409e-15  2.70583646e-15\n",
+       "  2.10616296e-15  1.59976499e-15  1.18461279e-15  8.54187739e-16\n",
+       "  5.98977857e-16  4.07847906e-16  2.69210409e-16  1.71946744e-16\n",
+       "  1.06055166e-16  6.30311837e-17  3.60109638e-17  1.97267674e-17\n",
+       "  1.03327890e-17  5.15971756e-18  2.44844236e-18  1.10031050e-18\n",
+       "  4.66550552e-19  1.85917852e-19  4.59212470e-20  0.00000000e+00]"
+      ]
+     },
+     "execution_count": 69,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.Sigma.jacobian() @ sim.gas.Sigma + sim.gas.S.ext"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The dust is integrated with an implicit first-order Euler integration scheme. The Jacobian is calculated from the parameters given in `Simulation.dust`. Parameters like gas velocities, fluxes and source terms are calculated once the new values of the gas surface density have been found.\n",
+    "\n",
+    "Except for the values at the boundaries, the hydrodynamic and coagulation source terms are given by"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 70,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:19.154676Z",
+     "iopub.status.busy": "2022-07-14T11:48:19.154173Z",
+     "iopub.status.idle": "2022-07-14T11:48:19.224550Z",
+     "shell.execute_reply": "2022-07-14T11:48:19.223870Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[ 6.69378221e-07,  7.07100431e-07,  7.46948442e-07, ...,\n",
+       "         1.97891742e-30,  2.74969684e-30,  3.82069137e-30],\n",
+       "       [-6.23483866e-08, -6.59512097e-08, -4.67032604e-08, ...,\n",
+       "        -5.22524344e-34, -8.24485964e-34, -1.24044831e-33],\n",
+       "       [-4.88452828e-08, -5.16639478e-08, -3.65877255e-08, ...,\n",
+       "        -8.02854010e-34, -1.31768376e-33, -2.10795758e-33],\n",
+       "       ...,\n",
+       "       [-1.01704177e-58, -1.26656663e-58, -1.57727488e-58, ...,\n",
+       "        -1.41404653e-47, -1.76076662e-47, -2.19250146e-47],\n",
+       "       [-3.09067346e-59, -3.84856568e-59, -4.79229156e-59, ...,\n",
+       "        -4.29489341e-48, -5.34798875e-48, -6.65930000e-48],\n",
+       "       [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00, ...,\n",
+       "         0.00000000e+00,  0.00000000e+00,  0.00000000e+00]])"
+      ]
+     },
+     "execution_count": 70,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "(sim.dust.Sigma.jacobian() @ sim.dust.Sigma.ravel()).reshape(sim.dust.Sigma.shape)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Note the `ravel()` and `reshape()` operations, since the Jacobian works on a one-dimensional state vector.\n",
+    "\n",
+    "The total source terms except at the boundaries are given by"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 71,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:19.230687Z",
+     "iopub.status.busy": "2022-07-14T11:48:19.230415Z",
+     "iopub.status.idle": "2022-07-14T11:48:19.287831Z",
+     "shell.execute_reply": "2022-07-14T11:48:19.287242Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[[ 6.69378221e-07  7.07100431e-07  7.46948442e-07 ...  1.97891742e-30\n",
+       "   2.74969684e-30  3.82069137e-30]\n",
+       " [-6.23483866e-08 -6.59512097e-08 -4.67032604e-08 ... -5.22524344e-34\n",
+       "  -8.24485964e-34 -1.24044831e-33]\n",
+       " [-4.88452828e-08 -5.16639478e-08 -3.65877255e-08 ... -8.02854010e-34\n",
+       "  -1.31768376e-33 -2.10795758e-33]\n",
+       " ...\n",
+       " [-1.01704177e-58 -1.26656663e-58 -1.57727488e-58 ... -1.41404653e-47\n",
+       "  -1.76076662e-47 -2.19250146e-47]\n",
+       " [-3.09067346e-59 -3.84856568e-59 -4.79229156e-59 ... -4.29489341e-48\n",
+       "  -5.34798875e-48 -6.65930000e-48]\n",
+       " [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00\n",
+       "   0.00000000e+00  0.00000000e+00]]"
+      ]
+     },
+     "execution_count": 71,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "(sim.dust.Sigma.jacobian() @ sim.dust.Sigma.ravel()).reshape(sim.dust.Sigma.shape) + sim.dust.S.ext"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "At the end of a successful integration step, the floor values and boundaries are enforced."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Writer\n",
+    "\n",
+    "`DustPy` uses by default the `hdf5writer` of `simframe`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 72,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:19.294270Z",
+     "iopub.status.busy": "2022-07-14T11:48:19.293993Z",
+     "iopub.status.idle": "2022-07-14T11:48:19.298256Z",
+     "shell.execute_reply": "2022-07-14T11:48:19.297810Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Writer (HDF5 file format using h5py)\n",
+       "------------------------------------\n",
+       "    Data directory : data\n",
+       "    File names     : data/data0000.hdf5\n",
+       "    Overwrite      : False\n",
+       "    Dumping        : True\n",
+       "    Options        : {'com': 'lzf', 'comopts': None}\n",
+       "    Verbosity      : 1"
+      ]
+     },
+     "execution_count": 72,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.writer"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "It is by default writing dump files and prevents overwriting of already existing data files."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.7"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

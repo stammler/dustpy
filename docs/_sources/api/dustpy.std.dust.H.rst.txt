@@ -1,0 +1,6 @@
+H
+=
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: H

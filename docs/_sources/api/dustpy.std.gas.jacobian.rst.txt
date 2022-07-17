@@ -1,0 +1,6 @@
+jacobian
+========
+
+.. currentmodule:: dustpy.std.gas
+
+.. autofunction:: jacobian

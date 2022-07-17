@@ -1,0 +1,6 @@
+vvisc
+=====
+
+.. currentmodule:: dustpy.std.gas
+
+.. autofunction:: vvisc

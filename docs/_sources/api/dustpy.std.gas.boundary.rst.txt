@@ -1,0 +1,6 @@
+boundary
+========
+
+.. currentmodule:: dustpy.std.gas
+
+.. autofunction:: boundary

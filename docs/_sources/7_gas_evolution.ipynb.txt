@@ -1,0 +1,420 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# 7. Gas Evolution\n",
+    "\n",
+    "`DustPy` solves gas evolution with an implicit scheme. It is solving by default the following equation for a viscously evolving disk\n",
+    "\n",
+    "$\\frac{\\partial}{\\partial t} \\Sigma_\\mathrm{g} + \\frac{1}{r}\\frac{\\partial}{\\partial r} \\left( r\\Sigma_\\mathrm{g}v_\\mathrm{rad} \\right) = S_\\mathrm{ext}$.\n",
+    "\n",
+    "Where the radial gas velocity is given by\n",
+    "\n",
+    "$v_\\mathrm{rad} = Av_\\mathrm{visc} + 2B\\eta v_\\mathrm{K}$.\n",
+    "\n",
+    "$A$ and $B$ are the dust backreaction coefficients `Simulation.dust.backreaction` and the viscous accretion velocity is given by\n",
+    "\n",
+    "$v_\\mathrm{visc} = -\\frac{3}{\\Sigma_\\mathrm{g}\\sqrt{r}} \\frac{\\partial}{\\partial r} \\left( \\Sigma_\\mathrm{g} \\nu \\sqrt{r} \\right)$\n",
+    "\n",
+    "with the kinematic viscosity $\\nu$.\n",
+    "\n",
+    "$S_\\mathrm{ext}$ are the external source/loss terms, e.g. due to infall onto the disk or accretion of gas onto a planet."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:22.437534Z",
+     "iopub.status.busy": "2022-07-14T11:48:22.436926Z",
+     "iopub.status.idle": "2022-07-14T11:48:23.430935Z",
+     "shell.execute_reply": "2022-07-14T11:48:23.430244Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "from dustpy import Simulation\n",
+    "sim = Simulation()\n",
+    "sim.ini.grid.Nr = 15\n",
+    "sim.initialize()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Hydrodynamics\n",
+    "\n",
+    "The implicit matrix equation that is solved for gas evolution is given by\n",
+    "\n",
+    "$\\frac{\\vec{\\Sigma}_\\mathrm{g}^{n+1}-\\vec{\\Sigma}_\\mathrm{g}^{n}}{\\Delta t} = \\mathbb{J} \\cdot \\vec{\\Sigma}_\\mathrm{g}^{n+1} + \\vec{S}_\\mathrm{ext},$\n",
+    "\n",
+    "which can be written as\n",
+    "\n",
+    "$\\begin{split}\n",
+    "\\left( \\mathbb{1} - \\Delta t\\, \\mathbb{J} \\right) \\cdot \\vec{\\Sigma}_\\mathrm{g}^{n+1} &= \\vec{\\Sigma}_\\mathrm{g}^{n} + \\Delta t\\, \\vec{S}_\\mathrm{ext}\\\\\n",
+    "&\\equiv \\vec{R}^n,\n",
+    "\\end{split}$\n",
+    "\n",
+    "with\n",
+    "\n",
+    "$\\vec{R}^n = \\vec{\\Sigma}_\\mathrm{g}^{n} + \\Delta t\\, \\vec{S}_\\mathrm{ext}$.\n",
+    "\n",
+    "The Jacobian $\\mathbb{J}$ is a tri-diagonal matrix, since the grid cells only interact with their neighbouring grid cells."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:23.437984Z",
+     "iopub.status.busy": "2022-07-14T11:48:23.437635Z",
+     "iopub.status.idle": "2022-07-14T11:48:23.441530Z",
+     "shell.execute_reply": "2022-07-14T11:48:23.440913Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "import numpy as np"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:23.447794Z",
+     "iopub.status.busy": "2022-07-14T11:48:23.447474Z",
+     "iopub.status.idle": "2022-07-14T11:48:23.934036Z",
+     "shell.execute_reply": "2022-07-14T11:48:23.933181Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 900x600 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "fig = plt.figure(dpi=150)\n",
+    "ax = fig.add_subplot(111)\n",
+    "ax.imshow(np.where(sim.gas.Sigma.jacobian().toarray() != 0., 1., 0.), cmap=\"Blues\")\n",
+    "ax.hlines(np.arange(0., sim.grid.Nr)-0.5, -0.5, sim.grid.Nr-0.5, color=\"gray\", alpha=0.5)\n",
+    "ax.vlines(np.arange(0., sim.grid.Nr)-0.5, -0.5, sim.grid.Nr-0.5, color=\"gray\", alpha=0.5)\n",
+    "ax.get_xaxis().set_visible(False)\n",
+    "ax.get_yaxis().set_visible(False)\n",
+    "ax.set_title(\"Structure of Jacobian $\\mathbb{J}$\")\n",
+    "fig.tight_layout()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Notable exceptions are the first and the last row, which are used to set the boundary conditions. They require up to three elements to set the gradients if needed.\n",
+    "\n",
+    "In the default model the inner boundary condition is set to constant gradient, which requires the following values\n",
+    "\n",
+    "$\\begin{split}\n",
+    "J_{1,\\,1} &= 0 \\\\\n",
+    "J_{1,\\,2} &= \\frac{1}{\\Delta t} \\frac{r_2}{r_1} \\left( 1 + \\frac{r_2}{r_3} \\cdot \\frac{r_2-r_1}{r_3-r_1} \\right) \\\\\n",
+    "J_{1,\\,3} &= -\\frac{1}{\\Delta t} \\frac{r_2}{r_1} \\cdot \\frac{r_2-r_1}{r_3-r_1} \\\\\n",
+    "R_1 &= 0.\n",
+    "\\end{split}$\n",
+    "\n",
+    "The outer boundary is set to floor value, which requires\n",
+    "\n",
+    "$\\begin{split}\n",
+    "J_{N,\\,i} &= 0 \\\\\n",
+    "R_N &= \\Sigma_\\mathrm{floor}.\n",
+    "\\end{split}$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The implicit integration schemes that come with `simframe` only integrate equations of kind\n",
+    "\n",
+    "$\\left( \\mathbb{1} - \\Delta t\\, \\mathbb{J} \\right) \\cdot \\vec{Y}^{n+1} = \\vec{Y}^n$.\n",
+    "\n",
+    "We've therefore creates a custom integration schemes for our needs.  \n",
+    "Whenever `Simulation.gas.Sigma.jacobian()` is called, the right-hand side of our equation is calculated and stored in a hidden field `Simulation.gas._rhs`, that can be accessed by our integration scheme.\n",
+    "\n",
+    "The first and the last rows of the Jacobian, which contain the boundary conditions do not contain the time step $\\Delta t$, since this is not necessarily known when calculating the Jacobian. The integration scheme will add the term containing the time step.\n",
+    "\n",
+    "The custom integration scheme can be found in `dustpy.std.gas.impl_1_direct`."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The hydrodynamic source terms can be calculated with a matrix multiplication of the Jacobian with the gas surface density."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:23.977934Z",
+     "iopub.status.busy": "2022-07-14T11:48:23.977392Z",
+     "iopub.status.idle": "2022-07-14T11:48:23.992539Z",
+     "shell.execute_reply": "2022-07-14T11:48:23.991357Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([ 7.82620620e-05, -1.45436122e-11, -6.35260799e-12, -3.78602233e-12,\n",
+       "       -2.18024123e-12, -1.18702994e-12, -5.88313583e-13, -2.46962738e-13,\n",
+       "       -7.38787316e-14, -5.59875935e-15,  8.05316307e-15,  4.18202183e-15,\n",
+       "        8.11579433e-16,  5.66451936e-17,  0.00000000e+00])"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.Sigma.jacobian() @ sim.gas.Sigma"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "However, the first and the last element will not have the correct value, since they contain the instructions for the boundaries without the time step.\n",
+    "\n",
+    "The interface fluxes and the gas velocity will be calculated after the integration step, when the new values of the gas surface density will be accessible. Changes to the fluxes or the gas velocities will therefore not influence the gas evolution. In other words, you cannot turn off the hydrodynamic gas evolution by setting the viscous velocity to zero."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Turning off Hydrodynamics\n",
+    "\n",
+    "The diagonals of the Jacobian contain information about the grid $r$, the viscosity $\\nu$, and the backreaction quantities, as seen in the accretion equation above. To turn off only the gas hydrodynamics, but not the external sources, one has to set the Jacobian to zero (except for the boundaries). This can be achieved by setting the viscosity to zero and unsetting its updater.\n",
+    "\n",
+    "**Note:** This is only true, if there is no backreaction, i.e., $A=1$ and $B=0$. Otherwise, the interaction with the dust would still influence the gas."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:23.997874Z",
+     "iopub.status.busy": "2022-07-14T11:48:23.996851Z",
+     "iopub.status.idle": "2022-07-14T11:48:24.003738Z",
+     "shell.execute_reply": "2022-07-14T11:48:24.002472Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "sim.gas.nu[:] = 0.\n",
+    "sim.gas.nu.updater = None"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:24.009589Z",
+     "iopub.status.busy": "2022-07-14T11:48:24.009021Z",
+     "iopub.status.idle": "2022-07-14T11:48:24.022516Z",
+     "shell.execute_reply": "2022-07-14T11:48:24.021250Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([7.8262062e-05, 0.0000000e+00, 0.0000000e+00, 0.0000000e+00,\n",
+       "       0.0000000e+00, 0.0000000e+00, 0.0000000e+00, 0.0000000e+00,\n",
+       "       0.0000000e+00, 0.0000000e+00, 0.0000000e+00, 0.0000000e+00,\n",
+       "       0.0000000e+00, 0.0000000e+00, 0.0000000e+00])"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.gas.Sigma.jacobian() @ sim.gas.Sigma"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Another option would be to set the $\\alpha$-viscosity parameter `Simulation.gas.alpha` to zero and unset its updater. This would, however, influence other fields that depend on $\\alpha$ as well."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## External Sources\n",
+    "\n",
+    "The external gas sources `Simulation.gas.S.ext` can be used as additional source or loss term, for gas infall or photoevaporation. By default they are set to zero.\n",
+    "\n",
+    "The first and the last element of the array will not have an effect on gas evolution, since they will be overwritten by the integration scheme to set the boundaries as described above."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Turning off External Sources\n",
+    "\n",
+    "To turn off external source terms set the field to zero and unset its updater."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:24.029990Z",
+     "iopub.status.busy": "2022-07-14T11:48:24.029549Z",
+     "iopub.status.idle": "2022-07-14T11:48:24.037273Z",
+     "shell.execute_reply": "2022-07-14T11:48:24.035940Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "sim.gas.S.ext[:] = 0.\n",
+    "sim.gas.S.ext.updater = None"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Turning off Gas Evolution\n",
+    "\n",
+    "To turn off the entire gas evolution you can either turn off hte individual parts as described above or you can remove the integration instruction of the gas from the instruction list."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:24.044108Z",
+     "iopub.status.busy": "2022-07-14T11:48:24.043697Z",
+     "iopub.status.idle": "2022-07-14T11:48:24.053659Z",
+     "shell.execute_reply": "2022-07-14T11:48:24.052368Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[Instruction (Dust: implicit 1st-order direct solver),\n",
+       " Instruction (Gas: implicit 1st-order direct solver)]"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.integrator.instructions"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:24.059964Z",
+     "iopub.status.busy": "2022-07-14T11:48:24.059552Z",
+     "iopub.status.idle": "2022-07-14T11:48:24.066639Z",
+     "shell.execute_reply": "2022-07-14T11:48:24.065275Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "del(sim.integrator.instructions[1])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2022-07-14T11:48:24.073267Z",
+     "iopub.status.busy": "2022-07-14T11:48:24.072844Z",
+     "iopub.status.idle": "2022-07-14T11:48:24.082642Z",
+     "shell.execute_reply": "2022-07-14T11:48:24.081317Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[Instruction (Dust: implicit 1st-order direct solver)]"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "sim.integrator.instructions"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "If you simply remove the integration instruction, the gas velocities will still be calculated at every time step, since the viscosity is non-zero. This will therefore still influence dust quantities that require the gas velocity."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

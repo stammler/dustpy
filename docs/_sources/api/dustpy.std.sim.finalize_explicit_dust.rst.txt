@@ -1,0 +1,6 @@
+finalize_explicit_dust
+======================
+
+.. currentmodule:: dustpy.std.sim
+
+.. autofunction:: finalize_explicit_dust

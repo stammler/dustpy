@@ -1,0 +1,6 @@
+St_Epstein_StokesI
+==================
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: St_Epstein_StokesI

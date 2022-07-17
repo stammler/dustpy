@@ -1,0 +1,6 @@
+finalize_explicit
+=================
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: finalize_explicit
