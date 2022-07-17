@@ -23,6 +23,7 @@ help:
 remove:
 	rm -r ../docs/*
 	rm source/api/*
+	rm -r build/*
 
 # Copy built codumentation to github directory
 copy:

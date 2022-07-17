@@ -5,7 +5,7 @@
    "id": "58c6fd68-92e1-4f2b-894c-6e9933ee1086",
    "metadata": {},
    "source": [
-    "# Appendix C: Contributing/Bugs/Feature"
+    "# Appendix C: Contributing/Bugs/Features"
    ]
   },
   {
