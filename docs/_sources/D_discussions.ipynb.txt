@@ -1,0 +1,43 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "89b4e37c-efa9-49a1-a3bb-43df6899b458",
+   "metadata": {},
+   "source": [
+    "# Appendix D: DustPy Discussions"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "0c0c39d6-d927-4fec-aa98-d380116782a2",
+   "metadata": {},
+   "source": [
+    "For general discussions about `DustPy` or if need input from the community for setting up a model, please have a look at [DustPy Discussions](https://github.com/stammler/dustpy/discussions/).\n",
+    "\n",
+    "Please respect the [Code of Conduct](https://github.com/stammler/dustpy/blob/master/.github/CODE_OF_CONDUCT.md)."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.7"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
