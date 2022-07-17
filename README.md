@@ -2,8 +2,9 @@
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/stammler/dustpy/pages%20build%20and%20deployment?label=docs)](https://stammler.github.io/dustpy/) 
 ![GitHub](https://img.shields.io/github/license/stammler/dustpy) 
-![PyPI - Downloads](https://img.shields.io/pypi/dm/dustpy?label=PyPI%20downloads) 
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://github.com/stammler/dustpy/blob/master/.github/CODE_OF_CONDUCT.md) 
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://github.com/stammler/dustpy/blob/master/.github/CODE_OF_CONDUCT.md)  
+[![arXiv](https://img.shields.io/badge/arXiv-10.48550/arXiv.2207.00322-blue)](https://doi.org/10.48550/arXiv.2207.00322)  
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/dustpy?label=PyPI%20downloads)](https://pypistats.org/packages/dustpy)
 
 ### Dust Coagulation and Evolution in Protoplanetary Disks
 
@@ -24,10 +25,6 @@ By using any version of `DustPy` you agree to these terms of usage.
 
 `DustPy` needs a Python3 distribution and a Fortran compiler installed on your system.
 
-## Contributing
-
-To contribute to `DustPy` please read [Contribution Guidlines](https://github.com/stammler/dustpy/blob/master/.github/CONTRIBUTING.md).
-
 ## Documentation
 
 [https://stammler.github.io/dustpy/](https://stammler.github.io/dustpy/)
@@ -44,7 +41,10 @@ To contribute to `DustPy` please read [Contribution Guidlines](https://github.co
 * [Example: Ice Lines](https://stammler.github.io/dustpy/example_ice_lines.html)
 * [Example: Planetary Gaps](https://stammler.github.io/dustpy/example_planetary_gaps.html)
 * [Example: Planetesimal Formation](https://stammler.github.io/dustpy/example_planetesimal_formation.html) <br /> &nbsp;
-* [List of Publications](https://stammler.github.io/dustpy/A_publications.html)
+* [A. Citation](https://stammler.github.io/dustpy/A_citation.html)
+* [B. List of Publications](https://stammler.github.io/dustpy/B_publications.html)
+* [C. Contributing/Bugs/Features](https://stammler.github.io/dustpy/C_contrib_bug_feature.html)
+* [D. DustPy Discussions](https://stammler.github.io/dustpy/D_discussions.html)
 
 [Module Reference](https://stammler.github.io/dustpy/api.html)
 
