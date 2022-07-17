@@ -1,6 +1,0 @@
-vrel_radial_drift
-=================
-
-.. currentmodule:: dustpy.std.dust
-
-.. autofunction:: vrel_radial_drift

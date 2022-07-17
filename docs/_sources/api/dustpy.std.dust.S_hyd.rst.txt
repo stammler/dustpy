@@ -1,6 +1,0 @@
-S_hyd
-=====
-
-.. currentmodule:: dustpy.std.dust
-
-.. autofunction:: S_hyd

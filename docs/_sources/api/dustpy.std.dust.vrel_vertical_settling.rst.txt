@@ -1,6 +1,0 @@
-vrel_vertical_settling
-======================
-
-.. currentmodule:: dustpy.std.dust
-
-.. autofunction:: vrel_vertical_settling

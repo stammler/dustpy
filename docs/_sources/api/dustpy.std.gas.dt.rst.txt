@@ -1,6 +1,0 @@
-dt
-==
-
-.. currentmodule:: dustpy.std.gas
-
-.. autofunction:: dt

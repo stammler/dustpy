@@ -1,6 +1,0 @@
-cs_adiabatic
-============
-
-.. currentmodule:: dustpy.std.gas
-
-.. autofunction:: cs_adiabatic

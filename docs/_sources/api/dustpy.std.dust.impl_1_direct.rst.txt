@@ -1,7 +1,0 @@
-impl_1_direct
-=============
-
-.. currentmodule:: dustpy.std.dust
-
-.. autoclass:: impl_1_direct
-   :show-inheritance:

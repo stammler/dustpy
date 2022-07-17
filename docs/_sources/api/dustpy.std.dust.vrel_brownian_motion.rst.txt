@@ -1,6 +1,0 @@
-vrel_brownian_motion
-====================
-
-.. currentmodule:: dustpy.std.dust
-
-.. autofunction:: vrel_brownian_motion

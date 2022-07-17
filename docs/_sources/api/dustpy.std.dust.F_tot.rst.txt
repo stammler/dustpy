@@ -1,6 +1,0 @@
-F_tot
-=====
-
-.. currentmodule:: dustpy.std.dust
-
-.. autofunction:: F_tot

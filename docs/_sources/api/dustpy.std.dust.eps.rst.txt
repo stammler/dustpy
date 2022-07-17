@@ -1,6 +1,0 @@
-eps
-===
-
-.. currentmodule:: dustpy.std.dust
-
-.. autofunction:: eps

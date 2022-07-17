@@ -1,6 +1,0 @@
-nu
-==
-
-.. currentmodule:: dustpy.std.gas
-
-.. autofunction:: nu
