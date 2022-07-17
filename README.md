@@ -50,7 +50,7 @@ By using any version of `DustPy` you agree to these terms of usage.
 
 ## Framework
 
-`DustPy` is using the [Simframe](http://github.com/stammler/simframe/) framework for scientific simulations ([Stammler & Birnstiel, 2022](https://joss.theoj.org/papers/0ef61e034c57445e846b2ec383c920a6))
+`DustPy` is using the [Simframe](http://github.com/stammler/simframe/) framework for scientific simulations ([Stammler & Birnstiel 2022](https://joss.theoj.org/papers/0ef61e034c57445e846b2ec383c920a6))
 
 ## Ackowledgements
 
