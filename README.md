@@ -52,7 +52,7 @@ By using any version of `DustPy` you agree to these terms of usage.
 
 `DustPy` is using the [Simframe](http://github.com/stammler/simframe/) framework for scientific simulations ([Stammler & Birnstiel 2022](https://joss.theoj.org/papers/0ef61e034c57445e846b2ec383c920a6))
 
-## Ackowledgements
+## Acknowledgements
 
 `DustPy` has received funding from the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation programme under grant agreement No 714769.
 
