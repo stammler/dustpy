@@ -3,7 +3,7 @@
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/stammler/dustpy/pages%20build%20and%20deployment?label=docs)](https://stammler.github.io/dustpy/) 
 [![GitHub](https://img.shields.io/github/license/stammler/dustpy) ](https://github.com/stammler/dustpy/blob/master/LICENSE) 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://github.com/stammler/dustpy/blob/master/.github/CODE_OF_CONDUCT.md)  
-[![arXiv](https://img.shields.io/badge/arXiv-10.48550/arXiv.2207.00322-blue)](https://doi.org/10.48550/arXiv.2207.00322)  
+[![The Astrophysical Journal](https://img.shields.io/badge/The%20Astrophysical%20Journal-10.3847%2F1538--4357%2Fac7d58-blue)](https://doi.org/10.3847/1538-4357/ac7d58) [![arXiv](https://img.shields.io/badge/arXiv-10.48550/arXiv.2207.00322-blue)](https://doi.org/10.48550/arXiv.2207.00322)  
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/dustpy?label=PyPI%20downloads)](https://pypistats.org/packages/dustpy)
 
 ### Dust Coagulation and Evolution in Protoplanetary Disks
