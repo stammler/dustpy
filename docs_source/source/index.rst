@@ -5,7 +5,7 @@
 
 | This documentation is for ``DustPy v1.0.1``.
 
-| ``DustPy`` simulates the radial evolution of gas and dust in a protoplanetary disk, involving viscous evolution of the gas disk, advection and diffusion of the dust disk, as well as dust growth by solving the Smoluchowski equation.
+| ``DustPy`` simulates the radial evolution of gas and dust in protoplanetary disks, including viscous evolution of the gas, advection and diffusion of the dust, as well as dust growth by solving the Smoluchowski equation.
 
 | ``DustPy`` can be installed via the Python Package Index
 | ``pip install dustpy``
