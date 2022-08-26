@@ -286,6 +286,8 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   integer :: ce
   integer :: i
   integer :: j
+  integer :: jmax
+  integer :: jmin
   integer :: k
   integer :: inc
   integer :: p
@@ -370,10 +372,14 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   end do
 
   ! Building modified Podolak coefficients
-  do i=1, Nm
-    do j=1, Nm
+  ! The outer sum does not need to go all the way up to Nm,
+  ! because sticking collisions involving m(Nm) will be outside the mass grid.
+  ! The inner sum will only go to a maximum integer number jmax, such that
+  ! the resulting mass is within the mass grid.
+  do i=1, Nm-1
+    jmax = MIN(Nm-1, INT(LOG10(10.d0**(a*Nm)-10.d0**(a*i))/a))
+    do j=1, jmax
       ! Only if resulting mass inside of grid
-      if(mtot(j, i) .GE. m(Nm) ) cycle
       do k=1, Nm
         cpodmod(k, j, i) = 0.5d0 * kdelta(j, i) * cpod(k, j, i) &
                            & + cpod(k, j, i) * theta( (k-j)*1.d0 - 1.5d0 ) * theta( (j-i)*1.d0 - 0.5d0 ) &
@@ -461,9 +467,8 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
     end do
 
     ! Full fragmentation
-    do j=i-p, i
-
-      if(j .LT. 1) cycle
+    jmin = MAX(1, i-p)
+    do j=jmin, i
 
       ! The largest fragment has the mass of the larger collison partner
       klf(j, i) = i
@@ -1009,9 +1014,9 @@ subroutine kernel(a, H, Sigma, SigmaFloor, vrel, K, Nr, Nm)
 
   do ir=2, Nr-1
     do i=1, Nm
-      if(Sigma(ir, i) .lt. SigmaFloor(ir, i)) cycle
+      if(Sigma(ir, i) .LT. SigmaFloor(ir, i)) cycle
       do j=1, i
-        if(Sigma(ir, j) .lt. SigmaFloor(ir, j)) cycle
+        if(Sigma(ir, j) .LT. SigmaFloor(ir, j)) cycle
         K(ir, j, i) = (1.d0 - 0.5d0*kdelta(j, i)) * pi * (a(ir, j) + a(ir, i))**2 * vrel(ir, j, i) &
           & / sqrt( 2.d0 * pi * ( H(ir, j)**2 + H(ir, i)**2 ) )
       end do
@@ -1116,6 +1121,7 @@ subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, S
   integer :: i
   integer :: imax
   integer :: j
+  integer :: jmin
   integer :: k
   integer :: nz
   integer :: p
@@ -1186,8 +1192,8 @@ subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, S
         end if
       end do
       ! Full fragmentation (only negative terms)
-      do j=i-p, i
-        if(j .LT. 1) cycle
+      jmin = MAX(1, i-p)
+      do j=jmin, i
         S(ir, i) = S(ir, i) - Rf(j, i)
         S(ir, j) = S(ir, j) - Rf(j, i)
       end do
