@@ -1,3 +1,4 @@
+ipympl
 ipython
 matplotlib
 numpy
