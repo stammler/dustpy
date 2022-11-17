@@ -45,6 +45,7 @@ By using any version of `DustPy` you agree to these terms of usage.
 * [B. List of Publications](https://stammler.github.io/dustpy/B_publications.html)
 * [C. Contributing/Bugs/Features](https://stammler.github.io/dustpy/C_contrib_bug_feature.html)
 * [D. DustPy Discussions](https://stammler.github.io/dustpy/D_discussions.html)
+* [E. Changelog](https://stammler.github.io/dustpy/E_changelog.html)
 
 [Module Reference](https://stammler.github.io/dustpy/api.html)
 
