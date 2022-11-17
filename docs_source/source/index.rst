@@ -35,6 +35,7 @@
    B_publications
    C_contrib_bug_feature
    D_discussions
+   E_changelog
    api
 
 
