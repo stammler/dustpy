@@ -1,5 +1,4 @@
 ipympl
-ipython
 matplotlib
 numpy
 requests
