@@ -557,7 +557,9 @@ subroutine t_pass(L, r, T, Nr)
    double precision, intent(out) :: T(Nr)
    integer,          intent(in)  :: Nr
 
-   T(:) = ( 5.d-2 * L / (4.d0 * pi * r(:)**2 * sigma_sb) )**2.5d-1
+   ! The prefactor is
+   ! 0.5*phi/4. = 0.5*0.05/4. = 0.00625
+   T(:) = ( 6.25d-3 * L / (pi * r(:)**2 * sigma_sb) )**2.5d-1
 
 end subroutine t_pass
 
