@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="B_publications.html">Appendix B: List of Publications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C_contrib_bug_feature.html">Appendix C: Contributing/Bugs/Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="D_discussions.html">Appendix D: DustPy Discussions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_changelog.html">Appendix E: Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
 
@@ -365,6 +366,7 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2Fexample_ice_lines.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="Example:-Ice-Lines">
 <h1>Example: Ice Lines<a class="headerlink" href="#Example:-Ice-Lines" title="Permalink to this headline"></a></h1>
 <div class="line-block">
@@ -424,7 +426,7 @@ than water and we therefore use a fragmentation velocity of <span class="math no
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_ice_lines_5_0.png" src="_images/example_ice_lines_5_0.png" />
+<img alt="_images/example_ice_lines_6_0.png" src="_images/example_ice_lines_6_0.png" />
 </div>
 </div>
 <p>We now have to write a function that constructs the fragmentation velocity according the prescription above.</p>
@@ -482,7 +484,7 @@ than water and we therefore use a fragmentation velocity of <span class="math no
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_ice_lines_13_0.png" src="_images/example_ice_lines_13_0.png" />
+<img alt="_images/example_ice_lines_14_0.png" src="_images/example_ice_lines_14_0.png" />
 </div>
 </div>
 <p>Note that we do not assign out function to the updater of the fragmentation velocities. Since the temperature profile is constant in the default model, the fragmentation velocity would not change. It’s therefore not required to update it at every time step.</p>
@@ -509,7 +511,7 @@ than water and we therefore use a fragmentation velocity of <span class="math no
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.1
+DustPy v1.0.2
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -580,7 +582,7 @@ Writing file <span class="ansi-blue-intense-fg">example_ice_lines/data0020.hdf5<
 Writing dump file <span class="ansi-blue-intense-fg">example_ice_lines/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">example_ice_lines/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">example_ice_lines/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">2:17:14</span>
+Execution time: <span class="ansi-blue-intense-fg">3:43:13</span>
 </pre></div></div>
 </div>
 <p>Here is the result of our simulation.</p>
@@ -598,7 +600,7 @@ Execution time: <span class="ansi-blue-intense-fg">2:17:14</span>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_ice_lines_18_0.png" src="_images/example_ice_lines_18_0.png" />
+<img alt="_images/example_ice_lines_19_0.png" src="_images/example_ice_lines_19_0.png" />
 </div>
 </div>
 <p>Note that the inner disk is enriched in dust. The reason for this is the so-called “traffic jam” effect. Dust particles outside the water ice line grow to larger sizes, which drift rapidly. After crossing the water ice line the fragment down so slowly drifting particles. Therefore, dust accumulates inside the water ice line.</p>

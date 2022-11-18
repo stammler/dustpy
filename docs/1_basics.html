@@ -71,6 +71,7 @@
 <li class="toctree-l1"><a class="reference internal" href="B_publications.html">Appendix B: List of Publications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C_contrib_bug_feature.html">Appendix C: Contributing/Bugs/Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="D_discussions.html">Appendix D: DustPy Discussions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_changelog.html">Appendix E: Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
 
@@ -376,6 +377,7 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2F1_basics.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="1.-Basic-usage">
 <h1>1. Basic usage<a class="headerlink" href="#1.-Basic-usage" title="Permalink to this headline"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is using on the <code class="docutils literal notranslate"><span class="pre">simframe</span></code> framework for running scientific simulations. For a detailed description of the usage of <code class="docutils literal notranslate"><span class="pre">simframe</span></code> please have a look at the <a class="reference external" href="https://simframe.rtfd.io/">Simframe Documentation</a>.</p>
@@ -649,7 +651,7 @@ Group (Gas quantities)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.1
+DustPy v1.0.2
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -720,7 +722,7 @@ Writing file <span class="ansi-blue-intense-fg">data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:25:56</span>
+Execution time: <span class="ansi-blue-intense-fg">0:26:47</span>
 </pre></div></div>
 </div>
 <p>By default <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has written output files into the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p>
@@ -750,7 +752,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:25:56</span>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/1_basics_21_0.png" src="_images/1_basics_21_0.png" />
+<img alt="_images/1_basics_22_0.png" src="_images/1_basics_22_0.png" />
 </div>
 </div>
 <p>The blue and the green lines in the top left panel are analytical estimates for the fragmentation and drift barrier taken from <a class="reference external" href="https://doi.org/10.1051/0004-6361/201118136">Birnstiel et al. (2012)</a>.</p>
@@ -770,7 +772,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:25:56</span>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/1_basics_23_0.png" src="_images/1_basics_23_0.png" />
+<img alt="_images/1_basics_24_0.png" src="_images/1_basics_24_0.png" />
 </div>
 </div>
 <p>The top middle and bottom left panels show the dust density distribution along the gray dashed lines in the top left panel.</p>
@@ -787,7 +789,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:25:56</span>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/1_basics_26_0.png" src="_images/1_basics_26_0.png" />
+<img alt="_images/1_basics_27_0.png" src="_images/1_basics_27_0.png" />
 </div>
 </div>
 <section id="Code-Units">
@@ -812,30 +814,30 @@ Execution time: <span class="ansi-blue-intense-fg">0:25:56</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[1.09313371e+01 1.01855835e+01 9.48845180e+00 8.84347501e+00
- 8.24071646e+00 7.67760662e+00 7.15149008e+00 6.66008046e+00
- 6.20128205e+00 5.77288088e+00 5.37293549e+00 4.99971836e+00
- 4.65140671e+00 4.32635772e+00 4.02315184e+00 3.74029162e+00
- 3.47639971e+00 3.23031905e+00 3.00082307e+00 2.78676978e+00
- 2.58721950e+00 2.40116478e+00 2.22767081e+00 2.06597562e+00
- 1.91524708e+00 1.77473282e+00 1.64381472e+00 1.52179958e+00
- 1.40809401e+00 1.30219491e+00 1.20351791e+00 1.11161003e+00
- 1.02606752e+00 9.46373837e-01 8.72203024e-01 8.03190881e-01
- 7.38950198e-01 6.79212619e-01 6.23651464e-01 5.72001107e-01
- 5.24039335e-01 4.79461005e-01 4.38091854e-01 3.99704847e-01
- 3.64116044e-01 3.31152356e-01 3.00621509e-01 2.72395894e-01
- 2.46299096e-01 2.22220240e-01 2.00012416e-01 1.79573701e-01
- 1.60779999e-01 1.43538736e-01 1.27742625e-01 1.13310578e-01
- 1.00145938e-01 8.81754495e-02 7.73127439e-02 6.74884062e-02
- 5.86401237e-02 5.07007438e-02 4.36199272e-02 3.73520300e-02
- 3.18298535e-02 2.69778573e-02 2.27220847e-02 1.89986604e-02
- 1.57559552e-02 1.29510077e-02 1.05452199e-02 8.50017115e-03
- 6.77511116e-03 5.31992755e-03 4.06419445e-03 2.91142231e-03
- 1.79367479e-03 8.21964964e-04 2.63837652e-04 5.76886554e-05
- 8.54873944e-06 9.39224738e-07 7.84489245e-08 5.04164399e-09
- 2.49568366e-10 9.41137002e-12 2.63592201e-13 5.25639846e-15
- 7.03009204e-17 5.85609018e-19 2.80531165e-21 7.19728409e-24
- 9.54707146e-27 9.61029742e-29 7.84604540e-29 6.83347700e-29
+[1.10559380e+01 1.02993767e+01 9.59198050e+00 8.93896107e+00
+ 8.32861375e+00 7.75844710e+00 7.22595920e+00 6.72859066e+00
+ 6.26424227e+00 5.83085083e+00 5.42623146e+00 5.04866694e+00
+ 4.69647420e+00 4.36778791e+00 4.06119770e+00 3.77533102e+00
+ 3.50861358e+00 3.25989989e+00 3.02807355e+00 2.81182053e+00
+ 2.61021395e+00 2.42234241e+00 2.24712612e+00 2.08381676e+00
+ 1.93166317e+00 1.78979399e+00 1.65760396e+00 1.53446520e+00
+ 1.41968988e+00 1.31278654e+00 1.21322161e+00 1.12046647e+00
+ 1.03412038e+00 9.53723441e-01 8.78886173e-01 8.09291361e-01
+ 7.44487616e-01 6.84219962e-01 6.28190641e-01 5.76091629e-01
+ 5.27712367e-01 4.82758397e-01 4.41037822e-01 4.02337209e-01
+ 3.66449487e-01 3.33225215e-01 3.02445191e-01 2.73989690e-01
+ 2.47688583e-01 2.23423539e-01 2.01051087e-01 1.80462829e-01
+ 1.61536778e-01 1.44176025e-01 1.28274337e-01 1.13748442e-01
+ 1.00501708e-01 8.84613831e-02 7.75364165e-02 6.76589526e-02
+ 5.87672641e-02 5.07930469e-02 4.36874907e-02 3.74070501e-02
+ 3.18784102e-02 2.70176196e-02 2.27461022e-02 1.90032468e-02
+ 1.57423382e-02 1.29235013e-02 1.05088653e-02 8.46033023e-03
+ 6.73966872e-03 5.30705139e-03 4.11785841e-03 3.11235316e-03
+ 2.20571661e-03 1.32198748e-03 5.33245657e-04 1.36824913e-04
+ 2.20028199e-05 2.50164236e-06 2.09399185e-07 1.32053273e-08
+ 6.33052678e-10 2.29602773e-11 6.17459067e-13 1.18515684e-14
+ 1.53284804e-16 1.24023985e-18 5.78120550e-21 1.44095338e-23
+ 1.83976183e-26 1.01268740e-28 7.84616844e-29 6.83347701e-29
  5.95170965e-29 5.18372240e-29 4.51483347e-29 3.93225557e-29]
 </pre></div></div>
 </div>
@@ -892,11 +894,11 @@ Execution time: <span class="ansi-blue-intense-fg">0:25:56</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[[1.41368933e-01 1.16392901e-01 1.21608007e-01 ... 1.52526930e-23
+[[1.35763117e-01 1.11462402e-01 1.16092886e-01 ... 1.52526930e-23
   2.11935481e-23 2.94483396e-23]
- [1.35151354e-01 1.10914708e-01 1.15599654e-01 ... 1.32845402e-23
+ [1.29659354e-01 1.06121484e-01 1.10250120e-01 ... 1.32845402e-23
   1.84588088e-23 2.56484316e-23]
- [1.29578934e-01 1.05965979e-01 1.10143128e-01 ... 1.15703508e-23
+ [1.24174535e-01 1.01287149e-01 1.04933646e-01 ... 1.15703508e-23
   1.60769503e-23 2.23388501e-23]
  ...
  [4.45718657e-46 6.19324066e-46 8.60547999e-46 ... 2.30858850e-29
@@ -971,31 +973,31 @@ Writer (HDF5 file format using h5py)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([1.11397561e+003, 1.03910588e+003, 9.69196424e+002, 9.03718174e+002,
-       8.42430442e+002, 7.85106276e+002, 7.31526230e+002, 6.81474764e+002,
-       6.34739651e+002, 5.91113567e+002, 5.50396529e+002, 5.12398008e+002,
-       4.76938187e+002, 4.43848361e+002, 4.12970747e+002, 3.84157989e+002,
-       3.57272545e+002, 3.32186063e+002, 3.08778773e+002, 2.86938915e+002,
-       2.66562214e+002, 2.47551371e+002, 2.29815605e+002, 2.13270219e+002,
-       1.97836192e+002, 1.83439801e+002, 1.70012273e+002, 1.57489450e+002,
-       1.45811486e+002, 1.34922560e+002, 1.24770602e+002, 1.15307053e+002,
-       1.06486625e+002, 9.82670833e+001, 9.06090451e+001, 8.34757883e+001,
-       7.68330738e+001, 7.06489789e+001, 6.48937424e+001, 5.95396186e+001,
-       5.45607415e+001, 4.99329969e+001, 4.56339029e+001, 4.16424973e+001,
-       3.79392329e+001, 3.45058773e+001, 3.13254204e+001, 2.83819862e+001,
-       2.56607498e+001, 2.31478592e+001, 2.08303612e+001, 1.86961317e+001,
-       1.67338094e+001, 1.49327331e+001, 1.32828828e+001, 1.17748238e+001,
-       1.03996542e+001, 9.14895562e+000, 8.01474777e+000, 6.98944552e+000,
-       6.06582038e+000, 5.23696536e+000, 4.49626392e+000, 3.83736305e+000,
-       3.25415082e+000, 2.74073848e+000, 2.29144739e+000, 1.90080069e+000,
-       1.56351980e+000, 1.27452557e+000, 1.02894369e+000, 8.22113973e-001,
-       6.49602649e-001, 5.07217032e-001, 3.91021309e-001, 2.97352370e-001,
-       2.22834415e-001, 1.64391041e-001, 1.19253644e-001, 8.49650977e-002,
-       5.93779592e-002, 4.06467827e-002, 2.72145282e-002, 1.77934744e-002,
-       1.13414447e-002, 7.03450119e-003, 4.23748972e-003, 2.47392774e-003,
-       1.39667732e-003, 7.60666142e-004, 3.98625239e-004, 2.00452833e-004,
-       9.64394773e-005, 4.42506585e-005, 1.92990442e-005, 7.97125908e-006,
-       3.10602164e-006, 1.13699105e-006, 3.88105637e-007, 1.00000000e-100])
+array([1.11442758e+003, 1.03950016e+003, 9.69534899e+002, 9.03996575e+002,
+       8.42652573e+002, 7.85281679e+002, 7.31666653e+002, 6.81591015e+002,
+       6.34839857e+002, 5.91202935e+002, 5.50478001e+002, 5.12473131e+002,
+       4.77007790e+002, 4.43912953e+002, 4.13030706e+002, 3.84213637e+002,
+       3.57324174e+002, 3.32233942e+002, 3.08823154e+002, 2.86980035e+002,
+       2.66600291e+002, 2.47586611e+002, 2.29848199e+002, 2.13300346e+002,
+       1.97864019e+002, 1.83465484e+002, 1.70035958e+002, 1.57511273e+002,
+       1.45831575e+002, 1.34941033e+002, 1.24787571e+002, 1.15322622e+002,
+       1.06500891e+002, 9.82801375e+001, 9.06209726e+001, 8.34866689e+001,
+       7.68429821e+001, 7.06579849e+001, 6.49019115e+001, 5.95470123e+001,
+       5.45674173e+001, 4.99390088e+001, 4.56393015e+001, 4.16473303e+001,
+       3.79435448e+001, 3.45097100e+001, 3.13288134e+001, 2.83849764e+001,
+       2.56633720e+001, 2.31501460e+001, 2.08323432e+001, 1.86978378e+001,
+       1.67352666e+001, 1.49339667e+001, 1.32839164e+001, 1.17756796e+001,
+       1.04003528e+001, 9.14951632e+000, 8.01518836e+000, 6.98978248e+000,
+       6.06606887e+000, 5.23713926e+000, 4.49637584e+000, 3.83742439e+000,
+       3.25417178e+000, 2.74072812e+000, 2.29141364e+000, 1.90075039e+000,
+       1.56345878e+000, 1.27445866e+000, 1.02887484e+000, 8.22046251e-001,
+       6.49538378e-001, 5.07157848e-001, 3.90968245e-001, 2.97305957e-001,
+       2.22794764e-001, 1.64357939e-001, 1.19226636e-001, 8.49435663e-002,
+       5.93611962e-002, 4.06340475e-002, 2.72050959e-002, 1.77866714e-002,
+       1.13366732e-002, 7.03125139e-003, 4.23534403e-003, 2.47255688e-003,
+       1.39583152e-003, 7.60163304e-004, 3.98337858e-004, 2.00295348e-004,
+       9.63569541e-005, 4.42094325e-005, 1.92794721e-005, 7.96245913e-006,
+       3.10228830e-006, 1.13550420e-006, 3.87735143e-007, 1.00000000e-100])
 </pre></div></div>
 </div>
 <p>You can also read the full data directory with</p>
@@ -1152,7 +1154,7 @@ array([1.11397561e+003, 1.03910588e+003, 9.69196424e+002, 9.03718174e+002,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.1
+DustPy v1.0.2
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/

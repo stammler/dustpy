@@ -69,6 +69,7 @@
 <li class="toctree-l1"><a class="reference internal" href="B_publications.html">Appendix B: List of Publications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="C_contrib_bug_feature.html">Appendix C: Contributing/Bugs/Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="D_discussions.html">Appendix D: DustPy Discussions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="E_changelog.html">Appendix E: Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
 </ul>
 
@@ -374,6 +375,7 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
+<p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2F2_simple_customization.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="2.-Simple-Customization">
 <h1>2. Simple Customization<a class="headerlink" href="#2.-Simple-Customization" title="Permalink to this headline"></a></h1>
 <p>If you do not want to run the standard simulation you can easily modify the initial conditions.</p>
@@ -754,7 +756,7 @@ namespace(aIniMax=0.0001,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.1
+DustPy v1.0.2
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -795,7 +797,7 @@ Writing file <span class="ansi-blue-intense-fg">2_data/data0005.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">2_data/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:04:07</span>
+Execution time: <span class="ansi-blue-intense-fg">0:04:58</span>
 </pre></div></div>
 </div>
 <p>The simulation has now run for 10,000 years</p>
@@ -837,7 +839,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:04:07</span>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/2_simple_customization_33_0.png" src="_images/2_simple_customization_33_0.png" />
+<img alt="_images/2_simple_customization_34_0.png" src="_images/2_simple_customization_34_0.png" />
 </div>
 </div>
 <p>When calling <code class="docutils literal notranslate"><span class="pre">Simulation.run()</span></code>, <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> will perform a small mass conservation check, by going through all possible collisions and calculating their relative mass error. The limitation here is machine precision. Everything smaller than <span class="math notranslate nohighlight">\(10^{-13}\)</span> is still acceptable. If you created your own collision model, that is not compatible with the default sticking-erosion-fragmentation model, you can either ignore the output, or you can overwrite the <code class="docutils literal notranslate"><span class="pre">Simulation.checkmassconservation()</span></code>

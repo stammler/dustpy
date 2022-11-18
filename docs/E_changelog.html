@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Appendix E: Changelog &mdash; dustpy  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Module Reference" href="api.html" />
+    <link rel="prev" title="Appendix D: DustPy Discussions" href="D_discussions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html">
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_basics.html">1. Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_simple_customization.html">2. Simple Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_advanced_customization.html">3. Advanced Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_standard_model.html">4. The Standard Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">5. Dust Coagulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">6. Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">7. Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_analytical_coagulation_kernels.html">Test: Analytical Coagulation Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_ice_lines.html">Example: Ice Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetary_gaps.html">Example: Planetary Gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="A_citation.html">Appendix A: Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="B_publications.html">Appendix B: List of Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="C_contrib_bug_feature.html">Appendix C: Contributing/Bugs/Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="D_discussions.html">Appendix D: DustPy Discussions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Appendix E: Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v1.0.2"><strong>v1.0.2</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Change-in-default-temperature-profile">Change in default temperature profile</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v1.0.1"><strong>v1.0.1</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Change-to-Collision-Kernel">Change to Collision Kernel</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v1.0.0"><strong>v1.0.0</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Module Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">dustpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Appendix E: Changelog</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/E_changelog.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="Appendix-E:-Changelog">
+<h1>Appendix E: Changelog<a class="headerlink" href="#Appendix-E:-Changelog" title="Permalink to this headline"></a></h1>
+<p>This is a list of changes made to <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> since version <code class="docutils literal notranslate"><span class="pre">v1.0.0</span></code> including discussions of their influence on the simulations.</p>
+<section id="v1.0.2">
+<h2><strong>v1.0.2</strong><a class="headerlink" href="#v1.0.2" title="Permalink to this headline"></a></h2>
+<p><strong>Release date: 18th November, 2022</strong></p>
+<section id="Change-in-default-temperature-profile">
+<h3>Change in default temperature profile<a class="headerlink" href="#Change-in-default-temperature-profile" title="Permalink to this headline"></a></h3>
+<p>A factor of <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> was added to the luminosisty in the standard update function of the gas temperature <code class="docutils literal notranslate"><span class="pre">Simulation.gas.T</span></code>, when calculating the midplane equilibrium temperature in accordance with e.g. <a class="reference external" href="https://doi.org/10.1086/304869">Chiang &amp; Goldreich (1997)</a> or <a class="reference external" href="https://doi.org/10.1086/323057">Dullemond et al. (2001)</a>:</p>
+<p><span class="math notranslate nohighlight">\(T\left( r \right) = \sqrt[4]{\frac{1}{2}\frac{0.05\,L_*}{4\,\pi\,r^2\,\sigma_\mathrm{SB}}}\)</span></p>
+<p>Compared to previous versions the midplane temperature is therefore reduced by a factor of <span class="math notranslate nohighlight">\(\sqrt[4]{\frac{1}{2}}\approx0.84\)</span>. However, we want to point out that both approximations are <em>“equally bad”</em> compared to radiative transfer calculations with e.g. RADMC3D.</p>
+</section>
+</section>
+<section id="v1.0.1">
+<h2><strong>v1.0.1</strong><a class="headerlink" href="#v1.0.1" title="Permalink to this headline"></a></h2>
+<div class="line-block">
+<div class="line"><strong>Release date: 21st July, 2022</strong></div>
+<div class="line">This version has been used in the code paper (<a class="reference external" href="https://doi.org/10.3847/1538-4357/ac7d58">Stammler &amp; Birnstiel, 2022</a>).</div>
+</div>
+<section id="Change-to-Collision-Kernel">
+<h3>Change to Collision Kernel<a class="headerlink" href="#Change-to-Collision-Kernel" title="Permalink to this headline"></a></h3>
+<p>A factor was added to the standard update function of <code class="docutils literal notranslate"><span class="pre">Simulation.dust.kernel</span></code>, that reduces the collision rates of equal size collisions by a factor of <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(K_{ij} = \frac{1}{1+\delta_{ij}} \frac{\pi\left( a_i + a_j \right)^2}{\sqrt{2\pi\left( H_i^2 + H_j^2 \right)}} v_\mathrm{rel}\)</span></p>
+<p>Collisions between particles of two separate reservoirs <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> occur at a rate <span class="math notranslate nohighlight">\(\propto N_i N_j\)</span>, since every particle in one reservoir can collide with every particle in the other reservoir. Collisions of particles in the same reservoir occur at reduces rates: the first particle can collide with <span class="math notranslate nohighlight">\(N_i-1\)</span> other particles, the second particle with <span class="math notranslate nohighlight">\(N_i-2\)</span> particles, and so on, to avoid double counting of collisions. In that case the collision rates are
+<span class="math notranslate nohighlight">\(\propto \frac{1}{2}N_i\left(N_i-1\right)\)</span>, which is <span class="math notranslate nohighlight">\(\frac{1}{2}N_i^2\)</span> in the limit of large <span class="math notranslate nohighlight">\(N_i\)</span>.</p>
+<p>This change has no noticable effect on simulations performed with previous versions, since it is only reducing the collision rate for a single type of collisions.</p>
+</section>
+</section>
+<section id="v1.0.0">
+<h2><strong>v1.0.0</strong><a class="headerlink" href="#v1.0.0" title="Permalink to this headline"></a></h2>
+<p><strong>Release date: 3rd July, 2022</strong></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="D_discussions.html" class="btn btn-neutral float-left" title="Appendix D: DustPy Discussions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="Module Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, Sebastian Stammler &amp; Tilman Birnstiel.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
