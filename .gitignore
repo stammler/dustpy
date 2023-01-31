@@ -135,4 +135,8 @@ dmypy.json
 *.mod
 
 # docs api
-docs/source/api/
+docs_source/source/api/
+
+# data directories
+data/
+test_*/
