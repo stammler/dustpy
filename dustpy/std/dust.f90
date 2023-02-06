@@ -314,7 +314,7 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   a = log10(m(1)/m(Nm) ) / (1.d0 - Nm)
   
   ! ce from Brauer et al. (2008) equation (A.6):
-  ! m(k-1) + m(i) < m(k) for any i with i ≤ k - ce
+  ! m(k-1) + m(i) < m(k) for any i with i <= k - ce
   ce = aint( -1.d0/a * log10(1.d0 - 10.d0**(-a) ) ) + 1
 
   ! Since the grid is regular logarithmic particles with masses m(i) and m(j)
@@ -1297,7 +1297,7 @@ doubleprecision function theta(x)
   ! -------
   ! theta : float
   !   0. if x < 0
-  !   1. if x ≥ 0
+  !   1. if x >= 0
 
   implicit none
 
