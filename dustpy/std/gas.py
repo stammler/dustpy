@@ -6,7 +6,6 @@ from simframe.integration import Scheme
 from dustpy.std import gas_f
 
 
-
 def boundary(sim):
     """Function set the boundary conditions of the gas.
     Not implemented, yet.
@@ -574,6 +573,7 @@ def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
     Y1 = A_LU.solve(rhs)
 
     return Y1 - Y0
+
 
 class impl_1_direct(Scheme):
     """Modified class for implicit gas integration."""
