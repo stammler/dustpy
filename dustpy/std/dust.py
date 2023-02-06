@@ -533,7 +533,7 @@ def MRN_distribution(sim):
         gamma = 1. / gamma
         # Maximum drift limited particle size with safety margin
         ad = 1.e-4 * 2./np.pi * sim.ini.dust.d2gRatio * sim.gas.Sigma \
-            / sim.dust.fill[:, 0] * sim.dust.rhos[:, 0] * (sim.grid.OmegaK * sim.grid.r)**2. \
+            / (sim.dust.fill[:, 0] * sim.dust.rhos[:, 0]) * (sim.grid.OmegaK * sim.grid.r)**2. \
             / sim.gas.cs**2. / gamma
         aIni = np.minimum(sim.ini.dust.aIniMax, ad)[:, None]
     # Fill distribution
@@ -858,13 +858,7 @@ def vrel_tot(sim):
     -------
     vrel : Field
         Relative velocities"""
-    ret = sim.dust.v.rel.azi**2.
-    ret += sim.dust.v.rel.brown**2
-    ret += sim.dust.v.rel.rad**2
-    ret += sim.dust.v.rel.turb**2
-    ret += sim.dust.v.rel.vert**2
-
-    return np.sqrt(ret)
+    return np.sqrt(sim.dust.v.rel.azi**2 + sim.dust.v.rel.brown**2 + sim.dust.v.rel.rad**2 + sim.dust.v.rel.turb**2 + sim.dust.v.rel.vert**2)
 
 
 def vrel_turbulent_motion(sim):
