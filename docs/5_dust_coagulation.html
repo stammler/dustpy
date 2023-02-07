@@ -852,7 +852,7 @@ True
 <p>The collision rates <span class="math notranslate nohighlight">\(R\)</span> as defined above are given by</p>
 <p><span class="math notranslate nohighlight">\(\begin{split} R_\mathrm{stick} &amp;= k \cdot p_\mathrm{stick}\\ R_\mathrm{frag} &amp;= k \cdot p_\mathrm{frag} \end{split}\)</span></p>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is given by</p>
-<p><span class="math notranslate nohighlight">\(k = \frac{\pi\left( a_i + a_j \right)^2}{\sqrt{2\pi\left( H_i^2 + H_j^2 \right)}} v_\mathrm{rel}\)</span>,</p>
+<p><span class="math notranslate nohighlight">\(k = \frac{1}{1+\delta_{ij}}\frac{\pi\left( a_i + a_j \right)^2}{\sqrt{2\pi\left( H_i^2 + H_j^2 \right)}} v_\mathrm{rel}\)</span>,</p>
 <p>which is the product of geometrical crosssection and relative velocity devided by a normalization factor that accounts for the two-dimensional structure of the disk. See (A.14) in appendix 2 of <a class="reference external" href="https://doi.org/10.1051/0004-6361/200913731">Birnstiel et al. (2010)</a> for details on this.</p>
 <p><span class="math notranslate nohighlight">\(k\)</span> is stored for every possible particle collision at any location in the disk in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.kernel</span></code>.</p>
 </section>

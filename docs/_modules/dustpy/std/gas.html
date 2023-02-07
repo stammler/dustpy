@@ -92,7 +92,6 @@
 <span class="kn">from</span> <span class="nn">dustpy.std</span> <span class="kn">import</span> <span class="n">gas_f</span>
 
 
-
 <div class="viewcode-block" id="boundary"><a class="viewcode-back" href="../../../api/dustpy.std.gas.boundary.html#dustpy.std.gas.boundary">[docs]</a><span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function set the boundary conditions of the gas.</span>
 <span class="sd">    Not implemented, yet.</span>
@@ -660,6 +659,7 @@
     <span class="n">Y1</span> <span class="o">=</span> <span class="n">A_LU</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">Y1</span> <span class="o">-</span> <span class="n">Y0</span>
+
 
 <div class="viewcode-block" id="impl_1_direct"><a class="viewcode-back" href="../../../api/dustpy.std.gas.impl_1_direct.html#dustpy.std.gas.impl_1_direct">[docs]</a><span class="k">class</span> <span class="nc">impl_1_direct</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Modified class for implicit gas integration.&quot;&quot;&quot;</span>
