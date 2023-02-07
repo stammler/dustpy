@@ -8,6 +8,7 @@ from matplotlib.widgets import Slider
 from scipy.interpolate import interp1d
 from simframe.io.writers import hdf5writer
 import os
+import warnings
 
 
 def panel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limits=True, show_St1=True):
@@ -323,8 +324,8 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
                                  0.375,
                                  0.75 * width,
                                  0.02], facecolor="lightgoldenrodyellow")
-        sliderTime = Slider(axSliderTime, "Time", 0, data.Nt -
-                            1, valinit=it, valfmt="%i")
+        sliderTime = Slider(axSliderTime, "Time", 0, int(data.Nt -
+                            1), valinit=it, valfmt="%i")
         axSliderTime.set_title("t = {:9.3e} yr".format(data.t[it]/c.year))
         fig._widgets += [sliderTime]
 
@@ -333,7 +334,7 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
                              0.75 * width,
                              0.02], facecolor="lightgoldenrodyellow")
     sliderMass = Slider(axSliderMass, "Mass", 0,
-                        data.Nm[it]-1, valinit=im, valfmt="%i")
+                        int(data.Nm[it]-1), valinit=im, valfmt="%i")
     axSliderMass.set_title("m = {:9.3e} g".format(data.m[it, im]))
     fig._widgets += [sliderMass]
 
@@ -342,7 +343,7 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
                              0.75 * width,
                              0.02], facecolor="lightgoldenrodyellow")
     sliderDist = Slider(axSliderDist, "Distance", 0,
-                        data.Nr[it]-1, valinit=ir, valfmt="%i")
+                        int(data.Nr[it]-1), valinit=ir, valfmt="%i")
     axSliderDist.set_title("r = {:9.3e} AU".format(data.r[it, ir]/c.au))
     fig._widgets += [sliderDist]
 
@@ -358,7 +359,6 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
         axSliderDist.set_title("r = {:9.3e} AU".format(data.r[it, ir]/c.au))
 
         for row in plt00Collections:
-            ax00.collections.remove(row)
             plt00Collections.remove(row)
         plt00 = ax00.contourf(data.r[it, ...]/c.au,
                               data.m[it, ...],
@@ -371,7 +371,6 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
             plt00Collections.append(row)
         if show_St1:
             for row in plt00StCollections:
-                ax00.collections.remove(row)
                 plt00StCollections.remove(row)
             plt00St = ax00.contour(data.r[it, ...]/c.au,
                                    data.m[it, ...],
@@ -384,7 +383,6 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
                 plt00StCollections.append(row)
         if show_limits:
             for row in plt00DrCollections:
-                ax00.collections.remove(row)
                 plt00DrCollections.remove(row)
             plt00Dr = ax00.contour(data.r[it, ...]/c.au,
                                    data.m[it, ...],
@@ -396,7 +394,6 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
             for row in plt00Dr.collections:
                 plt00DrCollections.append(row)
             for row in plt00FrCollections:
-                ax00.collections.remove(row)
                 plt00FrCollections.remove(row)
             plt00Fr = ax00.contour(data.r[it, ...]/c.au,
                                    data.m[it, ...],
@@ -522,8 +519,8 @@ def _readdata(data, filename="data", extension="hdf5"):
 
     # Fragmentation limit
     b = vFrag**2 / (delta * cs**2)
-    with np.warnings.catch_warnings():
-        np.warnings.filterwarnings(
+    with warnings.catch_warnings():
+        warnings.filterwarnings(
             'ignore',
             r'invalid value encountered in sqrt')
         StFr = 1 / (2 * b) * (3 - np.sqrt(9 - 4 * b**2))
