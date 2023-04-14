@@ -32,9 +32,9 @@
    "metadata": {},
    "source": [
     "*  **Xu, Wenrui; Armitage, Philip J. (2023)**  \n",
-    "eprint arXiv:2302.04711     \n",
+    "The Astrophysical Journal, Volume 946, Issue 2, id.94, 12 pp.  \n",
     "_\"Revisiting collisional dust growth in Class 0/I protostellar disks: Sweep-up can convert a few $10\\,M_\\oplus$ of dust into kg pebbles in 0.1 Myr\"_  \n",
-    "[doi: 10.48550/arXiv.2302.04711](https://doi.org/10.48550/arXiv.2302.04711)"
+    "[doi: 10.3847/1538-4357/acb7e5](https://doi.org/10.3847/1538-4357/acb7e5)"
    ]
   },
   {
