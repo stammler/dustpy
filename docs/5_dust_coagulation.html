@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>5. Dust Coagulation &mdash; dustpy  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/nbsphinx-code-cells.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -15,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -31,12 +33,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html">
-            <img src="_static/logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -59,6 +65,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">6. Dust Evolution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">7. Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dustpylib.html">Library: dustpylib</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_analytical_coagulation_kernels.html">Test: Analytical Coagulation Kernels</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_gas_evolution.html">Test: Gas Evolution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_ice_lines.html">Example: Ice Lines</a></li>
@@ -85,8 +92,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>5. Dust Coagulation</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">5. Dust Coagulation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/5_dust_coagulation.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -96,287 +103,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS for nbsphinx extension */
-
-/* remove conflicting styling from Sphinx themes */
-div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt *,
-div.nbinput.container div.input_area pre,
-div.nboutput.container div.output_area pre,
-div.nbinput.container div.input_area .highlight,
-div.nboutput.container div.output_area .highlight {
-    border: none;
-    padding: 0;
-    margin: 0;
-    box-shadow: none;
-}
-
-div.nbinput.container > div[class*=highlight],
-div.nboutput.container > div[class*=highlight] {
-    margin: 0;
-}
-
-div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt * {
-    background: none;
-}
-
-div.nboutput.container div.output_area .highlight,
-div.nboutput.container div.output_area pre {
-    background: unset;
-}
-
-div.nboutput.container div.output_area div.highlight {
-    color: unset;  /* override Pygments text color */
-}
-
-/* avoid gaps between output lines */
-div.nboutput.container div[class*=highlight] pre {
-    line-height: normal;
-}
-
-/* input/output containers */
-div.nbinput.container,
-div.nboutput.container {
-    display: -webkit-flex;
-    display: flex;
-    align-items: flex-start;
-    margin: 0;
-    width: 100%;
-}
-@media (max-width: 540px) {
-    div.nbinput.container,
-    div.nboutput.container {
-        flex-direction: column;
-    }
-}
-
-/* input container */
-div.nbinput.container {
-    padding-top: 5px;
-}
-
-/* last container */
-div.nblast.container {
-    padding-bottom: 5px;
-}
-
-/* input prompt */
-div.nbinput.container div.prompt pre {
-    color: #307FC1;
-}
-
-/* output prompt */
-div.nboutput.container div.prompt pre {
-    color: #BF5B3D;
-}
-
-/* all prompts */
-div.nbinput.container div.prompt,
-div.nboutput.container div.prompt {
-    width: 4.5ex;
-    padding-top: 5px;
-    position: relative;
-    user-select: none;
-}
-
-div.nbinput.container div.prompt > div,
-div.nboutput.container div.prompt > div {
-    position: absolute;
-    right: 0;
-    margin-right: 0.3ex;
-}
-
-@media (max-width: 540px) {
-    div.nbinput.container div.prompt,
-    div.nboutput.container div.prompt {
-        width: unset;
-        text-align: left;
-        padding: 0.4em;
-    }
-    div.nboutput.container div.prompt.empty {
-        padding: 0;
-    }
-
-    div.nbinput.container div.prompt > div,
-    div.nboutput.container div.prompt > div {
-        position: unset;
-    }
-}
-
-/* disable scrollbars on prompts */
-div.nbinput.container div.prompt pre,
-div.nboutput.container div.prompt pre {
-    overflow: hidden;
-}
-
-/* input/output area */
-div.nbinput.container div.input_area,
-div.nboutput.container div.output_area {
-    -webkit-flex: 1;
-    flex: 1;
-    overflow: auto;
-}
-@media (max-width: 540px) {
-    div.nbinput.container div.input_area,
-    div.nboutput.container div.output_area {
-        width: 100%;
-    }
-}
-
-/* input area */
-div.nbinput.container div.input_area {
-    border: 1px solid #e0e0e0;
-    border-radius: 2px;
-    /*background: #f5f5f5;*/
-}
-
-/* override MathJax center alignment in output cells */
-div.nboutput.container div[class*=MathJax] {
-    text-align: left !important;
-}
-
-/* override sphinx.ext.imgmath center alignment in output cells */
-div.nboutput.container div.math p {
-    text-align: left;
-}
-
-/* standard error */
-div.nboutput.container div.output_area.stderr {
-    background: #fdd;
-}
-
-/* ANSI colors */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-default-inverse-fg { color: #FFFFFF; }
-.ansi-default-inverse-bg { background-color: #000000; }
-
-.ansi-bold { font-weight: bold; }
-.ansi-underline { text-decoration: underline; }
-
-
-div.nbinput.container div.input_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight].math,
-div.nboutput.container div.output_area.rendered_html,
-div.nboutput.container div.output_area > div.output_javascript,
-div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 5px;
-    margin: 0;
-}
-
-/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
-div.nbinput.container div.input_area > div[class^='highlight'],
-div.nboutput.container div.output_area > div[class^='highlight']{
-    overflow-y: hidden;
-}
-
-/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt .copybtn {
-    display: none;
-}
-
-/* Some additional styling taken form the Jupyter notebook CSS */
-.jp-RenderedHTMLCommon table,
-div.rendered_html table {
-  border: none;
-  border-collapse: collapse;
-  border-spacing: 0;
-  color: black;
-  font-size: 12px;
-  table-layout: fixed;
-}
-.jp-RenderedHTMLCommon thead,
-div.rendered_html thead {
-  border-bottom: 1px solid black;
-  vertical-align: bottom;
-}
-.jp-RenderedHTMLCommon tr,
-.jp-RenderedHTMLCommon th,
-.jp-RenderedHTMLCommon td,
-div.rendered_html tr,
-div.rendered_html th,
-div.rendered_html td {
-  text-align: right;
-  vertical-align: middle;
-  padding: 0.5em 0.5em;
-  line-height: normal;
-  white-space: normal;
-  max-width: none;
-  border: none;
-}
-.jp-RenderedHTMLCommon th,
-div.rendered_html th {
-  font-weight: bold;
-}
-.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
-div.rendered_html tbody tr:nth-child(odd) {
-  background: #f5f5f5;
-}
-.jp-RenderedHTMLCommon tbody tr:hover,
-div.rendered_html tbody tr:hover {
-  background: rgba(66, 165, 245, 0.2);
-}
-
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2F5_dust_coagulation.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2F5_dust_coagulation.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="5.-Dust-Coagulation">
-<h1>5. Dust Coagulation<a class="headerlink" href="#5.-Dust-Coagulation" title="Permalink to this headline"></a></h1>
+<h1>5. Dust Coagulation<a class="headerlink" href="#5.-Dust-Coagulation" title="Permalink to this heading"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> calculates the collisional evolution of dust by solving the Smolukowski equation</p>
 <p><span class="math notranslate nohighlight">\(\begin{split} \frac{\partial}{\partial t} f\left( m \right) = &amp;\int\limits_0^\infty \int\limits_0^{m'} K\left( m, m', m'' \right) f\left( m' \right) f\left( m'' \right) R\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\\ &amp;-f\left( m \right) \int\limits_0^\infty f\left( m' \right) R\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
 <p>Where <span class="math notranslate nohighlight">\(f\left( m \right)\)</span> is the dust mass distribution, <span class="math notranslate nohighlight">\(R\)</span> the collision rates, and <span class="math notranslate nohighlight">\(K\)</span> defines the collision outcomes.</p>
@@ -384,7 +113,7 @@ div.rendered_html tbody tr:hover {
 <p>This equation can be generalized to</p>
 <p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} f\left( m \right) = \int\limits_0^\infty \int\limits_0^{m'} M\left( m, m', m'' \right) f\left( m' \right) f\left( m'' \right) R\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\)</span></p>
 <p>where the matrix <span class="math notranslate nohighlight">\(M\)</span> has both the positive and the negative terms. Also note that the integral over <span class="math notranslate nohighlight">\(m''\)</span> only goes up to mass <span class="math notranslate nohighlight">\(m'\)</span>. Since the collisions are symmetric this saves some computation.</p>
-<p>For details on the numerical implementation, we refer to <a class="reference external" href="https://doi.org/10.1051/0004-6361:20077759">Brauer et al. (2008)</a> and <a class="reference external" href="https://doi.org/10.1051/0004-6361/200913731">Birnstiel et al. (2010)</a>.</p>
+<p>For details on the numerical implementation, we refer to <a class="reference external" href="https://doi.org/10.1051/0004-6361:20077759">Brauer et al. (2008)</a> and <a class="reference external" href="https://doi.org/10.1051/0004-6361/200913731">Birnstiel et al. (2010)</a>.</p>
 <p>The standard model of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> knows three different collision outcomes: sticking, erosion, and full fragmentation.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -425,10 +154,10 @@ Group (Coagulation quantities)
 </div>
 <p>These fields are strictly tied to the mass grid. Neither those fields nor the mass grid should be changed after calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
 <section id="Sticking">
-<h2>Sticking<a class="headerlink" href="#Sticking" title="Permalink to this headline"></a></h2>
+<h2>Sticking<a class="headerlink" href="#Sticking" title="Permalink to this heading"></a></h2>
 <p>Sticking means that two particles collide and form a new larger particles conserving the total mass. There are two complications when implementing this numerically:</p>
 <p>First, since we need to cover a high dynamic range from particles masses around <span class="math notranslate nohighlight">\(10^{-15}\,\mathrm{g}\)</span> to more than <span class="math notranslate nohighlight">\(10^{15}\,\mathrm{g}\)</span> while still having a reasonable number of mass bins, the mass grid has to be logarithmic. This has the disadvantage that the new particle mass resulting from a collision will not directly lie on the mass grid, but will fall in between two grid masses. The resulting mass has to be therefore distributed between the two adjacent grid cells. This means
-there will be density added to a mass bin that is larger than the actual mass of the resulting particle. This can have unwanted side effects if the mass grid is too coarse. Please see <a class="reference external" href="https://doi.org/10.1051/0004-6361/201423708">Drążkowska et al. (2014)</a> and the notebook with the analytical coagulation kernels for details on the minimum mass resulution that should be used.</p>
+there will be density added to a mass bin that is larger than the actual mass of the resulting particle. This can have unwanted side effects if the mass grid is too coarse. Please see <a class="reference external" href="https://doi.org/10.1051/0004-6361/201423708">Drążkowska et al. (2014)</a> and the notebook with the analytical coagulation kernels for details on the minimum mass resulution that should be used.</p>
 <p>Second, if the masses of the two colliding particles differ by more than <span class="math notranslate nohighlight">\(15\)</span> orders of magnitude (double-precision floating-point format) the resulting mass is (for a computer) identical to the mass of the larger particle.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -451,7 +180,7 @@ there will be density added to a mass bin that is larger than the actual mass of
 True
 </pre></div></div>
 </div>
-<p>The mass error if this happens is small for a single collision, but it effectively halts the growth of larger particles that primarily grow by sweeping up many smaller particles. There are techniques to prevent this from happening by re-arranging sums. Please have a look at apendices A and B of <a class="reference external" href="https://doi.org/10.1051/0004-6361:20077759">Brauer et al. (2008)</a> for a detailed description of this mechanism.</p>
+<p>The mass error if this happens is small for a single collision, but it effectively halts the growth of larger particles that primarily grow by sweeping up many smaller particles. There are techniques to prevent this from happening by re-arranging sums. Please have a look at apendices A and B of <a class="reference external" href="https://doi.org/10.1051/0004-6361:20077759">Brauer et al. (2008)</a> for a detailed description of this mechanism.</p>
 <p>The matrix <span class="math notranslate nohighlight">\(M\)</span> has for sticking at maximum four non-zero values for any pair of particle collision: two negative terms for the colliding particles that get removed from the distribution and two positive terms for the two mass bins that border the mass of the resulting particle. If two particles of identical mass collide <span class="math notranslate nohighlight">\(M\)</span> has only three non-zero values: one negative and two positives.</p>
 <p>Since <span class="math notranslate nohighlight">\(M\)</span> is in the case of sticking a sparse matrix that contains mostly zeroes, we only store the non-zero elements in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.stick</span></code> and <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.stick_ind</span></code>.</p>
 <p>The first field is the four non-zero elements of <span class="math notranslate nohighlight">\(M\)</span>, while the latter field stores the positions of those elements within <span class="math notranslate nohighlight">\(M\)</span>.</p>
@@ -598,14 +327,14 @@ Rel. error: 1.5e-16
 </div>
 </section>
 <section id="Fragmentation-&amp;-Erosion">
-<h2>Fragmentation &amp; Erosion<a class="headerlink" href="#Fragmentation-&-Erosion" title="Permalink to this headline"></a></h2>
+<h2>Fragmentation &amp; Erosion<a class="headerlink" href="#Fragmentation-&-Erosion" title="Permalink to this heading"></a></h2>
 <p>If the collision velocity exceeds the fragmentation velocity particles fragment. Here we distinguish two cases: Either the particles are roughly equal sized, then both particles fully fragment. Or one particle is significantly larger than the other, then only the smaller particle fragments, but it is chipping off some mass of the larger particle. The latter case is called erosion.</p>
 <p>The threshold of these two cases can be set with <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.erosionMassRatio</span></code>. By default this is <span class="math notranslate nohighlight">\(10\)</span>, meaning both particles fully fragment if their mass ratio is smaller than <span class="math notranslate nohighlight">\(10\)</span>. Otherwise we have erosion. This value has to be set, before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
-<p>For fragmentation we follow the method described in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020)</a>, who developed an <span class="math notranslate nohighlight">\(\mathcal{O} \left( N_m^2 \right)\)</span> algorithm for fragmentation. We modified it, however, to make it strictly mass conserving.</p>
+<p>For fragmentation we follow the method described in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020)</a>, who developed an <span class="math notranslate nohighlight">\(\mathcal{O} \left( N_m^2 \right)\)</span> algorithm for fragmentation. We modified it, however, to make it strictly mass conserving.</p>
 <p>In either case, full fragmentation and erosion, we produce a distribution of fragments of kind</p>
 <p><span class="math notranslate nohighlight">\(n\left( m \right) \mathrm{d}m \propto m^\gamma \mathrm{d}m\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(\gamma\)</span> has to be set in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.fragmentDistribution</span></code> before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>. By default it is <span class="math notranslate nohighlight">\(-\frac{11}{6}\)</span> taken from <a class="reference external" href="https://doi.org/10.1029/JB074i010p02531">Dohnanyi (1969)</a>. From this we can calculate a normalized distribution of fragments with a given maximum fragment size.</p>
-<p>This, for example, is the fragment distribution up to mass bin <span class="math notranslate nohighlight">\(15\)</span>. It is similar to the <span class="math notranslate nohighlight">\(\varphi\)</span> in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020)</a></p>
+<p>This, for example, is the fragment distribution up to mass bin <span class="math notranslate nohighlight">\(15\)</span>. It is similar to the <span class="math notranslate nohighlight">\(\varphi\)</span> in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020)</a></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -798,7 +527,7 @@ Rel. error: 1.2e-16
 <p>When starting a simulation with <code class="docutils literal notranslate"><span class="pre">Simulation.run()</span></code>, <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> will perform a quick check for mass conservation by calculating the relative error for every possible particle collision and every possible collision outcome. If you implemented a custom collision model, you also have to modify the mass conservation check for accurate results.</p>
 </section>
 <section id="Probabilities">
-<h2>Probabilities<a class="headerlink" href="#Probabilities" title="Permalink to this headline"></a></h2>
+<h2>Probabilities<a class="headerlink" href="#Probabilities" title="Permalink to this heading"></a></h2>
 <p>To decide wether a collision event results in sticking or fragmentation, the fragmentation probability is calculated with a smooth transition between sticking and fragmentation around the fragmentation velocity. This probability is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.p.frag</span></code>.</p>
 <p>The sticking probability is simply given by</p>
 <p><span class="math notranslate nohighlight">\(p_\mathrm{stick} = 1 - p_\mathrm{frag}\)</span>.</p>
@@ -844,20 +573,20 @@ True
 </div>
 </section>
 <section id="Bouncing">
-<h2>Bouncing<a class="headerlink" href="#Bouncing" title="Permalink to this headline"></a></h2>
+<h2>Bouncing<a class="headerlink" href="#Bouncing" title="Permalink to this heading"></a></h2>
 <p>Bouncing is by default not implemented. If you want to include bouncing collisions into your simulations you have to set functions for calculating <span class="math notranslate nohighlight">\(p_\mathrm{stick}\)</span> and <span class="math notranslate nohighlight">\(p_\mathrm{frag}\)</span>, such that the sum of both is smaller than <span class="math notranslate nohighlight">\(1\)</span>. If neither sticking, nor fragmentation occurs, the mass distribution does not change, i.e., we have bouncing.</p>
 </section>
 <section id="Collision-Rates">
-<h2>Collision Rates<a class="headerlink" href="#Collision-Rates" title="Permalink to this headline"></a></h2>
+<h2>Collision Rates<a class="headerlink" href="#Collision-Rates" title="Permalink to this heading"></a></h2>
 <p>The collision rates <span class="math notranslate nohighlight">\(R\)</span> as defined above are given by</p>
 <p><span class="math notranslate nohighlight">\(\begin{split} R_\mathrm{stick} &amp;= k \cdot p_\mathrm{stick}\\ R_\mathrm{frag} &amp;= k \cdot p_\mathrm{frag} \end{split}\)</span></p>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is given by</p>
 <p><span class="math notranslate nohighlight">\(k = \frac{1}{1+\delta_{ij}}\frac{\pi\left( a_i + a_j \right)^2}{\sqrt{2\pi\left( H_i^2 + H_j^2 \right)}} v_\mathrm{rel}\)</span>,</p>
-<p>which is the product of geometrical crosssection and relative velocity devided by a normalization factor that accounts for the two-dimensional structure of the disk. See (A.14) in appendix 2 of <a class="reference external" href="https://doi.org/10.1051/0004-6361/200913731">Birnstiel et al. (2010)</a> for details on this.</p>
+<p>which is the product of geometrical crosssection and relative velocity devided by a normalization factor that accounts for the two-dimensional structure of the disk. See (A.14) in appendix 2 of <a class="reference external" href="https://doi.org/10.1051/0004-6361/200913731">Birnstiel et al. (2010)</a> for details on this.</p>
 <p><span class="math notranslate nohighlight">\(k\)</span> is stored for every possible particle collision at any location in the disk in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.kernel</span></code>.</p>
 </section>
 <section id="Coagulation-Sources">
-<h2>Coagulation Sources<a class="headerlink" href="#Coagulation-Sources" title="Permalink to this headline"></a></h2>
+<h2>Coagulation Sources<a class="headerlink" href="#Coagulation-Sources" title="Permalink to this heading"></a></h2>
 <p>The parameters stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation</span></code> only have to be calculated once in the beginning of the simulation. But to calculate the coagulation sources the current densities and relative velocities are needed. Since these change over time, they have to be calculated on the fly.</p>
 <p>This is done by summing over all possible collisions, evaluating the collision outcome and by multiplying with their respective collision rates. The result is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.coag</span></code>.</p>
 <div class="nbinput docutils container">
@@ -903,7 +632,7 @@ True
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020-2022, Sebastian Stammler &amp; Tilman Birnstiel.</p>
+    <p>&#169; Copyright 2020-2023, Sebastian Stammler &amp; Tilman Birnstiel.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

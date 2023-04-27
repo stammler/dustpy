@@ -15,7 +15,10 @@
 | ``DustPy`` requires a Python3 distribution and a Fortran compiler.
 
 | ``DustPy`` is based on the ``Simframe`` framework for scientific simulation (`Stammler & Birnstiel 2022 <https://joss.theoj.org/papers/10.21105/joss.03882>`_).
-| Please have a look at the `Simframe Documentation <https://simframe.rtfd.io>`_ for details of its usage.
+| Please have a look at the `Simframe Documentation <https://simframe.rtfd.io/>`_ for details of its usage.
+
+| ``dustpylib`` is a collection of auxiliary tools and extensions for ``DustPy``, containing for example interfaces to radiative transfer codes.
+| For more details, please have a look at the `dustpylinbdocumentation <https://dustpylib.rtfd.io/>`_.
 
 .. toctree::
    :maxdepth: 2
@@ -28,6 +31,7 @@
    5_dust_coagulation
    6_dust_evolution
    7_gas_evolution
+   dustpylib
    test_analytical_coagulation_kernels
    test_gas_evolution
    example_ice_lines

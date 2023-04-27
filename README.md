@@ -36,11 +36,13 @@ By using any version of `DustPy` you agree to these terms of usage.
 * [5. Dust Coagulation](https://stammler.github.io/dustpy/5_dust_coagulation.html)
 * [6. Dust Evolution](https://stammler.github.io/dustpy/6_dust_evolution.html)
 * [7. Gas Evolution](https://stammler.github.io/dustpy/7_gas_evolution.html) <br /> &nbsp;
+* [Library: dustpylib](https://stammler.github.io/dustpy/dustpylib.html) <br /> &nbsp;
 * [Test: Analytical Coagulation Kernels](https://stammler.github.io/dustpy/test_analytical_coagulation_kernels.html)
 * [Test: Gas Evolution](https://stammler.github.io/dustpy/test_gas_evolution.html) <br /> &nbsp;
 * [Example: Ice Lines](https://stammler.github.io/dustpy/example_ice_lines.html)
 * [Example: Planetary Gaps](https://stammler.github.io/dustpy/example_planetary_gaps.html)
-* [Example: Planetesimal Formation](https://stammler.github.io/dustpy/example_planetesimal_formation.html) <br /> &nbsp;
+* [Example: Planetesimal Formation](https://stammler.github.io/dustpy/example_planetesimal_formation.html)
+* [Example: Fixed Gas Profile](https://stammler.github.io/dustpy/example_fixed_gas_profile.html) <br /> &nbsp; <br /> &nbsp;
 * [A. Citation](https://stammler.github.io/dustpy/A_citation.html)
 * [B. List of Publications](https://stammler.github.io/dustpy/B_publications.html)
 * [C. Contributing/Bugs/Features](https://stammler.github.io/dustpy/C_contrib_bug_feature.html)

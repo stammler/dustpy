@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Example: Planetesimal Formation &mdash; dustpy  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/nbsphinx-code-cells.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -15,6 +16,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -31,12 +33,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html">
-            <img src="_static/logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -51,6 +57,7 @@
 <li class="toctree-l1"><a class="reference internal" href="5_dust_coagulation.html">5. Dust Coagulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_dust_evolution.html">6. Dust Evolution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_gas_evolution.html">7. Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dustpylib.html">Library: dustpylib</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_analytical_coagulation_kernels.html">Test: Analytical Coagulation Kernels</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_gas_evolution.html">Test: Gas Evolution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example_ice_lines.html">Example: Ice Lines</a></li>
@@ -83,8 +90,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Example: Planetesimal Formation</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Example: Planetesimal Formation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/example_planetesimal_formation.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -94,293 +101,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS for nbsphinx extension */
-
-/* remove conflicting styling from Sphinx themes */
-div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt *,
-div.nbinput.container div.input_area pre,
-div.nboutput.container div.output_area pre,
-div.nbinput.container div.input_area .highlight,
-div.nboutput.container div.output_area .highlight {
-    border: none;
-    padding: 0;
-    margin: 0;
-    box-shadow: none;
-}
-
-div.nbinput.container > div[class*=highlight],
-div.nboutput.container > div[class*=highlight] {
-    margin: 0;
-}
-
-div.nbinput.container div.prompt *,
-div.nboutput.container div.prompt * {
-    background: none;
-}
-
-div.nboutput.container div.output_area .highlight,
-div.nboutput.container div.output_area pre {
-    background: unset;
-}
-
-div.nboutput.container div.output_area div.highlight {
-    color: unset;  /* override Pygments text color */
-}
-
-/* avoid gaps between output lines */
-div.nboutput.container div[class*=highlight] pre {
-    line-height: normal;
-}
-
-/* input/output containers */
-div.nbinput.container,
-div.nboutput.container {
-    display: -webkit-flex;
-    display: flex;
-    align-items: flex-start;
-    margin: 0;
-    width: 100%;
-}
-@media (max-width: 540px) {
-    div.nbinput.container,
-    div.nboutput.container {
-        flex-direction: column;
-    }
-}
-
-/* input container */
-div.nbinput.container {
-    padding-top: 5px;
-}
-
-/* last container */
-div.nblast.container {
-    padding-bottom: 5px;
-}
-
-/* input prompt */
-div.nbinput.container div.prompt pre {
-    color: #307FC1;
-}
-
-/* output prompt */
-div.nboutput.container div.prompt pre {
-    color: #BF5B3D;
-}
-
-/* all prompts */
-div.nbinput.container div.prompt,
-div.nboutput.container div.prompt {
-    width: 4.5ex;
-    padding-top: 5px;
-    position: relative;
-    user-select: none;
-}
-
-div.nbinput.container div.prompt > div,
-div.nboutput.container div.prompt > div {
-    position: absolute;
-    right: 0;
-    margin-right: 0.3ex;
-}
-
-@media (max-width: 540px) {
-    div.nbinput.container div.prompt,
-    div.nboutput.container div.prompt {
-        width: unset;
-        text-align: left;
-        padding: 0.4em;
-    }
-    div.nboutput.container div.prompt.empty {
-        padding: 0;
-    }
-
-    div.nbinput.container div.prompt > div,
-    div.nboutput.container div.prompt > div {
-        position: unset;
-    }
-}
-
-/* disable scrollbars on prompts */
-div.nbinput.container div.prompt pre,
-div.nboutput.container div.prompt pre {
-    overflow: hidden;
-}
-
-/* input/output area */
-div.nbinput.container div.input_area,
-div.nboutput.container div.output_area {
-    -webkit-flex: 1;
-    flex: 1;
-    overflow: auto;
-}
-@media (max-width: 540px) {
-    div.nbinput.container div.input_area,
-    div.nboutput.container div.output_area {
-        width: 100%;
-    }
-}
-
-/* input area */
-div.nbinput.container div.input_area {
-    border: 1px solid #e0e0e0;
-    border-radius: 2px;
-    /*background: #f5f5f5;*/
-}
-
-/* override MathJax center alignment in output cells */
-div.nboutput.container div[class*=MathJax] {
-    text-align: left !important;
-}
-
-/* override sphinx.ext.imgmath center alignment in output cells */
-div.nboutput.container div.math p {
-    text-align: left;
-}
-
-/* standard error */
-div.nboutput.container div.output_area.stderr {
-    background: #fdd;
-}
-
-/* ANSI colors */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-default-inverse-fg { color: #FFFFFF; }
-.ansi-default-inverse-bg { background-color: #000000; }
-
-.ansi-bold { font-weight: bold; }
-.ansi-underline { text-decoration: underline; }
-
-
-div.nbinput.container div.input_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight] > pre,
-div.nboutput.container div.output_area div[class*=highlight].math,
-div.nboutput.container div.output_area.rendered_html,
-div.nboutput.container div.output_area > div.output_javascript,
-div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 5px;
-    margin: 0;
-}
-
-/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
-div.nbinput.container div.input_area > div[class^='highlight'],
-div.nboutput.container div.output_area > div[class^='highlight']{
-    overflow-y: hidden;
-}
-
-/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt .copybtn {
-    display: none;
-}
-
-/* Some additional styling taken form the Jupyter notebook CSS */
-.jp-RenderedHTMLCommon table,
-div.rendered_html table {
-  border: none;
-  border-collapse: collapse;
-  border-spacing: 0;
-  color: black;
-  font-size: 12px;
-  table-layout: fixed;
-}
-.jp-RenderedHTMLCommon thead,
-div.rendered_html thead {
-  border-bottom: 1px solid black;
-  vertical-align: bottom;
-}
-.jp-RenderedHTMLCommon tr,
-.jp-RenderedHTMLCommon th,
-.jp-RenderedHTMLCommon td,
-div.rendered_html tr,
-div.rendered_html th,
-div.rendered_html td {
-  text-align: right;
-  vertical-align: middle;
-  padding: 0.5em 0.5em;
-  line-height: normal;
-  white-space: normal;
-  max-width: none;
-  border: none;
-}
-.jp-RenderedHTMLCommon th,
-div.rendered_html th {
-  font-weight: bold;
-}
-.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
-div.rendered_html tbody tr:nth-child(odd) {
-  background: #f5f5f5;
-}
-.jp-RenderedHTMLCommon tbody tr:hover,
-div.rendered_html tbody tr:hover {
-  background: rgba(66, 165, 245, 0.2);
-}
-
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2Fexample_planetesimal_formation.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2Fexample_planetesimal_formation.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="Example:-Planetesimal-Formation">
-<h1>Example: Planetesimal Formation<a class="headerlink" href="#Example:-Planetesimal-Formation" title="Permalink to this headline"></a></h1>
-<p>This example demonstrates how to add planetesimal formation into <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> models. We follow <a class="reference external" href="https://doi.org/10.3847/2041-8213/ab4423">Stammler et al. (2019)</a> that showed that planetesimal formation could explain the optical depths observed in dust rings of protoplanetary disks.</p>
-<p>The method is described in detail in <a class="reference external" href="https://doi.org/10.1051/0004-6361/201834047">Schoonenberg et al. (2018)</a>. Planetesimal formation is triggered as soon as the midplane dust-to-gas ratio exceeds a critical threshold (typically of the order unity). If this threshold value is exceeded a fraction <span class="math notranslate nohighlight">\(\zeta\)</span> of the dust mass per settling time scale of each mass bin <span class="math notranslate nohighlight">\(i\)</span> is converted into planetesimals. <span class="math notranslate nohighlight">\(\zeta\)</span> is assumed to be <span class="math notranslate nohighlight">\(0.1\)</span>.</p>
+<h1>Example: Planetesimal Formation<a class="headerlink" href="#Example:-Planetesimal-Formation" title="Permalink to this heading"></a></h1>
+<p>This example demonstrates how to add planetesimal formation into <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> models. We follow <a class="reference external" href="https://doi.org/10.3847/2041-8213/ab4423">Stammler et al. (2019)</a> that showed that planetesimal formation could explain the optical depths observed in dust rings of protoplanetary disks.</p>
+<p>The method is described in detail in <a class="reference external" href="https://doi.org/10.1051/0004-6361/201834047">Schoonenberg et al. (2018)</a>. Planetesimal formation is triggered as soon as the midplane dust-to-gas ratio exceeds a critical threshold (typically of the order unity). If this threshold value is exceeded a fraction <span class="math notranslate nohighlight">\(\zeta\)</span> of the dust mass per settling time scale of each mass bin <span class="math notranslate nohighlight">\(i\)</span> is converted into planetesimals. <span class="math notranslate nohighlight">\(\zeta\)</span> is assumed to be <span class="math notranslate nohighlight">\(0.1\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(R^i = \frac{\partial}{\partial t} \Sigma_\mathrm{d}^i = -\frac{\Sigma_\mathrm{d}^i}{t_\mathrm{sett}^i} = -\zeta\,\Sigma_\mathrm{dust}^i\,\mathrm{St}^i\,\Omega_\mathrm{K}\)</span>.</p>
 <p>The negative sum of these rates over all dust species is then the mass that has to be added to the planetesimal surface density.</p>
 <p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{plan} = -\sum\limits_i R^i\)</span>.</p>
-<p>Since planetesimal formation requires high midplane dust-to-gas ratios which are typically not reached in smooth disks, we have to add a gap to our gas surface density profile. The outer edge of the gap can then trap particles increasing the midplane dust-to-gas ratio. Following <a class="reference external" href="https://doi.org/10.3847/2041-8213/aaf742">Dullemond et al. (2018)</a> we use the gap profile given by</p>
+<p>Since planetesimal formation requires high midplane dust-to-gas ratios which are typically not reached in smooth disks, we have to add a gap to our gas surface density profile. The outer edge of the gap can then trap particles increasing the midplane dust-to-gas ratio. Following <a class="reference external" href="https://doi.org/10.3847/2041-8213/aaf742">Dullemond et al. (2018)</a> we use the gap profile given by</p>
 <p><span class="math notranslate nohighlight">\(F = \exp \left[ -A\,\exp\left( -\frac{\left( r - r_0\right)^2}{2w^2} \right) \right]\)</span>,</p>
 <p>with a gap amplitude <span class="math notranslate nohighlight">\(A\)</span>, a gap location <span class="math notranslate nohighlight">\(r_0\)</span>, and a gap width <span class="math notranslate nohighlight">\(w\)</span>. This gap profile is achievend by increasing the viscosity by the same factor as described in an earlier example about planetary gaps</p>
 <p><span class="math notranslate nohighlight">\(\alpha = \frac{\alpha_0}{F}\)</span>.</p>
@@ -442,7 +171,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Refining-the-radial-grid">
-<h2>Refining the radial grid<a class="headerlink" href="#Refining-the-radial-grid" title="Permalink to this headline"></a></h2>
+<h2>Refining the radial grid<a class="headerlink" href="#Refining-the-radial-grid" title="Permalink to this heading"></a></h2>
 <p>In this model we want to increase the radial resolution around the outer gap edge. We use the same method of refining the radial grid as described in earlier examples.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
@@ -513,7 +242,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Adding-gap">
-<h2>Adding gap<a class="headerlink" href="#Adding-gap" title="Permalink to this headline"></a></h2>
+<h2>Adding gap<a class="headerlink" href="#Adding-gap" title="Permalink to this heading"></a></h2>
 <p>As describe earlier we want to add a gap by changing the <span class="math notranslate nohighlight">\(\alpha\)</span> profile. We simply set the new <span class="math notranslate nohighlight">\(\alpha\)</span> values. Since it is constant in the default model, we do not need to set an updater.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -526,7 +255,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </section>
 <section id="Adding-planetesimals">
-<h2>Adding planetesimals<a class="headerlink" href="#Adding-planetesimals" title="Permalink to this headline"></a></h2>
+<h2>Adding planetesimals<a class="headerlink" href="#Adding-planetesimals" title="Permalink to this heading"></a></h2>
 <p>We add a new group for the planetesimals which contains the planetesimal surface density and the total planetesimal mass in our model. We initialize the field with zeros.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -596,7 +325,7 @@ Group (Planetesimal quantities)
 </div>
 </section>
 <section id="Adding-planetesimal-formation">
-<h2>Adding planetesimal formation<a class="headerlink" href="#Adding-planetesimal-formation" title="Permalink to this headline"></a></h2>
+<h2>Adding planetesimal formation<a class="headerlink" href="#Adding-planetesimal-formation" title="Permalink to this heading"></a></h2>
 <p>To add planetesimal formation we calculate for each particle species at each radius if it contributes to planetesimal formation. These values are negative external source terms for dust evolution, since we remove dust mass and convert them into planetesimals. We therefore add them as updater to the external dust sources.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
@@ -913,7 +642,7 @@ Execution time: <span class="ansi-blue-intense-fg">15:44:08</span>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020-2022, Sebastian Stammler &amp; Tilman Birnstiel.</p>
+    <p>&#169; Copyright 2020-2023, Sebastian Stammler &amp; Tilman Birnstiel.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
