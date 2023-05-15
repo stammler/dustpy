@@ -412,8 +412,10 @@ class Simulation(Frame):
                             ),
                 Instruction(std.gas.impl_1_direct,
                             self.gas.Sigma,
-                            controller={"rhs": self.gas._rhs
-                                        },
+                            controller={
+                                "boundary": self.gas.boundary,
+                                "Sext": self.gas.S.ext,
+                            },
                             description="Gas: implicit 1st-order direct solver"
                             ),
             ]
