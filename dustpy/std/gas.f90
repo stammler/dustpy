@@ -389,9 +389,9 @@ subroutine modified_rhs(dt, rhs, S, r, Nr)
 
    integer :: ir
 
-   r(:) = 0.d0
+   r(:) = rhs(:)
    do ir=2, Nr-1
-      r(ir) = rhs(ir) + dt*S(ir)
+      r(ir) = r(ir) + dt*S(ir)
    end do
 
 end subroutine modified_rhs
