@@ -5,6 +5,7 @@ nbconvert
 nbsphinx
 numpy
 numpydoc
+pandoc
 recommonmark
 simframe
 sphinx
