@@ -13,11 +13,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -132,7 +132,7 @@
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">Kanagawa2017_gap_profile</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">alpha0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the gap profile according Kanagawa et al. (2017).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the gap profile according Kanagawa et al. (2017).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -362,7 +362,7 @@
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
 
 <span class="k">def</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function returns the alpha viscosity profile to create planetary gaps in the gas surface density.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function returns the alpha viscosity profile to create planetary gaps in the gas surface density.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -439,7 +439,7 @@
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Mplan</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tini</span><span class="p">,</span> <span class="n">tfin</span><span class="p">,</span> <span class="n">Mini</span><span class="p">,</span> <span class="n">Mfin</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function returns the planetary mass.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function returns the planetary mass.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -566,7 +566,7 @@ Saturn:  1.00 M_earth
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.3
+DustPy v1.0.4
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -577,15 +577,15 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 4.44e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
         for particle collision
-            m[47] =  5.18e-06 g    with
-            m[54] =  5.18e-05 g
+            m[55] =  7.20e-05 g    with
+            m[55] =  7.20e-05 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -637,7 +637,7 @@ Writing file <span class="ansi-blue-intense-fg">example_planetary_gaps/data0020.
 Writing dump file <span class="ansi-blue-intense-fg">example_planetary_gaps/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">example_planetary_gaps/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">example_planetary_gaps/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">1:23:59</span>
+Execution time: <span class="ansi-blue-intense-fg">0:59:00</span>
 </pre></div></div>
 </div>
 <p>This is the result of our simulation.</p>

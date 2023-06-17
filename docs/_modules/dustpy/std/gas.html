@@ -11,11 +11,11 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -99,7 +99,7 @@
 
 
 <div class="viewcode-block" id="boundary"><a class="viewcode-back" href="../../../api/dustpy.std.gas.boundary.html#dustpy.std.gas.boundary">[docs]</a><span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function set the boundary conditions of the gas.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function set the boundary conditions of the gas.</span>
 <span class="sd">    Not implemented, yet.</span>
 
 <span class="sd">    Parameters</span>
@@ -111,7 +111,7 @@
 
 
 <div class="viewcode-block" id="enforce_floor_value"><a class="viewcode-back" href="../../../api/dustpy.std.gas.enforce_floor_value.html#dustpy.std.gas.enforce_floor_value">[docs]</a><span class="k">def</span> <span class="nf">enforce_floor_value</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function enforces floor value to gas surface density.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function enforces floor value to gas surface density.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -124,7 +124,7 @@
 
 
 <div class="viewcode-block" id="prepare"><a class="viewcode-back" href="../../../api/dustpy.std.gas.prepare.html#dustpy.std.gas.prepare">[docs]</a><span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function prepares gas integration step.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function prepares gas integration step.</span>
 <span class="sd">    It stores the current value of the surface density in a hidden field.</span>
 
 <span class="sd">    Parameters</span>
@@ -136,7 +136,7 @@
 
 
 <div class="viewcode-block" id="finalize"><a class="viewcode-back" href="../../../api/dustpy.std.gas.finalize.html#dustpy.std.gas.finalize">[docs]</a><span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function finalizes gas integration step.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function finalizes gas integration step.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -151,7 +151,7 @@
 
 
 <div class="viewcode-block" id="set_implicit_boundaries"><a class="viewcode-back" href="../../../api/dustpy.std.gas.set_implicit_boundaries.html#dustpy.std.gas.set_implicit_boundaries">[docs]</a><span class="k">def</span> <span class="nf">set_implicit_boundaries</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the fluxes at the boundaries after the implicit integration step.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the fluxes at the boundaries after the implicit integration step.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -177,7 +177,7 @@
 
 
 <div class="viewcode-block" id="dt"><a class="viewcode-back" href="../../../api/dustpy.std.gas.dt.html#dustpy.std.gas.dt">[docs]</a><span class="k">def</span> <span class="nf">dt</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the time step from the gas sources.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the time step from the gas sources.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -196,7 +196,7 @@
 
 
 <div class="viewcode-block" id="cs_adiabatic"><a class="viewcode-back" href="../../../api/dustpy.std.gas.cs_adiabatic.html#dustpy.std.gas.cs_adiabatic">[docs]</a><span class="k">def</span> <span class="nf">cs_adiabatic</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the adiabatic sound speed of the gas. For the isothermal sound speed set</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the adiabatic sound speed of the gas. For the isothermal sound speed set</span>
 <span class="sd">    ``Simulation.gas.gamma = 1``.</span>
 
 <span class="sd">    Paramters</span>
@@ -216,7 +216,7 @@
 
 
 <div class="viewcode-block" id="eta_midplane"><a class="viewcode-back" href="../../../api/dustpy.std.gas.eta_midplane.html#dustpy.std.gas.eta_midplane">[docs]</a><span class="k">def</span> <span class="nf">eta_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the midplane pressure gradient parameter.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the midplane pressure gradient parameter.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -231,7 +231,7 @@
 
 
 <div class="viewcode-block" id="Fi"><a class="viewcode-back" href="../../../api/dustpy.std.gas.Fi.html#dustpy.std.gas.Fi">[docs]</a><span class="k">def</span> <span class="nf">Fi</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the mass flux through the cell interfaces.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the mass flux through the cell interfaces.</span>
 <span class="sd">    The fluxes are calculated from the implicit integration outcome.</span>
 
 <span class="sd">    Parameters</span>
@@ -247,7 +247,7 @@
 
 
 <div class="viewcode-block" id="Hp"><a class="viewcode-back" href="../../../api/dustpy.std.gas.Hp.html#dustpy.std.gas.Hp">[docs]</a><span class="k">def</span> <span class="nf">Hp</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the pressure scale height.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the pressure scale height.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -266,7 +266,7 @@
 
 
 <div class="viewcode-block" id="jacobian"><a class="viewcode-back" href="../../../api/dustpy.std.gas.jacobian.html#dustpy.std.gas.jacobian">[docs]</a><span class="k">def</span> <span class="nf">jacobian</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Functions calculates the Jacobian for the gas.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Functions calculates the Jacobian for the gas.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -412,7 +412,7 @@
 
 
 <div class="viewcode-block" id="lyndenbellpringle1974"><a class="viewcode-back" href="../../../api/dustpy.std.gas.lyndenbellpringle1974.html#dustpy.std.gas.lyndenbellpringle1974">[docs]</a><span class="k">def</span> <span class="nf">lyndenbellpringle1974</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rc</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">Mdisk</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the surface density according the self similar solution of Lynden-Bell &amp; Pringle (1974).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the surface density according the self similar solution of Lynden-Bell &amp; Pringle (1974).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -433,7 +433,7 @@
 
 
 <div class="viewcode-block" id="mfp_midplane"><a class="viewcode-back" href="../../../api/dustpy.std.gas.mfp_midplane.html#dustpy.std.gas.mfp_midplane">[docs]</a><span class="k">def</span> <span class="nf">mfp_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the midplane mean free path.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the midplane mean free path.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -450,7 +450,7 @@
 
 
 <div class="viewcode-block" id="n_midplane"><a class="viewcode-back" href="../../../api/dustpy.std.gas.n_midplane.html#dustpy.std.gas.n_midplane">[docs]</a><span class="k">def</span> <span class="nf">n_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the midplane number density of the gas.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the midplane number density of the gas.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -468,7 +468,7 @@
 
 
 <div class="viewcode-block" id="nu"><a class="viewcode-back" href="../../../api/dustpy.std.gas.nu.html#dustpy.std.gas.nu">[docs]</a><span class="k">def</span> <span class="nf">nu</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the kinematic viscocity of the gas.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the kinematic viscocity of the gas.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -487,7 +487,7 @@
 
 
 <div class="viewcode-block" id="P_midplane"><a class="viewcode-back" href="../../../api/dustpy.std.gas.P_midplane.html#dustpy.std.gas.P_midplane">[docs]</a><span class="k">def</span> <span class="nf">P_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the midplane gas pressure.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the midplane gas pressure.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -506,7 +506,7 @@
 
 
 <div class="viewcode-block" id="rho_midplane"><a class="viewcode-back" href="../../../api/dustpy.std.gas.rho_midplane.html#dustpy.std.gas.rho_midplane">[docs]</a><span class="k">def</span> <span class="nf">rho_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the midplane mass density of the gas.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the midplane mass density of the gas.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -524,7 +524,7 @@
 
 
 <div class="viewcode-block" id="S_hyd"><a class="viewcode-back" href="../../../api/dustpy.std.gas.S_hyd.html#dustpy.std.gas.S_hyd">[docs]</a><span class="k">def</span> <span class="nf">S_hyd</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the hydrodynamic source terms.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the hydrodynamic source terms.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -539,7 +539,7 @@
 
 
 <div class="viewcode-block" id="S_tot"><a class="viewcode-back" href="../../../api/dustpy.std.gas.S_tot.html#dustpy.std.gas.S_tot">[docs]</a><span class="k">def</span> <span class="nf">S_tot</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the total source terms.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the total source terms.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -557,7 +557,7 @@
 
 
 <div class="viewcode-block" id="T_passive"><a class="viewcode-back" href="../../../api/dustpy.std.gas.T_passive.html#dustpy.std.gas.T_passive">[docs]</a><span class="k">def</span> <span class="nf">T_passive</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the temperature profile of a passively irridiated disk with a constant irradiation</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the temperature profile of a passively irridiated disk with a constant irradiation</span>
 <span class="sd">    angle of 0.05.</span>
 
 <span class="sd">    Parameters</span>
@@ -576,7 +576,7 @@
 
 
 <div class="viewcode-block" id="vrad"><a class="viewcode-back" href="../../../api/dustpy.std.gas.vrad.html#dustpy.std.gas.vrad">[docs]</a><span class="k">def</span> <span class="nf">vrad</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the radial radial gas velocity.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the radial radial gas velocity.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -598,7 +598,7 @@
 
 
 <div class="viewcode-block" id="vvisc"><a class="viewcode-back" href="../../../api/dustpy.std.gas.vvisc.html#dustpy.std.gas.vvisc">[docs]</a><span class="k">def</span> <span class="nf">vvisc</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the viscous radial gas velocity.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the viscous radial gas velocity.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -613,7 +613,7 @@
 
 
 <span class="k">def</span> <span class="nf">_f_impl_1_direct</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">Y0</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rhs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Implicit 1st-order Euler integration scheme with direct matrix inversion</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Implicit 1st-order Euler integration scheme with direct matrix inversion</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -668,7 +668,7 @@
 
 
 <div class="viewcode-block" id="impl_1_direct"><a class="viewcode-back" href="../../../api/dustpy.std.gas.impl_1_direct.html#dustpy.std.gas.impl_1_direct">[docs]</a><span class="k">class</span> <span class="nc">impl_1_direct</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Modified class for implicit gas integration.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Modified class for implicit gas integration.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_f_impl_1_direct</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Implicit 1st-order direct solver&quot;</span><span class="p">)</span></div>

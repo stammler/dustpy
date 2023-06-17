@@ -11,11 +11,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -111,7 +111,7 @@
 
 
 <div class="viewcode-block" id="Simulation"><a class="viewcode-back" href="../../api/dustpy.Simulation.html#dustpy.Simulation">[docs]</a><span class="k">class</span> <span class="nc">Simulation</span><span class="p">(</span><span class="n">Frame</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;The main simulation class for running dust coagulation simulations.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The main simulation class for running dust coagulation simulations.</span>
 
 <span class="sd">    `dustpy.Simulation`` is a child of ``simframe.Frame``.</span>
 
@@ -125,7 +125,7 @@
     <span class="vm">__name__</span> <span class="o">=</span> <span class="s2">&quot;DustPy&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Main simulation class.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Main simulation class.&quot;&quot;&quot;</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -291,7 +291,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="Simulation.run"><a class="viewcode-back" href="../../api/dustpy.Simulation.html#dustpy.Simulation.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This functions runs the simulation.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This functions runs the simulation.&quot;&quot;&quot;</span>
         <span class="c1"># Print welcome message</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
@@ -313,11 +313,11 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">ini</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Parameter set for setting the initial conditions.&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Parameter set for setting the initial conditions.&#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ini</span>
 
 <div class="viewcode-block" id="Simulation.makegrids"><a class="viewcode-back" href="../../api/dustpy.Simulation.html#dustpy.Simulation.makegrids">[docs]</a>    <span class="k">def</span> <span class="nf">makegrids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Function creates radial and mass grid.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Function creates radial and mass grid.</span>
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
@@ -330,7 +330,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_makeradialgrid</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">_makemassgrid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Function sets the radial mass grid. If ``Simulation.grid.rint`` is not given it uses the parameters set in</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Function sets the radial mass grid. If ``Simulation.grid.rint`` is not given it uses the parameters set in</span>
 <span class="sd">        ``Simulation.ini``.&#39;&#39;&#39;</span>
         <span class="n">logmmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">mmin</span><span class="p">)</span>
         <span class="n">logmmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">mmax</span><span class="p">)</span>
@@ -344,7 +344,7 @@
             <span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Mass grid [g]&quot;</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_makeradialgrid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Function sets the mass grid using the parameters set in ``Simulation.ini``.&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Function sets the mass grid using the parameters set in ``Simulation.ini``.&#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ri</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rmin</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">rmax</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ini</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mf">10.</span><span class="p">)</span>
@@ -364,7 +364,7 @@
             <span class="bp">self</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Radial grid annulus area [cm²]&quot;</span><span class="p">,</span> <span class="n">constant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Simulation.checkmassconservation"><a class="viewcode-back" href="../../api/dustpy.Simulation.html#dustpy.Simulation.checkmassconservation">[docs]</a>    <span class="k">def</span> <span class="nf">checkmassconservation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Function checks for mass conservation and prints the maximum relative mass error.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Function checks for mass conservation and prints the maximum relative mass error.&quot;&quot;&quot;</span>
 
         <span class="c1"># Check if required fields are present</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">coagulation</span><span class="o">.</span><span class="n">stick</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -467,7 +467,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Simulation.initialize"><a class="viewcode-back" href="../../api/dustpy.Simulation.html#dustpy.Simulation.initialize">[docs]</a>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Function initializes the simulation frame.</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Function initializes the simulation frame.</span>
 
 <span class="sd">        Function sets all fields that are None with a standard value.</span>
 <span class="sd">        If the grids are not set, it will call ``Simulation.makegrids()`` first.&#39;&#39;&#39;</span>
@@ -524,7 +524,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">_initializedust</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Function to initialize dust quantities&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Function to initialize dust quantities&#39;&#39;&#39;</span>
         <span class="n">shape1</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">))</span>
         <span class="n">shape2</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">))</span>
         <span class="n">shape2ravel</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">))</span>
@@ -735,7 +735,7 @@
             <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_initializegas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Function to initialize gas quantities&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Function to initialize gas quantities&#39;&#39;&#39;</span>
         <span class="n">shape1</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">))</span>
         <span class="n">shape1p1</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
         <span class="c1"># Turbulent alpha parameter</span>
@@ -872,7 +872,7 @@
                 <span class="s2">&quot;val&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">SigmaFloor</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
     <span class="k">def</span> <span class="nf">_initializegrid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Function to initialize grid quantities&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Function to initialize grid quantities&#39;&#39;&#39;</span>
         <span class="n">shape1</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">))</span>
         <span class="c1"># Keplerian frequency</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">OmegaK</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -883,7 +883,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_initializestar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Function to initialize the stellar quantities&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Function to initialize the stellar quantities&#39;&#39;&#39;</span>
         <span class="c1"># Luminosity</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">L</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">L</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Luminosity [erg/s]&quot;</span><span class="p">)</span>
@@ -904,7 +904,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Simulation.setdustintegrator"><a class="viewcode-back" href="../../api/dustpy.Simulation.html#dustpy.Simulation.setdustintegrator">[docs]</a>    <span class="k">def</span> <span class="nf">setdustintegrator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;explicit&quot;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;cash-karp&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Function sets the dust integrator.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Function sets the dust integrator.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
