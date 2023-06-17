@@ -13,11 +13,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -380,7 +380,7 @@ Group (Gas quantities)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.3
+DustPy v1.0.4
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -391,15 +391,15 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 4.44e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
         for particle collision
-            m[47] =  5.18e-06 g    with
-            m[54] =  5.18e-05 g
+            m[55] =  7.20e-05 g    with
+            m[55] =  7.20e-05 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -451,7 +451,7 @@ Writing file <span class="ansi-blue-intense-fg">data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:27:38</span>
+Execution time: <span class="ansi-blue-intense-fg">0:23:39</span>
 </pre></div></div>
 </div>
 <p>By default <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has written output files into the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p>
@@ -543,30 +543,30 @@ Execution time: <span class="ansi-blue-intense-fg">0:27:38</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[1.10559578e+01 1.02993895e+01 9.59198655e+00 8.93897039e+00
- 8.32862317e+00 7.75844034e+00 7.22592011e+00 6.72851967e+00
- 6.26415887e+00 5.83078068e+00 5.42619387e+00 5.04866399e+00
- 4.69649134e+00 4.36780776e+00 4.06121125e+00 3.77533776e+00
- 3.50861624e+00 3.25990072e+00 3.02807361e+00 2.81182032e+00
- 2.61021367e+00 2.42234205e+00 2.24712577e+00 2.08381645e+00
- 1.93166286e+00 1.78979374e+00 1.65760382e+00 1.53446515e+00
- 1.41969001e+00 1.31278690e+00 1.21322226e+00 1.12046749e+00
- 1.03412184e+00 9.53725385e-01 8.78888615e-01 8.09294254e-01
- 7.44490836e-01 6.84223318e-01 6.28193873e-01 5.76094362e-01
- 5.27714534e-01 4.82759450e-01 4.41037597e-01 4.02335593e-01
- 3.66446531e-01 3.33221163e-01 3.02440436e-01 2.73984694e-01
- 2.47683775e-01 2.23419209e-01 2.01047340e-01 1.80459609e-01
- 1.61533957e-01 1.44173500e-01 1.28272100e-01 1.13746582e-01
- 1.00500347e-01 8.84605892e-02 7.75361662e-02 6.76591619e-02
- 5.87678817e-02 5.07939795e-02 4.36886153e-02 3.74081871e-02
- 3.18793564e-02 2.70182325e-02 2.27462113e-02 1.90021147e-02
- 1.57366895e-02 1.29009254e-02 1.04286322e-02 8.21055792e-03
- 6.08307083e-03 3.92337067e-03 1.93627146e-03 6.99159427e-04
- 1.85478307e-04 3.65520578e-05 5.35111446e-06 5.68366793e-07
- 4.38293497e-08 2.70066831e-09 1.34311546e-10 5.41183930e-12
- 1.76121401e-13 4.57456532e-15 9.26071745e-17 1.40450504e-18
- 1.50488578e-20 1.05409452e-22 4.41479948e-25 1.13312989e-27
- 1.04632058e-28 9.00834559e-29 7.84588136e-29 6.83347698e-29
+[1.10558815e+01 1.02993272e+01 9.59193788e+00 8.93892806e+00
+ 8.32858767e+00 7.75841761e+00 7.22592221e+00 6.72855181e+00
+ 6.26420577e+00 5.83081781e+00 5.42620327e+00 5.04864519e+00
+ 4.69645944e+00 4.36777943e+00 4.06119397e+00 3.77533016e+00
+ 3.50861391e+00 3.25990031e+00 3.02807364e+00 2.81182040e+00
+ 2.61021379e+00 2.42234225e+00 2.24712602e+00 2.08381672e+00
+ 1.93166312e+00 1.78979396e+00 1.65760398e+00 1.53446526e+00
+ 1.41969006e+00 1.31278691e+00 1.21322225e+00 1.12046748e+00
+ 1.03412183e+00 9.53725345e-01 8.78888503e-01 8.09294010e-01
+ 7.44490394e-01 6.84222619e-01 6.28192894e-01 5.76093217e-01
+ 5.27712626e-01 4.82757387e-01 4.41035293e-01 4.02333136e-01
+ 3.66444054e-01 3.33218808e-01 3.02438347e-01 2.73982993e-01
+ 2.47682540e-01 2.23418447e-01 2.01046964e-01 1.80459442e-01
+ 1.61533785e-01 1.44173178e-01 1.28271621e-01 1.13746062e-01
+ 1.00499940e-01 8.84604266e-02 7.75363806e-02 6.76599089e-02
+ 5.87691734e-02 5.07955773e-02 4.36900617e-02 3.74091009e-02
+ 3.18796379e-02 2.70180801e-02 2.27459150e-02 1.90018439e-02
+ 1.57364909e-02 1.29007896e-02 1.04285399e-02 8.21050480e-03
+ 6.08306598e-03 3.92337794e-03 1.93619717e-03 6.99121567e-04
+ 1.85481351e-04 3.65597278e-05 5.35404438e-06 5.68960838e-07
+ 4.39047558e-08 2.70754647e-09 1.34783186e-10 5.43669830e-12
+ 1.77136454e-13 4.60649305e-15 9.33649281e-17 1.41756318e-18
+ 1.52030459e-20 1.06566122e-22 4.46544709e-25 1.14511506e-27
+ 1.04646622e-28 9.00834644e-29 7.84588136e-29 6.83347698e-29
  5.95170965e-29 5.18372240e-29 4.51483347e-29 3.93225557e-29]
 </pre></div></div>
 </div>
@@ -623,11 +623,11 @@ Execution time: <span class="ansi-blue-intense-fg">0:27:38</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[[1.31961324e-01 1.08579459e-01 1.12353255e-01 ... 1.52526930e-23
+[[1.35729762e-01 1.11437088e-01 1.16048278e-01 ... 1.52526930e-23
   2.11935481e-23 2.94483396e-23]
- [1.26923730e-01 1.04062903e-01 1.07632684e-01 ... 1.32845402e-23
+ [1.29641109e-01 1.06106823e-01 1.10233916e-01 ... 1.32845402e-23
   1.84588088e-23 2.56484316e-23]
- [1.22492020e-01 1.00043102e-01 1.03425908e-01 ... 1.15703508e-23
+ [1.24171312e-01 1.01283069e-01 1.04945767e-01 ... 1.15703508e-23
   1.60769503e-23 2.23388501e-23]
  ...
  [4.45718657e-46 6.19324066e-46 8.60547999e-46 ... 2.30858850e-29
@@ -883,7 +883,7 @@ array([1.11442758e+003, 1.03950016e+003, 9.69534899e+002, 9.03996575e+002,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.3
+DustPy v1.0.4
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -894,15 +894,15 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 4.44e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
         for particle collision
-            m[47] =  5.18e-06 g    with
-            m[54] =  5.18e-05 g
+            m[55] =  7.20e-05 g    with
+            m[55] =  7.20e-05 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -911,7 +911,7 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 
 Writing file <span class="ansi-blue-intense-fg">data/data0022.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:00</span>
 </pre></div></div>
 </div>
 <p>Another file was written and the current time is now</p>

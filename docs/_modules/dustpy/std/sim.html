@@ -11,11 +11,11 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -98,7 +98,7 @@
 
 
 <div class="viewcode-block" id="dt_adaptive"><a class="viewcode-back" href="../../../api/dustpy.std.sim.dt_adaptive.html#dustpy.std.sim.dt_adaptive">[docs]</a><span class="k">def</span> <span class="nf">dt_adaptive</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function that returns the suggested adaptive timestep.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function that returns the suggested adaptive timestep.</span>
 <span class="sd">    By default DustPy uses adaptive integration schemes. The step</span>
 <span class="sd">    size function is therefore simply returning the suggested</span>
 <span class="sd">    step size.</span>
@@ -115,7 +115,7 @@
 
 
 <div class="viewcode-block" id="dt"><a class="viewcode-back" href="../../../api/dustpy.std.sim.dt.html#dustpy.std.sim.dt">[docs]</a><span class="k">def</span> <span class="nf">dt</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function returns the timestep depending on the source terms.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function returns the timestep depending on the source terms.</span>
 
 <span class="sd">    Paramters</span>
 <span class="sd">    ---------</span>
@@ -134,7 +134,7 @@
 
 
 <div class="viewcode-block" id="prepare_explicit_dust"><a class="viewcode-back" href="../../../api/dustpy.std.sim.prepare_explicit_dust.html#dustpy.std.sim.prepare_explicit_dust">[docs]</a><span class="k">def</span> <span class="nf">prepare_explicit_dust</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function is the preparation function that is called</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function is the preparation function that is called</span>
 <span class="sd">    before every integration step.</span>
 
 <span class="sd">    Parameters</span>
@@ -145,7 +145,7 @@
 
 
 <div class="viewcode-block" id="prepare_implicit_dust"><a class="viewcode-back" href="../../../api/dustpy.std.sim.prepare_implicit_dust.html#dustpy.std.sim.prepare_implicit_dust">[docs]</a><span class="k">def</span> <span class="nf">prepare_implicit_dust</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function is the preparation function that is called</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function is the preparation function that is called</span>
 <span class="sd">    before every integration step.</span>
 
 <span class="sd">    Parameters</span>
@@ -157,7 +157,7 @@
 
 
 <div class="viewcode-block" id="finalize_explicit_dust"><a class="viewcode-back" href="../../../api/dustpy.std.sim.finalize_explicit_dust.html#dustpy.std.sim.finalize_explicit_dust">[docs]</a><span class="k">def</span> <span class="nf">finalize_explicit_dust</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function is the finalization function that is called</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function is the finalization function that is called</span>
 <span class="sd">    after every integration step. It is managing the boundary</span>
 <span class="sd">    conditions and is enforcing floor values.</span>
 
@@ -170,7 +170,7 @@
 
 
 <div class="viewcode-block" id="finalize_implicit_dust"><a class="viewcode-back" href="../../../api/dustpy.std.sim.finalize_implicit_dust.html#dustpy.std.sim.finalize_implicit_dust">[docs]</a><span class="k">def</span> <span class="nf">finalize_implicit_dust</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function is the finalization function that is called</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function is the finalization function that is called</span>
 <span class="sd">    after every integration step. It is managing the boundary</span>
 <span class="sd">    conditions and is enforcing floor values.</span>
 

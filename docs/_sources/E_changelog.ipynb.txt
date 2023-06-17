@@ -18,6 +18,19 @@
   },
   {
    "cell_type": "markdown",
+   "id": "9395dfc3-8a57-4382-a997-6aedc776963c",
+   "metadata": {},
+   "source": [
+    "### **v1.0.4**\n",
+    "**Release date: 13th June 2023**\n",
+    "\n",
+    "#### Bugfix to boundary conditions\n",
+    "\n",
+    "A bug prevented the boundaries to be set correctly for the boundary conditions `\"val\"`, `\"grad\"`, and `\"pow\"`. The boundary conditions `\"const_val\"`, `\"const_grad\"`, and `\"const_pow\"` were not affected by this bug."
+   ]
+  },
+  {
+   "cell_type": "markdown",
    "id": "c28673a5-03a9-4865-8d86-092a4cfca918",
    "metadata": {},
    "source": [
@@ -96,7 +109,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.10.11"
+   "version": "3.11.3"
   }
  },
  "nbformat": 4,
