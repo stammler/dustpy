@@ -183,6 +183,11 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
 
     from dustpy.plot import __version__
 
+    global plt00
+    global plt00Dr
+    global plt00Fr
+    global plt00St
+
     data = _readdata(data, filename=filename, extension=extension)
 
     # Fix indices if necessary
@@ -219,7 +224,6 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
                           cmap="magma",
                           extend="both"
                           )
-    plt00Collections = plt00.collections[:]
     if show_St1:
         plt00St = ax00.contour(data.r[it, ...]/c.au,
                                data.m[it, ...],
@@ -228,7 +232,6 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
                                colors="white",
                                linewidths=2
                                )
-        plt00StCollections = plt00St.collections[:]
     if show_limits:
         plt00Dr = ax00.contour(data.r[it, ...]/c.au,
                                data.m[it, ...],
@@ -237,7 +240,6 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
                                colors="C2",
                                linewidths=1
                                )
-        plt00DrCollections = plt00Dr.collections[:]
         plt00Fr = ax00.contour(data.r[it, ...]/c.au,
                                data.m[it, ...],
                                (data.St - data.StFr[..., None])[it, ...].T,
@@ -245,7 +247,6 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
                                colors="C0",
                                linewidths=1
                                )
-        plt00FrCollections = plt00Fr.collections[:]
     plt00hl = ax00.axhline(data.m[it, im], color="#AAAAAA", lw=1, ls="--")
     plt00vl = ax00.axvline(data.r[it, ir]/c.au, color="#AAAAAA", lw=1, ls="--")
 
@@ -349,6 +350,11 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
 
     def update(val):
 
+        global plt00
+        global plt00Dr
+        global plt00Fr
+        global plt00St
+
         it = 0
         if data.Nt > 2:
             it = int(np.floor(sliderTime.val))
@@ -358,8 +364,8 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
         ir = int(np.floor(sliderDist.val))
         axSliderDist.set_title("r = {:9.3e} AU".format(data.r[it, ir]/c.au))
 
-        for row in plt00Collections:
-            plt00Collections.remove(row)
+        for row in plt00.collections:
+            row.remove()
         plt00 = ax00.contourf(data.r[it, ...]/c.au,
                               data.m[it, ...],
                               np.log10(data.sigmaDust[it, ...].T),
@@ -367,11 +373,9 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
                               cmap="magma",
                               extend="both"
                               )
-        for row in plt00.collections:
-            plt00Collections.append(row)
         if show_St1:
-            for row in plt00StCollections:
-                plt00StCollections.remove(row)
+            for row in plt00St.collections:
+                row.remove()
             plt00St = ax00.contour(data.r[it, ...]/c.au,
                                    data.m[it, ...],
                                    data.St[it, ...].T,
@@ -379,11 +383,9 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
                                    colors="white",
                                    linewidths=2
                                    )
-            for row in plt00St.collections:
-                plt00StCollections.append(row)
         if show_limits:
-            for row in plt00DrCollections:
-                plt00DrCollections.remove(row)
+            for row in plt00Dr.collections:
+                row.remove()
             plt00Dr = ax00.contour(data.r[it, ...]/c.au,
                                    data.m[it, ...],
                                    (data.St - data.StDr[..., None])[it, ...].T,
@@ -391,10 +393,8 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
                                    colors="C2",
                                    linewidths=1
                                    )
-            for row in plt00Dr.collections:
-                plt00DrCollections.append(row)
-            for row in plt00FrCollections:
-                plt00FrCollections.remove(row)
+            for row in plt00Fr.collections:
+                row.remove()
             plt00Fr = ax00.contour(data.r[it, ...]/c.au,
                                    data.m[it, ...],
                                    (data.St - data.StFr[..., None])[it, ...].T,
@@ -402,8 +402,6 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
                                    colors="C0",
                                    linewidths=1
                                    )
-            for row in plt00Fr.collections:
-                plt00FrCollections.append(row)
         plt00vl.set_xdata([data.r[it, ir]/c.au, data.r[it, ir]/c.au])
         plt00hl.set_ydata([data.m[it, im], data.m[it, im]])
 
