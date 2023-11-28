@@ -1061,8 +1061,12 @@ subroutine pfrag(vrel, vfrag, pf, Nr, Nm)
   do i=1, Nm
     do j=1, i
       do ir=2, Nr-1
-        dum = (vfrag(ir)/vrel(ir, j, i))**2
-        pf(ir, j, i) = (1.5d0*dum + 1.d0) * exp(-1.5d0*dum)
+        if(vrel(ir, j, i) .EQ. 0.d0) then
+          pf(ir, j, i) = 0.d0
+        else
+          dum = (vfrag(ir)/vrel(ir, j, i))**2
+          pf(ir, j, i) = (1.5d0*dum + 1.d0) * exp(-1.5d0*dum)
+        end if
         pf(ir, i, j) = pf(ir, j, i)
       end do
     end do
