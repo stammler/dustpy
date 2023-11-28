@@ -1,4 +1,4 @@
-project('DustPy', 'c')
+project('dustpy', 'c')
 add_languages('fortran')
 
 py_mod = import('python')
