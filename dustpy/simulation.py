@@ -315,7 +315,7 @@ class Simulation(Frame):
                 self.dust.coagulation.stick, self.dust.coagulation.stick_ind, self.grid.m)
             tup = (j, i)
             color = "red"
-            if(errmax < erracc):
+            if (errmax < erracc):
                 color = "green"
             error = "{:9.2e}".format(errmax)
             msg = "        max. rel. error: {:}\n".format(
@@ -341,7 +341,7 @@ class Simulation(Frame):
                 A, klf, m, phi)
             tup = (j, i)
             color = "red"
-            if(errmax < erracc):
+            if (errmax < erracc):
                 color = "green"
             error = "{:9.2e}".format(errmax)
             msg = "        max. rel. error: {:}\n".format(
@@ -361,7 +361,7 @@ class Simulation(Frame):
                 A, eps, klf, krm, m, phi)
             tup = (j, i)
             color = "red"
-            if(errmax < erracc):
+            if (errmax < erracc):
                 color = "green"
             error = "{:9.2e}".format(errmax)
             msg = "        max. rel. error: {:}\n".format(
@@ -412,8 +412,10 @@ class Simulation(Frame):
                             ),
                 Instruction(std.gas.impl_1_direct,
                             self.gas.Sigma,
-                            controller={"rhs": self.gas._rhs
-                                        },
+                            controller={
+                                "boundary": self.gas.boundary,
+                                "Sext": self.gas.S.ext,
+                            },
                             description="Gas: implicit 1st-order direct solver"
                             ),
             ]

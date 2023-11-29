@@ -173,7 +173,7 @@ def Hp(sim):
     )
 
 
-def jacobian(sim, x, dx=None, *args, **kwargs):
+def jacobian(sim, x, *args, **kwargs):
     """Functions calculates the Jacobian for the gas.
 
     Parameters
@@ -182,8 +182,6 @@ def jacobian(sim, x, dx=None, *args, **kwargs):
         Parent simulation frame
     x : IntVar
         Integration variable
-    dx : float, optional, default : None
-        stepsize
     args : additional positional arguments
     kwargs : additional keyworda arguments
 
@@ -204,10 +202,6 @@ def jacobian(sim, x, dx=None, *args, **kwargs):
     v = sim.dust.backreaction.B * 2. * sim.gas.eta * sim.grid.r * sim.grid.OmegaK
 
     # Helper variables for convenience
-    if dx is None:
-        dt = x.stepsize
-    else:
-        dt = dx
     r = sim.grid.r
     ri = sim.grid.ri
     area = sim.grid.A
@@ -224,86 +218,13 @@ def jacobian(sim, x, dx=None, *args, **kwargs):
     # Right hand side
     sim.gas._rhs[:] = sim.gas.Sigma
 
-    # Boundaries
-    B00, B01, B02 = 0., 0., 0.
-    BNm1Nm3, BNm1Nm2, BNm1Nm1 = 0., 0., 0.
-
-    # Inner boundary
-    if sim.gas.boundary.inner is not None:
-        # Given value
-        if sim.gas.boundary.inner.condition == "val":
-            sim.gas._rhs[0] = sim.gas.boundary.inner.value
-        # Constant value
-        elif sim.gas.boundary.inner.condition == "const_val":
-            B01 = (1./dt)[0]
-            sim.gas._rhs[0] = 0.
-        # Given gradient
-        elif sim.gas.boundary.inner.condition == "grad":
-            K1 = - r[1]/r[0]
-            B01 = -(K1/dt)[0]
-            sim.gas._rhs[0] = - ri[1]/r[0] * \
-                (r[1]-r[0])*sim.gas.boundary.inner.value
-        # Constant gradient
-        elif sim.gas.boundary.inner.condition == "const_grad":
-            Di = ri[1]/ri[2] * (r[1]-r[0]) / (r[2]-r[0])
-            K1 = - r[1]/r[0] * (1. + Di)
-            K2 = r[2]/r[0] * Di
-            B00, B01, B02 = 0., -(K1/dt)[0], -(K2/dt)[0]
-            sim.gas._rhs[0] = 0.
-        # Given power law
-        elif sim.gas.boundary.inner.condition == "pow":
-            p = sim.gas.boundary.inner.value
-            sim.gas._rhs[0] = sim.gas.Sigma[1] * (r[0]/r[1])**p
-        # Constant power law
-        elif sim.gas.boundary.inner.condition == "const_pow":
-            p = np.log(sim.gas.Sigma[2] /
-                       sim.gas.Sigma[1]) / np.log(r[2]/r[1])
-            K1 = - (r[0]/r[1])**p
-            B01 = -(K1/dt)[0]
-            sim.gas._rhs[0] = 0.
-
+    # Boundaries. This is only reserving space in the sparce matrix
     row_in = [0, 0, 0]
     col_in = [0, 1, 2]
-    dat_in = [B00, B01, B02]
-
-    # Outer boundary
-    if sim.gas.boundary.outer is not None:
-        # Given value
-        if sim.gas.boundary.outer.condition == "val":
-            sim.gas._rhs[-1] = sim.gas.boundary.outer.value
-        # Constant value
-        elif sim.gas.boundary.outer.condition == "const_val":
-            BNm1Nm2 = (1./dt)[0]
-            sim.gas._rhs[-1] = 0.
-        # Given gradient
-        elif sim.gas.boundary.outer.condition == "grad":
-            KNrm2 = - r[-2]/r[-1]
-            BNm1Nm2 = -(KNrm2/dt)[0]
-            sim.gas._rhs[-1] = ri[-2]/r[-1] * \
-                (r[-1]-r[-2])*sim.gas.boundary.outer.value
-        # Constant gradient
-        elif sim.gas.boundary.outer.condition == "const_grad":
-            Do = ri[-2]/ri[-3] * (r[-1]-r[-2]) / (r[-2]-r[-3])
-            KNrm2 = - r[-2]/r[-1] * (1. + Do)
-            KNrm3 = r[-3]/r[-1] * Do
-            BNm1Nm2 = -(KNrm2/dt)[0]
-            BNm1Nm3 = -(KNrm3/dt)[0]
-            sim.gas._rhs[-1] = 0.
-        # Given power law
-        elif sim.gas.boundary.outer.condition == "pow":
-            p = sim.gas.boundary.outer.value
-            sim.gas._rhs[-1] = sim.gas.Sigma[-2] * (r[-1]/r[-2])**p
-        # Constant power law
-        elif sim.gas.boundary.outer.condition == "const_pow":
-            p = np.log(sim.gas.Sigma[-2] /
-                       sim.gas.Sigma[-3]) / np.log(r[-2]/r[-3])
-            KNrm2 = - (r[-1]/r[-2])**p
-            BNm1Nm2 = -(KNrm2/dt)[0]
-            sim.gas._rhs[-1] = 0.
-
+    dat_in = [0., 0., 0.]
     row_out = [Nr-1, Nr-1, Nr-1]
     col_out = [Nr-3, Nr-2, Nr-1]
-    dat_out = [BNm1Nm3, BNm1Nm2, BNm1Nm1]
+    dat_out = [0., 0., 0.]
 
     # Stitching together the generators
     row = np.hstack((row_hyd, row_in, row_out))
@@ -520,7 +441,7 @@ def vvisc(sim):
     return gas_f.v_visc(sim.gas.Sigma, sim.gas.nu, sim.grid.r, sim.grid.ri)
 
 
-def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
+def _f_impl_1_direct(x0, Y0, dx, *args, **kwargs):
     """Implicit 1st-order Euler integration scheme with direct matrix inversion
 
     Parameters
@@ -531,8 +452,6 @@ def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
         Variable to be integrated at the beginning of scheme
     dx : IntVar
         Stepsize of integration variable
-    jac : Field, optional, defaul : None
-        Current Jacobian. Will be calculated, if not set
     args : additional positional arguments
     kwargs : additional keyworda arguments
 
@@ -547,16 +466,96 @@ def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
     ---|---
        | 1 
     """
-    if jac is None:
-        jac = Y0.jacobian(x0, dx)
-    if rhs is None:
-        rhs = np.array(Y0)
+    # Getting keyword arguments. Default is standard gas.
+    boundary = kwargs.get("boundary", Y0._owner.gas.boundary)
+    Sext = kwargs.get("Sext", Y0._owner.gas.S.ext)
+
+    dt = dx[0]
+    jac = Y0.jacobian(x0, dx)
+    rhs = np.array(Y0)
+
+    # Setting boundary values in jac and rhs
+
+    # Inner boundary
+    if boundary.inner is not None:
+        # Given value
+        if boundary.inner.condition == "val":
+            rhs[0] = boundary.inner.value
+        # Constant value
+        elif boundary.inner.condition == "const_val":
+            jac[0, 1] = 1./dt
+            rhs[0] = 0.
+        # Given gradient
+        elif boundary.inner.condition == "grad":
+            K1 = - boundary.inner._r[1]/boundary.inner._r[0]
+            jac[0, 1] = -K1/dt
+            rhs[0] = - boundary.inner._ri[1]/boundary.inner._r[0] * \
+                (boundary.inner._r[1]-boundary.inner._r[0]) * \
+                boundary.inner.value
+        # Constant gradient
+        elif boundary.inner.condition == "const_grad":
+            Di = boundary.inner._ri[1]/boundary.inner._ri[2] * (
+                boundary.inner._r[1]-boundary.inner._r[0]) / (boundary.inner._r[2]-boundary.inner._r[0])
+            K1 = - boundary.inner._r[1]/boundary.inner._r[0] * (1. + Di)
+            K2 = boundary.inner._r[2]/boundary.inner._r[0] * Di
+            jac[0, :3] = 0.
+            jac[0, 1] = -K1/dt
+            jac[0, 2] = -K2/dt
+            rhs[0] = 0.
+        # Given power law
+        elif boundary.inner.condition == "pow":
+            p = boundary.inner.value
+            rhs[0] = Y0[1] * (boundary.inner._r[0]/boundary.inner._r[1])**p
+        # Constant power law
+        elif boundary.inner.condition == "const_pow":
+            p = np.log(Y0[2] / Y0[1]) / \
+                np.log(boundary.inner._r[2]/boundary.inner._r[1])
+            K1 = - (boundary.inner._r[0]/boundary.inner._r[1])**p
+            jac[0, 1] = -K1/dt
+            rhs[0] = 0.
+
+    # Outer boundary
+    if boundary.outer is not None:
+        # Given value
+        if boundary.outer.condition == "val":
+            rhs[-1] = boundary.outer.value
+        # Constant value
+        elif boundary.outer.condition == "const_val":
+            jac[-1, -2] = (1./dt)
+            rhs[-1] = 0.
+        # Given gradient
+        elif boundary.outer.condition == "grad":
+            KNrm2 = - boundary.outer._r[1]/boundary.outer._r[0]
+            jac[-1, -2] = -(KNrm2/dt)
+            rhs[-1] = boundary.outer._ri[1]/boundary.outer._r[0] * \
+                (boundary.outer._r[0]-boundary.outer._r[1]) * \
+                boundary.outer.value
+        # Constant gradient
+        elif boundary.outer.condition == "const_grad":
+            Do = boundary.outer._ri[1]/boundary.outer._ri[2] * (
+                boundary.outer._r[0]-boundary.outer._r[1]) / (boundary.outer._r[1]-boundary.outer._r[2])
+            KNrm2 = - boundary.outer._r[1]/boundary.outer._r[0] * (1. + Do)
+            KNrm3 = boundary.outer._r[2]/boundary.outer._r[0] * Do
+            jac[-1, -2] = -KNrm2/dt
+            jac[-1, -3] = -KNrm3/dt
+            rhs[-1] = 0.
+        # Given power law
+        elif boundary.outer.condition == "pow":
+            p = boundary.outer.value
+            rhs[-1] = Y0[-2] * (boundary.outer._r[-0]/boundary.outer._r[1])**p
+        # Constant power law
+        elif boundary.outer.condition == "const_pow":
+            p = np.log(Y0[-2] / Y0[-3]) / \
+                np.log(boundary.outer._r[1]/boundary.outer._r[2])
+            KNrm2 = - (boundary.outer._r[0]/boundary.outer._r[1])**p
+            jac[-1, -2] = -KNrm2/dt
+            rhs[-1] = 0.
 
     # Add external source terms to right-hand side
     rhs[:] = gas_f.modified_rhs(
         dx[0],
         rhs,
-        Y0._owner.gas.S.ext
+        Sext
     )
 
     jac.data[:] = gas_f.modified_jacobian(
