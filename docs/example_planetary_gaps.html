@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Example: Planetary Gaps &mdash; dustpy  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -103,7 +105,7 @@
              
   <p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2Fexample_planetary_gaps.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="Example:-Planetary-Gaps">
-<h1>Example: Planetary Gaps<a class="headerlink" href="#Example:-Planetary-Gaps" title="Permalink to this heading"></a></h1>
+<h1>Example: Planetary Gaps<a class="headerlink" href="#Example:-Planetary-Gaps" title="Link to this heading"></a></h1>
 <div class="line-block">
 <div class="line">In this example we demonstrate how to add gaps carved by planets into the gas.</div>
 <div class="line">There are in principal three ways to achieve this: setting the gas surface density to the desired gap profile and not evolving it, adding torques to the gas evolution, or changing the viscosity.</div>
@@ -113,7 +115,7 @@
 <p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \left( 3\pi\Sigma_\mathrm{g}\nu\right) = \text{const.}\)</span></p>
 <p>To create a custom gap profile in the gas, while still allowing for gas accretion, it is sufficient to simply force the inverse gap profile onto the viscosity <span class="math notranslate nohighlight">\(\nu\)</span>. Since <span class="math notranslate nohighlight">\(\nu = \alpha c_\mathrm{s} H_\mathrm{P}\)</span> gaps can be created by modifying <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
 <section id="Gap-Profiles">
-<h2>Gap Profiles<a class="headerlink" href="#Gap-Profiles" title="Permalink to this heading"></a></h2>
+<h2>Gap Profiles<a class="headerlink" href="#Gap-Profiles" title="Link to this heading"></a></h2>
 <p>Since we are not self-consistently creating gaps, we have to impose a known gap profile. In this demonstration we are using the numerical fits to hydrodynamical simulations found by <a class="reference external" href="https://doi.org/10.1093/pasj/psx114">Kanagawa et al. (2017)</a>:</p>
 <p><span class="math notranslate nohighlight">\(\Sigma\mathrm{g} \left( r \right) = \begin{cases}  \Sigma_\mathrm{min} &amp; \text{for} \quad \left| r - a_\mathrm{p} \right| &lt; \Delta r_1, \\  \Sigma_\mathrm{gap}\left( r \right) &amp; \text{for} \quad \Delta r_1 &lt; \left| r - a_\mathrm{p} \right| &lt; \Delta r_2, \\  \Sigma_0 &amp; \text{for} \quad \left| r - a_\mathrm{p} \right| &gt; \Delta r_2, \end{cases}\)</span></p>
 <p>where <span class="math notranslate nohighlight">\(a_\mathrm{p}\)</span> is the semi-major axis of the planet and <span class="math notranslate nohighlight">\(\Sigma_0\)</span> is the unperturbed surface density, and</p>
@@ -233,7 +235,7 @@
 <p>The inverse of this pertubation needs to be imposed on the turbulent <span class="math notranslate nohighlight">\(\alpha\)</span> parameter to produce the desired gap profile in the gas.</p>
 </section>
 <section id="Adding-planets">
-<h2>Adding planets<a class="headerlink" href="#Adding-planets" title="Permalink to this heading"></a></h2>
+<h2>Adding planets<a class="headerlink" href="#Adding-planets" title="Link to this heading"></a></h2>
 <p>For this example we want to add two planets: Jupiter and Saturn. We therefore add new groups and subgroups to organize them.</p>
 <p>In addition to that we want to refine the grid close to the planet locations. For this we use the function similar to the one discussed in an earlier chapter.</p>
 <div class="nbinput nblast docutils container">
@@ -344,7 +346,7 @@
 </div>
 </section>
 <section id="Viscosity-pertubation">
-<h2>Viscosity pertubation<a class="headerlink" href="#Viscosity-pertubation" title="Permalink to this heading"></a></h2>
+<h2>Viscosity pertubation<a class="headerlink" href="#Viscosity-pertubation" title="Link to this heading"></a></h2>
 <p>We now have to write a funtion that returns the <span class="math notranslate nohighlight">\(\alpha\)</span> viscosity parameter profile that imposes the desired gap profile onto the gas surface density from those two planets.</p>
 <p>The unperturbed <span class="math notranslate nohighlight">\(\alpha\)</span> parameter shall be constant in this model.</p>
 <div class="nbinput nblast docutils container">
@@ -432,7 +434,7 @@
 </div>
 </section>
 <section id="Growing-planets">
-<h2>Growing planets<a class="headerlink" href="#Growing-planets" title="Permalink to this heading"></a></h2>
+<h2>Growing planets<a class="headerlink" href="#Growing-planets" title="Link to this heading"></a></h2>
 <p>Right now we could already start the simulation. But in this demonstration we want to let the planets grow linearly to their final mass. we therefore write a function that returns the planetary mass as a function of time.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
@@ -566,7 +568,7 @@ Saturn:  1.00 M_earth
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.4
+DustPy v1.0.5
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -637,7 +639,7 @@ Writing file <span class="ansi-blue-intense-fg">example_planetary_gaps/data0020.
 Writing dump file <span class="ansi-blue-intense-fg">example_planetary_gaps/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">example_planetary_gaps/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">example_planetary_gaps/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:59:00</span>
+Execution time: <span class="ansi-blue-intense-fg">1:12:43</span>
 </pre></div></div>
 </div>
 <p>This is the result of our simulation.</p>
@@ -694,11 +696,22 @@ Execution time: <span class="ansi-blue-intense-fg">0:59:00</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&lt;&gt;:9: SyntaxWarning: invalid escape sequence &#39;\o&#39;
+&lt;&gt;:9: SyntaxWarning: invalid escape sequence &#39;\o&#39;
+/tmp/ipykernel_94188/1466386948.py:9: SyntaxWarning: invalid escape sequence &#39;\o&#39;
+  ax.set_ylabel(&#34;Mass [$M_\oplus$]&#34;)
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_planetary_gaps_52_0.png" src="_images/example_planetary_gaps_52_0.png" />
+<img alt="_images/example_planetary_gaps_52_1.png" src="_images/example_planetary_gaps_52_1.png" />
 </div>
 </div>
 </section>

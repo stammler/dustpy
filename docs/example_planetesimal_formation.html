@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Example: Planetesimal Formation &mdash; dustpy  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -103,7 +105,7 @@
              
   <p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2Fexample_planetesimal_formation.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="Example:-Planetesimal-Formation">
-<h1>Example: Planetesimal Formation<a class="headerlink" href="#Example:-Planetesimal-Formation" title="Permalink to this heading"></a></h1>
+<h1>Example: Planetesimal Formation<a class="headerlink" href="#Example:-Planetesimal-Formation" title="Link to this heading"></a></h1>
 <p>This example demonstrates how to add planetesimal formation into <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> models. We follow <a class="reference external" href="https://doi.org/10.3847/2041-8213/ab4423">Stammler et al. (2019)</a> that showed that planetesimal formation could explain the optical depths observed in dust rings of protoplanetary disks.</p>
 <p>The method is described in detail in <a class="reference external" href="https://doi.org/10.1051/0004-6361/201834047">Schoonenberg et al. (2018)</a>. Planetesimal formation is triggered as soon as the midplane dust-to-gas ratio exceeds a critical threshold (typically of the order unity). If this threshold value is exceeded a fraction <span class="math notranslate nohighlight">\(\zeta\)</span> of the dust mass per settling time scale of each mass bin <span class="math notranslate nohighlight">\(i\)</span> is converted into planetesimals. <span class="math notranslate nohighlight">\(\zeta\)</span> is assumed to be <span class="math notranslate nohighlight">\(0.1\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(R^i = \frac{\partial}{\partial t} \Sigma_\mathrm{d}^i = -\frac{\Sigma_\mathrm{d}^i}{t_\mathrm{sett}^i} = -\zeta\,\Sigma_\mathrm{dust}^i\,\mathrm{St}^i\,\Omega_\mathrm{K}\)</span>.</p>
@@ -171,7 +173,7 @@
 </div>
 </div>
 <section id="Refining-the-radial-grid">
-<h2>Refining the radial grid<a class="headerlink" href="#Refining-the-radial-grid" title="Permalink to this heading"></a></h2>
+<h2>Refining the radial grid<a class="headerlink" href="#Refining-the-radial-grid" title="Link to this heading"></a></h2>
 <p>In this model we want to increase the radial resolution around the outer gap edge. We use the same method of refining the radial grid as described in earlier examples.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
@@ -242,7 +244,7 @@
 </div>
 </section>
 <section id="Adding-gap">
-<h2>Adding gap<a class="headerlink" href="#Adding-gap" title="Permalink to this heading"></a></h2>
+<h2>Adding gap<a class="headerlink" href="#Adding-gap" title="Link to this heading"></a></h2>
 <p>As describe earlier we want to add a gap by changing the <span class="math notranslate nohighlight">\(\alpha\)</span> profile. We simply set the new <span class="math notranslate nohighlight">\(\alpha\)</span> values. Since it is constant in the default model, we do not need to set an updater.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -255,7 +257,7 @@
 </div>
 </section>
 <section id="Adding-planetesimals">
-<h2>Adding planetesimals<a class="headerlink" href="#Adding-planetesimals" title="Permalink to this heading"></a></h2>
+<h2>Adding planetesimals<a class="headerlink" href="#Adding-planetesimals" title="Link to this heading"></a></h2>
 <p>We add a new group for the planetesimals which contains the planetesimal surface density and the total planetesimal mass in our model. We initialize the field with zeros.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -325,7 +327,7 @@ Group (Planetesimal quantities)
 </div>
 </section>
 <section id="Adding-planetesimal-formation">
-<h2>Adding planetesimal formation<a class="headerlink" href="#Adding-planetesimal-formation" title="Permalink to this heading"></a></h2>
+<h2>Adding planetesimal formation<a class="headerlink" href="#Adding-planetesimal-formation" title="Link to this heading"></a></h2>
 <p>To add planetesimal formation we calculate for each particle species at each radius if it contributes to planetesimal formation. These values are negative external source terms for dust evolution, since we remove dust mass and convert them into planetesimals. We therefore add them as updater to the external dust sources.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
@@ -450,7 +452,7 @@ Group (Planetesimal quantities)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.4
+DustPy v1.0.5
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -541,7 +543,7 @@ Writing file <span class="ansi-blue-intense-fg">example_planetesimal_formation/d
 Writing dump file <span class="ansi-blue-intense-fg">example_planetesimal_formation/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">example_planetesimal_formation/data0031.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">example_planetesimal_formation/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">14:25:43</span>
+Execution time: <span class="ansi-blue-intense-fg">22:17:52</span>
 </pre></div></div>
 </div>
 <p>We can plot our results now.</p>
@@ -621,11 +623,22 @@ Execution time: <span class="ansi-blue-intense-fg">14:25:43</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&lt;&gt;:21: SyntaxWarning: invalid escape sequence &#39;\o&#39;
+&lt;&gt;:21: SyntaxWarning: invalid escape sequence &#39;\o&#39;
+/tmp/ipykernel_94249/2126622601.py:21: SyntaxWarning: invalid escape sequence &#39;\o&#39;
+  ax10.set_ylabel(&#34;Mass [$M_\oplus$]&#34;)
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_planetesimal_formation_48_0.png" src="_images/example_planetesimal_formation_48_0.png" />
+<img alt="_images/example_planetesimal_formation_48_1.png" src="_images/example_planetesimal_formation_48_1.png" />
 </div>
 </div>
 </section>

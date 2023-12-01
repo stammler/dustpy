@@ -18,6 +18,31 @@
   },
   {
    "cell_type": "markdown",
+   "id": "880736d6-e6d8-489d-b262-96d88faffc5d",
+   "metadata": {},
+   "source": [
+    "### **v1.0.5**\n",
+    "**Release date: 2nd December 2023**\n",
+    "\n",
+    "#### Using Meson as build system\n",
+    "\n",
+    "Due to the deprecation of `numpy.distutils`, `DustPy` is now using Meson as build system.\n",
+    "\n",
+    "#### Bugfix to velocity distribution\n",
+    "\n",
+    "For zero relative collision velocities a not-a-number error could have been triggered.\n",
+    "\n",
+    "#### Bugfix to plotting script\n",
+    "\n",
+    "A bug in the plotting script has been fixed causing lines not to be updated. May not be fixed for all Matplotlib version. Please use the most recent one.\n",
+    "\n",
+    "#### Preparation for the addition of multiple gas species\n",
+    "\n",
+    "In order to add multiple gas species in future versions, the Jacobian of the gas surface density has been modified. All previous model that have not specifically customized the gas Jacobian should be compatible with this version."
+   ]
+  },
+  {
+   "cell_type": "markdown",
    "id": "9395dfc3-8a57-4382-a997-6aedc776963c",
    "metadata": {},
    "source": [
@@ -109,7 +134,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.11.3"
+   "version": "3.11.5"
   }
  },
  "nbformat": 4,

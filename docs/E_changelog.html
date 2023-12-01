@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Appendix E: Changelog &mdash; dustpy  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -67,6 +69,13 @@
 <li class="toctree-l1"><a class="reference internal" href="C_contrib_bug_feature.html">Appendix C: Contributing/Bugs/Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="D_discussions.html">Appendix D: DustPy Discussions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Appendix E: Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v1.0.5"><strong>v1.0.5</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Using-Meson-as-build-system">Using Meson as build system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Bugfix-to-velocity-distribution">Bugfix to velocity distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Bugfix-to-plotting-script">Bugfix to plotting script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Preparation-for-the-addition-of-multiple-gas-species">Preparation for the addition of multiple gas species</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#v1.0.4"><strong>v1.0.4</strong></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Bugfix-to-boundary-conditions">Bugfix to boundary conditions</a></li>
 </ul>
@@ -115,47 +124,67 @@
            <div itemprop="articleBody">
              
   <section id="Appendix-E:-Changelog">
-<h1>Appendix E: Changelog<a class="headerlink" href="#Appendix-E:-Changelog" title="Permalink to this heading"></a></h1>
+<h1>Appendix E: Changelog<a class="headerlink" href="#Appendix-E:-Changelog" title="Link to this heading"></a></h1>
 <p>This is a list of changes made to <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> since version <code class="docutils literal notranslate"><span class="pre">v1.0.0</span></code> including discussions of their influence on the simulations.</p>
+<section id="v1.0.5">
+<h2><strong>v1.0.5</strong><a class="headerlink" href="#v1.0.5" title="Link to this heading"></a></h2>
+<p><strong>Release date: 2nd December 2023</strong></p>
+<section id="Using-Meson-as-build-system">
+<h3>Using Meson as build system<a class="headerlink" href="#Using-Meson-as-build-system" title="Link to this heading"></a></h3>
+<p>Due to the deprecation of <code class="docutils literal notranslate"><span class="pre">numpy.distutils</span></code>, <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is now using Meson as build system.</p>
+</section>
+<section id="Bugfix-to-velocity-distribution">
+<h3>Bugfix to velocity distribution<a class="headerlink" href="#Bugfix-to-velocity-distribution" title="Link to this heading"></a></h3>
+<p>For zero relative collision velocities a not-a-number error could have been triggered.</p>
+</section>
+<section id="Bugfix-to-plotting-script">
+<h3>Bugfix to plotting script<a class="headerlink" href="#Bugfix-to-plotting-script" title="Link to this heading"></a></h3>
+<p>A bug in the plotting script has been fixed causing lines not to be updated. May not be fixed for all Matplotlib version. Please use the most recent one.</p>
+</section>
+<section id="Preparation-for-the-addition-of-multiple-gas-species">
+<h3>Preparation for the addition of multiple gas species<a class="headerlink" href="#Preparation-for-the-addition-of-multiple-gas-species" title="Link to this heading"></a></h3>
+<p>In order to add multiple gas species in future versions, the Jacobian of the gas surface density has been modified. All previous model that have not specifically customized the gas Jacobian should be compatible with this version.</p>
+</section>
+</section>
 <section id="v1.0.4">
-<h2><strong>v1.0.4</strong><a class="headerlink" href="#v1.0.4" title="Permalink to this heading"></a></h2>
+<h2><strong>v1.0.4</strong><a class="headerlink" href="#v1.0.4" title="Link to this heading"></a></h2>
 <p><strong>Release date: 17th June 2023</strong></p>
 <section id="Bugfix-to-boundary-conditions">
-<h3>Bugfix to boundary conditions<a class="headerlink" href="#Bugfix-to-boundary-conditions" title="Permalink to this heading"></a></h3>
+<h3>Bugfix to boundary conditions<a class="headerlink" href="#Bugfix-to-boundary-conditions" title="Link to this heading"></a></h3>
 <p>A bug prevented the boundaries to be set correctly for the boundary conditions <code class="docutils literal notranslate"><span class="pre">&quot;val&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;grad&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;pow&quot;</span></code>. The boundary conditions <code class="docutils literal notranslate"><span class="pre">&quot;const_val&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;const_grad&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;const_pow&quot;</span></code> were not affected by this bug.</p>
 </section>
 </section>
 <section id="v1.0.3">
-<h2><strong>v1.0.3</strong><a class="headerlink" href="#v1.0.3" title="Permalink to this heading"></a></h2>
+<h2><strong>v1.0.3</strong><a class="headerlink" href="#v1.0.3" title="Link to this heading"></a></h2>
 <p><strong>Release date: 7th February 2023</strong></p>
 <section id="Correction-to-inital-particle-size-distribution">
-<h3>Correction to inital particle size distribution<a class="headerlink" href="#Correction-to-inital-particle-size-distribution" title="Permalink to this heading"></a></h3>
+<h3>Correction to inital particle size distribution<a class="headerlink" href="#Correction-to-inital-particle-size-distribution" title="Link to this heading"></a></h3>
 <p>If the parameter <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.allowDriftingParticles</span></code> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code> before <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>, <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is removing particles in the outer disk that are initially close to the drift barrier. An error has been corrected in the conversion of Stokes number to particles size, in which the particle bulk density <code class="docutils literal notranslate"><span class="pre">Simulation.dust.rhos</span></code> has been in the numerator instead of the denominator. The effect of this correction on simulations is negligible, since
 <code class="docutils literal notranslate"><span class="pre">Simulation.dust.rhos</span> <span class="pre">~</span> <span class="pre">1</span></code>.</p>
 </section>
 <section id="Removal-of-non-ASCII-characters">
-<h3>Removal of non-ASCII characters<a class="headerlink" href="#Removal-of-non-ASCII-characters" title="Permalink to this heading"></a></h3>
+<h3>Removal of non-ASCII characters<a class="headerlink" href="#Removal-of-non-ASCII-characters" title="Link to this heading"></a></h3>
 <p>Due to potential incompabilities all non-ASCII character have been removed from the docstrings in the Fortran files.</p>
 </section>
 </section>
 <section id="v1.0.2">
-<h2><strong>v1.0.2</strong><a class="headerlink" href="#v1.0.2" title="Permalink to this heading"></a></h2>
+<h2><strong>v1.0.2</strong><a class="headerlink" href="#v1.0.2" title="Link to this heading"></a></h2>
 <p><strong>Release date: 18th November 2022</strong></p>
 <section id="Change-in-default-temperature-profile">
-<h3>Change in default temperature profile<a class="headerlink" href="#Change-in-default-temperature-profile" title="Permalink to this heading"></a></h3>
+<h3>Change in default temperature profile<a class="headerlink" href="#Change-in-default-temperature-profile" title="Link to this heading"></a></h3>
 <p>A factor of <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> was added to the luminosisty in the standard update function of the gas temperature <code class="docutils literal notranslate"><span class="pre">Simulation.gas.T</span></code>, when calculating the midplane equilibrium temperature in accordance with e.g. <a class="reference external" href="https://doi.org/10.1086/304869">Chiang &amp; Goldreich (1997)</a> or <a class="reference external" href="https://doi.org/10.1086/323057">Dullemond et al. (2001)</a>:</p>
 <p><span class="math notranslate nohighlight">\(T\left( r \right) = \sqrt[4]{\frac{1}{2}\frac{0.05\,L_*}{4\,\pi\,r^2\,\sigma_\mathrm{SB}}}\)</span></p>
 <p>Compared to previous versions the midplane temperature is therefore reduced by a factor of <span class="math notranslate nohighlight">\(\sqrt[4]{\frac{1}{2}}\approx0.84\)</span>. For a comparison with radiative transfer calculation with <code class="docutils literal notranslate"><span class="pre">RADMC-3D</span></code> please have a look at <a class="reference external" href="https://dustpylib.readthedocs.io/en/latest/radmc3d.html#Thermal-Monte-Carlo-run">this example</a> in the <a class="reference external" href="https://dustpylib.rtfd.io/">dustpylib documentation</a>.</p>
 </section>
 </section>
 <section id="v1.0.1">
-<h2><strong>v1.0.1</strong><a class="headerlink" href="#v1.0.1" title="Permalink to this heading"></a></h2>
+<h2><strong>v1.0.1</strong><a class="headerlink" href="#v1.0.1" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line"><strong>Release date: 21st July 2022</strong></div>
 <div class="line">This version has been used in the code paper (<a class="reference external" href="https://doi.org/10.3847/1538-4357/ac7d58">Stammler &amp; Birnstiel, 2022</a>).</div>
 </div>
 <section id="Change-to-Collision-Kernel">
-<h3>Change to Collision Kernel<a class="headerlink" href="#Change-to-Collision-Kernel" title="Permalink to this heading"></a></h3>
+<h3>Change to Collision Kernel<a class="headerlink" href="#Change-to-Collision-Kernel" title="Link to this heading"></a></h3>
 <p>A factor was added to the standard update function of <code class="docutils literal notranslate"><span class="pre">Simulation.dust.kernel</span></code>, that reduces the collision rates of equal size collisions by a factor of <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>:</p>
 <p><span class="math notranslate nohighlight">\(K_{ij} = \frac{1}{1+\delta_{ij}} \frac{\pi\left( a_i + a_j \right)^2}{\sqrt{2\pi\left( H_i^2 + H_j^2 \right)}} v_\mathrm{rel}\)</span></p>
 <p>Collisions between particles of two separate reservoirs <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> occur at a rate <span class="math notranslate nohighlight">\(\propto N_i N_j\)</span>, since every particle in one reservoir can collide with every particle in the other reservoir. Collisions of particles in the same reservoir occur at reduces rates: the first particle can collide with <span class="math notranslate nohighlight">\(N_i-1\)</span> other particles, the second particle with <span class="math notranslate nohighlight">\(N_i-2\)</span> particles, and so on, to avoid double counting of collisions. In that case the collision rates are
@@ -164,7 +193,7 @@
 </section>
 </section>
 <section id="v1.0.0">
-<h2><strong>v1.0.0</strong><a class="headerlink" href="#v1.0.0" title="Permalink to this heading"></a></h2>
+<h2><strong>v1.0.0</strong><a class="headerlink" href="#v1.0.0" title="Link to this heading"></a></h2>
 <p><strong>Release date: 3rd July 2022</strong></p>
 </section>
 </section>
