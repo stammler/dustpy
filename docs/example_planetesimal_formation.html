@@ -543,7 +543,7 @@ Writing file <span class="ansi-blue-intense-fg">example_planetesimal_formation/d
 Writing dump file <span class="ansi-blue-intense-fg">example_planetesimal_formation/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">example_planetesimal_formation/data0031.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">example_planetesimal_formation/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">22:17:52</span>
+Execution time: <span class="ansi-blue-intense-fg">1 day, 1:54:50</span>
 </pre></div></div>
 </div>
 <p>We can plot our results now.</p>
@@ -615,30 +615,19 @@ Execution time: <span class="ansi-blue-intense-fg">22:17:52</span>
 <span class="n">ax10</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">Mplan</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Planetesimals&quot;</span><span class="p">)</span>
 <span class="n">ax10</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
 <span class="n">ax10</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1.e-1</span><span class="p">,</span> <span class="mf">1.e5</span><span class="p">)</span>
-<span class="n">ax10</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time [yrs]&quot;</span><span class="p">)</span>
-<span class="n">ax10</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mass [$M_\oplus$]&quot;</span><span class="p">)</span>
+<span class="n">ax10</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Time [yrs]&quot;</span><span class="p">)</span>
+<span class="n">ax10</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Mass [$M_\oplus$]&quot;</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-&lt;&gt;:21: SyntaxWarning: invalid escape sequence &#39;\o&#39;
-&lt;&gt;:21: SyntaxWarning: invalid escape sequence &#39;\o&#39;
-/tmp/ipykernel_94249/2126622601.py:21: SyntaxWarning: invalid escape sequence &#39;\o&#39;
-  ax10.set_ylabel(&#34;Mass [$M_\oplus$]&#34;)
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_planetesimal_formation_48_1.png" src="_images/example_planetesimal_formation_48_1.png" />
+<img alt="_images/example_planetesimal_formation_48_0.png" src="_images/example_planetesimal_formation_48_0.png" />
 </div>
 </div>
 </section>
