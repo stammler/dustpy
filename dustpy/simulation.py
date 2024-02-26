@@ -829,7 +829,7 @@ class Simulation(Frame):
 
         if not isinstance(self.grid.Nm, Field) or not isinstance(self.grid.Nr, Field):
             raise RuntimeError(
-                "The simulation frame has to be initialized before calling setdustimplicit().")
+                "The simulation frame has to be initialized before calling setdustintegrator().")
 
         # Get index of dust instruction
         for i, inst in enumerate(self.integrator.instructions):
