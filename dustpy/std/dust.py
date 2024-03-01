@@ -249,9 +249,8 @@ def F_tot(sim, Sigma=None):
     -------
     Ftot : Field
         Total mass flux through interfaces"""
-    Fi = np.zeros((int(sim.grid.Nr+1), int(sim.grid.Nm)))
+    Fi = np.zeros_like(sim.dust.Fi.tot)
     if Sigma is None:
-        Sigma = sim.dust.Sigma
         Fdiff = sim.dust.Fi.diff
         Fadv = sim.dust.Fi.adv
     else:
