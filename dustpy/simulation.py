@@ -623,7 +623,7 @@ class Simulation(Frame):
         # We store the old values of the surface density in a hidden field
         # to calculate the fluxes through the boundaries in case of implicit integration.
         self.dust._SigmaOld = Field(
-            self, self.dust.Sigma, description="Previous value of surface density [g/cm²]")
+            self, self.dust.Sigma, description="Previous value of surface density [g/cm²]", copy=True)
         # The right-hand side of the matrix equation is stored in a hidden field
         self.dust._rhs = Field(self, np.zeros(
             shape2ravel), description="Right-hand side of matrix equation [g/cm²]")
@@ -751,9 +751,8 @@ class Simulation(Frame):
         # Hidden fields
         # We store the old values of the surface density in a hidden field
         # to calculate the fluxes through the boundaries.
-        self.gas._SigmaOld = Field(self, np.zeros(
-            shape1), description="Previous value of surface density [g/cm²]")
-        self.gas._SigmaOld[:] = self.gas.Sigma
+        self.gas._SigmaOld = Field(
+            self, self.gas.Sigma, description="Previous value of surface density [g/cm²]", copy=True)
         # The right-hand side of the matrix equation is stored in a hidden field
         self.gas._rhs = Field(self, np.zeros(
             shape1), description="Right-hand side of matrix equation [g/cm²]")
@@ -844,7 +843,7 @@ class Simulation(Frame):
             # We store the old values of the surface density in a hidden field
             # to calculate the fluxes through the boundaries in case of implicit integration.
             self.dust._SigmaOld = Field(
-                self, self.dust.Sigma, description="Previous value of surface density [g/cm²]")
+                self, self.dust.Sigma, description="Previous value of surface density [g/cm²]", copy=True)
             # The right-hand side of the matrix equation is stored in a hidden field
             self.dust._rhs = Field(self, np.zeros(
                 shape2ravel), description="Right-hand side of matrix equation [g/cm²]")
