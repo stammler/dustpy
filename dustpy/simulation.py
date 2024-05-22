@@ -387,7 +387,9 @@ class Simulation(Frame):
             self.t = IntVar(self, 0., description="Time [s]")
             self.t.cfl = 0.1
             self.t.updater = std.sim.dt
-            self.t.snapshots = np.logspace(3., 5., num=21, base=10.) * c.year
+            self.t.snapshots = np.hstack(
+                [self.t, np.geomspace(1.e3, 1.e5, num=21)*c.year]
+            )
 
         # STELLAR QUANTITIES
         self._initializestar()
