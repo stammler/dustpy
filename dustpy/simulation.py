@@ -645,6 +645,12 @@ class Simulation(Frame):
                 condition="val",
                 value=0.1*self.dust.SigmaFloor[-1]
             )
+        # Set boundary conditions, enforce floor values,
+        # and store old surface densities
+        self.dust.boundary.inner.setboundary()
+        self.dust.boundary.outer.setboundary()
+        std.dust.enforce_floor_value(self)
+        self.dust._SigmaOld[...] = self.dust.Sigma
 
     def _initializegas(self):
         '''Function to initialize gas quantities'''
@@ -754,7 +760,7 @@ class Simulation(Frame):
         # We store the old values of the surface density in a hidden field
         # to calculate the fluxes through the boundaries.
         self.gas._SigmaOld = Field(
-            self, self.gas.Sigma, description="Previous value of surface density [g/cm²]", copy=True)
+            self, np.zeros_like(self.gas.Sigma), description="Previous value of surface density [g/cm²]", copy=True)
         # The right-hand side of the matrix equation is stored in a hidden field
         self.gas._rhs = Field(self, np.zeros(
             shape1), description="Right-hand side of matrix equation [g/cm²]")
@@ -776,11 +782,15 @@ class Simulation(Frame):
             self.gas.boundary.inner = Boundary(
                 self.grid.r, self.grid.ri, self.gas.Sigma)
             self.gas.boundary.inner.setcondition("const_grad")
+        self.gas.boundary.inner.setboundary()
         if self.gas.boundary.outer is None:
             self.gas.boundary.outer = Boundary(
                 self.grid.r[::-1], self.grid.ri[::-1], self.gas.Sigma[::-1])
             self.gas.boundary.outer.setcondition(
-                "val", 0.1*self.gas.SigmaFloor[-1])
+                "val", self.gas.SigmaFloor[-1])
+        self.gas.boundary.outer.setboundary()
+        # Initializing the old value after setting the boundaries
+        self.gas._SigmaOld[...] = self.gas.Sigma
 
     def _initializegrid(self):
         '''Function to initialize grid quantities'''
