@@ -31,8 +31,6 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
-    'recommonmark',
-    'numpydoc',
     'nbsphinx',
     'sphinx_automodapi.automodapi',
 ]
