@@ -18,6 +18,38 @@
   },
   {
    "cell_type": "markdown",
+   "id": "dd85e2b7-f40a-42a4-aed0-5c20ae3e08c8",
+   "metadata": {},
+   "source": [
+    "### **v1.0.6**\n",
+    "**Release date: 30th June 2024**\n",
+    "\n",
+    "#### Simframe compatibility\n",
+    "\n",
+    "The necessary modifications have been made to make `DustPy` compatible to the latest `Simframe v1.0.5`.  \n",
+    "`Simframe` has to be updated to at least version `1.0.5`.\n",
+    "\n",
+    "Due to the changes in `Simframe`, the snapshots stored in `sim.t.snapshots` now need to additionally contain the time, at which the initial conditions are written. By default this is for `t=0`. Furthermore, 0-dimensional Fields exist now, such as `sim.grid.Nr` or `sim.grid.Nm`.\n",
+    "\n",
+    "#### Bugfix to initial fluxes and source terms\n",
+    "\n",
+    "A bug was writing false gas and dust fluxes and source terms into the output files. The results of previous simulations were not affected by this issue.\n",
+    "\n",
+    "#### Bugfix to implicit fluxes and source terms\n",
+    "\n",
+    "When using implicit integration, the gas and dust fluxes and source terms are computed after the integration step from the new surface density. A bug in referencing to the old values of the surface densities caused fluxes and source terms to be computed incorrectly. The simulations are not affected, since these quantities are only computed for convenience and post-simulation analysis, but values written to the output files may have been incorrect.\n",
+    "\n",
+    "#### Modification to initial dust distribution\n",
+    "\n",
+    "If `sim.ini.dust.allowDriftingParticle` is `False` (default) particles above a critical Stokes number are removed from the initial dust size distribution. There was an error in the computation of the Stokes number, which has been fixed in this version. However, the critical Stokes number has been adjusted, such that the initial conditions are almost identical to previous versions.\n",
+    "\n",
+    "#### Modification to total dust flux function\n",
+    "\n",
+    "The default function to compute the total dust flux has been modified to be downstream compatible to other software packages using `DustPy`. Simulations that are not customizing this function are not affected by this change."
+   ]
+  },
+  {
+   "cell_type": "markdown",
    "id": "880736d6-e6d8-489d-b262-96d88faffc5d",
    "metadata": {},
    "source": [
@@ -134,7 +166,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.10.13"
+   "version": "3.12.2"
   }
  },
  "nbformat": 4,

@@ -6,7 +6,7 @@
   <title>dustpy.simulation &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
 
   
   <!--[if lt IE 9]>
@@ -16,7 +16,7 @@
         <script src="../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -494,7 +494,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">t</span> <span class="o">=</span> <span class="n">IntVar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Time [s]&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">cfl</span> <span class="o">=</span> <span class="mf">0.1</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="n">std</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">dt</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mf">10.</span><span class="p">)</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
+                <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mf">1.e3</span><span class="p">,</span> <span class="mf">1.e5</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span><span class="o">*</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">]</span>
+            <span class="p">)</span>
 
         <span class="c1"># STELLAR QUANTITIES</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_initializestar</span><span class="p">()</span>
@@ -731,7 +733,7 @@
         <span class="c1"># We store the old values of the surface density in a hidden field</span>
         <span class="c1"># to calculate the fluxes through the boundaries in case of implicit integration.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_SigmaOld</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Previous value of surface density [g/cm²]&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Previous value of surface density [g/cm²]&quot;</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="c1"># The right-hand side of the matrix equation is stored in a hidden field</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
             <span class="n">shape2ravel</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Right-hand side of matrix equation [g/cm²]&quot;</span><span class="p">)</span>
@@ -751,6 +753,12 @@
                 <span class="n">condition</span><span class="o">=</span><span class="s2">&quot;val&quot;</span><span class="p">,</span>
                 <span class="n">value</span><span class="o">=</span><span class="mf">0.1</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">SigmaFloor</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
             <span class="p">)</span>
+        <span class="c1"># Set boundary conditions, enforce floor values,</span>
+        <span class="c1"># and store old surface densities</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">setboundary</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">setboundary</span><span class="p">()</span>
+        <span class="n">std</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">enforce_floor_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_SigmaOld</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span>
 
     <span class="k">def</span> <span class="nf">_initializegas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Function to initialize gas quantities&#39;&#39;&#39;</span>
@@ -859,9 +867,8 @@
         <span class="c1"># Hidden fields</span>
         <span class="c1"># We store the old values of the surface density in a hidden field</span>
         <span class="c1"># to calculate the fluxes through the boundaries.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_SigmaOld</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
-            <span class="n">shape1</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Previous value of surface density [g/cm²]&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_SigmaOld</span><span class="p">[:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_SigmaOld</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Previous value of surface density [g/cm²]&quot;</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="c1"># The right-hand side of the matrix equation is stored in a hidden field</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
             <span class="n">shape1</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Right-hand side of matrix equation [g/cm²]&quot;</span><span class="p">)</span>
@@ -883,11 +890,15 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span> <span class="o">=</span> <span class="n">Boundary</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">setcondition</span><span class="p">(</span><span class="s2">&quot;const_grad&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">setboundary</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span> <span class="o">=</span> <span class="n">Boundary</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">setcondition</span><span class="p">(</span>
-                <span class="s2">&quot;val&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">SigmaFloor</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="s2">&quot;val&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">SigmaFloor</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">setboundary</span><span class="p">()</span>
+        <span class="c1"># Initializing the old value after setting the boundaries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_SigmaOld</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
 
     <span class="k">def</span> <span class="nf">_initializegrid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Function to initialize grid quantities&#39;&#39;&#39;</span>
@@ -939,7 +950,7 @@
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">,</span> <span class="n">Field</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">,</span> <span class="n">Field</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-                <span class="s2">&quot;The simulation frame has to be initialized before calling setdustimplicit().&quot;</span><span class="p">)</span>
+                <span class="s2">&quot;The simulation frame has to be initialized before calling setdustintegrator().&quot;</span><span class="p">)</span>
 
         <span class="c1"># Get index of dust instruction</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">inst</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="o">.</span><span class="n">instructions</span><span class="p">):</span>
@@ -954,7 +965,7 @@
             <span class="c1"># We store the old values of the surface density in a hidden field</span>
             <span class="c1"># to calculate the fluxes through the boundaries in case of implicit integration.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_SigmaOld</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-                <span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Previous value of surface density [g/cm²]&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Previous value of surface density [g/cm²]&quot;</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="c1"># The right-hand side of the matrix equation is stored in a hidden field</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">_rhs</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
                 <span class="n">shape2ravel</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Right-hand side of matrix equation [g/cm²]&quot;</span><span class="p">)</span>

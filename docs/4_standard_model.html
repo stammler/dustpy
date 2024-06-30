@@ -7,7 +7,7 @@
   <title>4. The Standard Model &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
 
   
@@ -18,7 +18,7 @@
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -210,6 +210,7 @@
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">Simulation</span>
+<span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">constants</span> <span class="k">as</span> <span class="n">c</span>
 </pre></div>
 </div>
 </div>
@@ -1045,7 +1046,7 @@ given by</p>
  6.06738170e-02 5.23805770e-02 4.49696665e-02 3.83774784e-02
  3.25428186e-02 2.74067268e-02 2.29123459e-02 1.90048396e-02
  1.56313572e-02 1.27410459e-02 1.02851052e-02 8.21687989e-03
- 6.49198428e-03 5.06844837e-03 1.24348839e-27 1.08303312e-27
+ 6.49198428e-03 5.06844837e-03 3.90687641e-03 2.97060545e-03
  9.43282410e-28 8.21564634e-28 7.15552883e-28 6.23220508e-28
  5.42802371e-28 4.72761102e-28 4.11757706e-28 3.58625970e-28
  3.12350162e-28 2.72045619e-28 2.36941829e-28 2.06367706e-28
@@ -2047,12 +2048,12 @@ Group (Stellar quantities)
 0.0
 </pre></div></div>
 </div>
-<p>Snapshots are written between <span class="math notranslate nohighlight">\(10^3\)</span> years and <span class="math notranslate nohighlight">\(10^5\)</span> years with 10 snapshots per time decade.</p>
+<p>Snapshots are written initially and between <span class="math notranslate nohighlight">\(10^3\)</span> years and <span class="math notranslate nohighlight">\(10^5\)</span> years with 10 snapshots per time decade.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
 </pre></div>
 </div>
 </div>
@@ -2062,12 +2063,12 @@ Group (Stellar quantities)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([3.15576000e+10, 3.97286646e+10, 5.00154254e+10, 6.29656900e+10,
-       7.92691073e+10, 9.97938935e+10, 1.25633068e+11, 1.58162662e+11,
-       1.99114995e+11, 2.50670927e+11, 3.15576000e+11, 3.97286646e+11,
-       5.00154254e+11, 6.29656900e+11, 7.92691073e+11, 9.97938935e+11,
-       1.25633068e+12, 1.58162662e+12, 1.99114995e+12, 2.50670927e+12,
-       3.15576000e+12])
+array([     0.        ,   1000.        ,   1258.92541179,   1584.89319246,
+         1995.26231497,   2511.88643151,   3162.27766017,   3981.07170553,
+         5011.87233627,   6309.5734448 ,   7943.28234724,  10000.        ,
+        12589.25411794,  15848.93192461,  19952.62314969,  25118.8643151 ,
+        31622.77660168,  39810.71705535,  50118.72336273,  63095.73444802,
+        79432.82347243, 100000.        ])
 </pre></div></div>
 </div>
 <p>The timestep is calculated from the dust and the gas source terms and the current values of the surface densities of dust and gas, while using a safety factor of <code class="docutils literal notranslate"><span class="pre">0.1</span></code>, which can be accessed as an attribute of the integration variable.</p>
@@ -2231,14 +2232,14 @@ array([ 0.00000000e+00, -2.65695963e-11, -1.51742395e-11, -1.41277753e-11,
 array([[ 6.69378160e-07,  7.07100367e-07,  7.46948374e-07, ...,
          1.97891724e-30,  2.74969659e-30,  3.82069102e-30],
        [-6.23483735e-08, -6.59511976e-08, -4.67032489e-08, ...,
-        -4.64083767e-34, -7.20390542e-34, -1.05662920e-33],
+        -4.64318522e-34, -7.20749143e-34, -1.05714115e-33],
        [-4.88452713e-08, -5.16639372e-08, -3.65877154e-08, ...,
         -7.22801314e-34, -1.17572957e-33, -1.85635051e-33],
        ...,
        [-8.55226776e-59, -1.06505134e-58, -1.32632479e-58, ...,
         -1.18906666e-47, -1.48062233e-47, -1.84366661e-47],
-       [-2.59893623e-59, -3.23624508e-59, -4.02982080e-59, ...,
-        -3.61156047e-48, -4.49710457e-48, -5.59978150e-48],
+       [-3.15600305e-59, -3.92990331e-59, -4.89356226e-59, ...,
+        -4.38560444e-48, -5.46094186e-48, -6.79994888e-48],
        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00, ...,
          0.00000000e+00,  0.00000000e+00,  0.00000000e+00]])
 </pre></div></div>
@@ -2261,15 +2262,15 @@ array([[ 6.69378160e-07,  7.07100367e-07,  7.46948374e-07, ...,
 <div class="highlight"><pre>
 [[ 6.69378160e-07  7.07100367e-07  7.46948374e-07 ...  1.97891724e-30
    2.74969659e-30  3.82069102e-30]
- [-6.23483735e-08 -6.59511976e-08 -4.67032489e-08 ... -4.64083767e-34
-  -7.20390542e-34 -1.05662920e-33]
+ [-6.23483735e-08 -6.59511976e-08 -4.67032489e-08 ... -4.64318522e-34
+  -7.20749143e-34 -1.05714115e-33]
  [-4.88452713e-08 -5.16639372e-08 -3.65877154e-08 ... -7.22801314e-34
   -1.17572957e-33 -1.85635051e-33]
  ...
  [-8.55226776e-59 -1.06505134e-58 -1.32632479e-58 ... -1.18906666e-47
   -1.48062233e-47 -1.84366661e-47]
- [-2.59893623e-59 -3.23624508e-59 -4.02982080e-59 ... -3.61156047e-48
-  -4.49710457e-48 -5.59978150e-48]
+ [-3.15600305e-59 -3.92990331e-59 -4.89356226e-59 ... -4.38560444e-48
+  -5.46094186e-48 -6.79994888e-48]
  [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00
    0.00000000e+00  0.00000000e+00]]
 </pre></div></div>
@@ -2297,7 +2298,7 @@ Writer (HDF5 file format using h5py)
 ------------------------------------
     Data directory : data
     File names     : data/data0000.hdf5
-    Overwrite      : False
+    Overwrite      : <span class="ansi-yellow-intense-fg">False</span>
     Dumping        : True
     Options        : {&#39;com&#39;: &#39;lzf&#39;, &#39;comopts&#39;: None}
     Verbosity      : 1

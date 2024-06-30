@@ -7,7 +7,7 @@
   <title>2. Simple Customization &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
 
   
@@ -18,7 +18,7 @@
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -442,7 +442,7 @@ namespace(aIniMax=0.0001,
 </section>
 <section id="Changing-the-Snapshots">
 <h2>Changing the Snapshots<a class="headerlink" href="#Changing-the-Snapshots" title="Link to this heading"></a></h2>
-<p>The standard model runs for 100,000 years and starts writing data files at 1,000 years with 10 files per time decade. In this example we only want to run the simulation for 10,000 years with only 5 snapshots per decade. This can easily be set by modifying <code class="docutils literal notranslate"><span class="pre">Simulation.t.snapshots</span></code>.</p>
+<p>The standard model runs for 100,000 years and starts writing data files at 1,000 years with 10 files per time decade. In this example we only want to run the simulation for 10,000 years with only 5 snapshots per decade. This can easily be set by modifying <code class="docutils literal notranslate"><span class="pre">Simulation.t.snapshots</span></code>. The starting time has to be included to write outputs for the initial conditions.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
@@ -455,7 +455,9 @@ namespace(aIniMax=0.0001,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mf">1.e3</span><span class="p">,</span> <span class="mf">1.e4</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">]</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -487,7 +489,7 @@ namespace(aIniMax=0.0001,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.5
+DustPy v1.0.6
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -513,7 +515,7 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
             m[110] =  5.18e+03 g    with
             m[118] =  7.20e+04 g
 
-Creating data directory &#39;2_data&#39;.
+Creating data directory 2_data.
 Writing file <span class="ansi-blue-intense-fg">2_data/data0000.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">2_data/data0001.hdf5</span>
@@ -528,7 +530,7 @@ Writing file <span class="ansi-blue-intense-fg">2_data/data0005.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">2_data/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:04:52</span>
+Execution time: <span class="ansi-blue-intense-fg">0:04:29</span>
 </pre></div></div>
 </div>
 <p>The simulation has now run for 10,000 years</p>

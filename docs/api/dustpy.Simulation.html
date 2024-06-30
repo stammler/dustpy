@@ -7,7 +7,7 @@
   <title>Simulation &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
 
   
   <!--[if lt IE 9]>
@@ -17,7 +17,7 @@
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -126,68 +126,6 @@ For making the simulation grids use <code class="docutils literal notranslate"><
 For initialization use <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>,
 For running simulations use <code class="docutils literal notranslate"><span class="pre">Simulation.run()</span></code>.</p>
 <p>Please have a look at the documentation of <code class="docutils literal notranslate"><span class="pre">simframe</span></code> for further details.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span></code></dt><dd><p>Description of the instance.</p>
-</dd>
-<dt><a class="reference internal" href="#dustpy.Simulation.ini" title="dustpy.Simulation.ini"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ini</span></code></a></dt><dd><p>Parameter set for setting the initial conditions.</p>
-</dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">integrator</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">Integrator</span></code> that controls the simulation.</p>
-</dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">progressbar</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">Progressbar</span></code> for displaying current status.</p>
-</dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">toc</span></code></dt><dd><p>Complete table of contents starting from this object.</p>
-</dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">updateorder</span></code></dt><dd><p>Update order if updater was set with list of strings.</p>
-</dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">updater</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">Heartbeat</span></code> object with update instructions.</p>
-</dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">verbosity</span></code></dt><dd><p>Verbosity of the <code class="docutils literal notranslate"><span class="pre">Frame</span></code> objects.</p>
-</dd>
-<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">writer</span></code></dt><dd><p><code class="docutils literal notranslate"><span class="pre">Writer</span></code> object for writing output files.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">addfield</span></code>(name, value[, updater, ...])</p></td>
-<td><p>Function to add a new <code class="docutils literal notranslate"><span class="pre">Field</span></code> to the object.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">addgroup</span></code>(name[, updater, description])</p></td>
-<td><p>Function to add a new <code class="docutils literal notranslate"><span class="pre">Group</span></code> to the object.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">addintegrationvariable</span></code>(name, value[, ...])</p></td>
-<td><p>Function to add a new integration variable <code class="docutils literal notranslate"><span class="pre">IntVar</span></code> to the object.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dustpy.Simulation.checkmassconservation" title="dustpy.Simulation.checkmassconservation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">checkmassconservation</span></code></a>()</p></td>
-<td><p>Function checks for mass conservation and prints the maximum relative mass error.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dustpy.Simulation.initialize" title="dustpy.Simulation.initialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initialize</span></code></a>()</p></td>
-<td><p>Function initializes the simulation frame.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dustpy.Simulation.makegrids" title="dustpy.Simulation.makegrids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">makegrids</span></code></a>()</p></td>
-<td><p>Function creates radial and mass grid.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">memory_usage</span></code>([print_output, skip_hidden])</p></td>
-<td><p>Determine memory usage of a Group</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#dustpy.Simulation.run" title="dustpy.Simulation.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>()</p></td>
-<td><p>This functions runs the simulation.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#dustpy.Simulation.setdustintegrator" title="dustpy.Simulation.setdustintegrator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setdustintegrator</span></code></a>([scheme, method])</p></td>
-<td><p>Function sets the dust integrator.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code>(*args, **kwargs)</p></td>
-<td><p>Function to update the object.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">writeoutput</span></code>([i, forceoverwrite, filename])</p></td>
-<td><p>Writes output to file, if <code class="docutils literal notranslate"><span class="pre">Writer</span></code> is specified.</p></td>
-</tr>
-</tbody>
-</table>
 <p class="rubric">Attributes Summary</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
