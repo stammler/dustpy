@@ -23,7 +23,7 @@ gas_fortran_sources = [
 
 dust_source = custom_target('dust_fmodule.c',
   input: dust_fortran_sources,
-  output: ['dust_fmodule.c', 'dust_f-f2pywrappers.f', 'dust_f-f2pywrappers2.f90'],
+  output: ['dust_fmodule.c', 'dust_f-f2pywrappers.f'],
   command: [py3, '-m', 'numpy.f2py', '--lower', '-m', 'dust_f', '@INPUT@', '--build-dir', 'dustpy/std']
   )
 
@@ -37,7 +37,7 @@ py3.extension_module('dust_f',
 
 gas_source = custom_target('gas_fmodule.c',
   input: gas_fortran_sources,
-  output: ['gas_fmodule.c', 'gas_f-f2pywrappers.f', 'gas_f-f2pywrappers2.f90'],
+  output: ['gas_fmodule.c', 'gas_f-f2pywrappers.f'],
   command: [py3, '-m', 'numpy.f2py', '--lower', '-m', 'gas_f', '@INPUT@', '--build-dir', 'dustpy/std']
   )
 
