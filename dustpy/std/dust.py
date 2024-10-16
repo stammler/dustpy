@@ -758,8 +758,7 @@ def coagulation_parameters(sim):
     cstick, cstick_ind, A, eps, klf, krm, phi = dust_f.coagulation_parameters(sim.ini.dust.erosionMassRatio,
                                                                               sim.ini.dust.excavatedMass,
                                                                               sim.ini.dust.fragmentDistribution,
-                                                                              sim.grid.m,
-                                                                              int(sim.grid.Nr))
+                                                                              sim.grid.m)
     return cstick, cstick_ind, A, eps, klf, krm, phi
 
 

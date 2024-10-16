@@ -225,7 +225,7 @@ subroutine check_mass_conservation_sticking(cstick, cstick_ind, m, Nm, errmax, i
 end subroutine check_mass_conservation_sticking
 
 
-subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstick_ind, AFrag, epsFrag, klf, krm, phiFrag, Nr, Nm)
+subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstick_ind, AFrag, epsFrag, klf, krm, phiFrag, Nm)
   ! Subroutine calculates the coagulation parameters needed to calculate the
   ! coagulation sources. The sticking matrix is calculated with the method
   ! described in appendices A.1. and A.2. of Brauer et al. (2008).
@@ -238,7 +238,6 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   ! fExcav : Excavated erosive mass in units of smaller particle
   ! fragSlope : Power of fragment distribution
   ! m(Nm) : Mass grid
-  ! Nr : Number of radial grid cells
   ! Nm : Number of mass bins
   !
   ! Returns
@@ -266,7 +265,6 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   double precision, intent(out) :: cstick(4, Nm, Nm)
   integer,          intent(out) :: cstick_ind(4, Nm, Nm)
   double precision, intent(out) :: phiFrag(Nm, Nm)
-  integer,          intent(in)  :: Nr
   integer,          intent(in)  :: Nm
 
   double precision :: a
@@ -315,7 +313,7 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   
   ! ce from Brauer et al. (2008) equation (A.6):
   ! m(k-1) + m(i) < m(k) for any i with i <= k - ce
-  ce = aint( -1.d0/a * log10(1.d0 - 10.d0**(-a) ) ) + 1
+  ce = int( -1.d0/a * log10(1.d0 - 10.d0**(-a) ) ) + 1
 
   ! Since the grid is regular logarithmic particles with masses m(i) and m(j)
   ! fully fragment if j >= i-p.
@@ -890,7 +888,6 @@ subroutine jacobian_hydrodynamic_generator(area, D, r, ri, SigmaGas, v, A, B, C,
   integer :: ir
   integer :: i
   double precision :: Di(Nr+1)
-  double precision :: Fa(Nr+1)
   double precision :: h(Nr)
   double precision :: hi(Nr+1)
   double precision :: vi(Nr+1)
