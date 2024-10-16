@@ -449,17 +449,18 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
       ! mass bins
 
       ! Lower mass bin in which the remnant mass is distributed
-      krm(j, i) = minloc(m, 1, mrm < m) - 1
+      krm(j, i) = minloc(m, 1, mrm <= m) - 1
       ! Fraction of remnant particle that gets distributed in the lower
       ! mass bin krm. The fraction that gets distributed into the larger
-      ! mass bin krm+1 i given by 1-epsFrag
-      epsFrag(j, i) = ( m( krm(j, i) + 1 ) - mrm ) / mip1_m_mi( krm(j, i) )
+      ! mass bin krm+1 is given by 1-epsFrag
       ! ATTENTION: If the mass difference is large enough the remnant
       ! mass can be equal to the largest particle. In that case we deal
       ! with it separately.
       if(mrm .eq. m(i)) then
         krm(j, i) = i - 1
         epsFrag(j, i) = fExcav*m(j) / mi_m_mim1(i)
+      else
+        epsFrag(j, i) = ( m( krm(j, i) + 1 ) - mrm ) / mip1_m_mi( krm(j, i) )
       end if
 
     end do
