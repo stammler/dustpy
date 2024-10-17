@@ -905,9 +905,11 @@ subroutine jacobian_hydrodynamic_generator(area, D, r, ri, SigmaGas, v, A, B, C,
   A(:, :)    = 0.d0
   B(:, :)    = 0.d0
   C(:, :)    = 0.d0
+  Vinv(:)    = 0.d0
+  w(:)       = 1.d0
 
   ! Grid cell volumes and distances
-  do ir=1, Nr
+  do ir=1, Nr-1
       Vinv(ir) = twopi / area(ir)
       w(ir) = r(ir+1) - r(ir)
   end do
