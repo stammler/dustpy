@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>5. Dust Coagulation &mdash; dustpy  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -105,7 +107,7 @@
              
   <p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2F5_dust_coagulation.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="5.-Dust-Coagulation">
-<h1>5. Dust Coagulation<a class="headerlink" href="#5.-Dust-Coagulation" title="Permalink to this heading"></a></h1>
+<h1>5. Dust Coagulation<a class="headerlink" href="#5.-Dust-Coagulation" title="Link to this heading"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> calculates the collisional evolution of dust by solving the Smolukowski equation</p>
 <p><span class="math notranslate nohighlight">\(\begin{split} \frac{\partial}{\partial t} f\left( m \right) = &amp;\int\limits_0^\infty \int\limits_0^{m'} K\left( m, m', m'' \right) f\left( m' \right) f\left( m'' \right) R\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\\ &amp;-f\left( m \right) \int\limits_0^\infty f\left( m' \right) R\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
 <p>Where <span class="math notranslate nohighlight">\(f\left( m \right)\)</span> is the dust mass distribution, <span class="math notranslate nohighlight">\(R\)</span> the collision rates, and <span class="math notranslate nohighlight">\(K\)</span> defines the collision outcomes.</p>
@@ -154,7 +156,7 @@ Group (Coagulation quantities)
 </div>
 <p>These fields are strictly tied to the mass grid. Neither those fields nor the mass grid should be changed after calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
 <section id="Sticking">
-<h2>Sticking<a class="headerlink" href="#Sticking" title="Permalink to this heading"></a></h2>
+<h2>Sticking<a class="headerlink" href="#Sticking" title="Link to this heading"></a></h2>
 <p>Sticking means that two particles collide and form a new larger particles conserving the total mass. There are two complications when implementing this numerically:</p>
 <p>First, since we need to cover a high dynamic range from particles masses around <span class="math notranslate nohighlight">\(10^{-15}\,\mathrm{g}\)</span> to more than <span class="math notranslate nohighlight">\(10^{15}\,\mathrm{g}\)</span> while still having a reasonable number of mass bins, the mass grid has to be logarithmic. This has the disadvantage that the new particle mass resulting from a collision will not directly lie on the mass grid, but will fall in between two grid masses. The resulting mass has to be therefore distributed between the two adjacent grid cells. This means
 there will be density added to a mass bin that is larger than the actual mass of the resulting particle. This can have unwanted side effects if the mass grid is too coarse. Please see <a class="reference external" href="https://doi.org/10.1051/0004-6361/201423708">Drążkowska et al. (2014)</a> and the notebook with the analytical coagulation kernels for details on the minimum mass resulution that should be used.</p>
@@ -248,8 +250,8 @@ True
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Mass error: 1.2e-27 g
-Rel. error: 1.5e-16
+Mass error: 6.5e-27 g
+Rel. error: 8.2e-16
 </pre></div></div>
 </div>
 <p>The relative mass error is of the order of machine precision. This as good as it can get.</p>
@@ -322,12 +324,12 @@ Rel. error: 1.5e-16
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
--1.000000000000001
+-1.0000000000000004
 </pre></div></div>
 </div>
 </section>
 <section id="Fragmentation-&amp;-Erosion">
-<h2>Fragmentation &amp; Erosion<a class="headerlink" href="#Fragmentation-&-Erosion" title="Permalink to this heading"></a></h2>
+<h2>Fragmentation &amp; Erosion<a class="headerlink" href="#Fragmentation-&-Erosion" title="Link to this heading"></a></h2>
 <p>If the collision velocity exceeds the fragmentation velocity particles fragment. Here we distinguish two cases: Either the particles are roughly equal sized, then both particles fully fragment. Or one particle is significantly larger than the other, then only the smaller particle fragments, but it is chipping off some mass of the larger particle. The latter case is called erosion.</p>
 <p>The threshold of these two cases can be set with <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.erosionMassRatio</span></code>. By default this is <span class="math notranslate nohighlight">\(10\)</span>, meaning both particles fully fragment if their mass ratio is smaller than <span class="math notranslate nohighlight">\(10\)</span>. Otherwise we have erosion. This value has to be set, before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
 <p>For fragmentation we follow the method described in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020)</a>, who developed an <span class="math notranslate nohighlight">\(\mathcal{O} \left( N_m^2 \right)\)</span> algorithm for fragmentation. We modified it, however, to make it strictly mass conserving.</p>
@@ -527,7 +529,7 @@ Rel. error: 1.2e-16
 <p>When starting a simulation with <code class="docutils literal notranslate"><span class="pre">Simulation.run()</span></code>, <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> will perform a quick check for mass conservation by calculating the relative error for every possible particle collision and every possible collision outcome. If you implemented a custom collision model, you also have to modify the mass conservation check for accurate results.</p>
 </section>
 <section id="Probabilities">
-<h2>Probabilities<a class="headerlink" href="#Probabilities" title="Permalink to this heading"></a></h2>
+<h2>Probabilities<a class="headerlink" href="#Probabilities" title="Link to this heading"></a></h2>
 <p>To decide wether a collision event results in sticking or fragmentation, the fragmentation probability is calculated with a smooth transition between sticking and fragmentation around the fragmentation velocity. This probability is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.p.frag</span></code>.</p>
 <p>The sticking probability is simply given by</p>
 <p><span class="math notranslate nohighlight">\(p_\mathrm{stick} = 1 - p_\mathrm{frag}\)</span>.</p>
@@ -573,11 +575,11 @@ True
 </div>
 </section>
 <section id="Bouncing">
-<h2>Bouncing<a class="headerlink" href="#Bouncing" title="Permalink to this heading"></a></h2>
+<h2>Bouncing<a class="headerlink" href="#Bouncing" title="Link to this heading"></a></h2>
 <p>Bouncing is by default not implemented. If you want to include bouncing collisions into your simulations you have to set functions for calculating <span class="math notranslate nohighlight">\(p_\mathrm{stick}\)</span> and <span class="math notranslate nohighlight">\(p_\mathrm{frag}\)</span>, such that the sum of both is smaller than <span class="math notranslate nohighlight">\(1\)</span>. If neither sticking, nor fragmentation occurs, the mass distribution does not change, i.e., we have bouncing.</p>
 </section>
 <section id="Collision-Rates">
-<h2>Collision Rates<a class="headerlink" href="#Collision-Rates" title="Permalink to this heading"></a></h2>
+<h2>Collision Rates<a class="headerlink" href="#Collision-Rates" title="Link to this heading"></a></h2>
 <p>The collision rates <span class="math notranslate nohighlight">\(R\)</span> as defined above are given by</p>
 <p><span class="math notranslate nohighlight">\(\begin{split} R_\mathrm{stick} &amp;= k \cdot p_\mathrm{stick}\\ R_\mathrm{frag} &amp;= k \cdot p_\mathrm{frag} \end{split}\)</span></p>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is given by</p>
@@ -586,7 +588,7 @@ True
 <p><span class="math notranslate nohighlight">\(k\)</span> is stored for every possible particle collision at any location in the disk in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.kernel</span></code>.</p>
 </section>
 <section id="Coagulation-Sources">
-<h2>Coagulation Sources<a class="headerlink" href="#Coagulation-Sources" title="Permalink to this heading"></a></h2>
+<h2>Coagulation Sources<a class="headerlink" href="#Coagulation-Sources" title="Link to this heading"></a></h2>
 <p>The parameters stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation</span></code> only have to be calculated once in the beginning of the simulation. But to calculate the coagulation sources the current densities and relative velocities are needed. Since these change over time, they have to be calculated on the fly.</p>
 <p>This is done by summing over all possible collisions, evaluating the collision outcome and by multiplying with their respective collision rates. The result is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.coag</span></code>.</p>
 <div class="nbinput docutils container">

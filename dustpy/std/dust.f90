@@ -225,7 +225,7 @@ subroutine check_mass_conservation_sticking(cstick, cstick_ind, m, Nm, errmax, i
 end subroutine check_mass_conservation_sticking
 
 
-subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstick_ind, AFrag, epsFrag, klf, krm, phiFrag, Nr, Nm)
+subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstick_ind, AFrag, epsFrag, klf, krm, phiFrag, Nm)
   ! Subroutine calculates the coagulation parameters needed to calculate the
   ! coagulation sources. The sticking matrix is calculated with the method
   ! described in appendices A.1. and A.2. of Brauer et al. (2008).
@@ -238,7 +238,6 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   ! fExcav : Excavated erosive mass in units of smaller particle
   ! fragSlope : Power of fragment distribution
   ! m(Nm) : Mass grid
-  ! Nr : Number of radial grid cells
   ! Nm : Number of mass bins
   !
   ! Returns
@@ -266,7 +265,6 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   double precision, intent(out) :: cstick(4, Nm, Nm)
   integer,          intent(out) :: cstick_ind(4, Nm, Nm)
   double precision, intent(out) :: phiFrag(Nm, Nm)
-  integer,          intent(in)  :: Nr
   integer,          intent(in)  :: Nm
 
   double precision :: a
@@ -315,7 +313,7 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   
   ! ce from Brauer et al. (2008) equation (A.6):
   ! m(k-1) + m(i) < m(k) for any i with i <= k - ce
-  ce = aint( -1.d0/a * log10(1.d0 - 10.d0**(-a) ) ) + 1
+  ce = int( -1.d0/a * log10(1.d0 - 10.d0**(-a) ) ) + 1
 
   ! Since the grid is regular logarithmic particles with masses m(i) and m(j)
   ! fully fragment if j >= i-p.
@@ -451,17 +449,18 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
       ! mass bins
 
       ! Lower mass bin in which the remnant mass is distributed
-      krm(j, i) = minloc(m, 1, mrm < m) - 1
+      krm(j, i) = minloc(m, 1, mrm <= m) - 1
       ! Fraction of remnant particle that gets distributed in the lower
       ! mass bin krm. The fraction that gets distributed into the larger
-      ! mass bin krm+1 i given by 1-epsFrag
-      epsFrag(j, i) = ( m( krm(j, i) + 1 ) - mrm ) / mip1_m_mi( krm(j, i) )
+      ! mass bin krm+1 is given by 1-epsFrag
       ! ATTENTION: If the mass difference is large enough the remnant
       ! mass can be equal to the largest particle. In that case we deal
       ! with it separately.
       if(mrm .eq. m(i)) then
         krm(j, i) = i - 1
         epsFrag(j, i) = fExcav*m(j) / mi_m_mim1(i)
+      else
+        epsFrag(j, i) = ( m( krm(j, i) + 1 ) - mrm ) / mip1_m_mi( krm(j, i) )
       end if
 
     end do
@@ -890,7 +889,6 @@ subroutine jacobian_hydrodynamic_generator(area, D, r, ri, SigmaGas, v, A, B, C,
   integer :: ir
   integer :: i
   double precision :: Di(Nr+1)
-  double precision :: Fa(Nr+1)
   double precision :: h(Nr)
   double precision :: hi(Nr+1)
   double precision :: vi(Nr+1)
@@ -907,9 +905,11 @@ subroutine jacobian_hydrodynamic_generator(area, D, r, ri, SigmaGas, v, A, B, C,
   A(:, :)    = 0.d0
   B(:, :)    = 0.d0
   C(:, :)    = 0.d0
+  Vinv(:)    = 0.d0
+  w(:)       = 1.d0
 
   ! Grid cell volumes and distances
-  do ir=1, Nr
+  do ir=1, Nr-1
       Vinv(ir) = twopi / area(ir)
       w(ir) = r(ir+1) - r(ir)
   end do
@@ -1061,8 +1061,12 @@ subroutine pfrag(vrel, vfrag, pf, Nr, Nm)
   do i=1, Nm
     do j=1, i
       do ir=2, Nr-1
-        dum = (vfrag(ir)/vrel(ir, j, i))**2
-        pf(ir, j, i) = (1.5d0*dum + 1.d0) * exp(-1.5d0*dum)
+        if(vrel(ir, j, i) .EQ. 0.d0) then
+          pf(ir, j, i) = 0.d0
+        else
+          dum = (vfrag(ir)/vrel(ir, j, i))**2
+          pf(ir, j, i) = (1.5d0*dum + 1.d0) * exp(-1.5d0*dum)
+        end if
         pf(ir, i, j) = pf(ir, j, i)
       end do
     end do

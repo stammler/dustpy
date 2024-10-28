@@ -249,9 +249,8 @@ def F_tot(sim, Sigma=None):
     -------
     Ftot : Field
         Total mass flux through interfaces"""
-    Fi = np.zeros((int(sim.grid.Nr+1), int(sim.grid.Nm)))
+    Fi = np.zeros_like(sim.dust.Fi.tot)
     if Sigma is None:
-        Sigma = sim.dust.Sigma
         Fdiff = sim.dust.Fi.diff
         Fadv = sim.dust.Fi.adv
     else:
@@ -520,7 +519,7 @@ def MRN_distribution(sim):
     though the simulation, that is already drifting initially."""
     exp = sim.ini.dust.distExp
     # Set maximum particle size
-    if(sim.ini.dust.allowDriftingParticles):
+    if sim.ini.dust.allowDriftingParticles:
         aIni = sim.ini.dust.aIniMax
     else:
         # Calculating pressure gradient
@@ -530,9 +529,8 @@ def MRN_distribution(sim):
         gamma = np.abs(gamma)
         # Exponent of pressure gradient
         gamma *= sim.grid.r / P
-        gamma = 1. / gamma
         # Maximum drift limited particle size with safety margin
-        ad = 1.e-4 * 2./np.pi * sim.ini.dust.d2gRatio * sim.gas.Sigma \
+        ad = 5.e-3 * 2./np.pi * sim.ini.dust.d2gRatio * sim.gas.Sigma \
             / (sim.dust.fill[:, 0] * sim.dust.rhos[:, 0]) * (sim.grid.OmegaK * sim.grid.r)**2. \
             / sim.gas.cs**2. / gamma
         aIni = np.minimum(sim.ini.dust.aIniMax, ad)[:, None]
@@ -760,8 +758,7 @@ def coagulation_parameters(sim):
     cstick, cstick_ind, A, eps, klf, krm, phi = dust_f.coagulation_parameters(sim.ini.dust.erosionMassRatio,
                                                                               sim.ini.dust.excavatedMass,
                                                                               sim.ini.dust.fragmentDistribution,
-                                                                              sim.grid.m,
-                                                                              int(sim.grid.Nr))
+                                                                              sim.grid.m)
     return cstick, cstick_ind, A, eps, klf, krm, phi
 
 
@@ -938,7 +935,7 @@ def _f_impl_1_direct(x0, Y0, dx, jac=None, rhs=None, *args, **kwargs):
     N = jac.shape[0]
     eye = sp.identity(N, format="csc")
 
-    A = eye - dx[0] * jac
+    A = eye - dx * jac
 
     A_LU = sp.linalg.splu(A,
                           permc_spec="MMD_AT_PLUS_A",

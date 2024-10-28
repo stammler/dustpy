@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>7. Gas Evolution &mdash; dustpy  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -108,7 +110,7 @@
              
   <p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2F7_gas_evolution.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="7.-Gas-Evolution">
-<h1>7. Gas Evolution<a class="headerlink" href="#7.-Gas-Evolution" title="Permalink to this heading"></a></h1>
+<h1>7. Gas Evolution<a class="headerlink" href="#7.-Gas-Evolution" title="Link to this heading"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> solves gas evolution with an implicit scheme. It is solving by default the following equation for a viscously evolving disk</p>
 <p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{g} + \frac{1}{r}\frac{\partial}{\partial r} \left( r\Sigma_\mathrm{g}v_\mathrm{rad} \right) = S_\mathrm{ext}\)</span>.</p>
 <p>Where the radial gas velocity is given by</p>
@@ -129,7 +131,7 @@
 </div>
 </div>
 <section id="Hydrodynamics">
-<h2>Hydrodynamics<a class="headerlink" href="#Hydrodynamics" title="Permalink to this heading"></a></h2>
+<h2>Hydrodynamics<a class="headerlink" href="#Hydrodynamics" title="Link to this heading"></a></h2>
 <p>The implicit matrix equation that is solved for gas evolution is given by</p>
 <p><span class="math notranslate nohighlight">\(\frac{\vec{\Sigma}_\mathrm{g}^{n+1}-\vec{\Sigma}_\mathrm{g}^{n}}{\Delta t} = \mathbb{J} \cdot \vec{\Sigma}_\mathrm{g}^{n+1} + \vec{S}_\mathrm{ext},\)</span></p>
 <p>which can be written as</p>
@@ -157,7 +159,7 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Structure of Jacobian $\mathbb</span><span class="si">{J}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Structure of Jacobian $\mathbb</span><span class="si">{J}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -198,7 +200,7 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([ 7.82620367e-05, -1.22296714e-11, -5.34188528e-12, -3.18365261e-12,
+array([ 0.00000000e+00, -1.22296714e-11, -5.34188528e-12, -3.18365261e-12,
        -1.83335703e-12, -9.98169223e-13, -4.94710783e-13, -2.07670081e-13,
        -6.21243606e-14, -4.70797667e-15,  6.77187596e-15,  3.51664716e-15,
         6.82454236e-16,  4.76327403e-17,  0.00000000e+00])
@@ -207,7 +209,7 @@ array([ 7.82620367e-05, -1.22296714e-11, -5.34188528e-12, -3.18365261e-12,
 <p>However, the first and the last element will not have the correct value, since they contain the instructions for the boundaries without the time step.</p>
 <p>The interface fluxes and the gas velocity will be calculated after the integration step, when the new values of the gas surface density will be accessible. Changes to the fluxes or the gas velocities will therefore not influence the gas evolution. In other words, you cannot turn off the hydrodynamic gas evolution by setting the viscous velocity to zero.</p>
 <section id="Turning-off-Hydrodynamics">
-<h3>Turning off Hydrodynamics<a class="headerlink" href="#Turning-off-Hydrodynamics" title="Permalink to this heading"></a></h3>
+<h3>Turning off Hydrodynamics<a class="headerlink" href="#Turning-off-Hydrodynamics" title="Link to this heading"></a></h3>
 <p>The diagonals of the Jacobian contain information about the grid <span class="math notranslate nohighlight">\(r\)</span>, the viscosity <span class="math notranslate nohighlight">\(\nu\)</span>, and the backreaction quantities, as seen in the accretion equation above. To turn off only the gas hydrodynamics, but not the external sources, one has to set the Jacobian to zero (except for the boundaries). This can be achieved by setting the viscosity to zero and unsetting its updater.</p>
 <p><strong>Note:</strong> This is only true, if there is no backreaction, i.e., <span class="math notranslate nohighlight">\(A=1\)</span> and <span class="math notranslate nohighlight">\(B=0\)</span>. Otherwise, the interaction with the dust would still influence the gas.</p>
 <div class="nbinput nblast docutils container">
@@ -233,21 +235,18 @@ array([ 7.82620367e-05, -1.22296714e-11, -5.34188528e-12, -3.18365261e-12,
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([7.82620367e-05, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
-       0.00000000e+00, 0.00000000e+00, 0.00000000e+00])
+array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
 </pre></div></div>
 </div>
 <p>Another option would be to set the <span class="math notranslate nohighlight">\(\alpha\)</span>-viscosity parameter <code class="docutils literal notranslate"><span class="pre">Simulation.gas.alpha</span></code> to zero and unset its updater. This would, however, influence other fields that depend on <span class="math notranslate nohighlight">\(\alpha\)</span> as well.</p>
 </section>
 </section>
 <section id="External-Sources">
-<h2>External Sources<a class="headerlink" href="#External-Sources" title="Permalink to this heading"></a></h2>
+<h2>External Sources<a class="headerlink" href="#External-Sources" title="Link to this heading"></a></h2>
 <p>The external gas sources <code class="docutils literal notranslate"><span class="pre">Simulation.gas.S.ext</span></code> can be used as additional source or loss term, for gas infall or photoevaporation. By default they are set to zero.</p>
 <p>The first and the last element of the array will not have an effect on gas evolution, since they will be overwritten by the integration scheme to set the boundaries as described above.</p>
 <section id="Turning-off-External-Sources">
-<h3>Turning off External Sources<a class="headerlink" href="#Turning-off-External-Sources" title="Permalink to this heading"></a></h3>
+<h3>Turning off External Sources<a class="headerlink" href="#Turning-off-External-Sources" title="Link to this heading"></a></h3>
 <p>To turn off external source terms set the field to zero and unset its updater.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
@@ -261,7 +260,7 @@ array([7.82620367e-05, 0.00000000e+00, 0.00000000e+00, 0.00000000e+00,
 </section>
 </section>
 <section id="Turning-off-Gas-Evolution">
-<h2>Turning off Gas Evolution<a class="headerlink" href="#Turning-off-Gas-Evolution" title="Permalink to this heading"></a></h2>
+<h2>Turning off Gas Evolution<a class="headerlink" href="#Turning-off-Gas-Evolution" title="Link to this heading"></a></h2>
 <p>To turn off the entire gas evolution you can either turn off hte individual parts as described above or you can remove the integration instruction of the gas from the instruction list.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:

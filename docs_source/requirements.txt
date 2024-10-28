@@ -1,12 +1,6 @@
-ipykernel
-jupyter
-matplotlib
-nbconvert
+.
 nbsphinx
-numpy
-numpydoc
-recommonmark
-simframe
+pandoc
 sphinx
+sphinx-rtd-theme
 sphinx-automodapi
-sphinx_rtd_theme

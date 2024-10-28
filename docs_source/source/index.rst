@@ -3,7 +3,7 @@
 
 | ``DustPy`` is a Python package to simulate the evolution of dust in protoplanetary disks.
 
-| This documentation is for ``DustPy v1.0.3``.
+| This documentation is for ``DustPy v1.0.6``.
 
 | ``DustPy`` simulates the radial evolution of gas and dust in protoplanetary disks, including viscous evolution of the gas, advection and diffusion of the dust, as well as dust growth by solving the Smoluchowski equation.
 
@@ -51,4 +51,3 @@ Indices and tables
 
 * :ref:`genindex`
 * :ref:`modindex`
-* :ref:`search`

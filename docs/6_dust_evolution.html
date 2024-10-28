@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>6. Dust Evolution &mdash; dustpy  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -115,7 +117,7 @@
              
   <p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2F6_dust_evolution.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="6.-Dust-Evolution">
-<h1>6. Dust Evolution<a class="headerlink" href="#6.-Dust-Evolution" title="Permalink to this heading"></a></h1>
+<h1>6. Dust Evolution<a class="headerlink" href="#6.-Dust-Evolution" title="Link to this heading"></a></h1>
 <div class="line-block">
 <div class="line">Dust evolution in <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> consists of three parts: coagulation, hydrodynamics, and external sources.</div>
 <div class="line">Their source terms are stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.S</span></code>.</div>
@@ -199,7 +201,7 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nm</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Structure of Jacobian $\mathbb</span><span class="si">{J}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Structure of Jacobian $\mathbb</span><span class="si">{J}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -228,13 +230,13 @@ results in a particle with mass smaller than the largest mass bin. Fragmentation
 <p>The first and the last rows of the Jacobian, which contain the boundary conditions do not contain the time step <span class="math notranslate nohighlight">\(\Delta t\)</span>, since this is not necessarily known when calculating the Jacobian. The integration scheme will add the terms containing the time step.</p>
 <p>The custom integration scheme can be found in <code class="docutils literal notranslate"><span class="pre">dustpy.std.dust.impl_1_direct</span></code>.</p>
 <section id="Coagulation">
-<h2>Coagulation<a class="headerlink" href="#Coagulation" title="Permalink to this heading"></a></h2>
+<h2>Coagulation<a class="headerlink" href="#Coagulation" title="Link to this heading"></a></h2>
 <div class="line-block">
 <div class="line">Please see the previous chapter for details on coagulation.</div>
 <div class="line">The coagulation source terms are stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.coag</span></code>.</div>
 </div>
 <section id="Turning-off-Fragmentation">
-<h3>Turning off Fragmentation<a class="headerlink" href="#Turning-off-Fragmentation" title="Permalink to this heading"></a></h3>
+<h3>Turning off Fragmentation<a class="headerlink" href="#Turning-off-Fragmentation" title="Link to this heading"></a></h3>
 <p>If you want to turn off fragmentation (but not sticking), set the sticking probabilities to <span class="math notranslate nohighlight">\(1\)</span>, the fragmentation probabilities to <span class="math notranslate nohighlight">\(0\)</span>, and unset the updater of the probabilities.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -249,7 +251,7 @@ results in a particle with mass smaller than the largest mass bin. Fragmentation
 <p><strong>Note:</strong> You could also set the fragmentation velocities to a very large value that will never be reached. However, this will still calculate the probabilies at every timestep, even though they are constant in this case and consume valuable computational resources.</p>
 </section>
 <section id="Turning-off-Coagulation">
-<h3>Turning off Coagulation<a class="headerlink" href="#Turning-off-Coagulation" title="Permalink to this heading"></a></h3>
+<h3>Turning off Coagulation<a class="headerlink" href="#Turning-off-Coagulation" title="Link to this heading"></a></h3>
 <p>If you want to turn off coagulation in total, you have to set both probabilities to zero.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
@@ -276,7 +278,7 @@ results in a particle with mass smaller than the largest mass bin. Fragmentation
 </section>
 </section>
 <section id="Hydrodynamics">
-<h2>Hydrodynamics<a class="headerlink" href="#Hydrodynamics" title="Permalink to this heading"></a></h2>
+<h2>Hydrodynamics<a class="headerlink" href="#Hydrodynamics" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> solves the following equation for dust transport</p>
 <p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{d} + \frac{1}{r} \frac{\partial}{\partial r} \left( r\Sigma_\mathrm{d}v_\mathrm{rad} \right) - \frac{1}{r} \frac{\partial}{\partial r} \left[ r D \Sigma_\mathrm{g} \frac{\partial}{\partial r} \left( \frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{g}} \right) \right] = 0\)</span></p>
 <p>The dust hydrodynamics consists of an advective and an diffusive term. The algorithm calculates the advective and diffusive fluxes separately at the grid cell interfaces. Furthermore, the sum of both is calculated.</p>
@@ -303,13 +305,13 @@ Group (Fluxes)
 </pre></div></div>
 </div>
 <section id="Advection">
-<h3>Advection<a class="headerlink" href="#Advection" title="Permalink to this heading"></a></h3>
+<h3>Advection<a class="headerlink" href="#Advection" title="Link to this heading"></a></h3>
 <p>The advective fluxes at the grid interfaces are calculated as</p>
 <p><span class="math notranslate nohighlight">\(F_\mathrm{adv} = v_\mathrm{rad} \cdot \Sigma_\mathrm{d}\)</span></p>
 <p>and interpolated onto the grid cell interfaces. The default boundary condition assumes constant velocity.</p>
 </section>
 <section id="Turning-off-Advection">
-<h3>Turning off Advection<a class="headerlink" href="#Turning-off-Advection" title="Permalink to this heading"></a></h3>
+<h3>Turning off Advection<a class="headerlink" href="#Turning-off-Advection" title="Link to this heading"></a></h3>
 <p>To turn off advection, you can set the radial dust velocities to <span class="math notranslate nohighlight">\(0\)</span> and unset the updater.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
@@ -326,13 +328,13 @@ Group (Fluxes)
 </div>
 </section>
 <section id="Diffusion">
-<h3>Diffusion<a class="headerlink" href="#Diffusion" title="Permalink to this heading"></a></h3>
+<h3>Diffusion<a class="headerlink" href="#Diffusion" title="Link to this heading"></a></h3>
 <p>The diffusive fluxes are given by</p>
 <p><span class="math notranslate nohighlight">\(F_\mathrm{diff} = -D\Sigma_\mathrm{g}\nabla\frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{gas}}\)</span></p>
 <p>A flux limiter limits the maximum diffusive flux to the diffusive RMS velocity of that dust species. The diffusive flux through the boundaries is set to zero.</p>
 </section>
 <section id="Turning-off-Diffusion">
-<h3>Turning off Diffusion<a class="headerlink" href="#Turning-off-Diffusion" title="Permalink to this heading"></a></h3>
+<h3>Turning off Diffusion<a class="headerlink" href="#Turning-off-Diffusion" title="Link to this heading"></a></h3>
 <p>To turn off dust diffusion you can set the diffusivities to <span class="math notranslate nohighlight">\(0\)</span> and unset the updater.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
@@ -345,7 +347,7 @@ Group (Fluxes)
 </div>
 </section>
 <section id="Turning-off-Hydrodynamics">
-<h3>Turning off Hydrodynamics<a class="headerlink" href="#Turning-off-Hydrodynamics" title="Permalink to this heading"></a></h3>
+<h3>Turning off Hydrodynamics<a class="headerlink" href="#Turning-off-Hydrodynamics" title="Link to this heading"></a></h3>
 <p>If you want to turn off dust hydrodynamics in total, you have to set the radial dust velocity and the dust diffusivities to <span class="math notranslate nohighlight">\(0\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
@@ -362,12 +364,12 @@ Group (Fluxes)
 </section>
 </section>
 <section id="External-Sources">
-<h2>External Sources<a class="headerlink" href="#External-Sources" title="Permalink to this heading"></a></h2>
+<h2>External Sources<a class="headerlink" href="#External-Sources" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has the possibility to add external source/loss terms that you can set. With those you can for example add dust in case of infall or remove dust in case of planetesimal formation or pebble accretion.</p>
 <p>By default the external sources are <span class="math notranslate nohighlight">\(0\)</span> without a set updater.</p>
 </section>
 <section id="Turning-off-Dust-Evolution">
-<h2>Turning off Dust Evolution<a class="headerlink" href="#Turning-off-Dust-Evolution" title="Permalink to this heading"></a></h2>
+<h2>Turning off Dust Evolution<a class="headerlink" href="#Turning-off-Dust-Evolution" title="Link to this heading"></a></h2>
 <p>If you want to deactivate dust evolution as a whole you can remove the integration instruction from the instruction set.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
@@ -418,7 +420,7 @@ Group (Fluxes)
 <p>Always keep in mind what you want to achieve by turning off dust evolution and unset the updaters of certain fields, if required.</p>
 </section>
 <section id="Changing-the-Dust-Integrator">
-<h2>Changing the Dust Integrator<a class="headerlink" href="#Changing-the-Dust-Integrator" title="Permalink to this heading"></a></h2>
+<h2>Changing the Dust Integrator<a class="headerlink" href="#Changing-the-Dust-Integrator" title="Link to this heading"></a></h2>
 <p>By default the dust surface densities are integrated implicitly. This involves a matrix inversion. In some cases if the matrix is weakly conditioned this can cause a violation of mass conservation. In that case you might want to use an explicit integrator instead. You can do this by calling</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:

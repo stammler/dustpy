@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dustpy.std.gas &mdash; dustpy  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -98,8 +100,10 @@
 <span class="kn">from</span> <span class="nn">dustpy.std</span> <span class="kn">import</span> <span class="n">gas_f</span>
 
 
-<div class="viewcode-block" id="boundary"><a class="viewcode-back" href="../../../api/dustpy.std.gas.boundary.html#dustpy.std.gas.boundary">[docs]</a><span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function set the boundary conditions of the gas.</span>
+<div class="viewcode-block" id="boundary">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.boundary.html#dustpy.std.gas.boundary">[docs]</a>
+<span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function set the boundary conditions of the gas.</span>
 <span class="sd">    Not implemented, yet.</span>
 
 <span class="sd">    Parameters</span>
@@ -110,8 +114,11 @@
     <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">setboundary</span><span class="p">()</span></div>
 
 
-<div class="viewcode-block" id="enforce_floor_value"><a class="viewcode-back" href="../../../api/dustpy.std.gas.enforce_floor_value.html#dustpy.std.gas.enforce_floor_value">[docs]</a><span class="k">def</span> <span class="nf">enforce_floor_value</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function enforces floor value to gas surface density.</span>
+
+<div class="viewcode-block" id="enforce_floor_value">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.enforce_floor_value.html#dustpy.std.gas.enforce_floor_value">[docs]</a>
+<span class="k">def</span> <span class="nf">enforce_floor_value</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function enforces floor value to gas surface density.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -123,8 +130,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="prepare"><a class="viewcode-back" href="../../../api/dustpy.std.gas.prepare.html#dustpy.std.gas.prepare">[docs]</a><span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function prepares gas integration step.</span>
+
+<div class="viewcode-block" id="prepare">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.prepare.html#dustpy.std.gas.prepare">[docs]</a>
+<span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function prepares gas integration step.</span>
 <span class="sd">    It stores the current value of the surface density in a hidden field.</span>
 
 <span class="sd">    Parameters</span>
@@ -135,8 +145,11 @@
     <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_SigmaOld</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[:]</span></div>
 
 
-<div class="viewcode-block" id="finalize"><a class="viewcode-back" href="../../../api/dustpy.std.gas.finalize.html#dustpy.std.gas.finalize">[docs]</a><span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function finalizes gas integration step.</span>
+
+<div class="viewcode-block" id="finalize">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.finalize.html#dustpy.std.gas.finalize">[docs]</a>
+<span class="k">def</span> <span class="nf">finalize</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function finalizes gas integration step.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -150,8 +163,11 @@
     <span class="n">set_implicit_boundaries</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="set_implicit_boundaries"><a class="viewcode-back" href="../../../api/dustpy.std.gas.set_implicit_boundaries.html#dustpy.std.gas.set_implicit_boundaries">[docs]</a><span class="k">def</span> <span class="nf">set_implicit_boundaries</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the fluxes at the boundaries after the implicit integration step.</span>
+
+<div class="viewcode-block" id="set_implicit_boundaries">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.set_implicit_boundaries.html#dustpy.std.gas.set_implicit_boundaries">[docs]</a>
+<span class="k">def</span> <span class="nf">set_implicit_boundaries</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the fluxes at the boundaries after the implicit integration step.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -176,8 +192,11 @@
     <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Fi</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="dt"><a class="viewcode-back" href="../../../api/dustpy.std.gas.dt.html#dustpy.std.gas.dt">[docs]</a><span class="k">def</span> <span class="nf">dt</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the time step from the gas sources.</span>
+
+<div class="viewcode-block" id="dt">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.dt.html#dustpy.std.gas.dt">[docs]</a>
+<span class="k">def</span> <span class="nf">dt</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the time step from the gas sources.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -195,8 +214,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="cs_adiabatic"><a class="viewcode-back" href="../../../api/dustpy.std.gas.cs_adiabatic.html#dustpy.std.gas.cs_adiabatic">[docs]</a><span class="k">def</span> <span class="nf">cs_adiabatic</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the adiabatic sound speed of the gas. For the isothermal sound speed set</span>
+
+<div class="viewcode-block" id="cs_adiabatic">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.cs_adiabatic.html#dustpy.std.gas.cs_adiabatic">[docs]</a>
+<span class="k">def</span> <span class="nf">cs_adiabatic</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the adiabatic sound speed of the gas. For the isothermal sound speed set</span>
 <span class="sd">    ``Simulation.gas.gamma = 1``.</span>
 
 <span class="sd">    Paramters</span>
@@ -215,8 +237,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="eta_midplane"><a class="viewcode-back" href="../../../api/dustpy.std.gas.eta_midplane.html#dustpy.std.gas.eta_midplane">[docs]</a><span class="k">def</span> <span class="nf">eta_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the midplane pressure gradient parameter.</span>
+
+<div class="viewcode-block" id="eta_midplane">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.eta_midplane.html#dustpy.std.gas.eta_midplane">[docs]</a>
+<span class="k">def</span> <span class="nf">eta_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the midplane pressure gradient parameter.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -230,8 +255,11 @@
     <span class="k">return</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">eta_midplane</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Hp</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">P</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Fi"><a class="viewcode-back" href="../../../api/dustpy.std.gas.Fi.html#dustpy.std.gas.Fi">[docs]</a><span class="k">def</span> <span class="nf">Fi</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the mass flux through the cell interfaces.</span>
+
+<div class="viewcode-block" id="Fi">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.Fi.html#dustpy.std.gas.Fi">[docs]</a>
+<span class="k">def</span> <span class="nf">Fi</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the mass flux through the cell interfaces.</span>
 <span class="sd">    The fluxes are calculated from the implicit integration outcome.</span>
 
 <span class="sd">    Parameters</span>
@@ -246,8 +274,11 @@
     <span class="k">return</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">fi</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">rad</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="Hp"><a class="viewcode-back" href="../../../api/dustpy.std.gas.Hp.html#dustpy.std.gas.Hp">[docs]</a><span class="k">def</span> <span class="nf">Hp</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the pressure scale height.</span>
+
+<div class="viewcode-block" id="Hp">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.Hp.html#dustpy.std.gas.Hp">[docs]</a>
+<span class="k">def</span> <span class="nf">Hp</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the pressure scale height.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -265,8 +296,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="jacobian"><a class="viewcode-back" href="../../../api/dustpy.std.gas.jacobian.html#dustpy.std.gas.jacobian">[docs]</a><span class="k">def</span> <span class="nf">jacobian</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Functions calculates the Jacobian for the gas.</span>
+
+<div class="viewcode-block" id="jacobian">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.jacobian.html#dustpy.std.gas.jacobian">[docs]</a>
+<span class="k">def</span> <span class="nf">jacobian</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Functions calculates the Jacobian for the gas.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -274,8 +308,6 @@
 <span class="sd">        Parent simulation frame</span>
 <span class="sd">    x : IntVar</span>
 <span class="sd">        Integration variable</span>
-<span class="sd">    dx : float, optional, default : None</span>
-<span class="sd">        stepsize</span>
 <span class="sd">    args : additional positional arguments</span>
 <span class="sd">    kwargs : additional keyworda arguments</span>
 
@@ -296,10 +328,6 @@
     <span class="n">v</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">backreaction</span><span class="o">.</span><span class="n">B</span> <span class="o">*</span> <span class="mf">2.</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">eta</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">OmegaK</span>
 
     <span class="c1"># Helper variables for convenience</span>
-    <span class="k">if</span> <span class="n">dx</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">dt</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">stepsize</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">dt</span> <span class="o">=</span> <span class="n">dx</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span>
     <span class="n">ri</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span>
     <span class="n">area</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">A</span>
@@ -316,86 +344,13 @@
     <span class="c1"># Right hand side</span>
     <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
 
-    <span class="c1"># Boundaries</span>
-    <span class="n">B00</span><span class="p">,</span> <span class="n">B01</span><span class="p">,</span> <span class="n">B02</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span>
-    <span class="n">BNm1Nm3</span><span class="p">,</span> <span class="n">BNm1Nm2</span><span class="p">,</span> <span class="n">BNm1Nm1</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span>
-
-    <span class="c1"># Inner boundary</span>
-    <span class="k">if</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># Given value</span>
-        <span class="k">if</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span>
-            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">value</span>
-        <span class="c1"># Constant value</span>
-        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_val&quot;</span><span class="p">:</span>
-            <span class="n">B01</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">dt</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
-        <span class="c1"># Given gradient</span>
-        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;grad&quot;</span><span class="p">:</span>
-            <span class="n">K1</span> <span class="o">=</span> <span class="o">-</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">B01</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">K1</span><span class="o">/</span><span class="n">dt</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">ri</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> \
-                <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">value</span>
-        <span class="c1"># Constant gradient</span>
-        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_grad&quot;</span><span class="p">:</span>
-            <span class="n">Di</span> <span class="o">=</span> <span class="n">ri</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">ri</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">K1</span> <span class="o">=</span> <span class="o">-</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">Di</span><span class="p">)</span>
-            <span class="n">K2</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Di</span>
-            <span class="n">B00</span><span class="p">,</span> <span class="n">B01</span><span class="p">,</span> <span class="n">B02</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="p">(</span><span class="n">K1</span><span class="o">/</span><span class="n">dt</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="p">(</span><span class="n">K2</span><span class="o">/</span><span class="n">dt</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
-        <span class="c1"># Given power law</span>
-        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;pow&quot;</span><span class="p">:</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">value</span>
-            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="n">p</span>
-        <span class="c1"># Constant power law</span>
-        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_pow&quot;</span><span class="p">:</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span>
-                       <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-            <span class="n">K1</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="n">p</span>
-            <span class="n">B01</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">K1</span><span class="o">/</span><span class="n">dt</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
-
+    <span class="c1"># Boundaries. This is only reserving space in the sparce matrix</span>
     <span class="n">row_in</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
     <span class="n">col_in</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-    <span class="n">dat_in</span> <span class="o">=</span> <span class="p">[</span><span class="n">B00</span><span class="p">,</span> <span class="n">B01</span><span class="p">,</span> <span class="n">B02</span><span class="p">]</span>
-
-    <span class="c1"># Outer boundary</span>
-    <span class="k">if</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># Given value</span>
-        <span class="k">if</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span>
-            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">value</span>
-        <span class="c1"># Constant value</span>
-        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_val&quot;</span><span class="p">:</span>
-            <span class="n">BNm1Nm2</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">dt</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
-        <span class="c1"># Given gradient</span>
-        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;grad&quot;</span><span class="p">:</span>
-            <span class="n">KNrm2</span> <span class="o">=</span> <span class="o">-</span> <span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">BNm1Nm2</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">KNrm2</span><span class="o">/</span><span class="n">dt</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ri</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> \
-                <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">*</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">value</span>
-        <span class="c1"># Constant gradient</span>
-        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_grad&quot;</span><span class="p">:</span>
-            <span class="n">Do</span> <span class="o">=</span> <span class="n">ri</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">ri</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
-            <span class="n">KNrm2</span> <span class="o">=</span> <span class="o">-</span> <span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">Do</span><span class="p">)</span>
-            <span class="n">KNrm3</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">Do</span>
-            <span class="n">BNm1Nm2</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">KNrm2</span><span class="o">/</span><span class="n">dt</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">BNm1Nm3</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">KNrm3</span><span class="o">/</span><span class="n">dt</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
-        <span class="c1"># Given power law</span>
-        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;pow&quot;</span><span class="p">:</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">value</span>
-            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">**</span><span class="n">p</span>
-        <span class="c1"># Constant power law</span>
-        <span class="k">elif</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_pow&quot;</span><span class="p">:</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span>
-                       <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
-            <span class="n">KNrm2</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">**</span><span class="n">p</span>
-            <span class="n">BNm1Nm2</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">KNrm2</span><span class="o">/</span><span class="n">dt</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">_rhs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
-
+    <span class="n">dat_in</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]</span>
     <span class="n">row_out</span> <span class="o">=</span> <span class="p">[</span><span class="n">Nr</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nr</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nr</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">col_out</span> <span class="o">=</span> <span class="p">[</span><span class="n">Nr</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">Nr</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">Nr</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">dat_out</span> <span class="o">=</span> <span class="p">[</span><span class="n">BNm1Nm3</span><span class="p">,</span> <span class="n">BNm1Nm2</span><span class="p">,</span> <span class="n">BNm1Nm1</span><span class="p">]</span>
+    <span class="n">dat_out</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]</span>
 
     <span class="c1"># Stitching together the generators</span>
     <span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">row_hyd</span><span class="p">,</span> <span class="n">row_in</span><span class="p">,</span> <span class="n">row_out</span><span class="p">))</span>
@@ -411,8 +366,11 @@
     <span class="k">return</span> <span class="n">J</span></div>
 
 
-<div class="viewcode-block" id="lyndenbellpringle1974"><a class="viewcode-back" href="../../../api/dustpy.std.gas.lyndenbellpringle1974.html#dustpy.std.gas.lyndenbellpringle1974">[docs]</a><span class="k">def</span> <span class="nf">lyndenbellpringle1974</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rc</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">Mdisk</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the surface density according the self similar solution of Lynden-Bell &amp; Pringle (1974).</span>
+
+<div class="viewcode-block" id="lyndenbellpringle1974">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.lyndenbellpringle1974.html#dustpy.std.gas.lyndenbellpringle1974">[docs]</a>
+<span class="k">def</span> <span class="nf">lyndenbellpringle1974</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rc</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">Mdisk</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the surface density according the self similar solution of Lynden-Bell &amp; Pringle (1974).</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -432,8 +390,11 @@
     <span class="k">return</span> <span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">Mdisk</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">rc</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="n">rc</span><span class="p">)</span><span class="o">**</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="n">rc</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="n">p</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="mfp_midplane"><a class="viewcode-back" href="../../../api/dustpy.std.gas.mfp_midplane.html#dustpy.std.gas.mfp_midplane">[docs]</a><span class="k">def</span> <span class="nf">mfp_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the midplane mean free path.</span>
+
+<div class="viewcode-block" id="mfp_midplane">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.mfp_midplane.html#dustpy.std.gas.mfp_midplane">[docs]</a>
+<span class="k">def</span> <span class="nf">mfp_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the midplane mean free path.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -449,8 +410,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="n_midplane"><a class="viewcode-back" href="../../../api/dustpy.std.gas.n_midplane.html#dustpy.std.gas.n_midplane">[docs]</a><span class="k">def</span> <span class="nf">n_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the midplane number density of the gas.</span>
+
+<div class="viewcode-block" id="n_midplane">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.n_midplane.html#dustpy.std.gas.n_midplane">[docs]</a>
+<span class="k">def</span> <span class="nf">n_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the midplane number density of the gas.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -467,8 +431,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="nu"><a class="viewcode-back" href="../../../api/dustpy.std.gas.nu.html#dustpy.std.gas.nu">[docs]</a><span class="k">def</span> <span class="nf">nu</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the kinematic viscocity of the gas.</span>
+
+<div class="viewcode-block" id="nu">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.nu.html#dustpy.std.gas.nu">[docs]</a>
+<span class="k">def</span> <span class="nf">nu</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the kinematic viscocity of the gas.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -486,8 +453,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="P_midplane"><a class="viewcode-back" href="../../../api/dustpy.std.gas.P_midplane.html#dustpy.std.gas.P_midplane">[docs]</a><span class="k">def</span> <span class="nf">P_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the midplane gas pressure.</span>
+
+<div class="viewcode-block" id="P_midplane">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.P_midplane.html#dustpy.std.gas.P_midplane">[docs]</a>
+<span class="k">def</span> <span class="nf">P_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the midplane gas pressure.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -505,8 +475,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="rho_midplane"><a class="viewcode-back" href="../../../api/dustpy.std.gas.rho_midplane.html#dustpy.std.gas.rho_midplane">[docs]</a><span class="k">def</span> <span class="nf">rho_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the midplane mass density of the gas.</span>
+
+<div class="viewcode-block" id="rho_midplane">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.rho_midplane.html#dustpy.std.gas.rho_midplane">[docs]</a>
+<span class="k">def</span> <span class="nf">rho_midplane</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the midplane mass density of the gas.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -523,8 +496,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="S_hyd"><a class="viewcode-back" href="../../../api/dustpy.std.gas.S_hyd.html#dustpy.std.gas.S_hyd">[docs]</a><span class="k">def</span> <span class="nf">S_hyd</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the hydrodynamic source terms.</span>
+
+<div class="viewcode-block" id="S_hyd">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.S_hyd.html#dustpy.std.gas.S_hyd">[docs]</a>
+<span class="k">def</span> <span class="nf">S_hyd</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the hydrodynamic source terms.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -538,8 +514,11 @@
     <span class="k">return</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">s_hyd</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Fi</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="S_tot"><a class="viewcode-back" href="../../../api/dustpy.std.gas.S_tot.html#dustpy.std.gas.S_tot">[docs]</a><span class="k">def</span> <span class="nf">S_tot</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the total source terms.</span>
+
+<div class="viewcode-block" id="S_tot">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.S_tot.html#dustpy.std.gas.S_tot">[docs]</a>
+<span class="k">def</span> <span class="nf">S_tot</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the total source terms.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -556,8 +535,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="T_passive"><a class="viewcode-back" href="../../../api/dustpy.std.gas.T_passive.html#dustpy.std.gas.T_passive">[docs]</a><span class="k">def</span> <span class="nf">T_passive</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the temperature profile of a passively irridiated disk with a constant irradiation</span>
+
+<div class="viewcode-block" id="T_passive">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.T_passive.html#dustpy.std.gas.T_passive">[docs]</a>
+<span class="k">def</span> <span class="nf">T_passive</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the temperature profile of a passively irridiated disk with a constant irradiation</span>
 <span class="sd">    angle of 0.05.</span>
 
 <span class="sd">    Parameters</span>
@@ -575,8 +557,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="vrad"><a class="viewcode-back" href="../../../api/dustpy.std.gas.vrad.html#dustpy.std.gas.vrad">[docs]</a><span class="k">def</span> <span class="nf">vrad</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the radial radial gas velocity.</span>
+
+<div class="viewcode-block" id="vrad">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.vrad.html#dustpy.std.gas.vrad">[docs]</a>
+<span class="k">def</span> <span class="nf">vrad</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the radial radial gas velocity.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -597,8 +582,11 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="vvisc"><a class="viewcode-back" href="../../../api/dustpy.std.gas.vvisc.html#dustpy.std.gas.vvisc">[docs]</a><span class="k">def</span> <span class="nf">vvisc</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function calculates the viscous radial gas velocity.</span>
+
+<div class="viewcode-block" id="vvisc">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.vvisc.html#dustpy.std.gas.vvisc">[docs]</a>
+<span class="k">def</span> <span class="nf">vvisc</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the viscous radial gas velocity.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -612,8 +600,9 @@
     <span class="k">return</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">v_visc</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">nu</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">)</span></div>
 
 
-<span class="k">def</span> <span class="nf">_f_impl_1_direct</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">Y0</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rhs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Implicit 1st-order Euler integration scheme with direct matrix inversion</span>
+
+<span class="k">def</span> <span class="nf">_f_impl_1_direct</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">Y0</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Implicit 1st-order Euler integration scheme with direct matrix inversion</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -623,8 +612,6 @@
 <span class="sd">        Variable to be integrated at the beginning of scheme</span>
 <span class="sd">    dx : IntVar</span>
 <span class="sd">        Stepsize of integration variable</span>
-<span class="sd">    jac : Field, optional, defaul : None</span>
-<span class="sd">        Current Jacobian. Will be calculated, if not set</span>
 <span class="sd">    args : additional positional arguments</span>
 <span class="sd">    kwargs : additional keyworda arguments</span>
 
@@ -639,20 +626,99 @@
 <span class="sd">    ---|---</span>
 <span class="sd">       | 1 </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">jac</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">jac</span> <span class="o">=</span> <span class="n">Y0</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">rhs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">rhs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Y0</span><span class="p">)</span>
+    <span class="c1"># Getting keyword arguments. Default is standard gas.</span>
+    <span class="n">boundary</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;boundary&quot;</span><span class="p">,</span> <span class="n">Y0</span><span class="o">.</span><span class="n">_owner</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">boundary</span><span class="p">)</span>
+    <span class="n">Sext</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Sext&quot;</span><span class="p">,</span> <span class="n">Y0</span><span class="o">.</span><span class="n">_owner</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">ext</span><span class="p">)</span>
+
+    <span class="n">jac</span> <span class="o">=</span> <span class="n">Y0</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
+    <span class="n">rhs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Y0</span><span class="p">)</span>
+
+    <span class="c1"># Setting boundary values in jac and rhs</span>
+
+    <span class="c1"># Inner boundary</span>
+    <span class="k">if</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Given value</span>
+        <span class="k">if</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span>
+            <span class="n">rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">value</span>
+        <span class="c1"># Constant value</span>
+        <span class="k">elif</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_val&quot;</span><span class="p">:</span>
+            <span class="n">jac</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">dx</span>
+            <span class="n">rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="c1"># Given gradient</span>
+        <span class="k">elif</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;grad&quot;</span><span class="p">:</span>
+            <span class="n">K1</span> <span class="o">=</span> <span class="o">-</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">jac</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">K1</span><span class="o">/</span><span class="n">dx</span>
+            <span class="n">rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_ri</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> \
+                <span class="p">(</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> \
+                <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">value</span>
+        <span class="c1"># Constant gradient</span>
+        <span class="k">elif</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_grad&quot;</span><span class="p">:</span>
+            <span class="n">Di</span> <span class="o">=</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_ri</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_ri</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span>
+                <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">K1</span> <span class="o">=</span> <span class="o">-</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">Di</span><span class="p">)</span>
+            <span class="n">K2</span> <span class="o">=</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Di</span>
+            <span class="n">jac</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+            <span class="n">jac</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">K1</span><span class="o">/</span><span class="n">dx</span>
+            <span class="n">jac</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">K2</span><span class="o">/</span><span class="n">dx</span>
+            <span class="n">rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="c1"># Given power law</span>
+        <span class="k">elif</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;pow&quot;</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Y0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="n">p</span>
+        <span class="c1"># Constant power law</span>
+        <span class="k">elif</span> <span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_pow&quot;</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Y0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="n">Y0</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> \
+                <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">K1</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">inner</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="n">p</span>
+            <span class="n">jac</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">K1</span><span class="o">/</span><span class="n">dx</span>
+            <span class="n">rhs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+
+    <span class="c1"># Outer boundary</span>
+    <span class="k">if</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Given value</span>
+        <span class="k">if</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;val&quot;</span><span class="p">:</span>
+            <span class="n">rhs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">value</span>
+        <span class="c1"># Constant value</span>
+        <span class="k">elif</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_val&quot;</span><span class="p">:</span>
+            <span class="n">jac</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span>
+            <span class="n">rhs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="c1"># Given gradient</span>
+        <span class="k">elif</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;grad&quot;</span><span class="p">:</span>
+            <span class="n">KNrm2</span> <span class="o">=</span> <span class="o">-</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">jac</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">KNrm2</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span>
+            <span class="n">rhs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_ri</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> \
+                <span class="p">(</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> \
+                <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">value</span>
+        <span class="c1"># Constant gradient</span>
+        <span class="k">elif</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_grad&quot;</span><span class="p">:</span>
+            <span class="n">Do</span> <span class="o">=</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_ri</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_ri</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span>
+                <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">KNrm2</span> <span class="o">=</span> <span class="o">-</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">Do</span><span class="p">)</span>
+            <span class="n">KNrm3</span> <span class="o">=</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Do</span>
+            <span class="n">jac</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">KNrm2</span><span class="o">/</span><span class="n">dx</span>
+            <span class="n">jac</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">KNrm3</span><span class="o">/</span><span class="n">dx</span>
+            <span class="n">rhs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="c1"># Given power law</span>
+        <span class="k">elif</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;pow&quot;</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">rhs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Y0</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="o">-</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="n">p</span>
+        <span class="c1"># Constant power law</span>
+        <span class="k">elif</span> <span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">condition</span> <span class="o">==</span> <span class="s2">&quot;const_pow&quot;</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Y0</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="n">Y0</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span> <span class="o">/</span> \
+                <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">KNrm2</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">boundary</span><span class="o">.</span><span class="n">outer</span><span class="o">.</span><span class="n">_r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="n">p</span>
+            <span class="n">jac</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">KNrm2</span><span class="o">/</span><span class="n">dx</span>
+            <span class="n">rhs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
 
     <span class="c1"># Add external source terms to right-hand side</span>
     <span class="n">rhs</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">modified_rhs</span><span class="p">(</span>
-        <span class="n">dx</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">dx</span><span class="p">,</span>
         <span class="n">rhs</span><span class="p">,</span>
-        <span class="n">Y0</span><span class="o">.</span><span class="n">_owner</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">S</span><span class="o">.</span><span class="n">ext</span>
+        <span class="n">Sext</span>
     <span class="p">)</span>
 
     <span class="n">jac</span><span class="o">.</span><span class="n">data</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">gas_f</span><span class="o">.</span><span class="n">modified_jacobian</span><span class="p">(</span>
-        <span class="n">dx</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">dx</span><span class="p">,</span>
         <span class="n">jac</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
         <span class="n">jac</span><span class="o">.</span><span class="n">indices</span><span class="p">,</span>
         <span class="n">jac</span><span class="o">.</span><span class="n">indptr</span>
@@ -667,11 +733,14 @@
     <span class="k">return</span> <span class="n">Y1</span> <span class="o">-</span> <span class="n">Y0</span>
 
 
-<div class="viewcode-block" id="impl_1_direct"><a class="viewcode-back" href="../../../api/dustpy.std.gas.impl_1_direct.html#dustpy.std.gas.impl_1_direct">[docs]</a><span class="k">class</span> <span class="nc">impl_1_direct</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Modified class for implicit gas integration.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="impl_1_direct">
+<a class="viewcode-back" href="../../../api/dustpy.std.gas.impl_1_direct.html#dustpy.std.gas.impl_1_direct">[docs]</a>
+<span class="k">class</span> <span class="nc">impl_1_direct</span><span class="p">(</span><span class="n">Scheme</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Modified class for implicit gas integration.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">_f_impl_1_direct</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Implicit 1st-order direct solver&quot;</span><span class="p">)</span></div>
+
 </pre></div>
 
            </div>

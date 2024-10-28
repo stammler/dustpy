@@ -215,7 +215,10 @@ def jacobian(sim, x, *args, **kwargs):
         (np.arange(Nr-1), np.arange(Nr), np.arange(Nr-1)+1))
     dat_hyd = np.hstack((A.ravel()[1:], B.ravel(), C.ravel()[:-1]))
 
-    # Boundaries. This is only reserving space in the sparse matrix
+    # Right hand side
+    sim.gas._rhs[:] = sim.gas.Sigma
+
+    # Boundaries. This is only reserving space in the sparce matrix
     row_in = [0, 0, 0]
     col_in = [0, 1, 2]
     dat_in = [0., 0., 0.]
@@ -467,7 +470,6 @@ def _f_impl_1_direct(x0, Y0, dx, *args, **kwargs):
     boundary = kwargs.get("boundary", Y0._owner.gas.boundary)
     Sext = kwargs.get("Sext", Y0._owner.gas.S.ext)
 
-    dt = dx[0]
     jac = Y0.jacobian(x0, dx)
     rhs = np.array(Y0)
 
@@ -480,21 +482,24 @@ def _f_impl_1_direct(x0, Y0, dx, *args, **kwargs):
             rhs[0] = boundary.inner.value
         # Constant value
         elif boundary.inner.condition == "const_val":
-            jac[0, 1] = 1./dt
+            jac[0, 1] = 1./dx
             rhs[0] = 0.
         # Given gradient
         elif boundary.inner.condition == "grad":
             K1 = - boundary.inner._r[1]/boundary.inner._r[0]
-            jac[0, 1] = -K1/dt
-            rhs[0] = - boundary.inner._ri[1]/boundary.inner._r[0] * (boundary.inner._r[1]-boundary.inner._r[0])*boundary.inner.value
+            jac[0, 1] = -K1/dx
+            rhs[0] = - boundary.inner._ri[1]/boundary.inner._r[0] * \
+                (boundary.inner._r[1]-boundary.inner._r[0]) * \
+                boundary.inner.value
         # Constant gradient
         elif boundary.inner.condition == "const_grad":
-            Di = boundary.inner._ri[1]/boundary.inner._ri[2] * (boundary.inner._r[1]-boundary.inner._r[0]) / (boundary.inner._r[2]-boundary.inner._r[0])
+            Di = boundary.inner._ri[1]/boundary.inner._ri[2] * (
+                boundary.inner._r[1]-boundary.inner._r[0]) / (boundary.inner._r[2]-boundary.inner._r[0])
             K1 = - boundary.inner._r[1]/boundary.inner._r[0] * (1. + Di)
             K2 = boundary.inner._r[2]/boundary.inner._r[0] * Di
             jac[0, :3] = 0.
-            jac[0, 1] = -K1/dt
-            jac[0, 2] = -K2/dt
+            jac[0, 1] = -K1/dx
+            jac[0, 2] = -K2/dx
             rhs[0] = 0.
         # Given power law
         elif boundary.inner.condition == "pow":
@@ -502,9 +507,10 @@ def _f_impl_1_direct(x0, Y0, dx, *args, **kwargs):
             rhs[0] = Y0[1] * (boundary.inner._r[0]/boundary.inner._r[1])**p
         # Constant power law
         elif boundary.inner.condition == "const_pow":
-            p = np.log(Y0[2] / Y0[1]) / np.log(boundary.inner._r[2]/boundary.inner._r[1])
+            p = np.log(Y0[2] / Y0[1]) / \
+                np.log(boundary.inner._r[2]/boundary.inner._r[1])
             K1 = - (boundary.inner._r[0]/boundary.inner._r[1])**p
-            jac[0, 1] = -K1/dt
+            jac[0, 1] = -K1/dx
             rhs[0] = 0.
 
     # Outer boundary
@@ -514,20 +520,23 @@ def _f_impl_1_direct(x0, Y0, dx, *args, **kwargs):
             rhs[-1] = boundary.outer.value
         # Constant value
         elif boundary.outer.condition == "const_val":
-            jac[-1, -2] = (1./dt)
+            jac[-1, -2] = (1./dx)
             rhs[-1] = 0.
         # Given gradient
         elif boundary.outer.condition == "grad":
             KNrm2 = - boundary.outer._r[1]/boundary.outer._r[0]
-            jac[-1, -2] = -(KNrm2/dt)
-            rhs[-1] = boundary.outer._ri[1]/boundary.outer._r[0] * (boundary.outer._r[0]-boundary.outer._r[1])*boundary.outer.value
+            jac[-1, -2] = -(KNrm2/dx)
+            rhs[-1] = boundary.outer._ri[1]/boundary.outer._r[0] * \
+                (boundary.outer._r[0]-boundary.outer._r[1]) * \
+                boundary.outer.value
         # Constant gradient
         elif boundary.outer.condition == "const_grad":
-            Do = boundary.outer._ri[1]/boundary.outer._ri[2] * (boundary.outer._r[0]-boundary.outer._r[1]) / (boundary.outer._r[1]-boundary.outer._r[2])
+            Do = boundary.outer._ri[1]/boundary.outer._ri[2] * (
+                boundary.outer._r[0]-boundary.outer._r[1]) / (boundary.outer._r[1]-boundary.outer._r[2])
             KNrm2 = - boundary.outer._r[1]/boundary.outer._r[0] * (1. + Do)
             KNrm3 = boundary.outer._r[2]/boundary.outer._r[0] * Do
-            jac[-1, -2] = -KNrm2/dt
-            jac[-1, -3] = -KNrm3/dt
+            jac[-1, -2] = -KNrm2/dx
+            jac[-1, -3] = -KNrm3/dx
             rhs[-1] = 0.
         # Given power law
         elif boundary.outer.condition == "pow":
@@ -535,20 +544,21 @@ def _f_impl_1_direct(x0, Y0, dx, *args, **kwargs):
             rhs[-1] = Y0[-2] * (boundary.outer._r[-0]/boundary.outer._r[1])**p
         # Constant power law
         elif boundary.outer.condition == "const_pow":
-            p = np.log(Y0[-2] / Y0[-3]) / np.log(boundary.outer._r[1]/boundary.outer._r[2])
+            p = np.log(Y0[-2] / Y0[-3]) / \
+                np.log(boundary.outer._r[1]/boundary.outer._r[2])
             KNrm2 = - (boundary.outer._r[0]/boundary.outer._r[1])**p
-            jac[-1, -2] = -KNrm2/dt
+            jac[-1, -2] = -KNrm2/dx
             rhs[-1] = 0.
 
     # Add external source terms to right-hand side
     rhs[:] = gas_f.modified_rhs(
-        dx[0],
+        dx,
         rhs,
         Sext
     )
 
     jac.data[:] = gas_f.modified_jacobian(
-        dx[0],
+        dx,
         jac.data,
         jac.indices,
         jac.indptr

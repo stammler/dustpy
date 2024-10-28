@@ -1,0 +1,47 @@
+[build-system]
+build-backend = 'mesonpy'
+requires = ['meson-python', 'numpy']
+
+[project]
+name = 'dustpy'
+version = '1.0.6'
+description = 'Dust evolution in protoplanetary disks'
+readme = { file = 'README.md', content-type = 'text/markdown' }
+keywords = [
+  "numerical",
+  "simulation",
+  "science",
+  "physics",
+  "astrophysics",
+  "astronomy",
+]
+authors = [
+  { name = "Sebastian Stammler", email = "sebastian.stammler@gmail.com" },
+  { name = "Til Birnstiel", email = "til.birnstiel@lmu.de" },
+  { name = "León-Alexander Hühn", email = "huehn@uni-heidelberg.de" },
+]
+maintainers = [
+  { name = "Sebastian Stammler", email = "sebastian.stammler@gmail.com" },
+  { name = "Tilman Birnstiel", email = "til.birnstiel@lmu.de" },
+]
+license = { text = "GPLv3" }
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Fortran",
+  "Topic :: Education",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = ["matplotlib", "numpy", "requests", "simframe>=0.5.3"]
+
+[project.urls]
+Repository = "https://github.com/stammler/dustpy/"
+Documentation = "https://stammler.github.io/dustpy/"

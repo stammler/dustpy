@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3. Advanced Customization &mdash; dustpy  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -109,7 +111,7 @@
              
   <p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2F3_advanced_customization.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="3.-Advanced-Customization">
-<h1>3. Advanced Customization<a class="headerlink" href="#3.-Advanced-Customization" title="Permalink to this heading"></a></h1>
+<h1>3. Advanced Customization<a class="headerlink" href="#3.-Advanced-Customization" title="Link to this heading"></a></h1>
 <p>The core principle of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is that you can change anything easily. Not only the initial conditions as shown in the previous chapter, but also the physics behind the simulation.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -128,7 +130,7 @@
 </div>
 </div>
 <section id="Customizing-the-Grids">
-<h2>Customizing the Grids<a class="headerlink" href="#Customizing-the-Grids" title="Permalink to this heading"></a></h2>
+<h2>Customizing the Grids<a class="headerlink" href="#Customizing-the-Grids" title="Link to this heading"></a></h2>
 <p>By default the radial and the mass grid will be created when calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>. But there can be situations where you need to know the grid sizes before completely initializing the Simulation object. For example if you want to create custom fields and you need to initialize them with the correct shape.</p>
 <p>In that case you can call <code class="docutils literal notranslate"><span class="pre">Simulation.makegrids()</span></code> to only create the grids without initializing the simulation objects. In fact, <code class="docutils literal notranslate"><span class="pre">Simulation.makegrids()</span></code> is by default called within <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
 <div class="nbinput docutils container">
@@ -194,7 +196,7 @@ Group (Grid quantities)
 </div>
 <p>Note that the Keplerian frequency has not been initialized at this point.</p>
 <section id="The-Radial-Grid">
-<h3>The Radial Grid<a class="headerlink" href="#The-Radial-Grid" title="Permalink to this heading"></a></h3>
+<h3>The Radial Grid<a class="headerlink" href="#The-Radial-Grid" title="Link to this heading"></a></h3>
 <p>By default the radial grid is a regular logarithmic grid. Meaning, the ratio of adjacent grid cells is constant.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -242,7 +244,7 @@ Group (Grid quantities)
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">def</span> <span class="nf">refinegrid</span><span class="p">(</span><span class="n">ri</span><span class="p">,</span> <span class="n">r0</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function to refine the radial grid</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to refine the radial grid</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -458,13 +460,13 @@ Group (Grid quantities)
 </div>
 </section>
 <section id="The-Mass-Grid">
-<h3>The Mass Grid<a class="headerlink" href="#The-Mass-Grid" title="Permalink to this heading"></a></h3>
+<h3>The Mass Grid<a class="headerlink" href="#The-Mass-Grid" title="Link to this heading"></a></h3>
 <p>You should <strong>NEVER</strong> set the mass grid manually! The mass grid has to be strictly logarithmic. Only customize the mass grid by setting <code class="docutils literal notranslate"><span class="pre">Simulation.ini.grid.mmin</span></code>, <code class="docutils literal notranslate"><span class="pre">Simulation.ini.grid.mmax</span></code>, and <code class="docutils literal notranslate"><span class="pre">Simulation.ini.grid.Nmbpd</span></code>.</p>
 <p>If you have to create your own non-logarithmic mass grid for some reason, be aware that you have to re-write the entire coagulation algorithm as well, since it only conserves mass on a logarithmic grid.</p>
 </section>
 </section>
 <section id="Customizing-the-Physics-of-a-Field">
-<h2>Customizing the Physics of a Field<a class="headerlink" href="#Customizing-the-Physics-of-a-Field" title="Permalink to this heading"></a></h2>
+<h2>Customizing the Physics of a Field<a class="headerlink" href="#Customizing-the-Physics-of-a-Field" title="Link to this heading"></a></h2>
 <p>In this example we want to have a fragmentation velocity that depends on the temperature in the disk. Is the temperature below 150 K, we want to have a fragmentation velocity of 10 m/s, otherwise it shall be 1 m/s. The idea behind this approach is than particles coated in water ice are stickier that pure silicate particles and can widthstand higher collision velocities. See for example <a class="reference external" href="https://doi.org/10.3847/1538-4357/aa7edb">Pinilla et al. (2017)</a>. However, keep in mind that newer
 experiments suggest that particles covered in water ice do not have a beneficial collisional behavior, see e.g. <a class="reference external" href="https://doi.org/10.3847/1538-4357/ab0428">Musiolik &amp; Wurm (2019)</a>.</p>
 <p>First, we initialize our simulation object.</p>
@@ -615,7 +617,7 @@ experiments suggest that particles covered in water ice do not have a beneficial
 </div>
 </section>
 <section id="Adding-Custom-Fields">
-<h2>Adding Custom Fields<a class="headerlink" href="#Adding-Custom-Fields" title="Permalink to this heading"></a></h2>
+<h2>Adding Custom Fields<a class="headerlink" href="#Adding-Custom-Fields" title="Link to this heading"></a></h2>
 <p>We can not only modify existing fields, we can also create our own fields.</p>
 <p>In this example we want to add another field <code class="docutils literal notranslate"><span class="pre">rsnow</span></code> to <code class="docutils literal notranslate"><span class="pre">Simulation.grid</span></code>, that gives us the location of the so called snowline, i.e., the location in the disk where water ice starts to sublime.</p>
 <p>First, we add the field and initialize it with zero.</p>
@@ -727,7 +729,7 @@ The snowline is located at 2.15 AU.
 </div>
 </section>
 <section id="Modifying-the-Update-Order">
-<h2>Modifying the Update Order<a class="headerlink" href="#Modifying-the-Update-Order" title="Permalink to this heading"></a></h2>
+<h2>Modifying the Update Order<a class="headerlink" href="#Modifying-the-Update-Order" title="Link to this heading"></a></h2>
 <p>But we are still not done, yet. We have given <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> instructions how to update the snowline location, but we have not yet told it to actually update it regularily.</p>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> calls <code class="docutils literal notranslate"><span class="pre">Simulation.update()</span></code>, the updater of the simulation object, once per timestep after the integration step and just before writing the data files. The updater of a group/field is basically a list of groups/fields, whose updater is called in that order.</p>
 <p>For the main simulation object this is</p>
@@ -1027,7 +1029,7 @@ The snowline is located at 2.15 AU.
 </div>
 </section>
 <section id="Systoles-and-Diastoles">
-<h2>Systoles and Diastoles<a class="headerlink" href="#Systoles-and-Diastoles" title="Permalink to this heading"></a></h2>
+<h2>Systoles and Diastoles<a class="headerlink" href="#Systoles-and-Diastoles" title="Link to this heading"></a></h2>
 <p>However, the previous solution has a conceptional problem. As you can see from the update order previously the grid is updated before the gas. The snowline location, however, needs the gas temperature and, therefore, has to be updated after the gas. But we also cannot update the grid as a whole after the gas, because the gas updaters need the Keplerian frequency. We need another solution.</p>
 <p>But first, we revert the grid updater.</p>
 <div class="nbinput nblast docutils container">
@@ -1061,13 +1063,15 @@ The snowline is located at 2.15 AU.
 <p>Now every time <code class="docutils literal notranslate"><span class="pre">Simulation.gas.T.update()</span></code> is called, <code class="docutils literal notranslate"><span class="pre">Simulation.grid.rsnow.update()</span></code> will be called at the end of it.</p>
 </section>
 <section id="Customizing-the-Snapshots">
-<h2>Customizing the Snapshots<a class="headerlink" href="#Customizing-the-Snapshots" title="Permalink to this heading"></a></h2>
-<p>As already explained in a previous chapter, the snapshots can be customized by simply setting <code class="docutils literal notranslate"><span class="pre">Simulation.t.snapshots</span></code>. In this example we only want to run the simulation for <span class="math notranslate nohighlight">\(10,000\,\mathrm{yrs}\)</span>.</p>
+<h2>Customizing the Snapshots<a class="headerlink" href="#Customizing-the-Snapshots" title="Link to this heading"></a></h2>
+<p>As already explained in a previous chapter, the snapshots can be customized by simply setting <code class="docutils literal notranslate"><span class="pre">Simulation.t.snapshots</span></code>. In this example we only want to run the simulation for <span class="math notranslate nohighlight">\(10,000\,\mathrm{yrs}\)</span>. The snapshots have to include the starting time to write out the initial conditions.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mf">10.</span><span class="p">)</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mf">1.e3</span><span class="p">,</span> <span class="mf">1.e4</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">]</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1094,7 +1098,7 @@ The snowline is located at 2.15 AU.
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.3
+DustPy v1.0.6
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -1105,22 +1109,22 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 4.44e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
         for particle collision
-            m[47] =  5.18e-06 g    with
-            m[54] =  5.18e-05 g
+            m[55] =  7.20e-05 g    with
+            m[55] =  7.20e-05 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
             m[110] =  5.18e+03 g    with
             m[118] =  7.20e+04 g
 
-Creating data directory &#39;3_data&#39;.
+Creating data directory 3_data.
 Writing file <span class="ansi-blue-intense-fg">3_data/data0000.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">3_data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">3_data/data0001.hdf5</span>
@@ -1165,7 +1169,7 @@ Writing file <span class="ansi-blue-intense-fg">3_data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">3_data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">3_data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">3_data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:06:38</span>
+Execution time: <span class="ansi-blue-intense-fg">0:05:30</span>
 </pre></div></div>
 </div>
 <p>We can now have a look at the result of our modifications.</p>

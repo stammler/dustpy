@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Test: Analytical Coagulation Kernels &mdash; dustpy  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="_static/nbsphinx-code-cells.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
         <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -102,7 +104,7 @@
              
   <p><a class="reference external" href="https://mybinder.org/v2/gh/stammler/dustpy/HEAD?labpath=examples%2Ftest_analytical_coagulation_kernels.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="Test:-Analytical-Coagulation-Kernels">
-<h1>Test: Analytical Coagulation Kernels<a class="headerlink" href="#Test:-Analytical-Coagulation-Kernels" title="Permalink to this heading"></a></h1>
+<h1>Test: Analytical Coagulation Kernels<a class="headerlink" href="#Test:-Analytical-Coagulation-Kernels" title="Link to this heading"></a></h1>
 <p>The Smoluchwoski equation has analytical solutions for three special cases: the constant, the linear, and the product kernels. These can be used to verify the coagulation algorithm of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code>.</p>
 <p>In this notebook we are going to implement the constant and the linear kernel to demonstrate the diffusivity of the coagulation algorithm.</p>
 <p>Dust growth is implemented by solving the Smolukowski equation for a particle mass distribution</p>
@@ -114,7 +116,7 @@
 <p><span class="math notranslate nohighlight">\(\begin{split} \frac{\partial}{\partial t} N\left( m \right) = &amp;\int\limits_0^\infty N\left( m-m' \right) N\left( m' \right) K\left( m-m', m' \right) \mathrm{d}m'\\ &amp;-N\left( m \right) \int\limits_0^\infty N\left( m' \right) K\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
 <p>This equation has analytical solutions for some choices of the kernel <span class="math notranslate nohighlight">\(K\)</span> and can be used to benchmark the coagulation algorithm against. The solutions and their derivations are discussed in detail in e.g. <a class="reference external" href="https://doi.org/10.1086/156949">Silk &amp; Takahashi (1979)</a> or <a class="reference external" href="https://doi.org/10.1016/0019-1035(90)90086-O">Wetherill (1990)</a>.</p>
 <section id="The-Constant-Kernel">
-<h2>The Constant Kernel<a class="headerlink" href="#The-Constant-Kernel" title="Permalink to this heading"></a></h2>
+<h2>The Constant Kernel<a class="headerlink" href="#The-Constant-Kernel" title="Link to this heading"></a></h2>
 <p>The most simple kernel is the constant kernel given by</p>
 <p><span class="math notranslate nohighlight">\(K\left(m, m'\right) = a\)</span>.</p>
 <p>In this case the Smoluchowski equation has the solution</p>
@@ -136,7 +138,7 @@
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function converts the Dustpy units into number densities.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function converts the Dustpy units into number densities.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -161,7 +163,7 @@
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solution_constant_kernel</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Analytical solution of the constant collision kernel R(m, m&#39;) = a.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analytical solution of the constant collision kernel R(m, m&#39;) = a.</span>
 <span class="sd">    Initial condition is that only the zeroth mass bin is filled.</span>
 
 <span class="sd">    Parameters</span>
@@ -192,7 +194,7 @@
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_constant_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function set the ``DustPy`` simulation object up for the constant collision kernel R(m, m&#39;) = a.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function set the ``DustPy`` simulation object up for the constant collision kernel R(m, m&#39;) = a.</span>
 
 <span class="sd">    sim : Frame</span>
 <span class="sd">        Simulation object</span>
@@ -295,7 +297,9 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mf">1.e-7</span><span class="p">,</span> <span class="mf">1.e3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
+<span class="p">)</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">snapshots</span>
 </pre></div>
 </div>
@@ -324,7 +328,7 @@
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.3
+DustPy v1.0.6
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -335,22 +339,22 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 4.44e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
         for particle collision
-            m[47] =  5.18e-06 g    with
-            m[54] =  5.18e-05 g
+            m[55] =  7.20e-05 g    with
+            m[55] =  7.20e-05 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
             m[110] =  5.18e+03 g    with
             m[118] =  7.20e+04 g
 
-Creating data directory &#39;test_constant_kernel&#39;.
+Creating data directory test_constant_kernel.
 Writing file <span class="ansi-blue-intense-fg">test_constant_kernel/data0000.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_constant_kernel/data0001.hdf5</span>
@@ -365,7 +369,7 @@ Writing file <span class="ansi-blue-intense-fg">test_constant_kernel/data0005.hd
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_constant_kernel/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:05</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 </pre></div></div>
 </div>
 <p>We now read the necessary data and plot it.</p>
@@ -399,7 +403,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:05</span>
     <span class="n">cstr</span> <span class="o">=</span> <span class="s2">&quot;C&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">convert</span><span class="p">(</span><span class="n">SigmaConstant</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">cstr</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;t = </span><span class="si">{:3.1e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">solution_constant_kernel</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">),</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">cstr</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">1.1e2</span><span class="p">,</span> <span class="mf">1.e-5</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">1.e3</span><span class="p">,</span> <span class="mf">1.e-4</span><span class="p">),</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">1.1e2</span><span class="p">,</span> <span class="mf">1.e-5</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">1.e3</span><span class="p">,</span> <span class="mf">1.e-4</span><span class="p">),</span> <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1.e-6</span><span class="p">,</span> <span class="mf">1.e3</span><span class="p">)</span>
@@ -491,7 +495,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:05</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.3
+DustPy v1.0.6
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -502,7 +506,7 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.90e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.83e-14</span>
         for particle collision
             m[443] =  6.63e+03 g    with
             m[472] =  7.20e+04 g
@@ -512,12 +516,12 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
             m[468] =  5.18e+04 g    with
             m[475] =  9.21e+04 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.44e-15</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.66e-15</span>
         for particle collision
             m[431] =  2.47e+03 g    with
             m[462] =  3.16e+04 g
 
-Creating data directory &#39;test_constant_kernel_high_res&#39;.
+Creating data directory test_constant_kernel_high_res.
 Writing file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/data0000.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/data0001.hdf5</span>
@@ -532,7 +536,7 @@ Writing file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/da
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:01:10</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:53</span>
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -579,7 +583,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:01:10</span>
 <p>In the high resolution case the simulation is way closer to the analytical solution compared to the semi-transparent solid lines of the low resolution simulation. This comes of course with the cost of a more expensive computation. If you need a higher resolution depends on your collision model. For a detail discussion on this problem we refer to <a class="reference external" href="https://doi.org/10.1051/0004-6361/201423708">Drążkowska et al. (2014)</a>.</p>
 </section>
 <section id="The-Linear-Kernel">
-<h2>The Linear Kernel<a class="headerlink" href="#The-Linear-Kernel" title="Permalink to this heading"></a></h2>
+<h2>The Linear Kernel<a class="headerlink" href="#The-Linear-Kernel" title="Link to this heading"></a></h2>
 <p>The second kernel that has an analytical solution it the linear kernel</p>
 <p><span class="math notranslate nohighlight">\(R\left(m, m'\right) = a\left(m + m'\right)\)</span></p>
 <p>with the analytical solution</p>
@@ -591,7 +595,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:01:10</span>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solution_linear_kernel</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Analytical solution of the linear collision kernel R(m, m&#39;) = a(m + m&#39;).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analytical solution of the linear collision kernel R(m, m&#39;) = a(m + m&#39;).</span>
 <span class="sd">    Initial condition is that only the zeroth mass bin is filled.</span>
 
 <span class="sd">    Parameters</span>
@@ -623,7 +627,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:01:10</span>
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_linear_kernel</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">S0</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Function set the ``DustPy`` simulation object up for the linear collision kernel R(m, m&#39;) = a(m + m&#39;).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function set the ``DustPy`` simulation object up for the linear collision kernel R(m, m&#39;) = a(m + m&#39;).</span>
 
 <span class="sd">    sim : Frame</span>
 <span class="sd">        Simulation object</span>
@@ -696,7 +700,9 @@ Execution time: <span class="ansi-blue-intense-fg">0:01:10</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mf">1.e0</span><span class="p">,</span> <span class="mf">1.e1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
+<span class="p">)</span>
 <span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">snapshots</span>
 </pre></div>
 </div>
@@ -723,7 +729,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:01:10</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.3
+DustPy v1.0.6
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -734,22 +740,22 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 4.44e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
         for particle collision
-            m[47] =  5.18e-06 g    with
-            m[54] =  5.18e-05 g
+            m[55] =  7.20e-05 g    with
+            m[55] =  7.20e-05 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
             m[110] =  5.18e+03 g    with
             m[118] =  7.20e+04 g
 
-Creating data directory &#39;test_linear_kernel&#39;.
+Creating data directory test_linear_kernel.
 Writing file <span class="ansi-blue-intense-fg">test_linear_kernel/data0000.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_linear_kernel/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_linear_kernel/data0001.hdf5</span>
@@ -853,8 +859,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">snapshots</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">snapshots</span> <span class="o">=</span> <span class="n">snapshots</span>
 </pre></div>
 </div>
 </div>
@@ -880,7 +885,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.3
+DustPy v1.0.6
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -891,7 +896,7 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.90e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.83e-14</span>
         for particle collision
             m[443] =  6.63e+03 g    with
             m[472] =  7.20e+04 g
@@ -901,12 +906,12 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
             m[468] =  5.18e+04 g    with
             m[475] =  9.21e+04 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.44e-15</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.66e-15</span>
         for particle collision
             m[431] =  2.47e+03 g    with
             m[462] =  3.16e+04 g
 
-Creating data directory &#39;test_linear_kernel_high_res&#39;.
+Creating data directory test_linear_kernel_high_res.
 Writing file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/data0000.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/data0001.hdf5</span>
@@ -921,7 +926,7 @@ Writing file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/data
 Writing dump file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:16</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:11</span>
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -968,7 +973,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:16</span>
 <p>With a higher mass resolution the situation improved significantly.</p>
 </section>
 <section id="The-Product-Kernel">
-<h2>The Product Kernel<a class="headerlink" href="#The-Product-Kernel" title="Permalink to this heading"></a></h2>
+<h2>The Product Kernel<a class="headerlink" href="#The-Product-Kernel" title="Link to this heading"></a></h2>
 <p>The third kernel that has an analytical solution it the product kernel</p>
 <p><span class="math notranslate nohighlight">\(K\left(m, m'\right) = a \cdot m\times m'\)</span>.</p>
 <p>This kernel describes runaway growth. In this scenario the mass quickly accumulates in a few massive bodies. Since <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is not designed to properly simulate individual bodies, this solution will not be discussed here.</p>
