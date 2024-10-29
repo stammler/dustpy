@@ -200,6 +200,7 @@ def jacobian(sim, x, *args, **kwargs):
     # Parameters
     nu = sim.gas.nu * sim.dust.backreaction.A
     v = sim.dust.backreaction.B * 2. * sim.gas.eta * sim.grid.r * sim.grid.OmegaK
+    v += sim.gas.torque.v
 
     # Helper variables for convenience
     r = sim.grid.r
@@ -424,6 +425,21 @@ def vrad(sim):
         sim.grid.r,
         sim.gas.v.visc
     )
+
+
+def vtorque(sim):
+    """Function calculates the velocity profile due by a torque profile
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+
+    Returns
+    -------
+    vtorque : array
+        Velocity profile"""
+    return 2. * sim.gas.torque.Lambda / (sim.grid.OmegaK * sim.grid.r)
 
 
 def vvisc(sim):
