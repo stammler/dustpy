@@ -50,7 +50,9 @@ class Simulation(Frame):
                                                                   }
                                                                ),
                                        "gas": SimpleNamespace(**{"alpha": 1.e-3,
+                                                                 "alphaDiskwind": 0.,
                                                                  "gamma": 1.4,
+                                                                 "LambdaDiskwind": 3.5,
                                                                  "Mdisk": 0.05*c.M_sun,
                                                                  "mu": 2.3*c.m_p,
                                                                  "SigmaExp": -1.,
@@ -149,6 +151,12 @@ class Simulation(Frame):
         self.gas.boundary.inner = None
         self.gas.boundary.outer = None
         self.gas.cs = None
+        self.gas.diskwind = Group(self, description="Disk wind parameters")
+        self.gas.diskwind.alpha = None
+        self.gas.diskwind.Lambda = None
+        self.gas.diskwind.S = None
+        self.gas.diskwind.v = None
+        self.gas.diskwind.updater = ["alpha", "Lambda", "v", "S"]
         self.gas.eta = None
         self.gas.Fi = None
         self.gas.gamma = None
@@ -176,7 +184,7 @@ class Simulation(Frame):
         self.gas.v.visc = None
         self.gas.v.updater = ["visc", "rad"]
         self.gas.updater = ["gamma", "mu", "T", "alpha", "cs", "Hp", "nu",
-                            "rho", "n", "mfp", "P", "eta", "torque", "S"]
+                            "rho", "n", "mfp", "P", "eta", "diskwind", "torque", "S"]
 
         # Grid quantities
         self.grid = Group(self, description="Grid quantities")
@@ -670,6 +678,27 @@ class Simulation(Frame):
             self.gas.cs = Field(self, np.zeros(shape1),
                                 description="Sound speed [cm/s]")
             self.gas.cs.updater = std.gas.cs_adiabatic
+        # Disk wind parameters
+        # alpha disk wind
+        if self.gas.diskwind.alpha is None:
+            alphadw = self.ini.gas.alphaDiskwind * np.ones(shape1)
+            self.gas.diskwind.alpha = Field(self, alphadw, 
+                                            description="alpha disk wind parameter")
+        # Lambda disk wind
+        if self.gas.diskwind.Lambda is None:
+            Lambdadw = self.ini.gas.LambdaDiskwind * np.ones(shape1)
+            self.gas.diskwind.Lambda = Field(self, Lambdadw, 
+                                             description="Lambda disk wind parameter")
+        # Velocity contribution of disk winds
+        if self.gas.diskwind.v is None:
+            self.gas.diskwind.v = Field(self, np.zeros(shape1),
+                                        description="Disk wind velocity contribution [cm/2]")
+            self.gas.diskwind.v.updater = std.gas.vdiskwind
+        # Disk wind source terms
+        if self.gas.diskwind.S is None:
+            self.gas.diskwind.S = Field(self, np.zeros(shape1),
+                                        description="Disk wind source terms [g/cm²/s]")
+            self.gas.diskwind.S.updater = std.gas.S_diskwind
         # Pressure gradient parameter
         if self.gas.eta is None:
             self.gas.eta = Field(self, np.zeros(

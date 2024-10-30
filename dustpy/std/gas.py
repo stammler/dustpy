@@ -199,8 +199,12 @@ def jacobian(sim, x, *args, **kwargs):
 
     # Parameters
     nu = sim.gas.nu * sim.dust.backreaction.A
+    # Velocity contribution from dust back reaction
     v = sim.dust.backreaction.B * 2. * sim.gas.eta * sim.grid.r * sim.grid.OmegaK
+    # Velocity contribution from torque
     v += sim.gas.torque.v
+    # Velocity contribution from disk wind
+    v += sim.gas.diskwind.v
 
     # Helper variables for convenience
     r = sim.grid.r
@@ -353,6 +357,21 @@ def rho_midplane(sim):
     )
 
 
+def S_diskwind(sim):
+    """Function calculates the source (loss) terms due to disk winds.
+    
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+        
+    Returns
+    -------
+    S_diskwind : Field
+        Disk wind source terms."""
+    return -0.75 * sim.gas.diskwind.alpha * sim.gas.cs**2 * sim.gas.Sigma / ((sim.gas.diskwind.Lambda-1.)*sim.grid.r**2*sim.grid.OmegaK)
+
+
 def S_hyd(sim):
     """Function calculates the hydrodynamic source terms.
 
@@ -382,7 +401,8 @@ def S_tot(sim):
         Total surface density source terms"""
     return gas_f.s_tot(
         sim.gas.S.ext,
-        sim.gas.S.hyd
+        sim.gas.S.hyd,
+        sim.gas.diskwind.S
     )
 
 
@@ -405,6 +425,21 @@ def T_passive(sim):
     )
 
 
+def vdiskwind(sim):
+    """Function calculates the velocity contribution from disk winds.
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+
+    Returns
+    -------
+    vdiskwind : Field
+        Velocity contribution from disk winds"""
+    return -1.5 * sim.gas.diskwind.alpha * sim.gas.cs**2 / (sim.grid.r * sim.grid.OmegaK)
+
+
 def vrad(sim):
     """Function calculates the radial radial gas velocity.
 
@@ -423,12 +458,14 @@ def vrad(sim):
         sim.gas.eta,
         sim.grid.OmegaK,
         sim.grid.r,
-        sim.gas.v.visc
+        sim.gas.v.visc,
+        sim.gas.torque.v,
+        sim.gas.diskwind.v
     )
 
 
 def vtorque(sim):
-    """Function calculates the velocity profile due by a torque profile
+    """Function calculates the velocity contribution from a torque profile
 
     Parameters
     ----------
@@ -438,7 +475,7 @@ def vtorque(sim):
     Returns
     -------
     vtorque : array
-        Velocity profile"""
+        Velocity from torque"""
     return 2. * sim.gas.torque.Lambda / (sim.grid.OmegaK * sim.grid.r)
 
 
@@ -485,6 +522,7 @@ def _f_impl_1_direct(x0, Y0, dx, *args, **kwargs):
     # Getting keyword arguments. Default is standard gas.
     boundary = kwargs.get("boundary", Y0._owner.gas.boundary)
     Sext = kwargs.get("Sext", Y0._owner.gas.S.ext)
+    Sdw = kwargs.get("Sdw", Y0._owner.gas.diskwind.S)
 
     jac = Y0.jacobian(x0, dx)
     rhs = np.array(Y0)
@@ -570,7 +608,7 @@ def _f_impl_1_direct(x0, Y0, dx, *args, **kwargs):
     rhs[:] = gas_f.modified_rhs(
         dx,
         rhs,
-        Sext
+        Sext+Sdw
     )
 
     jac.data[:] = gas_f.modified_jacobian(
