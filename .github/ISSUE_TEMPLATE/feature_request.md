@@ -1,3 +1,12 @@
+---
+name: Feature request
+about: Suggest an idea for this project
+title: "[FEATURE] Descriptive title of the feature request"
+labels: ''
+assignees: ''
+
+---
+
 ### **If you have specific question about DustPy setups, that are not code related, please use the [discussion forum](https://github.com/stammler/dustpy/discussions).**
 
 
