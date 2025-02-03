@@ -11,6 +11,7 @@ py3.install_sources(python_sources, subdir: 'dustpy/std')
 
 dust_fortran_sources = [
   '../constants/constants.f90',
+  '../utils/math.f90',
   '../utils/interpolation.f90',
   'dust.f90'
   ]
@@ -23,7 +24,7 @@ gas_fortran_sources = [
 
 dust_source = custom_target('dust_fmodule.c',
   input: dust_fortran_sources,
-  output: ['dust_fmodule.c', 'dust_f-f2pywrappers.f'],
+  output: ['dust_fmodule.c', 'dust_f-f2pywrappers2.f90'],
   command: [py3, '-m', 'numpy.f2py', '--lower', '-m', 'dust_f', '@INPUT@', '--build-dir', 'dustpy/std']
   )
 
@@ -37,7 +38,7 @@ py3.extension_module('dust_f',
 
 gas_source = custom_target('gas_fmodule.c',
   input: gas_fortran_sources,
-  output: ['gas_fmodule.c', 'gas_f-f2pywrappers.f'],
+  output: ['gas_fmodule.c', 'gas_f-f2pywrappers2.f90'],
   command: [py3, '-m', 'numpy.f2py', '--lower', '-m', 'gas_f', '@INPUT@', '--build-dir', 'dustpy/std']
   )
 

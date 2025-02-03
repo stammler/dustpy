@@ -72,6 +72,8 @@ subroutine eta_midplane(Hp, P, r, ri, eta, Nr)
    ! -------
    ! eta(Nr) : eta pressure gradient parameter
 
+   use interpolation, only: interp1d
+
    implicit none
 
    double precision, intent(in)  :: Hp(Nr)
@@ -112,6 +114,8 @@ subroutine fi(Sigma, v, r, ri, F_i, Nr)
    ! Returns
    ! -------
    ! F_i(Nr+1) : Flux through grid cell interfaces.
+
+   use interpolation, only: interp1d
 
    implicit none
 
@@ -230,6 +234,7 @@ subroutine jac_abc(area, nu, r, ri, v, A, B, C, Nr)
    ! C(Nr) : super-diagoanl, C(Nr) not used
 
    use constants, only: twopi
+   use interpolation, only: interp1d
 
    implicit none
 
@@ -652,6 +657,8 @@ subroutine v_visc(Sigma, nu, r, ri, vvisc, Nr)
    ! Returns
    ! -------
    ! vvisc(Nr) : Radial viscous gas velocity
+
+   use interpolation, only: interp1d
 
    implicit none
 
