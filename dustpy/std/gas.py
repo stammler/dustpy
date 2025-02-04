@@ -1,4 +1,4 @@
-'''Module containing standard functions for the gas.'''
+"""Module containing standard functions for the gas."""
 
 import numpy as np
 import scipy.sparse as sp
@@ -199,7 +199,10 @@ def jacobian(sim, x, *args, **kwargs):
 
     # Parameters
     nu = sim.gas.nu * sim.dust.backreaction.A
+    # Velocity contribution from dust back reaction
     v = sim.dust.backreaction.B * 2. * sim.gas.eta * sim.grid.r * sim.grid.OmegaK
+    # Velocity contribution from torque
+    v += sim.gas.torque.v
 
     # Helper variables for convenience
     r = sim.grid.r
@@ -422,8 +425,24 @@ def vrad(sim):
         sim.gas.eta,
         sim.grid.OmegaK,
         sim.grid.r,
-        sim.gas.v.visc
+        sim.gas.v.visc,
+        sim.gas.torque.v,
     )
+
+
+def vtorque(sim):
+    """Function calculates the velocity contribution from a torque profile
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+
+    Returns
+    -------
+    vtorque : array
+        Velocity from torque"""
+    return 2. * sim.gas.torque.Lambda / (sim.grid.OmegaK * sim.grid.r)
 
 
 def vvisc(sim):

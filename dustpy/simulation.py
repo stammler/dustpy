@@ -167,12 +167,16 @@ class Simulation(Frame):
         self.gas.Sigma = None
         self.gas.SigmaFloor = None
         self.gas.T = None
+        self.gas.torque = Group(self, description="Torque parameters")
+        self.gas.torque.Lambda = None
+        self.gas.torque.v = None
+        self.gas.torque.updater = ["Lambda", "v"]
         self.gas.v = Group(self, description="Velocities")
         self.gas.v.rad = None
         self.gas.v.visc = None
         self.gas.v.updater = ["visc", "rad"]
         self.gas.updater = ["gamma", "mu", "T", "alpha", "cs", "Hp", "nu",
-                            "rho", "n", "mfp", "P", "eta", "S"]
+                            "rho", "n", "mfp", "P", "eta", "torque", "S"]
 
         # Grid quantities
         self.grid = Group(self, description="Grid quantities")
@@ -745,6 +749,14 @@ class Simulation(Frame):
             self.gas.T = Field(self, np.zeros(shape1),
                                description="Temperature [K]")
             self.gas.T.updater = std.gas.T_passive
+        # Torque parameters
+        if self.gas.torque.Lambda is None:
+            self.gas.torque.Lambda = Field(self, np.zeros(shape1), 
+                                           description="Specific angular momentum injection rate by torque [cm²/s²]")
+        if self.gas.torque.v is None:
+            self.gas.torque.v = Field(self, np.zeros(shape1),
+                                      description="Effective velocity imposed by torque [cm/s]")
+            self.gas.torque.v.updater = std.gas.vtorque
         # Velocities
         # Viscous accretion velocity
         if self.gas.v.visc is None:

@@ -606,7 +606,7 @@ subroutine timestep(S, Sigma, SigmaFloor, dt, Nr)
 end subroutine timestep
 
 
-subroutine v_rad(A, B, eta, OmegaK, r, vv, v, Nr)
+subroutine v_rad(A, B, eta, OmegaK, r, vv, vtor, v, Nr)
    ! Function calculates the radial gas velocity.
    !
    ! Parameters
@@ -617,6 +617,7 @@ subroutine v_rad(A, B, eta, OmegaK, r, vv, v, Nr)
    ! OmegaK(Nr) : Keplerian frequency
    ! r(Nr) : Radial grid cell centers
    ! vv(Nr) : Viscous gas velocity
+   ! vtor(Nr) : Velocity contribution from torque
    ! Nr : Number of radial grid cells
    !
    ! Returns
@@ -631,13 +632,14 @@ subroutine v_rad(A, B, eta, OmegaK, r, vv, v, Nr)
    double precision, intent(in)  :: OmegaK(Nr)
    double precision, intent(in)  :: r(Nr)
    double precision, intent(in)  :: vv(Nr)
+   double precision, intent(in)  :: vtor(Nr)
    double precision, intent(out) :: v(Nr)
    integer,          intent(in)  :: Nr
 
    double precision :: vb(Nr)
 
    vb(:) = 2.d0 * eta(:) * r(:) * OmegaK(:)
-   v(:) = A(:)*vv(:) + B(:)*vb(:)
+   v(:) = A(:)*vv(:) + B(:)*vb(:) + vtor(:)
 
 end subroutine v_rad
 
