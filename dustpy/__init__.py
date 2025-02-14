@@ -15,7 +15,7 @@ from dustpy import plot
 from dustpy.simulation import Simulation
 from dustpy import constants
 from dustpy import utils
-from dustpy.utils import hdf5writer
+from simframe.io.writers import hdf5writer
 
 from simframe.io.dump import readdump
 from importlib import metadata as _md
@@ -27,7 +27,13 @@ Simulation.__version__ = __version__
 plot.__version__ = __version__
 utils.__version__ = __version__
 
-__all__ = ["constants", "hdf5writer", "plot", "readdump", "Simulation"]
+__all__ = [
+    "constants",
+    "hdf5writer",
+    "plot",
+    "readdump",
+    "Simulation"
+]
 
 # Print warning if dustpy version is outdated
 utils.print_version_warning()

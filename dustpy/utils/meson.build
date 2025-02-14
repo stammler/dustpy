@@ -1,5 +1,6 @@
 python_sources = [
   '__init__.py',
+  'data.py',
   'boundary.py',
   'version.py'
   ]
