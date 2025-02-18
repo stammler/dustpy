@@ -1,30 +1,28 @@
-subroutine cs_adiabatic(gamma, mu, T, cs, Nr)
-   ! Subroutine calculates the adiabatic sound speed.
+subroutine cs_isothermal(mu, T, cs, Nr)
+   ! Subroutine calculates the isothermal sound speed.
    !
    ! Parameters
    ! ----------
-   ! gamma(Nr) : heat capacity ratios
    ! mu(Nr) : mean molecular masses of gas
    ! T(Nr) : Gas temperature
    ! Nr : Number of radial grid cells
    !
    ! Returns
    ! -------
-   ! cs(Nr) : adiabatic sound speed
+   ! cs(Nr) : isothermal sound speed
 
    use constants, only: k_B
 
    implicit none
 
-   double precision, intent(in)  :: gamma(Nr)
    double precision, intent(in)  :: mu(Nr)
    double precision, intent(in)  :: T(Nr)
    double precision, intent(out) :: cs(Nr)
    integer,          intent(in)  :: Nr
 
-   cs(:) = SQRT(gamma(:) * k_B * T(:) / mu(:))
+   cs(:) = SQRT(k_B * T(:) / mu(:))
 
-end subroutine cs_adiabatic
+end subroutine cs_isothermal
 
 
 subroutine enforce_floor(Sigma, SigmaFloor, R, Nr)
@@ -152,13 +150,12 @@ subroutine fi(Sigma, v, r, ri, F_i, Nr)
 end subroutine fi
 
 
-subroutine hp(cs, gam, OmegaK, h_p, Nr)
+subroutine hp(cs, OmegaK, h_p, Nr)
    ! Subroutine calculates the gas scale heights.
    !
    ! Parameters
    ! ----------
    ! cs(Nr) : sound speed
-   ! gam(Nr) : heat capacity ratios
    ! OmegaK(Nr) : Keplerian frequency
    ! Nr : Number of radial grid cells
    !
@@ -169,12 +166,11 @@ subroutine hp(cs, gam, OmegaK, h_p, Nr)
    implicit none
 
    double precision, intent(in)  :: cs(Nr)
-   double precision, intent(in)  :: gam(Nr)
    double precision, intent(in)  :: OmegaK(Nr)
    double precision, intent(out) :: h_p(Nr)
    integer,          intent(in)  :: Nr
 
-   h_p(:) = cs(:) / ( SQRT(gam(:)) * OmegaK(:) )
+   h_p(:) = cs(:) / * OmegaK(:)
 
 end subroutine hp
 
@@ -427,13 +423,12 @@ subroutine n_midplane(mu, rho, n, Nr)
 end subroutine n_midplane
 
 
-subroutine p_midplane(cs, gam, rho, P, Nr)
+subroutine p_midplane(cs, rho, P, Nr)
    ! Subroutine calculates the midplane gas pressure.
    !
    ! Parameters
    ! ----------
    ! cs(Nr) : Sound speed
-   ! gam(Nr) : Heat capacity ratios
    ! rho(Nr) : Midplane gas mass density
    ! Nr : Number of radial grid cells
    !
@@ -444,12 +439,11 @@ subroutine p_midplane(cs, gam, rho, P, Nr)
    implicit none
 
    double precision, intent(in)  :: cs(Nr)
-   double precision, intent(in)  :: gam(Nr)
    double precision, intent(in)  :: rho(Nr)
    double precision, intent(out) :: P(Nr)
    integer,          intent(in)  :: Nr
 
-   P(:) = rho(:) * cs(:)**2 / gam(:)
+   P(:) = rho(:) * cs(:)**2
 
 end subroutine p_midplane
 

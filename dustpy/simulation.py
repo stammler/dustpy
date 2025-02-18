@@ -50,7 +50,6 @@ class Simulation(Frame):
                                                                   }
                                                                ),
                                        "gas": SimpleNamespace(**{"alpha": 1.e-3,
-                                                                 "gamma": 1.4,
                                                                  "Mdisk": 0.05*c.M_sun,
                                                                  "mu": 2.3*c.m_p,
                                                                  "SigmaExp": -1.,
@@ -151,7 +150,6 @@ class Simulation(Frame):
         self.gas.cs = None
         self.gas.eta = None
         self.gas.Fi = None
-        self.gas.gamma = None
         self.gas.Hp = None
         self.gas.mfp = None
         self.gas.mu = None
@@ -175,7 +173,7 @@ class Simulation(Frame):
         self.gas.v.rad = None
         self.gas.v.visc = None
         self.gas.v.updater = ["visc", "rad"]
-        self.gas.updater = ["gamma", "mu", "T", "alpha", "cs", "Hp", "nu",
+        self.gas.updater = ["mu", "T", "alpha", "cs", "Hp", "nu",
                             "rho", "n", "mfp", "P", "eta", "torque", "S"]
 
         # Grid quantities
@@ -668,8 +666,8 @@ class Simulation(Frame):
         # Sound speed
         if self.gas.cs is None:
             self.gas.cs = Field(self, np.zeros(shape1),
-                                description="Sound speed [cm/s]")
-            self.gas.cs.updater = std.gas.cs_adiabatic
+                                description="Isothermal sound speed [cm/s]")
+            self.gas.cs.updater = std.gas.cs_isothermal
         # Pressure gradient parameter
         if self.gas.eta is None:
             self.gas.eta = Field(self, np.zeros(
@@ -680,11 +678,6 @@ class Simulation(Frame):
             self.gas.Fi = Field(self, np.zeros(shape1p1),
                                 description="Gas flux interfaces [g/cm/s]")
             self.gas.Fi.updater = std.gas.Fi
-        # Adiabatic index
-        if self.gas.gamma is None:
-            gamma = self.ini.gas.gamma * np.ones(shape1)
-            self.gas.gamma = Field(self, gamma,
-                                   description="Adiabatic index")
         # Pressure scale height
         if self.gas.Hp is None:
             self.gas.Hp = Field(self, np.zeros(shape1),

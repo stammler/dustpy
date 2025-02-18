@@ -103,9 +103,8 @@ def dt(sim):
     )
 
 
-def cs_adiabatic(sim):
-    """Function calculates the adiabatic sound speed of the gas. For the isothermal sound speed set
-    ``Simulation.gas.gamma = 1``.
+def cs_isothermal(sim):
+    """Function calculates the isothermal sound speed of the gas.
 
     Paramters
     ---------
@@ -116,8 +115,7 @@ def cs_adiabatic(sim):
     -------
     cs : Field
         Sound speed"""
-    return gas_f.cs_adiabatic(
-        sim.gas.gamma,
+    return gas_f.cs_isothermal(
         sim.gas.mu,
         sim.gas.T
     )
@@ -168,7 +166,6 @@ def Hp(sim):
         Pressure scale height"""
     return gas_f.hp(
         sim.gas.cs,
-        sim.gas.gamma,
         sim.grid.OmegaK
     )
 
@@ -332,7 +329,6 @@ def P_midplane(sim):
         Midplane pressure"""
     return gas_f.p_midplane(
         sim.gas.cs,
-        sim.gas.gamma,
         sim.gas.rho
     )
 
