@@ -13,9 +13,9 @@ from dustpy import std
 
 from simframe.io.writers import hdf5writer
 from dustpy.utils.boundary import Boundary
+from dustpy.utils.simplenamespace import SimpleNamespace
 
 import numpy as np
-from types import SimpleNamespace
 
 
 class Simulation(Frame):
