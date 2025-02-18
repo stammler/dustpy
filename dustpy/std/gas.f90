@@ -170,7 +170,7 @@ subroutine hp(cs, OmegaK, h_p, Nr)
    double precision, intent(out) :: h_p(Nr)
    integer,          intent(in)  :: Nr
 
-   h_p(:) = cs(:) / * OmegaK(:)
+   h_p(:) = cs(:) / OmegaK(:)
 
 end subroutine hp
 

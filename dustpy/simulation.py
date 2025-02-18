@@ -566,9 +566,9 @@ class Simulation(Frame):
             self.dust.St.updater = std.dust.St_Epstein_StokesI
         # Velocities
         if self.dust.v.frag is None:
-            vfrag = self.ini.dust.vfrag * np.ones(shape1)
+            vFrag = self.ini.dust.vFrag * np.ones(shape1)
             self.dust.v.frag = Field(
-                self, vfrag, description="Fragmentation velocity [cm/s]")
+                self, vFrag, description="Fragmentation velocity [cm/s]")
         if self.dust.v.rel.azi is None:
             self.dust.v.rel.azi = Field(self, np.zeros(
                 shape3), description="Relative azimuthal velocity [cm/s]")
