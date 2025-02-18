@@ -46,7 +46,7 @@ class Simulation(Frame):
                                                                   "excavatedMass": 1.,
                                                                   "fragmentDistribution": -11/6,
                                                                   "rhoMonomer": 1.67,
-                                                                  "vfrag": 100.
+                                                                  "vFrag": 100.
                                                                   }
                                                                ),
                                        "gas": SimpleNamespace(**{"alpha": 1.e-3,
