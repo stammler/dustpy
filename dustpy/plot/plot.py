@@ -1,15 +1,9 @@
 import dustpy.constants as c
-from dustpy.simulation import Simulation
 from dustpy.utils import read_data
 
-from types import SimpleNamespace
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
-from scipy.interpolate import interp1d
-from simframe.io.writers import hdf5writer
-import os
-import warnings
 
 
 def panel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limits=True, show_St1=True):
@@ -32,8 +26,6 @@ def panel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limits
         If True growth limits are plotted
     show_St1 : boolean, optional, default : True
         If True St=1 line is plotted"""
-
-    from dustpy.plot import __version__
 
     data = read_data(data, filename=filename, extension=extension)
 
@@ -164,9 +156,6 @@ def panel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limits
 
     fig.set_layout_engine("tight")
 
-    fig.text(0.99, 0.01, "DustPy v"+__version__, horizontalalignment="right",
-             verticalalignment="bottom")
-
     plt.show()
 
 
@@ -190,8 +179,6 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
         If True growth limits are plotted
     show_St1 : boolean, optional, default : True
         If True St=1 line is plotted"""
-
-    from dustpy.plot import __version__
 
     global plt00
     global plt00Dr
@@ -449,121 +436,4 @@ def ipanel(data, filename="data", extension="hdf5", im=0, ir=0, it=0, show_limit
     sliderMass.on_changed(update)
     sliderDist.on_changed(update)
 
-    fig.text(0.99, 0.01, "DustPy v"+__version__, horizontalalignment="right",
-             verticalalignment="bottom")
-
     plt.show()
-
-
-def _readdata(data, filename="data", extension="hdf5"):
-
-    ret = {}
-
-    if isinstance(data, Simulation):
-
-        m = data.grid.m[None, ...]
-        Nm = data.grid.Nm[None, ...]
-        r = data.grid.r[None, ...]
-        ri = data.grid.ri[None, ...]
-        Nr = data.grid.Nr[None, ...]
-        t = data.t[None, ...]
-        Nt = np.array([1])[None, ...]
-
-        SigmaDust = data.dust.Sigma[None, ...]
-        SigmaGas = data.gas.Sigma[None, ...]
-        eps = data.dust.eps[None, ...]
-
-        cs = data.gas.cs[None, ...]
-        delta = data.dust.delta.turb[None, ...]
-        OmegaK = data.grid.OmegaK[None, ...]
-        St = data.dust.St[None, ...]
-        vK = OmegaK[None, ...] * r
-        vFrag = data.dust.v.frag[None, ...]
-
-    elif os.path.isdir(data):
-
-        writer = hdf5writer()
-
-        # Setting up writer
-        writer.datadir = data
-        writer.extension = extension
-        writer.filename = filename
-
-        m = writer.read.sequence("grid.m")
-        Nm = writer.read.sequence("grid.Nm")
-        r = writer.read.sequence("grid.r")
-        ri = writer.read.sequence("grid.ri")
-        Nr = writer.read.sequence("grid.Nr")
-        t = writer.read.sequence("t")
-        Nt = np.array([len(t)])
-
-        SigmaDust = writer.read.sequence("dust.Sigma")
-        SigmaGas = writer.read.sequence("gas.Sigma")
-        eps = writer.read.sequence("dust.eps")
-
-        cs = writer.read.sequence("gas.cs")
-        delta = writer.read.sequence("dust.delta.turb")
-        OmegaK = writer.read.sequence("grid.OmegaK")
-        St = writer.read.sequence("dust.St")
-        vK = OmegaK * r
-        vFrag = writer.read.sequence("dust.v.frag")
-
-    else:
-
-        raise RuntimeError("Unknown data type.")
-
-    # Masses
-    Mgas = (np.pi * (ri[..., 1:]**2 - ri[..., :-1]**2) * SigmaGas[...]).sum(-1)
-    Mdust = (np.pi * (ri[..., 1:]**2 - ri[..., :-1]**2)
-             * SigmaDust[...].sum(-1)).sum(-1)
-
-    # Transformation of the density distribution
-    a = np.array(np.mean(m[..., 1:] / m[..., :-1], axis=-1))
-    dm = np.array(2. * (a - 1.) / (a + 1.))
-    sigmaDust = SigmaDust[...] / dm[..., None, None]
-
-    # Fragmentation limit
-    b = vFrag**2 / (delta * cs**2)
-    with warnings.catch_warnings():
-        warnings.filterwarnings(
-            'ignore',
-            r'invalid value encountered in sqrt')
-        StFr = 1 / (2 * b) * (3 - np.sqrt(9 - 4 * b**2))
-
-    # Drift limit
-    p = SigmaGas * OmegaK * cs / np.sqrt(2.*np.pi)
-    StDr = np.zeros_like(StFr)
-    for i in range(int(Nt)):
-        _f = interp1d(np.log10(r[i, ...]), np.log10(
-            p[i, ...]), fill_value='extrapolate')
-        pi = 10.**_f(np.log10(ri[i, ...]))
-        gamma = np.abs(r[i, ...] / p[i, ...] *
-                       np.diff(pi) / np.diff(ri[i, ...]))
-        StDr[i, ...] = eps[i, ...] / gamma * (vK[i, ...] / cs[i, ...])**2
-
-    ret["m"] = m
-    ret["Nm"] = Nm
-    ret["r"] = r
-    ret["ri"] = ri
-    ret["Nr"] = Nr
-    ret["t"] = t
-    ret["Nt"] = Nt
-
-    ret["SigmaDust"] = SigmaDust
-    ret["sigmaDust"] = sigmaDust
-    ret["SigmaGas"] = SigmaGas
-    ret["eps"] = eps
-
-    ret["Mdust"] = Mdust
-    ret["Mgas"] = Mgas
-
-    ret["cs"] = cs
-    ret["delta"] = delta
-    ret["OmegaK"] = OmegaK
-    ret["St"] = St
-    ret["StDr"] = StDr
-    ret["StFr"] = StFr
-    ret["vK"] = vK
-    ret["vFrag"] = vFrag
-
-    return SimpleNamespace(**ret)
