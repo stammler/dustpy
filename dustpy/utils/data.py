@@ -37,7 +37,7 @@ def read_data(data, filename="data", extension="hdf5", Na=50):
         # Dust
         deltaTurb = data.dust.delta.turb[None, ...]
         eps = data.dust.eps[None, ...]
-        SigmaDust = data.dust[None, ...]
+        SigmaDust = data.dust.Sigma[None, ...]
         St = data.dust.St[None, ...]
         vFrag = data.dust.v.frag[None, ...]
         # Gas
