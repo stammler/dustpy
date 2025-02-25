@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -6,23 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>5. Dust Coagulation &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
-      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -109,12 +107,12 @@
 <section id="5.-Dust-Coagulation">
 <h1>5. Dust Coagulation<a class="headerlink" href="#5.-Dust-Coagulation" title="Link to this heading"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> calculates the collisional evolution of dust by solving the Smolukowski equation</p>
-<p><span class="math notranslate nohighlight">\(\begin{split} \frac{\partial}{\partial t} f\left( m \right) = &amp;\int\limits_0^\infty \int\limits_0^{m'} K\left( m, m', m'' \right) f\left( m' \right) f\left( m'' \right) R\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\\ &amp;-f\left( m \right) \int\limits_0^\infty f\left( m' \right) R\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
-<p>Where <span class="math notranslate nohighlight">\(f\left( m \right)\)</span> is the dust mass distribution, <span class="math notranslate nohighlight">\(R\)</span> the collision rates, and <span class="math notranslate nohighlight">\(K\)</span> defines the collision outcomes.</p>
-<p>The first integral sums over all possible particle collisions and <span class="math notranslate nohighlight">\(K\left( m, m', m'' \right)\)</span> defines the amount that gets added to <span class="math notranslate nohighlight">\(f\left( m \right)\)</span> if particles <span class="math notranslate nohighlight">\(m'\)</span> and <span class="math notranslate nohighlight">\(m''\)</span> collide. The second integral removes that particles from the distribution that collided with other particles.</p>
+<p><span class="math notranslate nohighlight">\(\Large \begin{split} \frac{\partial}{\partial t} f\left( m \right) = &amp;\int\limits_0^\infty \int\limits_0^{m'} K\left( m, m', m'' \right) f\left( m' \right) f\left( m'' \right) R\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\\ &amp;-f\left( m \right) \int\limits_0^\infty f\left( m' \right) R\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
+<p>Where <span class="math notranslate nohighlight">\(\large f\left( m \right)\)</span> is the dust mass distribution, <span class="math notranslate nohighlight">\(\large R\)</span> the collision rates, and <span class="math notranslate nohighlight">\(\large K\)</span> defines the collision outcomes.</p>
+<p>The first integral sums over all possible particle collisions and <span class="math notranslate nohighlight">\(\large K\left( m, m', m'' \right)\)</span> defines the amount that gets added to <span class="math notranslate nohighlight">\(\large f\left( m \right)\)</span> if particles <span class="math notranslate nohighlight">\(\large m'\)</span> and <span class="math notranslate nohighlight">\(\large m''\)</span> collide. The second integral removes that particles from the distribution that collided with other particles.</p>
 <p>This equation can be generalized to</p>
-<p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} f\left( m \right) = \int\limits_0^\infty \int\limits_0^{m'} M\left( m, m', m'' \right) f\left( m' \right) f\left( m'' \right) R\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\)</span></p>
-<p>where the matrix <span class="math notranslate nohighlight">\(M\)</span> has both the positive and the negative terms. Also note that the integral over <span class="math notranslate nohighlight">\(m''\)</span> only goes up to mass <span class="math notranslate nohighlight">\(m'\)</span>. Since the collisions are symmetric this saves some computation.</p>
+<p><span class="math notranslate nohighlight">\(\Large \frac{\partial}{\partial t} f\left( m \right) = \int\limits_0^\infty \int\limits_0^{m'} M\left( m, m', m'' \right) f\left( m' \right) f\left( m'' \right) R\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\)</span></p>
+<p>where the matrix <span class="math notranslate nohighlight">\(M\)</span> has both the positive and the negative terms. Also note that the integral over <span class="math notranslate nohighlight">\(\large m''\)</span> only goes up to mass <span class="math notranslate nohighlight">\(\large m'\)</span>. Since the collisions are symmetric this saves some computation.</p>
 <p>For details on the numerical implementation, we refer to <a class="reference external" href="https://doi.org/10.1051/0004-6361:20077759">Brauer et al. (2008)</a> and <a class="reference external" href="https://doi.org/10.1051/0004-6361/200913731">Birnstiel et al. (2010)</a>.</p>
 <p>The standard model of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> knows three different collision outcomes: sticking, erosion, and full fragmentation.</p>
 <div class="nbinput nblast docutils container">
@@ -183,9 +181,9 @@ True
 </pre></div></div>
 </div>
 <p>The mass error if this happens is small for a single collision, but it effectively halts the growth of larger particles that primarily grow by sweeping up many smaller particles. There are techniques to prevent this from happening by re-arranging sums. Please have a look at apendices A and B of <a class="reference external" href="https://doi.org/10.1051/0004-6361:20077759">Brauer et al. (2008)</a> for a detailed description of this mechanism.</p>
-<p>The matrix <span class="math notranslate nohighlight">\(M\)</span> has for sticking at maximum four non-zero values for any pair of particle collision: two negative terms for the colliding particles that get removed from the distribution and two positive terms for the two mass bins that border the mass of the resulting particle. If two particles of identical mass collide <span class="math notranslate nohighlight">\(M\)</span> has only three non-zero values: one negative and two positives.</p>
-<p>Since <span class="math notranslate nohighlight">\(M\)</span> is in the case of sticking a sparse matrix that contains mostly zeroes, we only store the non-zero elements in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.stick</span></code> and <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.stick_ind</span></code>.</p>
-<p>The first field is the four non-zero elements of <span class="math notranslate nohighlight">\(M\)</span>, while the latter field stores the positions of those elements within <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<p>The matrix <span class="math notranslate nohighlight">\(\large M\)</span> has for sticking at maximum four non-zero values for any pair of particle collision: two negative terms for the colliding particles that get removed from the distribution and two positive terms for the two mass bins that border the mass of the resulting particle. If two particles of identical mass collide <span class="math notranslate nohighlight">\(\large M\)</span> has only three non-zero values: one negative and two positives.</p>
+<p>Since <span class="math notranslate nohighlight">\(\large M\)</span> is in the case of sticking a sparse matrix that contains mostly zeroes, we only store the non-zero elements in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.stick</span></code> and <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.stick_ind</span></code>.</p>
+<p>The first field is the four non-zero elements of <span class="math notranslate nohighlight">\(\large M\)</span>, while the latter field stores the positions of those elements within <span class="math notranslate nohighlight">\(\large M\)</span>.</p>
 <p>Let’s look at a collision of two particles <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
@@ -196,7 +194,7 @@ True
 </pre></div>
 </div>
 </div>
-<p>The non-zero elemets of <span class="math notranslate nohighlight">\(M\)</span> are</p>
+<p>The non-zero elemets of <span class="math notranslate nohighlight">\(\large M\)</span> are</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -233,7 +231,7 @@ True
 </pre></div></div>
 </div>
 <p>As you can see, we remove one particle each from bins 3 and 5 and add about <span class="math notranslate nohighlight">\(75\,\%\)</span> of a particle to mass bin 6 and about <span class="math notranslate nohighlight">\(25\,\%\)</span> of a particle to mass bin 7.</p>
-<p>To check for mass conservation we have to multiply the non-zero elements in <span class="math notranslate nohighlight">\(M\)</span> with their respective masses and sum up all elements.</p>
+<p>To check for mass conservation we have to multiply the non-zero elements in <span class="math notranslate nohighlight">\(\large M\)</span> with their respective masses and sum up all elements.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -250,8 +248,8 @@ True
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Mass error: 6.5e-27 g
-Rel. error: 8.2e-16
+Mass error: 1.2e-27 g
+Rel. error: 1.5e-16
 </pre></div></div>
 </div>
 <p>The relative mass error is of the order of machine precision. This as good as it can get.</p>
@@ -324,7 +322,7 @@ Rel. error: 8.2e-16
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
--1.0000000000000004
+-1.000000000000001
 </pre></div></div>
 </div>
 </section>
@@ -332,11 +330,11 @@ Rel. error: 8.2e-16
 <h2>Fragmentation &amp; Erosion<a class="headerlink" href="#Fragmentation-&-Erosion" title="Link to this heading"></a></h2>
 <p>If the collision velocity exceeds the fragmentation velocity particles fragment. Here we distinguish two cases: Either the particles are roughly equal sized, then both particles fully fragment. Or one particle is significantly larger than the other, then only the smaller particle fragments, but it is chipping off some mass of the larger particle. The latter case is called erosion.</p>
 <p>The threshold of these two cases can be set with <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.erosionMassRatio</span></code>. By default this is <span class="math notranslate nohighlight">\(10\)</span>, meaning both particles fully fragment if their mass ratio is smaller than <span class="math notranslate nohighlight">\(10\)</span>. Otherwise we have erosion. This value has to be set, before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
-<p>For fragmentation we follow the method described in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020)</a>, who developed an <span class="math notranslate nohighlight">\(\mathcal{O} \left( N_m^2 \right)\)</span> algorithm for fragmentation. We modified it, however, to make it strictly mass conserving.</p>
+<p>For fragmentation we follow the method described in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020)</a>, who developed an <span class="math notranslate nohighlight">\(\large \mathcal{O} \left( N_m^2 \right)\)</span> algorithm for fragmentation. We modified it, however, to make it strictly mass conserving.</p>
 <p>In either case, full fragmentation and erosion, we produce a distribution of fragments of kind</p>
-<p><span class="math notranslate nohighlight">\(n\left( m \right) \mathrm{d}m \propto m^\gamma \mathrm{d}m\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(\gamma\)</span> has to be set in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.fragmentDistribution</span></code> before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>. By default it is <span class="math notranslate nohighlight">\(-\frac{11}{6}\)</span> taken from <a class="reference external" href="https://doi.org/10.1029/JB074i010p02531">Dohnanyi (1969)</a>. From this we can calculate a normalized distribution of fragments with a given maximum fragment size.</p>
-<p>This, for example, is the fragment distribution up to mass bin <span class="math notranslate nohighlight">\(15\)</span>. It is similar to the <span class="math notranslate nohighlight">\(\varphi\)</span> in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020)</a></p>
+<p><span class="math notranslate nohighlight">\(\Large n\left( m \right) \mathrm{d}m \propto m^\gamma \mathrm{d}m\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\large \gamma\)</span> has to be set in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.fragmentDistribution</span></code> before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>. By default it is <span class="math notranslate nohighlight">\(\large -\frac{11}{6}\)</span> taken from <a class="reference external" href="https://doi.org/10.1029/JB074i010p02531">Dohnanyi (1969)</a>. From this we can calculate a normalized distribution of fragments with a given maximum fragment size.</p>
+<p>This, for example, is the fragment distribution up to mass bin <span class="math notranslate nohighlight">\(15\)</span>. It is similar to the <span class="math notranslate nohighlight">\(\large \varphi\)</span> in <a class="reference external" href="https://doi.org/10.3847/1538-4365/ab7b71">Rafikov et al. (2020)</a></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -392,7 +390,7 @@ Rel. error: 8.2e-16
 </pre></div></div>
 </div>
 <p>That means it can be simply multiplied by any desired total fragment mass.</p>
-<p>You may have noticed that the exponent of the fragment distribution is not identical to <span class="math notranslate nohighlight">\(\gamma\)</span> from above. Our <span class="math notranslate nohighlight">\(\varphi\)</span> here is already tranformed to code units, meaning the mass density integrated over the mass bin. Since the mass bin widths increase with increasing masses, this changes the slope.</p>
+<p>You may have noticed that the exponent of the fragment distribution is not identical to <span class="math notranslate nohighlight">\(\large \gamma\)</span> from above. Our <span class="math notranslate nohighlight">\(\large \varphi\)</span> here is already tranformed to code units, meaning the mass density integrated over the mass bin. Since the mass bin widths increase with increasing masses, this changes the slope.</p>
 <p>In a collision resulting in full fragmentation, the largest fragment size is equal to the larger collision partner. In an erosive collision the largest fragment has the size of the smaller collision partner. The index of the largest fragment is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.lf_ind</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
@@ -408,7 +406,7 @@ Rel. error: 8.2e-16
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-5
+np.int32(5)
 </pre></div></div>
 </div>
 <p>In this example, this is equal to the index of the larger particle</p>
@@ -426,7 +424,7 @@ Rel. error: 8.2e-16
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-True
+np.True_
 </pre></div></div>
 </div>
 <p>suggesting that this is a collision that would result in full fragmentation (if the collision velocity is high enough).</p>
@@ -445,7 +443,7 @@ True
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
--1
+np.int32(-1)
 </pre></div></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.A</span></code> stores the total fragment mass resulting from a collision of particles <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code>. In a collision resulting in full fragmentation the total fragment mass is identical to the total mass of both collision partners.</p>
@@ -464,12 +462,12 @@ True
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-True
+np.True_
 </pre></div></div>
 </div>
 <p>In an erosive collision the total mass of fragments is given by</p>
-<p><span class="math notranslate nohighlight">\(m_\mathrm{fragments} = \left( 1 + \chi \right)m_\mathrm{small}\)</span>,</p>
-<p>where <span class="math notranslate nohighlight">\(\chi\)</span> is the amount of mass that gets excavated from the larger collision partner in units of the smaller collision partner. This value can be set in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.excavatedMass</span></code> and is by default <span class="math notranslate nohighlight">\(1\)</span>. This value has to be set before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
+<p><span class="math notranslate nohighlight">\(\Large m_\mathrm{fragments} = \left( 1 + \chi \right)m_\mathrm{small}\)</span>,</p>
+<p>where <span class="math notranslate nohighlight">\(\large \chi\)</span> is the amount of mass that gets excavated from the larger collision partner in units of the smaller collision partner. This value can be set in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.excavatedMass</span></code> and is by default <span class="math notranslate nohighlight">\(1\)</span>. This value has to be set before calling <code class="docutils literal notranslate"><span class="pre">Simulation.initialize()</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
@@ -487,7 +485,7 @@ True
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-True
+np.True_
 </pre></div></div>
 </div>
 <p>In an erosive collision event the larger particle loses mass, which has to be taken into account. Since the new mass of the larger particle after an erosive collision will most likely not directly fall onto a mass bin, it has to be distributed between the two adjacent mass bins. <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.rm_ind</span></code> is the lower mass index into which the remnant mass is distributed, while <code class="docutils literal notranslate"><span class="pre">Simulation.dust.coagulation.eps</span></code> is the fraction of mass that is distributed into that bin. That means
@@ -532,7 +530,7 @@ Rel. error: 1.2e-16
 <h2>Probabilities<a class="headerlink" href="#Probabilities" title="Link to this heading"></a></h2>
 <p>To decide wether a collision event results in sticking or fragmentation, the fragmentation probability is calculated with a smooth transition between sticking and fragmentation around the fragmentation velocity. This probability is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.p.frag</span></code>.</p>
 <p>The sticking probability is simply given by</p>
-<p><span class="math notranslate nohighlight">\(p_\mathrm{stick} = 1 - p_\mathrm{frag}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large p_\mathrm{stick} = 1 - p_\mathrm{frag}\)</span>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
@@ -576,16 +574,16 @@ True
 </section>
 <section id="Bouncing">
 <h2>Bouncing<a class="headerlink" href="#Bouncing" title="Link to this heading"></a></h2>
-<p>Bouncing is by default not implemented. If you want to include bouncing collisions into your simulations you have to set functions for calculating <span class="math notranslate nohighlight">\(p_\mathrm{stick}\)</span> and <span class="math notranslate nohighlight">\(p_\mathrm{frag}\)</span>, such that the sum of both is smaller than <span class="math notranslate nohighlight">\(1\)</span>. If neither sticking, nor fragmentation occurs, the mass distribution does not change, i.e., we have bouncing.</p>
+<p>Bouncing is by default not implemented. If you want to include bouncing collisions into your simulations you have to set functions for calculating <span class="math notranslate nohighlight">\(\large p_\mathrm{stick}\)</span> and <span class="math notranslate nohighlight">\(\large p_\mathrm{frag}\)</span>, such that the sum of both is smaller than <span class="math notranslate nohighlight">\(1\)</span>. If neither sticking, nor fragmentation occurs, the mass distribution does not change, i.e., we have bouncing.</p>
 </section>
 <section id="Collision-Rates">
 <h2>Collision Rates<a class="headerlink" href="#Collision-Rates" title="Link to this heading"></a></h2>
-<p>The collision rates <span class="math notranslate nohighlight">\(R\)</span> as defined above are given by</p>
-<p><span class="math notranslate nohighlight">\(\begin{split} R_\mathrm{stick} &amp;= k \cdot p_\mathrm{stick}\\ R_\mathrm{frag} &amp;= k \cdot p_\mathrm{frag} \end{split}\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(k\)</span> is given by</p>
-<p><span class="math notranslate nohighlight">\(k = \frac{1}{1+\delta_{ij}}\frac{\pi\left( a_i + a_j \right)^2}{\sqrt{2\pi\left( H_i^2 + H_j^2 \right)}} v_\mathrm{rel}\)</span>,</p>
+<p>The collision rates <span class="math notranslate nohighlight">\(\large R\)</span> as defined above are given by</p>
+<p><span class="math notranslate nohighlight">\(\Large \begin{split} R_\mathrm{stick} &amp;= k \cdot p_\mathrm{stick}\\ R_\mathrm{frag} &amp;= k \cdot p_\mathrm{frag} \end{split}\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\large k\)</span> is given by</p>
+<p><span class="math notranslate nohighlight">\(\Large k = \frac{1}{1+\delta_{ij}}\frac{\pi\left( a_i + a_j \right)^2}{\sqrt{2\pi\left( H_i^2 + H_j^2 \right)}} v_\mathrm{rel}\)</span>,</p>
 <p>which is the product of geometrical crosssection and relative velocity devided by a normalization factor that accounts for the two-dimensional structure of the disk. See (A.14) in appendix 2 of <a class="reference external" href="https://doi.org/10.1051/0004-6361/200913731">Birnstiel et al. (2010)</a> for details on this.</p>
-<p><span class="math notranslate nohighlight">\(k\)</span> is stored for every possible particle collision at any location in the disk in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.kernel</span></code>.</p>
+<p><span class="math notranslate nohighlight">\(\large k\)</span> is stored for every possible particle collision at any location in the disk in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.kernel</span></code>.</p>
 </section>
 <section id="Coagulation-Sources">
 <h2>Coagulation Sources<a class="headerlink" href="#Coagulation-Sources" title="Link to this heading"></a></h2>
@@ -607,9 +605,9 @@ True
 <div class="highlight"><pre>
 [[ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00
    0.00000000e+00  0.00000000e+00]
- [-6.23483044e-08 -6.59511337e-08 -4.67031877e-08 ...  0.00000000e+00
+ [-6.22971584e-08 -6.59093134e-08 -4.66674707e-08 ...  0.00000000e+00
    0.00000000e+00  0.00000000e+00]
- [-4.88452102e-08 -5.16638811e-08 -3.65876621e-08 ...  0.00000000e+00
+ [-4.88007322e-08 -5.16275114e-08 -3.65565930e-08 ...  0.00000000e+00
    0.00000000e+00  0.00000000e+00]
  ...
  [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00

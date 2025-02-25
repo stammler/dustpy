@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -6,23 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>7. Gas Evolution &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
-      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -112,13 +110,13 @@
 <section id="7.-Gas-Evolution">
 <h1>7. Gas Evolution<a class="headerlink" href="#7.-Gas-Evolution" title="Link to this heading"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> solves gas evolution with an implicit scheme. It is solving by default the following equation for a viscously evolving disk</p>
-<p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{g} + \frac{1}{r}\frac{\partial}{\partial r} \left( r\Sigma_\mathrm{g}v_\mathrm{rad} \right) = S_\mathrm{ext}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \frac{\partial}{\partial t} \Sigma_\mathrm{g} + \frac{1}{r}\frac{\partial}{\partial r} \left( r\Sigma_\mathrm{g}v_\mathrm{rad} \right) = S_\mathrm{ext}\)</span>.</p>
 <p>Where the radial gas velocity is given by</p>
-<p><span class="math notranslate nohighlight">\(v_\mathrm{rad} = Av_\mathrm{visc} + 2B\eta v_\mathrm{K}\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are the dust backreaction coefficients <code class="docutils literal notranslate"><span class="pre">Simulation.dust.backreaction</span></code> and the viscous accretion velocity is given by</p>
-<p><span class="math notranslate nohighlight">\(v_\mathrm{visc} = -\frac{3}{\Sigma_\mathrm{g}\sqrt{r}} \frac{\partial}{\partial r} \left( \Sigma_\mathrm{g} \nu \sqrt{r} \right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large v_\mathrm{rad} = Av_\mathrm{visc} + 2B\eta v_\mathrm{K}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\large A\)</span> and <span class="math notranslate nohighlight">\(\large B\)</span> are the dust backreaction coefficients <code class="docutils literal notranslate"><span class="pre">Simulation.dust.backreaction</span></code> and the viscous accretion velocity is given by</p>
+<p><span class="math notranslate nohighlight">\(\Large v_\mathrm{visc} = -\frac{3}{\Sigma_\mathrm{g}\sqrt{r}} \frac{\partial}{\partial r} \left( \Sigma_\mathrm{g} \nu \sqrt{r} \right)\)</span></p>
 <p>with the kinematic viscosity <span class="math notranslate nohighlight">\(\nu\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(S_\mathrm{ext}\)</span> are the external source/loss terms, e.g. due to infall onto the disk or accretion of gas onto a planet.</p>
+<p><span class="math notranslate nohighlight">\(\large S_\mathrm{ext}\)</span> are the external source/loss terms, e.g. due to infall onto the disk or accretion of gas onto a planet.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -133,12 +131,12 @@
 <section id="Hydrodynamics">
 <h2>Hydrodynamics<a class="headerlink" href="#Hydrodynamics" title="Link to this heading"></a></h2>
 <p>The implicit matrix equation that is solved for gas evolution is given by</p>
-<p><span class="math notranslate nohighlight">\(\frac{\vec{\Sigma}_\mathrm{g}^{n+1}-\vec{\Sigma}_\mathrm{g}^{n}}{\Delta t} = \mathbb{J} \cdot \vec{\Sigma}_\mathrm{g}^{n+1} + \vec{S}_\mathrm{ext},\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \frac{\vec{\Sigma}_\mathrm{g}^{n+1}-\vec{\Sigma}_\mathrm{g}^{n}}{\Delta t} = \mathbb{J} \cdot \vec{\Sigma}_\mathrm{g}^{n+1} + \vec{S}_\mathrm{ext},\)</span></p>
 <p>which can be written as</p>
-<p><span class="math notranslate nohighlight">\(\begin{split} \left( \mathbb{1} - \Delta t\, \mathbb{J} \right) \cdot \vec{\Sigma}_\mathrm{g}^{n+1} &amp;= \vec{\Sigma}_\mathrm{g}^{n} + \Delta t\, \vec{S}_\mathrm{ext}\\ &amp;\equiv \vec{R}^n, \end{split}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \begin{split} \left( \mathbb{1} - \Delta t\, \mathbb{J} \right) \cdot \vec{\Sigma}_\mathrm{g}^{n+1} &amp;= \vec{\Sigma}_\mathrm{g}^{n} + \Delta t\, \vec{S}_\mathrm{ext}\\ &amp;\equiv \vec{R}^n, \end{split}\)</span></p>
 <p>with</p>
-<p><span class="math notranslate nohighlight">\(\vec{R}^n = \vec{\Sigma}_\mathrm{g}^{n} + \Delta t\, \vec{S}_\mathrm{ext}\)</span>.</p>
-<p>The Jacobian <span class="math notranslate nohighlight">\(\mathbb{J}\)</span> is a tri-diagonal matrix, since the grid cells only interact with their neighbouring grid cells.</p>
+<p><span class="math notranslate nohighlight">\(\Large \vec{R}^n = \vec{\Sigma}_\mathrm{g}^{n} + \Delta t\, \vec{S}_\mathrm{ext}\)</span>.</p>
+<p>The Jacobian <span class="math notranslate nohighlight">\(\large \mathbb{J}\)</span> is a tri-diagonal matrix, since the grid cells only interact with their neighbouring grid cells.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -174,16 +172,16 @@
 </div>
 <p>Notable exceptions are the first and the last row, which are used to set the boundary conditions. They require up to three elements to set the gradients if needed.</p>
 <p>In the default model the inner boundary condition is set to constant gradient, which requires the following values</p>
-<p><span class="math notranslate nohighlight">\(\begin{split} J_{1,\,1} &amp;= 0 \\ J_{1,\,2} &amp;= \frac{1}{\Delta t} \frac{r_2}{r_1} \left( 1 + \frac{r_2}{r_3} \cdot \frac{r_2-r_1}{r_3-r_1} \right) \\ J_{1,\,3} &amp;= -\frac{1}{\Delta t} \frac{r_2}{r_1} \cdot \frac{r_2-r_1}{r_3-r_1} \\ R_1 &amp;= 0. \end{split}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \begin{split} J_{1,\,1} &amp;= 0 \\ J_{1,\,2} &amp;= \frac{1}{\Delta t} \frac{r_2}{r_1} \left( 1 + \frac{r_2}{r_3} \cdot \frac{r_2-r_1}{r_3-r_1} \right) \\ J_{1,\,3} &amp;= -\frac{1}{\Delta t} \frac{r_2}{r_1} \cdot \frac{r_2-r_1}{r_3-r_1} \\ R_1 &amp;= 0. \end{split}\)</span></p>
 <p>The outer boundary is set to floor value, which requires</p>
-<p><span class="math notranslate nohighlight">\(\begin{split} J_{N,\,i} &amp;= 0 \\ R_N &amp;= \Sigma_\mathrm{floor}. \end{split}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \begin{split} J_{N,\,i} &amp;= 0 \\ R_N &amp;= \Sigma_\mathrm{floor}. \end{split}\)</span></p>
 <p>The implicit integration schemes that come with <code class="docutils literal notranslate"><span class="pre">simframe</span></code> only integrate equations of kind</p>
-<p><span class="math notranslate nohighlight">\(\left( \mathbb{1} - \Delta t\, \mathbb{J} \right) \cdot \vec{Y}^{n+1} = \vec{Y}^n\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \left( \mathbb{1} - \Delta t\, \mathbb{J} \right) \cdot \vec{Y}^{n+1} = \vec{Y}^n\)</span>.</p>
 <div class="line-block">
 <div class="line">We’ve therefore creates a custom integration schemes for our needs.</div>
 <div class="line">Whenever <code class="docutils literal notranslate"><span class="pre">Simulation.gas.Sigma.jacobian()</span></code> is called, the right-hand side of our equation is calculated and stored in a hidden field <code class="docutils literal notranslate"><span class="pre">Simulation.gas._rhs</span></code>, that can be accessed by our integration scheme.</div>
 </div>
-<p>The first and the last rows of the Jacobian, which contain the boundary conditions do not contain the time step <span class="math notranslate nohighlight">\(\Delta t\)</span>, since this is not necessarily known when calculating the Jacobian. The integration scheme will add the term containing the time step.</p>
+<p>The first and the last rows of the Jacobian, which contain the boundary conditions do not contain the time step <span class="math notranslate nohighlight">\(\large \Delta t\)</span>, since this is not necessarily known when calculating the Jacobian. The integration scheme will add the term containing the time step.</p>
 <p>The custom integration scheme can be found in <code class="docutils literal notranslate"><span class="pre">dustpy.std.gas.impl_1_direct</span></code>.</p>
 <p>The hydrodynamic source terms can be calculated with a matrix multiplication of the Jacobian with the gas surface density.</p>
 <div class="nbinput docutils container">
@@ -200,18 +198,18 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([ 0.00000000e+00, -1.22296714e-11, -5.34188528e-12, -3.18365261e-12,
-       -1.83335703e-12, -9.98169223e-13, -4.94710783e-13, -2.07670081e-13,
-       -6.21243606e-14, -4.70797667e-15,  6.77187596e-15,  3.51664716e-15,
-        6.82454236e-16,  4.76327403e-17,  0.00000000e+00])
+array([ 0.00000000e+00, -1.03359588e-11, -4.51471707e-12, -2.69067755e-12,
+       -1.54946950e-12, -8.43606966e-13, -4.18106923e-13, -1.75513252e-13,
+       -5.25046677e-14, -3.97896651e-15,  5.72327978e-15,  2.97210931e-15,
+        5.76779101e-16,  4.02570131e-17,  0.00000000e+00])
 </pre></div></div>
 </div>
 <p>However, the first and the last element will not have the correct value, since they contain the instructions for the boundaries without the time step.</p>
 <p>The interface fluxes and the gas velocity will be calculated after the integration step, when the new values of the gas surface density will be accessible. Changes to the fluxes or the gas velocities will therefore not influence the gas evolution. In other words, you cannot turn off the hydrodynamic gas evolution by setting the viscous velocity to zero.</p>
 <section id="Turning-off-Hydrodynamics">
 <h3>Turning off Hydrodynamics<a class="headerlink" href="#Turning-off-Hydrodynamics" title="Link to this heading"></a></h3>
-<p>The diagonals of the Jacobian contain information about the grid <span class="math notranslate nohighlight">\(r\)</span>, the viscosity <span class="math notranslate nohighlight">\(\nu\)</span>, and the backreaction quantities, as seen in the accretion equation above. To turn off only the gas hydrodynamics, but not the external sources, one has to set the Jacobian to zero (except for the boundaries). This can be achieved by setting the viscosity to zero and unsetting its updater.</p>
-<p><strong>Note:</strong> This is only true, if there is no backreaction, i.e., <span class="math notranslate nohighlight">\(A=1\)</span> and <span class="math notranslate nohighlight">\(B=0\)</span>. Otherwise, the interaction with the dust would still influence the gas.</p>
+<p>The diagonals of the Jacobian contain information about the grid <span class="math notranslate nohighlight">\(\large r\)</span>, the viscosity <span class="math notranslate nohighlight">\(\large \nu\)</span>, and the backreaction quantities, as seen in the accretion equation above. To turn off only the gas hydrodynamics, but not the external sources, one has to set the Jacobian to zero (except for the boundaries). This can be achieved by setting the viscosity to zero and unsetting its updater.</p>
+<p><strong>Note:</strong> This is only true, if there is no backreaction, i.e., <span class="math notranslate nohighlight">\(\large A=1\)</span> and <span class="math notranslate nohighlight">\(\large B=0\)</span>. Otherwise, the interaction with the dust would still influence the gas.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>

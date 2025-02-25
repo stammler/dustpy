@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dustpy.utils.data &mdash; dustpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../1_basics.html">1. Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../2_simple_customization.html">2. Simple Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../3_advanced_customization.html">3. Advanced Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../4_standard_model.html">4. The Standard Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../5_dust_coagulation.html">5. Dust Coagulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../6_dust_evolution.html">6. Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../7_gas_evolution.html">7. Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dustpylib.html">Library: dustpylib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../test_analytical_coagulation_kernels.html">Test: Analytical Coagulation Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_ice_lines.html">Example: Ice Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_planetary_gaps.html">Example: Planetary Gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../A_citation.html">Appendix A: Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../B_publications.html">Appendix B: List of Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../C_contrib_bug_feature.html">Appendix C: Contributing/Bugs/Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../D_discussions.html">Appendix D: DustPy Discussions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../E_changelog.html">Appendix E: Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">Module Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">dustpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">dustpy.utils.data</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for dustpy.utils.data</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">simframe</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+<span class="kn">from</span> <span class="nn">simframe.io.writers</span> <span class="kn">import</span> <span class="n">hdf5writer</span>
+<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">SimpleNamespace</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+
+<div class="viewcode-block" id="read_data">
+<a class="viewcode-back" href="../../../api/dustpy.utils.read_data.html#dustpy.utils.read_data">[docs]</a>
+<span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="s2">&quot;hdf5&quot;</span><span class="p">,</span> <span class="n">Na</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function returns a SimpleNamespace with the most useful</span>
+<span class="sd">    data that can be used for plotting or other purposes.</span>
+<span class="sd">    This avoids reading the entirety of data files.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : str | dustpy.Simulation</span>
+<span class="sd">        Either a path to the data directory or a TriPoD</span>
+<span class="sd">        simulation frame</span>
+<span class="sd">    filename : str, optional, default: &quot;data&quot;</span>
+<span class="sd">        Stem of the data files in the data directory</span>
+<span class="sd">    extension : str, optional, default: &quot;hdf5&quot;</span>
+<span class="sd">        File extension of the data file in the data directory</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data : SimpleNamespace</span>
+<span class="sd">        SimpleNamespace with the extracted data fields</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Loading data</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Frame</span><span class="p">):</span>
+        <span class="c1"># Loading from Simulation object and expanding dimension</span>
+        <span class="c1"># Simulation</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="c1"># Dust</span>
+        <span class="n">deltaTurb</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">turb</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">eps</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="n">SigmaDust</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="n">St</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">St</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="n">vFrag</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">frag</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="c1"># Gas</span>
+        <span class="n">cs</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">cs</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="n">SigmaGas</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="c1"># Grid</span>
+        <span class="n">OmegaK</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">OmegaK</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">m</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+        <span class="n">ri</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Loading from data directory</span>
+        <span class="n">wrtr</span> <span class="o">=</span> <span class="n">hdf5writer</span><span class="p">(</span><span class="n">datadir</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="n">extension</span><span class="p">)</span>
+        <span class="c1"># Simulation</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
+        <span class="c1"># Dust</span>
+        <span class="n">deltaTurb</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;dust.delta.turb&quot;</span><span class="p">)</span>
+        <span class="n">eps</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;dust.eps&quot;</span><span class="p">)</span>
+        <span class="n">SigmaDust</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;dust.Sigma&quot;</span><span class="p">)</span>
+        <span class="n">St</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;dust.St&quot;</span><span class="p">)</span>
+        <span class="n">vFrag</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;dust.v.frag&quot;</span><span class="p">)</span>
+        <span class="c1"># Gas</span>
+        <span class="n">cs</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;gas.cs&quot;</span><span class="p">)</span>
+        <span class="n">SigmaGas</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;gas.Sigma&quot;</span><span class="p">)</span>
+        <span class="c1"># Grid</span>
+        <span class="n">OmegaK</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;grid.OmegaK&quot;</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;grid.m&quot;</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;grid.r&quot;</span><span class="p">)</span>
+        <span class="n">ri</span> <span class="o">=</span> <span class="n">wrtr</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;grid.ri&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Computations</span>
+
+    <span class="c1"># Helper variables</span>
+    <span class="n">Nt</span><span class="p">,</span> <span class="n">Nr</span><span class="p">,</span> <span class="n">Nm</span> <span class="o">=</span> <span class="n">SigmaDust</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">vK</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">OmegaK</span>
+
+    <span class="c1"># Masses</span>
+    <span class="n">Mdust</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">((</span><span class="n">ri</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">ri</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">SigmaDust</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">Mgas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">((</span><span class="n">ri</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">ri</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">SigmaGas</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Transformation of the density distribution</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">/</span> <span class="n">m</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">2.</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mf">1.</span><span class="p">))</span>
+    <span class="n">sigmaDust</span> <span class="o">=</span> <span class="n">SigmaDust</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">/</span> <span class="n">dm</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+
+    <span class="c1"># Size limits</span>
+    <span class="c1"># Fragmentation limited Stokes number</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">vFrag</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">deltaTurb</span> <span class="o">*</span> <span class="n">cs</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span>
+            <span class="s1">&#39;ignore&#39;</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s1">&#39;invalid value encountered in sqrt&#39;</span><span class="p">)</span>
+        <span class="n">StFr</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">9</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="c1"># Drift limited Stokes number</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">SigmaGas</span> <span class="o">*</span> <span class="n">OmegaK</span> <span class="o">*</span> <span class="n">cs</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="n">StDr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">StFr</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">Nt</span><span class="p">)):</span>
+        <span class="n">_f</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span>
+            <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]),</span> <span class="n">fill_value</span><span class="o">=</span><span class="s1">&#39;extrapolate&#39;</span><span class="p">)</span>
+        <span class="n">pi</span> <span class="o">=</span> <span class="mf">10.</span><span class="o">**</span><span class="n">_f</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">ri</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]))</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">/</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">*</span>
+                       <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">ri</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]))</span>
+        <span class="n">StDr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">eps</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">/</span> <span class="n">gamma</span> <span class="o">*</span> <span class="p">(</span><span class="n">vK</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">/</span> <span class="n">cs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+
+    <span class="c1"># Assemble return object</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># Simulation</span>
+    <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
+    <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;Nt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Nt</span>
+    <span class="c1"># Grid</span>
+    <span class="n">ret_grid</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">ret_grid</span><span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span>
+    <span class="n">ret_grid</span><span class="p">[</span><span class="s2">&quot;Nm&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Nm</span>
+    <span class="n">ret_grid</span><span class="p">[</span><span class="s2">&quot;r&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span>
+    <span class="n">ret_grid</span><span class="p">[</span><span class="s2">&quot;ri&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ri</span>
+    <span class="n">ret_grid</span><span class="p">[</span><span class="s2">&quot;Nr&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Nr</span>
+    <span class="n">ret_grid</span><span class="p">[</span><span class="s2">&quot;OmegaK&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">OmegaK</span>
+    <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;grid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="o">**</span><span class="n">ret_grid</span><span class="p">)</span>
+    <span class="c1"># Gas</span>
+    <span class="n">ret_gas</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">ret_gas</span><span class="p">[</span><span class="s2">&quot;cs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cs</span>
+    <span class="n">ret_gas</span><span class="p">[</span><span class="s2">&quot;M&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Mgas</span>
+    <span class="n">ret_gas</span><span class="p">[</span><span class="s2">&quot;Sigma&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SigmaGas</span>
+    <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;gas&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="o">**</span><span class="n">ret_gas</span><span class="p">)</span>
+    <span class="c1"># Dust</span>
+    <span class="n">ret_dust</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">ret_dust</span><span class="p">[</span><span class="s2">&quot;eps&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">eps</span>
+    <span class="n">ret_dust</span><span class="p">[</span><span class="s2">&quot;delta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;turb&quot;</span><span class="p">:</span> <span class="n">deltaTurb</span><span class="p">})</span>
+    <span class="n">ret_dust</span><span class="p">[</span><span class="s2">&quot;M&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Mdust</span>
+    <span class="n">ret_dust</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigmaDust</span>
+    <span class="n">ret_dust</span><span class="p">[</span><span class="s2">&quot;Sigma&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SigmaDust</span>
+    <span class="n">ret_dust</span><span class="p">[</span><span class="s2">&quot;St&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">St</span>
+    <span class="n">ret_dust</span><span class="p">[</span><span class="s2">&quot;St_limits&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;drift&quot;</span><span class="p">:</span> <span class="n">StDr</span><span class="p">,</span> <span class="s2">&quot;frag&quot;</span><span class="p">:</span> <span class="n">StFr</span><span class="p">})</span>
+    <span class="n">ret_dust</span><span class="p">[</span><span class="s2">&quot;v&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;frag&quot;</span><span class="p">:</span> <span class="n">vFrag</span><span class="p">})</span>
+    <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;dust&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="o">**</span><span class="n">ret_dust</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="o">**</span><span class="n">ret</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2023, Sebastian Stammler &amp; Tilman Birnstiel.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

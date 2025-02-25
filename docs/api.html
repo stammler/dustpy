@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -6,24 +8,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Module Reference &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Simulation" href="api/dustpy.Simulation.html" />
+    <link rel="next" title="readdump" href="api/dustpy.readdump.html" />
     <link rel="prev" title="Appendix E: Changelog" href="E_changelog.html" /> 
 </head>
 
@@ -69,7 +67,12 @@
 <li class="toctree-l1"><a class="reference internal" href="E_changelog.html">Appendix E: Changelog</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Module Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-dustpy">dustpy Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.readdump.html">readdump</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.hdf5writer.html">hdf5writer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.Simulation.html">Simulation</a></li>
 </ul>
 </li>
@@ -80,7 +83,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dustpy.plot">dustpy.plot Package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Functions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.plot.ipanel.html">ipanel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.plot.panel.html">panel</a></li>
 </ul>
@@ -89,7 +92,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dustpy.std">dustpy.std Package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dustpy.std.dust">dustpy.std.dust Module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Functions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.D.html">D</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.F_adv.html">F_adv</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.F_diff.html">F_diff</a></li>
@@ -128,14 +131,14 @@
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.vrel_vertical_settling.html">vrel_vertical_settling</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Classes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.dust.impl_1_direct.html">impl_1_direct</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dustpy.std.gas">dustpy.std.gas Module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Functions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.Fi.html">Fi</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.Hp.html">Hp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.P_midplane.html">P_midplane</a></li>
@@ -143,7 +146,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.S_tot.html">S_tot</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.T_passive.html">T_passive</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.boundary.html">boundary</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.cs_adiabatic.html">cs_adiabatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.cs_isothermal.html">cs_isothermal</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.dt.html">dt</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.enforce_floor_value.html">enforce_floor_value</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.eta_midplane.html">eta_midplane</a></li>
@@ -157,24 +160,25 @@
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.rho_midplane.html">rho_midplane</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.set_implicit_boundaries.html">set_implicit_boundaries</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.vrad.html">vrad</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.vtorque.html">vtorque</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.vvisc.html">vvisc</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Classes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.gas.impl_1_direct.html">impl_1_direct</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dustpy.std.grid">dustpy.std.grid Module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Functions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.grid.OmegaK.html">OmegaK</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dustpy.std.sim">dustpy.std.sim Module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id6">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Functions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.sim.dt.html">dt</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.sim.dt_adaptive.html">dt_adaptive</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.sim.finalize_explicit_dust.html">finalize_explicit_dust</a></li>
@@ -186,19 +190,21 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dustpy.std.star">dustpy.std.star Module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id7">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Functions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.std.star.luminosity.html">luminosity</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dustpy.utils">dustpy.utils Package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.utils.read_data.html">read_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.utils.print_version_warning.html">print_version_warning</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Classes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/dustpy.utils.Boundary.html">Boundary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/dustpy.utils.SimpleNamespace.html">SimpleNamespace</a></li>
 </ul>
 </li>
 </ul>
@@ -242,11 +248,21 @@ that contains pre-defined standard functions <code class="docutils literal notra
 <p><code class="docutils literal notranslate"><span class="pre">dustpy.utils</span></code> contains some helper classes/functions that are used within the simulation.</p>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is mainly written in <code class="docutils literal notranslate"><span class="pre">Python</span></code>. Computation intensive calculations are written in <code class="docutils literal notranslate"><span class="pre">Fortran</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is using the <code class="docutils literal notranslate"><span class="pre">simframe</span></code> package for setting up scientific simulations.</p>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.readdump.html#dustpy.readdump" title="dustpy.readdump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">readdump</span></code></a>(filename)</p></td>
+<td><p>Reads dumpfile and returns <code class="docutils literal notranslate"><span class="pre">Frame</span></code> object</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">hdf5writer</span></code>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.hdf5writer.html#dustpy.hdf5writer" title="dustpy.hdf5writer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hdf5writer</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Class for writing HDF5 output files.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.Simulation.html#dustpy.Simulation" title="dustpy.Simulation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Simulation</span></code></a>(**kwargs)</p></td>
@@ -284,8 +300,8 @@ the <code class="docutils literal notranslate"><span class="pre">Fortran</span><
 <span id="dustpy-plot-package"></span><h2>dustpy.plot Package<a class="headerlink" href="#module-dustpy.plot" title="Link to this heading"></a></h2>
 <p>Package containing simple scripts for plotting objects <code class="docutils literal notranslate"><span class="pre">dustpy.Simulation</span></code>
 or data files.</p>
-<section id="functions">
-<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
+<section id="id1">
+<h3>Functions<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.plot.ipanel.html#dustpy.plot.ipanel" title="dustpy.plot.ipanel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ipanel</span></code></a>(data[, filename, extension, im, ir, ...])</p></td>
@@ -305,8 +321,8 @@ or data files.</p>
 <section id="module-dustpy.std.dust">
 <span id="dustpy-std-dust-module"></span><h2>dustpy.std.dust Module<a class="headerlink" href="#module-dustpy.std.dust" title="Link to this heading"></a></h2>
 <p>Module containing standard functions for the dust.</p>
-<section id="id1">
-<h3>Functions<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<section id="id2">
+<h3>Functions<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.dust.D.html#dustpy.std.dust.D" title="dustpy.std.dust.D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">D</span></code></a>(sim)</p></td>
@@ -420,8 +436,8 @@ or data files.</p>
 </tbody>
 </table>
 </section>
-<section id="id2">
-<h3>Classes<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<section id="id3">
+<h3>Classes<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Scheme</span></code>(scheme[, controller, description])</p></td>
@@ -437,8 +453,8 @@ or data files.</p>
 <section id="module-dustpy.std.gas">
 <span id="dustpy-std-gas-module"></span><h2>dustpy.std.gas Module<a class="headerlink" href="#module-dustpy.std.gas" title="Link to this heading"></a></h2>
 <p>Module containing standard functions for the gas.</p>
-<section id="id3">
-<h3>Functions<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<section id="id4">
+<h3>Functions<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.gas.Fi.html#dustpy.std.gas.Fi" title="dustpy.std.gas.Fi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Fi</span></code></a>(sim)</p></td>
@@ -462,8 +478,8 @@ or data files.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.gas.boundary.html#dustpy.std.gas.boundary" title="dustpy.std.gas.boundary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">boundary</span></code></a>(sim)</p></td>
 <td><p>Function set the boundary conditions of the gas.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.gas.cs_adiabatic.html#dustpy.std.gas.cs_adiabatic" title="dustpy.std.gas.cs_adiabatic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cs_adiabatic</span></code></a>(sim)</p></td>
-<td><p>Function calculates the adiabatic sound speed of the gas.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.gas.cs_isothermal.html#dustpy.std.gas.cs_isothermal" title="dustpy.std.gas.cs_isothermal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cs_isothermal</span></code></a>(sim)</p></td>
+<td><p>Function calculates the isothermal sound speed of the gas.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.gas.dt.html#dustpy.std.gas.dt" title="dustpy.std.gas.dt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dt</span></code></a>(sim)</p></td>
 <td><p>Function calculates the time step from the gas sources.</p></td>
@@ -504,14 +520,17 @@ or data files.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.gas.vrad.html#dustpy.std.gas.vrad" title="dustpy.std.gas.vrad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vrad</span></code></a>(sim)</p></td>
 <td><p>Function calculates the radial radial gas velocity.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.gas.vvisc.html#dustpy.std.gas.vvisc" title="dustpy.std.gas.vvisc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vvisc</span></code></a>(sim)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.std.gas.vtorque.html#dustpy.std.gas.vtorque" title="dustpy.std.gas.vtorque"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vtorque</span></code></a>(sim)</p></td>
+<td><p>Function calculates the velocity contribution from a torque profile</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.gas.vvisc.html#dustpy.std.gas.vvisc" title="dustpy.std.gas.vvisc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vvisc</span></code></a>(sim)</p></td>
 <td><p>Function calculates the viscous radial gas velocity.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="id4">
-<h3>Classes<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<section id="id5">
+<h3>Classes<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Scheme</span></code>(scheme[, controller, description])</p></td>
@@ -527,8 +546,8 @@ or data files.</p>
 <section id="module-dustpy.std.grid">
 <span id="dustpy-std-grid-module"></span><h2>dustpy.std.grid Module<a class="headerlink" href="#module-dustpy.std.grid" title="Link to this heading"></a></h2>
 <p>Module containing standard functions for the grids.</p>
-<section id="id5">
-<h3>Functions<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<section id="id6">
+<h3>Functions<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.grid.OmegaK.html#dustpy.std.grid.OmegaK" title="dustpy.std.grid.OmegaK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OmegaK</span></code></a>(sim)</p></td>
@@ -541,8 +560,8 @@ or data files.</p>
 <section id="module-dustpy.std.sim">
 <span id="dustpy-std-sim-module"></span><h2>dustpy.std.sim Module<a class="headerlink" href="#module-dustpy.std.sim" title="Link to this heading"></a></h2>
 <p>Module containing standard functions for the main simulation object.</p>
-<section id="id6">
-<h3>Functions<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<section id="id7">
+<h3>Functions<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.sim.dt.html#dustpy.std.sim.dt" title="dustpy.std.sim.dt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dt</span></code></a>(sim)</p></td>
@@ -570,8 +589,8 @@ or data files.</p>
 <section id="module-dustpy.std.star">
 <span id="dustpy-std-star-module"></span><h2>dustpy.std.star Module<a class="headerlink" href="#module-dustpy.std.star" title="Link to this heading"></a></h2>
 <p>Module containing standard functions for the central star.</p>
-<section id="id7">
-<h3>Functions<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<section id="id8">
+<h3>Functions<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.std.star.luminosity.html#dustpy.std.star.luminosity" title="dustpy.std.star.luminosity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">luminosity</span></code></a>(sim)</p></td>
@@ -584,25 +603,28 @@ or data files.</p>
 <section id="module-dustpy.utils">
 <span id="dustpy-utils-package"></span><h2>dustpy.utils Package<a class="headerlink" href="#module-dustpy.utils" title="Link to this heading"></a></h2>
 <p>Package containing utility classes and functions used in the simulation.</p>
-<section id="id8">
-<h3>Functions<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<section id="id9">
+<h3>Functions<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.utils.print_version_warning.html#dustpy.utils.print_version_warning" title="dustpy.utils.print_version_warning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_version_warning</span></code></a>([timeout])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.utils.read_data.html#dustpy.utils.read_data" title="dustpy.utils.read_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_data</span></code></a>(data[, filename, extension, Na])</p></td>
+<td><p>Function returns a SimpleNamespace with the most useful data that can be used for plotting or other purposes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.utils.print_version_warning.html#dustpy.utils.print_version_warning" title="dustpy.utils.print_version_warning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_version_warning</span></code></a>([timeout])</p></td>
 <td><p>Functions prints a warning to screen if a newer version of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is available.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="id9">
-<h3>Classes<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<section id="id10">
+<h3>Classes<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/dustpy.utils.Boundary.html#dustpy.utils.Boundary" title="dustpy.utils.Boundary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Boundary</span></code></a>(r, ri, S[, condition, value])</p></td>
 <td><p>Class for managing boundary conditions for gas and dust.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">hdf5writer</span></code>(*args, **kwargs)</p></td>
-<td><p>Class for writing HDF5 output files.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/dustpy.utils.SimpleNamespace.html#dustpy.utils.SimpleNamespace" title="dustpy.utils.SimpleNamespace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimpleNamespace</span></code></a>([mapping_or_iterable])</p></td>
+<td><p>Class for SimpleNamespace that does not allow to add new attributes.</p></td>
 </tr>
 </tbody>
 </table>
@@ -615,7 +637,7 @@ or data files.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="E_changelog.html" class="btn btn-neutral float-left" title="Appendix E: Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="api/dustpy.Simulation.html" class="btn btn-neutral float-right" title="Simulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api/dustpy.readdump.html" class="btn btn-neutral float-right" title="readdump" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
