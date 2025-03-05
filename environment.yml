@@ -1,6 +1,0 @@
-name: dustpy
-dependencies:
-  - python=3.13
-  - pip
-  - pip:
-    - dustpy
