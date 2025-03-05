@@ -4,8 +4,8 @@ import types
 class SimpleNamespace(types.SimpleNamespace):
     """Class for SimpleNamespace that does not allow to add new attributes."""
 
-    def __init__(self, mapping_or_iterable=(), **kwargs):
-        super().__init__(mapping_or_iterable, **kwargs)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
     def __setattr__(self, key, val):
         if key not in self.__dict__:
