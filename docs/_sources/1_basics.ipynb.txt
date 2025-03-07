@@ -342,7 +342,7 @@
      "output_type": "stream",
      "text": [
       "\n",
-      "DustPy v1.0.7\n",
+      "DustPy v1.0.8\n",
       "\n",
       "Documentation: https://stammler.github.io/dustpy/\n",
       "PyPI:          https://pypi.org/project/dustpy/\n",
@@ -413,7 +413,7 @@
       "Writing dump file \u001b[94mdata/frame.dmp\u001b[0m\n",
       "Writing file \u001b[94mdata/data0021.hdf5\u001b[0m\n",
       "Writing dump file \u001b[94mdata/frame.dmp\u001b[0m\n",
-      "Execution time: \u001b[94m0:08:01\u001b[0m\n"
+      "Execution time: \u001b[94m0:08:05\u001b[0m\n"
      ]
     }
    ],
@@ -922,6 +922,70 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "There is a utility function implemented in `DustPy` that is loading all data fields needed for the default plots including an estimate for the growth barriers. The function `read_data()` either takes the simulation object `sim` or a path to the data directory as input and returns a `SimpleNamespace` object with the data fields."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from dustpy.utils import read_data"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "data = read_data(\"data\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "For example the Stokes numbers of fragmentation limited particles of shape `(Nt, Nr)` that can be used to plot growth limits."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,\n",
+       "        0.01304818],\n",
+       "       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,\n",
+       "        0.01304818],\n",
+       "       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,\n",
+       "        0.01304818],\n",
+       "       ...,\n",
+       "       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,\n",
+       "        0.01304818],\n",
+       "       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,\n",
+       "        0.01304818],\n",
+       "       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,\n",
+       "        0.01304818]], shape=(22, 100))"
+      ]
+     },
+     "execution_count": 28,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data.dust.St_limits.frag"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
     "## Reading Dump Files\n",
     "\n",
     "The data files are only containing the pure data, but no information about the operations `DustPy` has to perform, like customized functions. Therefore, it's not possible to directly restart a simulation from data files.\n",
@@ -933,7 +997,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 26,
+   "execution_count": 29,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -942,7 +1006,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 27,
+   "execution_count": 30,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -958,7 +1022,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 28,
+   "execution_count": 31,
    "metadata": {},
    "outputs": [
     {
@@ -975,7 +1039,7 @@
        "  True  True  True  True]"
       ]
      },
-     "execution_count": 28,
+     "execution_count": 31,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -993,7 +1057,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 29,
+   "execution_count": 32,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1011,7 +1075,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 30,
+   "execution_count": 33,
    "metadata": {},
    "outputs": [
     {
@@ -1020,7 +1084,7 @@
        "100000.0"
       ]
      },
-     "execution_count": 30,
+     "execution_count": 33,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1038,7 +1102,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 31,
+   "execution_count": 34,
    "metadata": {},
    "outputs": [
     {
@@ -1046,7 +1110,7 @@
      "output_type": "stream",
      "text": [
       "\n",
-      "DustPy v1.0.7\n",
+      "DustPy v1.0.8\n",
       "\n",
       "Documentation: https://stammler.github.io/dustpy/\n",
       "PyPI:          https://pypi.org/project/dustpy/\n",
@@ -1091,7 +1155,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 32,
+   "execution_count": 35,
    "metadata": {
     "tags": []
    },
@@ -1102,7 +1166,7 @@
        "100001.0"
       ]
      },
-     "execution_count": 32,
+     "execution_count": 35,
      "metadata": {},
      "output_type": "execute_result"
     }

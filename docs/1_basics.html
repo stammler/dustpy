@@ -382,7 +382,7 @@ Group (Gas quantities)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.7
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -453,7 +453,7 @@ Writing file <span class="ansi-blue-intense-fg">data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:08:01</span>
+Execution time: <span class="ansi-blue-intense-fg">0:08:05</span>
 </pre></div></div>
 </div>
 <p>By default <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has written output files into the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p>
@@ -793,6 +793,53 @@ array([1.11482110e+003, 1.03983953e+003, 9.69821741e+002, 9.04227215e+002,
 </pre></div>
 </div>
 </div>
+<p>There is a utility function implemented in <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> that is loading all data fields needed for the default plots including an estimate for the growth barriers. The function <code class="docutils literal notranslate"><span class="pre">read_data()</span></code> either takes the simulation object <code class="docutils literal notranslate"><span class="pre">sim</span></code> or a path to the data directory as input and returns a <code class="docutils literal notranslate"><span class="pre">SimpleNamespace</span></code> object with the data fields.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy.utils</span> <span class="kn">import</span> <span class="n">read_data</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>For example the Stokes numbers of fragmentation limited particles of shape <code class="docutils literal notranslate"><span class="pre">(Nt,</span> <span class="pre">Nr)</span></code> that can be used to plot growth limits.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">St_limits</span><span class="o">.</span><span class="n">frag</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,
+        0.01304818],
+       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,
+        0.01304818],
+       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,
+        0.01304818],
+       ...,
+       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,
+        0.01304818],
+       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,
+        0.01304818],
+       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,
+        0.01304818]], shape=(22, 100))
+</pre></div></div>
+</div>
 </section>
 <section id="Reading-Dump-Files">
 <h2>Reading Dump Files<a class="headerlink" href="#Reading-Dump-Files" title="Link to this heading"></a></h2>
@@ -800,7 +847,7 @@ array([1.11482110e+003, 1.03983953e+003, 9.69821741e+002, 9.04227215e+002,
 <p><code class="docutils literal notranslate"><span class="pre">simframe</span></code> is saving by default the most recent dump file, from which a simulation can be restarted.</p>
 <p><strong>Attention:</strong> Malware can be injected with dump files, which are pickled objects. Only read dump files that you have created yourself or from sources that you trust! Dump files have to be read with the same version of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> as they were written. Otherwise, it is not guaranteed to work.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">readdump</span>
@@ -808,7 +855,7 @@ array([1.11482110e+003, 1.03983953e+003, 9.69821741e+002, 9.04227215e+002,
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_restart</span> <span class="o">=</span> <span class="n">readdump</span><span class="p">(</span><span class="s2">&quot;data/frame.dmp&quot;</span><span class="p">)</span>
@@ -817,7 +864,7 @@ array([1.11482110e+003, 1.03983953e+003, 9.69821741e+002, 9.04227215e+002,
 </div>
 <p>This is now a simulation frame that should be identical to our previous object.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">==</span> <span class="n">sim_restart</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
@@ -825,7 +872,7 @@ array([1.11482110e+003, 1.03983953e+003, 9.69821741e+002, 9.04227215e+002,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -843,7 +890,7 @@ array([1.11482110e+003, 1.03983953e+003, 9.69821741e+002, 9.04227215e+002,
 </div>
 <p>We can now, for example, add more snapshots and restart the simulation. Here we just want to extend the run by one year.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">constants</span> <span class="k">as</span> <span class="n">c</span>
@@ -854,7 +901,7 @@ array([1.11482110e+003, 1.03983953e+003, 9.69821741e+002, 9.04227215e+002,
 </div>
 <p>The current time is</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_restart</span><span class="o">.</span><span class="n">t</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
@@ -862,7 +909,7 @@ array([1.11482110e+003, 1.03983953e+003, 9.69821741e+002, 9.04227215e+002,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -872,7 +919,7 @@ array([1.11482110e+003, 1.03983953e+003, 9.69821741e+002, 9.04227215e+002,
 </div>
 <p>We can now restart the simulation for another year.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_restart</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
@@ -885,7 +932,7 @@ array([1.11482110e+003, 1.03983953e+003, 9.69821741e+002, 9.04227215e+002,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.7
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -918,7 +965,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 </div>
 <p>Another file was written and the current time is now</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_restart</span><span class="o">.</span><span class="n">t</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
@@ -926,7 +973,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="output_area docutils container">

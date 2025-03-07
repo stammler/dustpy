@@ -332,7 +332,7 @@
      "output_type": "stream",
      "text": [
       "\n",
-      "DustPy v1.0.7\n",
+      "DustPy v1.0.8\n",
       "\n",
       "Documentation: https://stammler.github.io/dustpy/\n",
       "PyPI:          https://pypi.org/project/dustpy/\n",
@@ -373,7 +373,7 @@
       "Writing dump file \u001b[94mtest_constant_kernel/frame.dmp\u001b[0m\n",
       "Writing file \u001b[94mtest_constant_kernel/data0006.hdf5\u001b[0m\n",
       "Writing dump file \u001b[94mtest_constant_kernel/frame.dmp\u001b[0m\n",
-      "Execution time: \u001b[94m0:00:01\u001b[0m\n"
+      "Execution time: \u001b[94m0:00:02\u001b[0m\n"
      ]
     }
    ],
@@ -527,7 +527,7 @@
      "output_type": "stream",
      "text": [
       "\n",
-      "DustPy v1.0.7\n",
+      "DustPy v1.0.8\n",
       "\n",
       "Documentation: https://stammler.github.io/dustpy/\n",
       "PyPI:          https://pypi.org/project/dustpy/\n",
@@ -568,7 +568,7 @@
       "Writing dump file \u001b[94mtest_constant_kernel_high_res/frame.dmp\u001b[0m\n",
       "Writing file \u001b[94mtest_constant_kernel_high_res/data0006.hdf5\u001b[0m\n",
       "Writing dump file \u001b[94mtest_constant_kernel_high_res/frame.dmp\u001b[0m\n",
-      "Execution time: \u001b[94m0:00:24\u001b[0m\n"
+      "Execution time: \u001b[94m0:00:31\u001b[0m\n"
      ]
     }
    ],
@@ -792,7 +792,7 @@
      "output_type": "stream",
      "text": [
       "\n",
-      "DustPy v1.0.7\n",
+      "DustPy v1.0.8\n",
       "\n",
       "Documentation: https://stammler.github.io/dustpy/\n",
       "PyPI:          https://pypi.org/project/dustpy/\n",
@@ -968,7 +968,7 @@
      "output_type": "stream",
      "text": [
       "\n",
-      "DustPy v1.0.7\n",
+      "DustPy v1.0.8\n",
       "\n",
       "Documentation: https://stammler.github.io/dustpy/\n",
       "PyPI:          https://pypi.org/project/dustpy/\n",
@@ -1009,7 +1009,7 @@
       "Writing dump file \u001b[94mtest_linear_kernel_high_res/frame.dmp\u001b[0m\n",
       "Writing file \u001b[94mtest_linear_kernel_high_res/data0006.hdf5\u001b[0m\n",
       "Writing dump file \u001b[94mtest_linear_kernel_high_res/frame.dmp\u001b[0m\n",
-      "Execution time: \u001b[94m0:00:07\u001b[0m\n"
+      "Execution time: \u001b[94m0:00:10\u001b[0m\n"
      ]
     }
    ],
