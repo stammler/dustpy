@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-### **If you have specific question about DustPy setups, that are not code related, please use the [discussion forum](https://github.com/stammler/dustpy/discussions).**
+*Please note for general questions about DustPy there is also the [GitHub Discussions](https://github.com/stammler/dustpy/discussions)* forum.
 
 
 **Is your feature request related to a problem? Please describe.**  
