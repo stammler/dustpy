@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -6,23 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1. Basic usage &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
-      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -180,13 +178,13 @@ Group (Gas quantities)
 ----------------------
     boundary     : Group (Boundary conditions)
     S            : Group (Source terms)
+    torque       : Group (Torque parameters)
     v            : Group (Velocities)
   -----
     alpha        : NoneType
     cs           : NoneType
     eta          : NoneType
     Fi           : NoneType
-    gamma        : NoneType
     Hp           : NoneType
     mfp          : NoneType
     mu           : NoneType
@@ -234,13 +232,13 @@ Group (Gas quantities)
 ----------------------
     boundary     : Group (Boundary conditions)
     S            : Group (Source terms)
+    torque       : Group (Torque parameters)
     v            : Group (Velocities)
   -----
     alpha        : Field (Turbulent alpha parameter)
-    cs           : Field (Sound speed [cm/s])
+    cs           : Field (Isothermal sound speed [cm/s])
     eta          : Field (Pressure gradient parameter)
     Fi           : Field (Gas flux interfaces [g/cm/s])
-    gamma        : Field (Adiabatic index)
     Hp           : Field (Pressure scale height [cm])
     mfp          : Field (Midplane mean free path [cm])
     mu           : Field (Mean molecular weight [g])
@@ -327,10 +325,9 @@ Group (Gas quantities)
         - <span class="ansi-blue-intense-fg">boundary</span>: <span class="ansi-blue-intense-fg">Group (Boundary conditions)</span>
             - <span class="ansi-blue-intense-fg">inner</span>: Constant gradient
             - <span class="ansi-blue-intense-fg">outer</span>: Value
-        - <span class="ansi-blue-intense-fg">cs</span>: Field (Sound speed [cm/s])
+        - <span class="ansi-blue-intense-fg">cs</span>: Field (Isothermal sound speed [cm/s])
         - <span class="ansi-blue-intense-fg">eta</span>: Field (Pressure gradient parameter)
         - <span class="ansi-blue-intense-fg">Fi</span>: Field (Gas flux interfaces [g/cm/s])
-        - <span class="ansi-blue-intense-fg">gamma</span>: Field (Adiabatic index)
         - <span class="ansi-blue-intense-fg">Hp</span>: Field (Pressure scale height [cm])
         - <span class="ansi-blue-intense-fg">mfp</span>: Field (Midplane mean free path [cm])
         - <span class="ansi-blue-intense-fg">mu</span>: Field (Mean molecular weight [g])
@@ -345,6 +342,9 @@ Group (Gas quantities)
         - <span class="ansi-blue-intense-fg">Sigma</span>: Field (Surface density [g/cm²])
         - <span class="ansi-blue-intense-fg">SigmaFloor</span>: Field (Floor value of surface density [g/cm²])
         - <span class="ansi-blue-intense-fg">T</span>: Field (Temperature [K])
+        - <span class="ansi-blue-intense-fg">torque</span>: <span class="ansi-blue-intense-fg">Group (Torque parameters)</span>
+            - <span class="ansi-blue-intense-fg">Lambda</span>: Field (Specific angular momentum injection rate by torque [cm²/s²])
+            - <span class="ansi-blue-intense-fg">v</span>: Field (Effective velocity imposed by torque [cm/s])
         - <span class="ansi-blue-intense-fg">v</span>: <span class="ansi-blue-intense-fg">Group (Velocities)</span>
             - <span class="ansi-blue-intense-fg">rad</span>: Field (Radial velocity [cm/s])
             - <span class="ansi-blue-intense-fg">visc</span>: Field (Viscous accretion velocity [cm/s])
@@ -382,7 +382,7 @@ Group (Gas quantities)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.6
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -393,15 +393,15 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 6.66e-16</span>
         for particle collision
-            m[55] =  7.20e-05 g    with
-            m[55] =  7.20e-05 g
+            m[90] =  7.20e+00 g    with
+            m[95] =  3.73e+01 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -453,7 +453,7 @@ Writing file <span class="ansi-blue-intense-fg">data/data0020.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">data/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:25:57</span>
+Execution time: <span class="ansi-blue-intense-fg">0:08:05</span>
 </pre></div></div>
 </div>
 <p>By default <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has written output files into the <code class="docutils literal notranslate"><span class="pre">data/</span></code> directory.</p>
@@ -526,10 +526,10 @@ Execution time: <span class="ansi-blue-intense-fg">0:25:57</span>
 <section id="Code-Units">
 <h3>Code Units<a class="headerlink" href="#Code-Units" title="Link to this heading"></a></h3>
 <p>The dust density distribution plotted here is given by</p>
-<p><span class="math notranslate nohighlight">\(\Sigma_\mathrm{d} \left( r \right) = \int\limits_0^\infty \sigma \left(r, m \right) \mathrm{d} \log m\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \Sigma_\mathrm{d} \left( r \right) = \int\limits_0^\infty \sigma \left(r, m \right) \mathrm{d} \log m\)</span>.</p>
 <p>In this way the distribution is independent of the mass grid.</p>
-<p>The code units <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> uses are <span class="math notranslate nohighlight">\(\Sigma_{\mathrm{d},\,i} \left( r \right) \equiv \Sigma_\mathrm{d} \left(r, m_i \right)\)</span> with</p>
-<p><span class="math notranslate nohighlight">\(\Sigma_\mathrm{d} \left( r \right) = \sum\limits_i \Sigma_{\mathrm{d},\,i} \left( r \right)\)</span>,</p>
+<p>The code units <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> uses are <span class="math notranslate nohighlight">\(\large \Sigma_{\mathrm{d},\,i} \left( r \right) \equiv \Sigma_\mathrm{d} \left(r, m_i \right)\)</span> with</p>
+<p><span class="math notranslate nohighlight">\(\Large \Sigma_\mathrm{d} \left( r \right) = \sum\limits_i \Sigma_{\mathrm{d},\,i} \left( r \right)\)</span>,</p>
 <p>meaning the numerical sum over the mass dimension is the dust surface density.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
@@ -545,37 +545,37 @@ Execution time: <span class="ansi-blue-intense-fg">0:25:57</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[1.10557336e+01 1.02992403e+01 9.59191143e+00 8.93895173e+00
- 8.32865715e+00 7.75850789e+00 7.22599249e+00 6.72858135e+00
- 6.26420956e+00 5.83081478e+00 5.42620080e+00 5.04864335e+00
- 4.69645672e+00 4.36777515e+00 4.06118902e+00 3.77532591e+00
- 3.50861087e+00 3.25989842e+00 3.02807253e+00 2.81181963e+00
- 2.61021307e+00 2.42234147e+00 2.24712516e+00 2.08381579e+00
- 1.93166212e+00 1.78979290e+00 1.65760286e+00 1.53446406e+00
- 1.41968875e+00 1.31278546e+00 1.21322061e+00 1.12046562e+00
- 1.03411972e+00 9.53723000e-01 8.78885950e-01 8.09291321e-01
- 7.44487702e-01 6.84220071e-01 6.28190605e-01 5.76091230e-01
- 5.27711760e-01 4.82757140e-01 4.41035921e-01 4.02334717e-01
- 3.66446537e-01 3.33222129e-01 3.02442339e-01 2.73987432e-01
- 2.47687148e-01 2.23422946e-01 2.01051129e-01 1.80463176e-01
- 1.61537112e-01 1.44176170e-01 1.28274293e-01 1.13748337e-01
- 1.00501698e-01 8.84615589e-02 7.75367958e-02 6.76595237e-02
- 5.87679684e-02 5.07937245e-02 4.36879524e-02 3.74072233e-02
- 3.18783737e-02 2.70175128e-02 2.27460076e-02 1.90031682e-02
- 1.57421892e-02 1.29229042e-02 1.05062053e-02 8.44924723e-03
- 6.69827665e-03 5.17305825e-03 3.75786050e-03 2.35751219e-03
- 1.08630361e-03 3.51144052e-04 7.97325012e-05 1.26505270e-05
- 1.33385792e-06 1.07474163e-07 6.75578366e-09 3.34961791e-10
- 1.31247630e-11 4.03047526e-13 9.49677567e-15 1.65313317e-16
- 2.00675100e-18 1.57276265e-20 7.28047481e-23 1.83036618e-25
- 3.38627923e-28 9.02283461e-29 7.84588510e-29 6.83347698e-29
+[1.13955861e+01 1.06029050e+01 9.86083808e+00 9.18342846e+00
+ 8.55022197e+00 7.95880724e+00 7.40751570e+00 6.89262940e+00
+ 6.41213859e+00 5.96470789e+00 5.54702249e+00 5.15740967e+00
+ 4.79485333e+00 4.45647616e+00 4.14091226e+00 3.84740118e+00
+ 3.57350578e+00 3.31813842e+00 3.08071664e+00 2.85916562e+00
+ 2.65262063e+00 2.46064418e+00 2.28150437e+00 2.11451740e+00
+ 1.95934379e+00 1.81456124e+00 1.67962562e+00 1.55425715e+00
+ 1.43731042e+00 1.32834830e+00 1.22712224e+00 1.13273218e+00
+ 1.04482559e+00 9.63172179e-01 8.87107626e-01 8.16575562e-01
+ 7.50810864e-01 6.89621120e-01 6.32894711e-01 5.80091455e-01
+ 5.31029141e-01 4.85553045e-01 4.43312053e-01 4.04219195e-01
+ 3.67924074e-01 3.34411005e-01 3.03318194e-01 2.74567585e-01
+ 2.48051576e-01 2.23579249e-01 2.01057959e-01 1.80325606e-01
+ 1.61301928e-01 1.43852558e-01 1.27896164e-01 1.13322999e-01
+ 1.00046535e-01 8.79948225e-02 7.70548384e-02 6.71860988e-02
+ 5.83447985e-02 5.04684074e-02 4.35164251e-02 3.74032401e-02
+ 3.19732799e-02 2.71302890e-02 2.28306521e-02 1.90507248e-02
+ 1.57598587e-02 1.29208840e-02 1.04939747e-02 8.43870733e-03
+ 6.71307059e-03 5.27059343e-03 4.04552925e-03 2.93217315e-03
+ 1.80167290e-03 6.75066389e-04 1.53949568e-04 2.13652478e-05
+ 1.94975065e-06 1.30896336e-07 6.67074008e-09 2.62519776e-10
+ 8.02115795e-12 1.89028448e-13 3.36492577e-15 4.35408217e-17
+ 3.86257400e-19 2.17471591e-21 7.12064220e-24 1.26262507e-26
+ 1.14601912e-28 9.00875506e-29 7.84588143e-29 6.83347698e-29
  5.95170965e-29 5.18372240e-29 4.51483347e-29 3.93225557e-29]
 </pre></div></div>
 </div>
-<p>To convert this into <span class="math notranslate nohighlight">\(\sigma\)</span> we have to divide the code density distribution by <span class="math notranslate nohighlight">\(B = \frac{\Delta m}{m}\)</span>, where <span class="math notranslate nohighlight">\(\Delta m\)</span> is the width of the mass bin centered on <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<p>To convert this into <span class="math notranslate nohighlight">\(\large \sigma\)</span> we have to divide the code density distribution by <span class="math notranslate nohighlight">\(\large B = \frac{\Delta m}{m}\)</span>, where <span class="math notranslate nohighlight">\(\large \Delta m\)</span> is the width of the mass bin centered on <span class="math notranslate nohighlight">\(\large m\)</span>.</p>
 <p>Since the mass grid is strictly logarithmic the following relation holds</p>
-<p><span class="math notranslate nohighlight">\(m_{i+1} = A \cdot m_i\)</span>.</p>
-<p>The grid constant <span class="math notranslate nohighlight">\(A\)</span> can be easily calculated.</p>
+<p><span class="math notranslate nohighlight">\(\Large m_{i+1} = A \cdot m_i\)</span>.</p>
+<p>The grid constant <span class="math notranslate nohighlight">\(\large A\)</span> can be easily calculated.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
@@ -596,13 +596,13 @@ Execution time: <span class="ansi-blue-intense-fg">0:25:57</span>
 </pre></div></div>
 </div>
 <p>We further assume that the mass bin center is exactly in the middle between the mass bin interfaces</p>
-<p><span class="math notranslate nohighlight">\(m_i = \frac{1}{2} \left( m_{i-\frac{1}{2}} + m_{i+\frac{1}{2}} \right)\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large m_i = \frac{1}{2} \left( m_{i-\frac{1}{2}} + m_{i+\frac{1}{2}} \right)\)</span>.</p>
 <p>Solving for the interfaces yields</p>
-<p><span class="math notranslate nohighlight">\(\begin{split} m_{i-\frac{1}{2}} &amp;= \frac{2}{A+1} m_i \\ m_{i+\frac{1}{2}} &amp;= \frac{2}{A+1} A\cdot m_i. \end{split}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \begin{split} m_{i-\frac{1}{2}} &amp;= \frac{2}{A+1} m_i \\ m_{i+\frac{1}{2}} &amp;= \frac{2}{A+1} A\cdot m_i. \end{split}\)</span></p>
 <p>We therefore have</p>
-<p><span class="math notranslate nohighlight">\(\Delta m_i = m_{i+\frac{1}{2}} - m_{i-\frac{1}{2}} = 2\frac{A-1}{A+1}m_i\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \Delta m_i = m_{i+\frac{1}{2}} - m_{i-\frac{1}{2}} = 2\frac{A-1}{A+1}m_i\)</span></p>
 <p>and</p>
-<p><span class="math notranslate nohighlight">\(B = \frac{\Delta m_i}{m_i} = 2\frac{A-1}{A+1}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large B = \frac{\Delta m_i}{m_i} = 2\frac{A-1}{A+1}\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
@@ -625,11 +625,11 @@ Execution time: <span class="ansi-blue-intense-fg">0:25:57</span>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[[1.35791789e-01 1.11472047e-01 1.16092272e-01 ... 1.52526930e-23
+[[1.19204136e-01 9.84350200e-02 1.02953636e-01 ... 1.52526930e-23
   2.11935481e-23 2.94483396e-23]
- [1.29819811e-01 1.06226080e-01 1.10385025e-01 ... 1.32845402e-23
+ [1.13872794e-01 9.37359521e-02 9.78118256e-02 ... 1.32845402e-23
   1.84588088e-23 2.56484316e-23]
- [1.24467541e-01 1.01487194e-01 1.05204713e-01 ... 1.15703508e-23
+ [1.09085035e-01 8.94843428e-02 9.31369308e-02 ... 1.15703508e-23
   1.60769503e-23 2.23388501e-23]
  ...
  [4.45718657e-46 6.19324066e-46 8.60547999e-46 ... 2.30858850e-29
@@ -704,31 +704,31 @@ Writer (HDF5 file format using h5py)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([1.11442758e+003, 1.03950016e+003, 9.69534899e+002, 9.03996575e+002,
-       8.42652573e+002, 7.85281679e+002, 7.31666653e+002, 6.81591015e+002,
-       6.34839857e+002, 5.91202935e+002, 5.50478001e+002, 5.12473131e+002,
-       4.77007790e+002, 4.43912953e+002, 4.13030706e+002, 3.84213637e+002,
-       3.57324174e+002, 3.32233942e+002, 3.08823154e+002, 2.86980035e+002,
-       2.66600291e+002, 2.47586611e+002, 2.29848199e+002, 2.13300346e+002,
-       1.97864019e+002, 1.83465484e+002, 1.70035958e+002, 1.57511273e+002,
-       1.45831575e+002, 1.34941033e+002, 1.24787571e+002, 1.15322622e+002,
-       1.06500891e+002, 9.82801375e+001, 9.06209726e+001, 8.34866689e+001,
-       7.68429821e+001, 7.06579849e+001, 6.49019115e+001, 5.95470123e+001,
-       5.45674173e+001, 4.99390088e+001, 4.56393015e+001, 4.16473303e+001,
-       3.79435448e+001, 3.45097100e+001, 3.13288134e+001, 2.83849764e+001,
-       2.56633720e+001, 2.31501460e+001, 2.08323432e+001, 1.86978378e+001,
-       1.67352666e+001, 1.49339667e+001, 1.32839164e+001, 1.17756796e+001,
-       1.04003528e+001, 9.14951632e+000, 8.01518836e+000, 6.98978248e+000,
-       6.06606887e+000, 5.23713926e+000, 4.49637584e+000, 3.83742439e+000,
-       3.25417178e+000, 2.74072812e+000, 2.29141364e+000, 1.90075039e+000,
-       1.56345878e+000, 1.27445866e+000, 1.02887484e+000, 8.22046251e-001,
-       6.49538378e-001, 5.07157848e-001, 3.90968245e-001, 2.97305957e-001,
-       2.22794764e-001, 1.64357939e-001, 1.19226636e-001, 8.49435663e-002,
-       5.93611962e-002, 4.06340475e-002, 2.72050959e-002, 1.77866714e-002,
-       1.13366732e-002, 7.03125139e-003, 4.23534403e-003, 2.47255688e-003,
-       1.39583152e-003, 7.60163304e-004, 3.98337858e-004, 2.00295348e-004,
-       9.63569541e-005, 4.42094325e-005, 1.92794721e-005, 7.96245913e-006,
-       3.10228830e-006, 1.13550420e-006, 3.87735143e-007, 1.00000000e-100])
+array([1.11482110e+003, 1.03983953e+003, 9.69821741e+002, 9.04227215e+002,
+       8.42832109e+002, 7.85420755e+002, 7.31777194e+002, 6.81682992e+002,
+       6.34920030e+002, 5.91275189e+002, 5.50544320e+002, 5.12534493e+002,
+       4.77064725e+002, 4.43965816e+002, 4.13079785e+002, 3.84259188e+002,
+       3.57366435e+002, 3.32273135e+002, 3.08859484e+002, 2.87013695e+002,
+       2.66631460e+002, 2.47615457e+002, 2.29874880e+002, 2.13325007e+002,
+       1.97886797e+002, 1.83486508e+002, 1.70055346e+002, 1.57529137e+002,
+       1.45848019e+002, 1.34956154e+002, 1.24801461e+002, 1.15335366e+002,
+       1.06512569e+002, 9.82908230e+001, 9.06307359e+001, 8.34955752e+001,
+       7.68510926e+001, 7.06653567e+001, 6.49085983e+001, 5.95530643e+001,
+       5.45728817e+001, 4.99439298e+001, 4.56437205e+001, 4.16512862e+001,
+       3.79470742e+001, 3.45128472e+001, 3.13315906e+001, 2.83874240e+001,
+       2.56655183e+001, 2.31520177e+001, 2.08339655e+001, 1.86992343e+001,
+       1.67364592e+001, 1.49349763e+001, 1.32847624e+001, 1.17763800e+001,
+       1.04009246e+001, 9.14997520e+000, 8.01554894e+000, 6.99005824e+000,
+       6.06627221e+000, 5.23728154e+000, 4.49646740e+000, 3.83747456e+000,
+       3.25418891e+000, 2.74071962e+000, 2.29138599e+000, 1.90070920e+000,
+       1.56340881e+000, 1.27440389e+000, 1.02881847e+000, 8.21990813e-001,
+       6.49485768e-001, 5.07109402e-001, 3.90924812e-001, 2.97267968e-001,
+       2.22762311e-001, 1.64330846e-001, 1.19204531e-001, 8.49259450e-002,
+       5.93474779e-002, 4.06236257e-002, 2.71973772e-002, 1.77811047e-002,
+       1.13327688e-002, 7.02859232e-003, 4.23358844e-003, 2.47143530e-003,
+       1.39513957e-003, 7.59751946e-004, 3.98102772e-004, 2.00166527e-004,
+       9.62894557e-005, 4.41757146e-005, 1.92634657e-005, 7.95526294e-006,
+       3.09923559e-006, 1.13428831e-006, 3.87432578e-007, 1.00000000e-100])
 </pre></div></div>
 </div>
 <p>You can also read the full data directory with</p>
@@ -793,6 +793,53 @@ array([1.11442758e+003, 1.03950016e+003, 9.69534899e+002, 9.03996575e+002,
 </pre></div>
 </div>
 </div>
+<p>There is a utility function implemented in <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> that is loading all data fields needed for the default plots including an estimate for the growth barriers. The function <code class="docutils literal notranslate"><span class="pre">read_data()</span></code> either takes the simulation object <code class="docutils literal notranslate"><span class="pre">sim</span></code> or a path to the data directory as input and returns a <code class="docutils literal notranslate"><span class="pre">SimpleNamespace</span></code> object with the data fields.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy.utils</span> <span class="kn">import</span> <span class="n">read_data</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>For example the Stokes numbers of fragmentation limited particles of shape <code class="docutils literal notranslate"><span class="pre">(Nt,</span> <span class="pre">Nr)</span></code> that can be used to plot growth limits.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">dust</span><span class="o">.</span><span class="n">St_limits</span><span class="o">.</span><span class="n">frag</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,
+        0.01304818],
+       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,
+        0.01304818],
+       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,
+        0.01304818],
+       ...,
+       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,
+        0.01304818],
+       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,
+        0.01304818],
+       [0.00042705, 0.00044205, 0.00045759, ..., 0.012177  , 0.01260506,
+        0.01304818]], shape=(22, 100))
+</pre></div></div>
+</div>
 </section>
 <section id="Reading-Dump-Files">
 <h2>Reading Dump Files<a class="headerlink" href="#Reading-Dump-Files" title="Link to this heading"></a></h2>
@@ -800,7 +847,7 @@ array([1.11442758e+003, 1.03950016e+003, 9.69534899e+002, 9.03996575e+002,
 <p><code class="docutils literal notranslate"><span class="pre">simframe</span></code> is saving by default the most recent dump file, from which a simulation can be restarted.</p>
 <p><strong>Attention:</strong> Malware can be injected with dump files, which are pickled objects. Only read dump files that you have created yourself or from sources that you trust! Dump files have to be read with the same version of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> as they were written. Otherwise, it is not guaranteed to work.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">readdump</span>
@@ -808,7 +855,7 @@ array([1.11442758e+003, 1.03950016e+003, 9.69534899e+002, 9.03996575e+002,
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_restart</span> <span class="o">=</span> <span class="n">readdump</span><span class="p">(</span><span class="s2">&quot;data/frame.dmp&quot;</span><span class="p">)</span>
@@ -817,7 +864,7 @@ array([1.11442758e+003, 1.03950016e+003, 9.69534899e+002, 9.03996575e+002,
 </div>
 <p>This is now a simulation frame that should be identical to our previous object.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span> <span class="o">==</span> <span class="n">sim_restart</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Sigma</span>
@@ -825,7 +872,7 @@ array([1.11442758e+003, 1.03950016e+003, 9.69534899e+002, 9.03996575e+002,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -843,7 +890,7 @@ array([1.11442758e+003, 1.03950016e+003, 9.69534899e+002, 9.03996575e+002,
 </div>
 <p>We can now, for example, add more snapshots and restart the simulation. Here we just want to extend the run by one year.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">constants</span> <span class="k">as</span> <span class="n">c</span>
@@ -854,7 +901,7 @@ array([1.11442758e+003, 1.03950016e+003, 9.69534899e+002, 9.03996575e+002,
 </div>
 <p>The current time is</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_restart</span><span class="o">.</span><span class="n">t</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
@@ -862,7 +909,7 @@ array([1.11442758e+003, 1.03950016e+003, 9.69534899e+002, 9.03996575e+002,
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -872,7 +919,7 @@ array([1.11442758e+003, 1.03950016e+003, 9.69534899e+002, 9.03996575e+002,
 </div>
 <p>We can now restart the simulation for another year.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_restart</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
@@ -885,7 +932,7 @@ array([1.11442758e+003, 1.03950016e+003, 9.69534899e+002, 9.03996575e+002,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.6
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -896,15 +943,15 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 6.66e-16</span>
         for particle collision
-            m[55] =  7.20e-05 g    with
-            m[55] =  7.20e-05 g
+            m[90] =  7.20e+00 g    with
+            m[95] =  3.73e+01 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -918,7 +965,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 </div>
 <p>Another file was written and the current time is now</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim_restart</span><span class="o">.</span><span class="n">t</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">year</span>
@@ -926,7 +973,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="output_area docutils container">

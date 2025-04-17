@@ -4,7 +4,7 @@ requires = ['meson-python', 'numpy']
 
 [project]
 name = 'dustpy'
-version = '1.0.6'
+version = '1.0.8'
 description = 'Dust evolution in protoplanetary disks'
 readme = { file = 'README.md', content-type = 'text/markdown' }
 keywords = [

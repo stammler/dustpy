@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -6,23 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4. The Standard Model &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
-      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -113,6 +111,11 @@
 <li class="toctree-l4"><a class="reference internal" href="#Simulation.gas.S.tot"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.S.tot</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#Simulation.gas.torque"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.torque</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Simulation.gas.torque.Lambda"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.torque.Lambda</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Simulation.gas.torque.v"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.torque.v</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#Simulation.gas.v"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.v</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Simulation.gas.v.rad"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.v.rad</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Simulation.gas.v.visc"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.v.visc</span></code></a></li>
@@ -122,7 +125,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#Simulation.gas.cs"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.cs</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Simulation.gas.eta"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.eta</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Simulation.gas.Fi"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.Fi</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Simulation.gas.gamma"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.gamma</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Simulation.gas.Hp"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.Hp</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Simulation.gas.mfp"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.mfp</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Simulation.gas.mu"><code class="docutils literal notranslate"><span class="pre">Simulation.gas.mu</span></code></a></li>
@@ -325,7 +327,7 @@ Group (Backreaction coefficients)
 <p>The backreaction describes the hydrodynamic influence the dust has on the gas. Numerically it consists of two fields <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> of shape <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nr,)</span></code> that describe the pull respectively the push the dust excerts on the gas.</p>
 <p>The details of this mechanism are described in <a class="reference external" href="https://doi.org/10.3847/1538-4357/aaf4fc">Gárate et al. (2019)</a>.</p>
 <p>Backreaction modifies the radial gas velocity as follows</p>
-<p><span class="math notranslate nohighlight">\(v_\mathrm{g} = Av_\mathrm{visc} + 2B\eta v_\mathrm{K}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large v_\mathrm{g} = Av_\mathrm{visc} + 2B\eta v_\mathrm{K}\)</span>.</p>
 <p>In the standard model we have <code class="docutils literal notranslate"><span class="pre">A=1</span></code> and <code class="docutils literal notranslate"><span class="pre">B=0</span></code> everywhere, i.e., backreactions is not active.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
@@ -494,7 +496,7 @@ Group (Mixing parameters)
   -----
 </pre></div></div>
 </div>
-<p>The <span class="math notranslate nohighlight">\(\delta\)</span> parameters control the mixing of dust particles along vertical and radial directions and turbulent mixing. You can look at them as similar to the turbulent <span class="math notranslate nohighlight">\(\alpha\)</span> parameter for the gas. And by default they will have the same value as <span class="math notranslate nohighlight">\(\alpha\)</span> as given by <code class="docutils literal notranslate"><span class="pre">Simulation.ini.gas.alpha</span></code>.</p>
+<p>The <span class="math notranslate nohighlight">\(\large \delta\)</span> parameters control the mixing of dust particles along vertical and radial directions and turbulent mixing. You can look at them as similar to the turbulent <span class="math notranslate nohighlight">\(\large \alpha\)</span> parameter for the gas. And by default they will have the same value as <span class="math notranslate nohighlight">\(\large \alpha\)</span> as given by <code class="docutils literal notranslate"><span class="pre">Simulation.ini.gas.alpha</span></code>.</p>
 <section id="Simulation.dust.delta.rad">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.delta.rad</span></code><a class="headerlink" href="#Simulation.dust.delta.rad" title="Link to this heading"></a></h4>
 <div class="nbinput docutils container">
@@ -522,7 +524,7 @@ Group (Mixing parameters)
  0.001 0.001 0.001 0.001]
 </pre></div></div>
 </div>
-<p><span class="math notranslate nohighlight">\(\delta_\mathrm{rad}\)</span> will be used to calculate the radial dust diffusion.</p>
+<p><span class="math notranslate nohighlight">\(\large \delta_\mathrm{rad}\)</span> will be used to calculate the radial dust diffusion.</p>
 </section>
 <section id="Simulation.dust.delta.turb">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.delta.turb</span></code><a class="headerlink" href="#Simulation.dust.delta.turb" title="Link to this heading"></a></h4>
@@ -551,7 +553,7 @@ Group (Mixing parameters)
  0.001 0.001 0.001 0.001]
 </pre></div></div>
 </div>
-<p><span class="math notranslate nohighlight">\(\delta_\mathrm{turb}\)</span> will be used to calculate the turbulent collision velocities of the dust particles.</p>
+<p><span class="math notranslate nohighlight">\(\large \delta_\mathrm{turb}\)</span> will be used to calculate the turbulent collision velocities of the dust particles.</p>
 </section>
 <section id="Simulation.dust.delta.vert">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.delta.vert</span></code><a class="headerlink" href="#Simulation.dust.delta.vert" title="Link to this heading"></a></h4>
@@ -580,7 +582,7 @@ Group (Mixing parameters)
  0.001 0.001 0.001 0.001]
 </pre></div></div>
 </div>
-<p><span class="math notranslate nohighlight">\(\delta_\mathrm{vert}\)</span> will be used to calculate the vertical dust scale heights.</p>
+<p><span class="math notranslate nohighlight">\(\large \delta_\mathrm{vert}\)</span> will be used to calculate the vertical dust scale heights.</p>
 </section>
 </section>
 <section id="Simulation.dust.Fi">
@@ -611,17 +613,17 @@ Group (Fluxes)
 <p><strong>Attention:</strong> When using implicit dust integration, the interface fluxes are calculated in retrospect after the new dust surface density was found. Changing any <code class="docutils literal notranslate"><span class="pre">Simulation.dust.Fi</span></code> does not influence the simulation. It is only given for data analysis.</p>
 <section id="Simulation.dust.Fi.adv">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.Fi.adv</span></code><a class="headerlink" href="#Simulation.dust.Fi.adv" title="Link to this heading"></a></h4>
-<p>This is the advective flux calculated by <span class="math notranslate nohighlight">\(F_\mathrm{adv} = v_\mathrm{d}\Sigma_\mathrm{d}\)</span>.</p>
+<p>This is the advective flux calculated by <span class="math notranslate nohighlight">\(\large F_\mathrm{adv} = v_\mathrm{d}\Sigma_\mathrm{d}\)</span>.</p>
 <p><strong>Attention:</strong> When using implicit dust integration, the advective interface fluxes are calculated in retrospect after the new dust surface density was found. Changing <code class="docutils literal notranslate"><span class="pre">Simulation.dust.Fi.adv</span></code> does not influence the simulation. It is only given for data analysis.</p>
 </section>
 <section id="Simulation.dust.Fi.diff">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.Fi.diff</span></code><a class="headerlink" href="#Simulation.dust.Fi.diff" title="Link to this heading"></a></h4>
-<p>This is the diffusive flux calculated by <span class="math notranslate nohighlight">\(F_\mathrm{diff} = -D\Sigma_\mathrm{g}\nabla\frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{gas}}\)</span> for every particle species separately. The diffusive fluxes at the grid boundaries are set to zero to avoid instabilities.</p>
+<p>This is the diffusive flux calculated by <span class="math notranslate nohighlight">\(\large F_\mathrm{diff} = -D\Sigma_\mathrm{g}\nabla\frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{gas}}\)</span> for every particle species separately. The diffusive fluxes at the grid boundaries are set to zero to avoid instabilities.</p>
 <p><strong>Attention:</strong> When using implicit dust integration, the diffusive interface fluxes are calculated in retrospect after the new dust surface density was found. Changing <code class="docutils literal notranslate"><span class="pre">Simulation.dust.Fi.diff</span></code> does not influence the simulation. It is only given for data analysis.</p>
 </section>
 <section id="Simulation.dust.Fi.tot">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.Fi.tot</span></code><a class="headerlink" href="#Simulation.dust.Fi.tot" title="Link to this heading"></a></h4>
-<p>This is the total flux through the radial grid interfaces <span class="math notranslate nohighlight">\(F_\mathrm{tot} = F_\mathrm{adv} + F_\mathrm{diff}\)</span>.</p>
+<p>This is the total flux through the radial grid interfaces <span class="math notranslate nohighlight">\(\large F_\mathrm{tot} = F_\mathrm{adv} + F_\mathrm{diff}\)</span>.</p>
 <p><strong>Attention:</strong> When using implicit dust integration, the total interface fluxes are calculated in retrospect after the new dust surface density was found. Changing <code class="docutils literal notranslate"><span class="pre">Simulation.dust.Fi.tot</span></code> does not influence the simulation. It is only given for data analysis.</p>
 </section>
 </section>
@@ -670,26 +672,26 @@ Group (Probabilities)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0.9948352476770317
+np.float64(0.9911366648697515)
 </pre></div></div>
 </div>
 <section id="Simulation.dust.p.frag">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.p.frag</span></code><a class="headerlink" href="#Simulation.dust.p.frag" title="Link to this heading"></a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> assumes that the relative collision velocities follow the Maxwell-Boltzmann distribution</p>
-<p><span class="math notranslate nohighlight">\(f\left(\Delta v\right) = \sqrt{\frac{54}{\pi}}\frac{\Delta v^{2}}{v_\mathrm{rms}^3} \exp \left[-\frac{3}{2} \frac{\Delta v^2}{v_\mathrm{rms}^2} \right]\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large f\left(\Delta v\right) = \sqrt{\frac{54}{\pi}}\frac{\Delta v^{2}}{v_\mathrm{rms}^3} \exp \left[-\frac{3}{2} \frac{\Delta v^2}{v_\mathrm{rms}^2} \right]\)</span>.</p>
 <p>The collision kernel for fragmentation is then given by</p>
-<p><span class="math notranslate nohighlight">\(K_\mathrm{f} = \int\limits_{v_\mathrm{frag}}^\infty \sigma_\mathrm{geo} \Delta v f\left(\Delta v\right) \mathrm{d}\Delta v\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large K_\mathrm{f} = \int\limits_{v_\mathrm{frag}}^\infty \sigma_\mathrm{geo} \Delta v f\left(\Delta v\right) \mathrm{d}\Delta v\)</span></p>
 <p>by counting all collisions above the fragmentation velocity.</p>
 <p>The fragmentation probability is the given by</p>
-<p><span class="math notranslate nohighlight">\(p_\mathrm{f} = \frac{K_\mathrm{f}}{\sigma_\mathrm{geo} \Delta \bar{v}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large p_\mathrm{f} = \frac{K_\mathrm{f}}{\sigma_\mathrm{geo} \Delta \bar{v}}\)</span></p>
 <p>with the mean velocity of the Maxwell-Boltzmann distribution</p>
-<p><span class="math notranslate nohighlight">\(\Delta \bar{v} = \sqrt{\frac{8\pi}{2}}v_\mathrm{rms}\)</span>.</p>
-<p>The root-mean-square velocities <span class="math notranslate nohighlight">\(v_\mathrm{rms}\)</span> are stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.rel</span></code>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \Delta \bar{v} = \sqrt{\frac{8\pi}{2}}v_\mathrm{rms}\)</span>.</p>
+<p>The root-mean-square velocities <span class="math notranslate nohighlight">\(\large v_\mathrm{rms}\)</span> are stored in <code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.rel</span></code>.</p>
 </section>
 <section id="Simulation.dust.p.stick">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.p.stick</span></code><a class="headerlink" href="#Simulation.dust.p.stick" title="Link to this heading"></a></h4>
-<p>This is the sticking probability given by <span class="math notranslate nohighlight">\(p_\mathrm{s} = 1 - p_\mathrm{f}\)</span>.</p>
-<p>Bouncing can be easily implemented if <span class="math notranslate nohighlight">\(0 \leq p_\mathrm{f} + p_\mathrm{s} &lt; 1\)</span>.</p>
+<p>This is the sticking probability given by <span class="math notranslate nohighlight">\(\large p_\mathrm{s} = 1 - p_\mathrm{f}\)</span>.</p>
+<p>Bouncing can be easily implemented if <span class="math notranslate nohighlight">\(\large 0 \leq p_\mathrm{f} + p_\mathrm{s} &lt; 1\)</span>.</p>
 </section>
 </section>
 <section id="Simulation.dust.S">
@@ -753,12 +755,12 @@ Group (Sources)
 <section id="Simulation.dust.S.hyd">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.hyd</span></code><a class="headerlink" href="#Simulation.dust.S.hyd" title="Link to this heading"></a></h4>
 <p>These are the hydrodynamic source terms. At grid cell <span class="math notranslate nohighlight">\(i\)</span> they are calculated by</p>
-<p><span class="math notranslate nohighlight">\(S_{\mathrm{hyd},\,i} = 2\frac{\left( r_{i-\frac{1}{2}}F_{i-\frac{1}{2}}-r_{i+\frac{1}{2}}F_{i+\frac{1}{2}} \right)}{r_{i+\frac{1}{2}}^2 - r_{i-\frac{1}{2}}^2}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large S_{\mathrm{hyd},\,i} = 2\frac{\left( r_{i-\frac{1}{2}}F_{i-\frac{1}{2}}-r_{i+\frac{1}{2}}F_{i+\frac{1}{2}} \right)}{r_{i+\frac{1}{2}}^2 - r_{i-\frac{1}{2}}^2}\)</span>.</p>
 <p><strong>Attention:</strong> When using implicit dust integration, the hydrodynamic source terms are calculated in retrospect after the new dust surface density was found. Changing <code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.hyd</span></code> does not influence the simulation. It is only given for data analysis.</p>
 </section>
 <section id="Simulation.dust.S.tot">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.S.tot</span></code><a class="headerlink" href="#Simulation.dust.S.tot" title="Link to this heading"></a></h4>
-<p>These are the total source terms given by <span class="math notranslate nohighlight">\(S_\mathrm{tot} = S_\mathrm{coag} + S_\mathrm{ext} + S_\mathrm{hyd}\)</span>.</p>
+<p>These are the total source terms given by <span class="math notranslate nohighlight">\(\large S_\mathrm{tot} = S_\mathrm{coag} + S_\mathrm{ext} + S_\mathrm{hyd}\)</span>.</p>
 </section>
 </section>
 <section id="Simulation.dust.v">
@@ -817,28 +819,32 @@ Group (Relative velocities)
 </div>
 <div class="line-block">
 <div class="line">These are the different sources of relative particle collision velocities used by the coagulation algorithm.</div>
-<div class="line">They are used for two different reasons: 1. To calculated the collision rates 2. To determine the outcome of a collision</div>
+<div class="line">They are used for two different reasons:</div>
 </div>
+<ol class="arabic simple">
+<li><p>To calculated the collision rates</p></li>
+<li><p>To determine the outcome of a collision</p></li>
+</ol>
 <section id="Simulation.dust.v.rel.azi">
 <h5><code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.rel.azi</span></code><a class="headerlink" href="#Simulation.dust.v.rel.azi" title="Link to this heading"></a></h5>
 <p>Relative collision velocity caused by a differential azimuthal drift of particles with different Stokes numbers calculated by</p>
-<p><span class="math notranslate nohighlight">\(v_{\mathrm{rel},\,\mathrm{azi}} = \left| v_{\mathrm{drift},\,\mathrm{max}} \cdot \left( \frac{1}{1+\mathrm{St}_i^2} - \frac{1}{1+\mathrm{St}_j^2} \right) \right|\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large v_{\mathrm{rel},\,\mathrm{azi}} = \left| v_{\mathrm{drift},\,\mathrm{max}} \cdot \left( \frac{1}{1+\mathrm{St}_i^2} - \frac{1}{1+\mathrm{St}_j^2} \right) \right|\)</span>.</p>
 </section>
 <section id="Simulation.dust.v.brown">
 <h5><code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.brown</span></code><a class="headerlink" href="#Simulation.dust.v.brown" title="Link to this heading"></a></h5>
 <p>Relative collision velocity of particles caused by Brownian motion calculated with</p>
-<p><span class="math notranslate nohighlight">\(v_{\mathrm{rel},\,\mathrm{brown}} = \sqrt{ \frac{8k_\mathrm{B}T\left(m_i + m_j \right)}{\pi m_i m_j} }\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large v_{\mathrm{rel},\,\mathrm{brown}} = \sqrt{ \frac{8k_\mathrm{B}T\left(m_i + m_j \right)}{\pi m_i m_j} }\)</span>.</p>
 <p>Since this expression is diverging for very small particle masses, the relative velocity is capped to a maximum value of the sound speed <span class="math notranslate nohighlight">\(c_\mathrm{s}\)</span>. For very small particles this can still be larger than the fragmentation velocity and can cause unwanted fragmentation in the simple coagulation algorithm implemented in the default model.</p>
 </section>
 <section id="Simulation.dust.v.rel.rad">
 <h5><code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.rel.rad</span></code><a class="headerlink" href="#Simulation.dust.v.rel.rad" title="Link to this heading"></a></h5>
 <p>Relative collision velocity caused by differential radial drift.</p>
-<p><span class="math notranslate nohighlight">\(v_{\mathrm{rel},\,\mathrm{rad}} = \left| v_{\mathrm{rad},\,i} - v_{\mathrm{rad},\,j} \right|\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large v_{\mathrm{rel},\,\mathrm{rad}} = \left| v_{\mathrm{rad},\,i} - v_{\mathrm{rad},\,j} \right|\)</span>.</p>
 </section>
 <section id="Simulation.dust.v.rel.tot">
 <h5><code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.rel.tot</span></code><a class="headerlink" href="#Simulation.dust.v.rel.tot" title="Link to this heading"></a></h5>
 <p>Total relative velocities calculated by using the root mean square of all individual velocity sources.</p>
-<p><span class="math notranslate nohighlight">\(v_{\mathrm{rel},\,\mathrm{tot}} = \sqrt{v_{\mathrm{rel},\,\mathrm{azi}}^2 + v_{\mathrm{rel},\,\mathrm{brown}}^2 + v_{\mathrm{rel},\,\mathrm{rad}}^2 + v_{\mathrm{rel},\,\mathrm{turb}}^2 + v_{\mathrm{rel},\,\mathrm{vert}}^2}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large v_{\mathrm{rel},\,\mathrm{tot}} = \sqrt{v_{\mathrm{rel},\,\mathrm{azi}}^2 + v_{\mathrm{rel},\,\mathrm{brown}}^2 + v_{\mathrm{rel},\,\mathrm{rad}}^2 + v_{\mathrm{rel},\,\mathrm{turb}}^2 + v_{\mathrm{rel},\,\mathrm{vert}}^2}\)</span>.</p>
 </section>
 <section id="Simulation.dust.v.rel.turb">
 <h5><code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.rel.turb</span></code><a class="headerlink" href="#Simulation.dust.v.rel.turb" title="Link to this heading"></a></h5>
@@ -850,14 +856,14 @@ Group (Relative velocities)
 <section id="Simulation.dust.v.rel.vert">
 <h5><code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.rel.vert</span></code><a class="headerlink" href="#Simulation.dust.v.rel.vert" title="Link to this heading"></a></h5>
 <p>Relative collision velocities caused by differential vertical settling of particles.</p>
-<p><span class="math notranslate nohighlight">\(v_{\mathrm{rel},\,\mathrm{vert}} = \left| h_i \min \left( \mathrm{St}_i,\,\frac{1}{2}\right) - h_j \min \left( \mathrm{St}_j,\,\frac{1}{2}\right) \right| \cdot \Omega_\mathrm{K}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large v_{\mathrm{rel},\,\mathrm{vert}} = \left| h_i \min \left( \mathrm{St}_i,\,\frac{1}{2}\right) - h_j \min \left( \mathrm{St}_j,\,\frac{1}{2}\right) \right| \cdot \Omega_\mathrm{K}\)</span>.</p>
 <p>This prescription is taken from <a class="reference external" href="https://doi.org/10.1051/0004-6361/200913731">Birnstiel et al. (2010)</a> and follows <a class="reference external" href="https://doi.org/10.1051/0004-6361:20040284">Dullemond &amp; Dominik (2004)</a>.</p>
 </section>
 </section>
 <section id="Simulation.dust.v.driftmax">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.driftmax</span></code><a class="headerlink" href="#Simulation.dust.v.driftmax" title="Link to this heading"></a></h4>
-<p>This is the maximum drift velocity a particle of <span class="math notranslate nohighlight">\(\mathrm{St} = 1\)</span> can have.</p>
-<p><span class="math notranslate nohighlight">\(v_{\mathrm{drift},\,\mathrm{max}} = \frac{1}{2} B v_\mathrm{visc} - A \eta v_\mathrm{K}\)</span>.</p>
+<p>This is the maximum drift velocity a particle of <span class="math notranslate nohighlight">\(\large \mathrm{St} = 1\)</span> can have.</p>
+<p><span class="math notranslate nohighlight">\(\Large v_{\mathrm{drift},\,\mathrm{max}} = \frac{1}{2} B v_\mathrm{visc} - A \eta v_\mathrm{K}\)</span>.</p>
 <p>See <code class="docutils literal notranslate"><span class="pre">Simulation.dust.backreaction</span></code> for details.</p>
 </section>
 <section id="Simulation.dust.v.frag">
@@ -891,23 +897,23 @@ Group (Relative velocities)
 <section id="Simulation.dust.v.rad">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.dust.v.rad</span></code><a class="headerlink" href="#Simulation.dust.v.rad" title="Link to this heading"></a></h4>
 <p>Radial velocities of the dust particles.</p>
-<p><span class="math notranslate nohighlight">\(v_\mathrm{rad} = \left( v_\mathrm{g} + 2 v_{\mathrm{drift},\,\mathrm{max}}\mathrm{St} \right) \frac{1}{\mathrm{St}^2+1}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large v_\mathrm{rad} = \left( v_\mathrm{g} + 2 v_{\mathrm{drift},\,\mathrm{max}}\mathrm{St} \right) \frac{1}{\mathrm{St}^2+1}\)</span></p>
 </section>
 </section>
 <section id="Simulation.dust.a">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.a</span></code><a class="headerlink" href="#Simulation.dust.a" title="Link to this heading"></a></h3>
 <p>Particle radii calculated with</p>
-<p><span class="math notranslate nohighlight">\(a = \sqrt[3]{\frac{3m}{4\pi\rho_\mathrm{s}}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large a = \sqrt[3]{\frac{3m}{4\pi\rho_\mathrm{s}}}\)</span></p>
 </section>
 <section id="Simulation.dust.D">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.D</span></code><a class="headerlink" href="#Simulation.dust.D" title="Link to this heading"></a></h3>
 <p>Dust diffusivity for every particle species of shape <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nr,</span> <span class="pre">Simulation.grid.Nm)</span></code> calculated with</p>
-<p><span class="math notranslate nohighlight">\(D = \frac{\delta_\mathrm{rad}\,c_\mathrm{s}^2}{\Omega_\mathrm{K}\left( 1 + \mathrm{St}^2 \right)}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large D = \frac{\delta_\mathrm{rad}\,c_\mathrm{s}^2}{\Omega_\mathrm{K}\left( 1 + \mathrm{St}^2 \right)}\)</span>.</p>
 </section>
 <section id="Simulation.dust.eps">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.eps</span></code><a class="headerlink" href="#Simulation.dust.eps" title="Link to this heading"></a></h3>
 <p>This is the vertically integrated dust-to-gas ratio of shape <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nr,)</span></code>. In the literature this is also often refered to as metallicity <span class="math notranslate nohighlight">\(z\)</span>. It is calculated via</p>
-<p><span class="math notranslate nohighlight">\(\epsilon = \frac{\sum\limits_i \Sigma_{\mathrm{d},\,i}}{\Sigma_\mathrm{g}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \epsilon = \frac{\sum\limits_i \Sigma_{\mathrm{d},\,i}}{\Sigma_\mathrm{g}}\)</span></p>
 </section>
 <section id="Simulation.dust.fill">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.fill</span></code><a class="headerlink" href="#Simulation.dust.fill" title="Link to this heading"></a></h3>
@@ -939,23 +945,23 @@ Group (Relative velocities)
 <section id="Simulation.dust.H">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.H</span></code><a class="headerlink" href="#Simulation.dust.H" title="Link to this heading"></a></h3>
 <p>These are the dust scale heights of shape <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nr,</span> <span class="pre">Simulation.grid.Nm)</span></code> calculated with the prescription of <a class="reference external" href="https://doi.org/10.1006/icar.1995.1058">Dubrulle et al. (1995)</a></p>
-<p><span class="math notranslate nohighlight">\(H_i = H_\mathrm{P} \cdot \sqrt{\frac{\delta_\mathrm{vert}}{\delta_\mathrm{vert}+\mathrm{St}_i}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large H_i = H_\mathrm{P} \cdot \sqrt{\frac{\delta_\mathrm{vert}}{\delta_\mathrm{vert}+\mathrm{St}_i}}\)</span></p>
 <p>It is limited to a maximum of the pressure scale height <span class="math notranslate nohighlight">\(H_\mathrm{P}\)</span>. It uses <code class="docutils literal notranslate"><span class="pre">Simulation.dust.delta.vert</span></code> as vertical mixing parameter instead of <code class="docutils literal notranslate"><span class="pre">Simulation.gas.alpha</span></code>.</p>
 </section>
 <section id="Simulation.dust.kernel">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.kernel</span></code><a class="headerlink" href="#Simulation.dust.kernel" title="Link to this heading"></a></h3>
 <p>These are the vertically integrated collision kernels of shape <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nr,</span> <span class="pre">Simulation.grid.Nm,</span> <span class="pre">Simulation.grid.Nm)</span></code> calculated with</p>
-<p><span class="math notranslate nohighlight">\(K_{ij} = \frac{1}{1+\delta_{ij}} \frac{\pi\left( a_i + a_j \right)^2}{\sqrt{2\pi\left( H_i^2 + H_j^2 \right)}} v_\mathrm{rel}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large K_{ij} = \frac{1}{1+\delta_{ij}} \frac{\pi\left( a_i + a_j \right)^2}{\sqrt{2\pi\left( H_i^2 + H_j^2 \right)}} v_\mathrm{rel}\)</span></p>
 <p>Please have a look at <a class="reference external" href="https://doi.org/10.1051/0004-6361/200913731">Birnstiel et al. (2010)</a> for details. The kernel is the geometrical cross section multiplied with the factor described in <code class="docutils literal notranslate"><span class="pre">(A.14)</span></code>. Multiplying the kernel with the densities returns the collision rates.</p>
-<p>The collisions rates of equal particle collisions are reduced by a factor of <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> by the Kronecker <span class="math notranslate nohighlight">\(\delta_{ij}\)</span>. In a reservoir of <span class="math notranslate nohighlight">\(N\)</span> equal particles, the first particle can collide with <span class="math notranslate nohighlight">\(N-1\)</span> other particles, the second particle can collide with <span class="math notranslate nohighlight">\(N-2\)</span> other particles without counting the collision with the first particle twice. The third particle can collide with <span class="math notranslate nohighlight">\(N-3\)</span> other particles and so on. The total number of possible collisions is therefore
-given by</p>
-<p><span class="math notranslate nohighlight">\(\sum\limits_{i=1}^{N-1} i = \frac{1}{2}\left(N\right)\left(N-1\right)\)</span>,</p>
-<p>which is <span class="math notranslate nohighlight">\(\frac{1}{2}N^2\)</span> in the limit of large <span class="math notranslate nohighlight">\(N\)</span>.</p>
+<p>The collisions rates of equal particle collisions are reduced by a factor of <span class="math notranslate nohighlight">\(\large \frac{1}{2}\)</span> by the Kronecker <span class="math notranslate nohighlight">\(\large \delta_{ij}\)</span>. In a reservoir of <span class="math notranslate nohighlight">\(\large N\)</span> equal particles, the first particle can collide with <span class="math notranslate nohighlight">\(\large N-1\)</span> other particles, the second particle can collide with <span class="math notranslate nohighlight">\(\large N-2\)</span> other particles without counting the collision with the first particle twice. The third particle can collide with <span class="math notranslate nohighlight">\(\large N-3\)</span> other particles and so on. The total
+number of possible collisions is therefore given by</p>
+<p><span class="math notranslate nohighlight">\(\Large \sum\limits_{i=1}^{N-1} i = \frac{1}{2}\left(N\right)\left(N-1\right)\)</span>,</p>
+<p>which is <span class="math notranslate nohighlight">\(\large \frac{1}{2}N^2\)</span> in the limit of large <span class="math notranslate nohighlight">\(\large N\)</span>.</p>
 </section>
 <section id="Simulation.dust.rho">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.rho</span></code><a class="headerlink" href="#Simulation.dust.rho" title="Link to this heading"></a></h3>
 <p>Midplane mass densities of the dust.</p>
-<p><span class="math notranslate nohighlight">\(\rho = \frac{\Sigma}{\sqrt{2\pi}H}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \rho = \frac{\Sigma}{\sqrt{2\pi}H}\)</span></p>
 </section>
 <section id="Simulation.dust.rhos">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.rhos</span></code><a class="headerlink" href="#Simulation.dust.rhos" title="Link to this heading"></a></h3>
@@ -1013,7 +1019,7 @@ given by</p>
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.Sigma</span></code><a class="headerlink" href="#Simulation.dust.Sigma" title="Link to this heading"></a></h3>
 <p>This is the dust surface density of every particle species of shape <code class="docutils literal notranslate"><span class="pre">(Simulation.grid.Nr,</span> <span class="pre">Simulation.grid.Nm)</span></code>. This is the quantity that is integrated to solve for dust evolution.</p>
 <p>The surface densities are integrated over the mass bin, so a numerical summation over the mass dimension returns the total dust surface density.</p>
-<p><span class="math notranslate nohighlight">\(\Sigma_\mathrm{d} = \sum\limits_i \Sigma_{\mathrm{d},\,i}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \Sigma_\mathrm{d} = \sum\limits_i \Sigma_{\mathrm{d},\,i}\)</span></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
@@ -1047,7 +1053,7 @@ given by</p>
  3.25428186e-02 2.74067268e-02 2.29123459e-02 1.90048396e-02
  1.56313572e-02 1.27410459e-02 1.02851052e-02 8.21687989e-03
  6.49198428e-03 5.06844837e-03 3.90687641e-03 2.97060545e-03
- 9.43282410e-28 8.21564634e-28 7.15552883e-28 6.23220508e-28
+ 2.22585132e-03 8.21564634e-28 7.15552883e-28 6.23220508e-28
  5.42802371e-28 4.72761102e-28 4.11757706e-28 3.58625970e-28
  3.12350162e-28 2.72045619e-28 2.36941829e-28 2.06367706e-28
  1.79738758e-28 1.56545914e-28 1.36345791e-28 1.18752220e-28
@@ -1060,13 +1066,13 @@ given by</p>
 <section id="Simulation.dust.SigmaFloor">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.SigmaFloor</span></code><a class="headerlink" href="#Simulation.dust.SigmaFloor" title="Link to this heading"></a></h3>
 <p>This is the floor value for the dust surface densities. Mass bins that are below their respective floor value will not contribute to coagulation. By default the floor value is the density that corresponds to one physical particle of that mass distributed over an annulus at that radial grid location.</p>
-<p><span class="math notranslate nohighlight">\(\Sigma_{\mathrm{d},\,\mathrm{floor}} = \frac{m}{A_\mathrm{annulus}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \Sigma_{\mathrm{d},\,\mathrm{floor}} = \frac{m}{A_\mathrm{annulus}}\)</span></p>
 <p>Densities below the floor value therefore correspond to fewer that one physical particle in that radial grid cell.</p>
 </section>
 <section id="Simulation.dust.St">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.dust.St</span></code><a class="headerlink" href="#Simulation.dust.St" title="Link to this heading"></a></h3>
 <p>Stokes numbers of the particles. By default the Epstein and the Stokes I drag regime are considered.</p>
-<p><span class="math notranslate nohighlight">\(\mathrm{St} = \begin{cases} \frac{\pi}{2} \frac{a\rho}{\Sigma_\mathrm{g}}, &amp; \text{if } a &lt; \frac{9}{4} \lambda_\mathrm{mfp}\\ \frac{2\pi}{9} \frac{a^2 \rho}{\lambda_\mathrm{mfp} \Sigma_\mathrm{g}}, &amp; \text{else} \end{cases}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \mathrm{St} = \begin{cases} \frac{\pi}{2} \frac{a\rho}{\Sigma_\mathrm{g}}, &amp; \text{if } a &lt; \frac{9}{4} \lambda_\mathrm{mfp}\\ \frac{2\pi}{9} \frac{a^2 \rho}{\lambda_\mathrm{mfp} \Sigma_\mathrm{g}}, &amp; \text{else} \end{cases}\)</span></p>
 </section>
 <section id="Update-order">
 <h3>Update order<a class="headerlink" href="#Update-order" title="Link to this heading"></a></h3>
@@ -1243,13 +1249,13 @@ Group (Gas quantities)
 ----------------------
     boundary     : Group (Boundary conditions)
     S            : Group (Source terms)
+    torque       : Group (Torque parameters)
     v            : Group (Velocities)
   -----
     alpha        : Field (Turbulent alpha parameter)
-    cs           : Field (Sound speed [cm/s])
+    cs           : Field (Isothermal sound speed [cm/s])
     eta          : Field (Pressure gradient parameter)
     Fi           : Field (Gas flux interfaces [g/cm/s])
-    gamma        : Field (Adiabatic index)
     Hp           : Field (Pressure scale height [cm])
     mfp          : Field (Midplane mean free path [cm])
     mu           : Field (Mean molecular weight [g])
@@ -1418,14 +1424,47 @@ Group (Source terms)
 <section id="Simulation.gas.S.tot">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.gas.S.tot</span></code><a class="headerlink" href="#Simulation.gas.S.tot" title="Link to this heading"></a></h4>
 <p>These are the total source terms of gas evolution.</p>
-<p><span class="math notranslate nohighlight">\(S_\mathrm{tot} = S_\mathrm{ext} + S_\mathrm{hyd}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large S_\mathrm{tot} = S_\mathrm{ext} + S_\mathrm{hyd}\)</span></p>
 <p><strong>Attention:</strong> Since the gas evolution is calculated implicitly, the total source terms are calculated in retrospect after the new gas surface density was found. Changing <code class="docutils literal notranslate"><span class="pre">Simulation.gas.S.tot</span></code> does not influence the simulation. It is only given for data analysis.</p>
+</section>
+</section>
+<section id="Simulation.gas.torque">
+<h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.torque</span></code><a class="headerlink" href="#Simulation.gas.torque" title="Link to this heading"></a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">torque</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Group (Torque parameters)
+-------------------------
+    Lambda       : Field (Specific angular momentum injection rate by torque [cm²/s²])
+    v            : Field (Effective velocity imposed by torque [cm/s])
+  -----
+</pre></div></div>
+</div>
+<section id="Simulation.gas.torque.Lambda">
+<h4><code class="docutils literal notranslate"><span class="pre">Simulation.gas.torque.Lambda</span></code><a class="headerlink" href="#Simulation.gas.torque.Lambda" title="Link to this heading"></a></h4>
+<p>This is the specific angular momentum injection, i.e., an additional torque acting on the gas.</p>
+</section>
+<section id="Simulation.gas.torque.v">
+<h4><code class="docutils literal notranslate"><span class="pre">Simulation.gas.torque.v</span></code><a class="headerlink" href="#Simulation.gas.torque.v" title="Link to this heading"></a></h4>
+<p>This is resulting velocity component imposed by the torque on the gas.</p>
+<p><span class="math notranslate nohighlight">\(\Large v_\mathrm{torque} = 2 \frac{\Lambda}{r\Omega_\mathrm{K}}\)</span></p>
 </section>
 </section>
 <section id="Simulation.gas.v">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.v</span></code><a class="headerlink" href="#Simulation.gas.v" title="Link to this heading"></a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">v</span>
@@ -1433,7 +1472,7 @@ Group (Source terms)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1452,7 +1491,7 @@ Group (Velocities)
 <section id="Simulation.gas.v.rad">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.gas.v.rad</span></code><a class="headerlink" href="#Simulation.gas.v.rad" title="Link to this heading"></a></h4>
 <p>This is the radial gas velocity. It is given by</p>
-<p><span class="math notranslate nohighlight">\(v_\mathrm{g} = Av_\mathrm{visc} + 2B\eta v_\mathrm{K}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large v_\mathrm{g} = Av_\mathrm{visc} + 2B\eta v_\mathrm{K}\)</span>.</p>
 <div class="line-block">
 <div class="line">See <code class="docutils literal notranslate"><span class="pre">Simulation.dust.backreaction</span></code> for details. If backreaction is turned off, i.e., <span class="math notranslate nohighlight">\(A=1\)</span> and <span class="math notranslate nohighlight">\(B=0\)</span>, the radial velocity is identical to the viscous velocity.</div>
 <div class="line"><strong>Attention:</strong> Since the gas evolution is calculated implicitly, the velocities are calculated in retrospect after the new gas surface density was found. Changing anything in <code class="docutils literal notranslate"><span class="pre">Simulation.gas.v.rad</span></code> does not influence the simulation. It is only given for data analysis.</div>
@@ -1461,7 +1500,7 @@ Group (Velocities)
 <section id="Simulation.gas.v.visc">
 <h4><code class="docutils literal notranslate"><span class="pre">Simulation.gas.v.visc</span></code><a class="headerlink" href="#Simulation.gas.v.visc" title="Link to this heading"></a></h4>
 <p>This is the radial viscous gas velocity</p>
-<p><span class="math notranslate nohighlight">\(v_\mathrm{visc} = -\frac{3}{\Sigma_\mathrm{g}\sqrt{R}} \frac{\partial}{\partial R} \left( \Sigma_\mathrm{g} \nu \sqrt{R} \right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large v_\mathrm{visc} = -\frac{3}{\Sigma_\mathrm{g}\sqrt{R}} \frac{\partial}{\partial R} \left( \Sigma_\mathrm{g} \nu \sqrt{R} \right)\)</span></p>
 <p><strong>Attention:</strong> Since the gas evolution is calculated implicitly, the velocities are calculated in retrospect after the new gas surface density was found. Changing anything in <code class="docutils literal notranslate"><span class="pre">Simulation.gas.v.visc</span></code> does not influence the simulation. It is only given for data analysis.</p>
 </section>
 </section>
@@ -1469,7 +1508,7 @@ Group (Velocities)
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.alpha</span></code><a class="headerlink" href="#Simulation.gas.alpha" title="Link to this heading"></a></h3>
 <p>This is the turbulent viscosity parameter according <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1973A%26A....24..337S/abstract">Shakura &amp; Sunyaev (1973)</a>. It is initially set to the value in <code class="docutils literal notranslate"><span class="pre">Simulation.ini.gas.alpha</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">alpha</span>
@@ -1477,7 +1516,7 @@ Group (Velocities)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1496,16 +1535,15 @@ Group (Velocities)
 </section>
 <section id="Simulation.gas.cs">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.cs</span></code><a class="headerlink" href="#Simulation.gas.cs" title="Link to this heading"></a></h3>
-<p>This is the adiabatic sound speed in the midplane of the disk</p>
-<p><span class="math notranslate nohighlight">\(c_\mathrm{s} = \sqrt{\frac{\gamma k_\mathrm{B} T}{\mu}}\)</span>.</p>
-<p>For isothermal simulations set <span class="math notranslate nohighlight">\(\gamma=1\)</span>.</p>
+<p>This is the isothermal sound speed in the midplane of the disk</p>
+<p><span class="math notranslate nohighlight">\(\Large c_\mathrm{s} = \sqrt{\frac{k_\mathrm{B} T}{\mu}}\)</span>.</p>
 </section>
 <section id="Simulation.gas.eta">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.eta</span></code><a class="headerlink" href="#Simulation.gas.eta" title="Link to this heading"></a></h3>
-<p>This is the midplane pressure gradient parameter <span class="math notranslate nohighlight">\(\eta\)</span> given by</p>
-<p><span class="math notranslate nohighlight">\(\eta = -\frac{1}{2} \left( \frac{H_\mathrm{P}}{r} \right)^2 \frac{\partial \log P}{\partial \log r}\)</span></p>
+<p>This is the midplane pressure gradient parameter <span class="math notranslate nohighlight">\(\large \eta\)</span> given by</p>
+<p><span class="math notranslate nohighlight">\(\Large \eta = -\frac{1}{2} \left( \frac{H_\mathrm{P}}{r} \right)^2 \frac{\partial \log P}{\partial \log r}\)</span></p>
 <p>It describes the degree of “sub-Keplerity” of the disk</p>
-<p><span class="math notranslate nohighlight">\(v_\phi^2 = \left( 1-2\eta \right) v_\mathrm{K}^2\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large v_\phi^2 = \left( 1-2\eta \right) v_\mathrm{K}^2\)</span>.</p>
 </section>
 <section id="Simulation.gas.Fi">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.Fi</span></code><a class="headerlink" href="#Simulation.gas.Fi" title="Link to this heading"></a></h3>
@@ -1514,42 +1552,15 @@ Group (Velocities)
 <div class="line"><strong>Attention:</strong> Since the gas evolution is calculated implicitly, the fluxes are calculated in retrospect after the new gas surface density was found. Changing anything in <code class="docutils literal notranslate"><span class="pre">Simulation.gas.Fi</span></code> does not influence the simulation. It is only given for data analysis.</div>
 </div>
 </section>
-<section id="Simulation.gas.gamma">
-<h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.gamma</span></code><a class="headerlink" href="#Simulation.gas.gamma" title="Link to this heading"></a></h3>
-<p>This is the ratio of specific heats. It is initially set to the value given by <code class="docutils literal notranslate"><span class="pre">Simulation.ini.gas.gamma</span></code>.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">gamma</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4
- 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4
- 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4
- 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4
- 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4
- 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4 1.4]
-</pre></div></div>
-</div>
-<p>For isothermal simulations set this to <span class="math notranslate nohighlight">\(1\)</span>.</p>
-</section>
 <section id="Simulation.gas.Hp">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.Hp</span></code><a class="headerlink" href="#Simulation.gas.Hp" title="Link to this heading"></a></h3>
 <p>Pressure scale height of the gas given by the ratio of the isothermal sound speed to the Keplerian frequency.</p>
-<p><span class="math notranslate nohighlight">\(H_\mathrm{P} = \frac{c_{\mathrm{s},\,\mathrm{iso}}}{\Omega_\mathrm{K}}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large H_\mathrm{P} = \frac{c_\mathrm{s}}{\Omega_\mathrm{K}}\)</span>.</p>
 </section>
 <section id="Simulation.gas.mfp">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.mfp</span></code><a class="headerlink" href="#Simulation.gas.mfp" title="Link to this heading"></a></h3>
 <p>Mean free path of the gas in the midplane of the disk</p>
-<p><span class="math notranslate nohighlight">\(\lambda_\mathrm{mfp} = \frac{1}{\sqrt{2}\,n\,\sigma_\mathrm{H_2}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \lambda_\mathrm{mfp} = \frac{1}{\sqrt{2}\,n\,\sigma_\mathrm{H_2}}\)</span></p>
 </section>
 <section id="Simulation.gas.mu">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.mu</span></code><a class="headerlink" href="#Simulation.gas.mu" title="Link to this heading"></a></h3>
@@ -1599,22 +1610,22 @@ Group (Velocities)
 <section id="Simulation.gas.n">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.n</span></code><a class="headerlink" href="#Simulation.gas.n" title="Link to this heading"></a></h3>
 <p>Midplane number density of the gas given by</p>
-<p><span class="math notranslate nohighlight">\(n = \frac{\rho}{\mu}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large n = \frac{\rho}{\mu}\)</span></p>
 </section>
 <section id="Simulation.gas.nu">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.nu</span></code><a class="headerlink" href="#Simulation.gas.nu" title="Link to this heading"></a></h3>
 <p>Kinematic viscosity of the gas given by</p>
-<p><span class="math notranslate nohighlight">\(\nu = \alpha c_\mathrm{s} H_\mathrm{P}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \nu = \alpha c_\mathrm{s} H_\mathrm{P}\)</span>.</p>
 </section>
 <section id="Simulation.gas.P">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.P</span></code><a class="headerlink" href="#Simulation.gas.P" title="Link to this heading"></a></h3>
 <p>Midplane gas pressure given by</p>
-<p><span class="math notranslate nohighlight">\(P = \frac{\rho\,c_\mathrm{s}^2}{\gamma}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large P = \rho\,c_\mathrm{s}^2\)</span>.</p>
 </section>
 <section id="Simulation.gas.rho">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.rho</span></code><a class="headerlink" href="#Simulation.gas.rho" title="Link to this heading"></a></h3>
 <p>Midplane gas mass density given by</p>
-<p><span class="math notranslate nohighlight">\(\rho = \frac{\Sigma_\mathrm{g}}{\sqrt{2\pi}H_\mathrm{P}}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \rho = \frac{\Sigma_\mathrm{g}}{\sqrt{2\pi}H_\mathrm{P}}\)</span>.</p>
 </section>
 <section id="Simulation.gas.Sigma">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.Sigma</span></code><a class="headerlink" href="#Simulation.gas.Sigma" title="Link to this heading"></a></h3>
@@ -1656,7 +1667,7 @@ Group (Velocities)
 <section id="Simulation.gas.T">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.gas.T</span></code><a class="headerlink" href="#Simulation.gas.T" title="Link to this heading"></a></h3>
 <p>This is the midplane gas temperature. It is calculated by assuming a passively irradiated disk with a constant irradiation angle of <span class="math notranslate nohighlight">\(0.05\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(T\left( r \right) = \sqrt[4]{\frac{1}{2}\frac{0.05\,L_*}{4\,\pi\,r^2\,\sigma_\mathrm{SB}}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large T\left( r \right) = \sqrt[4]{\frac{1}{2}\frac{0.05\,L_*}{4\,\pi\,r^2\,\sigma_\mathrm{SB}}}\)</span></p>
 </section>
 <section id="id1">
 <h3>Update order<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
@@ -1675,8 +1686,7 @@ Group (Velocities)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&#39;gamma&#39;,
- &#39;mu&#39;,
+[&#39;mu&#39;,
  &#39;T&#39;,
  &#39;alpha&#39;,
  &#39;cs&#39;,
@@ -1687,6 +1697,7 @@ Group (Velocities)
  &#39;mfp&#39;,
  &#39;P&#39;,
  &#39;eta&#39;,
+ &#39;torque&#39;,
  &#39;S&#39;]
 </pre></div></div>
 </div>
@@ -1759,7 +1770,7 @@ Group (Grid quantities)
 <section id="Simulation.grid.A">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.grid.A</span></code><a class="headerlink" href="#Simulation.grid.A" title="Link to this heading"></a></h3>
 <p>Surface area of the annulus a grid cell spans.</p>
-<p><span class="math notranslate nohighlight">\(A_i = \pi \left( r_{i+\frac{1}{2}}^2 - r_{i-\frac{1}{2}}^2 \right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large A_i = \pi \left( r_{i+\frac{1}{2}}^2 - r_{i-\frac{1}{2}}^2 \right)\)</span></p>
 </section>
 <section id="Simulation.grid.m">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.grid.m</span></code><a class="headerlink" href="#Simulation.grid.m" title="Link to this heading"></a></h3>
@@ -1856,7 +1867,7 @@ Group (Grid quantities)
 <section id="Simulation.grid.OmegaK">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.grid.OmegaK</span></code><a class="headerlink" href="#Simulation.grid.OmegaK" title="Link to this heading"></a></h3>
 <p>Keplerian frequency given by</p>
-<p><span class="math notranslate nohighlight">\(\Omega_\mathrm{K} = \sqrt{\frac{G\,M_*}{r^3}}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \Omega_\mathrm{K} = \sqrt{\frac{G\,M_*}{r^3}}\)</span>.</p>
 </section>
 <section id="Simulation.grid.r">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.grid.r</span></code><a class="headerlink" href="#Simulation.grid.r" title="Link to this heading"></a></h3>
@@ -1941,7 +1952,7 @@ Group (Stellar quantities)
 <section id="Simulation.star.L">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.star.L</span></code><a class="headerlink" href="#Simulation.star.L" title="Link to this heading"></a></h3>
 <p>Stellar luminosity given by</p>
-<p><span class="math notranslate nohighlight">\(L = 4\pi\,R_*^2\,\sigma_\mathrm{SB}\,T_*^4\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large L = 4\pi\,R_*^2\,\sigma_\mathrm{SB}\,T_*^4\)</span></p>
 </section>
 <section id="Simulation.star.M">
 <h3><code class="docutils literal notranslate"><span class="pre">Simulation.star.M</span></code><a class="headerlink" href="#Simulation.star.M" title="Link to this heading"></a></h3>
@@ -2144,31 +2155,31 @@ Integrator (Default integrator)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([ 0.00000000e+00, -2.65695963e-11, -1.51742395e-11, -1.41277753e-11,
-       -1.31512275e-11, -1.22399343e-11, -1.13895454e-11, -1.05960011e-11,
-       -9.85551322e-12, -9.16454666e-12, -8.51980274e-12, -7.91820337e-12,
-       -7.35687637e-12, -6.83314177e-12, -6.34449895e-12, -5.88861478e-12,
-       -5.46331238e-12, -5.06656081e-12, -4.69646526e-12, -4.35125809e-12,
-       -4.02929031e-12, -3.72902371e-12, -3.44902350e-12, -3.18795143e-12,
-       -2.94455937e-12, -2.71768333e-12, -2.50623785e-12, -2.30921082e-12,
-       -2.12565856e-12, -1.95470127e-12, -1.79551880e-12, -1.64734665e-12,
-       -1.50947226e-12, -1.38123153e-12, -1.26200553e-12, -1.15121751e-12,
-       -1.04832998e-12, -9.52842068e-13, -8.64286959e-13, -7.82229559e-13,
-       -7.06264239e-13, -6.36012738e-13, -5.71122173e-13, -5.11263153e-13,
-       -4.56128002e-13, -4.05429063e-13, -3.58897093e-13, -3.16279733e-13,
-       -2.77340052e-13, -2.41855165e-13, -2.09614912e-13, -1.80420610e-13,
-       -1.54083866e-13, -1.30425466e-13, -1.09274328e-13, -9.04665397e-14,
-       -7.38444770e-14, -5.92560115e-14, -4.65538218e-14, -3.55948141e-14,
-       -2.62396618e-14, -1.83524760e-14, -1.18006141e-14, -6.45463314e-15,
-       -2.18839224e-15,  1.12069694e-15,  3.59127752e-15,  5.33752432e-15,
-        6.46850987e-15,  7.08748612e-15,  7.29111679e-15,  7.16870159e-15,
-        6.80143987e-15,  6.26178420e-15,  5.61293508e-15,  4.90852435e-15,
-        4.19252718e-15,  3.49943057e-15,  2.85467018e-15,  2.27532818e-15,
-        1.77106488e-15,  1.34523665e-15,  9.96136649e-16,  7.18283408e-16,
-        5.03678333e-16,  3.42957842e-16,  2.26378068e-16,  1.44589401e-16,
-        8.91814086e-17,  5.30026964e-17,  3.02814903e-17,  1.65881680e-17,
-        8.68880524e-18,  4.33878800e-18,  2.05888641e-18,  9.25247153e-19,
-        3.92320686e-19,  1.56337655e-19,  3.86150120e-20,  0.00000000e+00])
+array([ 0.00000000e+00, -2.24554074e-11, -1.28245730e-11, -1.19401494e-11,
+       -1.11148159e-11, -1.03446325e-11, -9.62592272e-12, -8.95525542e-12,
+       -8.32942893e-12, -7.74545561e-12, -7.20054754e-12, -6.69210327e-12,
+       -6.21769537e-12, -5.77505884e-12, -5.36208028e-12, -4.97678783e-12,
+       -4.61734171e-12, -4.28202542e-12, -3.96923760e-12, -3.67748429e-12,
+       -3.40537185e-12, -3.15160026e-12, -2.91495689e-12, -2.69431072e-12,
+       -2.48860688e-12, -2.29686163e-12, -2.11815758e-12, -1.95163935e-12,
+       -1.79650937e-12, -1.65202409e-12, -1.51749035e-12, -1.39226203e-12,
+       -1.27573691e-12, -1.16735370e-12, -1.06658934e-12, -9.72956377e-13,
+       -8.86000545e-13, -8.05298528e-13, -7.30455801e-13, -6.61104640e-13,
+       -5.96902226e-13, -5.37528872e-13, -4.82686334e-13, -4.32096229e-13,
+       -3.85498522e-13, -3.42650098e-13, -3.03323405e-13, -2.67305162e-13,
+       -2.34395125e-13, -2.04404922e-13, -1.77156935e-13, -1.52483246e-13,
+       -1.30224635e-13, -1.10229637e-13, -9.23536629e-14, -7.64581809e-14,
+       -6.24099739e-14, -5.00804702e-14, -3.93451606e-14, -3.00831086e-14,
+       -2.21765618e-14, -1.55106732e-14, -9.97333923e-15, -5.45516066e-15,
+       -1.84952901e-15,  9.47161787e-16,  3.03518347e-15,  4.51103139e-15,
+        5.46688863e-15,  5.99001905e-15,  6.16211838e-15,  6.05865865e-15,
+        5.74826584e-15,  5.29217356e-15,  4.74379596e-15,  4.14846024e-15,
+        3.54333218e-15,  2.95755864e-15,  2.41263665e-15,  1.92300330e-15,
+        1.49682302e-15,  1.13693247e-15,  8.41889128e-16,  6.07060278e-16,
+        4.25685886e-16,  2.89852280e-16,  1.91324387e-16,  1.22200347e-16,
+        7.53720469e-17,  4.47954544e-17,  2.55925304e-17,  1.40195607e-17,
+        7.34338072e-18,  3.66694514e-18,  1.74007661e-18,  7.81976568e-19,
+        3.31571497e-19,  1.32129435e-19,  3.26356417e-20,  0.00000000e+00])
 </pre></div></div>
 </div>
 <p>The total source terms, i.e., including external sources and excluding the boundaries are given by</p>
@@ -2186,31 +2197,31 @@ array([ 0.00000000e+00, -2.65695963e-11, -1.51742395e-11, -1.41277753e-11,
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[ 0.00000000e+00 -2.65695963e-11 -1.51742395e-11 -1.41277753e-11
- -1.31512275e-11 -1.22399343e-11 -1.13895454e-11 -1.05960011e-11
- -9.85551322e-12 -9.16454666e-12 -8.51980274e-12 -7.91820337e-12
- -7.35687637e-12 -6.83314177e-12 -6.34449895e-12 -5.88861478e-12
- -5.46331238e-12 -5.06656081e-12 -4.69646526e-12 -4.35125809e-12
- -4.02929031e-12 -3.72902371e-12 -3.44902350e-12 -3.18795143e-12
- -2.94455937e-12 -2.71768333e-12 -2.50623785e-12 -2.30921082e-12
- -2.12565856e-12 -1.95470127e-12 -1.79551880e-12 -1.64734665e-12
- -1.50947226e-12 -1.38123153e-12 -1.26200553e-12 -1.15121751e-12
- -1.04832998e-12 -9.52842068e-13 -8.64286959e-13 -7.82229559e-13
- -7.06264239e-13 -6.36012738e-13 -5.71122173e-13 -5.11263153e-13
- -4.56128002e-13 -4.05429063e-13 -3.58897093e-13 -3.16279733e-13
- -2.77340052e-13 -2.41855165e-13 -2.09614912e-13 -1.80420610e-13
- -1.54083866e-13 -1.30425466e-13 -1.09274328e-13 -9.04665397e-14
- -7.38444770e-14 -5.92560115e-14 -4.65538218e-14 -3.55948141e-14
- -2.62396618e-14 -1.83524760e-14 -1.18006141e-14 -6.45463314e-15
- -2.18839224e-15  1.12069694e-15  3.59127752e-15  5.33752432e-15
-  6.46850987e-15  7.08748612e-15  7.29111679e-15  7.16870159e-15
-  6.80143987e-15  6.26178420e-15  5.61293508e-15  4.90852435e-15
-  4.19252718e-15  3.49943057e-15  2.85467018e-15  2.27532818e-15
-  1.77106488e-15  1.34523665e-15  9.96136649e-16  7.18283408e-16
-  5.03678333e-16  3.42957842e-16  2.26378068e-16  1.44589401e-16
-  8.91814086e-17  5.30026964e-17  3.02814903e-17  1.65881680e-17
-  8.68880524e-18  4.33878800e-18  2.05888641e-18  9.25247153e-19
-  3.92320686e-19  1.56337655e-19  3.86150120e-20  0.00000000e+00]
+[ 0.00000000e+00 -2.24554074e-11 -1.28245730e-11 -1.19401494e-11
+ -1.11148159e-11 -1.03446325e-11 -9.62592272e-12 -8.95525542e-12
+ -8.32942893e-12 -7.74545561e-12 -7.20054754e-12 -6.69210327e-12
+ -6.21769537e-12 -5.77505884e-12 -5.36208028e-12 -4.97678783e-12
+ -4.61734171e-12 -4.28202542e-12 -3.96923760e-12 -3.67748429e-12
+ -3.40537185e-12 -3.15160026e-12 -2.91495689e-12 -2.69431072e-12
+ -2.48860688e-12 -2.29686163e-12 -2.11815758e-12 -1.95163935e-12
+ -1.79650937e-12 -1.65202409e-12 -1.51749035e-12 -1.39226203e-12
+ -1.27573691e-12 -1.16735370e-12 -1.06658934e-12 -9.72956377e-13
+ -8.86000545e-13 -8.05298528e-13 -7.30455801e-13 -6.61104640e-13
+ -5.96902226e-13 -5.37528872e-13 -4.82686334e-13 -4.32096229e-13
+ -3.85498522e-13 -3.42650098e-13 -3.03323405e-13 -2.67305162e-13
+ -2.34395125e-13 -2.04404922e-13 -1.77156935e-13 -1.52483246e-13
+ -1.30224635e-13 -1.10229637e-13 -9.23536629e-14 -7.64581809e-14
+ -6.24099739e-14 -5.00804702e-14 -3.93451606e-14 -3.00831086e-14
+ -2.21765618e-14 -1.55106732e-14 -9.97333923e-15 -5.45516066e-15
+ -1.84952901e-15  9.47161787e-16  3.03518347e-15  4.51103139e-15
+  5.46688863e-15  5.99001905e-15  6.16211838e-15  6.05865865e-15
+  5.74826584e-15  5.29217356e-15  4.74379596e-15  4.14846024e-15
+  3.54333218e-15  2.95755864e-15  2.41263665e-15  1.92300330e-15
+  1.49682302e-15  1.13693247e-15  8.41889128e-16  6.07060278e-16
+  4.25685886e-16  2.89852280e-16  1.91324387e-16  1.22200347e-16
+  7.53720469e-17  4.47954544e-17  2.55925304e-17  1.40195607e-17
+  7.34338072e-18  3.66694514e-18  1.74007661e-18  7.81976568e-19
+  3.31571497e-19  1.32129435e-19  3.26356417e-20  0.00000000e+00]
 </pre></div></div>
 </div>
 <p>The dust is integrated with an implicit first-order Euler integration scheme. The Jacobian is calculated from the parameters given in <code class="docutils literal notranslate"><span class="pre">Simulation.dust</span></code>. Parameters like gas velocities, fluxes and source terms are calculated once the new values of the gas surface density have been found.</p>
@@ -2229,19 +2240,20 @@ array([ 0.00000000e+00, -2.65695963e-11, -1.51742395e-11, -1.41277753e-11,
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([[ 6.69378160e-07,  7.07100367e-07,  7.46948374e-07, ...,
-         1.97891724e-30,  2.74969659e-30,  3.82069102e-30],
-       [-6.23483735e-08, -6.59511976e-08, -4.67032489e-08, ...,
-        -4.64318522e-34, -7.20749143e-34, -1.05714115e-33],
-       [-4.88452713e-08, -5.16639372e-08, -3.65877154e-08, ...,
-        -7.22801314e-34, -1.17572957e-33, -1.85635051e-33],
+array([[ 6.68953651e-07,  7.06651934e-07,  7.46474670e-07, ...,
+         1.97766224e-30,  2.74795277e-30,  3.81826800e-30],
+       [-6.22972227e-08, -6.59093722e-08, -4.66675265e-08, ...,
+        -4.62358112e-34, -7.18118924e-34, -1.05367134e-33],
+       [-4.88007894e-08, -5.16275634e-08, -3.65566419e-08, ...,
+        -7.21301772e-34, -1.17370751e-33, -1.85366372e-33],
        ...,
-       [-8.55226776e-59, -1.06505134e-58, -1.32632479e-58, ...,
+       [-8.55228788e-59, -1.06505358e-58, -1.32632729e-58, ...,
         -1.18906666e-47, -1.48062233e-47, -1.84366661e-47],
-       [-3.15600305e-59, -3.92990331e-59, -4.89356226e-59, ...,
+       [-3.15600556e-59, -3.92990611e-59, -4.89356539e-59, ...,
         -4.38560444e-48, -5.46094186e-48, -6.79994888e-48],
        [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00, ...,
-         0.00000000e+00,  0.00000000e+00,  0.00000000e+00]])
+         0.00000000e+00,  0.00000000e+00,  0.00000000e+00]],
+      shape=(100, 120))
 </pre></div></div>
 </div>
 <p>Note the <code class="docutils literal notranslate"><span class="pre">ravel()</span></code> and <code class="docutils literal notranslate"><span class="pre">reshape()</span></code> operations, since the Jacobian works on a one-dimensional state vector.</p>
@@ -2260,16 +2272,16 @@ array([[ 6.69378160e-07,  7.07100367e-07,  7.46948374e-07, ...,
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[[ 6.69378160e-07  7.07100367e-07  7.46948374e-07 ...  1.97891724e-30
-   2.74969659e-30  3.82069102e-30]
- [-6.23483735e-08 -6.59511976e-08 -4.67032489e-08 ... -4.64318522e-34
-  -7.20749143e-34 -1.05714115e-33]
- [-4.88452713e-08 -5.16639372e-08 -3.65877154e-08 ... -7.22801314e-34
-  -1.17572957e-33 -1.85635051e-33]
+[[ 6.68953651e-07  7.06651934e-07  7.46474670e-07 ...  1.97766224e-30
+   2.74795277e-30  3.81826800e-30]
+ [-6.22972227e-08 -6.59093722e-08 -4.66675265e-08 ... -4.62358112e-34
+  -7.18118924e-34 -1.05367134e-33]
+ [-4.88007894e-08 -5.16275634e-08 -3.65566419e-08 ... -7.21301772e-34
+  -1.17370751e-33 -1.85366372e-33]
  ...
- [-8.55226776e-59 -1.06505134e-58 -1.32632479e-58 ... -1.18906666e-47
+ [-8.55228788e-59 -1.06505358e-58 -1.32632729e-58 ... -1.18906666e-47
   -1.48062233e-47 -1.84366661e-47]
- [-3.15600305e-59 -3.92990331e-59 -4.89356226e-59 ... -4.38560444e-48
+ [-3.15600556e-59 -3.92990611e-59 -4.89356539e-59 ... -4.38560444e-48
   -5.46094186e-48 -6.79994888e-48]
  [ 0.00000000e+00  0.00000000e+00  0.00000000e+00 ...  0.00000000e+00
    0.00000000e+00  0.00000000e+00]]

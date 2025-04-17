@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -6,23 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Test: Gas Evolution &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
-      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -116,17 +114,17 @@
 <h2>Analytical Solution<a class="headerlink" href="#Analytical-Solution" title="Link to this heading"></a></h2>
 <p>Viscous gas accretion has analytical solutions as given by <a class="reference external" href="https://doi.org/10.1093/mnras/168.3.603">Lynden-Bell &amp; Pringle (1974)</a> or <a class="reference external" href="https://doi.org/10.1086/305277">Hartmann et al. (1998)</a>.</p>
 <p>We assume a viscously evolving disk</p>
-<p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{g} = \frac{3}{r}\frac{\partial}{\partial r} \left[ \sqrt{r} \frac{\partial}{\partial r} \left( \sqrt{r} \nu \Sigma_\mathrm{g} \right) \right]\)</span></p>
-<p>with an <span class="math notranslate nohighlight">\(\alpha\)</span>-viscosity prescription given by</p>
-<p><span class="math notranslate nohighlight">\(\begin{split} \nu &amp;= \alpha \frac{c_\mathrm{s}^2}{\Omega_\mathrm{K}}\\ &amp;\propto r^{s} \cdot r^{q} \cdot r^{\frac{3}{2}} = r^\gamma. \end{split}\)</span></p>
-<p>In the default simulation we have <span class="math notranslate nohighlight">\(s=0\)</span>, <span class="math notranslate nohighlight">\(q=-\frac{1}{2}\)</span>, and therefore <span class="math notranslate nohighlight">\(\gamma=1\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \frac{\partial}{\partial t} \Sigma_\mathrm{g} = \frac{3}{r}\frac{\partial}{\partial r} \left[ \sqrt{r} \frac{\partial}{\partial r} \left( \sqrt{r} \nu \Sigma_\mathrm{g} \right) \right]\)</span></p>
+<p>with an <span class="math notranslate nohighlight">\(\large \alpha\)</span>-viscosity prescription given by</p>
+<p><span class="math notranslate nohighlight">\(\Large \begin{split} \nu &amp;= \alpha \frac{c_\mathrm{s}^2}{\Omega_\mathrm{K}}\\ &amp;\propto r^{s} \cdot r^{q} \cdot r^{\frac{3}{2}} = r^\gamma. \end{split}\)</span></p>
+<p>In the default simulation we have <span class="math notranslate nohighlight">\(\large s=0\)</span>, <span class="math notranslate nohighlight">\(\large q=-\frac{1}{2}\)</span>, and therefore <span class="math notranslate nohighlight">\(\large \gamma=1\)</span>.</p>
 <p>This differential equation for viscous accretion has self-similar solutions given by</p>
-<p><span class="math notranslate nohighlight">\(\Sigma_\mathrm{g} = \frac{C}{3\pi\nu_1R^\gamma}T^{-\frac{5/2-\gamma}{2-\gamma}} \exp \left[ -\frac{R^{2-\gamma}}{T} \right]\)</span></p>
-<p>with a dimensionless scaling of the grid <span class="math notranslate nohighlight">\(R=\frac{r}{r_1}\)</span>, the radial scaling factor <span class="math notranslate nohighlight">\(r_1\)</span> and the viscosity at the scaling location <span class="math notranslate nohighlight">\(\nu_1=\nu\left(r_1\right)\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(T=\frac{t}{t_\mathrm{s}}+1\)</span> is the dimensionless time and</p>
-<p><span class="math notranslate nohighlight">\(t_\mathrm{s} = \frac{1}{3 \left( 2-\gamma \right)^2}\frac{r_1^2}{\nu_1}\)</span>.</p>
-<p><span class="math notranslate nohighlight">\(C\)</span> is a scaling constant that defines the initial mass of the disk <span class="math notranslate nohighlight">\(M_0\)</span></p>
-<p><span class="math notranslate nohighlight">\(C = M_0 \frac{3\nu_1}{2r_1^2\left(2-\gamma\right)}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \Sigma_\mathrm{g} = \frac{C}{3\pi\nu_1R^\gamma}T^{-\frac{5/2-\gamma}{2-\gamma}} \exp \left[ -\frac{R^{2-\gamma}}{T} \right]\)</span></p>
+<p>with a dimensionless scaling of the grid <span class="math notranslate nohighlight">\(\large R=\frac{r}{r_1}\)</span>, the radial scaling factor <span class="math notranslate nohighlight">\(\large r_1\)</span> and the viscosity at the scaling location <span class="math notranslate nohighlight">\(\large \nu_1=\nu\left(r_1\right)\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large T=\frac{t}{t_\mathrm{s}}+1\)</span> is the dimensionless time and</p>
+<p><span class="math notranslate nohighlight">\(\Large t_\mathrm{s} = \frac{1}{3 \left( 2-\gamma \right)^2}\frac{r_1^2}{\nu_1}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\large C\)</span> is a scaling constant that defines the initial mass of the disk <span class="math notranslate nohighlight">\(\large M_0\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large C = M_0 \frac{3\nu_1}{2r_1^2\left(2-\gamma\right)}\)</span>.</p>
 <p>We can now write a function that returns the surface density profile at any given time to compare it against the simulation result.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -339,7 +337,7 @@
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.6
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -350,15 +348,15 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 6.66e-16</span>
         for particle collision
-            m[55] =  7.20e-05 g    with
-            m[55] =  7.20e-05 g
+            m[90] =  7.20e+00 g    with
+            m[95] =  3.73e+01 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -502,7 +500,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:08</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.6
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -513,15 +511,15 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 6.66e-16</span>
         for particle collision
-            m[55] =  7.20e-05 g    with
-            m[55] =  7.20e-05 g
+            m[90] =  7.20e+00 g    with
+            m[95] =  3.73e+01 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -538,7 +536,7 @@ Writing file <span class="ansi-blue-intense-fg">test_gas_evolution/data0003.hdf5
 Writing dump file <span class="ansi-blue-intense-fg">test_gas_evolution/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_gas_evolution/data0004.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_gas_evolution/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:13</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:11</span>
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -589,15 +587,15 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:13</span>
 <div class="line">The problem is that the initial surface density is not in steady state and therefore not a self-similar solution.</div>
 <div class="line">In steady state the mass flux is constant</div>
 </div>
-<p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial r} \left( 3\pi\Sigma_\mathrm{g}\nu \right) = \text{const.}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \frac{\partial}{\partial r} \left( 3\pi\Sigma_\mathrm{g}\nu \right) = \text{const.}\)</span></p>
 <p>Or in other words</p>
-<p><span class="math notranslate nohighlight">\(\Sigma_\mathrm{g}\nu \propto r^p r^\gamma = r^0 \\ \Rightarrow p+\gamma = 0\)</span></p>
-<p>We’ve change <span class="math notranslate nohighlight">\(p\)</span> from <span class="math notranslate nohighlight">\(-1\)</span> to <span class="math notranslate nohighlight">\(-1.5\)</span>, but we have not changed <span class="math notranslate nohighlight">\(\gamma\)</span>, which is still <span class="math notranslate nohighlight">\(1\)</span> from the default setup as described above. Therefore, in our initial conditions we have</p>
-<p><span class="math notranslate nohighlight">\(p+\gamma=-0.5 \neq 0\)</span>.</p>
-<p>Over time the system finds a steady state. Since the temperature profile and the <span class="math notranslate nohighlight">\(\alpha\)</span>-viscosity parameter are both fix in the default model, the only way for the system to get into steady state is by changing the slope of the gas surface density. This is what happened here: the surface density profile went from <span class="math notranslate nohighlight">\(-1.5\)</span> initially to <span class="math notranslate nohighlight">\(-1\)</span> after <span class="math notranslate nohighlight">\(10\,\)</span>Myrs.</p>
-<p>To fix this problem we need to change the viscosity of the setup. We can do this by either changing the temperature profile, or by changing the <span class="math notranslate nohighlight">\(\alpha\)</span>-profile. We are changing <span class="math notranslate nohighlight">\(\alpha\)</span> here</p>
-<p><span class="math notranslate nohighlight">\(\alpha \left( r \right) \propto r^\frac{1}{2}\)</span></p>
-<p>which leads to <span class="math notranslate nohighlight">\(\gamma = 1.5\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \Sigma_\mathrm{g}\nu \propto r^p r^\gamma = r^0 \\ \Rightarrow p+\gamma = 0\)</span></p>
+<p>We’ve change <span class="math notranslate nohighlight">\(\large p\)</span> from <span class="math notranslate nohighlight">\(-1\)</span> to <span class="math notranslate nohighlight">\(-1.5\)</span>, but we have not changed <span class="math notranslate nohighlight">\(\large \gamma\)</span>, which is still <span class="math notranslate nohighlight">\(1\)</span> from the default setup as described above. Therefore, in our initial conditions we have</p>
+<p><span class="math notranslate nohighlight">\(\Large p+\gamma=-0.5 \neq 0\)</span>.</p>
+<p>Over time the system finds a steady state. Since the temperature profile and the <span class="math notranslate nohighlight">\(\large \alpha\)</span>-viscosity parameter are both fix in the default model, the only way for the system to get into steady state is by changing the slope of the gas surface density. This is what happened here: the surface density profile went from <span class="math notranslate nohighlight">\(-1.5\)</span> initially to <span class="math notranslate nohighlight">\(-1\)</span> after <span class="math notranslate nohighlight">\(10\,\)</span>Myrs.</p>
+<p>To fix this problem we need to change the viscosity of the setup. We can do this by either changing the temperature profile, or by changing the <span class="math notranslate nohighlight">\(\large \alpha\)</span>-profile. We are changing <span class="math notranslate nohighlight">\(\large \alpha\)</span> here</p>
+<p><span class="math notranslate nohighlight">\(\Large \alpha \left( r \right) \propto r^\frac{1}{2}\)</span></p>
+<p>which leads to <span class="math notranslate nohighlight">\(\large \gamma = 1.5\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
@@ -672,7 +670,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:13</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.6
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -683,15 +681,15 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 6.66e-16</span>
         for particle collision
-            m[55] =  7.20e-05 g    with
-            m[55] =  7.20e-05 g
+            m[90] =  7.20e+00 g    with
+            m[95] =  3.73e+01 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -708,7 +706,7 @@ Writing file <span class="ansi-blue-intense-fg">test_gas_evolution/data0003.hdf5
 Writing dump file <span class="ansi-blue-intense-fg">test_gas_evolution/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_gas_evolution/data0004.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_gas_evolution/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:36</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:20</span>
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -756,7 +754,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:36</span>
 <div class="line">The reason for this is the inner boundary condition.</div>
 <div class="line">By default this is set to constant gradient</div>
 </div>
-<p><span class="math notranslate nohighlight">\(\frac{1}{r}\frac{\partial}{\partial r} \left( r\Sigma_\mathrm{g} \right) = \text{const.}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \frac{1}{r}\frac{\partial}{\partial r} \left( r\Sigma_\mathrm{g} \right) = \text{const.}\)</span></p>
 <p>This can be set exactly within a linear system, such as the one that is solved for gas evolution. A surface density profile of <span class="math notranslate nohighlight">\(-1\)</span> as is set for the default model has automatically a constant gradient at the inner boundary. But a surface density profile of <span class="math notranslate nohighlight">\(-1.5\)</span> does not. Here we need to change the inner boundary condition to constant power law.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
@@ -840,7 +838,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:36</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.6
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -851,15 +849,15 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 6.66e-16</span>
         for particle collision
-            m[55] =  7.20e-05 g    with
-            m[55] =  7.20e-05 g
+            m[90] =  7.20e+00 g    with
+            m[95] =  3.73e+01 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -876,7 +874,7 @@ Writing file <span class="ansi-blue-intense-fg">test_gas_evolution/data0003.hdf5
 Writing dump file <span class="ansi-blue-intense-fg">test_gas_evolution/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_gas_evolution/data0004.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_gas_evolution/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:34</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:19</span>
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">

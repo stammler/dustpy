@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -6,22 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DustPy Documentation &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -101,7 +99,7 @@
 <div class="line"><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is a Python package to simulate the evolution of dust in protoplanetary disks.</div>
 </div>
 <div class="line-block">
-<div class="line">This documentation is for <code class="docutils literal notranslate"><span class="pre">DustPy</span> <span class="pre">v1.0.6</span></code>.</div>
+<div class="line">This documentation is for <code class="docutils literal notranslate"><span class="pre">DustPy</span> <span class="pre">v1.0.8</span></code>.</div>
 </div>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> simulates the radial evolution of gas and dust in protoplanetary disks, including viscous evolution of the gas, advection and diffusion of the dust, as well as dust growth by solving the Smoluchowski equation.</div>
@@ -205,7 +203,7 @@
 <li class="toctree-l1"><a class="reference internal" href="example_planetary_gaps.html">Example: Planetary Gaps</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="example_planetary_gaps.html#Gap-Profiles">Gap Profiles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_planetary_gaps.html#Adding-planets">Adding planets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="example_planetary_gaps.html#Viscosity-pertubation">Viscosity pertubation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example_planetary_gaps.html#Adding-torque-profile">Adding torque profile</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_planetary_gaps.html#Growing-planets">Growing planets</a></li>
 </ul>
 </li>
@@ -217,7 +215,16 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="A_citation.html">Appendix A: Citation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="B_publications.html">Appendix B: List of Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="B_publications.html">Appendix B: List of Publications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="B_publications.html#2025">2025</a></li>
+<li class="toctree-l2"><a class="reference internal" href="B_publications.html#2024">2024</a></li>
+<li class="toctree-l2"><a class="reference internal" href="B_publications.html#2023">2023</a></li>
+<li class="toctree-l2"><a class="reference internal" href="B_publications.html#2022">2022</a></li>
+<li class="toctree-l2"><a class="reference internal" href="B_publications.html#2021">2021</a></li>
+<li class="toctree-l2"><a class="reference internal" href="B_publications.html#2020">2020</a></li>
+<li class="toctree-l2"><a class="reference internal" href="B_publications.html#2019">2019</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="C_contrib_bug_feature.html">Appendix C: Contributing/Bugs/Features</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="C_contrib_bug_feature.html#Contributing">Contributing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="C_contrib_bug_feature.html#Bug-Reports">Bug Reports</a></li>
@@ -226,6 +233,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="D_discussions.html">Appendix D: DustPy Discussions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="E_changelog.html">Appendix E: Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="E_changelog.html#v1.0.8"><strong>v1.0.8</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="E_changelog.html#v1.0.7"><strong>v1.0.7</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="E_changelog.html#v1.0.6"><strong>v1.0.6</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="E_changelog.html#v1.0.5"><strong>v1.0.5</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="E_changelog.html#v1.0.4"><strong>v1.0.4</strong></a></li>

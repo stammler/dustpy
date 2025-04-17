@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -6,23 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Example: Planetary Gaps &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
-      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -66,7 +64,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Example: Planetary Gaps</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Gap-Profiles">Gap Profiles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Adding-planets">Adding planets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Viscosity-pertubation">Viscosity pertubation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Adding-torque-profile">Adding torque profile</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#Growing-planets">Growing planets</a></li>
 </ul>
 </li>
@@ -109,31 +107,32 @@
 <div class="line-block">
 <div class="line">In this example we demonstrate how to add gaps carved by planets into the gas.</div>
 <div class="line">There are in principal three ways to achieve this: setting the gas surface density to the desired gap profile and not evolving it, adding torques to the gas evolution, or changing the viscosity.</div>
-<div class="line">In this example we focus on changing the viscosity.</div>
+<div class="line">In this example we focus on adding a torque profile.</div>
 </div>
-<p>In steady state the radial mass flux is constant</p>
-<p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \left( 3\pi\Sigma_\mathrm{g}\nu\right) = \text{const.}\)</span></p>
-<p>To create a custom gap profile in the gas, while still allowing for gas accretion, it is sufficient to simply force the inverse gap profile onto the viscosity <span class="math notranslate nohighlight">\(\nu\)</span>. Since <span class="math notranslate nohighlight">\(\nu = \alpha c_\mathrm{s} H_\mathrm{P}\)</span> gaps can be created by modifying <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+<p>The torque profile that is needed to impose a gap on the gas is given by <a class="reference external" href="https://doi.org/10.5282/edoc.34472">Lau (2024)</a>:</p>
+<p><span class="math notranslate nohighlight">\(\Large \Lambda = -\frac{3}{2} \nu \Omega_\mathrm{K} \left( \frac{1}{2f} - \frac{\partial \log f}{\partial \log r} - \frac{1}{2} \right)\)</span>,</p>
+<p>where <span class="math notranslate nohighlight">\(\large f\)</span> is the pertubation in the gas surface density</p>
+<p><span class="math notranslate nohighlight">\(\Large f = \frac{\Sigma_\mathrm{g} \left( r \right)}{\Sigma_0}\)</span>.</p>
 <section id="Gap-Profiles">
 <h2>Gap Profiles<a class="headerlink" href="#Gap-Profiles" title="Link to this heading"></a></h2>
 <p>Since we are not self-consistently creating gaps, we have to impose a known gap profile. In this demonstration we are using the numerical fits to hydrodynamical simulations found by <a class="reference external" href="https://doi.org/10.1093/pasj/psx114">Kanagawa et al. (2017)</a>:</p>
-<p><span class="math notranslate nohighlight">\(\Sigma\mathrm{g} \left( r \right) = \begin{cases}  \Sigma_\mathrm{min} &amp; \text{for} \quad \left| r - a_\mathrm{p} \right| &lt; \Delta r_1, \\  \Sigma_\mathrm{gap}\left( r \right) &amp; \text{for} \quad \Delta r_1 &lt; \left| r - a_\mathrm{p} \right| &lt; \Delta r_2, \\  \Sigma_0 &amp; \text{for} \quad \left| r - a_\mathrm{p} \right| &gt; \Delta r_2, \end{cases}\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(a_\mathrm{p}\)</span> is the semi-major axis of the planet and <span class="math notranslate nohighlight">\(\Sigma_0\)</span> is the unperturbed surface density, and</p>
-<p><span class="math notranslate nohighlight">\(\frac{\Sigma_\mathrm{gap}\left(r\right)}{\Sigma_0} = \frac{4}{\sqrt[4]{K'}}\ \frac{\left|r-a_\mathrm{p}\right|}{a_\mathrm{p}}\ -\ 0.32\)</span></p>
-<p><span class="math notranslate nohighlight">\(\Sigma_\mathrm{min} = \frac{\Sigma_0}{1\ +\ 0.04\ K}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\Delta r_1 = \left( \frac{\Sigma_\mathrm{min}}{4\Sigma_0} + 0.08 \right)\ \sqrt[4]{K'}\ a_\mathrm{p}\)</span></p>
-<p><span class="math notranslate nohighlight">\(\Delta r_2 = 0.33\ \sqrt[4]{K'}\ a_\mathrm{p}\)</span></p>
-<p><span class="math notranslate nohighlight">\(K = \left( \frac{M_\mathrm{p}}{M_*} \right)^2 \left( \frac{H_\mathrm{p}}{a_\mathrm{p}} \right)^{-5} \alpha_0^{-1}\)</span></p>
-<p><span class="math notranslate nohighlight">\(K' = \left( \frac{M_\mathrm{p}}{M_*} \right)^2 \left( \frac{H_\mathrm{p}}{a_\mathrm{p}} \right)^{-3} \alpha_0^{-1}\)</span></p>
-<p><span class="math notranslate nohighlight">\(M_\mathrm{p}\)</span> and <span class="math notranslate nohighlight">\(M_*\)</span> are the masses of the planet and the star, <span class="math notranslate nohighlight">\(H_\mathrm{p}\)</span> the pressure scale height at the planet location, and <span class="math notranslate nohighlight">\(\alpha_0\)</span> the unperturbed alpha parameter.</p>
-<p>We therefore need to write a function that calculates the pertubation <span class="math notranslate nohighlight">\(\Sigma_\mathrm{g}\left(r\right)/\Sigma_0\)</span>. The inverse of this pertubation is then our modification of <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \Sigma\mathrm{g} \left( r \right) = \begin{cases}  \Sigma_\mathrm{min} &amp; \text{for} \quad \left| r - a_\mathrm{p} \right| &lt; \Delta r_1, \\  \Sigma_\mathrm{gap}\left( r \right) &amp; \text{for} \quad \Delta r_1 &lt; \left| r - a_\mathrm{p} \right| &lt; \Delta r_2, \\  \Sigma_0 &amp; \text{for} \quad \left| r - a_\mathrm{p} \right| &gt; \Delta r_2, \end{cases}\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\large a_\mathrm{p}\)</span> is the semi-major axis of the planet and <span class="math notranslate nohighlight">\(\large \Sigma_0\)</span> is the unperturbed surface density, and</p>
+<p><span class="math notranslate nohighlight">\(\Large \frac{\Sigma_\mathrm{gap}\left(r\right)}{\Sigma_0} = \frac{4}{\sqrt[4]{K'}}\ \frac{\left|r-a_\mathrm{p}\right|}{a_\mathrm{p}}\ -\ 0.32\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \Sigma_\mathrm{min} = \frac{\Sigma_0}{1\ +\ 0.04\ K}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \Delta r_1 = \left( \frac{\Sigma_\mathrm{min}}{4\Sigma_0} + 0.08 \right)\ \sqrt[4]{K'}\ a_\mathrm{p}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \Delta r_2 = 0.33\ \sqrt[4]{K'}\ a_\mathrm{p}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large K = \left( \frac{M_\mathrm{p}}{M_*} \right)^2 \left( \frac{H_\mathrm{p}}{a_\mathrm{p}} \right)^{-5} \alpha^{-1}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large K' = \left( \frac{M_\mathrm{p}}{M_*} \right)^2 \left( \frac{H_\mathrm{p}}{a_\mathrm{p}} \right)^{-3} \alpha^{-1}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\large M_\mathrm{p}\)</span> and <span class="math notranslate nohighlight">\(\large M_*\)</span> are the masses of the planet and the star, <span class="math notranslate nohighlight">\(\large H_\mathrm{p}\)</span> the pressure scale height at the planet location, and <span class="math notranslate nohighlight">\(\large \alpha\)</span> the viscosity parameter.</p>
+<p>We therefore need to write a function that calculates the pertubation <span class="math notranslate nohighlight">\(\large f = \Sigma_\mathrm{g}\left(r\right)/\Sigma_0\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="k">def</span> <span class="nf">Kanagawa2017_gap_profile</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">alpha0</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">Kanagawa2017_gap_profile</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Function calculates the gap profile according Kanagawa et al. (2017).</span>
 
 <span class="sd">    Parameters</span>
@@ -146,8 +145,8 @@
 <span class="sd">        Planet-star mass ratio</span>
 <span class="sd">    h : float</span>
 <span class="sd">        Aspect ratio at planet location</span>
-<span class="sd">    alpha0 : float</span>
-<span class="sd">        Unperturbed alpha viscosity parameter</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">        alpha viscosity parameter</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -160,8 +159,8 @@
     <span class="c1"># Distance to planet (normalized)</span>
     <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">a</span>
 
-    <span class="n">K</span> <span class="o">=</span> <span class="n">q</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">h</span><span class="o">**</span><span class="mi">5</span> <span class="o">*</span> <span class="n">alpha0</span><span class="p">)</span> <span class="c1"># K</span>
-    <span class="n">Kp</span> <span class="o">=</span> <span class="n">q</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">h</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">alpha0</span><span class="p">)</span> <span class="c1"># K prime</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">q</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">h</span><span class="o">**</span><span class="mi">5</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span> <span class="c1"># K</span>
+    <span class="n">Kp</span> <span class="o">=</span> <span class="n">q</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">h</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span> <span class="c1"># K prime</span>
     <span class="n">Kp4</span> <span class="o">=</span> <span class="n">Kp</span><span class="o">**</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span> <span class="c1"># Fourth root of K prime</span>
     <span class="n">SigMin</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">0.04</span><span class="o">*</span><span class="n">K</span><span class="p">)</span> <span class="c1"># Sigma minimum</span>
     <span class="n">SigGap</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">Kp4</span> <span class="o">*</span> <span class="n">dist</span> <span class="o">-</span> <span class="mf">0.32</span> <span class="c1"># Sigma gap</span>
@@ -189,7 +188,7 @@
 <span class="n">rp</span> <span class="o">=</span> <span class="mf">10.</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">au</span>
 <span class="n">h</span> <span class="o">=</span> <span class="mf">0.05</span>
 <span class="n">q</span> <span class="o">=</span> <span class="mf">30.</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">M_earth</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">M_sun</span>
-<span class="n">alpha0</span> <span class="o">=</span> <span class="mf">1.e-3</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.e-3</span>
 </pre></div>
 </div>
 </div>
@@ -206,6 +205,7 @@
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.dpi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">150.</span>
 </pre></div>
 </div>
 </div>
@@ -213,15 +213,13 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">Kanagawa2017_gap_profile</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rp</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">alpha0</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">Kanagawa2017_gap_profile</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">rp</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">alpha</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">rp</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;C7&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1000.</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from star [AU]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\Sigma_\mathrm</span><span class="si">{g}</span><span class="s2"> \left( r \right)\ /\ \Sigma_0$&quot;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$f = \Sigma_\mathrm</span><span class="si">{g}</span><span class="s2"> \left( r \right)\ /\ \Sigma_0$&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_layout_engine</span><span class="p">(</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -232,7 +230,6 @@
 <img alt="_images/example_planetary_gaps_8_0.png" src="_images/example_planetary_gaps_8_0.png" />
 </div>
 </div>
-<p>The inverse of this pertubation needs to be imposed on the turbulent <span class="math notranslate nohighlight">\(\alpha\)</span> parameter to produce the desired gap profile in the gas.</p>
 </section>
 <section id="Adding-planets">
 <h2>Adding planets<a class="headerlink" href="#Adding-planets" title="Link to this heading"></a></h2>
@@ -345,74 +342,48 @@
 </pre></div></div>
 </div>
 </section>
-<section id="Viscosity-pertubation">
-<h2>Viscosity pertubation<a class="headerlink" href="#Viscosity-pertubation" title="Link to this heading"></a></h2>
-<p>We now have to write a funtion that returns the <span class="math notranslate nohighlight">\(\alpha\)</span> viscosity parameter profile that imposes the desired gap profile onto the gas surface density from those two planets.</p>
-<p>The unperturbed <span class="math notranslate nohighlight">\(\alpha\)</span> parameter shall be constant in this model.</p>
+<section id="Adding-torque-profile">
+<h2>Adding torque profile<a class="headerlink" href="#Adding-torque-profile" title="Link to this heading"></a></h2>
+<p>We now have to write a funtion that returns the <span class="math notranslate nohighlight">\(\large \Lambda\)</span> torque profile that imposes the desired gap profile onto the gas surface density from those two planets.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha0</span> <span class="o">=</span> <span class="mf">1.e-3</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+
+<span class="k">def</span> <span class="nf">Lambda_torque</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">return_profile</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="p">)</span>
+    <span class="n">fi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">Nr</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">planet</span> <span class="ow">in</span> <span class="n">sim</span><span class="o">.</span><span class="n">planets</span><span class="p">:</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">planet</span><span class="o">.</span><span class="n">M</span><span class="o">/</span><span class="n">sim</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">M</span>
+        <span class="n">_h</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Hp</span><span class="o">/</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">_h</span><span class="p">(</span><span class="n">planet</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">_alpha</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">_alpha</span><span class="p">(</span><span class="n">planet</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">*=</span> <span class="n">Kanagawa2017_gap_profile</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">planet</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+        <span class="n">fi</span> <span class="o">*=</span> <span class="n">Kanagawa2017_gap_profile</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">,</span> <span class="n">planet</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">fi</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">ri</span><span class="p">))</span>
+    <span class="n">Lambda</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">OmegaK</span> <span class="o">*</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">nu</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">f</span><span class="p">)</span> <span class="o">-</span> <span class="n">grad</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">return_profile</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">f</span>
+    <span class="k">return</span> <span class="n">Lambda</span>
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
+<p>This function now produces the <span class="math notranslate nohighlight">\(\large \alpha\)</span> viscosity profile that creates planetary gaps in the gas surface density.</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
-
-<span class="k">def</span> <span class="nf">alpha</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function returns the alpha viscosity profile to create planetary gaps in the gas surface density.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    sim : Frame</span>
-<span class="sd">        Simulation frame</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    alpha : array</span>
-<span class="sd">        alpha viscosity profile&quot;&quot;&quot;</span>
-
-    <span class="c1"># Unperturbed profile</span>
-    <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">sim</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="c1"># Skip hidden fields</span>
-        <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;_&quot;</span><span class="p">:</span> <span class="k">continue</span>
-
-        <span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">M</span> <span class="o">/</span> <span class="n">sim</span><span class="o">.</span><span class="n">star</span><span class="o">.</span><span class="n">M</span>
-
-        <span class="c1"># Aspect ratio</span>
-        <span class="n">h</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">Hp</span> <span class="o">/</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span>
-        <span class="c1"># Interpolate aspect ratio</span>
-        <span class="n">f_h</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
-        <span class="n">hp</span> <span class="o">=</span> <span class="n">f_h</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
-
-        <span class="c1"># Inverse alpha profile</span>
-        <span class="n">alpha</span> <span class="o">/=</span> <span class="n">Kanagawa2017_gap_profile</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">hp</span><span class="p">,</span> <span class="n">alpha0</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">alpha0</span> <span class="o">*</span> <span class="n">alpha</span>
-</pre></div>
-</div>
-</div>
-<p>This function now produces the <span class="math notranslate nohighlight">\(\alpha\)</span> viscosity profile that creates planetary gaps in the gas surface density.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">alpha</span><span class="p">(</span><span class="n">sim</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="n">Lambda_torque</span><span class="p">(</span><span class="n">sim</span><span class="p">,</span> <span class="n">return_profile</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">8.e-4</span><span class="p">,</span> <span class="mf">2.e-1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="mf">1.e-4</span><span class="p">,</span> <span class="mf">1.e0</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C7&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1.e-3</span><span class="p">,</span> <span class="mf">2.</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">r</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">au</span><span class="p">,</span> <span class="mf">1.e-3</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C7&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from star [AU]&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\alpha$ viscosity parameter&quot;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$f$ profile&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_layout_engine</span><span class="p">(</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -420,15 +391,15 @@
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_planetary_gaps_25_0.png" src="_images/example_planetary_gaps_25_0.png" />
+<img alt="_images/example_planetary_gaps_23_0.png" src="_images/example_planetary_gaps_23_0.png" />
 </div>
 </div>
-<p>We can now assign this profile to the <span class="math notranslate nohighlight">\(\alpha\)</span> viscosity parameter.</p>
+<p>We could now assign this profile to the <span class="math notranslate nohighlight">\(\large \Lambda\)</span> torque parameter.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">torque</span><span class="o">.</span><span class="n">Lambda</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">Lambda_torque</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -437,7 +408,7 @@
 <h2>Growing planets<a class="headerlink" href="#Growing-planets" title="Link to this heading"></a></h2>
 <p>Right now we could already start the simulation. But in this demonstration we want to let the planets grow linearly to their final mass. we therefore write a function that returns the planetary mass as a function of time.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Mplan</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tini</span><span class="p">,</span> <span class="n">tfin</span><span class="p">,</span> <span class="n">Mini</span><span class="p">,</span> <span class="n">Mfin</span><span class="p">):</span>
@@ -466,7 +437,7 @@
 </div>
 <p>We want to start with planet masses of <span class="math notranslate nohighlight">\(1\)</span> Earth mass and they should reach their final masses after <span class="math notranslate nohighlight">\(100\,000\)</span> years. We have to write functions for each planet that returns their mass as a function of time.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Mjup</span><span class="p">(</span><span class="n">sim</span><span class="p">):</span>
@@ -479,7 +450,7 @@
 </div>
 <p>These functions have to be assigned to the updaters of their respective fields.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">jupiter</span><span class="o">.</span><span class="n">M</span><span class="o">.</span><span class="n">updater</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="n">Mjup</span>
@@ -489,7 +460,7 @@
 </div>
 <p>We also have to oragnize the update structure of the planets.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">jupiter</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;M&quot;</span><span class="p">]</span>
@@ -500,25 +471,25 @@
 </div>
 <p>And we have to tell the main simulation frame to update the planets group. This has to be done before the gas quantities, since <code class="docutils literal notranslate"><span class="pre">Simulation.gas.alpha</span></code> needs to know the planetary masses. So we simply update it in the beginning.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;planets&quot;</span><span class="p">,</span> <span class="s2">&quot;star&quot;</span><span class="p">,</span> <span class="s2">&quot;grid&quot;</span><span class="p">,</span> <span class="s2">&quot;gas&quot;</span><span class="p">,</span> <span class="s2">&quot;dust&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
-<p>Since the <span class="math notranslate nohighlight">\(\alpha\)</span> viscosity profile is not constant now, we have assign our <span class="math notranslate nohighlight">\(\alpha\)</span> function to its updater.</p>
+<p>Since the <span class="math notranslate nohighlight">\(\large \Lambda\)</span> torque profile is not constant now, we have assign our <span class="math notranslate nohighlight">\(\Lambda\)</span> function to its updater.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">alpha</span><span class="o">.</span><span class="n">updater</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="n">alpha</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">gas</span><span class="o">.</span><span class="n">torque</span><span class="o">.</span><span class="n">Lambda</span><span class="o">.</span><span class="n">updater</span><span class="o">.</span><span class="n">updater</span> <span class="o">=</span> <span class="n">Lambda_torque</span>
 </pre></div>
 </div>
 </div>
 <p>To bring the simulation frame into consistency we have to update it.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
@@ -527,7 +498,7 @@
 </div>
 <p>The planetary masses are now set to their initial values.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Masses</span><span class="se">\n</span><span class="s2">Jupiter: </span><span class="si">{:4.2f}</span><span class="s2"> M_earth</span><span class="se">\n</span><span class="s2">Saturn:  </span><span class="si">{:4.2f}</span><span class="s2"> M_earth&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">jupiter</span><span class="o">.</span><span class="n">M</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">saturn</span><span class="o">.</span><span class="n">M</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">)</span>
@@ -547,7 +518,7 @@ Saturn:  1.00 M_earth
 </div>
 <p>We can now start the simulation.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">datadir</span> <span class="o">=</span> <span class="s2">&quot;example_planetary_gaps&quot;</span>
@@ -555,7 +526,7 @@ Saturn:  1.00 M_earth
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
@@ -568,7 +539,7 @@ Saturn:  1.00 M_earth
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.6
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -579,15 +550,15 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 6.66e-16</span>
         for particle collision
-            m[55] =  7.20e-05 g    with
-            m[55] =  7.20e-05 g
+            m[90] =  7.20e+00 g    with
+            m[95] =  3.73e+01 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -639,12 +610,12 @@ Writing file <span class="ansi-blue-intense-fg">example_planetary_gaps/data0020.
 Writing dump file <span class="ansi-blue-intense-fg">example_planetary_gaps/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">example_planetary_gaps/data0021.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">example_planetary_gaps/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">1:04:02</span>
+Execution time: <span class="ansi-blue-intense-fg">0:15:08</span>
 </pre></div></div>
 </div>
 <p>This is the result of our simulation.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dustpy</span> <span class="kn">import</span> <span class="n">plot</span>
@@ -652,7 +623,7 @@ Execution time: <span class="ansi-blue-intense-fg">1:04:02</span>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="o">.</span><span class="n">panel</span><span class="p">(</span><span class="n">sim</span><span class="p">)</span>
@@ -663,13 +634,13 @@ Execution time: <span class="ansi-blue-intense-fg">1:04:02</span>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_planetary_gaps_49_0.png" src="_images/example_planetary_gaps_49_0.png" />
+<img alt="_images/example_planetary_gaps_47_0.png" src="_images/example_planetary_gaps_47_0.png" />
 </div>
 </div>
 <p>As can be seen, the core of Jupiter and Saturn carved gaps in the gas disk, which in turn affected the dust evolution.</p>
 <p>To see that the planetary masses actually changed we can plot them over time.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">writer</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
@@ -679,11 +650,10 @@ Execution time: <span class="ansi-blue-intense-fg">1:04:02</span>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">Mjup</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Jupiter&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">Msat</span><span class="o">/</span><span class="n">c</span><span class="o">.</span><span class="n">M_earth</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Saturn&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -691,8 +661,7 @@ Execution time: <span class="ansi-blue-intense-fg">1:04:02</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Time [years]&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Mass [$M_\oplus$]&quot;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_layout_engine</span><span class="p">(</span><span class="s2">&quot;tight&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -700,7 +669,7 @@ Execution time: <span class="ansi-blue-intense-fg">1:04:02</span>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/example_planetary_gaps_52_0.png" src="_images/example_planetary_gaps_52_0.png" />
+<img alt="_images/example_planetary_gaps_50_0.png" src="_images/example_planetary_gaps_50_0.png" />
 </div>
 </div>
 </section>

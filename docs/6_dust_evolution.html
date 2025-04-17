@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -6,23 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>6. Dust Evolution &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
-      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -155,12 +153,12 @@
 </pre></div></div>
 </div>
 <p>The implicit matrix equation that is solved for dust evolution is given by</p>
-<p><span class="math notranslate nohighlight">\(\frac{\vec{\Sigma}_\mathrm{d}^{n+1}-\vec{\Sigma}_\mathrm{d}^{n}}{\Delta t} = \mathbb{J} \cdot \vec{\Sigma}_\mathrm{d}^{n+1} + \vec{S}_\mathrm{ext},\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \frac{\vec{\Sigma}_\mathrm{d}^{n+1}-\vec{\Sigma}_\mathrm{d}^{n}}{\Delta t} = \mathbb{J} \cdot \vec{\Sigma}_\mathrm{d}^{n+1} + \vec{S}_\mathrm{ext},\)</span></p>
 <p>which can be written as</p>
-<p><span class="math notranslate nohighlight">\(\begin{split} \left( \mathbb{1} - \Delta t\, \mathbb{J} \right) \cdot \vec{\Sigma}_\mathrm{d}^{n+1} &amp;= \vec{\Sigma}_\mathrm{d}^{n} + \Delta t\, \vec{S}_\mathrm{ext}\\ &amp;\equiv \vec{R}^n, \end{split}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \begin{split} \left( \mathbb{1} - \Delta t\, \mathbb{J} \right) \cdot \vec{\Sigma}_\mathrm{d}^{n+1} &amp;= \vec{\Sigma}_\mathrm{d}^{n} + \Delta t\, \vec{S}_\mathrm{ext}\\ &amp;\equiv \vec{R}^n, \end{split}\)</span></p>
 <p>with</p>
-<p><span class="math notranslate nohighlight">\(\vec{R}^n = \vec{\Sigma}_\mathrm{d}^{n} + \Delta t\, \vec{S}_\mathrm{ext}\)</span>.</p>
-<p>The Jacobian <span class="math notranslate nohighlight">\(\mathbb{J}\)</span> is a sparse matrix. <span class="math notranslate nohighlight">\(\vec{\Sigma}_\mathrm{d}\)</span> is a one-dimensional state vector that can be produces from the surface densities with the <code class="docutils literal notranslate"><span class="pre">.ravel()</span></code> method.</p>
+<p><span class="math notranslate nohighlight">\(\Large \vec{R}^n = \vec{\Sigma}_\mathrm{d}^{n} + \Delta t\, \vec{S}_\mathrm{ext}\)</span>.</p>
+<p>The Jacobian <span class="math notranslate nohighlight">\(\large \mathbb{J}\)</span> is a sparse matrix. <span class="math notranslate nohighlight">\(\large \vec{\Sigma}_\mathrm{d}\)</span> is a one-dimensional state vector that can be produces from the surface densities with the <code class="docutils literal notranslate"><span class="pre">.ravel()</span></code> method.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -222,12 +220,12 @@ results in a particle with mass smaller than the largest mass bin. Fragmentation
 <p>The first and the last row set the boundary conditions. The inner boundary is set to constant gradient. Therefore, the second and third boxes of the first row have diagonals. The outer boundary is set to floor value. Therefore the entire row is empty.</p>
 <p>Since most of the elements of the Jacobian are empty – especially in larger simulations – the Jacobians is stored as sparse matrix only saving the non-zero elements.</p>
 <p>The implicit integration schemes that come with <code class="docutils literal notranslate"><span class="pre">simframe</span></code> only integrates equations of kind</p>
-<p><span class="math notranslate nohighlight">\(\left( \mathbb{1} - \Delta t\, \mathbb{J} \right) \cdot \vec{Y}^{n+1} = \vec{Y}^n\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \left( \mathbb{1} - \Delta t\, \mathbb{J} \right) \cdot \vec{Y}^{n+1} = \vec{Y}^n\)</span>.</p>
 <div class="line-block">
 <div class="line">We have therefore created a custom integration schemes for our needs.</div>
 <div class="line">Whenever <code class="docutils literal notranslate"><span class="pre">Simulation.dust.Sigma.jacobian()</span></code> is called, the right-hand side of our equation is calculated and stored in a hidden field <code class="docutils literal notranslate"><span class="pre">Simulation.dusts._rhs</span></code>, that can be accessed by our integration scheme.</div>
 </div>
-<p>The first and the last rows of the Jacobian, which contain the boundary conditions do not contain the time step <span class="math notranslate nohighlight">\(\Delta t\)</span>, since this is not necessarily known when calculating the Jacobian. The integration scheme will add the terms containing the time step.</p>
+<p>The first and the last rows of the Jacobian, which contain the boundary conditions do not contain the time step <span class="math notranslate nohighlight">\(\large \Delta t\)</span>, since this is not necessarily known when calculating the Jacobian. The integration scheme will add the terms containing the time step.</p>
 <p>The custom integration scheme can be found in <code class="docutils literal notranslate"><span class="pre">dustpy.std.dust.impl_1_direct</span></code>.</p>
 <section id="Coagulation">
 <h2>Coagulation<a class="headerlink" href="#Coagulation" title="Link to this heading"></a></h2>
@@ -280,7 +278,7 @@ results in a particle with mass smaller than the largest mass bin. Fragmentation
 <section id="Hydrodynamics">
 <h2>Hydrodynamics<a class="headerlink" href="#Hydrodynamics" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> solves the following equation for dust transport</p>
-<p><span class="math notranslate nohighlight">\(\frac{\partial}{\partial t} \Sigma_\mathrm{d} + \frac{1}{r} \frac{\partial}{\partial r} \left( r\Sigma_\mathrm{d}v_\mathrm{rad} \right) - \frac{1}{r} \frac{\partial}{\partial r} \left[ r D \Sigma_\mathrm{g} \frac{\partial}{\partial r} \left( \frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{g}} \right) \right] = 0\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large \frac{\partial}{\partial t} \Sigma_\mathrm{d} + \frac{1}{r} \frac{\partial}{\partial r} \left( r\Sigma_\mathrm{d}v_\mathrm{rad} \right) - \frac{1}{r} \frac{\partial}{\partial r} \left[ r D \Sigma_\mathrm{g} \frac{\partial}{\partial r} \left( \frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{g}} \right) \right] = 0\)</span></p>
 <p>The dust hydrodynamics consists of an advective and an diffusive term. The algorithm calculates the advective and diffusive fluxes separately at the grid cell interfaces. Furthermore, the sum of both is calculated.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -307,7 +305,7 @@ Group (Fluxes)
 <section id="Advection">
 <h3>Advection<a class="headerlink" href="#Advection" title="Link to this heading"></a></h3>
 <p>The advective fluxes at the grid interfaces are calculated as</p>
-<p><span class="math notranslate nohighlight">\(F_\mathrm{adv} = v_\mathrm{rad} \cdot \Sigma_\mathrm{d}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large F_\mathrm{adv} = v_\mathrm{rad} \cdot \Sigma_\mathrm{d}\)</span></p>
 <p>and interpolated onto the grid cell interfaces. The default boundary condition assumes constant velocity.</p>
 </section>
 <section id="Turning-off-Advection">
@@ -330,7 +328,7 @@ Group (Fluxes)
 <section id="Diffusion">
 <h3>Diffusion<a class="headerlink" href="#Diffusion" title="Link to this heading"></a></h3>
 <p>The diffusive fluxes are given by</p>
-<p><span class="math notranslate nohighlight">\(F_\mathrm{diff} = -D\Sigma_\mathrm{g}\nabla\frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{gas}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large F_\mathrm{diff} = -D\Sigma_\mathrm{g}\nabla\frac{\Sigma_\mathrm{d}}{\Sigma_\mathrm{gas}}\)</span></p>
 <p>A flux limiter limits the maximum diffusive flux to the diffusive RMS velocity of that dust species. The diffusive flux through the boundaries is set to zero.</p>
 </section>
 <section id="Turning-off-Diffusion">

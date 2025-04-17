@@ -1,6 +1,8 @@
 python_sources = [
   '__init__.py',
+  'data.py',
   'boundary.py',
+  'simplenamespace.py',
   'version.py'
   ]
 

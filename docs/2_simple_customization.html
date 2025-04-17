@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -6,23 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2. Simple Customization &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
-      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -150,9 +148,8 @@ namespace(dust=namespace(aIniMax=0.0001,
                          excavatedMass=1.0,
                          fragmentDistribution=-1.8333333333333333,
                          rhoMonomer=1.67,
-                         vfrag=100.0),
+                         vFrag=100.0),
           gas=namespace(alpha=0.001,
-                        gamma=1.4,
                         Mdisk=9.942049353490256e+31,
                         mu=3.847030424486999e-24,
                         SigmaExp=-1.0,
@@ -284,7 +281,6 @@ namespace(Nmbpd=7,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 namespace(alpha=0.001,
-          gamma=1.4,
           Mdisk=9.942049353490256e+31,
           mu=3.847030424486999e-24,
           SigmaExp=-1.0,
@@ -298,10 +294,6 @@ namespace(alpha=0.001,
 <div class="line">alpha viscosity parameter, default: <span class="math notranslate nohighlight">\(10^{-3}\)</span></div>
 <div class="line">see <a class="reference external" href="http://adsabs.harvard.edu/abs/1973A%26A....24..337S">Shakura &amp; Sunyaev (1973)</a> for details</div>
 </div>
-<ul class="simple">
-<li><p>gamma</p></li>
-</ul>
-<p>heat capacity ratio, default: 7/5</p>
 <ul class="simple">
 <li><p>Mdisk</p></li>
 </ul>
@@ -350,7 +342,7 @@ namespace(aIniMax=0.0001,
           excavatedMass=1.0,
           fragmentDistribution=-1.8333333333333333,
           rhoMonomer=1.67,
-          vfrag=100.0)
+          vFrag=100.0)
 </pre></div></div>
 </div>
 <ul class="simple">
@@ -380,7 +372,7 @@ namespace(aIniMax=0.0001,
 </ul>
 <div class="line-block">
 <div class="line">Inital size distribution of particles, default: -7/2</div>
-<div class="line">The particles will initially have a size distribution of <span class="math notranslate nohighlight">\(n\left(a\right) \propto a^\mathrm{distExp}\)</span> up to a maximum particle size of <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.aIniMax</span></code>. The standard model uses the so-called MRN distribution of interstellar grains as initial condition. See <a class="reference external" href="https://doi.org/10.1086/155591">Mathis et al. (1977)</a>.</div>
+<div class="line">The particles will initially have a size distribution of <span class="math notranslate nohighlight">\(\large n\left(a\right) \propto a^\mathrm{distExp}\)</span> up to a maximum particle size of <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.aIniMax</span></code>. The standard model uses the so-called MRN distribution of interstellar grains as initial condition. See <a class="reference external" href="https://doi.org/10.1086/155591">Mathis et al. (1977)</a>.</div>
 </div>
 <ul class="simple">
 <li><p>excavatedMass</p></li>
@@ -394,7 +386,7 @@ namespace(aIniMax=0.0001,
 </ul>
 <div class="line-block">
 <div class="line">mass distribution of fragments, default: -11/6</div>
-<div class="line">Whenever a particle collision produces fragments the fragments will have a mass distribution of <span class="math notranslate nohighlight">\(n \left(m\right) \mathrm{d}m \propto m^\mathrm{fragmentDistribution} \mathrm{d}m\)</span>. The value used by the standard model is taken from <a class="reference external" href="https://doi.org/10.1029/JB074i010p02531">Dohnanyi (1969)</a>.</div>
+<div class="line">Whenever a particle collision produces fragments the fragments will have a mass distribution of <span class="math notranslate nohighlight">\(\large n \left(m\right) \mathrm{d}m \propto m^\mathrm{fragmentDistribution} \mathrm{d}m\)</span>. The value used by the standard model is taken from <a class="reference external" href="https://doi.org/10.1029/JB074i010p02531">Dohnanyi (1969)</a>.</div>
 </div>
 <ul class="simple">
 <li><p>rhoMonomer</p></li>
@@ -489,7 +481,7 @@ namespace(aIniMax=0.0001,
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.6
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -500,15 +492,15 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 6.66e-16</span>
         for particle collision
-            m[55] =  7.20e-05 g    with
-            m[55] =  7.20e-05 g
+            m[90] =  7.20e+00 g    with
+            m[95] =  3.73e+01 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -530,7 +522,7 @@ Writing file <span class="ansi-blue-intense-fg">2_data/data0005.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">2_data/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">2_data/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:04:29</span>
+Execution time: <span class="ansi-blue-intense-fg">0:01:32</span>
 </pre></div></div>
 </div>
 <p>The simulation has now run for 10,000 years</p>

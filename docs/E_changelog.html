@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -6,22 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Appendix E: Changelog &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -69,6 +67,21 @@
 <li class="toctree-l1"><a class="reference internal" href="C_contrib_bug_feature.html">Appendix C: Contributing/Bugs/Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="D_discussions.html">Appendix D: DustPy Discussions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Appendix E: Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v1.0.8"><strong>v1.0.8</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Bugfix-to-backward-compatibility">Bugfix to backward compatibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#v1.0.7"><strong>v1.0.7</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Fix-to-installation-issues">Fix to installation issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Removing-adiabatic-sound-speed">Removing adiabatic sound speed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Implementation-of-gas-torque">Implementation of gas torque</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Bugfix-to-plotting-script">Bugfix to plotting script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Implementation-of-helper-funtion-to-extract-simulation-data">Implementation of helper funtion to extract simulation data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Change-of-variable-name-in-initial-conditions-object">Change of variable name in initial conditions object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Do-not-allow-the-addition-of-new-attributes-to-initial-conditions-object">Do not allow the addition of new attributes to initial conditions object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Fixing-compiler-warnings-and-out-of-bounds-errors">Fixing compiler warnings and out-of-bounds errors</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#v1.0.6"><strong>v1.0.6</strong></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Simframe-compatibility">Simframe compatibility</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Bugfix-to-initial-fluxes-and-source-terms">Bugfix to initial fluxes and source terms</a></li>
@@ -80,7 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#v1.0.5"><strong>v1.0.5</strong></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Using-Meson-as-build-system">Using Meson as build system</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Bugfix-to-velocity-distribution">Bugfix to velocity distribution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Bugfix-to-plotting-script">Bugfix to plotting script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Bugfix to plotting script</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Preparation-for-the-addition-of-multiple-gas-species">Preparation for the addition of multiple gas species</a></li>
 </ul>
 </li>
@@ -134,6 +147,56 @@
   <section id="Appendix-E:-Changelog">
 <h1>Appendix E: Changelog<a class="headerlink" href="#Appendix-E:-Changelog" title="Link to this heading"></a></h1>
 <p>This is a list of changes made to <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> since version <code class="docutils literal notranslate"><span class="pre">v1.0.0</span></code> including discussions of their influence on the simulations.</p>
+<section id="v1.0.8">
+<h2><strong>v1.0.8</strong><a class="headerlink" href="#v1.0.8" title="Link to this heading"></a></h2>
+<p><strong>Release date: 7th March 2025</strong></p>
+<section id="Bugfix-to-backward-compatibility">
+<h3>Bugfix to backward compatibility<a class="headerlink" href="#Bugfix-to-backward-compatibility" title="Link to this heading"></a></h3>
+<p>Bugfix to the modified <code class="docutils literal notranslate"><span class="pre">SimpleNamespace</span></code> class to make <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> usable for Python versions before <code class="docutils literal notranslate"><span class="pre">3.13</span></code>.</p>
+</section>
+</section>
+<section id="v1.0.7">
+<h2><strong>v1.0.7</strong><a class="headerlink" href="#v1.0.7" title="Link to this heading"></a></h2>
+<p><strong>Release date: 26th February 2025</strong></p>
+<section id="Fix-to-installation-issues">
+<h3>Fix to installation issues<a class="headerlink" href="#Fix-to-installation-issues" title="Link to this heading"></a></h3>
+<p>When using the latest <code class="docutils literal notranslate"><span class="pre">NumPy</span></code> version the Fortran modules could not be found. This is now fixed.</p>
+</section>
+<section id="Removing-adiabatic-sound-speed">
+<h3>Removing adiabatic sound speed<a class="headerlink" href="#Removing-adiabatic-sound-speed" title="Link to this heading"></a></h3>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> used to store the adiabatic sound speed in <code class="docutils literal notranslate"><span class="pre">Simulation.gas.cs</span></code> while employing the heat capacity ration <code class="docutils literal notranslate"><span class="pre">Simulation.gas.gamma</span></code>. But all methods implemented in <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> have been using the isothermal sound speed.</div>
+<div class="line">Since this caused confusion the heat capacity ratio <code class="docutils literal notranslate"><span class="pre">Simulation.gas.gamma</span></code> has been removed and <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is now always storing the isothermal sound speed in <code class="docutils literal notranslate"><span class="pre">Simulation.gas.cs</span></code>.</div>
+</div>
+</section>
+<section id="Implementation-of-gas-torque">
+<h3>Implementation of gas torque<a class="headerlink" href="#Implementation-of-gas-torque" title="Link to this heading"></a></h3>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">DustPy</span></code> has now the possibility of adding a torque on the gas surface density. This can be used for ecample to open gaps instead of using the method of changing the gas viscosity.</div>
+<div class="line">The angular momentum injection rate can be accessed at <code class="docutils literal notranslate"><span class="pre">Simulation.gas.torque.Lambda</span></code>. The additional velocity component imposed on the gas by the torque is stored in <code class="docutils literal notranslate"><span class="pre">Simulation.gas.torque.v</span></code>.</div>
+</div>
+</section>
+<section id="Bugfix-to-plotting-script">
+<h3>Bugfix to plotting script<a class="headerlink" href="#Bugfix-to-plotting-script" title="Link to this heading"></a></h3>
+<p>The default plotting script was not working anymore with the latest <code class="docutils literal notranslate"><span class="pre">Matplotlib</span></code> version. This has been fixed.</p>
+</section>
+<section id="Implementation-of-helper-funtion-to-extract-simulation-data">
+<h3>Implementation of helper funtion to extract simulation data<a class="headerlink" href="#Implementation-of-helper-funtion-to-extract-simulation-data" title="Link to this heading"></a></h3>
+<p>The function <code class="docutils literal notranslate"><span class="pre">utils.data.read_data</span></code> either takes a <code class="docutils literal notranslate"><span class="pre">Simulation</span></code> object or the path to a <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> data directory and returns all the data including the growth limits that are required to prepare the standard plots.</p>
+</section>
+<section id="Change-of-variable-name-in-initial-conditions-object">
+<h3>Change of variable name in initial conditions object<a class="headerlink" href="#Change-of-variable-name-in-initial-conditions-object" title="Link to this heading"></a></h3>
+<p>For consistency reasons the default fragmentation velocity in the initial conditions is called <code class="docutils literal notranslate"><span class="pre">Simulation.ini.dust.vFrag</span></code>.</p>
+</section>
+<section id="Do-not-allow-the-addition-of-new-attributes-to-initial-conditions-object">
+<h3>Do not allow the addition of new attributes to initial conditions object<a class="headerlink" href="#Do-not-allow-the-addition-of-new-attributes-to-initial-conditions-object" title="Link to this heading"></a></h3>
+<p>It is now not possible anymore to add new attributes to <code class="docutils literal notranslate"><span class="pre">Simulation.ini</span></code>. This is to prevent mistakes from adressing attributes while having typos.</p>
+</section>
+<section id="Fixing-compiler-warnings-and-out-of-bounds-errors">
+<h3>Fixing compiler warnings and out-of-bounds errors<a class="headerlink" href="#Fixing-compiler-warnings-and-out-of-bounds-errors" title="Link to this heading"></a></h3>
+<p>The Fortran modules produced a couple of compiler warnings and out-of-bounds error, which had not effect on the simulations. This has been fixed regardless.</p>
+</section>
+</section>
 <section id="v1.0.6">
 <h2><strong>v1.0.6</strong><a class="headerlink" href="#v1.0.6" title="Link to this heading"></a></h2>
 <p><strong>Release date: 30th June 2024</strong></p>
@@ -173,8 +236,8 @@
 <h3>Bugfix to velocity distribution<a class="headerlink" href="#Bugfix-to-velocity-distribution" title="Link to this heading"></a></h3>
 <p>For zero relative collision velocities a not-a-number error could have been triggered.</p>
 </section>
-<section id="Bugfix-to-plotting-script">
-<h3>Bugfix to plotting script<a class="headerlink" href="#Bugfix-to-plotting-script" title="Link to this heading"></a></h3>
+<section id="id1">
+<h3>Bugfix to plotting script<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <p>A bug in the plotting script has been fixed causing lines not to be updated. May not be fixed for all Matplotlib version. Please use the most recent one.</p>
 </section>
 <section id="Preparation-for-the-addition-of-multiple-gas-species">

@@ -1,0 +1,175 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>read_data &mdash; dustpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="print_version_warning" href="dustpy.utils.print_version_warning.html" />
+    <link rel="prev" title="luminosity" href="dustpy.std.star.luminosity.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../1_basics.html">1. Basic usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2_simple_customization.html">2. Simple Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../3_advanced_customization.html">3. Advanced Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_standard_model.html">4. The Standard Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_dust_coagulation.html">5. Dust Coagulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_dust_evolution.html">6. Dust Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../7_gas_evolution.html">7. Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dustpylib.html">Library: dustpylib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../test_analytical_coagulation_kernels.html">Test: Analytical Coagulation Kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../test_gas_evolution.html">Test: Gas Evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example_ice_lines.html">Example: Ice Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example_planetary_gaps.html">Example: Planetary Gaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../example_planetesimal_formation.html">Example: Planetesimal Formation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../A_citation.html">Appendix A: Citation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../B_publications.html">Appendix B: List of Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../C_contrib_bug_feature.html">Appendix C: Contributing/Bugs/Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../D_discussions.html">Appendix D: DustPy Discussions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../E_changelog.html">Appendix E: Changelog</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Module Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy">dustpy Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.constants">dustpy.constants Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.plot">dustpy.plot Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std">dustpy.std Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.dust">dustpy.std.dust Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.gas">dustpy.std.gas Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.grid">dustpy.std.grid Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.sim">dustpy.std.sim Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#module-dustpy.std.star">dustpy.std.star Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#module-dustpy.utils">dustpy.utils Package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../api.html#id9">Functions</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">read_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dustpy.utils.print_version_warning.html">print_version_warning</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api.html#id10">Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">dustpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Module Reference</a></li>
+      <li class="breadcrumb-item active">read_data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/dustpy.utils.read_data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="read-data">
+<h1>read_data<a class="headerlink" href="#read-data" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="dustpy.utils.read_data">
+<span class="sig-prename descclassname"><span class="pre">dustpy.utils.</span></span><span class="sig-name descname"><span class="pre">read_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hdf5'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Na</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/dustpy/utils/data.html#read_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dustpy.utils.read_data" title="Link to this definition"></a></dt>
+<dd><p>Function returns a SimpleNamespace with the most useful
+data that can be used for plotting or other purposes.
+This avoids reading the entirety of data files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>str</em><em> | </em><a class="reference internal" href="dustpy.Simulation.html#dustpy.Simulation" title="dustpy.Simulation"><em>dustpy.Simulation</em></a>) – Either a path to the data directory or a TriPoD
+simulation frame</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default: &quot;data&quot;</em>) – Stem of the data files in the data directory</p></li>
+<li><p><strong>extension</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default: &quot;hdf5&quot;</em>) – File extension of the data file in the data directory</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>data</strong> – SimpleNamespace with the extracted data fields</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="dustpy.utils.SimpleNamespace.html#dustpy.utils.SimpleNamespace" title="dustpy.utils.SimpleNamespace">SimpleNamespace</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dustpy.std.star.luminosity.html" class="btn btn-neutral float-left" title="luminosity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dustpy.utils.print_version_warning.html" class="btn btn-neutral float-right" title="print_version_warning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2023, Sebastian Stammler &amp; Tilman Birnstiel.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

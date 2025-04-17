@@ -11,11 +11,11 @@ import dustpy.constants as c
 
 from dustpy import std
 
-from dustpy.utils import hdf5writer
+from simframe.io.writers import hdf5writer
 from dustpy.utils.boundary import Boundary
+from dustpy.utils.simplenamespace import SimpleNamespace
 
 import numpy as np
-from types import SimpleNamespace
 
 
 class Simulation(Frame):
@@ -46,12 +46,11 @@ class Simulation(Frame):
                                                                   "excavatedMass": 1.,
                                                                   "fragmentDistribution": -11/6,
                                                                   "rhoMonomer": 1.67,
-                                                                  "vfrag": 100.
+                                                                  "vFrag": 100.
                                                                   }
                                                                ),
                                        "gas": SimpleNamespace(**{"alpha": 1.e-3,
                                                                  "alphaDiskwind": 0.,
-                                                                 "gamma": 1.4,
                                                                  "LambdaDiskwind": 3.5,
                                                                  "Mdisk": 0.05*c.M_sun,
                                                                  "mu": 2.3*c.m_p,
@@ -159,7 +158,6 @@ class Simulation(Frame):
         self.gas.diskwind.updater = ["alpha", "Lambda", "v", "S"]
         self.gas.eta = None
         self.gas.Fi = None
-        self.gas.gamma = None
         self.gas.Hp = None
         self.gas.mfp = None
         self.gas.mu = None
@@ -576,9 +574,9 @@ class Simulation(Frame):
             self.dust.St.updater = std.dust.St_Epstein_StokesI
         # Velocities
         if self.dust.v.frag is None:
-            vfrag = self.ini.dust.vfrag * np.ones(shape1)
+            vFrag = self.ini.dust.vFrag * np.ones(shape1)
             self.dust.v.frag = Field(
-                self, vfrag, description="Fragmentation velocity [cm/s]")
+                self, vFrag, description="Fragmentation velocity [cm/s]")
         if self.dust.v.rel.azi is None:
             self.dust.v.rel.azi = Field(self, np.zeros(
                 shape3), description="Relative azimuthal velocity [cm/s]")
@@ -676,8 +674,8 @@ class Simulation(Frame):
         # Sound speed
         if self.gas.cs is None:
             self.gas.cs = Field(self, np.zeros(shape1),
-                                description="Sound speed [cm/s]")
-            self.gas.cs.updater = std.gas.cs_adiabatic
+                                description="Isothermal sound speed [cm/s]")
+            self.gas.cs.updater = std.gas.cs_isothermal
         # Disk wind parameters
         # alpha disk wind
         if self.gas.diskwind.alpha is None:
@@ -709,11 +707,6 @@ class Simulation(Frame):
             self.gas.Fi = Field(self, np.zeros(shape1p1),
                                 description="Gas flux interfaces [g/cm/s]")
             self.gas.Fi.updater = std.gas.Fi
-        # Adiabatic index
-        if self.gas.gamma is None:
-            gamma = self.ini.gas.gamma * np.ones(shape1)
-            self.gas.gamma = Field(self, gamma,
-                                   description="Adiabatic index")
         # Pressure scale height
         if self.gas.Hp is None:
             self.gas.Hp = Field(self, np.zeros(shape1),

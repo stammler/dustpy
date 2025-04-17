@@ -252,6 +252,8 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   ! krm(Nm, Nm) : Smaller index of remnant mass
   ! phiFrag(Nm, Nm) : The distribution of fragments
 
+  use math, only: kdelta, theta
+
   implicit none
 
   double precision, intent(in)  :: cratRatio
@@ -274,13 +276,11 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   double precision :: D(Nm, Nm)
   double precision :: E(Nm, Nm)
   double precision :: eps
-  double precision :: kdelta
   double precision :: mi_m_mim1(Nm)
   double precision :: mip1_m_mi(Nm)
   double precision :: mip1_m_mim1(Nm)
   double precision :: mrm
   double precision :: mtot(Nm, Nm)
-  double precision :: theta
   integer :: ce
   integer :: i
   integer :: j
@@ -481,7 +481,6 @@ subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstic
   ! Converting to Python indexing
   klf(:, :) = klf(:, :) - 1
   krm(:, :) = krm(:, :) - 1
-  
 
 end subroutine coagulation_parameters
 
@@ -537,6 +536,8 @@ subroutine fi_adv(Sigma, v, r, ri, Fi, Nr, Nm)
   ! -------
   ! Fi(Nr+1, Nm) : Flux through grid cell interfaces.
 
+  use interpolation, only: interp1d
+
   implicit none
 
   double precision, intent(in)  :: Sigma(Nr, Nm)
@@ -582,6 +583,8 @@ subroutine fi_diff(D, SigmaD, SigmaG, St, u, r, ri, Fi, Nr, Nm)
   ! Returns
   ! -------
   ! Fi(Nr+1, Nm) : Diffusive fluxes at grid cell interfaces
+
+  use interpolation, only: interp1d
 
   implicit none
 
@@ -871,6 +874,7 @@ subroutine jacobian_hydrodynamic_generator(area, D, r, ri, SigmaGas, v, A, B, C,
   ! C(Nr) : super-diagoanl, C(Nr) not used
 
   use constants, only: twopi
+  use interpolation, only: interp1d
 
   implicit none
 
@@ -948,29 +952,6 @@ subroutine jacobian_hydrodynamic_generator(area, D, r, ri, SigmaGas, v, A, B, C,
 end subroutine jacobian_hydrodynamic_generator
 
 
-double precision function kdelta(i, j)
-  ! Function returns the Kronecker delta.
-  !
-  ! Parameters
-  ! ----------
-  ! i : integer
-  ! j : integer
-  !
-  ! Returns
-  ! -------
-  ! kdelta : float
-  !   1. if i==j
-  !   0. else
-
-  if(i == j) then
-    kdelta = 1.d0
-  else
-    kdelta = 0.d0
-  end if
-
-end function kdelta
-
-
 subroutine kernel(a, H, Sigma, SigmaFloor, vrel, K, Nr, Nm)
   ! Subroutine calculates the vertically integrated collision kernel.
   ! Has to be multiplied with fragmentation/sticking probabilities
@@ -992,6 +973,7 @@ subroutine kernel(a, H, Sigma, SigmaFloor, vrel, K, Nr, Nm)
   ! K(Nr, Nm, Nm) : Collision kernel
 
   use constants, only: pi
+  use math, only: kdelta
 
   implicit none
 
@@ -1007,7 +989,6 @@ subroutine kernel(a, H, Sigma, SigmaFloor, vrel, K, Nr, Nm)
   integer          :: ir
   integer          :: i
   integer          :: j
-  double precision :: kdelta
 
   ! Initialization
   K(:, :, :) = 0.d0
@@ -1289,30 +1270,6 @@ subroutine st_epstein_stokes1(a, mfp, rho, Sigma, St, Nr, Nm)
 
 end subroutine st_epstein_stokes1
 
-
-doubleprecision function theta(x)
-  ! Heaviside step function.
-  !
-  ! Parameters
-  ! ----------
-  ! x : float
-  !
-  ! Returns
-  ! -------
-  ! theta : float
-  !   0. if x < 0
-  !   1. if x >= 0
-
-  implicit none
-
-  double precision :: x
-
-  theta = 0.d0
-  if(x .GE. 0.d0) then
-    theta = 1.d0
-  end if
-
-end function theta
 
 
 subroutine vrad(St, vdm, vrg, vr, Nr, Nm)

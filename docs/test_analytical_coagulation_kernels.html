@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -6,23 +8,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Test: Analytical Coagulation Kernels &mdash; dustpy  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
-      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -108,23 +106,23 @@
 <p>The Smoluchwoski equation has analytical solutions for three special cases: the constant, the linear, and the product kernels. These can be used to verify the coagulation algorithm of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code>.</p>
 <p>In this notebook we are going to implement the constant and the linear kernel to demonstrate the diffusivity of the coagulation algorithm.</p>
 <p>Dust growth is implemented by solving the Smolukowski equation for a particle mass distribution</p>
-<p><span class="math notranslate nohighlight">\(\begin{split} \frac{\partial}{\partial t} N\left( m \right) = &amp;\int\limits_0^\infty \int\limits_0^{m'} M\left( m, m', m'' \right) N\left( m' \right) N\left( m'' \right) K\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\\ &amp;-N\left( m \right) \int\limits_0^\infty N\left( m' \right) K\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
-<p>When only considering sticking collisions, the matrix <span class="math notranslate nohighlight">\(M\)</span> can be expressed with a <span class="math notranslate nohighlight">\(\delta\)</span>-function</p>
-<p><span class="math notranslate nohighlight">\(M\left(m,m',m''\right) = \delta\left(m-m'-m''\right)\)</span>,</p>
-<p>meaning masses <span class="math notranslate nohighlight">\(m'\)</span> and <span class="math notranslate nohighlight">\(m''\)</span> collide to form a particle of mass <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \begin{split} \frac{\partial}{\partial t} N\left( m \right) = &amp;\int\limits_0^\infty \int\limits_0^{m'} M\left( m, m', m'' \right) N\left( m' \right) N\left( m'' \right) K\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\\ &amp;-N\left( m \right) \int\limits_0^\infty N\left( m' \right) K\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
+<p>When only considering sticking collisions, the matrix <span class="math notranslate nohighlight">\(\large M\)</span> can be expressed with a <span class="math notranslate nohighlight">\(\large \delta\)</span>-function</p>
+<p><span class="math notranslate nohighlight">\(\Large M\left(m,m',m''\right) = \delta\left(m-m'-m''\right)\)</span>,</p>
+<p>meaning masses <span class="math notranslate nohighlight">\(\large m'\)</span> and <span class="math notranslate nohighlight">\(\large m''\)</span> collide to form a particle of mass <span class="math notranslate nohighlight">\(\large m\)</span>.</p>
 <p>Using this, the Smoluchowski equation can be simplified to</p>
-<p><span class="math notranslate nohighlight">\(\begin{split} \frac{\partial}{\partial t} N\left( m \right) = &amp;\int\limits_0^\infty N\left( m-m' \right) N\left( m' \right) K\left( m-m', m' \right) \mathrm{d}m'\\ &amp;-N\left( m \right) \int\limits_0^\infty N\left( m' \right) K\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
-<p>This equation has analytical solutions for some choices of the kernel <span class="math notranslate nohighlight">\(K\)</span> and can be used to benchmark the coagulation algorithm against. The solutions and their derivations are discussed in detail in e.g. <a class="reference external" href="https://doi.org/10.1086/156949">Silk &amp; Takahashi (1979)</a> or <a class="reference external" href="https://doi.org/10.1016/0019-1035(90)90086-O">Wetherill (1990)</a>.</p>
+<p><span class="math notranslate nohighlight">\(\Large \begin{split} \frac{\partial}{\partial t} N\left( m \right) = &amp;\int\limits_0^\infty N\left( m-m' \right) N\left( m' \right) K\left( m-m', m' \right) \mathrm{d}m'\\ &amp;-N\left( m \right) \int\limits_0^\infty N\left( m' \right) K\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
+<p>This equation has analytical solutions for some choices of the kernel <span class="math notranslate nohighlight">\(\large K\)</span> and can be used to benchmark the coagulation algorithm against. The solutions and their derivations are discussed in detail in e.g. <a class="reference external" href="https://doi.org/10.1086/156949">Silk &amp; Takahashi (1979)</a> or <a class="reference external" href="https://doi.org/10.1016/0019-1035(90)90086-O">Wetherill (1990)</a>.</p>
 <section id="The-Constant-Kernel">
 <h2>The Constant Kernel<a class="headerlink" href="#The-Constant-Kernel" title="Link to this heading"></a></h2>
 <p>The most simple kernel is the constant kernel given by</p>
-<p><span class="math notranslate nohighlight">\(K\left(m, m'\right) = a\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large K\left(m, m'\right) = a\)</span>.</p>
 <p>In this case the Smoluchowski equation has the solution</p>
-<p><span class="math notranslate nohighlight">\(N\left(m, t\right) = \frac{N_0}{m_0} \left( \frac{2}{aN_0t} \right)^2 \exp \left[\frac{2}{aN_0t} \left( 1 - \frac{m}{m_0} \right) \right]\)</span>,</p>
-<p>where <span class="math notranslate nohighlight">\(m_0\)</span> is the mass of the smallest mass bin. <span class="math notranslate nohighlight">\(N_0\)</span> is the total number density of fragments in the beginning</p>
-<p><span class="math notranslate nohighlight">\(N_0 = \int\limits_0^\infty N\left(m,0\right)\mathrm{d}m\)</span>.</p>
-<p>For <span class="math notranslate nohighlight">\(t=0\)</span> only the zeroth mass bin is filled.</p>
-<p>We can now write a function to compare <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> against the analytical solution. Note that <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is calculating in units of <span class="math notranslate nohighlight">\(Nm\Delta m\)</span>, where the bin size <span class="math notranslate nohighlight">\(\Delta m\)</span> on a logarithmic mass grid is given by <span class="math notranslate nohighlight">\(Bm\)</span> with a grid constant <span class="math notranslate nohighlight">\(B\)</span>. To make the solution independent of the grid resolution <span class="math notranslate nohighlight">\(B\)</span>, we are going to plot <span class="math notranslate nohighlight">\(N\left(m, t\right)m^2\)</span> in all cases.</p>
+<p><span class="math notranslate nohighlight">\(\Large N\left(m, t\right) = \frac{N_0}{m_0} \left( \frac{2}{aN_0t} \right)^2 \exp \left[\frac{2}{aN_0t} \left( 1 - \frac{m}{m_0} \right) \right]\)</span>,</p>
+<p>where <span class="math notranslate nohighlight">\(\large m_0\)</span> is the mass of the smallest mass bin. <span class="math notranslate nohighlight">\(\large N_0\)</span> is the total number density of fragments in the beginning</p>
+<p><span class="math notranslate nohighlight">\(\Large N_0 = \int\limits_0^\infty N\left(m,0\right)\mathrm{d}m\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\(\large t=0\)</span> only the zeroth mass bin is filled.</p>
+<p>We can now write a function to compare <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> against the analytical solution. Note that <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is calculating in units of <span class="math notranslate nohighlight">\(\large Nm\Delta m\)</span>, where the bin size <span class="math notranslate nohighlight">\(\large \Delta m\)</span> on a logarithmic mass grid is given by <span class="math notranslate nohighlight">\(\large B \cdot m\)</span> with a grid constant <span class="math notranslate nohighlight">\(\large B\)</span>. To make the solution independent of the grid resolution <span class="math notranslate nohighlight">\(\large B\)</span>, we are going to plot <span class="math notranslate nohighlight">\(\large N\left(m, t\right)m^2\)</span> in all cases.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -187,8 +185,8 @@
 </pre></div>
 </div>
 </div>
-<p>With this we can now write a function that modifies a <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> simulation object to set it up for the constant kernel. Technically, it is possible to start the simulation at <span class="math notranslate nohighlight">\(t=0\)</span> and have only the zeroth mass bin filled. However, this will lead to a spiky mass distribution at the low mass end, since the resulting mass of a collision between two zeroth mass bin particles can be significantly larger than the first mass bin, leaving it empty throughout the simulation.</p>
-<p>To avoid this, we start the simulation at <span class="math notranslate nohighlight">\(t&gt;0\)</span> and use the analytical solution as initial condition.</p>
+<p>With this we can now write a function that modifies a <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> simulation object to set it up for the constant kernel. Technically, it is possible to start the simulation at <span class="math notranslate nohighlight">\(\large t=0\)</span> and have only the zeroth mass bin filled. However, this will lead to a spiky mass distribution at the low mass end, since the resulting mass of a collision between two zeroth mass bin particles can be significantly larger than the first mass bin, leaving it empty throughout the simulation.</p>
+<p>To avoid this, we start the simulation at <span class="math notranslate nohighlight">\(\large t&gt;0\)</span> and use the analytical solution as initial condition.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
@@ -328,7 +326,7 @@
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.6
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -339,15 +337,15 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 6.66e-16</span>
         for particle collision
-            m[55] =  7.20e-05 g    with
-            m[55] =  7.20e-05 g
+            m[90] =  7.20e+00 g    with
+            m[95] =  3.73e+01 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -369,7 +367,7 @@ Writing file <span class="ansi-blue-intense-fg">test_constant_kernel/data0005.hd
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_constant_kernel/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:02</span>
 </pre></div></div>
 </div>
 <p>We now read the necessary data and plot it.</p>
@@ -495,7 +493,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:03</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.6
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -506,7 +504,7 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.83e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.90e-14</span>
         for particle collision
             m[443] =  6.63e+03 g    with
             m[472] =  7.20e+04 g
@@ -516,10 +514,10 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
             m[468] =  5.18e+04 g    with
             m[475] =  9.21e+04 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.66e-15</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.44e-15</span>
         for particle collision
-            m[431] =  2.47e+03 g    with
-            m[462] =  3.16e+04 g
+            m[434] =  3.16e+03 g    with
+            m[465] =  4.05e+04 g
 
 Creating data directory test_constant_kernel_high_res.
 Writing file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/data0000.hdf5</span>
@@ -536,7 +534,7 @@ Writing file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/da
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_constant_kernel_high_res/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:53</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:31</span>
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -585,11 +583,11 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:53</span>
 <section id="The-Linear-Kernel">
 <h2>The Linear Kernel<a class="headerlink" href="#The-Linear-Kernel" title="Link to this heading"></a></h2>
 <p>The second kernel that has an analytical solution it the linear kernel</p>
-<p><span class="math notranslate nohighlight">\(R\left(m, m'\right) = a\left(m + m'\right)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large R\left(m, m'\right) = a\left(m + m'\right)\)</span></p>
 <p>with the analytical solution</p>
-<p><span class="math notranslate nohighlight">\(N\left(m , t\right) = \frac{N_0}{2\sqrt{\pi}m_0^2} \frac{g}{\left(1-g\right)^\frac{3}{4}} \exp \left[-\frac{m}{m_0}\left(1-\sqrt{1-g}\right)^2 \right]\)</span></p>
+<p><span class="math notranslate nohighlight">\(\Large N\left(m , t\right) = \frac{N_0}{2\sqrt{\pi}m_0^2} \frac{g}{\left(1-g\right)^\frac{3}{4}} \exp \left[-\frac{m}{m_0}\left(1-\sqrt{1-g}\right)^2 \right]\)</span></p>
 <p>with</p>
-<p><span class="math notranslate nohighlight">\(g = \exp \left[ -aN_0m_0t \right]\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large g = \exp \left[ -aN_0m_0t \right]\)</span>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
@@ -729,7 +727,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:53</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.6
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -740,15 +738,15 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 2.75e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 2.81e-14</span>
         for particle collision
             m[114] =  1.93e+04 g    with
             m[116] =  3.73e+04 g
 <span class="ansi-yellow-intense-fg">    - Full fragmentation:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.55e-16</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 6.66e-16</span>
         for particle collision
-            m[55] =  7.20e-05 g    with
-            m[55] =  7.20e-05 g
+            m[90] =  7.20e+00 g    with
+            m[95] =  3.73e+01 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
         max. rel. error: <span class="ansi-green-intense-fg"> 1.78e-15</span>
         for particle collision
@@ -885,7 +883,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:01</span>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
-DustPy v1.0.6
+DustPy v1.0.8
 
 Documentation: https://stammler.github.io/dustpy/
 PyPI:          https://pypi.org/project/dustpy/
@@ -896,7 +894,7 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
 <span class="ansi-yellow-intense-fg">Checking for mass conservation...
 </span>
 <span class="ansi-yellow-intense-fg">    - Sticking:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.83e-14</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.90e-14</span>
         for particle collision
             m[443] =  6.63e+03 g    with
             m[472] =  7.20e+04 g
@@ -906,10 +904,10 @@ Please cite Stammler &amp; Birnstiel (2022).</span>
             m[468] =  5.18e+04 g    with
             m[475] =  9.21e+04 g
 <span class="ansi-yellow-intense-fg">    - Erosion:</span>
-        max. rel. error: <span class="ansi-green-intense-fg"> 5.66e-15</span>
+        max. rel. error: <span class="ansi-green-intense-fg"> 5.44e-15</span>
         for particle collision
-            m[431] =  2.47e+03 g    with
-            m[462] =  3.16e+04 g
+            m[434] =  3.16e+03 g    with
+            m[465] =  4.05e+04 g
 
 Creating data directory test_linear_kernel_high_res.
 Writing file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/data0000.hdf5</span>
@@ -926,7 +924,7 @@ Writing file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/data
 Writing dump file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/frame.dmp</span>
 Writing file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/data0006.hdf5</span>
 Writing dump file <span class="ansi-blue-intense-fg">test_linear_kernel_high_res/frame.dmp</span>
-Execution time: <span class="ansi-blue-intense-fg">0:00:11</span>
+Execution time: <span class="ansi-blue-intense-fg">0:00:10</span>
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -975,7 +973,7 @@ Execution time: <span class="ansi-blue-intense-fg">0:00:11</span>
 <section id="The-Product-Kernel">
 <h2>The Product Kernel<a class="headerlink" href="#The-Product-Kernel" title="Link to this heading"></a></h2>
 <p>The third kernel that has an analytical solution it the product kernel</p>
-<p><span class="math notranslate nohighlight">\(K\left(m, m'\right) = a \cdot m\times m'\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Large K\left(m, m'\right) = a \cdot m\times m'\)</span>.</p>
 <p>This kernel describes runaway growth. In this scenario the mass quickly accumulates in a few massive bodies. Since <code class="docutils literal notranslate"><span class="pre">DustPy</span></code> is not designed to properly simulate individual bodies, this solution will not be discussed here.</p>
 </section>
 </section>

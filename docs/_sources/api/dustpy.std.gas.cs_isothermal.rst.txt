@@ -1,0 +1,6 @@
+cs_isothermal
+=============
+
+.. currentmodule:: dustpy.std.gas
+
+.. autofunction:: cs_isothermal
