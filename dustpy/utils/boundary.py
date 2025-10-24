@@ -37,6 +37,9 @@ class Boundary(object):
         self._ri = ri[:3]
         self._S = S[:3]
 
+        # Backlisting fields that should not be stored in output files
+        self._blacklist = ["condition", "value"]
+
     def __repr__(self):
         """Returns a meaningful description.
 
