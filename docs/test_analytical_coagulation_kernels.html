@@ -105,7 +105,7 @@
 <h1>Test: Analytical Coagulation Kernels<a class="headerlink" href="#Test:-Analytical-Coagulation-Kernels" title="Link to this heading"></a></h1>
 <p>The Smoluchwoski equation has analytical solutions for three special cases: the constant, the linear, and the product kernels. These can be used to verify the coagulation algorithm of <code class="docutils literal notranslate"><span class="pre">DustPy</span></code>.</p>
 <p>In this notebook we are going to implement the constant and the linear kernel to demonstrate the diffusivity of the coagulation algorithm.</p>
-<p>Dust growth is implemented by solving the Smolukowski equation for a particle mass distribution</p>
+<p>Dust growth is implemented by solving the Smoluchowski equation for a particle mass distribution</p>
 <p><span class="math notranslate nohighlight">\(\Large \begin{split} \frac{\partial}{\partial t} N\left( m \right) = &amp;\int\limits_0^\infty \int\limits_0^{m'} M\left( m, m', m'' \right) N\left( m' \right) N\left( m'' \right) K\left( m', m'' \right) \mathrm{d}m'' \mathrm{d}m'\\ &amp;-N\left( m \right) \int\limits_0^\infty N\left( m' \right) K\left( m, m' \right) \mathrm{d}m'. \end{split}\)</span></p>
 <p>When only considering sticking collisions, the matrix <span class="math notranslate nohighlight">\(\large M\)</span> can be expressed with a <span class="math notranslate nohighlight">\(\large \delta\)</span>-function</p>
 <p><span class="math notranslate nohighlight">\(\Large M\left(m,m',m''\right) = \delta\left(m-m'-m''\right)\)</span>,</p>
