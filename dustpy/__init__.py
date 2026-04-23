@@ -20,10 +20,10 @@ from simframe.io.writers import hdf5writer
 from simframe.io.dump import readdump
 from importlib import metadata as _md
 
-# Additional attributes that should be blacklisted for being writen in output files
+# Additional attributes that should be skipped from being writen in output files
 # and during displaying group members.
 from simframe.frame import AbstractGroup
-AbstractGroup._blacklist += ["ini"]
+AbstractGroup._skiplist += ["ini"]
 
 __name__ = "dustpy"
 __version__ = _md.version("dustpy")

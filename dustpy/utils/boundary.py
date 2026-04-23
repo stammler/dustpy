@@ -6,7 +6,7 @@ import numpy as np
 class Boundary(object):
     '''Class for managing boundary conditions for gas and dust.'''
 
-    def __init__(self, r, ri, S, condition=None, value=None):
+    def __init__(self, r, ri, S, condition=None, value=None, save=False):
         """Class that manages boundary conditions.
 
         Parameters
@@ -37,8 +37,8 @@ class Boundary(object):
         self._ri = ri[:3]
         self._S = S[:3]
 
-        # Backlisting fields that should not be stored in output files
-        self._blacklist = ["condition", "value"]
+        # Should the boundary be stored in the output file
+        self.save = save
 
     def __repr__(self):
         """Returns a meaningful description.
