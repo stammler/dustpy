@@ -2,5 +2,5 @@ ipympl
 matplotlib
 numpy
 requests
-simframe
+simframe>=1.0.6
 .
