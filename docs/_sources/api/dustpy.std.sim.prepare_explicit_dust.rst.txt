@@ -1,6 +1,0 @@
-prepare_explicit_dust
-=====================
-
-.. currentmodule:: dustpy.std.sim
-
-.. autofunction:: prepare_explicit_dust

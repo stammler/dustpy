@@ -1,6 +1,0 @@
-D
-=
-
-.. currentmodule:: dustpy.std.dust
-
-.. autofunction:: D

@@ -1,6 +1,0 @@
-T_passive
-=========
-
-.. currentmodule:: dustpy.std.gas
-
-.. autofunction:: T_passive

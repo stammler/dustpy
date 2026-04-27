@@ -1,6 +1,0 @@
-vrad
-====
-
-.. currentmodule:: dustpy.std.dust
-
-.. autofunction:: vrad

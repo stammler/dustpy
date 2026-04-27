@@ -1,6 +1,0 @@
-Fi
-==
-
-.. currentmodule:: dustpy.std.gas
-
-.. autofunction:: Fi

@@ -1,6 +1,0 @@
-enforce_floor_value
-===================
-
-.. currentmodule:: dustpy.std.gas
-
-.. autofunction:: enforce_floor_value

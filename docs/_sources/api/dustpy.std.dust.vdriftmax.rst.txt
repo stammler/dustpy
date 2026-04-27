@@ -1,6 +1,0 @@
-vdriftmax
-=========
-
-.. currentmodule:: dustpy.std.dust
-
-.. autofunction:: vdriftmax

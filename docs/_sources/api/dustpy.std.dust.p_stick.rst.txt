@@ -1,6 +1,0 @@
-p_stick
-=======
-
-.. currentmodule:: dustpy.std.dust
-
-.. autofunction:: p_stick

@@ -1,6 +1,0 @@
-vtorque
-=======
-
-.. currentmodule:: dustpy.std.gas
-
-.. autofunction:: vtorque

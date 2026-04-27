@@ -1,7 +1,0 @@
-SimpleNamespace
-===============
-
-.. currentmodule:: dustpy.utils
-
-.. autoclass:: SimpleNamespace
-   :show-inheritance:

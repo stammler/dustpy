@@ -1,7 +1,0 @@
-hdf5writer
-==========
-
-.. currentmodule:: dustpy
-
-.. autoclass:: hdf5writer
-   :show-inheritance:

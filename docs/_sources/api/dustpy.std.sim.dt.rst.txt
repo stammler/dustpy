@@ -1,6 +1,0 @@
-dt
-==
-
-.. currentmodule:: dustpy.std.sim
-
-.. autofunction:: dt

@@ -1,6 +1,0 @@
-S_tot
-=====
-
-.. currentmodule:: dustpy.std.gas
-
-.. autofunction:: S_tot

@@ -1,6 +1,0 @@
-readdump
-========
-
-.. currentmodule:: dustpy
-
-.. autofunction:: readdump

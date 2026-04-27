@@ -1,6 +1,0 @@
-mfp_midplane
-============
-
-.. currentmodule:: dustpy.std.gas
-
-.. autofunction:: mfp_midplane

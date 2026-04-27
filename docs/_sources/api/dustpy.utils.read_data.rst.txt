@@ -1,6 +1,0 @@
-read_data
-=========
-
-.. currentmodule:: dustpy.utils
-
-.. autofunction:: read_data

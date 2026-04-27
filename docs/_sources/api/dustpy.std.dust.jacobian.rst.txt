@@ -1,6 +1,0 @@
-jacobian
-========
-
-.. currentmodule:: dustpy.std.dust
-
-.. autofunction:: jacobian

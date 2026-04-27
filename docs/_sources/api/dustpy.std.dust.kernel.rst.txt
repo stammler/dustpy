@@ -1,6 +1,0 @@
-kernel
-======
-
-.. currentmodule:: dustpy.std.dust
-
-.. autofunction:: kernel
