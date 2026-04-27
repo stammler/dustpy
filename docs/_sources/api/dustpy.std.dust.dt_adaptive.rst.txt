@@ -1,0 +1,6 @@
+dt_adaptive
+===========
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: dt_adaptive

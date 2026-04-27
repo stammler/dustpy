@@ -1,0 +1,31 @@
+Boundary
+========
+
+.. currentmodule:: dustpy.utils
+
+.. autoclass:: Boundary
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~Boundary.condition
+      ~Boundary.value
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~Boundary.setboundary
+      ~Boundary.setcondition
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: condition
+   .. autoattribute:: value
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: setboundary
+   .. automethod:: setcondition

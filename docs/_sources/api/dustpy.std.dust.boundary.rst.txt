@@ -1,0 +1,6 @@
+boundary
+========
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: boundary

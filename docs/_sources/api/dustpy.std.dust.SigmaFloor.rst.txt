@@ -1,0 +1,6 @@
+SigmaFloor
+==========
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: SigmaFloor

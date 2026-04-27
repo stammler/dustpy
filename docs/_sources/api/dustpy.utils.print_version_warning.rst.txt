@@ -1,0 +1,6 @@
+print_version_warning
+=====================
+
+.. currentmodule:: dustpy.utils
+
+.. autofunction:: print_version_warning

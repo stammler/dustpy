@@ -1,0 +1,6 @@
+OmegaK
+======
+
+.. currentmodule:: dustpy.std.grid
+
+.. autofunction:: OmegaK

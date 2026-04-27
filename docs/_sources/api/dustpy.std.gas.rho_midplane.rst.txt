@@ -1,0 +1,6 @@
+rho_midplane
+============
+
+.. currentmodule:: dustpy.std.gas
+
+.. autofunction:: rho_midplane

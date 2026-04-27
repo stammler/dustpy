@@ -1,0 +1,6 @@
+MRN_distribution
+================
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: MRN_distribution

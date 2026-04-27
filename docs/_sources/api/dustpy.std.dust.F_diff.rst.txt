@@ -1,0 +1,6 @@
+F_diff
+======
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: F_diff

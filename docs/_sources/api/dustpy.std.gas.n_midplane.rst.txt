@@ -1,0 +1,6 @@
+n_midplane
+==========
+
+.. currentmodule:: dustpy.std.gas
+
+.. autofunction:: n_midplane

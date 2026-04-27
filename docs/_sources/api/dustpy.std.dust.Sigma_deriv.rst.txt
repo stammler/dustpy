@@ -1,0 +1,6 @@
+Sigma_deriv
+===========
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: Sigma_deriv

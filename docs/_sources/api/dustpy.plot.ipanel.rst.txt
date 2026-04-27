@@ -1,0 +1,6 @@
+ipanel
+======
+
+.. currentmodule:: dustpy.plot
+
+.. autofunction:: ipanel

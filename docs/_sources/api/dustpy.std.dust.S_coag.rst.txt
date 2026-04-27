@@ -1,0 +1,6 @@
+S_coag
+======
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: S_coag

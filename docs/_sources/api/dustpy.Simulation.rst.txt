@@ -1,0 +1,35 @@
+Simulation
+==========
+
+.. currentmodule:: dustpy
+
+.. autoclass:: Simulation
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~Simulation.ini
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~Simulation.checkmassconservation
+      ~Simulation.initialize
+      ~Simulation.makegrids
+      ~Simulation.run
+      ~Simulation.setdustintegrator
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: ini
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: checkmassconservation
+   .. automethod:: initialize
+   .. automethod:: makegrids
+   .. automethod:: run
+   .. automethod:: setdustintegrator

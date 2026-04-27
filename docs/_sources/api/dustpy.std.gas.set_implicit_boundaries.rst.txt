@@ -1,0 +1,6 @@
+set_implicit_boundaries
+=======================
+
+.. currentmodule:: dustpy.std.gas
+
+.. autofunction:: set_implicit_boundaries

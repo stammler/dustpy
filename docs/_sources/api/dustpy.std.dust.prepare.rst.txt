@@ -1,0 +1,6 @@
+prepare
+=======
+
+.. currentmodule:: dustpy.std.dust
+
+.. autofunction:: prepare
