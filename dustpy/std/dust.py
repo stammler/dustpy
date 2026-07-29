@@ -328,13 +328,21 @@ def jacobian(sim, x, dx=None, *args, **kwargs):
     Nr = int(sim.grid.Nr)
     Nm = int(sim.grid.Nm)
 
+    # Switch to decide whether to apply the correction to coagulation
+    apply_correction = getattr(sim.dust, 'apply_coag_correction', False)
+
     # Building coagulation Jacobian
 
     # Total problem size
     Ntot = int((Nr*Nm))
     # Getting data vector and coordinates in sparse matrix
     dat, row, col = dust_f.jacobian_coagulation_generator(
-        A, cstick, eps, ilf, irm, istick, m, phi, Rf, Rs, SigD, SigDfloor)
+        A, cstick, eps, ilf, irm, istick, m, phi, Rf, Rs, SigD, SigDfloor,
+        sim.dust.coagulation.correction_kstick, sim.dust.coagulation.correction_epsstick,
+        sim.dust.coagulation.correction_r_of_k,
+        sim.dust.coagulation.correction_phistick, sim.dust.coagulation.correction_dkstick,
+        sim.dust.coagulation.correction_dk1stick, apply_correction
+    )
     gen = (dat, (row, col))
     # Building sparse matrix of coagulation Jacobian
     J_coag = sp.csc_matrix(
@@ -611,6 +619,8 @@ def S_coag(sim, Sigma=None):
         Coagulation source terms"""
     if Sigma is None:
         Sigma = sim.dust.Sigma
+
+    apply_correction = getattr(sim.dust, 'apply_coag_correction', False)
     return dust_f.s_coag(sim.dust.coagulation.stick,
                          sim.dust.coagulation.stick_ind,
                          sim.dust.coagulation.A,
@@ -622,8 +632,14 @@ def S_coag(sim, Sigma=None):
                          sim.dust.kernel * sim.dust.p.stick,
                          sim.grid.m,
                          Sigma,
-                         sim.dust.SigmaFloor)
-
+                         sim.dust.SigmaFloor,
+                         sim.dust.coagulation.correction_kstick, 
+                         sim.dust.coagulation.correction_epsstick,
+                        sim.dust.coagulation.correction_r_of_k,
+                        sim.dust.coagulation.correction_phistick, 
+                        sim.dust.coagulation.correction_dkstick,
+                        sim.dust.coagulation.correction_dk1stick, 
+                        apply_correction)
 
 def S_hyd(sim, Sigma=None):
     """Function calculates the hydrodynamic source terms.
@@ -728,6 +744,56 @@ def St_Epstein_StokesI(sim):
         Stokes number"""
     rho = sim.dust.rhos * sim.dust.fill
     return dust_f.st_epstein_stokes1(sim.dust.a, sim.gas.mfp, rho, sim.gas.Sigma)
+
+
+def coagulation_correction_parameters(sim):
+    """Function resolves the coagulation correction on/off flag and
+    calculates the grid-only correction parameters needed by the
+    correction-aware coagulation routines (bin index, lever fraction,
+    bin mass ratio, and the pair-level phi/dk/dk1 correction constants
+    for each pair on the mass grid).
+
+    Parameters
+    ----------
+    sim : Frame
+        Parent simulation frame
+
+    Returns
+    -------
+    (apply_coag_correction, kstick, epsstick, r_of_k, phistick, dkstick, dk1stick) : Tuple
+        Correction on/off flag and grid-only correction parameters
+
+    Notes
+    -----
+    ``sim.dust.apply_coag_correction`` takes precedence if it has already
+    been set directly (e.g. before calling ``Simulation.initialize()``);
+    otherwise it falls back to ``sim.ini.dust.apply_coag_correction``.
+    When the correction is off, cheap zero-filled placeholders are
+    returned instead of running the O(Nm^2) Fortran precompute, since the
+    correction-aware Fortran routines still need arrays of the right
+    shape regardless of whether the correction is actually applied.
+
+    ``phistick``, ``dkstick`` and ``dk1stick`` cache
+    pair-level quantities that the correction passes in
+    ``jacobian_coagulation_generator`` and ``s_coag`` derive from
+    ``epsstick``/``kstick``/the mass grid. They depend only on the (i,j)
+    pair, never on the radial ring, so precomputing them once here (like
+    ``kstick``/``epsstick``/``r_of_k``) avoids recomputing them on every
+    ring of every Jacobian/source evaluation."""
+    apply_coag_correction = getattr(
+        sim.dust, 'apply_coag_correction', sim.ini.dust.apply_coag_correction)
+    Nm = int(sim.grid.Nm)
+    if apply_coag_correction:
+        kstick, epsstick, r_of_k, phistick, dkstick, dk1stick = \
+            dust_f.coagulation_correction_parameters(sim.grid.m)
+    else:
+        kstick     = np.zeros((Nm, Nm), dtype=np.int32)
+        epsstick   = np.zeros((Nm, Nm))
+        r_of_k     = np.zeros(Nm - 1)
+        phistick   = np.zeros((Nm, Nm))
+        dkstick    = np.zeros((Nm, Nm))
+        dk1stick   = np.zeros((Nm, Nm))
+    return apply_coag_correction, kstick, epsstick, r_of_k, phistick, dkstick, dk1stick
 
 
 def coagulation_parameters(sim):
