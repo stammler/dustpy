@@ -46,7 +46,8 @@ class Simulation(Frame):
                                                                   "excavatedMass": 1.,
                                                                   "fragmentDistribution": -11/6,
                                                                   "rhoMonomer": 1.67,
-                                                                  "vFrag": 100.
+                                                                  "vFrag": 100.,
+                                                                  "apply_coag_correction": False
                                                                   }
                                                                ),
                                        "gas": SimpleNamespace(**{"alpha": 1.e-3,
@@ -94,6 +95,12 @@ class Simulation(Frame):
         self.dust.coagulation.lf_ind = None
         self.dust.coagulation.rm_ind = None
         self.dust.coagulation.phi = None
+        self.dust.coagulation.correction_kstick = None
+        self.dust.coagulation.correction_epsstick = None
+        self.dust.coagulation.correction_r_of_k = None
+        self.dust.coagulation.correction_phistick = None
+        self.dust.coagulation.correction_dkstick = None
+        self.dust.coagulation.correction_dk1stick = None        
         self.dust.D = None
         self.dust.delta = Group(self, description="Mixing parameters")
         self.dust.delta.rad = None
@@ -474,6 +481,27 @@ class Simulation(Frame):
         if self.dust.coagulation.stick_ind is None:
             self.dust.coagulation.stick_ind = Field(
                 self, stick_ind, description="Non-zero elements of sticking matrix", constant=True)
+        # Coagulation correction parameters
+        self.dust.apply_coag_correction, kstick, epsstick, r_of_k, phistick, dkstick, dk1stick = \
+            std.dust.coagulation_correction_parameters(self)
+        if self.dust.coagulation.correction_kstick is None:
+            self.dust.coagulation.correction_kstick = Field(
+                self, kstick, description="Correction bin index", constant=True)
+        if self.dust.coagulation.correction_epsstick is None:
+            self.dust.coagulation.correction_epsstick = Field(
+                self, epsstick, description="Correction lever fraction", constant=True)
+        if self.dust.coagulation.correction_r_of_k is None:
+            self.dust.coagulation.correction_r_of_k = Field(
+                self, r_of_k, description="Correction bin mass ratio", constant=True)
+        if self.dust.coagulation.correction_phistick is None:
+            self.dust.coagulation.correction_phistick = Field(
+                self, phistick, description="Correction pair-level phi = (1-eps)*eps*4", constant=True)
+        if self.dust.coagulation.correction_dkstick is None:
+            self.dust.coagulation.correction_dkstick = Field(
+                self, dkstick, description="Correction pair-level (m(i)+m(j))-m(k)", constant=True)
+        if self.dust.coagulation.correction_dk1stick is None:
+            self.dust.coagulation.correction_dk1stick = Field(
+                self, dk1stick, description="Correction pair-level (m(i)+m(j))-m(k+1)", constant=True)
         # Diffusivity
         if self.dust.D is None:
             self.dust.D = Field(self, np.zeros(shape2),

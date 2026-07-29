@@ -225,6 +225,75 @@ subroutine check_mass_conservation_sticking(cstick, cstick_ind, m, Nm, errmax, i
 end subroutine check_mass_conservation_sticking
 
 
+subroutine coagulation_correction_parameters(m, kstick, epsstick, r_of_k, &
+  & phistick, dkstick, dk1stick, Nm)
+  ! Precomputes the simple Podolak bin index and lever fraction for each
+  ! pair (i >= j) on the mass grid, plus the grid-only bin mass ratio
+  ! r_of_k(k) = m(k)/m(k+1). All three quantities depend only on the mass
+  ! grid, so precomputing r_of_k once here removes the repeated per-pair,
+  ! per-ring division "c_rk = m(kl)/m(kl+1)" from the hot correction loops
+  ! in jacobian_coagulation_generator and s_coag.
+  !
+  ! Parameters
+  ! ----------
+  ! m(Nm) : Mass grid (must be strictly increasing)
+  ! Nm    : Number of mass bins
+  !
+  ! Returns
+  ! -------
+  ! kstick(Nm, Nm)   : Lower bin index (Fortran 1-indexed) such that
+  !                    m(k) < m(i)+m(j) < m(k+1). Zero when the product
+  !                    mass falls outside the grid.
+  ! epsstick(Nm, Nm) : Lever fraction eps = (m(k+1)-mc)/(m(k+1)-m(k)).
+  !                    Zero when the pair is outside the grid.
+  ! r_of_k(Nm-1)     : r_of_k(k) = m(k)/m(k+1). Always in (0,1) since the
+  !                    grid is strictly increasing.
+  ! phistick(Nm, Nm) : c_phi = (1-eps)*eps*4 for each pair.
+  ! dkstick(Nm, Nm)  : c_dk  = (m(i)+m(j)) - m(k) for each pair.
+  ! dk1stick(Nm, Nm) : c_dk1 = (m(i)+m(j)) - m(k+1) for each pair.
+
+  implicit none
+
+  double precision, intent(in)  :: m(Nm)
+  integer,          intent(out) :: kstick(Nm, Nm)
+  double precision, intent(out) :: epsstick(Nm, Nm)
+  double precision, intent(out) :: r_of_k(Nm-1)
+  double precision, intent(out) :: phistick(Nm, Nm)
+  double precision, intent(out) :: dkstick(Nm, Nm)
+  double precision, intent(out) :: dk1stick(Nm, Nm)
+  integer,          intent(in)  :: Nm
+
+  double precision :: mc, ceps
+  integer          :: i, j, k
+
+  kstick(:, :)   = 0
+  epsstick(:, :) = 0.d0
+  phistick(:, :) = 0.d0
+  dkstick(:, :)  = 0.d0
+  dk1stick(:, :) = 0.d0
+
+  do i = 1, Nm
+    do j = 1, i
+      mc = m(i) + m(j)
+      k  = minloc(m, 1, mc .LT. m) - 1
+      if (k .GE. 1 .AND. k .LT. Nm) then
+        kstick(j, i)   = k
+        ceps = (m(k+1) - mc) / (m(k+1) - m(k))
+        epsstick(j, i) = ceps
+        phistick(j, i) = (1.d0 - ceps)  * ceps ! * 4.d0
+        dkstick(j, i)  = mc - m(k)
+        dk1stick(j, i) = mc - m(k+1)
+      end if
+    end do
+  end do
+
+  do k = 1, Nm-1
+    r_of_k(k) = m(k) / m(k+1)
+  end do
+
+end subroutine coagulation_correction_parameters
+
+
 subroutine coagulation_parameters(cratRatio, fExcav, fragSlope, m, cstick, cstick_ind, AFrag, epsFrag, klf, krm, phiFrag, Nm)
   ! Subroutine calculates the coagulation parameters needed to calculate the
   ! coagulation sources. The sticking matrix is calculated with the method
@@ -682,6 +751,7 @@ end subroutine h_dubrulle1995
 
 
 subroutine jacobian_coagulation_generator(A, cStick, eps, iLF, iRM, iStick, m, phi, Rf, Rs, Sigma, SigmaFloor, &
+  & kstick, epsstick, r_of_k, phistick, dkstick, dk1stick, apply_correction, &
   & dat, row, col, Nr, Nm)
   ! Subroutine calculates the coagulation Jacobian at every radial grid cell except for the boundaries.
   !
@@ -726,12 +796,33 @@ subroutine jacobian_coagulation_generator(A, cStick, eps, iLF, iRM, iStick, m, p
   integer,          intent(in)  :: Nr
   integer,          intent(in)  :: Nm
 
+  ! Correction-specific variables
+  integer,          intent(in)  :: kstick(Nm, Nm)
+  double precision, intent(in)  :: epsstick(Nm, Nm)
+  double precision, intent(in)  :: r_of_k(Nm-1)
+  double precision, intent(in)  :: phistick(Nm, Nm)
+  double precision, intent(in)  :: dkstick(Nm, Nm)
+  double precision, intent(in)  :: dk1stick(Nm, Nm)
+  logical,          intent(in)  :: apply_correction
+
   double precision :: agrid
   double precision :: jac(Nr, Nm, Nm)
   double precision :: N(Nr, Nm)
   double precision :: D(Nm, Nm)
   double precision :: ratef
   double precision :: rates
+
+  ! Correction-specific variables
+  double precision :: corrSk(Nm), corrSk1(Nm)
+  double precision :: corrAk(Nm), corrBk(Nm)
+  double precision :: corrQk(Nm), corrQrk(Nm)
+  double precision :: corrAmin(Nm), corrAmax(Nm)
+  double precision :: corrAlphak(Nm)
+  double precision :: corrDenom(Nm), corrNumer(Nm)
+  double precision :: corrDalpha(Nm)
+  double precision :: c_eps, c_phi, c_dk, c_dk1, c_rk, c_w, c_Numer, c_Denom
+  double precision :: dNdw, dDdw, dadw, Gamma, Gamma_r, inv_phi, inv_rphi, alpha_phi
+  integer :: kl
 
   integer :: imax
   integer :: ir
@@ -776,6 +867,15 @@ subroutine jacobian_coagulation_generator(A, cStick, eps, iLF, iRM, iStick, m, p
     ! Largest mass bin that is above floor value
     imax = min( maxloc(m(:), 1, Sigma(ir, :) .GT. SigmaFloor(ir, :)), Nm )
 
+    if (apply_correction) then
+      corrSk(:) = 0.d0; corrSk1(:) = 0.d0
+      corrAk(:) = 0.d0; corrBk(:) = 0.d0
+      corrQk(:) = 0.d0; corrQrk(:) = 0.d0
+      corrAlphak(:) = 0.d0
+      corrAmin(:) = -1.d30
+      corrAmax(:) = 1.d30
+    end if
+
     do i=1, imax
       do j=1, i
 
@@ -792,6 +892,28 @@ subroutine jacobian_coagulation_generator(A, cStick, eps, iLF, iRM, iStick, m, p
             jac(ir, k, i) = jac(ir, k, i) + D(k, i) * cStick(l, j, i) * rates
           end do
 
+          ! Correction Pass 1
+          if (apply_correction .AND. Sigma(ir, j) .GE. SigmaFloor(ir, j)) then
+            kl = kstick(j, i)
+            if (kl .GE. 1 .AND. kl .LT. Nm) then
+              c_eps = epsstick(j, i); c_phi = phistick(j, i)
+              c_dk  = dkstick(j, i);  c_dk1 = dk1stick(j, i)
+              c_rk  = r_of_k(kl); c_w = rates * N(ir, i)
+
+              corrSk(kl)  = corrSk(kl)  + c_dk  * c_eps * c_w
+              corrSk1(kl) = corrSk1(kl) + c_dk1 * c_phi * c_w
+              corrAk(kl)  = corrAk(kl)  + c_dk  * c_phi * c_w
+              corrBk(kl)  = corrBk(kl)  + c_dk1 * c_rk  * c_phi * c_w
+              corrQk(kl)  = corrQk(kl)  + c_phi * c_w
+              corrQrk(kl) = corrQrk(kl) + c_phi * c_rk  * c_w
+
+              if (c_phi > 1.d-10) then
+                inv_phi  = 1.d0 / c_phi
+                corrAmin(kl) = max(corrAmin(kl), -c_eps * inv_phi)
+                corrAmax(kl) = min(corrAmax(kl), (1.d0 - c_eps) * inv_phi)
+              end if
+            end if
+          end if
         end if
 
         ! FRAGMENTATION
@@ -833,6 +955,57 @@ subroutine jacobian_coagulation_generator(A, cStick, eps, iLF, iRM, iStick, m, p
 
       end do
     end do
+
+    ! Correction Pass 2 (Analytical Differentiation)
+    if (apply_correction) then
+      do kl = 1, Nm-1
+        corrDenom(kl) = corrAk(kl)**2 + corrBk(kl)**2
+      end do
+
+      do kl = 1, Nm-1
+        c_Denom = corrDenom(kl)
+        if (c_Denom > 1.d-290) then
+          c_Numer = corrSk1(kl)*corrBk(kl) - corrSk(kl)*corrAk(kl)
+          corrNumer(kl) = c_Numer
+          corrAlphak(kl) = max(corrAmin(kl), min(corrAmax(kl), c_Numer / c_Denom))
+        else
+          corrNumer(kl) = 0.d0
+          corrAlphak(kl) = 0.d0
+        end if
+      end do
+
+      do i = 1, imax
+        do j = 1, i
+          kl = kstick(j, i)
+          if (kl < 1 .OR. kl >= Nm .OR. Rs(ir, j, i) <= 0.d0) cycle
+          if (Sigma(ir, j) < SigmaFloor(ir, j)) cycle
+
+          c_Denom = corrDenom(kl)
+          if (c_Denom .LE. 1.d-290) cycle
+
+          c_eps = epsstick(j, i); c_phi = phistick(j, i)
+          c_dk  = dkstick(j, i);  c_dk1 = dk1stick(j, i)
+          c_rk  = r_of_k(kl)
+          c_Numer = corrNumer(kl)
+
+          dadw = 0.d0
+          if (c_Numer > (corrAmin(kl)*c_Denom + 1.d-10) .AND. c_Numer < (corrAmax(kl)*c_Denom - 1.d-10)) then
+            dNdw = c_dk1*(1.d0-c_eps)*corrBk(kl) + c_dk1*c_rk*c_phi*corrSk1(kl) &
+                 & - c_dk*c_eps*corrAk(kl) - c_dk*c_phi*corrSk(kl)
+            dDdw = 2.d0*c_phi*(c_dk*corrAk(kl) + c_dk1*c_rk*corrBk(kl))
+            dadw = (dNdw - corrAlphak(kl)*dDdw) / c_Denom
+          end if
+
+          rates = N(ir, j) * Rs(ir, j, i)
+          alpha_phi = corrAlphak(kl) * c_phi
+          Gamma = dadw * corrQk(kl) + alpha_phi
+          Gamma_r = dadw * corrQrk(kl) + alpha_phi * c_rk
+
+          jac(ir, kl, i)   = jac(ir, kl, i)   + D(kl,   i) * Gamma   * rates
+          jac(ir, kl+1, i) = jac(ir, kl+1, i) - D(kl+1, i) * Gamma_r * rates
+        end do
+      end do
+    end if
   end do
 
   ! Filling the data array
@@ -1056,7 +1229,9 @@ subroutine pfrag(vrel, vfrag, pf, Nr, Nm)
 end subroutine pfrag
 
 
-subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, SigmaFloor, S, Nr, Nm)
+subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, SigmaFloor, &
+  & kstick, epsstick, r_of_k, phistick, dkstick, dk1stick, apply_correction, &
+  & S, Nr, Nm)
   ! Subroutine calculates the coagulation source terms.
   ! 
   ! Parameters
@@ -1098,6 +1273,16 @@ subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, S
   integer,          intent(in)  :: Nr
   integer,          intent(in)  :: Nm
 
+  ! Correction-specific variables
+  integer,          intent(in)  :: kstick(Nm, Nm)
+  double precision, intent(in)  :: epsstick(Nm, Nm)
+  double precision, intent(in)  :: r_of_k(Nm-1)
+  double precision, intent(in)  :: phistick(Nm, Nm)
+  double precision, intent(in)  :: dkstick(Nm, Nm)
+  double precision, intent(in)  :: dk1stick(Nm, Nm)
+  logical,          intent(in)  :: apply_correction
+  integer :: kl
+
   double precision :: As(Nm)
   double precision :: n(Nm)
   double precision :: Rf(Nm, Nm)
@@ -1110,6 +1295,12 @@ subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, S
   integer :: k
   integer :: nz
   integer :: p
+
+  ! Correction-specific variables
+  double precision :: c_Sk(Nm), c_Sk1(Nm), c_Ak(Nm), c_Bk(Nm), c_Qk(Nm), c_Qrk(Nm)
+  double precision :: c_amin(Nm), c_amax(Nm), corrAlphak(Nm)
+  double precision :: c_eps, c_phi, c_dk, c_dk1, c_rk, c_w, c_Numer, c_Denom
+  double precision :: inv_phi, inv_rphi
 
   ! Determination of the mass bin range that contributes to
   ! full fragmentation
@@ -1126,6 +1317,12 @@ subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, S
     ! Largest active bin
     imax = min( maxloc(m(:), 1, Sigma(ir, :) .gt. SigmaFloor(ir, :)), Nm )
 
+    if (apply_correction) then
+      c_Sk(:) = 0.d0; c_Sk1(:) = 0.d0; c_Ak(:) = 0.d0; c_Bk(:) = 0.d0
+      c_Qk(:) = 0.d0; c_Qrk(:) = 0.d0
+      c_amin(:) = -1.d30; c_amax(:) = 1.d30
+    end if
+
     ! Coagulation
     do i=1, imax
       do j=1, i
@@ -1135,8 +1332,50 @@ subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, S
           if(k .eq. 0) cycle
           S(ir, k) = S(ir, k) + cstick(nz, j, i) * Rs
         end do
+
+        ! Correction Pass 1
+        if (apply_correction .AND. Sigma(ir, j) .GE. SigmaFloor(ir, j)) then
+          kl = kstick(j, i)
+          if (kl .GE. 1 .AND. kl .LT. Nm) then
+            c_eps = epsstick(j, i); c_phi = phistick(j, i)
+            c_dk  = dkstick(j, i);  c_dk1 = dk1stick(j, i)
+            c_rk  = r_of_k(kl); c_w = Rs
+
+            c_Sk(kl)  = c_Sk(kl)  + c_dk  * c_eps * c_w
+            c_Sk1(kl) = c_Sk1(kl) + c_dk1 * c_phi * c_w
+            c_Ak(kl)  = c_Ak(kl)  + c_dk  * c_phi * c_w
+            c_Bk(kl)  = c_Bk(kl)  + c_dk1 * c_rk  * c_phi * c_w
+            c_Qk(kl)  = c_Qk(kl)  + c_phi * c_w
+            c_Qrk(kl) = c_Qrk(kl) + c_phi * c_rk  * c_w
+
+            if (c_phi > 1.d-10) then
+              inv_phi  = 1.d0 / c_phi
+              c_amin(kl) = max(c_amin(kl), -c_eps * inv_phi)
+              c_amax(kl) = min(c_amax(kl), (1.d0 - c_eps) * inv_phi)
+            end if
+          end if
+        end if
       end do
     end do
+
+    ! Correction Linear Scan
+    if (apply_correction) then
+
+      do kl = 1, Nm-1
+        c_Denom = c_Ak(kl)**2 + c_Bk(kl)**2
+        if (c_Denom > 1.d-290) then
+          c_Numer = c_Sk1(kl)*c_Bk(kl) - c_Sk(kl)*c_Ak(kl)
+          corrAlphak(kl) = max(c_amin(kl), min(c_amax(kl), c_Numer / c_Denom))
+        else
+          corrAlphak(kl) = 0.d0
+        end if
+      end do
+
+      do kl = 1, Nm-1
+        S(ir, kl)   = S(ir, kl)   + corrAlphak(kl) * c_Qk(kl)
+        S(ir, kl+1) = S(ir, kl+1) - corrAlphak(kl) * c_Qrk(kl)
+      end do
+    end if
 
     ! FRAGMENTATION
 
@@ -1189,7 +1428,6 @@ subroutine s_coag(cstick, cstick_ind, A, eps, klf, krm, phi, Kf, Ks, m, Sigma, S
   end do
 
 end subroutine s_coag
-
 
 subroutine s_hyd(Fi, ri, Shyd, Nr, Nm)
   ! Subroutine calculates the hydrodynamic sources from the interface fluxes.
