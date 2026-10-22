@@ -637,13 +637,15 @@ class Simulation(Frame):
                 self.grid.r,
                 self.grid.ri,
                 self.dust.Sigma,
+                slice(0, 3),
                 condition="const_grad"
             )
         if self.dust.boundary.outer is None:
             self.dust.boundary.outer = Boundary(
-                self.grid.r[::-1],
-                self.grid.ri[::-1],
-                self.dust.Sigma[::-1],
+                self.grid.r,
+                self.grid.ri,
+                self.dust.Sigma,
+                slice(-1, -4, -1),
                 condition="val",
                 value=0.1*self.dust.SigmaFloor[-1]
             )
@@ -785,12 +787,12 @@ class Simulation(Frame):
         # Boundary conditions
         if self.gas.boundary.inner is None:
             self.gas.boundary.inner = Boundary(
-                self.grid.r, self.grid.ri, self.gas.Sigma)
+                self.grid.r, self.grid.ri, self.gas.Sigma, slice(0, 3))
             self.gas.boundary.inner.setcondition("const_grad")
         self.gas.boundary.inner.setboundary()
         if self.gas.boundary.outer is None:
             self.gas.boundary.outer = Boundary(
-                self.grid.r[::-1], self.grid.ri[::-1], self.gas.Sigma[::-1])
+                self.grid.r, self.grid.ri, self.gas.Sigma, slice(-1, -4, -1))
             self.gas.boundary.outer.setcondition(
                 "val", self.gas.SigmaFloor[-1])
         self.gas.boundary.outer.setboundary()
